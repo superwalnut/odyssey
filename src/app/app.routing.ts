@@ -8,7 +8,7 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './views/home/home.component';
 
 export const routes: Routes = [
   {
@@ -23,7 +23,7 @@ export const routes: Routes = [
       title: 'Home'
     }
   },
-
+  
   {
     path: '404',
     component: P404Component,
