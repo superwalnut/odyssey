@@ -42,6 +42,11 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { DesignDashboardComponent } from './views/design/design-dashboard/design-dashboard.component';
 import { HomeComponent } from './views/home/home.component';
 
 @NgModule({
@@ -60,6 +65,10 @@ import { HomeComponent } from './views/home/home.component';
     ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   declarations: [
     AppComponent,
@@ -68,6 +77,7 @@ import { HomeComponent } from './views/home/home.component';
     P500Component,
     LoginComponent,
     RegisterComponent,
+    DesignDashboardComponent,
     HomeComponent,
   ],
   providers: [
