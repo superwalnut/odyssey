@@ -50,7 +50,8 @@ import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { DesignDashboardComponent } from "./views/design/design-dashboard/design-dashboard.component";
 import { HomeComponent } from "./views/home/home.component";
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from "@angular/material/menu";
+import { CarouselModule } from "ngx-bootstrap/carousel";
 
 @NgModule({
   imports: [
@@ -72,7 +73,8 @@ import {MatMenuModule} from '@angular/material/menu';
     ReactiveFormsModule,
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebase),
-    MatMenuModule,    
+    MatMenuModule,
+    CarouselModule.forRoot(),
   ],
   declarations: [
     AppComponent,
