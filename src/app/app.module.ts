@@ -52,6 +52,8 @@ import { DesignDashboardComponent } from "./views/design/design-dashboard/design
 import { HomeComponent } from "./views/home/home.component";
 import { MatMenuModule } from "@angular/material/menu";
 import { CarouselModule } from "ngx-bootstrap/carousel";
+import { BookingComponent } from "./views/booking/booking.component";
+import { HeaderComponent } from "./views/header/header.component";
 
 @NgModule({
   imports: [
@@ -85,6 +87,8 @@ import { CarouselModule } from "ngx-bootstrap/carousel";
     RegisterComponent,
     DesignDashboardComponent,
     HomeComponent,
+    BookingComponent,
+    HeaderComponent,
   ],
   providers: [
     {
