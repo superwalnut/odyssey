@@ -1,31 +1,33 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { LocationStrategy, HashLocationStrategy } from "@angular/common";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
+import { PERFECT_SCROLLBAR_CONFIG } from "ngx-perfect-scrollbar";
+import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
 
-import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
+import {
+  IconModule,
+  IconSetModule,
+  IconSetService,
+} from "@coreui/icons-angular";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
+  suppressScrollX: true,
 };
 
-import { AppComponent } from './app.component';
+import { AppComponent } from "./app.component";
 
 // Import containers
-import { DefaultLayoutComponent } from './containers';
+import { DefaultLayoutComponent } from "./containers";
 
-import { P404Component } from './views/error/404.component';
-import { P500Component } from './views/error/500.component';
-import { LoginComponent } from './views/login/login.component';
-import { RegisterComponent } from './views/register/register.component';
+import { P404Component } from "./views/error/404.component";
+import { P500Component } from "./views/error/500.component";
+import { LoginComponent } from "./views/login/login.component";
+import { RegisterComponent } from "./views/register/register.component";
 
-const APP_CONTAINERS = [
-  DefaultLayoutComponent
-];
+const APP_CONTAINERS = [DefaultLayoutComponent];
 
 import {
   AppAsideModule,
@@ -33,21 +35,21 @@ import {
   AppHeaderModule,
   AppFooterModule,
   AppSidebarModule,
-} from '@coreui/angular';
+} from "@coreui/angular";
 
 // Import routing module
-import { AppRoutingModule } from './app.routing';
+import { AppRoutingModule } from "./app.routing";
 
 // Import 3rd party components
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule } from 'ngx-bootstrap/tabs';
-import { ChartsModule } from 'ng2-charts';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { AngularFireModule } from '@angular/fire';
-import { environment } from '../environments/environment';
-import { DesignDashboardComponent } from './views/design/design-dashboard/design-dashboard.component';
-import { HomeComponent } from './views/home/home.component';
+import { BsDropdownModule } from "ngx-bootstrap/dropdown";
+import { TabsModule } from "ngx-bootstrap/tabs";
+import { ChartsModule } from "ng2-charts";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { AngularFireModule } from "@angular/fire";
+import { environment } from "../environments/environment";
+import { DesignDashboardComponent } from "./views/design/design-dashboard/design-dashboard.component";
+import { HomeComponent } from "./views/home/home.component";
 
 @NgModule({
   imports: [
@@ -68,7 +70,7 @@ import { HomeComponent } from './views/home/home.component';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   declarations: [
     AppComponent,
@@ -83,10 +85,10 @@ import { HomeComponent } from './views/home/home.component';
   providers: [
     {
       provide: LocationStrategy,
-      useClass: HashLocationStrategy
+      useClass: HashLocationStrategy,
     },
     IconSetService,
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
