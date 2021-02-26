@@ -13,11 +13,6 @@ import { HomeComponent } from './views/home/home.component';
 
 export const routes: Routes = [
   {
-    path: 'dashboard',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
-  {
     path: '',
     component: HomeComponent,
     data: {
@@ -54,7 +49,7 @@ export const routes: Routes = [
     component: DefaultLayoutComponent,
     canActivate: [AuthGuard],
     data: {
-      title: 'Home'
+      title: 'Design'
     },
     children: [
       {
