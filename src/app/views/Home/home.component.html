@@ -36,18 +36,11 @@
     </div>
   </nav>
 
-  <div class="dropdown">
-    <button
-      class="btn btn-secondary dropdown-toggle"
-      type="button"
-      id="dropdownMenu"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-    >
-      Dropdown button
+  <div class="nav-item dropdown" dropdown>
+    <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+      Dropdown button 1111111111
     </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+    <div class="dropdown-menu" *dropdownMenu aria-labelledby="simple-dropdown">
       <a class="dropdown-item" href="#">Item</a>
       <a class="dropdown-item" href="#">Another item</a>
       <a class="dropdown-item" href="#">One more item</a>
