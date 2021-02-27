@@ -11,7 +11,7 @@ import { freeSet } from "@coreui/icons";
     <router-outlet></router-outlet>
     <footer class="app-footer">
       <div>
-        <a href="https://coreui.io">HBC</a>
+        <a href="https://hbc666.club">HBC</a>
         <span>&copy; 2021.</span>
       </div>
       <div class="ml-auto">
