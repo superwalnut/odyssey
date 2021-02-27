@@ -29,17 +29,22 @@ carousel img {
   height: 250px;
 }
 
+.card-img-top {
+  //background: url(./assets/img/banners/test2.jpg);
+}
 .booking {
   .cil-plus {
     font-size: 25px;
     color: greenyellow;
     text-align: right;
+    cursor: pointer;
   }
 
   .cil-minus {
     font-size: 25px;
     color: rgb(247, 55, 87);
     text-align: right;
+    cursor: pointer;
   }
   tr.active {
     background-color: #202020;
