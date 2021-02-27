@@ -29,6 +29,23 @@ carousel img {
   height: 250px;
 }
 
+.booking {
+  .cil-plus {
+    font-size: 25px;
+    color: greenyellow;
+    text-align: right;
+  }
+
+  .cil-minus {
+    font-size: 25px;
+    color: rgb(247, 55, 87);
+    text-align: right;
+  }
+  tr.active {
+    background-color: #202020;
+  }
+}
+
 //4b0063
 nav {
   background-color: $nav-bar-color;
