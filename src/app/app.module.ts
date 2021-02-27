@@ -54,6 +54,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { CarouselModule } from "ngx-bootstrap/carousel";
 import { BookingComponent } from "./views/booking/booking.component";
 import { HeaderComponent } from "./views/header/header.component";
+import { TermsComponent } from './views/terms/terms.component';
 
 @NgModule({
   imports: [
@@ -89,6 +90,7 @@ import { HeaderComponent } from "./views/header/header.component";
     HomeComponent,
     BookingComponent,
     HeaderComponent,
+    TermsComponent,
   ],
   providers: [
     {

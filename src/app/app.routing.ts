@@ -11,7 +11,7 @@ import { LoginComponent } from "./views/login/login.component";
 import { RegisterComponent } from "./views/register/register.component";
 import { HomeComponent } from "./views/home/home.component";
 import { BookingComponent } from "./views/booking/booking.component";
-
+import { TermsComponent } from "./views/terms/terms.component";
 export const routes: Routes = [
   {
     path: "",
@@ -27,7 +27,13 @@ export const routes: Routes = [
       title: "booking",
     },
   },
-
+  {
+    path: "termsconditions",
+    component: TermsComponent,
+    data: {
+      title: "Terms & Conditions",
+    },
+  },
   {
     path: "404",
     component: P404Component,

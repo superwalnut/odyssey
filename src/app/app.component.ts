@@ -15,8 +15,7 @@ import { freeSet } from "@coreui/icons";
         <span>&copy; 2021.</span>
       </div>
       <div class="ml-auto">
-        <span>Powered by</span>
-        <a href="https://coreui.io">HBC DEV</a>
+        <a routerLink="termsconditions">Terms & Conditions</a>
       </div>
     </footer>`,
   providers: [IconSetService],
