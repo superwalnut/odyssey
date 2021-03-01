@@ -6,5 +6,8 @@ import { CustomTooltips } from "@coreui/coreui-plugin-chartjs-custom-tooltips";
   templateUrl: "dashboard.component.html",
 })
 export class DashboardComponent implements OnInit {
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    
+  }
 }

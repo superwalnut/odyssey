@@ -42,6 +42,7 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
+    name: 'Components'
     name: "Admin Only",
   },
   {
