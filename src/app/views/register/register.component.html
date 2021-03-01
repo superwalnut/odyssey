@@ -21,10 +21,12 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-bubbles"></i></span>
                   </div>
-                  <input type="text" class="form-control" formControlName="wechatId" placeholder="wechat name or your name">
+                  <input type="text" class="form-control" formControlName="wechatId" placeholder="WeChat or WhatsApp ID" >
+                  
                   <div *ngIf="submitted && f.wechatId.errors" class="invalid-feedback">
-                    <div *ngIf="f.wechatId.errors.required">wechat name is required</div>
+                    <div *ngIf="f.wechatId.errors.required">WeChat or WhatsApp ID is required</div>
                   </div>
+
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">

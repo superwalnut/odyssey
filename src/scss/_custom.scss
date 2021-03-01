@@ -22,7 +22,10 @@ body div.app {
   font-weight: 600;
 }
 .container .row {
-  background-color: white;
+  .light{
+    background-color: white;
+  }
+  
 }
 carousel img {
   width: 1230px;

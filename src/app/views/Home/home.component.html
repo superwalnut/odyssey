@@ -1,6 +1,6 @@
 <div class="app footer-fixed">
   <div class="container">
-    <div class="row">
+    <div class="row light">
       <div class="col">
         <carousel>
           <slide>
@@ -13,14 +13,68 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row light">
       <div class="col">
         <section>
           <h2>THIS WEEK'S BADMINTON SESSIONS</h2> 
+          <table class="table table-hover table-dark booking">
+            <thead>
+              <tr>
+                <th scope="col">Day</th>
+                <th scope="col">Time</th>
+                <th scope="col">Seats available</th>
+                <th scope="col"></th>
+                  
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">TUESDAY</th>
+                <td>8-11PM</td>
+                <td>16</td>
+                <td><button
+                  type="button"
+                  class="btn btn-primary"
+                  routerLink="booking"
+            
+                >
+                  Book
+                </button></td>
+              </tr>
+              <tr>
+                <th scope="row">FRIDAY</th>
+                <td>8-11PM</td>
+                <td>5</td>
+                <td><button
+                  type="button"
+                  class="btn btn-primary"
+            
+                >
+                  Book
+                </button></td>
+              </tr>
+              <tr>
+                <th scope="row">SATURDAY</th>
+                <td>5-8PM</td>
+                <td>10</td>
+                <td><button
+                  type="button"
+                  class="btn btn-primary"
+            
+                >
+                  Book
+                </button></td>
+              </tr>
 
-          <div class="list-group list-group-accent">
+            </tbody>
+          </table>
+
+
+
+          <!-- <div class="list-group list-group-accent">
             <div
-              class="list-group-item list-group-item-accent-success "
+              class="list-group-item list-group-item-accent-success list-group-item-success"
             >
               <a routerLink="booking"
                 >Tuesday Feb 12, 20:00-23:00, Spots: 8/16</a
@@ -28,7 +82,7 @@
               <button type="button" class="btn btn-primary">Book</button>
             </div>
             <div
-              class="list-group-item list-group-item-accent-success"
+              class="list-group-item list-group-item-accent-success list-group-item-success"
             >
               <a routerLink="booking"
                 >Friday Feb 15, 20:00-23:00, Spots: 25/40</a
@@ -41,18 +95,16 @@
               <a routerLink="booking"
                 >Saturday Feb 16, 17:00-20:00, Spots: 32/32</a
               >
-              <i class="cil-credit-card"></i>
-
               <button type="button" class="btn btn-primary disabled">
                 FULL
               </button>
             </div>
-          </div>
+          </div> -->
         </section>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row light">
       <div class="col-sm">
         <div class="card">
           <img
@@ -123,3 +175,4 @@
     </div>
   </div>
 </div>
+ 
