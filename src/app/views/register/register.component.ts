@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit{
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
       wechatId: ['', Validators.required],
+      mobile: ['', Validators.required],
     });
   }
 
@@ -46,6 +47,7 @@ export class RegisterComponent implements OnInit{
       wechatId : this.registerForm.value.wechatId,
       email : this.registerForm.value.email,
       password: this.registerForm.value.password,
+      mobile: this.registerForm.value.mobile,
     } as User;
     
     this.userService.create(user).then(x=>{

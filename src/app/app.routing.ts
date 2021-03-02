@@ -60,11 +60,29 @@ export const routes: Routes = [
       title: "Register Page",
     },
   },
+  /// HBC admin
+  {
+    path: "admin",
+    component: DefaultLayoutComponent,
+    data: {
+      title: "HBC Admin",
+    },
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("./views/admin/admin.module").then(
+            (m) => m.AdminModule
+          ),
+      }
+    ]
+  },
+  /// HBC template and pages
   {
     path: "",
     component: DefaultLayoutComponent,
     data: {
-      title: "Design",
+      title: "HBC",
     },
     children: [
       {
@@ -75,46 +93,59 @@ export const routes: Routes = [
           ),
       },
       {
-        path: "design/base",
+        path: "settings",
+        loadChildren: () => import("./views/settings/settings.module").then(m=>m.SettingsModule),
+      }
+    ]
+  },
+  {
+    path: "design",
+    component: DefaultLayoutComponent,
+    data: {
+      title: "Design",
+    },
+    children: [
+      {
+        path: "base",
         loadChildren: () =>
           import("./views/base/base.module").then((m) => m.BaseModule),
       },
       {
-        path: "design/buttons",
+        path: "buttons",
         loadChildren: () =>
           import("./views/buttons/buttons.module").then((m) => m.ButtonsModule),
       },
       {
-        path: "design/charts",
+        path: "charts",
         loadChildren: () =>
           import("./views/chartjs/chartjs.module").then((m) => m.ChartJSModule),
       },
       {
-        path: "design/dashboard",
+        path: "dashboard",
         loadChildren: () =>
           import(
             "./views/design/design-dashboard/design-dashboard.module"
           ).then((m) => m.DesignDashboardModule),
       },
       {
-        path: "design/icons",
+        path: "icons",
         loadChildren: () =>
           import("./views/icons/icons.module").then((m) => m.IconsModule),
       },
       {
-        path: "design/notifications",
+        path: "notifications",
         loadChildren: () =>
           import("./views/notifications/notifications.module").then(
             (m) => m.NotificationsModule
           ),
       },
       {
-        path: "design/theme",
+        path: "theme",
         loadChildren: () =>
           import("./views/theme/theme.module").then((m) => m.ThemeModule),
       },
       {
-        path: "design/widgets",
+        path: "widgets",
         loadChildren: () =>
           import("./views/widgets/widgets.module").then((m) => m.WidgetsModule),
       },

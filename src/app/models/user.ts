@@ -4,4 +4,5 @@ export class User {
     email:string;
     wechatId:string;
     password:string;
+    mobile:string;
 }

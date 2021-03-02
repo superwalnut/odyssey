@@ -30,6 +30,15 @@
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-phone"></i></span>
+                  </div>
+                  <input type="text" class="form-control" formControlName="mobile" placeholder="mobile">
+                  <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                    <div *ngIf="f.mobile.errors.required">mobile is required</div>
+                  </div>
+                </div>                
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
                     <span class="input-group-text">@</span>
                   </div>
                   <input type="text" class="form-control" formControlName="email"  placeholder="Email">

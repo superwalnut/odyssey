@@ -55,6 +55,10 @@ import { CarouselModule } from "ngx-bootstrap/carousel";
 import { BookingComponent } from "./views/booking/booking.component";
 import { HeaderComponent } from "./views/header/header.component";
 import { TermsComponent } from './views/terms/terms.component';
+import { FamilyComponent } from './views/settings/family/family.component';
+import { ProfileComponent } from './views/settings/profile/profile.component';
+import { PasswordComponent } from './views/settings/password/password.component';
+import { UsersComponent } from './views/admin/users/users.component';
 
 @NgModule({
   imports: [
@@ -91,6 +95,10 @@ import { TermsComponent } from './views/terms/terms.component';
     BookingComponent,
     HeaderComponent,
     TermsComponent,
+    FamilyComponent,
+    ProfileComponent,
+    PasswordComponent,
+    UsersComponent,
   ],
   providers: [
     {
