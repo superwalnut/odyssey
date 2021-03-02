@@ -95,10 +95,6 @@ import { UsersComponent } from './views/admin/users/users.component';
     BookingComponent,
     HeaderComponent,
     TermsComponent,
-    FamilyComponent,
-    ProfileComponent,
-    PasswordComponent,
-    UsersComponent,
   ],
   providers: [
     {
