@@ -6,6 +6,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { UsersComponent } from './users/users.component';
+import { BookingsComponent } from './bookings/bookings.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { UsersComponent } from './users/users.component';
     ButtonsModule.forRoot()
   ],
   declarations: [ 
-      UsersComponent,
+      UsersComponent, BookingsComponent,
    ]
 })
 export class AdminModule { }

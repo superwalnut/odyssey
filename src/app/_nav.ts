@@ -52,7 +52,7 @@ export const navItems: INavData[] = [
   },
   {
     name: "Bookings",
-    url: "/theme/typography",
+    url: "/admin/bookings",
     icon: "cil-notes",
   },
 
