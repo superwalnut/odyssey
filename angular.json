@@ -35,7 +35,8 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "chart.js",
-              "classnames"
+              "classnames",
+              "crypto-js"
             ]
           },
           "configurations": {

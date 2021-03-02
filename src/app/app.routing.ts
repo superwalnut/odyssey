@@ -23,6 +23,7 @@ export const routes: Routes = [
   {
     path: "booking",
     component: BookingComponent,
+    canActivate : [AuthGuard],
     data: {
       title: "booking",
     },
@@ -66,7 +67,9 @@ export const routes: Routes = [
     component: DefaultLayoutComponent,
     data: {
       title: "HBC Admin",
+      roles: ['Admin', 'God']
     },
+    canActivate : [AuthGuard],
     children: [
       {
         path: "",
@@ -84,6 +87,7 @@ export const routes: Routes = [
     data: {
       title: "HBC",
     },
+    canActivate : [AuthGuard],
     children: [
       {
         path: "dashboard",

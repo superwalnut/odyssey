@@ -11,7 +11,7 @@ export class FirestoreBaseService<T> {
   constructor(private collection : AngularFirestoreCollection) { }
 
   //CREATE
-  async create(data: T): Promise<string> {
+  protected async create(data: T): Promise<string> {
     try {
       return await this.collection.add(data).then(docRef => {
         return Promise.resolve(docRef.id)
@@ -22,7 +22,7 @@ export class FirestoreBaseService<T> {
   }
 
   //UPDATE
-  async update(docId: string, doc: T): Promise<string> {
+  protected async update(docId: string, doc: T): Promise<string> {
     try {
       return await this.collection.doc(docId).set(doc, { merge: true }).then(docRef =>{
         return Promise.resolve(docId);
@@ -33,7 +33,7 @@ export class FirestoreBaseService<T> {
   }
 
   //DELETE
-  async delete(docId: string): Promise<void> {
+  protected async delete(docId: string): Promise<void> {
     try {
       await this.collection.doc(docId).delete();
     } catch (err) {
@@ -42,7 +42,7 @@ export class FirestoreBaseService<T> {
   }
 
 
-  encryptData(data) {
+  protected encryptData(data) {
     try {
       return CryptoJS.AES.encrypt(JSON.stringify(data), this.encryptSecretKey).toString();
     } catch (e) {
@@ -50,7 +50,7 @@ export class FirestoreBaseService<T> {
     }
   }
 
-  decryptData(data) {
+  protected decryptData(data) {
     try {
       const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
       if (bytes.toString()) {

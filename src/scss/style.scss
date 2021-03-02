@@ -10,3 +10,7 @@
 .invalid-feedback {
     display: block;
 }
+
+.cdk-overlay-container {
+    z-index: 9999;
+}

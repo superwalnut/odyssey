@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../models/user';
-import { UserService } from '../../services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit{
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder, private userService:UserService, private snackBar:MatSnackBar, private router: Router) { 
+  constructor(private fb: FormBuilder, private accountService:AccountService, private snackBar:MatSnackBar, private router: Router) { 
     
   }
 
@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit{
       mobile: this.registerForm.value.mobile,
     } as User;
     
-    this.userService.create(user).then(x=>{
+    this.accountService.createUser(user).then(x=>{
       this.snackBar.open(`Your account settings have been updated.`, null , {
         duration: 5000,
         verticalPosition: 'top'
