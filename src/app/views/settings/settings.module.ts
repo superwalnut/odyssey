@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
@@ -8,6 +8,8 @@ import { SettingsRoutingModule } from './settings-routing.module';
 import { FamilyComponent } from './family/family.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PasswordComponent } from './password/password.component';
+import { CommonModule } from '@angular/common';  
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -15,7 +17,10 @@ import { PasswordComponent } from './password/password.component';
     SettingsRoutingModule,
     ChartsModule,
     BsDropdownModule,
-    ButtonsModule.forRoot()
+    ButtonsModule.forRoot(),
+    ReactiveFormsModule,
+    CommonModule,
+    MatSnackBarModule,
   ],
   declarations: [ 
       FamilyComponent,

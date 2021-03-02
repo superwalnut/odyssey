@@ -16,9 +16,14 @@ export const navItems: INavData[] = [
     name: "Account",
   },
   {
-    name: "Security Settings",
-    url: "/theme/colors",
-    icon: "cil-lock-locked",
+    name: "Profile",
+    url: "/settings/profile",
+    icon: "icon-user",
+  },
+  {
+    name: "Password",
+    url: "/settings/password",
+    icon: "icon-pencil",
   },
   {
     name: "Credit Statement",
@@ -32,8 +37,8 @@ export const navItems: INavData[] = [
   },
   {
     name: "Family Members",
-    url: "/theme/typography",
-    icon: "cil-people",
+    url: "/settings/family",
+    icon: "icon-people",
   },
 
   //For Admin

@@ -5,4 +5,5 @@ export class User {
     wechatId:string;
     password:string;
     mobile:string;
+    family:string[];
 }
