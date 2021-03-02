@@ -6,4 +6,5 @@ export class User {
     password:string;
     mobile:string;
     family:string[];
+    role:string;
 }

@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { FirestoreBaseService } from './firestore-base.service';
 import { map, concatMap, finalize } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Account } from '../models/account';
 
 @Injectable({
   providedIn: 'root'
@@ -74,19 +75,42 @@ export class AccountService extends FirestoreBaseService<User>{
     return this.update(docId, user);
   }
 
-  getLoginUser() {
-    var email = '';
-    var user = this.getLocal();
-    if(user){
-      email = user.email;
+  isAdmin() {
+    const role = this.getLoginAccount()?.role??'';
+    if(role == 'Admin' || role == 'God'){
+      return true;
     }
 
-    const account = this.accountValue;
-    if (account) {
+    return false;
+  }
+
+  isGod() {
+    const role = this.getLoginAccount()?.role??'';
+    if(role == 'God'){
+      return true;
+    }
+
+    return false;
+  }
+
+  getLoginAccount() {
+    var account = this.getLocal();
+    if(account){
+      return account;
+    }
+
+    const user = this.accountValue;
+    if (user) {
         // logged in so return true
-        email = account.email;
+        return { docId: user.docId, email: user.email, role: user.role } as Account;
     }
 
+    return null;
+  }
+
+  public getLoginUser() {
+    var email = this.getLoginAccount()?.email??'';
+    
     return this.firestore.collection('users', q => q.where("email", "==", email).limit(1)).snapshotChanges().pipe(
       map(actions => {
           if(actions && actions.length > 0){
@@ -101,20 +125,20 @@ export class AccountService extends FirestoreBaseService<User>{
         }));
   }
 
-  saveLocal(user:User) {
+  private saveLocal(user:User) {
     console.log('local', user);
-    var encripted = this.encryptData(JSON.stringify({ docId: user.docId, email : user.email}));
+    var encripted = this.encryptData(JSON.stringify({ docId: user.docId, email : user.email, role : user.role}));
     localStorage.setItem("user", encripted);
   }
 
-  getLocal() : User {
+  private getLocal() : Account {
     var json = localStorage.getItem("user");
     if(json){
       var decripted = this.decryptData(json);
       var user = JSON.parse(decripted);
-      return user;
+      return user as Account;
     }
-    return null;
+    return new Account();
   }
 
 }
