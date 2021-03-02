@@ -23,6 +23,7 @@ export const routes: Routes = [
   {
     path: "booking",
     component: BookingComponent,
+    canActivate : [AuthGuard],
     data: {
       title: "booking",
     },

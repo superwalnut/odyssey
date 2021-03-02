@@ -5,13 +5,13 @@
           <div class="card-body p-4">
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
               <h1>Manage Family</h1>
-              <p class="text-muted">Family
-                <button class="btn btn-link btn-sm float-right" type="button" (click)="addFamily()">Add</button>
+              <p class="text-muted mb-3">Add your family members
+                <button class="btn btn-secondary btn-sm float-right" type="button" (click)="addFamily()">Add</button>
               </p>
 
               <div formArrayName="families">
                 <div *ngFor="let city of families.controls; index as i">
-                    <div class="input-group mb-2">
+                    <div class="input-group mb-3">
                         <input [formControlName]="i" placeholder="Name..." class="form-control" type="text" >
                         <div class="input-group-append">
                             <div (click)="deleteFamily(i)" class="input-group-text">
