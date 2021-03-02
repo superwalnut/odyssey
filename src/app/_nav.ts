@@ -16,24 +16,24 @@ export const navItems: INavData[] = [
     name: "Account",
   },
   {
-    name: "Password Reset",
+    name: "Security Settings",
     url: "/theme/colors",
-    icon: "icon-drop",
+    icon: "cil-lock-locked",
   },
   {
-    name: "Credit Balance",
+    name: "Credit Statement",
     url: "/theme/typography",
-    icon: "icon-pencil",
+    icon: "cil-dollar",
   },
   {
     name: "Attendance History",
     url: "/theme/typography",
-    icon: "icon-pencil",
+    icon: "cil-check",
   },
   {
     name: "Family Members",
     url: "/theme/typography",
-    icon: "icon-pencil",
+    icon: "cil-people",
   },
 
   //For Admin
@@ -47,19 +47,19 @@ export const navItems: INavData[] = [
   },
   {
     name: "Users",
-    url: "/theme/colors",
-    icon: "icon-drop",
+    url: "/admin/users",
+    icon: "cil-group",
   },
   {
     name: "Bookings",
     url: "/theme/typography",
-    icon: "icon-pencil",
+    icon: "cil-notes",
   },
 
   {
     name: "Reports",
     url: "/base",
-    icon: "icon-puzzle",
+    icon: "cil-chart",
     children: [
       {
         name: "Income",
