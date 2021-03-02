@@ -21,10 +21,12 @@ body div.app {
   font-size: 40px;
   font-weight: 600;
 }
-.container .row {
-  
-  &.light{
-    background-color: white;
+
+.container, .container-fluid{
+  .row {
+    &.light{
+      background-color: white;
+    }
   }
 }
 carousel img {
