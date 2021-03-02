@@ -118,12 +118,4 @@ export const navItems: INavData[] = [
     },
     attributes: { disabled: true },
   },
-  {
-    name: "Download CoreUI",
-    url: "http://coreui.io/angular/",
-    icon: "icon-cloud-download",
-    class: "mt-auto",
-    variant: "success",
-    attributes: { target: "_blank", rel: "noopener" },
-  },
 ];
