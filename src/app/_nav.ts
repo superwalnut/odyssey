@@ -47,7 +47,7 @@ export const navItems: INavData[] = [
   },
   {
     name: "Users",
-    url: "/admin/users",
+    url: "/admin/users", 
     icon: "cil-group",
   },
   {

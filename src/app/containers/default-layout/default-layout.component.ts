@@ -56,6 +56,11 @@ export class DefaultLayoutComponent {
         url: "/theme/typography",
         icon: "cil-dollar",
       },
+{
+      name: "Booking Schedule",
+      url: "/settings/schedule",
+      icon: "cil-tennis",
+    },
       {
         name: "Attendance History",
         url: "/theme/typography",
@@ -89,7 +94,7 @@ export class DefaultLayoutComponent {
         },
         {
           name: "Bookings",
-          url: "/theme/typography",
+          url: "/admin/bookings",
           icon: "cil-notes",
         },
         {

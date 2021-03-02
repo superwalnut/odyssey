@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { PasswordComponent } from './password/password.component';
 import { CommonModule } from '@angular/common';  
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AutobookingComponent } from './autobooking/autobooking.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
       FamilyComponent,
       ProfileComponent,
       PasswordComponent,
+      AutobookingComponent,
    ]
 })
 export class SettingsModule { }

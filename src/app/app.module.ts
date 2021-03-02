@@ -91,6 +91,7 @@ import { TermsComponent } from './views/terms/terms.component';
     BookingComponent,
     HeaderComponent,
     TermsComponent,
+    
   ],
   providers: [
     {

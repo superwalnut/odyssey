@@ -2,15 +2,41 @@
 <div class="container-xl">
     <div class="row">
         <div class="col">
+            <p>
+                God mode can full control the bookings, current and past.<br>
+                1. remote/add user<br>
+                2. change payment method<br/>
+                3. mark a user as unpaid<br>
+                3. lock/unlock <br>
+
+            </p>
             <h1>Bookings Management</h1>
-            Week <input type=text/>
+            Show Weeks 
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <button type="button" class="btn btn-secondary">5</button>
+                <button type="button" class="btn btn-secondary">10</button>
+                <button type="button" class="btn btn-secondary">21</button>
+                <button type="button" class="btn btn-secondary">52</button>
+                <button type="button" class="btn btn-secondary">104</button>
+              
+                <div class="btn-group" role="group">
+                  <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Current
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item" href="#">All</a>
+                    <a class="dropdown-item" href="#">Unlocked</a>
+                  </div>
+                </div>
+              </div>
+
         </div>
     </div>
     <div class="row light">
         <div class="col">
         
 
-            <h3>TUE, Mar 2, 2021 </h3>
+            <h3>TUE, Mar 2, 2021 <i class="cil-lock-locked"></i></h3>
             <table class="table">
                 <thead>
                   <tr>
@@ -25,13 +51,19 @@
                   <tr>
                     <th scope="row">1</th>
                     <td>Kevin W ($110)</td>                   
-                    <td><i class="cil-credit-card"></i></td>
+                    <td><a href="#"><i class="cil-credit-card"></i></a></td>
                     <td><i class="cil-minus"></i></td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
                     <td>Josh ($80)</td>                   
-                    <td><i class="cil-dollar"></i></td>
+                    <td><a href="#"><i class="cil-dollar"></i></a></td>
+                    <td><i class="cil-minus"></i></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Indian Bro</td>                   
+                    <td><a href="#"><i class="cil-face-dead" title="unpaid"></i></a></td>
                     <td><i class="cil-minus"></i></td>
                   </tr>
                   <tr>
@@ -44,7 +76,7 @@
         </div>
 
         <div class="col">
-            <h3>FRI, Mar 5, 2021 </h3>
+            <h3>FRI, Mar 5, 2021 <i class="cil-lock-unlocked"></i></h3>
             <table class="table">
                 <thead>
                   <tr>
@@ -56,28 +88,35 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Kevin W ($110)</td>                   
-                    <td><i class="cil-credit-card"></i></td>
-                    <td><i class="cil-minus"></i></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Josh ($80)</td>                   
-                    <td><i class="cil-dollar"></i></td>
-                    <td><i class="cil-minus"></i></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Total</th>
-                    <td colspan="3">$300 Credit, $60 Cash</td>
-                </tr>
-                </tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Kevin W ($110)</td>                   
+                      <td><a href="#"><i class="cil-credit-card"></i></a></td>
+                      <td><i class="cil-minus"></i></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Josh ($80)</td>                   
+                      <td><a href="#"><i class="cil-dollar"></i></a></td>
+                      <td><i class="cil-minus"></i></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Indian Bro</td>                   
+                      <td><a href="#"><i class="cil-face-dead" title="unpaid"></i></a></td>
+                      <td><i class="cil-minus"></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Total</th>
+                        <td colspan="3">$300 Credit, $60 Cash</td>
+                    </tr>
+                    
+                  </tbody>
               </table>
         </div>
 
         <div class="col">
-            <h3>SAT, Mar 6, 2021 </h3>
+            <h3>SAT, Mar 6, 2021 <i class="cil-lock-locked"></i></h3>
             <table class="table">
                 <thead>
                   <tr>
@@ -89,23 +128,30 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Kevin W ($110)</td>                   
-                    <td><i class="cil-credit-card"></i></td>
-                    <td><i class="cil-minus"></i></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Josh ($80)</td>                   
-                    <td><i class="cil-dollar"></i></td>
-                    <td><i class="cil-minus"></i></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Total</th>
-                    <td colspan="3">$300 Credit, $60 Cash</td>
-                </tr>
-                </tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Kevin W ($110)</td>                   
+                      <td><a href="#"><i class="cil-credit-card"></i></a></td>
+                      <td><i class="cil-minus"></i></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Josh ($80)</td>                   
+                      <td><a href="#"><i class="cil-dollar"></i></a></td>
+                      <td><i class="cil-minus"></i></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Indian Bro</td>                   
+                      <td><a href="#"><i class="cil-face-dead" title="unpaid"></i></a></td>
+                      <td><i class="cil-minus"></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Total</th>
+                        <td colspan="3">$300 Credit, $60 Cash</td>
+                    </tr>
+                    
+                  </tbody>
               </table>
         </div>
 

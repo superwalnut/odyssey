@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FamilyComponent } from './family/family.component';
 import { PasswordComponent } from './password/password.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AutobookingComponent } from './autobooking/autobooking.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,13 @@ const routes: Routes = [
         component: ProfileComponent,
         data: {
           title: 'Manage Profile'
+        }
+      },
+      {
+        path: 'schedule',
+        component: AutobookingComponent,
+        data: {
+          title: 'Setup your booking schedule'
         }
       },
       {
