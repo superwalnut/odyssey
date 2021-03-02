@@ -112,6 +112,11 @@ export class DefaultLayoutComponent {
               url: "/base/cards",
               icon: "icon-puzzle",
             },
+            {
+              name: "Unpaid users",
+              url: "/base/cards",
+              icon: "icon-puzzle",
+            },
           ],
         },
       ];
