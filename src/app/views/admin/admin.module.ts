@@ -9,6 +9,7 @@ import { UsersComponent } from "./users/users.component";
 import { BookingsComponent } from "./bookings/bookings.component";
 import { AppMaterialModule } from "../../app-material.module";
 import { UsercreditComponent } from './usercredit/usercredit.component';
+import { UserdetailsComponent } from './userdetails/userdetails.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { UsercreditComponent } from './usercredit/usercredit.component';
     ButtonsModule.forRoot(),
     AppMaterialModule,
   ],
-  declarations: [UsersComponent, BookingsComponent, UsercreditComponent],
+  declarations: [UsersComponent, BookingsComponent, UsercreditComponent, UserdetailsComponent],
 })
 export class AdminModule {}

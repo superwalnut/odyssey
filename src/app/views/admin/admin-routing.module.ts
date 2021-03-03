@@ -4,6 +4,7 @@ import { UsersComponent } from "./users/users.component";
 import { BookingsComponent } from "./bookings/bookings.component";
 
 import { UsercreditComponent } from "./usercredit/usercredit.component";
+import { UserdetailsComponent } from "./userdetails/userdetails.component";
 
 const routes: Routes = [
   {
@@ -35,6 +36,13 @@ const routes: Routes = [
         component: UsercreditComponent,
         data: {
           title: "User credit",
+        },
+      },
+      {
+        path: "userdetails",
+        component: UserdetailsComponent,
+        data: {
+          title: "User details",
         },
       },
     ],
