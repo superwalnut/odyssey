@@ -6,20 +6,13 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { PERFECT_SCROLLBAR_CONFIG } from "ngx-perfect-scrollbar";
 import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
+import { AppMaterialModule } from "./app-material.module";
 
 import {
   IconModule,
   IconSetModule,
   IconSetService,
 } from "@coreui/icons-angular";
-//angular material UI
-
-import { MatInput, MatInputModule } from "@angular/material/input";
-import { MatFormFieldModule } from "@angular/material/form-field";
-
-import { MatNativeDateModule } from "@angular/material/core";
-import { MatDatepickerModule } from "@angular/material/datepicker";
-import { MatCheckboxModule } from "@angular/material/checkbox";
 
 // import { MatInputModule } from "@angular/material/input";
 // import { MatButtonModule } from "@angular/material/button";
@@ -60,7 +53,6 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { TabsModule } from "ngx-bootstrap/tabs";
 import { ChartsModule } from "ng2-charts";
 import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { DesignDashboardComponent } from "./views/design/design-dashboard/design-dashboard.component";
@@ -69,8 +61,8 @@ import { MatMenuModule } from "@angular/material/menu";
 import { CarouselModule } from "ngx-bootstrap/carousel";
 import { BookingComponent } from "./views/booking/booking.component";
 import { HeaderComponent } from "./views/header/header.component";
-import { TermsComponent } from './views/terms/terms.component';
-import { LogoutComponent } from './views/logout/logout.component';
+import { TermsComponent } from "./views/terms/terms.component";
+import { LogoutComponent } from "./views/logout/logout.component";
 
 @NgModule({
   imports: [
@@ -90,24 +82,12 @@ import { LogoutComponent } from './views/logout/logout.component';
     IconSetModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatSnackBarModule,
+    AppMaterialModule,
     AngularFireModule.initializeApp(environment.firebase),
     MatMenuModule,
     CarouselModule.forRoot(),
   ],
-  exports: [
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatCheckboxModule,
-    BrowserAnimationsModule,
-  ],
+  exports: [BrowserAnimationsModule],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
@@ -127,9 +107,9 @@ import { LogoutComponent } from './views/logout/logout.component';
       useClass: HashLocationStrategy,
     },
 
-    MatDatepickerModule,
-    MatCheckboxModule,
-    MatInputModule,
+    //MatDatepickerModule,
+    //MatCheckboxModule,
+    //MatInputModule,
     IconSetService,
   ],
   bootstrap: [AppComponent],

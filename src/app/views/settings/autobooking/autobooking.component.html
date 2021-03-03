@@ -35,7 +35,11 @@
 
           <p>Selected range: {{ range.value | json }}</p>
           <div class="form-group">
-            <mat-checkbox>Checked</mat-checkbox>
+            <mat-checkbox class="example-margin">{{ checked }}</mat-checkbox>
+            <mat-radio-button class="example-margin" value="before"
+              >Before</mat-radio-button
+            >
+            <button mat-raised-button color="primary">Primary</button>
           </div>
         </div>
       </div>
