@@ -7,17 +7,18 @@ import { freeSet } from "@coreui/icons";
 @Component({
   // tslint:disable-next-line
   selector: "body",
-  template: ` <app-public-header></app-public-header>
-    <router-outlet></router-outlet>
-    <footer class="app-footer">
-      <div>
-        <a href="https://hbc666.club">HBC</a>
-        <span>&copy; 2021.</span>
-      </div>
-      <div class="ml-auto">
-        <a routerLink="termsconditions">Terms & Conditions</a>
-      </div>
-    </footer>`,
+  // template: ` <app-public-header></app-public-header>
+  //   <router-outlet></router-outlet>
+  //   <footer class="app-footer">
+  //     <div>
+  //       <a href="https://hbc666.club">HBC</a>
+  //       <span>&copy; 2021.</span>
+  //     </div>
+  //     <div class="ml-auto">
+  //       <a routerLink="termsconditions">Terms & Conditions</a>
+  //     </div>
+  //   </footer>`,
+  template: "<router-outlet></router-outlet>",
   providers: [IconSetService],
 })
 export class AppComponent implements OnInit {
