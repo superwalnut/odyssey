@@ -11,6 +11,8 @@ import { CommonModule } from "@angular/common";
 import { AutobookingComponent } from "./autobooking/autobooking.component";
 import { CreditstatementComponent } from "./creditstatement/creditstatement.component";
 import { AppMaterialModule } from "../../app-material.module";
+import { AttendancehistoryComponent } from "./attendancehistory/attendancehistory.component";
+
 AppMaterialModule;
 @NgModule({
   imports: [
@@ -29,6 +31,7 @@ AppMaterialModule;
     PasswordComponent,
     AutobookingComponent,
     CreditstatementComponent,
+    AttendancehistoryComponent,
   ],
 })
 export class SettingsModule {}

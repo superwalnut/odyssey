@@ -1,23 +1,23 @@
-import {Component} from '@angular/core';
-import { INavData } from '@coreui/angular';
-import { AccountService } from '../../services/account.service';
+import { Component } from "@angular/core";
+import { INavData } from "@coreui/angular";
+import { AccountService } from "../../services/account.service";
 
 @Component({
-  selector: 'app-dashboard-2',
-  templateUrl: './default-layout.component.html'
+  selector: "app-dashboard-2",
+  templateUrl: "./default-layout.component.html",
 })
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
   public navItems;
 
-  isGod:boolean;
-  isAdmin:boolean;
+  isGod: boolean;
+  isAdmin: boolean;
 
-  constructor(private accountService:AccountService) {
+  constructor(private accountService: AccountService) {
     this.isGod = this.accountService.isGod();
     this.isAdmin = this.accountService.isAdmin();
 
-    console.log('isadmin', this.isAdmin);
+    console.log("isadmin", this.isAdmin);
     this.navItems = this.initNav(this.isAdmin);
   }
 
@@ -25,7 +25,7 @@ export class DefaultLayoutComponent {
     this.sidebarMinimized = e;
   }
 
-  initNav(isAdmin:boolean) {
+  initNav(isAdmin: boolean) {
     var items: INavData[] = [
       {
         name: "Dashboard",
@@ -56,14 +56,14 @@ export class DefaultLayoutComponent {
         url: "/settings/creditstatement",
         icon: "cil-dollar",
       },
-{
-      name: "Booking Schedule",
-      url: "/settings/schedule",
-      icon: "cil-tennis",
-    },
+      {
+        name: "Booking Schedule",
+        url: "/settings/schedule",
+        icon: "cil-tennis",
+      },
       {
         name: "Attendance History",
-        url: "/theme/typography",
+        url: "/settings/attendancehistory",
         icon: "cil-check",
       },
       {
@@ -73,7 +73,7 @@ export class DefaultLayoutComponent {
       },
     ];
 
-    if(isAdmin){
+    if (isAdmin) {
       const adminNavs = [
         {
           divider: true,
@@ -121,12 +121,11 @@ export class DefaultLayoutComponent {
         },
       ];
 
-      adminNavs.forEach(x=>{
+      adminNavs.forEach((x) => {
         items.push(x);
       });
     }
 
     return items;
   }
-  
 }

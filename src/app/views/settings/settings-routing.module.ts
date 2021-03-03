@@ -1,63 +1,72 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { FamilyComponent } from './family/family.component';
-import { PasswordComponent } from './password/password.component';
-import { ProfileComponent } from './profile/profile.component';
-import { AutobookingComponent } from './autobooking/autobooking.component';
-import { CreditstatementComponent } from './creditstatement/creditstatement.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { FamilyComponent } from "./family/family.component";
+import { PasswordComponent } from "./password/password.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { AutobookingComponent } from "./autobooking/autobooking.component";
+import { CreditstatementComponent } from "./creditstatement/creditstatement.component";
+import { AttendancehistoryComponent } from "./attendancehistory/attendancehistory.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     data: {
-      title: 'Settings'
+      title: "Settings",
     },
     children: [
       {
-        path: '',
-        redirectTo: 'profile'
+        path: "",
+        redirectTo: "profile",
       },
       {
-        path: 'family',
+        path: "family",
         component: FamilyComponent,
         data: {
-          title: 'Manage family members'
-        }
+          title: "Manage family members",
+        },
       },
       {
-        path: 'profile',
+        path: "profile",
         component: ProfileComponent,
         data: {
-          title: 'Manage Profile'
-        }
+          title: "Manage Profile",
+        },
       },
       {
-        path: 'schedule',
+        path: "schedule",
         component: AutobookingComponent,
         data: {
-          title: 'Setup your booking schedule'
-        }
+          title: "Setup your booking schedule",
+        },
       },
       {
-        path: 'password',
+        path: "attendancehistory",
+        component: AttendancehistoryComponent,
+        data: {
+          title: "attendance history",
+        },
+      },
+
+      {
+        path: "password",
         component: PasswordComponent,
         data: {
-          title: 'Manage Password'
-        }
+          title: "Manage Password",
+        },
       },
       {
-        path: 'creditstatement',
+        path: "creditstatement",
         component: CreditstatementComponent,
         data: {
-          title: 'your credit statement'
-        }
+          title: "your credit statement",
+        },
       },
-    ]
-  }
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class SettingsRoutingModule {}
