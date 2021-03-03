@@ -1,39 +1,48 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { UsersComponent } from './users/users.component';
-import { BookingsComponent } from './bookings/bookings.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { UsersComponent } from "./users/users.component";
+import { BookingsComponent } from "./bookings/bookings.component";
+
+import { UsercreditComponent } from "./usercredit/usercredit.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     data: {
-      title: 'Admin'
+      title: "Admin",
     },
     children: [
       {
-        path: '',
-        redirectTo: 'users'
+        path: "",
+        redirectTo: "users",
       },
       {
-        path: 'users',
+        path: "users",
         component: UsersComponent,
         data: {
-          title: 'Manage users'
-        }
+          title: "Manage users",
+        },
       },
       {
-        path: 'bookings',
+        path: "bookings",
         component: BookingsComponent,
         data: {
-          title: 'Manage bookings'
-        }
+          title: "Manage bookings",
+        },
       },
-    ]
-  }
+      {
+        path: "usercredit",
+        component: UsercreditComponent,
+        data: {
+          title: "User credit",
+        },
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AdminRoutingModule {}

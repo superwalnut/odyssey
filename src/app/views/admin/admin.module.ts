@@ -8,6 +8,7 @@ import { AdminRoutingModule } from "./admin-routing.module";
 import { UsersComponent } from "./users/users.component";
 import { BookingsComponent } from "./bookings/bookings.component";
 import { AppMaterialModule } from "../../app-material.module";
+import { UsercreditComponent } from './usercredit/usercredit.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { AppMaterialModule } from "../../app-material.module";
     ButtonsModule.forRoot(),
     AppMaterialModule,
   ],
-  declarations: [UsersComponent, BookingsComponent],
+  declarations: [UsersComponent, BookingsComponent, UsercreditComponent],
 })
 export class AdminModule {}
