@@ -12,6 +12,7 @@ import { RegisterComponent } from "./views/register/register.component";
 import { HomeComponent } from "./views/home/home.component";
 import { BookingComponent } from "./views/booking/booking.component";
 import { TermsComponent } from "./views/terms/terms.component";
+import { LogoutComponent } from "./views/logout/logout.component";
 export const routes: Routes = [
   {
     path: "",
@@ -53,6 +54,11 @@ export const routes: Routes = [
     path: "login",
     component: LoginComponent,
     data: { title: "Login Page" },
+  },
+  {
+    path: "logout",
+    component: LogoutComponent,
+    data: { title: "Logout Page" },
   },
   {
     path: "register",

@@ -12,8 +12,12 @@
       <a routerLink="dashboard">Dashboard</a>
     </li>
 
-    <li>
+    <li *ngIf="!isLoggedIn">
       <a routerLink="login">login</a>
+    </li>
+
+    <li *ngIf="isLoggedIn">
+      <a routerLink="logout">logout</a>
     </li>
   </ul>
 </nav>

@@ -21,7 +21,7 @@
     "ng": "ng",
     "postinstall": "ngcc --properties es2015 browser module main --first-only",
     "start": "ng serve",
-    "build": "ng build --prod --aot --build-optimizer --common-chunk --vendor-chunk --optimization --progress",
+    "build": "ng build --prod --build-optimizer --common-chunk --vendor-chunk --optimization --progress --output-path=public",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

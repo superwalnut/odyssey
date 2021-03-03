@@ -60,11 +60,12 @@ export class AccountService extends FirestoreBaseService<User>{
 
   logout() {
     this.accountSubject.next(null);
+    localStorage.removeItem('user');
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
         return false;
     }
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   createUser(user:User) {

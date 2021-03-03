@@ -21,7 +21,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.profileForm = this.fb.group({
-      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       wechatId: ['', Validators.required],
       mobile: ['', Validators.required],
@@ -31,7 +30,6 @@ export class ProfileComponent implements OnInit {
       this.user = x;
 
       this.profileForm = this.fb.group({
-        username: [this.user.username, Validators.required],
         email: [this.user.email, [Validators.required, Validators.email]],
         wechatId: [this.user.wechatId, Validators.required],
         mobile: [this.user.mobile, Validators.required],
@@ -55,7 +53,6 @@ export class ProfileComponent implements OnInit {
     console.log('profile', this.profileForm);
 
     var user = { 
-      username : this.profileForm.value.username,
       wechatId : this.profileForm.value.wechatId,
       email : this.profileForm.value.email,
       mobile: this.profileForm.value.mobile,
