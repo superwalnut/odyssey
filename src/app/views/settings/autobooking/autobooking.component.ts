@@ -10,6 +10,7 @@ export class AutobookingComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+   
   }
 
 }

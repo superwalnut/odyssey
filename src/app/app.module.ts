@@ -12,6 +12,15 @@ import {
   IconSetModule,
   IconSetService,
 } from "@coreui/icons-angular";
+//angular material UI
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+import {MatDialogModule} from '@angular/material/dialog';
+
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -44,7 +53,7 @@ import { AppRoutingModule } from "./app.routing";
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { TabsModule } from "ngx-bootstrap/tabs";
 import { ChartsModule } from "ng2-charts";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
@@ -72,12 +81,24 @@ import { TermsComponent } from './views/terms/terms.component';
     ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
+    FormGroup,
+    FormControl,
     FormsModule,
     ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatDialogModule,
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebase),
     MatMenuModule,
     CarouselModule.forRoot(),
+  ],
+  exports:[
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatDialogModule,
   ],
   declarations: [
     AppComponent,
