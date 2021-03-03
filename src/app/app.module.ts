@@ -13,14 +13,19 @@ import {
   IconSetService,
 } from "@coreui/icons-angular";
 //angular material UI
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
 
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatNativeDateModule } from "@angular/material/core";
+import { MatDatepickerModule } from "@angular/material/datepicker";
 
+// import { MatInputModule } from "@angular/material/input";
+// import { MatButtonModule } from "@angular/material/button";
 
+// import { MatFormFieldModule } from "@angular/material/form-field";
+
+// import { MatDialogModule } from "@angular/material/dialog";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -53,7 +58,7 @@ import { AppRoutingModule } from "./app.routing";
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { TabsModule } from "ngx-bootstrap/tabs";
 import { ChartsModule } from "ng2-charts";
-import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
@@ -63,7 +68,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { CarouselModule } from "ngx-bootstrap/carousel";
 import { BookingComponent } from "./views/booking/booking.component";
 import { HeaderComponent } from "./views/header/header.component";
-import { TermsComponent } from './views/terms/terms.component';
+import { TermsComponent } from "./views/terms/terms.component";
 
 @NgModule({
   imports: [
@@ -81,24 +86,29 @@ import { TermsComponent } from './views/terms/terms.component';
     ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
-    FormGroup,
-    FormControl,
+    //FormGroup,
+    //FormControl,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
+    MatDatepickerModule,
     MatFormFieldModule,
-    MatDialogModule,
+    MatNativeDateModule,
+    MatInputModule,
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebase),
     MatMenuModule,
     CarouselModule.forRoot(),
   ],
-  exports:[
-    MatInputModule,
-    MatButtonModule,
+  exports: [
+    // MatInputModule,
+    // MatButtonModule,
+    // MatFormFieldModule,
+    // MatDialogModule,
+    MatDatepickerModule,
     MatFormFieldModule,
-    MatDialogModule,
+    MatNativeDateModule,
+    MatInputModule,
+    BrowserAnimationsModule,
   ],
   declarations: [
     AppComponent,
@@ -112,13 +122,13 @@ import { TermsComponent } from './views/terms/terms.component';
     BookingComponent,
     HeaderComponent,
     TermsComponent,
-    
   ],
   providers: [
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
     },
+    MatDatepickerModule,
     IconSetService,
   ],
   bootstrap: [AppComponent],

@@ -15,61 +15,62 @@
 
     <div class="row light">
       <div class="col">
-        
-          <h2>THIS WEEK'S BADMINTON SESSIONS</h2> 
-          
-          <table class="table table-hover table-dark booking">
-            <thead>
-              <tr>
-                <th scope="col">Day</th>
-                <th scope="col">Time</th>
-                <th scope="col">Seats available</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">TUESDAY</th>
-                <td>8-11PM</td>
-                <td>16</td>
-                <td><button
+        <h2>THIS WEEK'S BADMINTON SESSIONS</h2>
+
+        <table class="table table-hover table-dark booking">
+          <thead>
+            <tr>
+              <th scope="col">Day</th>
+              <th scope="col">Time</th>
+              <th scope="col">Seats available</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">TUESDAY</th>
+              <td>8-11PM</td>
+              <td>16</td>
+              <td>
+                <button
                   type="button"
                   class="btn btn-primary"
                   routerLink="booking"
-            
                 >
                   Book
-                </button></td>
-              </tr>
-              <tr>
-                <th scope="row">FRIDAY</th>
-                <td>8-11PM</td>
-                <td>5</td>
-                <td><button
-                  type="button"
-                  class="btn btn-primary"
-            
-                >
-                  Book
-                </button></td>
-              </tr>
-              <tr>
-                <th scope="row">SATURDAY</th>
-                <td>5-8PM</td>
-                <td>10</td>
-                <td><button
-                  type="button"
-                  class="btn btn-primary"
-            
-                >
-                  Book
-                </button></td>
-              </tr>
-
-            </tbody>
-          </table> 
-          
-
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">FRIDAY</th>
+              <td>8-11PM</td>
+              <td>5</td>
+              <td>
+                <button type="button" class="btn btn-primary">Book</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">SATURDAY</th>
+              <td>5-8PM</td>
+              <td>10</td>
+              <td>
+                <button type="button" class="btn btn-primary">Book</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Start date" />
+            <input matEndDate placeholder="End date" />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
       </div>
     </div>
 
@@ -144,4 +145,3 @@
     </div>
   </div>
 </div>
- 
