@@ -22,28 +22,28 @@ const routes: Routes = [
         path: "family",
         component: FamilyComponent,
         data: {
-          title: "Manage family members",
+          title: "Family members",
         },
       },
       {
         path: "profile",
         component: ProfileComponent,
         data: {
-          title: "Manage Profile",
+          title: "Profile",
         },
       },
       {
         path: "schedule",
         component: AutobookingComponent,
         data: {
-          title: "Setup your booking schedule",
+          title: "Auto Booking",
         },
       },
       {
         path: "attendancehistory",
         component: AttendancehistoryComponent,
         data: {
-          title: "attendance history",
+          title: "Attendance",
         },
       },
 
@@ -51,14 +51,14 @@ const routes: Routes = [
         path: "password",
         component: PasswordComponent,
         data: {
-          title: "Manage Password",
+          title: "Password",
         },
       },
       {
         path: "creditstatement",
         component: CreditstatementComponent,
         data: {
-          title: "your credit statement",
+          title: "Credit statement",
         },
       },
     ],
