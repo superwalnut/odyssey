@@ -61,44 +61,6 @@
             </tr>
           </tbody>
         </table>
-        <mat-form-field appearance="fill">
-          <mat-label>Enter a date range</mat-label>
-          <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date" />
-            <input matEndDate placeholder="End date" />
-          </mat-date-range-input>
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
-        </mat-form-field>
-
-        <mat-form-field appearance="legacy">
-          <mat-label>Legacy form field</mat-label>
-          <input matInput placeholder="Placeholder" />
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Hint</mat-hint>
-        </mat-form-field>
-
-        <div class="form-group">
-          <mat-checkbox class="example-margin">checkbox</mat-checkbox>
-          <mat-radio-button class="example-margin" value="before"
-            >Before</mat-radio-button
-          >
-
-          <mat-form-field appearance="fill">
-            <mat-label>Cars</mat-label>
-            <select matNativeControl required>
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="mercedes">Mercedes</option>
-              <option value="audi">Audi</option>
-            </select>
-          </mat-form-field>
-
-          <button mat-raised-button color="primary">Primary</button>
-        </div>
       </div>
     </div>
 
