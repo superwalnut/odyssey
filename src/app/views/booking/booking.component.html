@@ -1,3 +1,5 @@
+<app-public-header></app-public-header>
+
 <div class="app">
   <div class="container">
     <div class="row light">
@@ -237,6 +239,16 @@
   </div>
 </div>
 
+<footer class="app-footer">
+  <div>
+    <a href="https://hbc666.club">HBC</a>
+    <span>&copy; 2021.</span>
+  </div>
+  <div class="ml-auto">
+    <a routerLink="termsconditions">Terms & Conditions</a>
+  </div>
+</footer>
+
 <!-- Modal -->
 <div
   class="modal fade"
@@ -289,15 +301,8 @@
             <td>
               <mat-form-field class="example-form-field">
                 <mat-label>Friend 1</mat-label>
-                <input matInput type="text" [(ngModel)]="value" />
-                <button
-                  mat-button
-                  *ngIf="value"
-                  matSuffix
-                  mat-icon-button
-                  aria-label="Clear"
-                  (click)="value = ''"
-                >
+                <input matInput type="text" />
+                <button mat-button matSuffix mat-icon-button aria-label="Clear">
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field>
@@ -310,15 +315,8 @@
             <td>
               <mat-form-field class="example-form-field">
                 <mat-label>Friend 1</mat-label>
-                <input matInput type="text" [(ngModel)]="value" />
-                <button
-                  mat-button
-                  *ngIf="value"
-                  matSuffix
-                  mat-icon-button
-                  aria-label="Clear"
-                  (click)="value = ''"
-                >
+                <input matInput type="text" />
+                <button mat-button matSuffix mat-icon-button aria-label="Clear">
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field>

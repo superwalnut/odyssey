@@ -5,19 +5,19 @@
 
   <ul>
     <li>
-      <a routerLink="booking">Booking</a>
+      <a routerLink="/booking">Booking</a>
     </li>
 
     <li>
-      <a routerLink="dashboard">Dashboard</a>
+      <a routerLink="/dashboard">Dashboard</a>
     </li>
 
     <li *ngIf="!isLoggedIn">
-      <a routerLink="login">login</a>
+      <a routerLink="/login">login</a>
     </li>
 
     <li *ngIf="isLoggedIn">
-      <a routerLink="logout">logout</a>
+      <a routerLink="/logout">logout</a>
     </li>
   </ul>
 </nav>
