@@ -1,5 +1,105 @@
-dashboard
-'
-<div class="alert alert-success">
-  askjdla sjdka lsldjaksld jalksdjklajskdjklasjkd
+<!-- //Shared by both Admin and Users, show hide based on roles -->
+<h1>Show if it's Admin</h1>
+
+<div class="container-xl">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Users</h4>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a routerLink="/admin/users" class="card-link">View</a>
+          <a routerLink="" class="card-link">Public Site</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Bookings</h4>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a routerLink="/admin/bookings" class="card-link">View</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Reports</h4>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Income</li>
+          <li class="list-group-item">Attendance</li>
+          <li class="list-group-item">Credit</li>
+          <li class="list-group-item">Unpaid users</li>
+        </ul>
+        <div class="card-body">
+          <a routerLink="Reports" class="card-link">View</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- User section -->
+<h1>Show if it's user</h1>
+<div class="container-xl">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Account Settings</h4>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <a routerLink="/settings/profile">Profile</a>
+          </li>
+          <li class="list-group-item">
+            <a routerLink="/settings/password">Password Reset</a>
+          </li>
+          <li class="list-group-item">
+            <a routerLink="/settings/family">Family Members</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Credit</h4>
+          <p class="card-text">Current balance: $140</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><a href="#">Top up</a></li>
+          <li class="list-group-item">
+            <a routerLink="/settings/creditstatement">View Statement</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Attendance</h4>
+          <p class="card-text">info about user's latest attendance report</p>
+          <a routerLink="/settings/attendancehistory" class="card-link">View</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
