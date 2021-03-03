@@ -14,11 +14,12 @@ import {
 } from "@coreui/icons-angular";
 //angular material UI
 
-import { MatInputModule } from "@angular/material/input";
+import { MatInput, MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 // import { MatInputModule } from "@angular/material/input";
 // import { MatButtonModule } from "@angular/material/button";
@@ -86,28 +87,24 @@ import { TermsComponent } from "./views/terms/terms.component";
     ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
-    //FormGroup,
-    //FormControl,
     FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
+    MatCheckboxModule,
     MatSnackBarModule,
     AngularFireModule.initializeApp(environment.firebase),
     MatMenuModule,
     CarouselModule.forRoot(),
   ],
   exports: [
-    // MatInputModule,
-    // MatButtonModule,
-    // MatFormFieldModule,
-    // MatDialogModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
+    MatCheckboxModule,
     BrowserAnimationsModule,
   ],
   declarations: [
@@ -128,7 +125,10 @@ import { TermsComponent } from "./views/terms/terms.component";
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
     },
+
     MatDatepickerModule,
+    MatCheckboxModule,
+    MatInputModule,
     IconSetService,
   ],
   bootstrap: [AppComponent],
