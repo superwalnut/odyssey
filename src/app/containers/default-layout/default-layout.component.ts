@@ -101,6 +101,11 @@ export class DefaultLayoutComponent {
           icon: "cil-notes",
         },
         {
+          name: "Site Settings",
+          url: "/admin/sitesettings",
+          icon: "cil-cog",
+        },
+        {
           name: "Reports",
           url: "/base",
           icon: "cil-chart",

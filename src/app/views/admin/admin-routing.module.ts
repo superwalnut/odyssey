@@ -5,6 +5,7 @@ import { BookingsComponent } from "./bookings/bookings.component";
 
 import { UsercreditComponent } from "./usercredit/usercredit.component";
 import { UserdetailsComponent } from "./userdetails/userdetails.component";
+import { SitesettingsComponent } from "./sitesettings/sitesettings.component";
 
 const routes: Routes = [
   {
@@ -31,6 +32,14 @@ const routes: Routes = [
           title: "Manage bookings",
         },
       },
+      {
+        path: "sitesettings",
+        component: SitesettingsComponent,
+        data: {
+          title: "Site settings",
+        },
+      },
+
       {
         path: "usercredit",
         component: UsercreditComponent,

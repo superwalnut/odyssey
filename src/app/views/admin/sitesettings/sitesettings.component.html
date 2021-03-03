@@ -1,0 +1,133 @@
+<div class="container-xl">
+  <div class="row light">
+    <div class="col">
+      <h1>Site Settings</h1>
+
+      <mat-tab-group>
+        <mat-tab label="Terms">
+          <form>
+            <mat-form-field appearance="fill">
+              <mat-label>Enter term date range</mat-label>
+              <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                <input
+                  matStartDate
+                  formControlName="start"
+                  placeholder="Start date"
+                />
+                <input
+                  matEndDate
+                  formControlName="end"
+                  placeholder="End date"
+                />
+              </mat-date-range-input>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+
+              <mat-error
+                *ngIf="range.controls.start.hasError('matStartDateInvalid')"
+                >Invalid start date</mat-error
+              >
+              <mat-error
+                *ngIf="range.controls.end.hasError('matEndDateInvalid')"
+                >Invalid end date</mat-error
+              >
+            </mat-form-field>
+
+            <p>Selected range: {{ range.value | json }}</p>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Court hire Cost</mat-label>
+              <input matInput placeholder="$" type="number" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>VIP headcount</mat-label>
+              <input matInput placeholder="" type="number" />
+            </mat-form-field>
+
+            <button mat-raised-button color="primary">Save</button>
+          </form>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Term</th>
+                <th scope="col">Court cost</th>
+                <th scope="col">VIP count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">12/01/2021 - 15/03/2021</th>
+                <td>$4500</td>
+                <td>15</td>
+              </tr>
+              <tr>
+                <th scope="row">12/01/2021 - 15/03/2021</th>
+                <td>$4500</td>
+                <td>15</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-tab>
+        <mat-tab label="Shuttles">
+          <mat-form-field appearance="fill">
+            <mat-label>Purchase date</mat-label>
+            <input matInput [matDatepicker]="shuttledate" />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="shuttledate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #shuttledate></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Cost (AU$)</mat-label>
+            <input matInput placeholder="" type="number" />
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Tubes</mat-label>
+            <input matInput placeholder="" type="number" />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Notes</mat-label>
+            <textarea
+              matInput
+              placeholder="Taobao, Yonnex, 冠军5号，RSL"
+            ></textarea>
+          </mat-form-field>
+          <button mat-raised-button color="primary">Save</button>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Purchase date</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Tubes</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">12/05/2021</th>
+                <td>$1500</td>
+                <td>50</td>
+                <td>Taobao购买, Yonnex, 冠军5号，RSL</td>
+              </tr>
+              <tr>
+                <th scope="row">7/01/2021</th>
+                <td>$500</td>
+                <td>10</td>
+                <td>Susan购买, Vistor Pink</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-tab>
+        <mat-tab label="Third"> Content 3 </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

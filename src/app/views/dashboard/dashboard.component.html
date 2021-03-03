@@ -6,27 +6,39 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Users</h4>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a routerLink="/admin/users" class="card-link">View</a>
-          <a routerLink="" class="card-link">Public Site</a>
+          <h4 class="card-title">Management</h4>
         </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <a routerLink="/admin/users" class="card-link">Users</a>
+          </li>
+          <li class="list-group-item">
+            <a routerLink="/admin/bookings" class="card-link">Bookings</a>
+          </li>
+          <li class="list-group-item">
+            <a routerLink="" class="card-link">Public Site</a>
+          </li>
+        </ul>
       </div>
     </div>
 
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Bookings</h4>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a routerLink="/admin/bookings" class="card-link">View</a>
+          <h4 class="card-title">Site Settings</h4>
         </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <a routerLink="/admin/sitesettings" class="card-link"
+              >Terms Dates&Costs</a
+            >
+          </li>
+          <li class="list-group-item">
+            <a routerLink="/admin/sitesettings" class="card-link"
+              >Shuttle Purchase</a
+            >
+          </li>
+        </ul>
       </div>
     </div>
 
