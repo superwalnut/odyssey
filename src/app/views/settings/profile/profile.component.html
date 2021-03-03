@@ -8,15 +8,6 @@
               <p class="text-muted">Profile</p>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="icon-user"></i></span>
-                </div>
-                <input type="text" class="form-control" formControlName="username" placeholder="Username">
-                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                  <div *ngIf="f.username.errors.required">username is required</div>
-                </div>
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
                   <span class="input-group-text"><i class="icon-bubbles"></i></span>
                 </div>
                 <input type="text" class="form-control" formControlName="wechatId" placeholder="WeChat or WhatsApp ID" >

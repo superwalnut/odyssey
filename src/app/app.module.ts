@@ -68,7 +68,8 @@ import { MatMenuModule } from "@angular/material/menu";
 import { CarouselModule } from "ngx-bootstrap/carousel";
 import { BookingComponent } from "./views/booking/booking.component";
 import { HeaderComponent } from "./views/header/header.component";
-import { TermsComponent } from "./views/terms/terms.component";
+import { TermsComponent } from './views/terms/terms.component';
+import { LogoutComponent } from './views/logout/logout.component';
 
 @NgModule({
   imports: [
@@ -117,11 +118,11 @@ import { TermsComponent } from "./views/terms/terms.component";
     P500Component,
     LoginComponent,
     RegisterComponent,
-    DesignDashboardComponent,
     HomeComponent,
     BookingComponent,
     HeaderComponent,
     TermsComponent,
+    LogoutComponent,
   ],
   providers: [
     {
