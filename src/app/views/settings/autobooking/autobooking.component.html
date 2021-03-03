@@ -8,11 +8,13 @@
             Jump the queue by automating your weekly booking for a small fees
           </p>
 
-          <div class="form-group">
-            <mat-checkbox>TUESDAY 8-11PM SESSION</mat-checkbox>
-            <mat-checkbox>FRIDAY 8-11PM SESSION</mat-checkbox>
-            <mat-checkbox>SATURDAY 5-8PM SESSION</mat-checkbox>
-          </div>
+          <mat-selection-list #shoes>
+            <mat-list-option *ngFor="let session of sessions">
+              {{ session }}
+            </mat-list-option>
+          </mat-selection-list>
+
+          <p>Options selected: {{ shoes.selectedOptions.selected.length }}</p>
 
           <mat-form-field appearance="fill">
             <mat-label>Enter a date range</mat-label>

@@ -9,8 +9,11 @@ import { FormGroup, FormControl } from "@angular/forms";
 export class AutobookingComponent implements OnInit {
   checked = true;
   indeterminate = false;
-  labelPosition: "before" | "after" = "after";
-  disabled = false;
+  sessions: string[] = [
+    "TUESDAY 8-11PM SESSION",
+    "FRIDAY 8-11PM SESSION",
+    "SATURDAY 5-8PM SESSION",
+  ];
 
   range = new FormGroup({
     start: new FormControl(),
