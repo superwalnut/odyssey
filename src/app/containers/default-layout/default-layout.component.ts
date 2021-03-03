@@ -36,6 +36,9 @@ export class DefaultLayoutComponent {
           text: "NEW",
         },
       },
+    ];
+
+    var userNavs = [
       //For Users
       {
         title: true,
@@ -120,11 +123,14 @@ export class DefaultLayoutComponent {
           ],
         },
       ];
-
       adminNavs.forEach((x) => {
         items.push(x);
       });
     }
+
+    userNavs.forEach((x) => {
+      items.push(x);
+    });
 
     return items;
   }

@@ -22,9 +22,10 @@ body div.app {
   font-weight: 600;
 }
 
-.container, .container-fluid{
+.container,
+.container-fluid {
   .row {
-    &.light{
+    &.light {
       background-color: white;
     }
   }
@@ -87,6 +88,10 @@ nav {
       }
     }
   }
+}
+
+.admin-card-m {
+  max-width: 400px;
 }
 
 //Media queries

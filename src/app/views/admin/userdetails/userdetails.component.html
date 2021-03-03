@@ -3,6 +3,126 @@
     <div class="row light">
       <div class="col">
         <h1>User Details</h1>
+        <h3>Everything about this user</h3>
+
+        <mat-tab-group>
+          <mat-tab label="Profile"
+            ><form>
+              <mat-form-field>
+                <mat-label>Phone</mat-label>
+                <input matInput placeholder="" />
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="" />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Display name</mat-label>
+                <input matInput placeholder="" />
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="" type="email" />
+              </mat-form-field>
+
+              <button mat-raised-button color="primary">Save</button>
+            </form>
+          </mat-tab>
+          <mat-tab label="Family members"
+            ><form>
+              <mat-form-field>
+                <mat-label></mat-label>
+                <input matInput placeholder="" value="Iris T" />
+              </mat-form-field>
+              <button mat-raised-button color="warn">X</button>
+
+              <mat-form-field>
+                <mat-label></mat-label>
+                <input matInput placeholder="" value="Connie" />
+              </mat-form-field>
+              <button mat-raised-button color="warn">X</button>
+
+              <button mat-raised-button color="primary">Add</button>
+            </form>
+          </mat-tab>
+
+          <mat-tab label="Credit Statement">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Balance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">12/01/2021</th>
+                  <td>Social session</td>
+                  <td>-$13</td>
+                  <td>$120</td>
+                </tr>
+                <tr>
+                  <th scope="row">11/01/2021</th>
+                  <td>Add credit</td>
+                  <td>$100</td>
+                  <td>$133</td>
+                </tr>
+                <tr>
+                  <th scope="row">18/01/2021</th>
+                  <td>Social session</td>
+                  <td>-$13</td>
+                  <td>$20</td>
+                </tr>
+                <tr>
+                  <th scope="row">18/01/2021</th>
+                  <td>Social session - pay for a friend</td>
+                  <td>-$13</td>
+                  <td>$30</td>
+                </tr>
+                <tr>
+                  <th scope="row">15/01/2021</th>
+                  <td>Social session - withdraw penalty</td>
+                  <td>-$13</td>
+                  <td>$30</td>
+                </tr>
+                <tr>
+                  <th scope="row">12/01/2021</th>
+                  <td>Won competition</td>
+                  <td>$20</td>
+                  <td>$60</td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-tab>
+          <mat-tab label="Attendance">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">12/01/2021</th>
+                  <td>Tuesday social</td>
+                </tr>
+                <tr>
+                  <th scope="row">11/01/2021</th>
+                  <td>Friday social</td>
+                </tr>
+                <tr>
+                  <th scope="row">12/01/2021</th>
+                  <td>Saturday social</td>
+                </tr>
+              </tbody>
+            </table></mat-tab
+          >
+        </mat-tab-group>
       </div>
     </div>
   </div>
