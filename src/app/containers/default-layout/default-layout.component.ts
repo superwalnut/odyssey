@@ -53,7 +53,7 @@ export class DefaultLayoutComponent {
       },
       {
         name: "Credit Statement",
-        url: "/theme/typography",
+        url: "/settings/creditstatement",
         icon: "cil-dollar",
       },
 {

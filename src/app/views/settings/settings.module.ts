@@ -11,6 +11,7 @@ import { PasswordComponent } from './password/password.component';
 import { CommonModule } from '@angular/common';  
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AutobookingComponent } from './autobooking/autobooking.component';
+import { CreditstatementComponent } from './creditstatement/creditstatement.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { AutobookingComponent } from './autobooking/autobooking.component';
       ProfileComponent,
       PasswordComponent,
       AutobookingComponent,
+      CreditstatementComponent,
    ]
 })
 export class SettingsModule { }

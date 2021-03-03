@@ -4,6 +4,7 @@ import { FamilyComponent } from './family/family.component';
 import { PasswordComponent } from './password/password.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AutobookingComponent } from './autobooking/autobooking.component';
+import { CreditstatementComponent } from './creditstatement/creditstatement.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,13 @@ const routes: Routes = [
         component: PasswordComponent,
         data: {
           title: 'Manage Password'
+        }
+      },
+      {
+        path: 'creditstatement',
+        component: CreditstatementComponent,
+        data: {
+          title: 'your credit statement'
         }
       },
     ]
