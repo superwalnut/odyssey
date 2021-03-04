@@ -76,34 +76,87 @@
         </mat-tab>
         <mat-tab label="Shuttles">
           <h3>Keep a log of shuttle purchase history</h3>
+          <form [formGroup]="shuttleForm" (ngSubmit)="onShuttleSubmit()">
+            <mat-form-field appearance="fill">
+              <mat-label>Purchase date</mat-label>
+              <input
+                matInput
+                [matDatepicker]="shuttledate"
+                formControlName="purchaseDate"
+                required
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="shuttledate"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #shuttledate></mat-datepicker>
+            </mat-form-field>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Purchase date</mat-label>
-            <input matInput [matDatepicker]="shuttledate" />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="shuttledate"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #shuttledate></mat-datepicker>
-          </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Cost (AU$)</mat-label>
+              <input
+                matInput
+                placeholder=""
+                type="number"
+                formControlName="cost"
+                required
+              />
+            </mat-form-field>
+            <div
+              *ngIf="sf.cost.invalid && (sf.cost.dirty || sf.cost.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="sf.cost.errors.required">Cost is required.</div>
+            </div>
 
-          <mat-form-field class="example-full-width">
-            <mat-label>Cost (AU$)</mat-label>
-            <input matInput placeholder="" type="number" />
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label>Tubes</mat-label>
-            <input matInput placeholder="" type="number" />
-          </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Tubes</mat-label>
+              <input
+                matInput
+                placeholder=""
+                type="number"
+                formControlName="quantity"
+                required
+              />
+            </mat-form-field>
+            <div
+              *ngIf="
+                sf.quantity.invalid &&
+                (sf.quantity.dirty || sf.quantity.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="sf.quantity.errors.required">
+                Quantity is required.
+              </div>
+            </div>
 
-          <mat-form-field class="example-full-width">
-            <mat-label>Notes</mat-label>
-            <textarea
-              matInput
-              placeholder="Taobao, Yonnex, 冠军5号，RSL"
-            ></textarea>
-          </mat-form-field>
-          <button mat-raised-button color="primary">Save</button>
+            <mat-form-field class="example-full-width">
+              <mat-label>Notes</mat-label>
+              <textarea
+                matInput
+                placeholder="Taobao, Yonnex, 冠军5号，RSL"
+                formControlName="notes"
+                required
+              ></textarea>
+            </mat-form-field>
+            <div
+              *ngIf="sf.cost.invalid && (sf.cost.dirty || sf.cost.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="sf.cost.errors.required">Cost is required.</div>
+            </div>
+
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="shuttleForm.invalid"
+            >
+              Save
+            </button>
+          </form>
+
           <table class="table">
             <thead>
               <tr>
@@ -136,7 +189,7 @@
           </p>
           <mat-form-field appearance="fill">
             <mat-label>Opens at</mat-label>
-            <select matNativeControl required>
+            <select matNativeControl>
               <option value="volvo">Mon</option>
               <option value="saab">TUE</option>
               <option value="mercedes">WED</option>
