@@ -7,10 +7,12 @@ import { AccountService } from "../../services/account.service";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
-  isLoggedIn:boolean;
-  constructor(private accountService:AccountService) {}
+  isLoggedIn: boolean;
+  constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = this.accountService.getLoginAccount() != null? true:false;
+    this.isLoggedIn =
+      this.accountService.getLoginAccount() != null ? true : false;
+    console.log("isLoggedIn: " + this.isLoggedIn);
   }
 }

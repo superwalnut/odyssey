@@ -67,6 +67,7 @@ import { BookingComponent } from "./views/booking/booking.component";
 import { HeaderComponent } from "./views/header/header.component";
 import { TermsComponent } from "./views/terms/terms.component";
 import { LogoutComponent } from "./views/logout/logout.component";
+import { ResetpasswordComponent } from './views/resetpassword/resetpassword.component';
 
 @NgModule({
   imports: [
@@ -105,6 +106,7 @@ import { LogoutComponent } from "./views/logout/logout.component";
     HeaderComponent,
     TermsComponent,
     LogoutComponent,
+    ResetpasswordComponent,
   ],
   providers: [
     {

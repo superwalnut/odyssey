@@ -13,6 +13,7 @@ import { HomeComponent } from "./views/home/home.component";
 import { BookingComponent } from "./views/booking/booking.component";
 import { TermsComponent } from "./views/terms/terms.component";
 import { LogoutComponent } from "./views/logout/logout.component";
+import { ResetpasswordComponent } from "./views/resetpassword/resetpassword.component";
 export const routes: Routes = [
   {
     path: "",
@@ -24,7 +25,7 @@ export const routes: Routes = [
   {
     path: "booking",
     component: BookingComponent,
-    canActivate : [AuthGuard],
+    canActivate: [AuthGuard],
     data: {
       title: "booking",
     },
@@ -67,24 +68,30 @@ export const routes: Routes = [
       title: "Register Page",
     },
   },
+  {
+    path: "resetpassword",
+    component: ResetpasswordComponent,
+    data: {
+      title: "Reset password",
+    },
+  },
+
   /// HBC admin
   {
     path: "admin",
     component: DefaultLayoutComponent,
     data: {
       title: "HBC Admin",
-      roles: ['Admin', 'God']
+      roles: ["Admin", "God"],
     },
-    canActivate : [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: "",
         loadChildren: () =>
-          import("./views/admin/admin.module").then(
-            (m) => m.AdminModule
-          ),
-      }
-    ]
+          import("./views/admin/admin.module").then((m) => m.AdminModule),
+      },
+    ],
   },
   /// HBC template and pages
   {
@@ -93,7 +100,7 @@ export const routes: Routes = [
     data: {
       title: "HBC",
     },
-    canActivate : [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: "dashboard",
@@ -104,9 +111,12 @@ export const routes: Routes = [
       },
       {
         path: "settings",
-        loadChildren: () => import("./views/settings/settings.module").then(m=>m.SettingsModule),
-      }
-    ]
+        loadChildren: () =>
+          import("./views/settings/settings.module").then(
+            (m) => m.SettingsModule
+          ),
+      },
+    ],
   },
   {
     path: "design",
