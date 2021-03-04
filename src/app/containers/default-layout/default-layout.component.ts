@@ -45,15 +45,28 @@ export class DefaultLayoutComponent {
         name: "Account",
       },
       {
-        name: "Profile",
-        url: "/settings/profile",
-        icon: "icon-user",
+        name: "Account Settings",
+        url: "",
+        icon: "cil-cog",
+        children: [
+          {
+            name: "Profile",
+            url: "/settings/profile",
+            icon: "icon-user",
+          },
+          {
+            name: "Password",
+            url: "/settings/password",
+            icon: "icon-lock",
+          },
+          {
+            name: "Family Members",
+            url: "/settings/family",
+            icon: "icon-people",
+          },
+        ],
       },
-      {
-        name: "Password",
-        url: "/settings/password",
-        icon: "icon-lock",
-      },
+
       {
         name: "Credit Statement",
         url: "/settings/creditstatement",
@@ -68,11 +81,6 @@ export class DefaultLayoutComponent {
         name: "Attendance History",
         url: "/settings/attendancehistory",
         icon: "cil-check",
-      },
-      {
-        name: "Family Members",
-        url: "/settings/family",
-        icon: "icon-people",
       },
     ];
 

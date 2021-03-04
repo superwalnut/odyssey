@@ -5,6 +5,7 @@
 
       <mat-tab-group>
         <mat-tab label="Terms">
+          <h3>Keep a log of term start end date and cost</h3>
           <form>
             <mat-form-field appearance="fill">
               <mat-label>Enter term date range</mat-label>
@@ -74,6 +75,8 @@
           </table>
         </mat-tab>
         <mat-tab label="Shuttles">
+          <h3>Keep a log of shuttle purchase history</h3>
+
           <mat-form-field appearance="fill">
             <mat-label>Purchase date</mat-label>
             <input matInput [matDatepicker]="shuttledate" />
@@ -147,6 +150,7 @@
             <mat-label>Time</mat-label>
             <input matInput placeholder="11:59AM" type="time" value="11:59" />
           </mat-form-field>
+          <button mat-raised-button color="primary">Save</button>
 
           <p>to make it simple, Booking alway close on Sunday 11:59PM</p>
         </mat-tab>
