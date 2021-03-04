@@ -126,7 +126,30 @@
             </tbody>
           </table>
         </mat-tab>
-        <mat-tab label="Third"> Content 3 </mat-tab>
+        <mat-tab label="Bookings">
+          <p>
+            User can only make booking between the duration of specified open
+            and close, unless admin manually locked the booking session
+          </p>
+          <mat-form-field appearance="fill">
+            <mat-label>Opens at</mat-label>
+            <select matNativeControl required>
+              <option value="volvo">Mon</option>
+              <option value="saab">TUE</option>
+              <option value="mercedes">WED</option>
+              <option value="audi">THU</option>
+              <option value="audi">FRI</option>
+              <option value="audi">SAT</option>
+              <option value="audi">SUN</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Time</mat-label>
+            <input matInput placeholder="11:59AM" type="time" value="11:59" />
+          </mat-form-field>
+
+          <p>to make it simple, Booking alway close on Sunday 11:59PM</p>
+        </mat-tab>
       </mat-tab-group>
     </div>
   </div>
