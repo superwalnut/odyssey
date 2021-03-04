@@ -52,7 +52,7 @@ export class DefaultLayoutComponent {
       {
         name: "Password",
         url: "/settings/password",
-        icon: "icon-pencil",
+        icon: "icon-lock",
       },
       {
         name: "Credit Statement",

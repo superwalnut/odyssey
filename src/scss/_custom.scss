@@ -77,9 +77,11 @@ nav {
   ul {
     //border: solid 1px black;
     margin: auto 20px;
+    padding-left: 0;
     li {
       display: inline;
       padding: 25px;
+      //padding-left: 0;
       a {
         color: whitesmoke;
         font-size: 15px;
