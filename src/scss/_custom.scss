@@ -11,6 +11,11 @@ body div.app {
   }
 }
 
+.app app-resetpassword {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 .list-group button {
   float: right;
 }
@@ -34,7 +39,13 @@ carousel img {
   width: 1230px;
   height: 250px;
 }
-
+//default material field width
+mat-form-field {
+  width: 300px;
+}
+.mat-field-l {
+  width: 100%;
+}
 .card-img-top {
   //background: url(./assets/img/banners/test2.jpg);
   width: 100%;
