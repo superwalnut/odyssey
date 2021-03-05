@@ -33,7 +33,7 @@ export class SitesettingsComponent implements OnInit {
       notes: ["", Validators.required],
     });
 
-    this.shuttleService.getSList();
+    this.shuttleService.getList();
   }
 
   onShuttleSubmit() {

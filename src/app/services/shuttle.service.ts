@@ -19,38 +19,33 @@ export class ShuttleService extends FirestoreBaseService<Shuttle>{
     return this.create(shuttle);
   }
 
-  getSList(){
-    //console.log(this.firestore.collection('shuttles'));
-
-    // var shuttles = this.firestore.collection('shuttles').snapshotChanges().pipe(
-    //   map(actions=> {
-    //     var ss = actions[0].payload.doc.data() as Shuttle;
-    //     console.log(ss);
-    //     return ss;
-    //   })
-    // );
+  getList(){
     
+     super.getAll().then((x)=>{
+      console.log("first then", x);
 
-    this.getList().subscribe(x=>{
-console.log(x);
+      return x;})
 
-    });
+//     this.getList().subscribe(x=>{
+// console.log(x);
+
+//     });
   }
 
-  getList() : Observable<Shuttle>{
-    return this.firestore.collection('shuttles').snapshotChanges().pipe(
-      map(actions => {
-          if(actions && actions.length > 0){
-            var acc = actions[0].payload.doc.data() as Shuttle;
-            return {
-              ...acc,
-              docId: actions[0].payload.doc.id
-            };
-          } else {
-            return null;
-          }
-        }));
-  }
+  // getList() : Observable<Shuttle>{
+  //   return this.firestore.collection('shuttles').snapshotChanges().pipe(
+  //     map(actions => {
+  //         if(actions && actions.length > 0){
+  //           var acc = actions[0].payload.doc.data() as Shuttle;
+  //           return {
+  //             ...acc,
+  //             docId: actions[0].payload.doc.id
+  //           };
+  //         } else {
+  //           return null;
+  //         }
+  //       }));
+  // }
 
 
 }
