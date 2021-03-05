@@ -7,7 +7,12 @@ import {
 } from "@angular/forms";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Shuttle } from "../../../models/shuttle";
+import { Term } from "../../../models/term";
+
+
 import { ShuttleService} from "../../../services/shuttle.service";
+import { TermService} from "../../../services/term.service";
+
 //import { Shuttle } from "@models/shuttle";
 
 @Component({
@@ -18,14 +23,27 @@ import { ShuttleService} from "../../../services/shuttle.service";
 export class SitesettingsComponent implements OnInit {
   shuttleForm: FormGroup;
   shuttleSubmitted = false;
+  termForm: FormGroup;
+  termSubmitted = false;
+  
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl(),
   });
 
-  constructor(private fb: FormBuilder, private shuttleService:ShuttleService,private snackBar:MatSnackBar,) {}
+  constructor(private fb: FormBuilder, private shuttleService:ShuttleService,private termService:TermService,private snackBar:MatSnackBar,) {}
 
   ngOnInit(): void {
+
+
+    this.termForm = this.fb.group({
+      startDate: ["", Validators.required],
+      endDate: ["", Validators.required],
+      cost: ["", Validators.required],
+      vip: ["", Validators.required],
+    });
+
+
     this.shuttleForm = this.fb.group({
       purchaseDate: ["", Validators.required],
       cost: ["", Validators.required],
@@ -33,7 +51,28 @@ export class SitesettingsComponent implements OnInit {
       notes: ["", Validators.required],
     });
 
+
+    this.termService.getTerms();
+
     this.shuttleService.getList();
+  }
+
+  onTermSubmit() {
+    this.termSubmitted = true;
+    var term = {
+      startDate: this.termForm.value.startDate,
+      endDate: this.termForm.value.endDate,
+      cost: this.termForm.value.cost,
+      vip: this.termForm.value.vip,
+    } as Term;
+    console.log(term);
+    this.termService.createTerm(term).then(x=>{
+      this.snackBar.open(`Term has been created.`, null , {
+        duration: 5000,
+        verticalPosition: 'top'
+      });
+    });
+
   }
 
   onShuttleSubmit() {
@@ -54,13 +93,13 @@ export class SitesettingsComponent implements OnInit {
     });
 
   }
+
+  get tf() {
+    return this.termForm.controls;
+  }
+
   get sf() {
     return this.shuttleForm.controls;
   }
 }
 
-// docId: string;
-// purchaseDate: Date;
-// cost: number;
-// quantity: number;
-// notes: string;
