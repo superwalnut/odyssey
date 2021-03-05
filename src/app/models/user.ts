@@ -1,3 +1,6 @@
+import firebase from 'firebase/app';
+import Timestamp = firebase.firestore.Timestamp;
+
 export class User {
     docId:string;
     email:string;
@@ -6,4 +9,6 @@ export class User {
     mobile:string;
     family:string[];
     role:string;
+    created:Timestamp;
+    updated:Timestamp;
 }
