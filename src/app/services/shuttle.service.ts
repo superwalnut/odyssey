@@ -10,7 +10,6 @@ import { Shuttle } from '../models/shuttle';
   providedIn: 'root'
 })
 export class ShuttleService extends FirestoreBaseService<Shuttle>{
-
   constructor(private firestore: AngularFirestore) { 
     super(firestore.collection('shuttles'));
   }
@@ -21,6 +20,12 @@ export class ShuttleService extends FirestoreBaseService<Shuttle>{
 
   getList(){
     return super.getAll();
+    // super.getAll().subscribe(x=> {
+    //   //console.log(x);
+    //   return x;
+      
+    // });
+    //console.log(this.shuttles);
   }
 
   // getList() : Observable<Shuttle>{

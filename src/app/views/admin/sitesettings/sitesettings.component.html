@@ -200,7 +200,7 @@
             </button>
           </form>
 
-          <table class="table">
+          <table class="table" >
             <thead>
               <tr>
                 <th scope="col">Purchase date</th>
@@ -210,6 +210,14 @@
               </tr>
             </thead>
             <tbody>
+              <tr *ngFor="let s of shuttles">
+                <th scope="row">{{ s.purchaseDate }}</th>
+                <td>{{ s.cost}} {{ s.docId}}</td>
+                <td>{{ s.quantity }}</td>
+                <td>{{ s.notes }}</td>
+
+               
+              </tr>
               <tr>
                 <th scope="row">12/05/2021</th>
                 <td>$1500</td>

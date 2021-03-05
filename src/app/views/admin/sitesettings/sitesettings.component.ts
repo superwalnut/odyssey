@@ -26,6 +26,7 @@ export class SitesettingsComponent implements OnInit {
   termForm: FormGroup;
   termSubmitted = false;
   
+  shuttles : Shuttle[] = [];
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl(),
@@ -54,7 +55,15 @@ export class SitesettingsComponent implements OnInit {
 
     this.termService.getTerms();
 
-    this.shuttleService.getList();
+    this.getShuttlePurchaseList();
+    console.log(this.shuttles);
+
+  }
+
+  getShuttlePurchaseList()
+  {
+    this.shuttleService.getList().subscribe(x=> this.shuttles = x);
+
   }
 
   onTermSubmit() {
