@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
+import{ GlobalConstants } from './common/global-constants';
+
 
 import { IconSetService } from "@coreui/icons-angular";
 import { freeSet } from "@coreui/icons";
@@ -25,6 +27,7 @@ export class AppComponent implements OnInit {
   constructor(private router: Router, public iconSet: IconSetService) {
     // iconSet singleton
     iconSet.icons = { ...freeSet };
+    console.log(GlobalConstants.bookingOpenDay);
   }
 
   ngOnInit() {
