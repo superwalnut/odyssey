@@ -189,7 +189,9 @@
         </mat-tab>
         <mat-tab label="SAT, Mar 2, 2021">
           <h3>
-            <a href="#"><i class="cil-lock-locked"></i></a>
+            <button mat-button (click)="toggleLock('Lock the booking')">Lock</button>
+
+            <a  ><i class="cil-lock-locked"></i></a>
             <a href="#" data-toggle="modal" data-target="#printModal"
               ><i class="cil-print"></i
             ></a>
