@@ -6,6 +6,9 @@ import { FirestoreBaseService } from './firestore-base.service';
 import { map, concatMap, finalize } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from '../models/account';
+import firebase from 'firebase/app';
+import Timestamp = firebase.firestore.Timestamp;
+
 
 @Injectable({
   providedIn: 'root'
@@ -65,14 +68,17 @@ export class AccountService extends FirestoreBaseService<User>{
         return false;
     }
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   createUser(user:User) {
+    user.created = this.getTodayTimestamp();
+    user.updated = this.getTodayTimestamp();
     return this.create(user);
   }
 
   updateUser(docId:string, user:User) {
+    user.updated = this.getTodayTimestamp();
     return this.update(docId, user);
   }
 
@@ -124,6 +130,19 @@ export class AccountService extends FirestoreBaseService<User>{
             return null;
           }
         }));
+  }
+
+  public getAllUsers() {
+    return this.firestore.collection('users').snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(p => {
+          var data = p.payload.doc.data() as User;
+          return {
+            ...data,
+            docId: p.payload.doc.id
+          } as User;
+        });
+      }));
   }
 
   private saveLocal(user:User) {
