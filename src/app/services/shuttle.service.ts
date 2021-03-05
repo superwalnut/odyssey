@@ -20,16 +20,7 @@ export class ShuttleService extends FirestoreBaseService<Shuttle>{
   }
 
   getList(){
-    
-     super.getAll().then((x)=>{
-      console.log("first then", x);
-
-      return x;})
-
-//     this.getList().subscribe(x=>{
-// console.log(x);
-
-//     });
+    return super.getAll();
   }
 
   // getList() : Observable<Shuttle>{

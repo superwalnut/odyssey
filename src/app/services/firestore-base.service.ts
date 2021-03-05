@@ -46,7 +46,7 @@ export class FirestoreBaseService<T> {
   }
 
   //Get All
-  protected async getAll() {
+  protected getAll() {
     return this.collection.snapshotChanges().pipe(
       map(actions => {
         const items = actions.map(p => {
@@ -56,7 +56,7 @@ export class FirestoreBaseService<T> {
             docId: p.payload.doc.id
           } as T;
         });
-        return Promise.resolve(items);
+        return items;
       })
     );
   }
