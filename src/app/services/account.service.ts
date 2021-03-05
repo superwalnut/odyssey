@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from '../models/account';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
+import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
 
 
 @Injectable({
@@ -133,16 +134,7 @@ export class AccountService extends FirestoreBaseService<User>{
   }
 
   public getAllUsers() {
-    return this.firestore.collection('users').snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(p => {
-          var data = p.payload.doc.data() as User;
-          return {
-            ...data,
-            docId: p.payload.doc.id
-          } as User;
-        });
-      }));
+    return this.getAll();
   }
 
   private saveLocal(user:User) {
