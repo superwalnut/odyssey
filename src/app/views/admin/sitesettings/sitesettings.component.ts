@@ -5,8 +5,9 @@ import {
   FormControl,
   Validators,
 } from "@angular/forms";
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Shuttle } from "../../../models/shuttle";
+import { ShuttleService} from "../../../services/shuttle.service";
 //import { Shuttle } from "@models/shuttle";
 
 @Component({
@@ -22,7 +23,7 @@ export class SitesettingsComponent implements OnInit {
     end: new FormControl(),
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private shuttleService:ShuttleService,private snackBar:MatSnackBar,) {}
 
   ngOnInit(): void {
     this.shuttleForm = this.fb.group({
@@ -31,6 +32,8 @@ export class SitesettingsComponent implements OnInit {
       quantity: ["", Validators.required],
       notes: ["", Validators.required],
     });
+
+    this.shuttleService.getSList();
   }
 
   onShuttleSubmit() {
@@ -43,6 +46,13 @@ export class SitesettingsComponent implements OnInit {
       notes: this.shuttleForm.value.notes,
     } as Shuttle;
     console.log(shuttle);
+    this.shuttleService.createShuttlePurchase(shuttle).then(x=>{
+      this.snackBar.open(`Shuttle purchase has been created.`, null , {
+        duration: 5000,
+        verticalPosition: 'top'
+      });
+    });
+
   }
   get sf() {
     return this.shuttleForm.controls;

@@ -77,6 +77,7 @@
         <mat-tab label="Shuttles">
           <h3>Keep a log of shuttle purchase history</h3>
           <form [formGroup]="shuttleForm" (ngSubmit)="onShuttleSubmit()">
+            <p>
             <mat-form-field appearance="fill">
               <mat-label>Purchase date</mat-label>
               <input
@@ -91,7 +92,16 @@
               ></mat-datepicker-toggle>
               <mat-datepicker #shuttledate></mat-datepicker>
             </mat-form-field>
+          </p>
+          <div
+              *ngIf="sf.purchaseDate.invalid && (sf.purchaseDate.dirty || sf.purchaseDate.touched)"
+              class="invalid-feedback"
+            >
+              <div *ngIf="sf.purchaseDate.errors.required">Purchase date is required.</div>
+            </div>
 
+
+<p>
             <mat-form-field class="example-full-width">
               <mat-label>Cost (AU$)</mat-label>
               <input
@@ -102,13 +112,15 @@
                 required
               />
             </mat-form-field>
+          </p>
+
             <div
               *ngIf="sf.cost.invalid && (sf.cost.dirty || sf.cost.touched)"
-              class="alert alert-danger"
+              class="invalid-feedback"
             >
               <div *ngIf="sf.cost.errors.required">Cost is required.</div>
             </div>
-
+<p>
             <mat-form-field class="example-full-width">
               <mat-label>Tubes</mat-label>
               <input
@@ -119,18 +131,20 @@
                 required
               />
             </mat-form-field>
+          </p>
             <div
               *ngIf="
                 sf.quantity.invalid &&
                 (sf.quantity.dirty || sf.quantity.touched)
               "
-              class="alert alert-danger"
+              class="invalid-feedback"
             >
               <div *ngIf="sf.quantity.errors.required">
                 Quantity is required.
               </div>
             </div>
 
+            <p>
             <mat-form-field class="example-full-width">
               <mat-label>Notes</mat-label>
               <textarea
@@ -140,11 +154,12 @@
                 required
               ></textarea>
             </mat-form-field>
+          </p>
             <div
-              *ngIf="sf.cost.invalid && (sf.cost.dirty || sf.cost.touched)"
-              class="alert alert-danger"
+              *ngIf="sf.notes.invalid && (sf.notes.dirty || sf.notes.touched)"
+              class="invalid-feedback"
             >
-              <div *ngIf="sf.cost.errors.required">Cost is required.</div>
+              <div *ngIf="sf.notes.errors.required">Notes is required.</div>
             </div>
 
             <button
