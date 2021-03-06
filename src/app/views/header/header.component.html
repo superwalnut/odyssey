@@ -13,11 +13,11 @@
     </li>
 
     <li *ngIf="!isLoggedIn">
-      <a href="/login">login</a>
+      <a routerLink="/login">login</a>
     </li>
 
     <li *ngIf="isLoggedIn">
-      <a href="/logout">logout</a>
+      <a routerLink="/logout">logout</a>
     </li>
   </ul>
 </nav>
