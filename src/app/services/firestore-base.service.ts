@@ -61,6 +61,16 @@ export class FirestoreBaseService<T> {
     );
   }
 
+  // Get by docId
+  protected getByDocId(docId:string) {
+    return this.collection.doc(docId).snapshotChanges().pipe(map(actions=>{
+      const data = actions.payload.data() as T;
+      return {
+        ...data,
+        docId: actions.payload.id
+      } as T;
+    }));
+  }
 
   protected encryptData(data) {
     try {

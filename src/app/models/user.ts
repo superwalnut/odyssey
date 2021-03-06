@@ -12,4 +12,5 @@ export class User {
     role:string;
     created:Timestamp;
     updated:Timestamp;
+    status:string;
 }
