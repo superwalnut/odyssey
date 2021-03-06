@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit, ViewChild } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -8,19 +8,19 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Shuttle } from "../../../models/shuttle";
 import { Term } from "../../../models/term";
-
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 
 import { ShuttleService} from "../../../services/shuttle.service";
 import { TermService} from "../../../services/term.service";
 
-//import { Shuttle } from "@models/shuttle";
 
 @Component({
   selector: "app-sitesettings",
   templateUrl: "./sitesettings.component.html",
   styleUrls: ["./sitesettings.component.scss"],
 })
-export class SitesettingsComponent implements OnInit {
+export class SitesettingsComponent implements OnInit, AfterViewInit {
   shuttleForm: FormGroup;
   shuttleSubmitted = false;
   termForm: FormGroup;
@@ -32,10 +32,17 @@ export class SitesettingsComponent implements OnInit {
     end: new FormControl(),
   });
 
+  shuttleDisplayedColumns: string[] = ['purchaseDate', 'cost', 'quantity', 'notes'];
+  shuttleDataSource = new MatTableDataSource<Shuttle>();
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor(private fb: FormBuilder, private shuttleService:ShuttleService,private termService:TermService,private snackBar:MatSnackBar,) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
+    this.shuttleDataSource.sort = this.sort;
+  }
 
+  ngOnInit(): void {
 
     this.termForm = this.fb.group({
       startDate: ["", Validators.required],
@@ -65,6 +72,7 @@ export class SitesettingsComponent implements OnInit {
     this.shuttleService.getList().subscribe(x=> {
       this.shuttles = x;
       console.log(x);
+      this.shuttleDataSource.data = this.shuttles;
     });
 
   }

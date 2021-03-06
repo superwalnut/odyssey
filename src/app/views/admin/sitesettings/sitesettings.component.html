@@ -200,38 +200,33 @@
             </button>
           </form>
 
-          <table class="table" >
-            <thead>
-              <tr>
-                <th scope="col">Purchase date</th>
-                <th scope="col">Cost</th>
-                <th scope="col">Tubes</th>
-                <th scope="col">Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let s of shuttles">
-                <th scope="row">{{ s.purchaseDate.toDate() |date:'yyyy/MM/dd'}}</th>
-                <td>{{ s.cost}}</td>
-                <td>{{ s.quantity }}</td>
-                <td>{{ s.notes }}</td>
 
-               
-              </tr>
-              <tr>
-                <th scope="row">12/05/2021</th>
-                <td>$1500</td>
-                <td>50</td>
-                <td>Taobao购买, Yonnex, 冠军5号，RSL</td>
-              </tr>
-              <tr>
-                <th scope="row">7/01/2021</th>
-                <td>$500</td>
-                <td>10</td>
-                <td>Susan购买, Vistor Pink</td>
-              </tr>
-            </tbody>
+          <table mat-table [dataSource]="shuttleDataSource" matSort class="mat-elevation-z8">
+
+            <ng-container matColumnDef="purchaseDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.purchaseDate.toDate() | date:'yyyy/MM/dd'}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="cost">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost </th>
+              <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="quantity">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Tubes </th>
+              <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="notes">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Notes </th>
+              <td mat-cell *matCellDef="let element"> {{element.notes}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="shuttleDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: shuttleDisplayedColumns;"></tr>
           </table>
+          
         </mat-tab>
         <mat-tab label="Bookings">
           <h1>TOBE DELETED: I've moved the CONSTANTS to Global-Constants.ts</h1>
