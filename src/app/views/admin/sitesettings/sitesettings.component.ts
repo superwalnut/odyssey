@@ -26,20 +26,28 @@ export class SitesettingsComponent implements OnInit, AfterViewInit {
   termForm: FormGroup;
   termSubmitted = false;
   
+  terms:Term[] = [];
   shuttles : Shuttle[] = [];
-  range = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl(),
-  });
 
+  termDisplayedColumns: string[] = ['startDate', 'endDate', 'termName', 'cost', 'vip'];
+  termDataSource = new MatTableDataSource<Term>();
   shuttleDisplayedColumns: string[] = ['purchaseDate', 'cost', 'quantity', 'notes'];
   shuttleDataSource = new MatTableDataSource<Shuttle>();
-  @ViewChild(MatSort) sort: MatSort;
+
+
+
+  // @ViewChild(MatSort) sortShuttle: MatSort;
+  // @ViewChild(MatSort) sortTerm: MatSort;
+
+  @ViewChild('sortShuttle') sortShuttle: MatSort;
+@ViewChild('sortTerm') sortTerm: MatSort;
+
 
   constructor(private fb: FormBuilder, private shuttleService:ShuttleService,private termService:TermService,private snackBar:MatSnackBar,) {}
 
   ngAfterViewInit() {
-    this.shuttleDataSource.sort = this.sort;
+    this.shuttleDataSource.sort = this.sortShuttle;
+    this.termDataSource.sort = this.sortTerm;
   }
 
   ngOnInit(): void {
@@ -47,6 +55,7 @@ export class SitesettingsComponent implements OnInit, AfterViewInit {
     this.termForm = this.fb.group({
       startDate: ["", Validators.required],
       endDate: ["", Validators.required],
+      termName: ["", Validators.required],
       cost: ["", Validators.required],
       vip: ["", Validators.required],
     });
@@ -60,10 +69,9 @@ export class SitesettingsComponent implements OnInit, AfterViewInit {
     });
 
 
-    this.termService.getTerms();
+    this.getAllTerms();
 
     this.getShuttlePurchaseList();
-    console.log("shuttle", this.shuttles);
 
   }
 
@@ -76,12 +84,20 @@ export class SitesettingsComponent implements OnInit, AfterViewInit {
     });
 
   }
+  getAllTerms()
+  {
+    this.termService.getTerms().subscribe(x=>{
+      this.termDataSource.data = x;
+
+    });
+  }
 
   onTermSubmit() {
     this.termSubmitted = true;
     var term = {
       startDate: this.termForm.value.startDate,
       endDate: this.termForm.value.endDate,
+      termName: this.termForm.value.termName,
       cost: this.termForm.value.cost,
       vip: this.termForm.value.vip,
     } as Term;

@@ -21,7 +21,8 @@ export class TermService extends FirestoreBaseService<Term>{
   }
 
   getTerms(){
-    
+    return super.getAll();
+
   }
 
 

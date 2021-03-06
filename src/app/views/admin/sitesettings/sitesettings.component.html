@@ -39,7 +39,20 @@
               >
             </mat-form-field>
 
-            <p>Selected range: {{ termForm.value | json }}</p>
+            <p>
+
+            
+              <mat-form-field >
+                <mat-label>Term Name</mat-label>
+                <input matInput placeholder="ie. 2021A"  formControlName="termName" required/>
+              </mat-form-field>
+            </p>
+              <div
+                *ngIf="tf.termName.invalid && (tf.termName.dirty || tf.termName.touched)"
+                class="invalid-feedback"
+              >
+                <div *ngIf="tf.termName.errors.required">Term name is required.</div>
+              </div>
 
             <p>
 
@@ -79,6 +92,40 @@
 
             <button mat-raised-button color="primary" [disabled]="termForm.invalid">Save</button>
           </form>
+
+
+          <table mat-table [dataSource]="termDataSource" #sortTerm="matSort" matSort class="mat-elevation-z8">
+
+            <ng-container matColumnDef="startDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Start </th>
+              <td mat-cell *matCellDef="let element"> {{element.startDate.toDate() | date:'yyyy/MM/dd'}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="endDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> End </th>
+              <td mat-cell *matCellDef="let element"> {{element.endDate.toDate() | date:'yyyy/MM/dd'}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="termName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Term  </th>
+              <td mat-cell *matCellDef="let element"> {{element.termName}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="cost">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> cost </th>
+              <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="vip">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> VIP </th>
+              <td mat-cell *matCellDef="let element"> {{element.vip}} </td>
+            </ng-container>
+
+          
+            <tr mat-header-row *matHeaderRowDef="termDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: termDisplayedColumns;"></tr>
+          </table>
+
 
           <table class="table">
             <thead>
@@ -201,7 +248,7 @@
           </form>
 
 
-          <table mat-table [dataSource]="shuttleDataSource" matSort class="mat-elevation-z8">
+          <table mat-table [dataSource]="shuttleDataSource" #sortShuttle="matSort" matSort class="mat-elevation-z8">
 
             <ng-container matColumnDef="purchaseDate">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
