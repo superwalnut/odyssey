@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+
 import { AccountService } from "../../services/account.service";
 
 @Component({
@@ -14,7 +15,8 @@ export class DashboardComponent implements OnInit {
     this.isGod = this.accountService.isGod();
     this.isAdmin = this.accountService.isAdmin();
     this.isUser = !this.isGod && !this.isAdmin;
-    console.log(this.isUser);
+    console.log("isuser: ", this.isUser);
+    console.log("isgod: ", this.isGod);
   }
 
   ngOnInit(): void {}

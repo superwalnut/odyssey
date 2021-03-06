@@ -1,7 +1,6 @@
 <!-- //Shared by both Admin and Users, show hide based on roles -->
-<h1>Show if it's Admin</h1>
 
-<div class="container">
+<div class="container-fluid" *ngIf="isGod || isAdmin">
   <div class="row">
     <div class="col-sm">
       <div class="card">
@@ -65,9 +64,8 @@
   </div>
 </div>
 
-<!-- User section -->
-<h1>Show if it's user</h1>
-<div class="container-xl">
+
+<div class="container-xl" *ngIf="isUser">
   <div class="row">
     <div class="col-sm">
       <div class="card">
