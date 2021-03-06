@@ -16,7 +16,7 @@ export class Booking {
     termId:string; //for easy reporting
 
     isPaid:boolean; //this usually apply to cash only
-    isOnWaiting:boolean;
+    isOnWaiting:boolean; //waiting list
     isLocked:boolean // once locked, even admin can't make edit, only God can make changes to it
     createdOn:Timestamp;
 }

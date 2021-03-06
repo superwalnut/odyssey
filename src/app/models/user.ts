@@ -10,6 +10,8 @@ export class User {
     mobile:string;
     family:string[];
     role:string;
+    isVip:boolean;
+    isMember:boolean;
     created:Timestamp;
     updated:Timestamp;
 }
