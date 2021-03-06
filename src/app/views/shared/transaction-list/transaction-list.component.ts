@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Credit } from '../../../models/credit';
+import { CreditService } from '../../../services/credit.service';
 
 @Component({
   selector: 'app-transaction-list',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transaction-list.component.scss']
 })
 export class TransactionListComponent implements OnInit {
-
-  constructor() { }
+  @Input() userDocId:string;
+  credits:Credit[];
+  
+  constructor(private creditService:CreditService) { }
 
   ngOnInit(): void {
+    this.creditService.getByUser(this.userDocId).subscribe(x=>{
+      this.credits = x;
+    });
   }
 
 }

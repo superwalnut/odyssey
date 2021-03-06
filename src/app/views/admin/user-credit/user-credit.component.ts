@@ -6,6 +6,7 @@ import { Credit } from '../../../models/credit';
 import { User } from '../../../models/user';
 import { AccountService } from '../../../services/account.service';
 import { CreditService } from '../../../services/credit.service';
+import { Account } from '../../../models/account';
 
 @Component({
   selector: 'app-user-credit',
@@ -20,6 +21,8 @@ export class UserCreditComponent implements OnInit {
   form: FormGroup;
   submitted = false;
 
+  loggedInUser:Account;
+
   constructor(private activatedRoute: ActivatedRoute, private accountService:AccountService, private creditService:CreditService, private fb:FormBuilder, private snackBar:MatSnackBar) { }
 
   // convenience getter for easy access to form fields
@@ -30,6 +33,8 @@ export class UserCreditComponent implements OnInit {
       amount: [null, [Validators.required]],
       note: ['', Validators.required],
     });
+
+    this.loggedInUser = this.accountService.getLoginAccount();
 
     this.userDocId = this.activatedRoute.snapshot.params.id;
     if(this.userDocId){
@@ -63,7 +68,7 @@ export class UserCreditComponent implements OnInit {
       userDocId: this.userDocId,
     } as Credit;
 
-    this.creditService.createCredit(credit).then(x=>{
+    this.creditService.createCredit(credit, this.balance, this.loggedInUser.email).then(x=>{
       this.snackBar.open(`Your account settings have been updated.`, null , {
         duration: 5000,
         verticalPosition: 'top'

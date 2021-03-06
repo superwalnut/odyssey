@@ -15,8 +15,10 @@ export class CreditService extends FirestoreBaseService<Credit>{
     super(firestore.collection('credits'));
    }
 
-   public createCredit(credit:Credit) {
+   public createCredit(credit:Credit, previousBalance:number, createdBy:string) {
     credit.created = this.getTodayTimestamp();
+    credit.balance = previousBalance + credit.amount;
+    credit.createdBy = createdBy;
     return this.create(credit);
    }
 
@@ -31,6 +33,19 @@ export class CreditService extends FirestoreBaseService<Credit>{
       });
       return sum;
     }));
-   }
+  }
+
+  public getByUser(userDocId:string) {
+    return this.firestore.collection('credits', q=>q.where('userDocId', '==', userDocId).orderBy('created','desc')).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(x=>{
+          var credit = x.payload.doc.data() as Credit;
+          return {
+            ...credit,
+            docId: x.payload.doc.id
+          } as Credit;
+        });
+      }));
+  }
 
 }

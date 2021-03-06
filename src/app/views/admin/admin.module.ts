@@ -13,6 +13,7 @@ import { AppMaterialModule } from "../../app-material.module";
 import { UserdetailsComponent } from "./userdetails/userdetails.component";
 import { SitesettingsComponent } from "./sitesettings/sitesettings.component";
 import { UserCreditComponent } from './user-credit/user-credit.component';
+import { TransactionListComponent } from "../shared/transaction-list/transaction-list.component";
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { UserCreditComponent } from './user-credit/user-credit.component';
     UserdetailsComponent,
     SitesettingsComponent,
     UserCreditComponent,
+    TransactionListComponent
   ],
 })
 export class AdminModule {}
