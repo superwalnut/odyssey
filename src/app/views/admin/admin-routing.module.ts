@@ -48,7 +48,7 @@ const routes: Routes = [
         },
       },
       {
-        path: "userdetails",
+        path: "userdetails/:id",
         component: UserdetailsComponent,
         data: {
           title: "User details",

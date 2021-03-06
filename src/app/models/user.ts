@@ -14,4 +14,5 @@ export class User {
     isMember:boolean;
     created:Timestamp;
     updated:Timestamp;
+    status:string;
 }
