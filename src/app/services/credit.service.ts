@@ -16,7 +16,8 @@ export class CreditService extends FirestoreBaseService<Credit>{
    }
 
    public createCredit(credit:Credit) {
-    this.create(credit);
+    credit.created = this.getTodayTimestamp();
+    return this.create(credit);
    }
 
    public getBalance(userDocId:string) {

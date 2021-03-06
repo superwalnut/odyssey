@@ -1,0 +1,33 @@
+  <div class="app-body">
+    <main class="main d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+                <div class="card-body p-4">
+                    <h1>{{user?.wechatId}}'s Credit</h1>
+                    {{balance}}
+                    <h2>Current Balance: ${{balance | number: '2.2'}}</h2>
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-4">
+        
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" formControlName="amount" placeholder="Amount">
+                        <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                            <div *ngIf="f.amount.errors.required">Amount is required</div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" formControlName="note" placeholder="Note">
+                        <div *ngIf="submitted && f.note.errors" class="invalid-feedback">
+                            <div *ngIf="f.note.errors.required">Note is required</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-success">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+</div>

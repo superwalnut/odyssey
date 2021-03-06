@@ -3,9 +3,9 @@ import { Routes, RouterModule } from "@angular/router";
 import { UsersComponent } from "./users/users.component";
 import { BookingsComponent } from "./bookings/bookings.component";
 
-import { UsercreditComponent } from "./usercredit/usercredit.component";
 import { UserdetailsComponent } from "./userdetails/userdetails.component";
 import { SitesettingsComponent } from "./sitesettings/sitesettings.component";
+import { UserCreditComponent } from "./user-credit/user-credit.component";
 
 const routes: Routes = [
   {
@@ -39,10 +39,9 @@ const routes: Routes = [
           title: "Site settings",
         },
       },
-
       {
-        path: "usercredit",
-        component: UsercreditComponent,
+        path: "usercredits/:id",
+        component: UserCreditComponent,
         data: {
           title: "User credit",
         },

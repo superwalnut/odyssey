@@ -6,5 +6,5 @@ export class Credit {
     userDocId:string;
     amount:number;
     created:Timestamp;
-    comment:string;
+    note:string;
 }

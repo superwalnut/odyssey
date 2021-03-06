@@ -52,8 +52,8 @@
         <ng-container matColumnDef="docId">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>View Details</th>
           <td mat-cell *matCellDef="let element"> 
-            <a class="btn btn-sm btn-secondary" href="/admin/userdetails/{{element.docId}}">View Details</a>
-            <a class="btn btn-sm btn-info" href="/admin/usercredit/{{element.docId}}">Credit</a>
+            <a class="btn btn-sm btn-secondary" routerLink="/admin/userdetails/{{element.docId}}">View Details</a>
+            <a class="btn btn-sm btn-info" routerLink="/admin/usercredits/{{element.docId}}">Credit</a>
           </td>
         </ng-container>
 
