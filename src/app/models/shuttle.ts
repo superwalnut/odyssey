@@ -1,6 +1,9 @@
+import firebase from 'firebase/app';
+import Timestamp = firebase.firestore.Timestamp;
+
 export class Shuttle {
   docId: string;
-  purchaseDate: Date;
+  purchaseDate: Timestamp;
   cost: number;
   quantity: number;
   notes: string;

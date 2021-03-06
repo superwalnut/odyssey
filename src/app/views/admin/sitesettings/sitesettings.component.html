@@ -211,8 +211,8 @@
             </thead>
             <tbody>
               <tr *ngFor="let s of shuttles">
-                <th scope="row">{{ s.purchaseDate }}</th>
-                <td>{{ s.cost}} {{ s.docId}}</td>
+                <th scope="row">{{ s.purchaseDate.toDate() |date:'yyyy/MM/dd'}}</th>
+                <td>{{ s.cost}}</td>
                 <td>{{ s.quantity }}</td>
                 <td>{{ s.notes }}</td>
 

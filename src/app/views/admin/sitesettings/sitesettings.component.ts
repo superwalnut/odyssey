@@ -56,13 +56,16 @@ export class SitesettingsComponent implements OnInit {
     this.termService.getTerms();
 
     this.getShuttlePurchaseList();
-    console.log(this.shuttles);
+    console.log("shuttle", this.shuttles);
 
   }
 
   getShuttlePurchaseList()
   {
-    this.shuttleService.getList().subscribe(x=> this.shuttles = x);
+    this.shuttleService.getList().subscribe(x=> {
+      this.shuttles = x;
+      console.log(x);
+    });
 
   }
 
