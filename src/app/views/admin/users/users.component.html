@@ -1,16 +1,23 @@
-<div class="container-xl">
-  <div class="row light">
-    <div class="col">
-      * Keep it simpple, no need search or paging, just dump all users in one
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4">
+
+            * Keep it simpple, no need search or paging, just dump all users in one
       big list. but do need header sorting<br />
       1. View - view profile, credit, attendance<br />
       2. Edit - edit profile, Family members, password...etc<br />
       3. Credit - manually enter credit amount once user transferred to our bank
       account.
+      <p>
+
+      
       <mat-form-field>
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Filter by wechatId" #input>
       </mat-form-field>
+    </p>
 
       <table class="table table-striped" mat-table [dataSource]="dataSource" matSort>
         <!-- Name Column -->
@@ -98,6 +105,8 @@
           </tr>
         </tbody>
       </table> -->
+      </div>
+      </div>
     </div>
   </div>
 </div>
