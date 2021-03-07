@@ -1,20 +1,14 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from "@angular/core";
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, } from "@angular/core";
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { ActivatedRoute, Router } from "@angular/router";
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators,
-} from "@angular/forms";
+import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Account } from "../../../models/account";
 import { Group } from "../../../models/group";
-
-import { MatSort } from "@angular/material/sort";
-// import { MatTableDataSource } from "@angular/material/table";
-
 import { AccountService } from "../../../services/account.service";
 import { GroupService } from "../../../services/group.service";
+import { User } from "../../../models/user";
 
 @Component({
   selector: "app-groupdetails",
@@ -28,20 +22,34 @@ export class GroupdetailsComponent implements OnInit {
   groupDocId: string;
   isEditMode: boolean;
 
-  constructor(
-    private fb: FormBuilder,
-    private groupService: GroupService,
-    private accountService: AccountService,
-    private snackBar: MatSnackBar,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {}
+  myControl = new FormControl();
+  allUsers: string[] = [];
+  filteredUsers: Observable<string[]>;
+
+  constructor(private fb: FormBuilder, private groupService: GroupService, private accountService: AccountService, private snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private router: Router) {
+
+  }
 
   ngOnInit(): void {
     this.loggedInUser = this.accountService.getLoginAccount();
     if (this.groupDocId) {
       this.isEditMode = true;
     }
+
+    this.filteredUsers = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+
+
+    this.accountService.getAllUsers().subscribe((x) => {
+      x.forEach(u => {
+        if (u) {
+          this.allUsers.push(u.wechatId);
+        }
+      })
+    });
 
     this.groupForm = this.fb.group({
       startDate: ["", Validators.required],
@@ -55,6 +63,13 @@ export class GroupdetailsComponent implements OnInit {
 
     this.getByDocId(this.groupDocId);
   }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allUsers.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
 
   getByDocId(docId: string) {
     if (this.groupDocId) {

@@ -114,15 +114,37 @@
                 >Closed</mat-slide-toggle
               >
             </p>
-            <button mat-raised-button routerLink="/admin/groups">Cancel</button>
 
-            <button
-              mat-raised-button
-              color="primary"
-              [disabled]="groupForm.invalid"
-            >
-              Save
-            </button>
+            <h2>Committees</h2>
+            
+              <mat-form-field>
+                <mat-label>Number</mat-label>
+                <input type="text"
+                       placeholder="Pick one"
+                       aria-label="Number"
+                       matInput
+                       [formControl]="myControl"
+                       [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+                    {{user}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            
+            <p>
+              <button mat-raised-button routerLink="/admin/groups">
+                Cancel
+              </button>
+
+              <button
+                mat-raised-button
+                color="primary"
+                [disabled]="groupForm.invalid"
+              >
+                Save
+              </button>
+            </p>
           </form>
         </div>
       </div>
