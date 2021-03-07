@@ -25,9 +25,7 @@ export class UserdetailsComponent implements OnInit {
   familyForm: FormGroup;
   familySubmitted = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private accountService:AccountService, private creditService:CreditService, private fb:FormBuilder, private snackBar:MatSnackBar) { }
-
-  ngOnInit(): void {
+  constructor(private activatedRoute: ActivatedRoute, private accountService:AccountService, private creditService:CreditService, private fb:FormBuilder, private snackBar:MatSnackBar) { 
     this.profileForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       wechatId: ['', Validators.required],
@@ -41,8 +39,9 @@ export class UserdetailsComponent implements OnInit {
     this.familyForm = new FormGroup({
       families : new FormArray([]),
     });
+  }
 
-
+  ngOnInit(): void {
     this.userDocId = this.activatedRoute.snapshot.params.id;
     if(this.userDocId){
       this.accountService.getUserByDocId(this.userDocId).subscribe(x=>{
@@ -75,7 +74,6 @@ export class UserdetailsComponent implements OnInit {
           });
         }
       });
-  
     }
   }
 
@@ -140,7 +138,7 @@ export class UserdetailsComponent implements OnInit {
       this.families.push(new FormControl());
     }
   
-    onSubmit() {
+    onFamilySubmit() {
       this.familySubmitted = true;
   
       // stop here if form is invalid
