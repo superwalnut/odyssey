@@ -6,6 +6,10 @@ import { BookingsComponent } from "./bookings/bookings.component";
 import { UserdetailsComponent } from "./userdetails/userdetails.component";
 import { SitesettingsComponent } from "./sitesettings/sitesettings.component";
 import { UserCreditComponent } from "./user-credit/user-credit.component";
+import { GroupsComponent } from "./groups/groups.component";
+import { GroupdetailsComponent } from "./groupdetails/groupdetails.component";
+
+import { groupCollapsed } from "console";
 
 const routes: Routes = [
   {
@@ -25,6 +29,21 @@ const routes: Routes = [
           title: "Manage users",
         },
       },
+      {
+        path: "groups",
+        component: GroupsComponent,
+        data: {
+          title: "Groups",
+        },
+      },
+      {
+        path: "groupdetails",
+        component: GroupdetailsComponent,
+        data: {
+          title: "Group details",
+        },
+      },
+
       {
         path: "bookings",
         component: BookingsComponent,

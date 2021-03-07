@@ -1,0 +1,127 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4">
+          <h1>Group Details</h1>
+          <h3>Create or edit group</h3>
+
+          <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="fill">
+              <mat-label>Enter term date range</mat-label>
+              <mat-date-range-input [rangePicker]="picker">
+                <input
+                  matStartDate
+                  placeholder="Start date"
+                  formControlName="startDate"
+                  required
+                />
+                <input
+                  matEndDate
+                  placeholder="End date"
+                  formControlName="endDate"
+                  required
+                />
+              </mat-date-range-input>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+
+              <mat-error
+                *ngIf="
+                  groupForm.controls.startDate.hasError('matStartDateInvalid')
+                "
+                >Invalid start date</mat-error
+              >
+              <mat-error
+                *ngIf="groupForm.controls.endDate.hasError('matEndDateInvalid')"
+                >Invalid end date</mat-error
+              >
+            </mat-form-field>
+
+            <p>
+              <mat-form-field>
+                <mat-label>Term Cost</mat-label>
+                <input
+                  matInput
+                  placeholder="$"
+                  type="number"
+                  formControlName="termCost"
+                  required
+                />
+              </mat-form-field>
+            </p>
+            <div
+              *ngIf="
+                f.termCost.invalid && (f.termCost.dirty || f.termCost.touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.termCost.errors.required">
+                Term Cost is required.
+              </div>
+            </div>
+
+            <p>
+              <mat-form-field>
+                <mat-label>Group Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Tuesday badminton session"
+                  formControlName="groupName"
+                  required
+                />
+              </mat-form-field>
+            </p>
+            <div
+              *ngIf="
+                f.groupName.invalid &&
+                (f.groupName.dirty || f.groupName.touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.groupName.errors.required">
+                Group name is required.
+              </div>
+            </div>
+
+            <p>
+              <mat-form-field>
+                <mat-label>Group Description</mat-label>
+                <input
+                  matInput
+                  placeholder=""
+                  formControlName="groupDesc"
+                  required
+                />
+              </mat-form-field>
+            </p>
+            <div
+              *ngIf="
+                f.groupDesc.invalid &&
+                (f.groupDesc.dirty || f.groupDesc.touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.groupDesc.errors.required">
+                Group description is required.
+              </div>
+            </div>
+
+            <button mat-raised-button routerLink="/admin/groups">Cancel</button>
+
+            <button
+              mat-raised-button
+              color="primary"
+              [disabled]="groupForm.invalid"
+            >
+              Save
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

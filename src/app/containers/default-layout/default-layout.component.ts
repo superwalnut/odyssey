@@ -99,10 +99,16 @@ export class DefaultLayoutComponent {
           name: "Admin Only",
         },
         {
+          name: "Groups",
+          url: "/admin/groups",
+          icon: "cil-layers",
+        },
+        {
           name: "Users",
           url: "/admin/users",
           icon: "cil-group",
         },
+
         {
           name: "Bookings",
           url: "/admin/bookings",

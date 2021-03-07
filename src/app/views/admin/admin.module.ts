@@ -14,6 +14,8 @@ import { UserdetailsComponent } from "./userdetails/userdetails.component";
 import { SitesettingsComponent } from "./sitesettings/sitesettings.component";
 import { UserCreditComponent } from './user-credit/user-credit.component';
 import { TransactionListComponent } from "../shared/transaction-list/transaction-list.component";
+import { GroupsComponent } from './groups/groups.component';
+import { GroupdetailsComponent } from './groupdetails/groupdetails.component';
 
 @NgModule({
   imports: [
@@ -32,7 +34,9 @@ import { TransactionListComponent } from "../shared/transaction-list/transaction
     UserdetailsComponent,
     SitesettingsComponent,
     UserCreditComponent,
-    TransactionListComponent
+    TransactionListComponent,
+    GroupsComponent,
+    GroupdetailsComponent
   ],
 })
 export class AdminModule {}
