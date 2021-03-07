@@ -75,7 +75,6 @@ export class UserdetailsComponent implements OnInit {
           });
         }
       });
-  
     }
   }
 
@@ -140,7 +139,7 @@ export class UserdetailsComponent implements OnInit {
       this.families.push(new FormControl());
     }
   
-    onSubmit() {
+    onFamilySubmit() {
       this.familySubmitted = true;
   
       // stop here if form is invalid

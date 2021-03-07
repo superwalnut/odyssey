@@ -15,7 +15,7 @@
                         <mat-form-field>
                           <mat-label>Phone</mat-label>
                           <input matInput placeholder="" formControlName="mobile"/>
-                          <div *ngIf="submitted && pf.mobile.errors" class="invalid-feedback">
+                          <div *ngIf="profileSubmitted && pf.mobile.errors" class="invalid-feedback">
                             <div *ngIf="pf.mobile.errors.required">Mobile is required</div>
                           </div>
                         </mat-form-field>
@@ -24,7 +24,7 @@
                         <mat-form-field>
                           <mat-label>Display name</mat-label>
                           <input matInput placeholder="" formControlName="wechatId"/>
-                          <div *ngIf="submitted && pf.wechatId.errors" class="invalid-feedback">
+                          <div *ngIf="profileSubmitted && pf.wechatId.errors" class="invalid-feedback">
                             <div *ngIf="pf.wechatId.errors.required">Name is required</div>
                           </div>
                         </mat-form-field>
@@ -33,7 +33,7 @@
                         <mat-form-field>
                           <mat-label>Email</mat-label>
                           <input matInput placeholder="" type="email" formControlName="email"/>
-                          <div *ngIf="submitted && pf.email.errors" class="invalid-feedback">
+                          <div *ngIf="profileSubmitted && pf.email.errors" class="invalid-feedback">
                             <div *ngIf="pf.email.errors.required">Email is required</div>
                           </div>
                         </mat-form-field>
@@ -50,7 +50,7 @@
                         <mat-form-field>
                           <mat-label>Password</mat-label>
                           <input matInput placeholder="" formControlName="password"/>
-                          <div *ngIf="submitted && pwf.passwordForm.errors" class="invalid-feedback">
+                          <div *ngIf="passwordSubmitted && pwf.passwordForm.errors" class="invalid-feedback">
                             <div *ngIf="pwf.passwordForm.errors.required">Password is required</div>
                           </div>
                         </mat-form-field>
