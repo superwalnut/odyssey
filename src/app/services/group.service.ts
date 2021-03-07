@@ -14,14 +14,32 @@ export class GroupService extends FirestoreBaseService<Group> {
     super(firestore.collection("groups"));
   }
 
-  createGroup(group: Group, createdBy: string) {
+  public createGroup(group: Group, createdBy: string) {
     group.created = this.getTodayTimestamp();
     group.createdBy = createdBy;
 
     return this.create(group);
   }
 
-  getGroups() {
+  public getGroups() {
     return super.getAll();
+  }
+
+  // public getBalance(userDocId:string) {
+  //   return this.firestore.collection('credits', q=>q.where('userDocId', '==', userDocId)).snapshotChanges().pipe(map(actions=>{
+  //     var sum = 0;
+  //     actions.forEach(x=> {
+  //       if(x){
+  //         const credit = x.payload.doc.data() as Credit;
+  //         sum += credit.amount;
+  //       }
+  //     });
+  //     return sum;
+  //   }));
+  // }
+
+  public getGroup(groupDocId: string) {
+    console.log("groupservice: ", groupDocId);
+    return super.getByDocId(groupDocId);
   }
 }

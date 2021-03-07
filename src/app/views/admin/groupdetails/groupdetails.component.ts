@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import {
   FormBuilder,
   FormGroup,
@@ -24,15 +25,19 @@ export class GroupdetailsComponent implements OnInit {
   groupForm: FormGroup;
   submitted: boolean = false;
   loggedInUser: Account;
+  groupDocId: string;
 
   constructor(
     private fb: FormBuilder,
     private groupService: GroupService,
     private accountService: AccountService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.loggedInUser = this.accountService.getLoginAccount();
+
     this.groupForm = this.fb.group({
       startDate: ["", Validators.required],
       endDate: ["", Validators.required],
@@ -41,8 +46,23 @@ export class GroupdetailsComponent implements OnInit {
       groupDesc: ["", Validators.required],
       isClosed: [""],
     });
+    this.groupDocId = this.activatedRoute.snapshot.params.id;
 
-    this.loggedInUser = this.accountService.getLoginAccount();
+    this.getByDocId(this.groupDocId);
+  }
+
+  getByDocId(docId: string) {
+    if (this.groupDocId) {
+      console.log(this.groupDocId);
+      var group = this.groupService.getGroup(this.groupDocId).subscribe((x) => {
+        console.log(x);
+        this.groupForm.patchValue({
+          termCost: x.termCost,
+          groupName: x.groupName,
+          groupDesc: x.groupDesc,
+        });
+      });
+    }
   }
 
   onSubmit() {

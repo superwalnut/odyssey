@@ -18,6 +18,7 @@ export class GroupsComponent implements OnInit {
     "groupName",
     "groupDesc",
     "isClosed",
+    "Action",
   ];
   dataSource = new MatTableDataSource<Group>();
   @ViewChild(MatSort) sort: MatSort;

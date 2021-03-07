@@ -37,13 +37,19 @@ const routes: Routes = [
         },
       },
       {
+        path: "groupdetails/:id",
+        component: GroupdetailsComponent,
+        data: {
+          title: "Group details",
+        },
+      },
+      {
         path: "groupdetails",
         component: GroupdetailsComponent,
         data: {
           title: "Group details",
         },
       },
-
       {
         path: "bookings",
         component: BookingsComponent,
