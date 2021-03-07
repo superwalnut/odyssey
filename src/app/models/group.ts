@@ -14,4 +14,6 @@ export class Group {
 
   created: Timestamp;
   createdBy: string;
+  updated: Timestamp;
+  updatedBy: string;
 }

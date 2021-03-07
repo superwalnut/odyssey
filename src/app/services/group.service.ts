@@ -42,4 +42,9 @@ export class GroupService extends FirestoreBaseService<Group> {
     console.log("groupservice: ", groupDocId);
     return super.getByDocId(groupDocId);
   }
+
+  public updateGroup(docId: string, group: Group) {
+    group.updated = this.getTodayTimestamp();
+    return this.update(docId, group);
+  }
 }

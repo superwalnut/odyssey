@@ -109,7 +109,11 @@
                 Group description is required.
               </div>
             </div>
-
+            <p *ngIf="isEditMode">
+              <mat-slide-toggle formControlName="isClosed"
+                >Closed</mat-slide-toggle
+              >
+            </p>
             <button mat-raised-button routerLink="/admin/groups">Cancel</button>
 
             <button
