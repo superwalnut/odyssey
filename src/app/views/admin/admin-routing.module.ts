@@ -52,8 +52,8 @@ const routes: Routes = [
         },
       },
       {
-        //path: "groupexpense/:id",
-        path: "groupexpense",
+        path: "groupexpense/:id",
+        //path: "groupexpense",
         component: GroupexpenseComponent,
         data: {
           title: "Group Expense",

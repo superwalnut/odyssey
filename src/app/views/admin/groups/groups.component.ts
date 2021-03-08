@@ -15,6 +15,7 @@ export class GroupsComponent implements OnInit {
     "startDate",
     "endDate",
     "groupName",
+    "committees",
     "isClosed",
     "Action",
   ];
@@ -32,6 +33,7 @@ export class GroupsComponent implements OnInit {
 
   getAllGroups() {
     this.groupService.getGroups().subscribe((x) => {
+      console.log(x);
       this.dataSource.data = x;
     });
   }

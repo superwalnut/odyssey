@@ -4,125 +4,118 @@
         <div class="card">
           <div class="card-body p-4">
             <h1>Group Expense</h1>
-            <h3>Log all expense for this group</h3>
-            
+            <h3>Log a new expense for this group (ie. court hire, shuttle purchase)</h3>
   
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 
                 <mat-form-field appearance="fill">
                     <mat-label>Expense types</mat-label>
-                    <mat-select>
-                      <mat-option *ngFor="let type of expenseTypes">
-                        {{type}}
-                      </mat-option>
+                    <mat-select  formControlName="expenseType" required>
+                      <mat-option *ngFor="let type of expenseTypes" [value]="type">{{type}}</mat-option>
                     </mat-select>
                   </mat-form-field>
 
                   <p>
                     <mat-form-field>
                       <mat-label>Notes</mat-label>
-                      <input
-                        matInput
-                        placeholder=""
-                        formControlName="notes"
-                        required
-                      />
+                      <input matInput placeholder="" formControlName="notes" required/>
                     </mat-form-field>
                   </p>
-                  <div
-                    *ngIf="
-                      f.notes.invalid &&
-                      (f.notes.dirty || f.notes.touched)
-                    "
-                    class="invalid-feedback"
-                  >
-                    <div *ngIf="f.notes.errors.required">
-                      Notes is required.
-                    </div>
+                  <div *ngIf="f.notes.invalid && (f.notes.dirty || f.notes.touched)" class="invalid-feedback">
+                    <div *ngIf="f.notes.errors.required">Notes is required.</div>
                   </div>
-
                   
                   <p>
                     <mat-form-field>
                       <mat-label>Amount</mat-label>
-                      <input
-                        matInput
-                        placeholder=""
-                        type="number"
-                        formControlName="amount"
-                        required
-                      />
+                      <input matInput placeholder="" type="number" formControlName="amount" required/>
                     </mat-form-field>
                   </p>
-                  <div
-                    *ngIf="
-                      f.amount.invalid &&
-                      (f.amount.dirty || f.amount.touched)
-                    "
-                    class="invalid-feedback"
-                  >
-                    <div *ngIf="f.amount.errors.required">
-                      Amount is required.
-                    </div>
+                  <div *ngIf="f.amount.invalid && (f.amount.dirty || f.amount.touched)" class="invalid-feedback">
+                    <div *ngIf="f.amount.errors.required">Amount is required.</div>
                   </div>
 
-                  
-
-
                 <mat-form-field appearance="fill">
-                  <mat-label>Enter term date range</mat-label>
+                  <mat-label>Enter date range</mat-label>
                   <mat-date-range-input [rangePicker]="picker">
-                    <input
-                      matStartDate
-                      placeholder="Start date"
-                      formControlName="startDate"
-                      required
-                    />
-                    <input
-                      matEndDate
-                      placeholder="End date"
-                      formControlName="endDate"
-                      required
-                    />
+                    <input matStartDate placeholder="Start date" formControlName="startDate" required />
+                    <input matEndDate placeholder="End date" formControlName="endDate" required/>
                   </mat-date-range-input>
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="picker"
-                  ></mat-datepicker-toggle>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-date-range-picker #picker></mat-date-range-picker>
     
-                  <mat-error
-                    *ngIf="
-                    form.controls.startDate.hasError('matStartDateInvalid')
-                    "
-                    >Invalid start date</mat-error
-                  >
-                  <mat-error
-                    *ngIf="form.controls.endDate.hasError('matEndDateInvalid')"
-                    >Invalid end date</mat-error
-                  >
+                  <mat-error *ngIf="form.controls.startDate.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                  <mat-error *ngIf="form.controls.endDate.hasError('matEndDateInvalid')">Invalid end date</mat-error>
                 </mat-form-field>
     
-               
-             
-                
                 <p>
-                  <button mat-raised-button routerLink="/admin/groups">
-                    Cancel
-                  </button>
-    
-                  <button
-                    mat-raised-button
-                    color="primary"
-                    [disabled]="form.invalid"
-                  >
-                    Save
-                  </button>
+                  <button mat-raised-button routerLink="/admin/groups">Cancel</button>
+                  <button mat-raised-button color="primary" [disabled]="form.invalid">Save</button>
                 </p>
-              </form>
+            </form>
 
            
           </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body p-4">
+                <h3>Expense History</h3>
+                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                    <ng-container matColumnDef="startDate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Start</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.startDate.toDate() | date: "yyyy/MM/dd" }}
+                    </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="endDate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>End</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.endDate.toDate() | date: "yyyy/MM/dd" }}
+                    </td>
+                    </ng-container>
+
+                
+                    <ng-container matColumnDef="expenseType">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.expenseType }}
+                    </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="amount">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+                    <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="notes">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Notes</th>
+                        <td mat-cell *matCellDef="let element">{{ element.notes }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                        <button
+                        mat-button
+                        routerLink="/admin/groupexpense/{{ element.docId }}"
+                        >
+                        Edit
+                        </button>
+                        <button
+                        mat-button
+                        routerLink="/admin/groupexpense/{{ element.docId}}"
+                        >
+                        Expense
+                        </button>
+
+                    </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+            </div>
         </div>
       </div>
     </div>

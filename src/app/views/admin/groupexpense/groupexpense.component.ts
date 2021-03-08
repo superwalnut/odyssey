@@ -1,6 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, } from "@angular/core";
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
+
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -10,6 +13,8 @@ import { GlobalConstants } from '../../../common/global-constants';
 import { Group } from "../../../models/group";
 import { AccountService } from "../../../services/account.service";
 import { GroupService } from "../../../services/group.service";
+import { GroupExpenseService } from "../../../services/group-expense.service";
+
 import { User } from "../../../models/user";
 import { GroupExpense } from "../../../models/group-expense";
 
@@ -27,9 +32,20 @@ export class GroupexpenseComponent implements OnInit {
   isEditMode: boolean;
   expenseTypes: string[] = GlobalConstants.groupExpenseTypes;
 
+  groups: Group[] = [];
+  displayedColumns: string[] = [
+    "startDate",
+    "endDate",
+    "expenseType",
+    "amount",
+    "notes",
+    "Action",
+  ];
+  dataSource = new MatTableDataSource<GroupExpense>();
+  @ViewChild(MatSort) sort: MatSort;
 
 
-  constructor(private fb: FormBuilder, private groupService: GroupService, private accountService: AccountService, private snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private fb: FormBuilder, private groupExpenseService: GroupExpenseService, private groupService: GroupService, private accountService: AccountService, private snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -44,8 +60,6 @@ export class GroupexpenseComponent implements OnInit {
 
     if (this.groupDocId) {
       this.isEditMode = true;
-
-
     }
 
     this.form = this.fb.group({
@@ -56,15 +70,23 @@ export class GroupexpenseComponent implements OnInit {
       notes: ["", Validators.required],
     });
 
-    //this.getByDocId(this.groupDocId);
+    this.getExpenseByGroupDocId(this.groupDocId);
   }
 
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
 
 
   onSubmit() {
     this.submitted = true;
+    if (!this.groupDocId) {
+      alert("illegal not to have group ID");
+      return false;
+    }
 
     var expense = {
+      groupDocId: this.groupDocId,
       startDate: this.form.value.startDate,
       endDate: this.form.value.endDate,
       expenseType: this.form.value.expenseType,
@@ -72,24 +94,47 @@ export class GroupexpenseComponent implements OnInit {
       notes: this.form.value.notes,
     } as GroupExpense;
 
+    console.log(expense);
+
+    this.groupExpenseService.createGroupExpense(expense, this.loggedInUser.docId).then((x) => {
+      this.snackBar.open(`Expense has been created.`, null, {
+        duration: 5000,
+        verticalPosition: "top"
+      })
+
+    });
+
+
     if (this.groupDocId) {
+      console.log("expense has doc id");
       expense.docId = this.groupDocId;
       expense.updatedBy = this.loggedInUser.docId;
 
       //this.groupService.updateGroup(this.groupDocId, expense);
     } else {
-      expense.createdBy = this.loggedInUser.docId;
-      // this.groupService
-      //   .createGroup(group, this.loggedInUser.docId)
-      //   .then((x) => {
-      //     this.snackBar.open(`Group has been created.`, null, {
-      //       duration: 5000,
-      //       verticalPosition: "top",
-      //     });
-      //   });
+      console.log("expense has no doc id");
+      //expense.createdBy = this.loggedInUser.docId;
+      this.groupExpenseService.createGroupExpense(expense, this.loggedInUser.docId).then((x) => {
+        this.snackBar.open(`Expense has been created.`, null, {
+          duration: 5000,
+          verticalPosition: "top"
+        })
+
+      });
     }
     this.router.navigate(["/admin/groups"]);
   }
+
+  getExpenseByGroupDocId(groupDocId: string) {
+    this.groupExpenseService.getByGroupDocId(groupDocId).subscribe(x => {
+      this.dataSource.data = x;
+
+      console.log(x);
+
+    });
+
+  }
+
   getByDocId(docId: string) {
     // if (this.groupDocId) {
     //   this.groupService.getGroup(this.groupDocId).subscribe((x) => {

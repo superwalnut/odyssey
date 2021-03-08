@@ -107,7 +107,6 @@ export class AccountService extends FirestoreBaseService<User>{
 
   getLoginAccount() {
     var account = this.getLocal();
-    console.log('local', account);
     if (account) {
       return account;
     }
