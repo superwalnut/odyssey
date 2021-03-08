@@ -13,10 +13,9 @@ import { AppMaterialModule } from "../../app-material.module";
 import { UserdetailsComponent } from "./userdetails/userdetails.component";
 import { SitesettingsComponent } from "./sitesettings/sitesettings.component";
 import { UserCreditComponent } from './user-credit/user-credit.component';
-import { TransactionListComponent } from "../shared/transaction-list/transaction-list.component";
 import { GroupsComponent } from './groups/groups.component';
 import { GroupdetailsComponent } from './groupdetails/groupdetails.component';
-import { GroupexpenseComponent } from './groupexpense/groupexpense.component';
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   imports: [
@@ -28,6 +27,7 @@ import { GroupexpenseComponent } from './groupexpense/groupexpense.component';
     ReactiveFormsModule,
     AppMaterialModule,
     CommonModule,
+    SharedModule,
   ],
   declarations: [
     UsersComponent,
@@ -35,10 +35,8 @@ import { GroupexpenseComponent } from './groupexpense/groupexpense.component';
     UserdetailsComponent,
     SitesettingsComponent,
     UserCreditComponent,
-    TransactionListComponent,
     GroupsComponent,
-    GroupdetailsComponent,
-    GroupexpenseComponent
+    GroupdetailsComponent
   ],
 })
 export class AdminModule {}

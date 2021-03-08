@@ -10,7 +10,7 @@ import { AccountService } from '../../../services/account.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['wechatId', 'mobile', 'email', 'created', 'docId'];
+  displayedColumns: string[] = ['wechatId', 'balance', 'created', 'docId'];
   dataSource : MatTableDataSource<User>;
   @ViewChild(MatSort) sort: MatSort;
 

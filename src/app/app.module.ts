@@ -68,6 +68,7 @@ import { HeaderComponent } from "./views/header/header.component";
 import { TermsComponent } from "./views/terms/terms.component";
 import { LogoutComponent } from "./views/logout/logout.component";
 import { ResetpasswordComponent } from './views/resetpassword/resetpassword.component';
+import { SharedModule } from "./views/shared/shared.module";
 
 @NgModule({
   imports: [
@@ -92,6 +93,7 @@ import { ResetpasswordComponent } from './views/resetpassword/resetpassword.comp
     AngularFireModule.initializeApp(environment.firebase),
     MatMenuModule,
     CarouselModule.forRoot(),
+    SharedModule,
   ],
   exports: [BrowserAnimationsModule],
   declarations: [

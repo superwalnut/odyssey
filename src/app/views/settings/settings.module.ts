@@ -12,6 +12,7 @@ import { AutobookingComponent } from "./autobooking/autobooking.component";
 import { CreditstatementComponent } from "./creditstatement/creditstatement.component";
 import { AppMaterialModule } from "../../app-material.module";
 import { AttendancehistoryComponent } from "./attendancehistory/attendancehistory.component";
+import { SharedModule } from "../shared/shared.module";
 
 AppMaterialModule;
 @NgModule({
@@ -24,6 +25,7 @@ AppMaterialModule;
     ReactiveFormsModule,
     CommonModule,
     AppMaterialModule,
+    SharedModule,
   ],
   declarations: [
     FamilyComponent,
