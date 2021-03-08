@@ -126,7 +126,7 @@ export class AccountService extends FirestoreBaseService<User>{
             return {
               ...acc,
               docId: actions[0].payload.doc.id
-            };
+            } as User;
           } else {
             return null;
           }
