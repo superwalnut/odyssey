@@ -3,6 +3,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import firebase from 'firebase/app';
 import { map } from 'rxjs/operators';
 import { Credit } from '../models/credit';
+import { User } from '../models/user';
+import { AccountService } from './account.service';
 import { FirestoreBaseService } from './firestore-base.service';
 import Timestamp = firebase.firestore.Timestamp;
 
@@ -11,15 +13,22 @@ import Timestamp = firebase.firestore.Timestamp;
 })
 export class CreditService extends FirestoreBaseService<Credit>{
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(private firestore: AngularFirestore, private accountService: AccountService) {
     super(firestore.collection('credits'));
    }
 
    public createCredit(credit:Credit, previousBalance:number, createdBy:string) {
-    credit.created = this.getTodayTimestamp();
-    credit.balance = previousBalance + credit.amount;
-    credit.createdBy = createdBy;
-    return this.create(credit);
+    if(credit.userDocId){
+      credit.created = this.getTodayTimestamp();
+      credit.balance = previousBalance + credit.amount;
+      credit.createdBy = createdBy;
+      return this.create(credit).then(x=>{
+        const user = { balance : credit.balance } as User;
+        return this.accountService.updateUser(credit.userDocId, user);
+      });
+    }
+    
+    return Promise.reject('no user is provided');
    }
 
    public getBalance(userDocId:string) {
@@ -47,5 +56,4 @@ export class CreditService extends FirestoreBaseService<Credit>{
         });
       }));
   }
-
 }

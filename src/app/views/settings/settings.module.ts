@@ -12,6 +12,7 @@ import { AutobookingComponent } from "./autobooking/autobooking.component";
 import { CreditstatementComponent } from "./creditstatement/creditstatement.component";
 import { AppMaterialModule } from "../../app-material.module";
 import { AttendancehistoryComponent } from "./attendancehistory/attendancehistory.component";
+import { TransactionListComponent } from "../shared/transaction-list/transaction-list.component";
 
 AppMaterialModule;
 @NgModule({
@@ -32,6 +33,7 @@ AppMaterialModule;
     AutobookingComponent,
     CreditstatementComponent,
     AttendancehistoryComponent,
+    TransactionListComponent
   ],
 })
 export class SettingsModule {}
