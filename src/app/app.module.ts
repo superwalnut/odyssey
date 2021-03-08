@@ -68,7 +68,7 @@ import { HeaderComponent } from "./views/header/header.component";
 import { TermsComponent } from "./views/terms/terms.component";
 import { LogoutComponent } from "./views/logout/logout.component";
 import { ResetpasswordComponent } from './views/resetpassword/resetpassword.component';
-import { TransactionListComponent } from "./views/shared/transaction-list/transaction-list.component";
+import { SharedModule } from "./views/shared/shared.module";
 
 @NgModule({
   imports: [
@@ -93,6 +93,7 @@ import { TransactionListComponent } from "./views/shared/transaction-list/transa
     AngularFireModule.initializeApp(environment.firebase),
     MatMenuModule,
     CarouselModule.forRoot(),
+    SharedModule,
   ],
   exports: [BrowserAnimationsModule],
   declarations: [
@@ -108,7 +109,6 @@ import { TransactionListComponent } from "./views/shared/transaction-list/transa
     TermsComponent,
     LogoutComponent,
     ResetpasswordComponent,
-    TransactionListComponent
   ],
   providers: [
     {
