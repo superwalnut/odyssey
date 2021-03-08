@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookingComponent implements OnInit {
 
+  panelOpenState = false;
+
+
   constructor() { }
 
   ngOnInit(): void {
