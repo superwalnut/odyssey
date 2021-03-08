@@ -68,6 +68,14 @@ const routes: Routes = [
         },
       },
       {
+        path: "bookings/:id",
+        component: BookingsComponent,
+        data: {
+          title: "Manage bookings",
+        },
+      },
+
+      {
         path: "sitesettings",
         component: SitesettingsComponent,
         data: {
