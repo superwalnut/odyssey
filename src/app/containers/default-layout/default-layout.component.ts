@@ -12,10 +12,13 @@ export class DefaultLayoutComponent {
 
   isGod: boolean;
   isAdmin: boolean;
+  name: string;
 
   constructor(private accountService: AccountService) {
     this.isGod = this.accountService.isGod();
     this.isAdmin = this.accountService.isAdmin();
+    var acc = this.accountService.getLoginAccount();
+    this.name = acc.name;
 
     console.log("isadmin", this.isAdmin);
     this.navItems = this.initNav(this.isAdmin);
