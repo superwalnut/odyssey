@@ -9,12 +9,12 @@ import { AccountService } from '../../services/account.service';
   selector: 'app-dashboard',
   templateUrl: 'register.component.html'
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder, private accountService:AccountService, private snackBar:MatSnackBar, private router: Router) { 
-    
+  constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router) {
+
   }
 
   ngOnInit() {
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit{
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-      wechatId: ['', Validators.required],
+      name: ['', Validators.required],
       mobile: ['', Validators.required],
     });
   }
@@ -41,15 +41,15 @@ export class RegisterComponent implements OnInit{
 
     console.log('register', this.registerForm);
 
-    var user = { 
-      wechatId : this.registerForm.value.wechatId,
-      email : this.registerForm.value.email,
+    var user = {
+      name: this.registerForm.value.name,
+      email: this.registerForm.value.email,
       password: this.registerForm.value.password,
       mobile: this.registerForm.value.mobile,
     } as User;
-    
-    this.accountService.createUser(user).then(x=>{
-      this.snackBar.open(`Your account settings have been updated.`, null , {
+
+    this.accountService.createUser(user).then(x => {
+      this.snackBar.open(`Your account settings have been updated.`, null, {
         duration: 5000,
         verticalPosition: 'top'
       });

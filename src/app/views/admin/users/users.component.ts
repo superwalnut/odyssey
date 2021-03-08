@@ -10,11 +10,11 @@ import { AccountService } from '../../../services/account.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['wechatId', 'balance', 'created', 'docId'];
-  dataSource : MatTableDataSource<User>;
+  displayedColumns: string[] = ['name', 'balance', 'docId'];
+  dataSource: MatTableDataSource<User>;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private service: AccountService) {}
+  constructor(private service: AccountService) { }
 
   ngOnInit(): void {
   }

@@ -5,8 +5,8 @@
         <div class="col-12">
           <div class="card">
               <div class="card-body p-4">
-                <h1 *ngIf="user">{{user.wechatId}}'s Details</h1>
-                <h3 *ngIf="user">Everything about {{user.wechatId}}</h3>
+                <h1 *ngIf="user">{{user.name}}'s Details</h1>
+                <h3 *ngIf="user">Everything about {{user.name}}</h3>
                 
                 <mat-tab-group>
                   <mat-tab label="Profile"
@@ -20,7 +20,7 @@
                       <p>
                         <mat-form-field>
                           <mat-label>Display name</mat-label>
-                          <input matInput placeholder="" formControlName="wechatId"/>
+                          <input matInput placeholder="" formControlName="name"/>
                         </mat-form-field>
                       </p>
                       <p>

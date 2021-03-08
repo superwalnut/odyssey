@@ -62,7 +62,7 @@ export class GroupdetailsComponent implements OnInit {
       x.forEach(u => {
         if (u) {
 
-          this.allUsers.push(u.wechatId);
+          this.allUsers.push(u.name);
         }
       })
     });
@@ -88,7 +88,7 @@ export class GroupdetailsComponent implements OnInit {
       return false;
     }
     var test = this.allUsersObject.filter(x => {
-      return x.wechatId === selectedUserControl.value
+      return x.name === selectedUserControl.value
     });
     this.selectedUsers.push(test[0]);
 

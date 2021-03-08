@@ -13,29 +13,29 @@ import { AccountService } from '../../../services/account.service';
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   submitted = false;
-  user:User = new User();
+  user: User = new User();
 
-  constructor(private fb: FormBuilder, private accountService:AccountService, private snackBar:MatSnackBar, private router: Router) { 
-    
+  constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router) {
+
   }
 
   ngOnInit() {
     this.profileForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      wechatId: ['', Validators.required],
+      name: ['', Validators.required],
       mobile: ['', Validators.required],
     });
 
-    this.accountService.getLoginUser().subscribe(x=>{
+    this.accountService.getLoginUser().subscribe(x => {
       this.user = x;
 
       this.profileForm = this.fb.group({
         email: [this.user.email, [Validators.required, Validators.email]],
-        wechatId: [this.user.wechatId, Validators.required],
+        name: [this.user.name, Validators.required],
         mobile: [this.user.mobile, Validators.required],
       });
     });
-    
+
   }
 
   // convenience getter for easy access to form fields
@@ -52,21 +52,21 @@ export class ProfileComponent implements OnInit {
 
     console.log('profile', this.profileForm);
 
-    var user = { 
-      wechatId : this.profileForm.value.wechatId,
-      email : this.profileForm.value.email,
+    var user = {
+      name: this.profileForm.value.name,
+      email: this.profileForm.value.email,
       mobile: this.profileForm.value.mobile,
     } as User;
 
-    if(this.user){
-      this.accountService.updateUser(this.user.docId, user).then(x=>{
-        this.snackBar.open(`Your account settings have been updated.`, null , {
+    if (this.user) {
+      this.accountService.updateUser(this.user.docId, user).then(x => {
+        this.snackBar.open(`Your account settings have been updated.`, null, {
           duration: 5000,
           verticalPosition: 'top'
         });
       });
     } else {
-      this.snackBar.open(`You must login first!`, null , {
+      this.snackBar.open(`You must login first!`, null, {
         duration: 5000,
         verticalPosition: 'top'
       });

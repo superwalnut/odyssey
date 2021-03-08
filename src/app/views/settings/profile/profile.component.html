@@ -10,10 +10,10 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="icon-bubbles"></i></span>
                 </div>
-                <input type="text" class="form-control" formControlName="wechatId" placeholder="WeChat or WhatsApp ID" >
+                <input type="text" class="form-control" formControlName="name" placeholder="WeChat or WhatsApp ID" >
                 
-                <div *ngIf="submitted && f.wechatId.errors" class="invalid-feedback">
-                  <div *ngIf="f.wechatId.errors.required">WeChat or WhatsApp ID is required</div>
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">Display name is required</div>
                 </div>
 
               </div>

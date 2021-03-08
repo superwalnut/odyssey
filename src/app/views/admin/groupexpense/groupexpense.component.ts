@@ -128,11 +128,7 @@ export class GroupexpenseComponent implements OnInit {
   getExpenseByGroupDocId(groupDocId: string) {
     this.groupExpenseService.getByGroupDocId(groupDocId).subscribe(x => {
       this.dataSource.data = x;
-
-      console.log(x);
-
     });
-
   }
 
   getByDocId(docId: string) {
