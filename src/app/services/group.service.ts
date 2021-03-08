@@ -39,7 +39,6 @@ export class GroupService extends FirestoreBaseService<Group> {
   // }
 
   public getGroup(groupDocId: string) {
-    console.log("groupservice: ", groupDocId);
     return super.getByDocId(groupDocId);
   }
 
