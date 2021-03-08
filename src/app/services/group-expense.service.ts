@@ -5,7 +5,8 @@ import { FirestoreBaseService } from "./firestore-base.service";
 import { map, concatMap, finalize } from "rxjs/operators";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GroupExpense } from "../models/group-expense";
-
+import firebase from 'firebase/app';
+import Timestamp = firebase.firestore.Timestamp;
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,8 @@ export class GroupExpenseService extends FirestoreBaseService<GroupExpense>{
       })
     );
 
+
+
     // return this.firestore.collection('users', q => q.where("email", "==", email).limit(1)).snapshotChanges().pipe(
     //   map(actions => {
     //     if (actions && actions.length > 0) {
@@ -71,7 +74,10 @@ export class GroupExpenseService extends FirestoreBaseService<GroupExpense>{
 
   }
 
+  //TODO
+  public getByDateRange(groupDocId: string, startDate: Timestamp, endDate: Timestamp) {
 
+  }
 
 
 
