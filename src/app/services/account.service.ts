@@ -114,16 +114,16 @@ export class AccountService extends FirestoreBaseService<User>{
     const user = this.accountValue;
     if (user) {
       // logged in so return true
-      return { docId: user.docId, email: user.email, role: user.role } as Account;
+      return { docId: user.docId, name: user.name, role: user.role } as Account;
     }
 
     return null;
   }
 
   public getLoginUser() {
-    var email = this.getLoginAccount()?.email ?? '';
+    var name = this.getLoginAccount()?.name ?? '';
 
-    return this.firestore.collection('users', q => q.where("email", "==", email).limit(1)).snapshotChanges().pipe(
+    return this.firestore.collection('users', q => q.where("name", "==", name).limit(1)).snapshotChanges().pipe(
       map(actions => {
         if (actions && actions.length > 0) {
           var acc = actions[0].payload.doc.data() as User;
@@ -184,7 +184,7 @@ export class AccountService extends FirestoreBaseService<User>{
 
   private saveLocal(user: User) {
     console.log('local', user);
-    var encripted = this.encryptData(JSON.stringify({ docId: user.docId, email: user.email, role: user.role }));
+    var encripted = this.encryptData(JSON.stringify({ docId: user.docId, name: user.name, role: user.role }));
     localStorage.setItem("user", encripted);
   }
 

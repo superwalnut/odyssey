@@ -8,10 +8,13 @@ import { AccountService } from "../../services/account.service";
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean;
-  constructor(private accountService: AccountService) {}
+  name: string;
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
     const account = this.accountService.getLoginAccount();
+    this.name = account.name;
+    console.log("home: ", account);
     this.isLoggedIn = account && account.docId ? true : false;
     console.log("isLoggedIn: " + this.isLoggedIn);
   }

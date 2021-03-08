@@ -1,5 +1,5 @@
 export class Account {
-    docId:string;
-    email:string;
-    role:string;
+    docId: string;
+    name: string;
+    role: string;
 }
