@@ -17,6 +17,7 @@ import { GroupsComponent } from './groups/groups.component';
 import { GroupdetailsComponent } from './groupdetails/groupdetails.component';
 import { GroupexpenseComponent } from './groupexpense/groupexpense.component';
 import { SharedModule } from "../shared/shared.module";
+import { RptIncomeComponent } from './reports/rpt-income/rpt-income.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { SharedModule } from "../shared/shared.module";
     GroupsComponent,
     GroupdetailsComponent,
     GroupexpenseComponent,
+    RptIncomeComponent,
   ],
 })
 export class AdminModule { }

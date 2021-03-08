@@ -9,6 +9,7 @@ import { UserCreditComponent } from "./user-credit/user-credit.component";
 import { GroupsComponent } from "./groups/groups.component";
 import { GroupdetailsComponent } from "./groupdetails/groupdetails.component";
 import { GroupexpenseComponent } from "./groupexpense/groupexpense.component";
+import { RptIncomeComponent } from "./reports/rpt-income/rpt-income.component";
 
 import { groupCollapsed } from "console";
 
@@ -96,6 +97,15 @@ const routes: Routes = [
           title: "User details",
         },
       },
+
+      {
+        path: "rptincome",
+        component: RptIncomeComponent,
+        data: {
+          title: "Income report",
+        },
+      },
+
     ],
   },
 ];

@@ -129,18 +129,18 @@ export class DefaultLayoutComponent {
           children: [
             {
               name: "Income",
-              url: "/base/cards",
-              icon: "icon-puzzle",
+              url: "/admin/rptincome",
+              icon: "cil-paperclip",
             },
             {
               name: "Attendance",
               url: "/base/cards",
-              icon: "icon-puzzle",
+              icon: "cil-paperclip",
             },
             {
               name: "Unpaid users",
               url: "/base/cards",
-              icon: "icon-puzzle",
+              icon: "cil-paperclip",
             },
           ],
         },
