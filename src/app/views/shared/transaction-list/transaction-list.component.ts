@@ -15,6 +15,7 @@ export class TransactionListComponent implements OnInit {
 
   ngOnInit(): void {
     this.creditService.getByUser(this.userDocId).subscribe(x=>{
+      console.log('credits', x);
       this.credits = x;
     });
   }

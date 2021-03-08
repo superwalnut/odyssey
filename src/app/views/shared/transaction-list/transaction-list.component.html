@@ -9,7 +9,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of credits">
-        <th scope="row">{{item.created | date : 'dd/MM/yyyy'}}</th>
+        <th scope="row">{{item.created.toDate() | date : 'dd/MM/yyyy'}}</th>
         <td>{{item.note}}</td>
         <td>{{item.amount}}</td>
         <td>${{item.balance | number: '2.2'}}</td>

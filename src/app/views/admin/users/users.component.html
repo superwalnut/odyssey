@@ -3,16 +3,8 @@
     <div class="col-md-12 mx-auto">
       <div class="card">
         <div class="card-body p-4">
-
-            * Keep it simpple, no need search or paging, just dump all users in one
-      big list. but do need header sorting<br />
-      1. View - view profile, credit, attendance<br />
-      2. Edit - edit profile, Family members, password...etc<br />
-      3. Credit - manually enter credit amount once user transferred to our bank
-      account.
-      <p>
-
-      
+          <h1>All Users</h1>
+    <p>
       <mat-form-field>
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Filter by wechatId" #input>
@@ -45,7 +37,9 @@
         <!-- Date Column -->
         <ng-container matColumnDef="created">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Joined </th>
-          <td mat-cell *matCellDef="let element"> {{element.created}} </td>
+          <td mat-cell *matCellDef="let element">
+            {{element.created?.toDate() | date : 'dd/MM/yyyy'}}
+          </td>
         </ng-container>
 
         <!-- Date Column -->
