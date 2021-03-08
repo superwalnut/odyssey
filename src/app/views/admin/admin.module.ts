@@ -34,7 +34,6 @@ import { GroupdetailsComponent } from './groupdetails/groupdetails.component';
     UserdetailsComponent,
     SitesettingsComponent,
     UserCreditComponent,
-    TransactionListComponent,
     GroupsComponent,
     GroupdetailsComponent
   ],

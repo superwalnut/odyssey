@@ -33,7 +33,6 @@ AppMaterialModule;
     AutobookingComponent,
     CreditstatementComponent,
     AttendancehistoryComponent,
-    TransactionListComponent
   ],
 })
 export class SettingsModule {}

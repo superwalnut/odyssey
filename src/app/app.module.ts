@@ -68,6 +68,7 @@ import { HeaderComponent } from "./views/header/header.component";
 import { TermsComponent } from "./views/terms/terms.component";
 import { LogoutComponent } from "./views/logout/logout.component";
 import { ResetpasswordComponent } from './views/resetpassword/resetpassword.component';
+import { TransactionListComponent } from "./views/shared/transaction-list/transaction-list.component";
 
 @NgModule({
   imports: [
@@ -107,6 +108,7 @@ import { ResetpasswordComponent } from './views/resetpassword/resetpassword.comp
     TermsComponent,
     LogoutComponent,
     ResetpasswordComponent,
+    TransactionListComponent
   ],
   providers: [
     {
