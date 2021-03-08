@@ -15,6 +15,7 @@ import { SitesettingsComponent } from "./sitesettings/sitesettings.component";
 import { UserCreditComponent } from './user-credit/user-credit.component';
 import { GroupsComponent } from './groups/groups.component';
 import { GroupdetailsComponent } from './groupdetails/groupdetails.component';
+import { GroupexpenseComponent } from './groupexpense/groupexpense.component';
 import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SharedModule } from "../shared/shared.module";
     SitesettingsComponent,
     UserCreditComponent,
     GroupsComponent,
-    GroupdetailsComponent
+    GroupdetailsComponent,
+    GroupexpenseComponent,
   ],
 })
-export class AdminModule {}
+export class AdminModule { }
