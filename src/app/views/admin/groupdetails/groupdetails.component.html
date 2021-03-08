@@ -7,6 +7,52 @@
           <h3>Create or edit group</h3>
 
           <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
+            <p>
+              <mat-form-field>
+                <mat-label>Group Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Tuesday badminton session"
+                  formControlName="groupName"
+                  required
+                />
+              </mat-form-field>
+            </p>
+            <div
+              *ngIf="
+                f.groupName.invalid &&
+                (f.groupName.dirty || f.groupName.touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.groupName.errors.required">
+                Group name is required.
+              </div>
+            </div>
+
+            <p>
+              <mat-form-field>
+                <mat-label>Group Description</mat-label>
+                <input
+                  matInput
+                  placeholder=""
+                  formControlName="groupDesc"
+                  required
+                />
+              </mat-form-field>
+            </p>
+            <div
+              *ngIf="
+                f.groupDesc.invalid &&
+                (f.groupDesc.dirty || f.groupDesc.touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.groupDesc.errors.required">
+                Group description is required.
+              </div>
+            </div>
+            
             <mat-form-field appearance="fill">
               <mat-label>Enter term date range</mat-label>
               <mat-date-range-input [rangePicker]="picker">
@@ -64,51 +110,7 @@
               </div>
             </div>
 
-            <p>
-              <mat-form-field>
-                <mat-label>Group Name</mat-label>
-                <input
-                  matInput
-                  placeholder="Tuesday badminton session"
-                  formControlName="groupName"
-                  required
-                />
-              </mat-form-field>
-            </p>
-            <div
-              *ngIf="
-                f.groupName.invalid &&
-                (f.groupName.dirty || f.groupName.touched)
-              "
-              class="invalid-feedback"
-            >
-              <div *ngIf="f.groupName.errors.required">
-                Group name is required.
-              </div>
-            </div>
-
-            <p>
-              <mat-form-field>
-                <mat-label>Group Description</mat-label>
-                <input
-                  matInput
-                  placeholder=""
-                  formControlName="groupDesc"
-                  required
-                />
-              </mat-form-field>
-            </p>
-            <div
-              *ngIf="
-                f.groupDesc.invalid &&
-                (f.groupDesc.dirty || f.groupDesc.touched)
-              "
-              class="invalid-feedback"
-            >
-              <div *ngIf="f.groupDesc.errors.required">
-                Group description is required.
-              </div>
-            </div>
+           
             <p *ngIf="isEditMode">
               <mat-slide-toggle formControlName="isClosed"
                 >Closed</mat-slide-toggle
@@ -116,9 +118,9 @@
             </p>
 
             <h2>Committees</h2>
-            
+            <div *ngIf="committeeRequired">A group needs to have at least 1 committee member</div>
               <mat-form-field>
-                <mat-label>Number</mat-label>
+                <mat-label>Member name</mat-label>
                 <input type="text"
                        placeholder="Pick one"
                        aria-label="Number"
@@ -131,9 +133,17 @@
                   </mat-option>
                 </mat-autocomplete>
               </mat-form-field>
-              <button mat-icon-button color="accent">
-                <mat-icon>add</mat-icon>
-              </button>
+
+                <mat-icon  (click)="addCommittee(myControl)">add</mat-icon>
+                        
+                <mat-list>
+                  <mat-list-item *ngFor="let item of selectedUsers">
+                    <span matLine>{{item.email}}</span>
+                    <mat-icon md-list-icon (click)="removeCommittee(item)">remove</mat-icon>
+
+                  </mat-list-item>
+                </mat-list>
+
             
             <p>
               <button mat-raised-button routerLink="/admin/groups">

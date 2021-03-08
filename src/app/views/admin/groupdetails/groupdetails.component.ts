@@ -22,18 +22,32 @@ export class GroupdetailsComponent implements OnInit {
   groupDocId: string;
   isEditMode: boolean;
 
+  committeeRequired: boolean = false;
   myControl = new FormControl();
   allUsers: string[] = [];
+  allUsersObject: User[];
   filteredUsers: Observable<string[]>;
+  selectedUsers: User[] = [];
 
   constructor(private fb: FormBuilder, private groupService: GroupService, private accountService: AccountService, private snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private router: Router) {
 
   }
 
   ngOnInit(): void {
+    this.groupDocId = this.activatedRoute.snapshot.params.id;
+
     this.loggedInUser = this.accountService.getLoginAccount();
+    this.accountService.getUserByDocId(this.loggedInUser.docId).subscribe(x => {
+      this.selectedUsers.push(x);//current user default to be the committee;
+    });
+
+    console.log("edit mode: ", this.isEditMode);
+    console.log("group id: ", this.groupDocId);
+
     if (this.groupDocId) {
       this.isEditMode = true;
+
+
     }
 
     this.filteredUsers = this.myControl.valueChanges
@@ -44,8 +58,10 @@ export class GroupdetailsComponent implements OnInit {
 
 
     this.accountService.getAllUsers().subscribe((x) => {
+      this.allUsersObject = x;
       x.forEach(u => {
         if (u) {
+
           this.allUsers.push(u.wechatId);
         }
       })
@@ -59,7 +75,6 @@ export class GroupdetailsComponent implements OnInit {
       groupDesc: ["", Validators.required],
       isClosed: [""],
     });
-    this.groupDocId = this.activatedRoute.snapshot.params.id;
 
     this.getByDocId(this.groupDocId);
   }
@@ -69,13 +84,26 @@ export class GroupdetailsComponent implements OnInit {
 
     return this.allUsers.filter(option => option.toLowerCase().includes(filterValue));
   }
+  addCommittee(selectedUserControl) {
+    if (selectedUserControl.value == null) {
+      return false;
+    }
+    var test = this.allUsersObject.filter(x => {
+      return x.wechatId === selectedUserControl.value
+    });
+    this.selectedUsers.push(test[0]);
+
+
+  }
+
+  removeCommittee(item) {
+    this.selectedUsers = this.selectedUsers.filter(x => x != item);
+  }
 
 
   getByDocId(docId: string) {
     if (this.groupDocId) {
-      console.log(this.groupDocId);
-      var group = this.groupService.getGroup(this.groupDocId).subscribe((x) => {
-        console.log(x);
+      this.groupService.getGroup(this.groupDocId).subscribe((x) => {
         this.groupForm.patchValue({
           startDate: x.startDate.toDate(),
           endDate: x.endDate.toDate(),
@@ -84,6 +112,8 @@ export class GroupdetailsComponent implements OnInit {
           groupDesc: x.groupDesc,
           isClosed: x.isClosed,
         });
+
+        this.selectedUsers = this.accountService.getUsersByDocIds(x.committees);
       });
     }
   }
@@ -91,15 +121,22 @@ export class GroupdetailsComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+    var committeeUserDocIds = this.getCommitteeUserDocIds();
+    if (committeeUserDocIds.length == 0) {
+      this.committeeRequired = true;
+      return false;
+
+    }
+
     var group = {
       startDate: this.groupForm.value.startDate,
       endDate: this.groupForm.value.endDate,
       termCost: this.groupForm.value.termCost,
       groupName: this.groupForm.value.groupName,
       groupDesc: this.groupForm.value.groupDesc,
+      committees: this.getCommitteeUserDocIds(),
       isClosed: false,
     } as Group;
-    console.log(group);
 
     if (this.groupDocId) {
       group.docId = this.groupDocId;
@@ -123,5 +160,14 @@ export class GroupdetailsComponent implements OnInit {
 
   get f() {
     return this.groupForm.controls;
+  }
+
+  getCommitteeUserDocIds() {
+    let committeeUserDocIds: string[] = [];
+
+    this.selectedUsers.forEach(x => {
+      committeeUserDocIds.push(x.docId);
+    });
+    return committeeUserDocIds;
   }
 }

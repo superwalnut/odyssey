@@ -77,6 +77,10 @@ footer {
   padding-top: 20px !important;
   padding-bottom: 20px !important;
 }
+
+mat-icon[md-list-icon]{
+  order:10;
+}
 //4b0063
 nav {
   background-color: $nav-bar-color;

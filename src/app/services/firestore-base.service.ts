@@ -11,8 +11,8 @@ import Timestamp = firebase.firestore.Timestamp;
 })
 export class FirestoreBaseService<T> {
   private encryptSecretKey = "5ed40d89-0194-47da-8e3f-04df8be154a6";
-  
-  constructor(private collection : AngularFirestoreCollection) { }
+
+  constructor(private collection: AngularFirestoreCollection) { }
 
   //CREATE
   protected async create(data: T): Promise<string> {
@@ -28,7 +28,7 @@ export class FirestoreBaseService<T> {
   //UPDATE
   protected async update(docId: string, doc: T): Promise<string> {
     try {
-      return await this.collection.doc(docId).set(doc, { merge: true }).then(docRef =>{
+      return await this.collection.doc(docId).set(doc, { merge: true }).then(docRef => {
         return Promise.resolve(docId);
       });
     } catch (err) {
@@ -62,8 +62,8 @@ export class FirestoreBaseService<T> {
   }
 
   // Get by docId
-  protected getByDocId(docId:string) {
-    return this.collection.doc(docId).snapshotChanges().pipe(map(actions=>{
+  protected getByDocId(docId: string) {
+    return this.collection.doc(docId).snapshotChanges().pipe(map(actions => {
       const data = actions.payload.data() as T;
       return {
         ...data,
@@ -92,12 +92,12 @@ export class FirestoreBaseService<T> {
     }
   }
 
-  protected convertToTimestamp(date:Date) : Timestamp{
+  protected convertToTimestamp(date: Date): Timestamp {
     const ts = Timestamp.fromDate(date);
     return ts;
   }
 
-  protected convertToDate(ts:Timestamp) : Date {
+  protected convertToDate(ts: Timestamp): Date {
     return ts.toDate();
   }
 
