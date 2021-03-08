@@ -16,6 +16,7 @@ import { UserCreditComponent } from './user-credit/user-credit.component';
 import { TransactionListComponent } from "../shared/transaction-list/transaction-list.component";
 import { GroupsComponent } from './groups/groups.component';
 import { GroupdetailsComponent } from './groupdetails/groupdetails.component';
+import { GroupexpenseComponent } from './groupexpense/groupexpense.component';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { GroupdetailsComponent } from './groupdetails/groupdetails.component';
     UserCreditComponent,
     TransactionListComponent,
     GroupsComponent,
-    GroupdetailsComponent
+    GroupdetailsComponent,
+    GroupexpenseComponent
   ],
 })
 export class AdminModule {}

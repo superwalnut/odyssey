@@ -6,7 +6,6 @@ export class Group {
   docId: string;
   groupName: string;
   groupDesc: string;
-  termCost: number; //cost during the term. ie court hire fees
   committees: string[]; // VIPs for this group, userDocId
   isClosed: boolean;
   startDate: Timestamp;

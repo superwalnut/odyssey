@@ -14,16 +14,14 @@ export class GroupsComponent implements OnInit {
   displayedColumns: string[] = [
     "startDate",
     "endDate",
-    "termCost",
     "groupName",
-    "groupDesc",
     "isClosed",
     "Action",
   ];
   dataSource = new MatTableDataSource<Group>();
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private groupService: GroupService) {}
+  constructor(private groupService: GroupService) { }
 
   ngOnInit(): void {
     this.getAllGroups();
@@ -34,7 +32,6 @@ export class GroupsComponent implements OnInit {
 
   getAllGroups() {
     this.groupService.getGroups().subscribe((x) => {
-      console.log(x);
       this.dataSource.data = x;
     });
   }

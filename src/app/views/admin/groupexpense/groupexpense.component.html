@@ -1,0 +1,130 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="card">
+          <div class="card-body p-4">
+            <h1>Group Expense</h1>
+            <h3>Log all expense for this group</h3>
+            
+  
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                
+                <mat-form-field appearance="fill">
+                    <mat-label>Expense types</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let type of expenseTypes">
+                        {{type}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <p>
+                    <mat-form-field>
+                      <mat-label>Notes</mat-label>
+                      <input
+                        matInput
+                        placeholder=""
+                        formControlName="notes"
+                        required
+                      />
+                    </mat-form-field>
+                  </p>
+                  <div
+                    *ngIf="
+                      f.notes.invalid &&
+                      (f.notes.dirty || f.notes.touched)
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.notes.errors.required">
+                      Notes is required.
+                    </div>
+                  </div>
+
+                  
+                  <p>
+                    <mat-form-field>
+                      <mat-label>Amount</mat-label>
+                      <input
+                        matInput
+                        placeholder=""
+                        type="number"
+                        formControlName="amount"
+                        required
+                      />
+                    </mat-form-field>
+                  </p>
+                  <div
+                    *ngIf="
+                      f.amount.invalid &&
+                      (f.amount.dirty || f.amount.touched)
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.amount.errors.required">
+                      Amount is required.
+                    </div>
+                  </div>
+
+                  
+
+
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter term date range</mat-label>
+                  <mat-date-range-input [rangePicker]="picker">
+                    <input
+                      matStartDate
+                      placeholder="Start date"
+                      formControlName="startDate"
+                      required
+                    />
+                    <input
+                      matEndDate
+                      placeholder="End date"
+                      formControlName="endDate"
+                      required
+                    />
+                  </mat-date-range-input>
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-date-range-picker #picker></mat-date-range-picker>
+    
+                  <mat-error
+                    *ngIf="
+                    form.controls.startDate.hasError('matStartDateInvalid')
+                    "
+                    >Invalid start date</mat-error
+                  >
+                  <mat-error
+                    *ngIf="form.controls.endDate.hasError('matEndDateInvalid')"
+                    >Invalid end date</mat-error
+                  >
+                </mat-form-field>
+    
+               
+             
+                
+                <p>
+                  <button mat-raised-button routerLink="/admin/groups">
+                    Cancel
+                  </button>
+    
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    [disabled]="form.invalid"
+                  >
+                    Save
+                  </button>
+                </p>
+              </form>
+
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

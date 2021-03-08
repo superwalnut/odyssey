@@ -70,7 +70,6 @@ export class GroupdetailsComponent implements OnInit {
     this.groupForm = this.fb.group({
       startDate: ["", Validators.required],
       endDate: ["", Validators.required],
-      termCost: ["", Validators.required],
       groupName: ["", Validators.required],
       groupDesc: ["", Validators.required],
       isClosed: [""],
@@ -107,7 +106,6 @@ export class GroupdetailsComponent implements OnInit {
         this.groupForm.patchValue({
           startDate: x.startDate.toDate(),
           endDate: x.endDate.toDate(),
-          termCost: x.termCost,
           groupName: x.groupName,
           groupDesc: x.groupDesc,
           isClosed: x.isClosed,
@@ -131,7 +129,6 @@ export class GroupdetailsComponent implements OnInit {
     var group = {
       startDate: this.groupForm.value.startDate,
       endDate: this.groupForm.value.endDate,
-      termCost: this.groupForm.value.termCost,
       groupName: this.groupForm.value.groupName,
       groupDesc: this.groupForm.value.groupDesc,
       committees: this.getCommitteeUserDocIds(),

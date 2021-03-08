@@ -87,29 +87,6 @@
               >
             </mat-form-field>
 
-            <p>
-              <mat-form-field>
-                <mat-label>Term Cost</mat-label>
-                <input
-                  matInput
-                  placeholder="$"
-                  type="number"
-                  formControlName="termCost"
-                  required
-                />
-              </mat-form-field>
-            </p>
-            <div
-              *ngIf="
-                f.termCost.invalid && (f.termCost.dirty || f.termCost.touched)
-              "
-              class="invalid-feedback"
-            >
-              <div *ngIf="f.termCost.errors.required">
-                Term Cost is required.
-              </div>
-            </div>
-
            
             <p *ngIf="isEditMode">
               <mat-slide-toggle formControlName="isClosed"

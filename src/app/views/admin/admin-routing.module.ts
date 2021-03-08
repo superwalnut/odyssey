@@ -8,6 +8,7 @@ import { SitesettingsComponent } from "./sitesettings/sitesettings.component";
 import { UserCreditComponent } from "./user-credit/user-credit.component";
 import { GroupsComponent } from "./groups/groups.component";
 import { GroupdetailsComponent } from "./groupdetails/groupdetails.component";
+import { GroupexpenseComponent } from "./groupexpense/groupexpense.component";
 
 import { groupCollapsed } from "console";
 
@@ -51,6 +52,15 @@ const routes: Routes = [
         },
       },
       {
+        //path: "groupexpense/:id",
+        path: "groupexpense",
+        component: GroupexpenseComponent,
+        data: {
+          title: "Group Expense",
+        },
+      },
+
+      {
         path: "bookings",
         component: BookingsComponent,
         data: {
@@ -86,4 +96,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }

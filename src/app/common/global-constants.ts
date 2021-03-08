@@ -1,6 +1,11 @@
 // Adding all global constants here
 export class GlobalConstants {
 
+    //Group Expense
+    public static groupExpenseTypes: string[] = ["Court", "Shuttle", "Other"];
+
+
+
     //BOOKING
     public static bookingOpenDay: string = "Monday";
     public static bookingOpenTime: string = "11:59AM";
@@ -25,6 +30,7 @@ export class GlobalConstants {
     public static eventAutoBookingCancel: string = "auto booking schedule cancel";
     public static eventFamilyMember: string = "family member change";
     public static eventWebActivity: string = "login/web activity"; //for user is browsing the website
+
 
 
 
