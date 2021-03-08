@@ -11,8 +11,8 @@ export class HeaderComponent implements OnInit {
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.isLoggedIn =
-      this.accountService.getLoginAccount() != null ? true : false;
+    const account = this.accountService.getLoginAccount();
+    this.isLoggedIn = account && account.docId ? true : false;
     console.log("isLoggedIn: " + this.isLoggedIn);
   }
 }

@@ -9,6 +9,7 @@ import { Account } from '../models/account';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Injectable({
@@ -18,7 +19,7 @@ export class AccountService extends FirestoreBaseService<User>{
   private accountSubject: BehaviorSubject<User>;
   public account: Observable<User>;
 
-  constructor(private firestore: AngularFirestore, private router: Router, private route: ActivatedRoute,) {
+  constructor(private firestore: AngularFirestore, private router: Router, private route: ActivatedRoute,private snackBar:MatSnackBar) {
     super(firestore.collection('users'));
     this.accountSubject = new BehaviorSubject<User>(null);
     this.account = this.accountSubject.asObservable();
@@ -28,9 +29,9 @@ export class AccountService extends FirestoreBaseService<User>{
     return this.accountSubject.value;
   }
 
-  login(email:string, password:string) {
+  login(mobile:string, password:string) {
     // login with facebook then authenticate with the API to get a JWT auth token
-    this.authenticate(email, password).subscribe(x=>{
+    this.authenticate(mobile, password).subscribe(x=>{
       if(x){
         this.saveLocal(x);
         this.accountSubject.next(x);
@@ -41,14 +42,17 @@ export class AccountService extends FirestoreBaseService<User>{
             returnUrl = '/dashboard';
         this.router.navigateByUrl(returnUrl);
       } else {
-        console.log('login failed');
+        this.snackBar.open(`Failed to login, your username/password is incorrect.`, null , {
+          duration: 5000,
+          verticalPosition: 'top'
+        });
       }
       
     });
   }
 
-  authenticate(email:string, password:string) : Observable<User>{
-    return this.firestore.collection('users', q => q.where("email", "==", email).where("password", "==", password).limit(1)).snapshotChanges().pipe(
+  authenticate(mobile:string, password:string) : Observable<User>{
+    return this.firestore.collection('users', q => q.where("mobile", "==", mobile).where("password", "==", password).limit(1)).snapshotChanges().pipe(
       map(actions => {
           if(actions && actions.length > 0){
             var acc = actions[0].payload.doc.data() as User;
@@ -103,6 +107,7 @@ export class AccountService extends FirestoreBaseService<User>{
 
   getLoginAccount() {
     var account = this.getLocal();
+    console.log('local', account);
     if(account){
       return account;
     }
