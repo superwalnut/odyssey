@@ -26,6 +26,9 @@ export class GroupsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllGroups();
+
+    this.groupService.getGroupsByUserDocId('TnvezqX0wb4GpAcDoR7I');
+
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
