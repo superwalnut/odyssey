@@ -208,4 +208,4 @@ Specify your site in firebase.json
 }
 When you're ready, deploy your web app
 firebase deploy --only hosting:hbclub
-visit: https://hbclub.web.app/
+visit: https://hbclub-919aa.web.app/
