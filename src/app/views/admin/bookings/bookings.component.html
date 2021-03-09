@@ -6,7 +6,7 @@
                 
           <mat-form-field appearance="fill">
             <mat-label>My Groups</mat-label>
-            <mat-select>
+            <mat-select  (selectionChange)="onGroupChange()"  [(ngModel)]="selectedGroupDocId">
               <mat-option *ngFor="let group of myGroups" [value]="group.docId">{{group.groupName}}</mat-option>
             </mat-select>
           </mat-form-field>

@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Group } from "../../../models/group";
 import { GroupService } from "../../../services/group.service";
 import { AccountService } from "../../../services/account.service";
-import { group } from '@angular/animations';
+import { BookingsService } from "../../../services/bookings.service";
 
 
 @Component({
@@ -14,8 +14,9 @@ import { group } from '@angular/animations';
 export class BookingsComponent implements OnInit {
   myGroups = [];
   myDocId: string;
+  selectedGroupDocId: string;
 
-  constructor(public dialog: MatDialog, private groupService: GroupService, private accountService: AccountService) { }
+  constructor(public dialog: MatDialog, private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.myDocId = this.accountService.getLoginAccount().docId;
@@ -28,6 +29,10 @@ export class BookingsComponent implements OnInit {
     }
   }
 
+  onGroupChange() {
+    console.log(this.selectedGroupDocId);
+    this.getBookingsByGroupDocId(this.selectedGroupDocId);
+  }
   getMyGroups() {
     this.groupService.getGroupsByUserDocId(this.myDocId).subscribe(x => {
 
@@ -37,13 +42,15 @@ export class BookingsComponent implements OnInit {
 
       console.log(this.myGroups)
     });
+  }
+
+  getBookingsByGroupDocId(groupDocId: string) {
+
+    this.bookingService.getByGroupDocId(groupDocId).subscribe(bookings => {
+      bookings.forEach(b => console.log(b));
 
 
-    // this.slides.push({
-    //   image: `https://picsum.photos/seed/${seed}/900/500`
-    // });
-
-
+    });
   }
 
 }

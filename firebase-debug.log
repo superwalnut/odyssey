@@ -1,0 +1,132 @@
+[debug] [2021-03-09T13:30:15.096Z] ----------------------------------------------------------------------
+[debug] [2021-03-09T13:30:15.098Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting:hbclub
+[debug] [2021-03-09T13:30:15.098Z] CLI Version:   9.5.0
+[debug] [2021-03-09T13:30:15.098Z] Platform:      win32
+[debug] [2021-03-09T13:30:15.098Z] Node Version:  v14.15.0
+[debug] [2021-03-09T13:30:15.098Z] Time:          Wed Mar 10 2021 00:30:15 GMT+1100 (Australian Eastern Daylight Time)
+[debug] [2021-03-09T13:30:15.099Z] ----------------------------------------------------------------------
+[debug] [2021-03-09T13:30:15.099Z] 
+[debug] [2021-03-09T13:30:15.103Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-03-09T13:30:15.103Z] > authorizing via signed-in user
+[debug] [2021-03-09T13:30:15.104Z] [iam] checking project hbclub for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-03-09T13:30:15.105Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-03-09T13:30:15.105Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-03-09T13:30:15.466Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Tue, 09 Mar 2021 13:30:16 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-03-09T13:30:15.481Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/hbclub:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-03-09T13:30:15.939Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 09 Mar 2021 13:30:16 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=345","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-03-09T13:30:15.939Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project hbclub:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2021-03-09T13:30:15.940Z] > refreshing access token with scopes: []
+[debug] [2021-03-09T13:30:15.940Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-03-09T13:30:16.169Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Tue, 09 Mar 2021 13:30:17 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-03-09T13:30:16.174Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hbclub [none]
+[debug] [2021-03-09T13:30:16.675Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hbclub 403
+[debug] [2021-03-09T13:30:16.676Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hbclub {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2021-03-09T13:30:16.676Z] HTTP Error: 403, The caller does not have permission
+[debug] [2021-03-09T13:30:16.677Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at module.exports (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:38:12)
+    at Client.doRequest (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:238:23)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async Client.request (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:96:20)
+    at async Object.getFirebaseProject (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:289:21)
+    at async Object.getDefaultHostingSite (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\getDefaultHostingSite.js:8:21)
+    at async requireHostingSite (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\requireHostingSite.js:9:18)
+    at async Object.fn (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\deploy.js:66:9)
+    at async C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:161:17
+[error] 
+[error] Error: Failed to get Firebase project hbclub. Please make sure the project exists and your account has permission to access it.
+[debug] [2021-03-09T13:31:02.545Z] ----------------------------------------------------------------------
+[debug] [2021-03-09T13:31:02.546Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-03-09T13:31:02.547Z] CLI Version:   9.5.0
+[debug] [2021-03-09T13:31:02.547Z] Platform:      win32
+[debug] [2021-03-09T13:31:02.547Z] Node Version:  v14.15.0
+[debug] [2021-03-09T13:31:02.547Z] Time:          Wed Mar 10 2021 00:31:02 GMT+1100 (Australian Eastern Daylight Time)
+[debug] [2021-03-09T13:31:02.547Z] ----------------------------------------------------------------------
+[debug] [2021-03-09T13:31:02.547Z] 
+[debug] [2021-03-09T13:31:02.551Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-03-09T13:31:02.551Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Repos\hbc-firebase
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+  * You are initializing in an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  .firebaserc already has a default project, using hbclub. 
+[debug] [2021-03-09T13:32:35.858Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hbclub [none]
+[debug] [2021-03-09T13:32:36.366Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hbclub 403
+[debug] [2021-03-09T13:32:36.366Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hbclub {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2021-03-09T13:32:36.367Z] HTTP Error: 403, The caller does not have permission
+[debug] [2021-03-09T13:32:36.367Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at module.exports (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:38:12)
+    at Client.doRequest (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:238:23)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async Client.request (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:96:20)
+    at async Object.getFirebaseProject (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:289:21)
+    at async Object.doSetup [as project] (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\project.js:77:27)
+    at async init (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:19:9)
+[error] 
+[error] Error: Failed to get Firebase project hbclub. Please make sure the project exists and your account has permission to access it.
+[debug] [2021-03-09T13:32:58.952Z] ----------------------------------------------------------------------
+[debug] [2021-03-09T13:32:58.953Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-03-09T13:32:58.953Z] CLI Version:   9.5.0
+[debug] [2021-03-09T13:32:58.953Z] Platform:      win32
+[debug] [2021-03-09T13:32:58.953Z] Node Version:  v14.15.0
+[debug] [2021-03-09T13:32:58.954Z] Time:          Wed Mar 10 2021 00:32:58 GMT+1100 (Australian Eastern Daylight Time)
+[debug] [2021-03-09T13:32:58.954Z] ----------------------------------------------------------------------
+[debug] [2021-03-09T13:32:58.954Z] 
+[debug] [2021-03-09T13:32:58.958Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-03-09T13:32:58.959Z] > authorizing via signed-in user
+[debug] [2021-03-09T13:32:58.959Z] [iam] checking project hbclub for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-03-09T13:32:58.960Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-03-09T13:32:58.960Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-03-09T13:32:59.651Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Tue, 09 Mar 2021 13:33:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-03-09T13:32:59.665Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/hbclub:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-03-09T13:33:00.039Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 09 Mar 2021 13:33:01 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=260","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-03-09T13:33:00.040Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project hbclub:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2021-03-09T13:33:00.041Z] > refreshing access token with scopes: []
+[debug] [2021-03-09T13:33:00.041Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-03-09T13:33:00.262Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","date":"Tue, 09 Mar 2021 13:33:01 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-03-09T13:33:00.280Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hbclub [none]
+[debug] [2021-03-09T13:33:00.766Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hbclub 403
+[debug] [2021-03-09T13:33:00.766Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hbclub {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2021-03-09T13:33:00.767Z] HTTP Error: 403, The caller does not have permission
+[debug] [2021-03-09T13:33:00.768Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at module.exports (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:38:12)
+    at Client.doRequest (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:238:23)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async Client.request (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:96:20)
+    at async Object.getFirebaseProject (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:289:21)
+    at async Object.getDefaultHostingSite (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\getDefaultHostingSite.js:8:21)
+    at async requireHostingSite (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\requireHostingSite.js:9:18)
+    at async Object.fn (C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\deploy.js:66:9)
+    at async C:\Users\vikin\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:161:17
+[error] 
+[error] Error: Failed to get Firebase project hbclub. Please make sure the project exists and your account has permission to access it.
