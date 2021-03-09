@@ -1,4 +1,23 @@
 <div class="container">
+<div class="row">
+  <div class="col-md-12 mx-auto">
+    <div class="card">
+      <div class="card-body p-4">
+                
+          <mat-form-field appearance="fill">
+            <mat-label>My Groups</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let group of myGroups" [value]="group.docId">{{group.groupName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
   <div class="row">
     <div class="col-md-12 mx-auto">
       <div class="card">
