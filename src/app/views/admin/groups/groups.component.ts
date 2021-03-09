@@ -27,7 +27,7 @@ export class GroupsComponent implements OnInit {
   ngOnInit(): void {
     this.getAllGroups();
 
-    this.groupService.getGroupsByUserDocId('TnvezqX0wb4GpAcDoR7I');
+    this.groupService.getGroupsByUserDocId('9DgiojaV7GQ9BC7Hok5W').subscribe(x => console.log(x));
 
   }
   ngAfterViewInit() {
@@ -36,7 +36,6 @@ export class GroupsComponent implements OnInit {
 
   getAllGroups() {
     this.groupService.getGroups().subscribe((x) => {
-      console.log(x);
       this.dataSource.data = x;
     });
   }

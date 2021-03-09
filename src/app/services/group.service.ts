@@ -5,7 +5,6 @@ import { FirestoreBaseService } from "./firestore-base.service";
 import { map, concatMap, finalize } from "rxjs/operators";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Group } from "../models/group";
-import { getgroups } from "process";
 
 @Injectable({
   providedIn: "root",
@@ -26,41 +25,19 @@ export class GroupService extends FirestoreBaseService<Group> {
     return super.getAll();
   }
 
-  // public getBalance(userDocId:string) {
-  //   return this.firestore.collection('credits', q=>q.where('userDocId', '==', userDocId)).snapshotChanges().pipe(map(actions=>{
-  //     var sum = 0;
-  //     actions.forEach(x=> {
-  //       if(x){
-  //         const credit = x.payload.doc.data() as Credit;
-  //         sum += credit.amount;
-  //       }
-  //     });
-  //     return sum;
-  //   }));
-  // }
-
   //Get all groups that this user belongs to
   public getGroupsByUserDocId(userDocId: string) {
 
-    console.log('userid:', userDocId);
-    this.firestore.collection('groups', q => q.where('committees', 'array-contains', { userDocId })).snapshotChanges().pipe(map(actions => {
-      return actions.forEach(x => {
-        console.log('commitee', x.payload.doc.data());
-      });
-    }));
-
-
-    // return this.firestore.collection('groups', q => q.where('userDocId', '==', userDocId)).snapshotChanges().pipe(map(actions => {
-    //   var sum = 0;
-    //   actions.forEach(x => {
-    //     if (x) {
-    //       const credit = x.payload.doc.data() as Group;
-    //       sum += credit.amount;
-    //     }
-    //   });
-    //   return sum;
-    // }));
-
+    return this.firestore.collection('groups', q => q.where('committees', 'array-contains', userDocId)).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(x => {
+          var group = x.payload.doc.data() as Group;
+          return {
+            ...group,
+            docId: x.payload.doc.id
+          } as Group;
+        });
+      }));
   }
 
   public getGroup(groupDocId: string) {
