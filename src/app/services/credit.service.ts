@@ -22,10 +22,7 @@ export class CreditService extends FirestoreBaseService<Credit>{
       credit.created = this.getTodayTimestamp();
       credit.balance = previousBalance + credit.amount;
       credit.createdBy = createdBy;
-      return this.create(credit).then(x=>{
-        const user = { balance : credit.balance } as User;
-        return this.accountService.updateUser(credit.userDocId, user);
-      });
+      return this.create(credit);
     }
     
     return Promise.reject('no user is provided');

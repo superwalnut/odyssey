@@ -88,8 +88,8 @@ export class AccountService extends FirestoreBaseService<User>{
   }
 
   isAdmin() {
-    const role = this.getLoginAccount()?.role ?? '';
-    if (role == 'Admin' || role == 'God') {
+    const role = this.getLoginAccount()?.role ?? [];
+    if (role.indexOf('Admin') || role.indexOf('God')) {
       return true;
     }
 
@@ -98,7 +98,7 @@ export class AccountService extends FirestoreBaseService<User>{
 
   isGod() {
     const role = this.getLoginAccount()?.role ?? '';
-    if (role == 'God') {
+    if (role.indexOf('God')) {
       return true;
     }
 
@@ -118,6 +118,19 @@ export class AccountService extends FirestoreBaseService<User>{
     }
 
     return null;
+  }
+
+  public getFamilyUsers (parentUserDocId:string) {
+    return this.firestore.collection('users', q=>q.where('parentUserDocId', '==', parentUserDocId)).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(x=>{
+          var acc = x.payload.doc.data() as User;
+          return {
+            ...acc,
+            docId: actions[0].payload.doc.id
+          } as User; 
+        });
+      }));
   }
 
   public getLoginUser() {
