@@ -8,8 +8,11 @@ import { GroupService } from "../../../services/group.service";
 import { AccountService } from "../../../services/account.service";
 import { BookingsService } from "../../../services/bookings.service";
 import { Booking } from '../../../models/booking';
+import { BookingPerson } from '../../../models/booking-person';
+import { timestamp } from 'rxjs/operators';
 
-
+import firebase from 'firebase/app';
+import Timestamp = firebase.firestore.Timestamp;
 @Component({
   selector: 'app-bookings',
   templateUrl: './bookings.component.html',
@@ -56,7 +59,10 @@ export class BookingsComponent implements OnInit {
   }
 
   getBookingsByGroupDocId(groupDocId: string) {
-    console.log("bookings:...")
+    console.log("bookings:...");
+    var bs1 = { docId: '111111', isLocked: false, date: Date.now() };
+    var bs2 = { docId: '22222', isLocked: true, date: Date.now() };
+
     this.bookingService.getByGroupDocId(groupDocId).subscribe(bookings => {
       this.dataSource.data = bookings;
       bookings.forEach(b => {

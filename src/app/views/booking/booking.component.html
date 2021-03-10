@@ -4,9 +4,49 @@
   <div class="container">
     <div class="row light">
       <div class="col">
-        <h1 class="section-heading">BOOKINGS</h1>
+        <h1 class="section-heading">All Groups</h1>
       </div>
     </div>
+
+    <div class="row light">
+      <div class="col">
+
+        <table class="table table-hover table-dark booking">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Payment</th>
+              <th scope="col">
+                <button
+                  type="button"
+                  class="btn btn-primary disabled"
+                  data-toggle="modal"
+                  data-target="#exampleModalCenter"
+                >
+                  Full
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Luc</td>
+              <td><i class="cil-dollar"></i></td>
+              <td></td>
+            </tr>
+          </tbody>
+          </table>
+          
+
+
+
+      </div>
+    </div>
+
+
+
     <div class="row light">
       <div class="col-sm">
         <section>
@@ -303,7 +343,7 @@
                 Your Friends
               </mat-panel-title>
               <mat-panel-description>
-                Optional - up to two friends
+                Optional
                 <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
               </mat-panel-description>
             </mat-expansion-panel-header>
