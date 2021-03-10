@@ -16,13 +16,3 @@ export class GroupExpense {
     updatedBy: string;
 }
 
-
-// export class BookingIncome {
-//     docId:string;
-//     groupId:string;
-//     creditAmount:number;
-//     cashAmount:number;
-//     bankTransferAmount:number;
-//     notes:string;
-
-// }
