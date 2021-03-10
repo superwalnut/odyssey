@@ -1,14 +1,18 @@
 // Adding all global constants here
 export class GlobalConstants {
 
+    //Common
+    public static weekdays: string[] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+
     //Group Expense
-    public static groupExpenseTypes: string[] = ["Court", "Shuttle", "Other"];
+    public static groupExpenseTypes: string[] = ["Court", "Shuttle", "Donation", "Tech Subscription", "Other"];
 
 
 
     //BOOKING
     public static bookingOpenDay: string = "Monday";
-    public static bookingOpenTime: string = "11:59AM";
+    public static bookingOpenTime: string = "6:00AM";
     public static bookingWithdrawLHours: number = 3; //can't withdraw 3 hours before the session starts
     public static tueSeats: number = 16;
     public static friSeats: number = 42;
