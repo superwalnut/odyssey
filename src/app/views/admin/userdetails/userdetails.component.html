@@ -52,26 +52,7 @@
                   </mat-tab>
                   <mat-tab label="Family members"
                     >
-                    <form [formGroup]="familyForm" (ngSubmit)="onFamilySubmit()" class="mt-4" >
-                      <h1>Manage Family</h1>
-                      <p class="text-muted mb-3">Add your family members
-                        <button class="btn btn-secondary btn-sm float-right" type="button" (click)="addFamily()">Add</button>
-                      </p>
-        
-                      <div formArrayName="families">
-                        <div *ngFor="let city of families.controls; index as i">
-                            <div class="input-group mb-3">
-                                <input [formControlName]="i" placeholder="Name..." class="form-control" type="text" >
-                                <div class="input-group-append">
-                                    <div (click)="deleteFamily(i)" class="input-group-text">
-                                        <i  class="cil-x"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                      <button mat-raised-button color="primary">Save</button>
-                    </form>
+                    <app-manage-family [userDocId]="userDocId"></app-manage-family>
                   </mat-tab>
         
                   <mat-tab label="Credit Transactions">

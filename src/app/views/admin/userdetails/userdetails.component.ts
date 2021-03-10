@@ -22,9 +22,6 @@ export class UserdetailsComponent implements OnInit {
   passwordForm: FormGroup;
   passwordSubmitted = false;
 
-  familyForm: FormGroup;
-  familySubmitted = false;
-
   constructor(private activatedRoute: ActivatedRoute, private accountService: AccountService, private creditService: CreditService, private fb: FormBuilder, private snackBar: MatSnackBar) {
     this.profileForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -34,10 +31,6 @@ export class UserdetailsComponent implements OnInit {
 
     this.passwordForm = this.fb.group({
       password: ['', Validators.required]
-    });
-
-    this.familyForm = new FormGroup({
-      families: new FormArray([]),
     });
   }
 
@@ -62,19 +55,6 @@ export class UserdetailsComponent implements OnInit {
           email: [this.user.email, [Validators.required, Validators.email]],
           name: [this.user.name, Validators.required],
           mobile: [this.user.mobile, Validators.required],
-        });
-
-        this.accountService.getFamilyUsers(this.userDocId).subscribe(x=>{
-          if(x)
-          if (x && x.length>0) {
-            const items = new FormArray([]);
-            x.forEach(x => {
-              items.push(new FormControl(x));
-            });
-            this.familyForm = new FormGroup({
-              families: items,
-            });
-          }
         });
       });
     }
@@ -124,39 +104,6 @@ export class UserdetailsComponent implements OnInit {
     this.accountService.updateUser(this.userDocId, user).then(x => {
       this.snackBar.open(`Your account password have been updated.`, null, {
         duration: 5000,
-        verticalPosition: 'top'
-      });
-    });
-  }
-
-  deleteFamily(index) {
-    this.families.removeAt(index);
-  }
-
-  get families(): FormArray {
-    return this.familyForm.get('families') as FormArray;
-  }
-
-  addFamily() {
-    this.families.push(new FormControl());
-  }
-
-  onFamilySubmit() {
-    this.familySubmitted = true;
-
-    // stop here if form is invalid
-    if (this.familyForm.invalid) {
-      console.log('form invalid');
-      return;
-    }
-
-    this.families.value;
-
-    
-
-    this.accountService.updateUser(this.userDocId, this.user).then(x => {
-      this.snackBar.open(`Your account settings have been updated.`, null, {
-        duration: 35000,
         verticalPosition: 'top'
       });
     });
