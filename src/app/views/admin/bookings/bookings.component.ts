@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatTableDataSource } from "@angular/material/table";
+
 import { Group } from "../../../models/group";
+
 import { GroupService } from "../../../services/group.service";
 import { AccountService } from "../../../services/account.service";
 import { BookingsService } from "../../../services/bookings.service";
+import { Booking } from '../../../models/booking';
 
 
 @Component({
@@ -15,6 +19,14 @@ export class BookingsComponent implements OnInit {
   myGroups = [];
   myDocId: string;
   selectedGroupDocId: string;
+  displayedColumns: string[] = [
+    "date",
+    "isLocked",
+    "Action",
+  ];
+  dataSource = new MatTableDataSource<Booking>();
+
+
 
   constructor(public dialog: MatDialog, private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService) { }
 
@@ -34,22 +46,23 @@ export class BookingsComponent implements OnInit {
     this.getBookingsByGroupDocId(this.selectedGroupDocId);
   }
   getMyGroups() {
-    this.groupService.getGroupsByUserDocId(this.myDocId).subscribe(x => {
+    this.myGroups = [];
 
+    this.groupService.getGroupsByUserDocId(this.myDocId).subscribe(x => {
       x.forEach(g => {
         this.myGroups.push({ 'docId': g.docId, 'groupName': g.groupName });
       })
-
-      console.log(this.myGroups)
     });
   }
 
   getBookingsByGroupDocId(groupDocId: string) {
-
+    console.log("bookings:...")
     this.bookingService.getByGroupDocId(groupDocId).subscribe(bookings => {
-      bookings.forEach(b => console.log(b));
+      this.dataSource.data = bookings;
+      bookings.forEach(b => {
+        console.log(b);
 
-
+      });
     });
   }
 
