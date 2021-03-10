@@ -8,13 +8,10 @@ export class User {
     name: string;
     password: string;
     mobile: string;
-    family: string[];
-    role: string;
-    isVip: boolean;
+    parentUserDocId: string;
+    role: string[];
     isMember: boolean;
     created: Timestamp;
     updated: Timestamp;
     status: string;
-    balance: number; // balance 居然放在user 里了？
-
 }

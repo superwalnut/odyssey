@@ -64,15 +64,18 @@ export class UserdetailsComponent implements OnInit {
           mobile: [this.user.mobile, Validators.required],
         });
 
-        if (this.user.family) {
-          const items = new FormArray([]);
-          this.user.family.forEach(x => {
-            items.push(new FormControl(x));
-          });
-          this.familyForm = new FormGroup({
-            families: items,
-          });
-        }
+        this.accountService.getFamilyUsers(this.userDocId).subscribe(x=>{
+          if(x)
+          if (x && x.length>0) {
+            const items = new FormArray([]);
+            x.forEach(x => {
+              items.push(new FormControl(x));
+            });
+            this.familyForm = new FormGroup({
+              families: items,
+            });
+          }
+        });
       });
     }
   }
@@ -147,7 +150,9 @@ export class UserdetailsComponent implements OnInit {
       return;
     }
 
-    this.user.family = this.families.value;
+    this.families.value;
+
+    
 
     this.accountService.updateUser(this.userDocId, this.user).then(x => {
       this.snackBar.open(`Your account settings have been updated.`, null, {

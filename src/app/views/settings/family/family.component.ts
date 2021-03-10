@@ -27,15 +27,15 @@ export class FamilyComponent implements OnInit {
     this.accountService.getLoginUser().subscribe(x=>{
       this.user = x;
 
-      if(this.user.family){
-        const items = new FormArray([]);
-        this.user.family.forEach(x=>{
-          items.push(new FormControl(x));
-        });
-        this.form = new FormGroup({
-          families: items,
-        });
-      }
+      // if(this.user.family){
+      //   const items = new FormArray([]);
+      //   this.user.family.forEach(x=>{
+      //     items.push(new FormControl(x));
+      //   });
+      //   this.form = new FormGroup({
+      //     families: items,
+      //   });
+      // }
     });
 
     console.log('user', this.user);
@@ -65,23 +65,23 @@ export class FamilyComponent implements OnInit {
     console.log(this.families.value);  // ['SF', 'NY']
     console.log(this.form.value);    // { cities: ['SF', 'NY'] }
 
-    if(this.user){
-      this.user.family = this.families.value;
+    // if(this.user){
+    //   this.user.family = this.families.value;
 
-      console.log('save', this.user.family);
+    //   console.log('save', this.user.family);
 
-      this.accountService.updateUser(this.user.docId, this.user).then(x=>{
-        this.snackBar.open(`Your account settings have been updated.`, null , {
-          duration: 35000,
-          verticalPosition: 'top'
-        });
-      });
-    } else {
-      this.snackBar.open(`You must login first!`, null , {
-        duration: 5000,
-        verticalPosition: 'top'
-      });
-    }
+    //   this.accountService.updateUser(this.user.docId, this.user).then(x=>{
+    //     this.snackBar.open(`Your account settings have been updated.`, null , {
+    //       duration: 35000,
+    //       verticalPosition: 'top'
+    //     });
+    //   });
+    // } else {
+    //   this.snackBar.open(`You must login first!`, null , {
+    //     duration: 5000,
+    //     verticalPosition: 'top'
+    //   });
+    // }
 
   }
 }
