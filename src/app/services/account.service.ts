@@ -127,7 +127,7 @@ export class AccountService extends FirestoreBaseService<User>{
           var acc = x.payload.doc.data() as User;
           return {
             ...acc,
-            docId: actions[0].payload.doc.id
+            docId: x.payload.doc.id
           } as User; 
         });
       }));

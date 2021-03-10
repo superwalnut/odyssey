@@ -1,0 +1,21 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>Manage Family</h1>
+    <p class="text-muted mb-3">Add your family members
+      <button class="btn btn-secondary btn-sm float-right" type="button" (click)="addFamily()">Add</button>
+    </p>
+
+    <div formArrayName="families" *ngFor="let fam of families.controls; index as i">
+      <div [formGroupName]="i">
+          <div class="input-group mb-3">
+              <input type="hidden" id="{{'userDocId' + i}}" formControlName="userDocId" />
+              <input id="{{'name' + i}}" formControlName="name" placeholder="Name..." class="form-control" type="text" >
+              <div class="input-group-append">
+                  <div (click)="deleteFamily(i)" class="input-group-text">
+                      <i  class="cil-x"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+      <button type="submit" class="btn btn-block btn-success">Save</button>
+  </form>
