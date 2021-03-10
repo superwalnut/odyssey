@@ -2,6 +2,7 @@
 import firebase from "firebase/app";
 import Timestamp = firebase.firestore.Timestamp;
 
+//keep insert , no delete, no update
 export class GroupIncome {
     docId: string;
     groupDocId: string;
