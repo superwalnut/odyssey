@@ -69,6 +69,7 @@ import { TermsComponent } from "./views/terms/terms.component";
 import { LogoutComponent } from "./views/logout/logout.component";
 import { ResetpasswordComponent } from './views/resetpassword/resetpassword.component';
 import { SharedModule } from "./views/shared/shared.module";
+import { GroupsComponent } from './views/groups/groups.component';
 
 @NgModule({
   imports: [
@@ -109,6 +110,7 @@ import { SharedModule } from "./views/shared/shared.module";
     TermsComponent,
     LogoutComponent,
     ResetpasswordComponent,
+    GroupsComponent,
   ],
   providers: [
     {

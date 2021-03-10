@@ -11,6 +11,7 @@ import { LoginComponent } from "./views/login/login.component";
 import { RegisterComponent } from "./views/register/register.component";
 import { HomeComponent } from "./views/home/home.component";
 import { BookingComponent } from "./views/booking/booking.component";
+import { GroupsComponent } from "./views/groups/groups.component";
 import { TermsComponent } from "./views/terms/terms.component";
 import { LogoutComponent } from "./views/logout/logout.component";
 import { ResetpasswordComponent } from "./views/resetpassword/resetpassword.component";
@@ -22,6 +23,15 @@ export const routes: Routes = [
       title: "Home",
     },
   },
+  {
+    path: "groups",
+    component: GroupsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: "groups",
+    },
+  },
+
   {
     path: "booking",
     component: BookingComponent,
@@ -178,4 +188,4 @@ export const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" })],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
