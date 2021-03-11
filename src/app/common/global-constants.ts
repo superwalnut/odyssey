@@ -19,6 +19,9 @@ export class GlobalConstants {
     public static friSeats: number = 42;
     public static satSeats: number = 34;
     public static autoBookingFee: number = 10; //$10 for setting up auto booking
+    public static paymentCredit: string = "Credit";
+    public static paymentCash: string = "Cash";
+    public static paymentBank: string = "Bank";
 
 
     //Price, Rates

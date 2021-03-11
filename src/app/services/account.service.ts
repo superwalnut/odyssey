@@ -120,15 +120,15 @@ export class AccountService extends FirestoreBaseService<User>{
     return null;
   }
 
-  public getFamilyUsers (parentUserDocId:string) {
-    return this.firestore.collection('users', q=>q.where('parentUserDocId', '==', parentUserDocId)).snapshotChanges().pipe(
+  public getFamilyUsers(parentUserDocId: string) {
+    return this.firestore.collection('users', q => q.where('parentUserDocId', '==', parentUserDocId)).snapshotChanges().pipe(
       map(actions => {
-        return actions.map(x=>{
+        return actions.map(x => {
           var acc = x.payload.doc.data() as User;
           return {
             ...acc,
             docId: x.payload.doc.id
-          } as User; 
+          } as User;
         });
       }));
   }
@@ -147,6 +147,16 @@ export class AccountService extends FirestoreBaseService<User>{
         } else {
           return null;
         }
+      }));
+  }
+
+  public getUsersByUserDocIds(docIds: string[]) {
+    return this.firestore.collection('users', q => q.where("docId", "array-contains-any", docIds)).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(p => {
+          var user = p.payload.doc.data() as User;
+          return { ...user, docId: p.payload.doc.id } as User;
+        });
       }));
   }
 

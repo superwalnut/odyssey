@@ -4,7 +4,25 @@
         <div class="card">
           <div class="card-body p-4">
             <h1>Triggers</h1>
-            <button mat-raised-button color="warn" (click)="onPrepopulateBookingClick()">Prepopulate Bookings</button>
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Prepopulate booking for all active Groups</td>
+                    <td>click this button on every Sunday night to get the bookings ready for Monday</td>
+                    <td><button mat-raised-button color="warn" (click)="onPrepopulateBookingClick()">Prepopulate Bookings</button></td>
+                  </tr>
+                
+                </tbody>
+              </table>
+
 
             
           </div>
