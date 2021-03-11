@@ -4,6 +4,7 @@ import { User } from '../../../models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../services/account.service';
+import { Account } from '../../../models/account';
 
 @Component({
   selector: 'app-profile',
@@ -11,65 +12,15 @@ import { AccountService } from '../../../services/account.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  profileForm: FormGroup;
-  submitted = false;
-  user: User = new User();
+  account: Account;
 
   constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router) {
 
   }
 
   ngOnInit() {
-    this.profileForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      name: ['', Validators.required],
-      mobile: ['', Validators.required],
-    });
+    this.account = this.accountService.getLoginAccount();
 
-    this.accountService.getLoginUser().subscribe(x => {
-      this.user = x;
-
-      this.profileForm = this.fb.group({
-        email: [this.user.email, [Validators.required, Validators.email]],
-        name: [this.user.name, Validators.required],
-        mobile: [this.user.mobile, Validators.required],
-      });
-    });
-
-  }
-
-  // convenience getter for easy access to form fields
-  get f() { return this.profileForm.controls; }
-
-  onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.profileForm.invalid) {
-      console.log('form invalid');
-      return;
-    }
-
-    console.log('profile', this.profileForm);
-
-    var user = {
-      name: this.profileForm.value.name,
-      email: this.profileForm.value.email,
-      mobile: this.profileForm.value.mobile,
-    } as User;
-
-    if (this.user) {
-      this.accountService.updateUser(this.user.docId, user).then(x => {
-        this.snackBar.open(`Your account settings have been updated.`, null, {
-          duration: 5000,
-          verticalPosition: 'top'
-        });
-      });
-    } else {
-      this.snackBar.open(`You must login first!`, null, {
-        duration: 5000,
-        verticalPosition: 'top'
-      });
-    }
+    console.log('account', this.account);
   }
 }

@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { User } from '../models/user';
 import { FirestoreBaseService } from './firestore-base.service';
-import { map, concatMap, finalize } from 'rxjs/operators';
+import { map, concatMap, finalize, mergeMap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from '../models/account';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { merge } from 'rxjs';
+import { Runner } from 'protractor';
 
 
 @Injectable({
@@ -120,8 +122,47 @@ export class AccountService extends FirestoreBaseService<User>{
     return null;
   }
 
-  public getFamilyUsers(parentUserDocId: string) {
-    return this.firestore.collection('users', q => q.where('parentUserDocId', '==', parentUserDocId)).snapshotChanges().pipe(
+  isEmailExist(email:string) {
+    return this.firestore.collection('users', q=>q.where('email', '==', email)).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(x=>{
+          var acc = x.payload.doc.data() as User;
+          return {
+            ...acc,
+            docId: x.payload.doc.id
+          } as User; 
+        });
+      }));
+  }
+
+  isMobileExist(mobile:string) {
+    return this.firestore.collection('users', q=>q.where('mobile', '==', mobile)).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(x=>{
+          var acc = x.payload.doc.data() as User;
+          return {
+            ...acc,
+            docId: x.payload.doc.id
+          } as User; 
+        });
+      }));
+  }
+
+  isNameExist(name:string) {
+    return this.firestore.collection('users', q=>q.where('name', '==', name)).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(x=>{
+          var acc = x.payload.doc.data() as User;
+          return {
+            ...acc,
+            docId: x.payload.doc.id
+          } as User; 
+        });
+      }));
+  }
+
+  public getFamilyUsers (parentUserDocId:string) {
+    return this.firestore.collection('users', q=>q.where('parentUserDocId', '==', parentUserDocId)).snapshotChanges().pipe(
       map(actions => {
         return actions.map(x => {
           var acc = x.payload.doc.data() as User;

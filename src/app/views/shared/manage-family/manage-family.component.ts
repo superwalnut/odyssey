@@ -32,16 +32,6 @@ export class ManageFamilyComponent implements OnInit {
     this.accountService.getUserByDocId(this.userDocId).subscribe(x=>{
       this.user = x;
       console.log('user', this.user);
-
-      // if(this.user.family){
-      //   const items = new FormArray([]);
-      //   this.user.family.forEach(x=>{
-      //     items.push(new FormControl(x));
-      //   });
-      //   this.form = new FormGroup({
-      //     families: items,
-      //   });
-      // }
     });
     
     this.accountService.getFamilyUsers(this.userDocId).subscribe(x=>{
