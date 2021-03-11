@@ -4,6 +4,7 @@ import { User } from '../../models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AccountService } from '../../services/account.service';
+import { map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -48,13 +49,48 @@ export class RegisterComponent implements OnInit {
       mobile: this.registerForm.value.mobile,
     } as User;
 
-    this.accountService.createUser(user).then(x => {
-      this.snackBar.open(`Your account settings have been updated.`, null, {
-        duration: 5000,
-        verticalPosition: 'top'
-      });
-      this.router.navigate(['/login'], { queryParams: { returnUrl: '/register' } });
+    this.accountService.isEmailExist(user.email).subscribe((e) => {
+      if(e && e.length > 0) {
+        this.registerForm.controls.email.setErrors({'incorrect': true});
+        this.snackBar.open(`this email is already exist.`, null, {
+          duration: 5000,
+          verticalPosition: 'top'
+        });
+      } else {
+        this.accountService.isMobileExist(user.mobile).subscribe(m=>{
+          if(m && m.length > 0) {
+            this.registerForm.controls.mobile.setErrors({'incorrect': true});
+            this.snackBar.open(`this mobile is exist.`, null, {
+              duration: 5000,
+              verticalPosition: 'top'
+            });
+          } else {
+            this.accountService.isNameExist(user.name).subscribe(n=>{
+              if(n && n.length > 0){
+                this.registerForm.controls.name.setErrors({'incorrect': true});
+                this.snackBar.open(`this name is exist.`, null, {
+                  duration: 5000,
+                  verticalPosition: 'top'
+                });
+              } else {
+                this.accountService.createUser(user).then(x => {
+                  this.snackBar.open(`you have successfully registered.`, null, {
+                    duration: 5000,
+                    verticalPosition: 'top'
+                  });
+                  this.router.navigate(['/login'], { queryParams: { returnUrl: '/register' } });
+                }).catch(x=>{
+                  this.snackBar.open(x, null, {
+                    duration: 5000,
+                    verticalPosition: 'top'
+                  });
+                });
+              }
+            });
+            
+          }
+        });
+      }
     });
-
   }
 }

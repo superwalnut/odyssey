@@ -14,7 +14,8 @@
                   </div>
                   <input type="text" class="form-control" formControlName="name" placeholder="wechat name or your name">
                   <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                    <div *ngIf="f.name.errors.required">wechat name is required</div>
+                    <div *ngIf="f.name.errors.required">name is required</div>
+                    <div *ngIf="f.name.errors.incorrect">name is already exist</div>
                   </div>
                 </div>
                 <div class="input-group mb-3">
@@ -24,6 +25,7 @@
                   <input type="text" class="form-control" formControlName="mobile" placeholder="mobile">
                   <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
                     <div *ngIf="f.mobile.errors.required">mobile is required</div>
+                    <div *ngIf="f.mobile.errors.incorrect">mobile is exist</div>
                   </div>
                 </div>                
                 <div class="input-group mb-3">
@@ -32,8 +34,9 @@
                   </div>
                   <input type="text" class="form-control" formControlName="email"  placeholder="Email">
                   <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                    <div *ngIf="f.email.errors.required">Email is required</div>
-                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    <div *ngIf="f.email.errors.required">email is required</div>
+                    <div *ngIf="f.email.errors.email">email must be a valid email address</div>
+                    <div *ngIf="f.email.errors.incorrect">email is already exist</div>
                   </div>
                 </div>
                 <div class="input-group mb-3">
