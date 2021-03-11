@@ -7,6 +7,7 @@ export class GlobalConstants {
 
     //Group Expense
     public static groupExpenseTypes: string[] = ["Court", "Shuttle", "Donation", "Tech Subscription", "Other"];
+    public static groupValidPeriodInYears: number = 3; // group default to 3 years
 
 
 

@@ -5,109 +5,86 @@
         <div class="card-body p-4">
           <h1>Group Details</h1>
           <h3>Create or edit group</h3>
+          <p>To close this group has monday involved, need a different UI</p>
 
           <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
             <p>
               <mat-form-field>
                 <mat-label>Group Name</mat-label>
-                <input
-                  matInput
-                  placeholder="Tuesday badminton session"
-                  formControlName="groupName"
-                  required
-                />
+                <input matInput placeholder="Tuesday badminton session" formControlName="groupName" required />
               </mat-form-field>
             </p>
-            <div
-              *ngIf="
-                f.groupName.invalid &&
-                (f.groupName.dirty || f.groupName.touched)
-              "
-              class="invalid-feedback"
-            >
-              <div *ngIf="f.groupName.errors.required">
-                Group name is required.
-              </div>
+            <div *ngIf="f.groupName.invalid && (f.groupName.dirty || f.groupName.touched)" class="invalid-feedback">
+              <div *ngIf="f.groupName.errors.required">Group name is required.</div>
             </div>
 
             <p>
               <mat-form-field>
                 <mat-label>Group Description</mat-label>
-                <input
-                  matInput
-                  placeholder=""
-                  formControlName="groupDesc"
-                  required
-                />
+                <input matInput placeholder="" formControlName="groupDesc" required/>
               </mat-form-field>
             </p>
-            <div
-              *ngIf="
-                f.groupDesc.invalid &&
-                (f.groupDesc.dirty || f.groupDesc.touched)
-              "
-              class="invalid-feedback"
-            >
-              <div *ngIf="f.groupDesc.errors.required">
-                Group description is required.
-              </div>
+            <div *ngIf="f.groupDesc.invalid && (f.groupDesc.dirty || f.groupDesc.touched)" class="invalid-feedback">
+              <div *ngIf="f.groupDesc.errors.required">Group description is required.</div>
             </div>
 
+            <p>
             <mat-form-field appearance="fill">
+              <mat-label>Event start date</mat-label>
+              <mat-select formControlName="eventStartDay" required>
+                <mat-option *ngFor="let day of weekdays" [value]="day">
+                  {{ day }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Event Start Time</mat-label>
+              <input matInput type="time" placeholder="8:00 PM" formControlName="eventStartTime" required/>
+            </mat-form-field>
+          </p>
+
+          <p>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Booking start date</mat-label>
+              <mat-select formControlName="bookingStartDay" required>
+                <mat-option *ngFor="let day of weekdays" [value]="day">
+                  {{ day}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+
+            <!-- <mat-slide-toggle formControlName="isClosed" [color]="color" [checked]="checked" [disabled]="disabled">Close this group!</mat-slide-toggle> -->
+
+            <!-- <mat-form-field appearance="fill">
               <mat-label>Enter term date range</mat-label>
               <mat-date-range-input [rangePicker]="picker">
-                <input
-                  matStartDate
-                  placeholder="Start date"
-                  formControlName="startDate"
-                  required
-                />
-                <input
-                  matEndDate
-                  placeholder="End date"
-                  formControlName="endDate"
-                  required
-                />
+                <input matStartDate placeholder="Start date" formControlName="startDate" required/>
+                <input matEndDate placeholder="End date" formControlName="endDate" required/>
               </mat-date-range-input>
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="picker"
-              ></mat-datepicker-toggle>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-date-range-picker #picker></mat-date-range-picker>
 
-              <mat-error
-                *ngIf="
-                  groupForm.controls.startDate.hasError('matStartDateInvalid')
-                "
-                >Invalid start date</mat-error
-              >
-              <mat-error
-                *ngIf="groupForm.controls.endDate.hasError('matEndDateInvalid')"
-                >Invalid end date</mat-error
-              >
-            </mat-form-field>
+              <mat-error *ngIf="groupForm.controls.startDate.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+              <mat-error *ngIf="groupForm.controls.endDate.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            </mat-form-field> -->
 
            
-            <p *ngIf="isEditMode">
-              <mat-slide-toggle formControlName="isClosed"
-                >Closed</mat-slide-toggle
-              >
-            </p>
+            <!-- <p *ngIf="isEditMode">
+              <mat-slide-toggle formControlName="isClosed">Closed</mat-slide-toggle>
+            </p> -->
 
             <h2>Committees</h2>
             <div *ngIf="committeeRequired">A group needs to have at least 1 committee member</div>
               <mat-form-field>
                 <mat-label>Member name</mat-label>
-                <input type="text"
-                       placeholder="Pick one"
-                       aria-label="Number"
-                       matInput
-                       [formControl]="myControl"
-                       [matAutocomplete]="auto">
+                <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
                 <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
-                    {{user}}
-                  </mat-option>
+                  <mat-option *ngFor="let user of filteredUsers | async" [value]="user">{{user}}</mat-option>
                 </mat-autocomplete>
               </mat-form-field>
 
@@ -120,20 +97,9 @@
 
                   </mat-list-item>
                 </mat-list>
-
-            
             <p>
-              <button mat-raised-button routerLink="/admin/groups">
-                Cancel
-              </button>
-
-              <button
-                mat-raised-button
-                color="primary"
-                [disabled]="groupForm.invalid"
-              >
-                Save
-              </button>
+              <button mat-raised-button routerLink="/admin/groups">Cancel</button>
+              <button mat-raised-button color="primary" [disabled]="groupForm.invalid">Save</button>
             </p>
           </form>
         </div>

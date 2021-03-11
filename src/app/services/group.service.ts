@@ -15,9 +15,13 @@ export class GroupService extends FirestoreBaseService<Group> {
   }
 
   public createGroup(group: Group, createdBy: string) {
+
+    var endDate = new Date("December 31, 2031 12:20:00");
+    group.endDate = this.convertToTimestamp(endDate);
     group.created = this.getTodayTimestamp();
     group.createdBy = createdBy;
 
+    group.isRecursive = true;//default to recursive
     return this.create(group);
   }
 

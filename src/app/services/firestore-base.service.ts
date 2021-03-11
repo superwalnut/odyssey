@@ -104,4 +104,5 @@ export class FirestoreBaseService<T> {
   protected getTodayTimestamp() {
     return this.convertToTimestamp(new Date());
   }
+
 }

@@ -12,7 +12,7 @@ import { MatTableDataSource } from "@angular/material/table";
 export class GroupsComponent implements OnInit {
   groups: Group[] = [];
   displayedColumns: string[] = [
-    "startDate",
+    //"startDate",
     "endDate",
     "groupName",
     "committees",

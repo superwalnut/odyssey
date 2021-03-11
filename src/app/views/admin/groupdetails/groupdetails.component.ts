@@ -9,6 +9,8 @@ import { Group } from "../../../models/group";
 import { AccountService } from "../../../services/account.service";
 import { GroupService } from "../../../services/group.service";
 import { User } from "../../../models/user";
+import { Timestamp } from "rxjs/internal/operators/timestamp";
+import { GlobalConstants } from "../../../common/global-constants";
 
 @Component({
   selector: "app-groupdetails",
@@ -28,6 +30,7 @@ export class GroupdetailsComponent implements OnInit {
   allUsersObject: User[];
   filteredUsers: Observable<string[]>;
   selectedUsers: User[] = [];
+  weekdays = GlobalConstants.weekdays;
 
   constructor(private fb: FormBuilder, private groupService: GroupService, private accountService: AccountService, private snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private router: Router) {
 
@@ -68,11 +71,13 @@ export class GroupdetailsComponent implements OnInit {
     });
 
     this.groupForm = this.fb.group({
-      startDate: ["", Validators.required],
-      endDate: ["", Validators.required],
+      // startDate: ["", Validators.required],
+      // endDate: ["", Validators.required],
+      eventStartDay: ["", Validators.required],
+      bookingStartDay: ["", Validators.required],
       groupName: ["", Validators.required],
       groupDesc: ["", Validators.required],
-      isClosed: [""],
+      eventStartTime: ["", Validators.required],
     });
 
     this.getByDocId(this.groupDocId);
@@ -103,12 +108,15 @@ export class GroupdetailsComponent implements OnInit {
   getByDocId(docId: string) {
     if (this.groupDocId) {
       this.groupService.getGroup(this.groupDocId).subscribe((x) => {
+        console.log(x);
         this.groupForm.patchValue({
-          startDate: x.startDate.toDate(),
-          endDate: x.endDate.toDate(),
+          //startDate: x.startDate.toDate(),
+          //endDate: x.endDate.toDate(),
+          eventStartDay: x.eventStartDay,
+          eventStartTime: x.eventStartTime,
+          bookingStartDay: x.bookingStartDay,
           groupName: x.groupName,
           groupDesc: x.groupDesc,
-          isClosed: x.isClosed,
         });
 
         this.selectedUsers = this.accountService.getUsersByDocIds(x.committees);
@@ -127,8 +135,9 @@ export class GroupdetailsComponent implements OnInit {
     }
 
     var group = {
-      startDate: this.groupForm.value.startDate,
-      endDate: this.groupForm.value.endDate,
+      eventStartDay: this.groupForm.value.eventStartDay,
+      eventStartTime: this.groupForm.value.eventStartTime,
+      bookingStartDay: this.groupForm.value.bookingStartDay,
       groupName: this.groupForm.value.groupName,
       groupDesc: this.groupForm.value.groupDesc,
       committees: this.getCommitteeUserDocIds(),
@@ -137,7 +146,6 @@ export class GroupdetailsComponent implements OnInit {
 
     if (this.groupDocId) {
       group.docId = this.groupDocId;
-      group.isClosed = this.groupForm.value.isClosed;
       group.updatedBy = this.loggedInUser.docId;
 
       this.groupService.updateGroup(this.groupDocId, group);
