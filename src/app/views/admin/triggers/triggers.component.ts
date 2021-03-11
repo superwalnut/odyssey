@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TriggersService } from "../../../services/triggers.service";
+import { HelperService } from "../../../common/helper.service";
 
 @Component({
   selector: 'app-triggers',
@@ -8,13 +9,27 @@ import { TriggersService } from "../../../services/triggers.service";
 })
 export class TriggersComponent implements OnInit {
 
-  constructor(private triggerService: TriggersService) { }
+  constructor(private triggerService: TriggersService, private helperService: HelperService) { }
 
   ngOnInit(): void {
+    this.onCombineDatesClick();
   }
 
   onPrepopulateBookingClick() {
     this.triggerService.prepopulateBookings();
+  }
+
+
+
+  //Test cases
+  onCombineDatesClick() {
+
+    const daysfromToday = this.helperService.addDays(5);
+
+
+    this.helperService.addDays(5, daysfromToday);
+    this.helperService.combinDateAndTime('2021-01-01', '20:00');
+    this.helperService.findNextDayOfTheWeek('FRI', false, daysfromToday);
   }
 
 }

@@ -46,6 +46,7 @@ export class TriggersService {
 
     group.eventStartDay;
     group.eventStartTime;
+    Timestamp.fromMillis(Date.parse(''));
 
     var booking = {
       groupDocId: group.docId,
