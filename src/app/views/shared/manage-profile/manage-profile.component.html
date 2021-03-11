@@ -9,7 +9,8 @@
       
       <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
         <div *ngIf="f.name.errors.required">Display name is required</div>
-      </div>
+        <div *ngIf="f.name.errors.incorrect">name is already exist</div>
+    </div>
 
     </div>
     <div class="input-group mb-3">
@@ -19,7 +20,8 @@
       <input type="text" class="form-control" formControlName="mobile" placeholder="mobile">
       <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
         <div *ngIf="f.mobile.errors.required">mobile is required</div>
-      </div>
+        <div *ngIf="f.mobile.errors.incorrect">mobile is exist</div>
+    </div>
     </div>                
     <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -29,7 +31,8 @@
       <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
         <div *ngIf="f.email.errors.required">Email is required</div>
         <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-      </div>
+        <div *ngIf="f.email.errors.incorrect">email is already exist</div>
+    </div>
     </div>
     <button type="submit" class="btn btn-block btn-success">Update Profile</button>
   </form>

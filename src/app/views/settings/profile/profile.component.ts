@@ -4,6 +4,7 @@ import { User } from '../../../models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../services/account.service';
+import { Account } from '../../../models/account';
 
 @Component({
   selector: 'app-profile',
@@ -11,16 +12,15 @@ import { AccountService } from '../../../services/account.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user: User = new User();
+  account: Account;
 
   constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router) {
 
   }
 
   ngOnInit() {
-    this.accountService.getLoginUser().subscribe(x => {
-      this.user = x;
-    });
+    this.account = this.accountService.getLoginAccount();
 
+    console.log('account', this.account);
   }
 }

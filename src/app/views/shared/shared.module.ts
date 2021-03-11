@@ -19,7 +19,8 @@ import { ManageProfileComponent } from './manage-profile/manage-profile.componen
     ],
     exports: [
       TransactionListComponent,
-      ManageFamilyComponent
+      ManageFamilyComponent,
+      ManageProfileComponent
     ],
   })
   export class SharedModule {}
