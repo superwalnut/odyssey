@@ -7,6 +7,8 @@ import { Booking } from '../models/booking';
 import { BookingPerson } from '../models/booking-person';
 import { User } from '../models/user';
 import { GlobalConstants } from '../common/global-constants';
+import { HelperService } from '../common/helper.service';
+
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 
@@ -19,7 +21,7 @@ import Timestamp = firebase.firestore.Timestamp;
 //This service will be replaced by Firebase cloud schedulers in the future
 export class TriggersService {
 
-  constructor(private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService) { }
+  constructor(private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService, private helperService: HelperService) { }
 
 
   prepopulateBookings() {
@@ -29,8 +31,6 @@ export class TriggersService {
         console.log(g);
         this.bookingWorker(g);
       })
-
-
     });
 
 
@@ -46,7 +46,6 @@ export class TriggersService {
 
     group.eventStartDay;
     group.eventStartTime;
-    Timestamp.fromMillis(Date.parse(''));
 
     var booking = {
       groupDocId: group.docId,
@@ -75,5 +74,16 @@ export class TriggersService {
     });
 
     return bookingpersons;
+  }
+
+  getLastBooking(groupDocId: string) {
+    this.bookingService.getLastBookingByGroupDocId(groupDocId).subscribe(booking => {
+      console.log(booking);
+      if (booking != null) {
+        var eventStartDateTime = booking.eventStartDateTime;
+      }
+
+    });
+
   }
 }

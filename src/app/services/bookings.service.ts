@@ -27,9 +27,9 @@ export class BookingsService extends FirestoreBaseService<Booking>{
     return super.getByDocId(bookingDocId);
   }
 
-  //Get all bookings by GroupDocId
+  //Get all bookings by GroupDocId, sorted by date
   public getByGroupDocId(groupDocId: string) {
-    return this.firestore.collection('bookings', q => q.where('groupDocId', '==', groupDocId).orderBy('date', 'desc')).snapshotChanges().pipe(
+    return this.firestore.collection('bookings', q => q.where('groupDocId', '==', groupDocId).orderBy('eventStartDateTime', 'desc')).snapshotChanges().pipe(
       map(actions => {
         var items = actions.map(p => {
           var data = p.payload.doc.data() as Booking;
@@ -39,6 +39,21 @@ export class BookingsService extends FirestoreBaseService<Booking>{
       })
     );
   }
+
+  //Get last booking by GroupDocId
+  public getLastBookingByGroupDocId(groupDocId: string) {
+    return this.firestore.collection('bookings', q => q.where('groupDocId', '==', groupDocId).orderBy('eventStartDateTime', 'desc').limit(1)).snapshotChanges().pipe(
+      map(actions => {
+        if (actions && actions.length > 0) {
+          var booking = actions[0].payload.doc.data() as Booking;
+          return { ...booking, docId: actions[0].payload.doc.id } as Booking;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
 
   //Get bookings by date range
   public getByDateRange(groupdDocId: string, startDate: Timestamp, endDate: Timestamp) {
