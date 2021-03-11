@@ -4,6 +4,7 @@ import { CommonModule } from "@angular/common";
 import { TransactionListComponent } from "./transaction-list/transaction-list.component";
 import { AppMaterialModule } from "../../app-material.module";
 import { ManageFamilyComponent } from './manage-family/manage-family.component';
+import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import { ManageFamilyComponent } from './manage-family/manage-family.component';
     ],
     declarations: [
       TransactionListComponent,
-      ManageFamilyComponent
+      ManageFamilyComponent,
+      ManageProfileComponent
     ],
     exports: [
       TransactionListComponent,
