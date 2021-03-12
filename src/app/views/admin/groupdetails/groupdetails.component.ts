@@ -108,7 +108,7 @@ export class GroupdetailsComponent implements OnInit {
   getByDocId(docId: string) {
     if (this.groupDocId) {
       this.groupService.getGroup(this.groupDocId).subscribe((x) => {
-        console.log(x);
+        console.log('get group', x);
         this.groupForm.patchValue({
           //startDate: x.startDate.toDate(),
           //endDate: x.endDate.toDate(),
@@ -119,8 +119,11 @@ export class GroupdetailsComponent implements OnInit {
           groupDesc: x.groupDesc,
         });
 
-        this.accountService.getUsersByDocIds(x.committees).pipe(take(1)).subscribe(x=>{
-          this.selectedUsers = x
+        console.log('committeeIds', x.committees);
+
+        this.accountService.getUsersByDocIds(x.committees).pipe(take(1)).subscribe(o=>{
+          this.selectedUsers = o
+          console.log('getting committees', o);
         });
       });
     }
