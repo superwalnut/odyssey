@@ -48,16 +48,16 @@ export class HelperService {
     return refDate;
   }
 
-  protected convertToTimestamp(date: Date): Timestamp {
+  convertToTimestamp(date: Date): Timestamp {
     const ts = Timestamp.fromDate(date);
     return ts;
   }
 
-  protected convertToDate(ts: Timestamp): Date {
+  convertToDate(ts: Timestamp): Date {
     return ts.toDate();
   }
 
-  protected getTodayTimestamp() {
+  getTodayTimestamp() {
     return this.convertToTimestamp(new Date());
   }
 

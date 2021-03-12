@@ -122,47 +122,47 @@ export class AccountService extends FirestoreBaseService<User>{
     return null;
   }
 
-  isEmailExist(email:string) {
-    return this.firestore.collection('users', q=>q.where('email', '==', email)).snapshotChanges().pipe(
+  isEmailExist(email: string) {
+    return this.firestore.collection('users', q => q.where('email', '==', email)).snapshotChanges().pipe(
       map(actions => {
-        return actions.map(x=>{
+        return actions.map(x => {
           var acc = x.payload.doc.data() as User;
           return {
             ...acc,
             docId: x.payload.doc.id
-          } as User; 
+          } as User;
         });
       }));
   }
 
-  isMobileExist(mobile:string) {
-    return this.firestore.collection('users', q=>q.where('mobile', '==', mobile)).snapshotChanges().pipe(
+  isMobileExist(mobile: string) {
+    return this.firestore.collection('users', q => q.where('mobile', '==', mobile)).snapshotChanges().pipe(
       map(actions => {
-        return actions.map(x=>{
+        return actions.map(x => {
           var acc = x.payload.doc.data() as User;
           return {
             ...acc,
             docId: x.payload.doc.id
-          } as User; 
+          } as User;
         });
       }));
   }
 
-  isNameExist(name:string) {
-    return this.firestore.collection('users', q=>q.where('name', '==', name)).snapshotChanges().pipe(
+  isNameExist(name: string) {
+    return this.firestore.collection('users', q => q.where('name', '==', name)).snapshotChanges().pipe(
       map(actions => {
-        return actions.map(x=>{
+        return actions.map(x => {
           var acc = x.payload.doc.data() as User;
           return {
             ...acc,
             docId: x.payload.doc.id
-          } as User; 
+          } as User;
         });
       }));
   }
 
-  public getFamilyUsers (parentUserDocId:string) {
-    return this.firestore.collection('users', q=>q.where('parentUserDocId', '==', parentUserDocId)).snapshotChanges().pipe(
+  public getFamilyUsers(parentUserDocId: string) {
+    return this.firestore.collection('users', q => q.where('parentUserDocId', '==', parentUserDocId)).snapshotChanges().pipe(
       map(actions => {
         return actions.map(x => {
           var acc = x.payload.doc.data() as User;
@@ -209,30 +209,7 @@ export class AccountService extends FirestoreBaseService<User>{
     return this.getByDocId(docId);
   }
 
-
   public getUsersByDocIds(docIds: string[]) {
-
-    // this.firestore.collection('users', q=>q.where('docId', 'in', ['9DgiojaV7GQ9BC7Hok5W','TnvezqX0wb4GpAcDoR7I']));
-
-    // console.log('getusersbydocids');
-    // this.firestore.collection('users', q => q.where('docId', 'in', ['9DgiojaV7GQ9BC7Hok5W', 'TnvezqX0wb4GpAcDoR7I'])).snapshotChanges().pipe(
-    //   map(actions => {
-    //     if (actions && actions.length > 0) {
-    //       actions.forEach(x => {
-    //         var acc = actions[0].payload.doc.data() as User;
-    //         console.log("account service: ", acc);
-
-    //         // return {
-    //         //   ...acc,
-    //         //   docId: actions[0].payload.doc.id
-    //         // };
-    //       });
-
-    //     } else {
-    //       return null;
-    //     }
-    //   }));
-
     var allUsers = this.getAllUsers();
     let users: User[] = [];
 
@@ -241,7 +218,6 @@ export class AccountService extends FirestoreBaseService<User>{
         users.push(usrs.filter(u => u.docId === id)[0]);
       })
       return users;
-
     });
     return users;
   }

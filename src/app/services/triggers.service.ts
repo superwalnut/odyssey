@@ -41,27 +41,58 @@ export class TriggersService {
   bookingWorker(group: Group) {
     console.log("bookingworkser:", group);
     var committees = group.committees;
-    var users = this.accountService.getUsersByDocIds(committees);
-    console.log('committee users: ', users);
+    var peoples: BookingPerson[] = [];
+    this.accountService.getUsersByUserDocIds(committees).subscribe(us => {
+      peoples = this.mapUserToBookingPerson(us);
+      console.log('committee users: ', peoples);
+
+
+    });
+    console.log('committee users: ', peoples);
 
     group.eventStartDay;
     group.eventStartTime;
 
+    var nextEventStartDateTime = this.getEventStartDateTime(group);
+
     var booking = {
       groupDocId: group.docId,
-      people: this.mapUserToBookingPerson(users),
+      people: peoples,
       isLocked: false,
-      eventStartDateTime: null,
+      eventStartDateTime: nextEventStartDateTime,
       bookingStartDay: group.bookingStartDay,
       weekDay: group.eventStartDay,
     } as Booking;
 
+    console.log("Next booking ready: ", booking);
+
+  }
+
+  getEventStartDateTime(group: Group) {
+    let startDay = group.eventStartDay;
+    let startTime = group.eventStartTime;
+    let lastBooking = this.getLastBooking(group.docId)
+    let lastBookingDate;
+    if (lastBooking == null) {
+      lastBookingDate = this.helperService.today();
+    } else {
+      lastBookingDate = lastBooking.eventStartDateTime;
+    }
+
+    let nextEventDate = this.helperService.findNextDayOfTheWeek(startDay, true, lastBookingDate);
+    console.log("next event start date: ", nextEventDate);
+    return this.helperService.convertToTimestamp(nextEventDate);
   }
 
   mapUserToBookingPerson(users: User[]) {
     var bookingpersons: BookingPerson[] = [];
+    users
+    console.log("users original input: ", users);
+    console.log("users length: ", users.length);
 
     users.forEach(u => {
+      console.log("u =>: ", u);
+
       var bookingPerson = {
         userId: u.docId,
         userDisplayName: u.name,
@@ -70,20 +101,22 @@ export class TriggersService {
         isPaid: true,
         createdOn: Timestamp.now(),
       } as BookingPerson;
+      console.log("booking person: ", bookingPerson);
+
       bookingpersons.push(bookingPerson);
     });
 
+    console.log("booking persons: ", bookingpersons);
     return bookingpersons;
   }
 
   getLastBooking(groupDocId: string) {
+    var b: Booking;
     this.bookingService.getLastBookingByGroupDocId(groupDocId).subscribe(booking => {
       console.log(booking);
-      if (booking != null) {
-        var eventStartDateTime = booking.eventStartDateTime;
-      }
-
+      b = booking;
     });
+    return b;
 
   }
 }
