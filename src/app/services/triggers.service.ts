@@ -42,31 +42,33 @@ export class TriggersService {
   bookingWorker(group: Group) {
     console.log("bookingworkser:", group);
     var committees = group.committees;
+    console.log('committee users: ', committees);
+
     var peoples: BookingPerson[] = [];
     this.accountService.getUsersByUserDocIds(committees).subscribe(us => {
       peoples = this.mapUserToBookingPerson(us);
-      console.log('committee users: ', peoples);
+      console.log('committee users: ', us);
 
 
     });
     console.log('committee users: ', peoples);
 
-    var users:User[];
-    this.accountService.getUsersByDocIds(committees).pipe(take(1)).subscribe(x=>{
+    var users: User[];
+    this.accountService.getUsersByDocIds(committees).pipe(take(1)).subscribe(x => {
       users = x;
 
-    var nextEventStartDateTime = this.getEventStartDateTime(group);
+      var nextEventStartDateTime = this.getEventStartDateTime(group);
 
-    var booking = {
-      groupDocId: group.docId,
-      people: peoples,
-      isLocked: false,
-      eventStartDateTime: nextEventStartDateTime,
-      bookingStartDay: group.bookingStartDay,
-      weekDay: group.eventStartDay,
-    } as Booking;
+      var booking = {
+        groupDocId: group.docId,
+        people: peoples,
+        isLocked: false,
+        eventStartDateTime: nextEventStartDateTime,
+        bookingStartDay: group.bookingStartDay,
+        weekDay: group.eventStartDay,
+      } as Booking;
 
-    console.log("Next booking ready: ", booking);
+      console.log("Next booking ready: ", booking);
 
     });
   }

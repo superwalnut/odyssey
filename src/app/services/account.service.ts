@@ -192,10 +192,14 @@ export class AccountService extends FirestoreBaseService<User>{
   }
 
   public getUsersByUserDocIds(docIds: string[]) {
-    return this.firestore.collection('users', q => q.where("docId", "array-contains-any", docIds)).snapshotChanges().pipe(
+    console.log("getUsersByUserDocIds: ", docIds);
+
+    return this.firestore.collection('users', q => q.where("docId", "in", docIds)).snapshotChanges().pipe(
       map(actions => {
         return actions.map(p => {
           var user = p.payload.doc.data() as User;
+          console.log("getUsersByUserDocIds user: ", user);
+
           return { ...user, docId: p.payload.doc.id } as User;
         });
       }));
@@ -210,8 +214,8 @@ export class AccountService extends FirestoreBaseService<User>{
   }
 
 
-  public getUsersByDocIds(docIds: string[]) : Observable<User[]>{
-    
+  public getUsersByDocIds(docIds: string[]): Observable<User[]> {
+
     // this.firestore.collection('users', q=>q.where('docId', 'in', ['9DgiojaV7GQ9BC7Hok5W','TnvezqX0wb4GpAcDoR7I']));
 
     // console.log('getusersbydocids');
@@ -232,8 +236,8 @@ export class AccountService extends FirestoreBaseService<User>{
     //       return null;
     //     }
     //   }));
-    return this.getAllUsers().pipe(map(users=>{
-      return users.filter(x=> docIds.indexOf(x.docId) > 0);
+    return this.getAllUsers().pipe(map(users => {
+      return users.filter(x => docIds.indexOf(x.docId) > 0);
     }));
   }
 
