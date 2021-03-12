@@ -68,6 +68,7 @@ export class TriggersService {
 
     console.log("Next booking ready: ", booking);
 
+    });
   }
 
   getEventStartDateTime(group: Group) {
