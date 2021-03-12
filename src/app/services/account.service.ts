@@ -209,17 +209,32 @@ export class AccountService extends FirestoreBaseService<User>{
     return this.getByDocId(docId);
   }
 
-  public getUsersByDocIds(docIds: string[]) {
-    var allUsers = this.getAllUsers();
-    let users: User[] = [];
 
-    allUsers.subscribe(usrs => {
-      docIds.forEach(id => {
-        users.push(usrs.filter(u => u.docId === id)[0]);
-      })
-      return users;
-    });
-    return users;
+  public getUsersByDocIds(docIds: string[]) : Observable<User[]>{
+    
+    // this.firestore.collection('users', q=>q.where('docId', 'in', ['9DgiojaV7GQ9BC7Hok5W','TnvezqX0wb4GpAcDoR7I']));
+
+    // console.log('getusersbydocids');
+    // this.firestore.collection('users', q => q.where('docId', 'in', ['9DgiojaV7GQ9BC7Hok5W', 'TnvezqX0wb4GpAcDoR7I'])).snapshotChanges().pipe(
+    //   map(actions => {
+    //     if (actions && actions.length > 0) {
+    //       actions.forEach(x => {
+    //         var acc = actions[0].payload.doc.data() as User;
+    //         console.log("account service: ", acc);
+
+    //         // return {
+    //         //   ...acc,
+    //         //   docId: actions[0].payload.doc.id
+    //         // };
+    //       });
+
+    //     } else {
+    //       return null;
+    //     }
+    //   }));
+    return this.getAllUsers().pipe(map(users=>{
+      return users.filter(x=> docIds.indexOf(x.docId) > 0);
+    }));
   }
 
   private saveLocal(user: User) {

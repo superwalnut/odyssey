@@ -11,6 +11,7 @@ import { HelperService } from '../common/helper.service';
 
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
+import { take } from 'rxjs/operators';
 
 //import { GroupsComponent } from '../views/groups/groups.component';
 
@@ -50,8 +51,9 @@ export class TriggersService {
     });
     console.log('committee users: ', peoples);
 
-    group.eventStartDay;
-    group.eventStartTime;
+    var users:User[];
+    this.accountService.getUsersByDocIds(committees).pipe(take(1)).subscribe(x=>{
+      users = x;
 
     var nextEventStartDateTime = this.getEventStartDateTime(group);
 

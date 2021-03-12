@@ -5,8 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../services/account.service';
 import { BaseComponent } from '../../base-component';
+import { combineLatest } from 'rxjs';
 import { take } from 'rxjs/operators';
-
 @Component({
   selector: 'app-manage-profile',
   templateUrl: './manage-profile.component.html',
@@ -63,49 +63,48 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       mobile: this.profileForm.value.mobile,
     } as User;
 
-    this.accountService.isEmailExist(user.email).pipe(take(1)).subscribe((e) => {
-      const foundIds = e.filter(x=>x.docId != this.userDocId);
-      if(foundIds && foundIds.length > 0) {
+    const emailCheck$ = this.accountService.isEmailExist(user.email);
+    const nameCheck$ = this.accountService.isNameExist(user.name);
+    const mobileCheck$ = this.accountService.isMobileExist(user.mobile);
+
+    combineLatest([emailCheck$, nameCheck$, mobileCheck$]).pipe(take(1)).subscribe(results => {
+      const foundEmail = results[0].filter(x=>x.docId != this.userDocId);
+      const foundName = results[1].filter(x=>x.docId != this.userDocId);
+      const foundMobile = results[2].filter(x=>x.docId != this.userDocId);
+
+      var err = '';
+      if(foundEmail.length>0){
+        err = 'this email is already existed.';
         this.profileForm.controls.email.setErrors({'incorrect': true});
-        this.snackBar.open(`this email is already existed.`, null, {
+      }
+
+      if(foundName.length>0){
+        err = 'this name is existed.';
+        this.profileForm.controls.name.setErrors({'incorrect': true});
+      }
+
+      if(foundMobile.length > 0){
+        err = 'this mobile is existed.';
+        this.profileForm.controls.mobile.setErrors({'incorrect': true});
+      }
+
+      if(err){
+        this.snackBar.open(err, null, {
           duration: 5000,
           verticalPosition: 'top'
         });
       } else {
-        this.accountService.isMobileExist(user.mobile).pipe(take(1)).subscribe(m=>{
-          const foundIds = m.filter(x=>x.docId != this.userDocId);
-          if(foundIds && foundIds.length > 0) {
-            this.profileForm.controls.mobile.setErrors({'incorrect': true});
-            this.snackBar.open(`this mobile is existed.`, null, {
-              duration: 5000,
-              verticalPosition: 'top'
-            });
-          } else {
-            this.accountService.isNameExist(user.name).pipe(take(1)).subscribe(n=>{
-              const foundIds = n.filter(x=>x.docId != this.userDocId);
-              if(foundIds && foundIds.length > 0) {
-                    this.profileForm.controls.name.setErrors({'incorrect': true});
-                this.snackBar.open(`this name is existed.`, null, {
-                  duration: 5000,
-                  verticalPosition: 'top'
-                });
-              } else {
-                console.log('updating user');
-                this.accountService.updateUser(this.user.docId, user).then(x => {
-                  this.snackBar.open(`you have successfully updated profile.`, null, {
-                    duration: 5000,
-                    verticalPosition: 'top'
-                  });
-                }).catch(x=>{
-                  this.snackBar.open(x, null, {
-                    duration: 5000,
-                    verticalPosition: 'top'
-                  });
-                });
-              }
-            });
-            
-          }
+        // update user
+        this.accountService.updateUser(this.user.docId, user).then(x => {
+          this.snackBar.open(`you have successfully updated profile.`, null, {
+            duration: 5000,
+            verticalPosition: 'top'
+          });
+        }).catch(x=>{
+          this.snackBar.open(x, null, {
+            duration: 5000,
+            verticalPosition: 'top'
+          });
         });
       }
     });
