@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, } from "@angular/core";
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map, startWith, take } from 'rxjs/operators';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -119,7 +119,9 @@ export class GroupdetailsComponent implements OnInit {
           groupDesc: x.groupDesc,
         });
 
-        this.selectedUsers = this.accountService.getUsersByDocIds(x.committees);
+        this.accountService.getUsersByDocIds(x.committees).pipe(take(1)).subscribe(x=>{
+          this.selectedUsers = x
+        });
       });
     }
   }
