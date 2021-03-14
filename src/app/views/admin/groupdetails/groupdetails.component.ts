@@ -121,7 +121,7 @@ export class GroupdetailsComponent implements OnInit {
 
         console.log('committeeIds', x.committees);
 
-        this.accountService.getUsersByDocIds(x.committees).pipe(take(1)).subscribe(o=>{
+        this.accountService.getUsersByUserDocIds(x.committees).pipe(take(1)).subscribe(o=>{
           this.selectedUsers = o
           console.log('getting committees', o);
         });

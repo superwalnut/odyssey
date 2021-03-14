@@ -213,34 +213,6 @@ export class AccountService extends FirestoreBaseService<User>{
     return this.getByDocId(docId);
   }
 
-
-  public getUsersByDocIds(docIds: string[]): Observable<User[]> {
-
-    // this.firestore.collection('users', q=>q.where('docId', 'in', ['9DgiojaV7GQ9BC7Hok5W','TnvezqX0wb4GpAcDoR7I']));
-
-    // console.log('getusersbydocids');
-    // this.firestore.collection('users', q => q.where('docId', 'in', ['9DgiojaV7GQ9BC7Hok5W', 'TnvezqX0wb4GpAcDoR7I'])).snapshotChanges().pipe(
-    //   map(actions => {
-    //     if (actions && actions.length > 0) {
-    //       actions.forEach(x => {
-    //         var acc = actions[0].payload.doc.data() as User;
-    //         console.log("account service: ", acc);
-
-    //         // return {
-    //         //   ...acc,
-    //         //   docId: actions[0].payload.doc.id
-    //         // };
-    //       });
-
-    //     } else {
-    //       return null;
-    //     }
-    //   }));
-    return this.getAllUsers().pipe(map(users => {
-      return users.filter(x => docIds.indexOf(x.docId) > 0);
-    }));
-  }
-
   private saveLocal(user: User) {
     console.log('local', user);
     var encripted = this.encryptData(JSON.stringify({ docId: user.docId, name: user.name, role: user.role }));
