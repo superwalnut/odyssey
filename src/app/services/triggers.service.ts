@@ -54,7 +54,7 @@ export class TriggersService {
     console.log('committee users: ', peoples);
 
     var users: User[];
-    this.accountService.getUsersByDocIds(committees).pipe(take(1)).subscribe(x => {
+    this.accountService.getUsersByUserDocIds(committees).pipe(take(1)).subscribe(x => {
       users = x;
 
       var nextEventStartDateTime = this.getEventStartDateTime(group);

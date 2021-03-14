@@ -213,6 +213,8 @@ export class AccountService extends FirestoreBaseService<User>{
     return this.getByDocId(docId);
   }
 
+
+
   private saveLocal(user: User) {
     console.log('local', user);
     var encripted = this.encryptData(JSON.stringify({ docId: user.docId, name: user.name, role: user.role }));
