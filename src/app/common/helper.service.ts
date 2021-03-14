@@ -43,11 +43,19 @@ export class HelperService {
     refDate.setHours(0, 0, 0, 0);
     refDate.setDate(refDate.getDate() + +!!excludeToday +
       (dayOfWeek + 7 - refDate.getDay() - +!!excludeToday) % 7);
-    console.log('findNextDayOfTheWeek: ', refDate);
-
     return refDate;
   }
 
+  extractHour(str: any) {
+
+    var h = String(str).split(':')[0]
+
+    console.log("new date: ", String(str).split(':'));
+    return Number(h);
+    //let newDate = str.toDate().toDateString();
+    //console.log("new date: ", newDate);
+    //return newDate;
+  }
   convertToTimestamp(date: Date): Timestamp {
     const ts = Timestamp.fromDate(date);
     return ts;

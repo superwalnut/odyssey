@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+//import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { GroupService } from './group.service';
 import { BookingsService } from './bookings.service';
 import { AccountService } from './account.service';
@@ -21,9 +22,8 @@ import { take } from 'rxjs/operators';
 
 //This service will be replaced by Firebase cloud schedulers in the future
 export class TriggersService {
-
-  constructor(private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService, private helperService: HelperService) { }
-
+  constructor(private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService, private helperService: HelperService) {
+  }
 
   prepopulateBookings() {
     //1. getting all active groups
@@ -46,7 +46,7 @@ export class TriggersService {
 
     var peoples: BookingPerson[] = [];
     this.accountService.getUsersByUserDocIds(committees).subscribe(us => {
-      peoples = this.mapUserToBookingPerson(us);
+      peoples = this.mapCommitteesToBookingPerson(us);
       console.log('committee users: ', us);
 
 
@@ -69,6 +69,7 @@ export class TriggersService {
       } as Booking;
 
       console.log("Next booking ready: ", booking);
+      //this.bookingService.createBooking(booking);
 
     });
   }
@@ -76,20 +77,29 @@ export class TriggersService {
   getEventStartDateTime(group: Group) {
     let startDay = group.eventStartDay;
     let startTime = group.eventStartTime;
-    let lastBooking = this.getLastBooking(group.docId)
-    let lastBookingDate;
-    if (lastBooking == null) {
-      lastBookingDate = this.helperService.today();
-    } else {
-      lastBookingDate = lastBooking.eventStartDateTime;
-    }
+    var lastBooking = group.currentBooking;
+    console.log('lastBooking: ', lastBooking);
 
-    let nextEventDate = this.helperService.findNextDayOfTheWeek(startDay, true, lastBookingDate);
-    console.log("next event start date: ", nextEventDate);
+    let lastBookingEventStartDate;//lastBooking.eventStartDateTime);
+    if (lastBooking == null) {
+      lastBookingEventStartDate = this.helperService.today();
+    } else {
+      lastBookingEventStartDate = this.helperService.convertToDate(lastBooking.eventStartDateTime);
+    }
+    console.log("last event start date: ", lastBookingEventStartDate);
+
+    let nextEventDate = this.helperService.findNextDayOfTheWeek(startDay, true, lastBookingEventStartDate);
+    var hh = this.helperService.extractHour(startTime);
+    var newhh = nextEventDate.setUTCHours(hh);
+    console.log("next event start date ", new Date(newhh).toUTCString());
+
+
+
+    //console.log("next event start date: ", new Date(nextEventDate.setHours(startTime)));
     return this.helperService.convertToTimestamp(nextEventDate);
   }
 
-  mapUserToBookingPerson(users: User[]) {
+  mapCommitteesToBookingPerson(users: User[]) {
     var bookingpersons: BookingPerson[] = [];
     users
     console.log("users original input: ", users);
@@ -115,13 +125,10 @@ export class TriggersService {
     return bookingpersons;
   }
 
-  getLastBooking(groupDocId: string) {
-    var b: Booking;
-    this.bookingService.getLastBookingByGroupDocId(groupDocId).subscribe(booking => {
-      console.log(booking);
-      b = booking;
-    });
-    return b;
-
-  }
+  // getLastBooking(groupDocId: string) {
+  //   this.bookingService.getLastBookingByGroupDocId(groupDocId).subscribe(booking => {
+  //     console.log('getLastBooking() ', booking);
+  //     this.lastBookingSubject.next(booking);
+  //   });
+  // }
 }

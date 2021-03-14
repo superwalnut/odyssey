@@ -18,6 +18,10 @@ export class BookingsService extends FirestoreBaseService<Booking>{
   }
 
 
+  public createBooking(booking: Booking) {
+    super.create(booking);
+  }
+
   public createGroupExpense(booking: Booking) {
     return this.create(booking);
   }
@@ -46,6 +50,7 @@ export class BookingsService extends FirestoreBaseService<Booking>{
       map(actions => {
         if (actions && actions.length > 0) {
           var booking = actions[0].payload.doc.data() as Booking;
+          console.log('getLastBookingByGroupDocId() ', booking);
           return { ...booking, docId: actions[0].payload.doc.id } as Booking;
         } else {
           return null;

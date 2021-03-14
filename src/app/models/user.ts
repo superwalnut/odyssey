@@ -10,6 +10,8 @@ export class User {
     mobile: string;
     parentUserDocId: string;
     role: string[];
+    isMale: boolean;
+    isAdult: boolean;
     isMember: boolean;
     created: Timestamp;
     updated: Timestamp;
