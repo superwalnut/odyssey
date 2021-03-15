@@ -22,5 +22,5 @@ export class Group {
   updated: Timestamp;
   updatedBy: string;
   //every time the new booking if created in the Booking table, also update this object here!
-  currentBooking: Booking;// shortcut to the latest booking, to avoid nested query nightmare!
+  //currentBooking: Booking;// shortcut to the latest booking, to avoid nested query nightmare!
 }

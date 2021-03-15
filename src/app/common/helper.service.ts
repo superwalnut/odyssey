@@ -19,10 +19,28 @@ export class HelperService {
 
     //let datestring = '1968-11-16T10:30:00';
     let datestring = day + 'T' + time;
+    console.log("original date and time: ", datestring);
     let newDate = new Date(datestring);
     console.log('combinDateAndTime: ', newDate);
     return newDate;
   }
+
+  combinDateTypeAndTime(date: Date, time: string) {
+
+    //let datestring = '1968-11-16T10:30:00';
+    console.log('xxxxx: ', time);
+
+    var month = ('0' + (date.getMonth() + 1)).slice(-2);
+var day = ('0' + date.getDate()).slice(-2);
+var year = date.getFullYear();
+    var newdate = year + "-" + month + "-" + day;
+    
+    console.log('combinDateTypeAndTime: ', newdate);
+    console.log(this.combinDateAndTime(newdate, time));
+
+    return this.combinDateAndTime(newdate, time);
+  }
+
 
 
 
