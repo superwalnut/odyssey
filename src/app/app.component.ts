@@ -20,7 +20,7 @@ import { freeSet } from "@coreui/icons";
   //       <a routerLink="termsconditions">Terms & Conditions</a>
   //     </div>
   //   </footer>`,
-  template: "<router-outlet></router-outlet>",
+  templateUrl: './app.component.html',
   providers: [IconSetService],
 })
 export class AppComponent implements OnInit {
