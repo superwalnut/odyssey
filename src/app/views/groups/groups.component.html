@@ -7,28 +7,25 @@
         <h1 class="section-heading">This Week's Events</h1>
       </div>
     </div>
-
     <div class="row light">
       <div class="col">
-
-        <table class="table table-hover table-dark booking">
         
-          <tbody>
-            <tr *ngFor="let g of groups">
-              <td>{{ g.groupName}}</td>
-              <td>{{ g.eventStartDay }}</td>
-              <td><button type="button" class="btn btn-primary" routerLink="/booking">Book</button></td>
-          </tr>
-          </tbody>
-        </table>
+        <mat-card *ngFor="let g of groups" class="card-sm booking"> 
+          <a routerLink="/booking/{{g.docId}}">
+          <mat-card-header>
+            <mat-card-title>{{g.groupName}}</mat-card-title>
+          </mat-card-header>
           
+          <img mat-card-image src="assets/img/banners/badminton.jpg">
+          <mat-card-content>
+            <p>{{g.groupDesc}}</p>
+          </mat-card-content>
+        </a>
+        </mat-card> 
+        
 
-
-
-      </div>
+      </div>      
     </div>
-
-
 
   </div>
 </div>

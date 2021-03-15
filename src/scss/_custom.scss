@@ -119,6 +119,21 @@ nav {
 }
 .card-sm {
   max-width: 20rem;
+  
+  &.booking{
+    a {
+      text-decoration: none;
+      color:black;
+    }
+    float: left;
+    margin-right:25px;
+    margin-bottom: 25px;
+    &:hover{
+      box-shadow: 0 0 11px rgba(33,33,33,.2); 
+
+    }
+
+  }
 }
 
 .section-heading {
