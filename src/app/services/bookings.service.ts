@@ -61,6 +61,20 @@ export class BookingsService extends FirestoreBaseService<Booking>{
   }
 
 
+  public getThisWeeksBooking(groupDocId: string) {
+    return this.firestore.collection('bookings', q => q.where('groupDocId', '==', groupDocId).where('eventStartDateTime','>=', Timestamp.now()).orderBy('eventStartDateTime', 'asc').limit(1)).snapshotChanges().pipe(
+      map(actions => {
+        if (actions && actions.length > 0) {
+          var booking = actions[0].payload.doc.data() as Booking;
+          console.log('getThisWeeksBooking() ', booking);
+          return { ...booking, docId: actions[0].payload.doc.id } as Booking;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
   //Get bookings by date range
   public getByDateRange(groupdDocId: string, startDate: Timestamp, endDate: Timestamp) {
 
