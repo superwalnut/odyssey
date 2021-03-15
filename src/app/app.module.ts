@@ -70,6 +70,7 @@ import { LogoutComponent } from "./views/logout/logout.component";
 import { ResetpasswordComponent } from './views/resetpassword/resetpassword.component';
 import { SharedModule } from "./views/shared/shared.module";
 import { GroupsComponent } from './views/groups/groups.component';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   imports: [
@@ -95,6 +96,7 @@ import { GroupsComponent } from './views/groups/groups.component';
     MatMenuModule,
     CarouselModule.forRoot(),
     SharedModule,
+    HttpClientModule
   ],
   exports: [BrowserAnimationsModule],
   declarations: [
