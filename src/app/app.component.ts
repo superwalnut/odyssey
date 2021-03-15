@@ -8,7 +8,7 @@ import { freeSet } from "@coreui/icons";
 
 @Component({
   // tslint:disable-next-line
-  selector: "body",
+  selector: "app-root",
   // template: ` <app-public-header></app-public-header>
   //   <router-outlet></router-outlet>
   //   <footer class="app-footer">
