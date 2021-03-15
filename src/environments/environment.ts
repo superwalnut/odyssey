@@ -12,8 +12,8 @@ export const environment = {
     storageBucket: "hbclub-919aa.appspot.com",
     messagingSenderId: "662012824452",
     appId: "1:662012824452:web:53cfe97159e39745a5abd1",
-    measurementId: "G-E3M8ZFWFZB"
-
+    measurementId: "G-E3M8ZFWFZB",
+    mailgunapi:"520a91c49b5a694b32f640f22dd313af-29561299-804372a6"
 
 
     // databaseURL: "https://hbc666.firebaseio.com",
