@@ -19,6 +19,7 @@ import { GroupexpenseComponent } from './groupexpense/groupexpense.component';
 import { SharedModule } from "../shared/shared.module";
 import { RptIncomeComponent } from './reports/rpt-income/rpt-income.component';
 import { TriggersComponent } from './triggers/triggers.component';
+import { BookingdetailsComponent } from './bookingdetails/bookingdetails.component';
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import { TriggersComponent } from './triggers/triggers.component';
     GroupexpenseComponent,
     RptIncomeComponent,
     TriggersComponent,
+    BookingdetailsComponent,
   ],
 })
 export class AdminModule { }

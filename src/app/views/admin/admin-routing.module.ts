@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { UsersComponent } from "./users/users.component";
 import { BookingsComponent } from "./bookings/bookings.component";
+import { BookingdetailsComponent } from "./bookingdetails/bookingdetails.component";
 
 import { UserdetailsComponent } from "./userdetails/userdetails.component";
 import { SitesettingsComponent } from "./sitesettings/sitesettings.component";
@@ -74,6 +75,13 @@ const routes: Routes = [
         component: BookingsComponent,
         data: {
           title: "Manage bookings",
+        },
+      },
+      {
+        path: "bookingdetails/:id",
+        component: BookingdetailsComponent,
+        data: {
+          title: "Booking detailss",
         },
       },
 

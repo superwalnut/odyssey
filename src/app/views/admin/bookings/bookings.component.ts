@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from "@angular/material/table";
+import { ActivatedRoute } from "@angular/router";
 
 import { Group } from "../../../models/group";
 
@@ -31,11 +32,18 @@ export class BookingsComponent implements OnInit {
 
 
 
-  constructor(public dialog: MatDialog, private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService) { }
+  constructor(public dialog: MatDialog, private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.myDocId = this.accountService.getLoginAccount().docId;
     this.getMyGroups();
+
+    var groupDocId = this.activatedRoute.snapshot.params.id;
+    if (groupDocId) {
+      this.getBookingsByGroupDocId(groupDocId);
+    }
+
+
   }
 
   toggleLock(name: string) {
@@ -59,12 +67,10 @@ export class BookingsComponent implements OnInit {
   }
 
   getBookingsByGroupDocId(groupDocId: string) {
-    console.log("bookings:...");
-    var bs1 = { docId: '111111', isLocked: false, date: Date.now() };
-    var bs2 = { docId: '22222', isLocked: true, date: Date.now() };
-
+    
     this.bookingService.getByGroupDocId(groupDocId).subscribe(bookings => {
       this.dataSource.data = bookings;
+      console.log("get bookings...", bookings);
       bookings.forEach(b => {
         console.log(b);
 

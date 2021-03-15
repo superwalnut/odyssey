@@ -37,6 +37,7 @@ export class BookingsService extends FirestoreBaseService<Booking>{
       map(actions => {
         var items = actions.map(p => {
           var data = p.payload.doc.data() as Booking;
+          console.log('getByGroupDocId()', data);
           return { ...data, docId: p.payload.doc.id } as Booking;
         });
         return items;
