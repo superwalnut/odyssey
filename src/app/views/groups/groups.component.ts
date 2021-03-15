@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Group } from "../../models/group";
+import { GroupService } from "../../services/group.service";
 
 @Component({
   selector: 'app-groups',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupsComponent implements OnInit {
 
-  constructor() { }
+  groups:Group[];
+  constructor(private groupService:GroupService) { }
 
   ngOnInit(): void {
+    this.getAllGroups();
+  }
+
+  getAllGroups(){
+    this.groupService.getGroups().subscribe(groups=>{
+      this.groups = groups;
+
+    })
+
   }
 
 }

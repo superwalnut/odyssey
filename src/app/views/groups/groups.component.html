@@ -14,23 +14,13 @@
         <table class="table table-hover table-dark booking">
         
           <tbody>
-            <tr>
-              <td>TUE Badminton Social Group</td>
-              <td>TUE 8-11PM</td>
+            <tr *ngFor="let g of groups">
+              <td>{{ g.groupName}}</td>
+              <td>{{ g.eventStartDay }}</td>
               <td><button type="button" class="btn btn-primary" routerLink="/booking">Book</button></td>
           </tr>
-            <tr>
-              <td>FRI Badminton Social Group</td>
-              <td>FRI 8-11PM</td>
-              <td><button type="button" class="btn btn-primary">Book</button></td>
-            </tr>
-            <tr>
-              <td>SAT Badminton Social Group</td>
-              <td>SAT 5-8PM</td>
-              <td><button type="button" class="btn btn-primary">Book</button></td>
-            </tr>
           </tbody>
-          </table>
+        </table>
           
 
 
