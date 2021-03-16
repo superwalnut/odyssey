@@ -1,12 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map, startWith, take } from 'rxjs/operators';
+import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { Group } from "../../models/group";
 import { GroupService } from "../../services/group.service";
 import { Booking } from "../../models/booking";
 import { BookingPerson } from "../../models/booking-person";
+import { Account } from "../../models/account";
 
 import { BookingsService } from "../../services/bookings.service";
 import { ActivatedRoute } from "@angular/router";
 import { GlobalConstants } from '../../common/global-constants';
+import { AccountService } from '../../services/account.service';
+import { User } from '../../models/user';
+
 
 @Component({
   selector: 'app-booking',
@@ -18,24 +25,53 @@ export class BookingComponent implements OnInit {
   panelOpenState = false;
   group:Group;
   bookingPerons:BookingPerson[];
+  familyMembers:User[]=[];
 
+  allUsers: string[] = [];
+  allUsersObject: User[];
+  myControl = new FormControl();
+  filteredUsers: Observable<string[]>;
+  selectedUsers: User[] = [];
 
-  constructor(private groupService:GroupService, private bookingService:BookingsService,private activatedRoute:ActivatedRoute) { }
+  constructor(private groupService:GroupService, private bookingService:BookingsService, private accountService:AccountService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
 
     var groupDocId = this.activatedRoute.snapshot.params.id;
+    var acc = this.accountService.getLoginAccount();
     this.getGroupDetail(groupDocId);
     this.getCurrentBooking(groupDocId);
+    this.getFamilyMembers(acc);
+
+    // var loggedInUser = this.accountService.getLoginAccount();
+    // this.accountService.getUserByDocId(loggedInUser.docId).subscribe(x => {
+    //   this.selectedUsers.push(x);//current user default to be the committee;
+    // });
+
+    this.filteredUsers = this.myControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+
+    this.accountService.getAllUsers().subscribe((x) => {
+      this.allUsersObject = x;
+      x.forEach(u => { if (u) { this.allUsers.push(u.name); }})
+    });
+  }
+
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allUsers.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   getGroupDetail(groupDocId:string) {
     this.groupService.getGroup(groupDocId).subscribe(g=>{
       this.group = g;
       console.log(this.group);
-
     });
-
   }
 
   //cil-dollar, cil-credit-card
@@ -54,7 +90,42 @@ export class BookingComponent implements OnInit {
       this.bookingPerons=b.people;
 
     });
+  }
+
+  getFamilyMembers(acc:Account) {
+    this.accountService.getFamilyUsers(acc.docId).subscribe(users=>{
+      console.log('family: ', users);
+      var my = { docId: acc.docId, name: acc.name} as User;
+      this.familyMembers.push(my);
+      if (users) {
+        users.forEach(u=>{
+          this.familyMembers.push(u);
+        });
+      }
+      console.log('family members: ', this.familyMembers);
+
+
+    })
 
   }
+
+
+  addFriend(selectedUserControl) {
+    if (selectedUserControl.value == null) {
+      return false;
+    }
+    var test = this.allUsersObject.filter(x => {
+      return x.name === selectedUserControl.value
+    });
+    this.selectedUsers.push(test[0]);
+
+
+  }
+
+  removeFriend(item) {
+    this.selectedUsers = this.selectedUsers.filter(x => x != item);
+  }
+
+
 
 }
