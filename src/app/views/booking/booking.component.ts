@@ -28,7 +28,7 @@ export class BookingComponent implements OnInit {
   bookingPerons:BookingPerson[];
   //familyMembers:User[]=[];
   familyBookingUsers:FamilyBookingUser[]=[];
-  friendBookingUser:FriendBookingUser[]=[];
+  friendBookingUsers:FriendBookingUser[]=[];
 
   allUsers: string[] = [];
   allUsersObject: User[];
@@ -129,17 +129,22 @@ export class BookingComponent implements OnInit {
     var test = this.allUsersObject.filter(x => {
       return x.name === selectedUserControl.value
     });
-    this.selectedUsers.push(test[0]);
+    console.log("selected friend: ", test);
+    var friendBookingUser = { userDocId: test[0].docId, name: test[0].name } as FriendBookingUser;
+    this.friendBookingUsers.push(friendBookingUser);
+    //this.selectedUsers.push(test[0]);
   }
 
   removeFriend(item) {
-    this.selectedUsers = this.selectedUsers.filter(x => x != item);
+    this.friendBookingUsers = this.friendBookingUsers.filter(x => x != item);
   }
 
   onConfirmClick() {
     this.dialogRef.closeAll();
     console.log("Family bookings: ", this.familyBookingUsers);
-    console.log("Friends booking: ", this.selectedUsers);
+    console.log("Friends booking: ", this.friendBookingUsers);
+    //TODO: now we have final booking users, convert them to BookingPerson and save to db!
+
   }
 }
 

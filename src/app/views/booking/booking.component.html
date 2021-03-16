@@ -146,7 +146,7 @@ aria-hidden="true"
             </mat-panel-description>
           </mat-expansion-panel-header>
           
-          <div *ngIf="selectedUsers.length == 0">
+          <div *ngIf="friendBookingUsers.length == 0">
           <mat-form-field >
             <mat-label>Search</mat-label>
             <input matInput type="text" [formControl]="myControl" [matAutocomplete]="auto"/>
@@ -160,9 +160,9 @@ aria-hidden="true"
 
 
           <table class="table table-sm table-borderless">
-            <tr *ngFor="let item of selectedUsers">
+            <tr *ngFor="let item of friendBookingUsers">
               <td width="60%">{{ item.name }}</td>
-              <td><mat-checkbox class="example-margin">Use my credit</mat-checkbox></td>
+              <td><mat-checkbox class="example-margin" [(ngModel)]="item.userMyCredit">Use my credit</mat-checkbox></td>
               <td><button mat-raised-button color="warn" (click)="removeFriend(item)"><mat-icon>remove</mat-icon>
               </button></td>
             </tr>         
