@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, startWith, take } from 'rxjs/operators';
-import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, FormControl, Validators, ValidationErrors } from "@angular/forms";
 import { Group } from "../../models/group";
 import { GroupService } from "../../services/group.service";
 import { Booking } from "../../models/booking";
@@ -13,6 +13,8 @@ import { ActivatedRoute } from "@angular/router";
 import { GlobalConstants } from '../../common/global-constants';
 import { AccountService } from '../../services/account.service';
 import { User } from '../../models/user';
+//import {MatDialog} from '@angular/material';
+import { MatDialog,MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -21,19 +23,20 @@ import { User } from '../../models/user';
   styleUrls: ['./booking.component.scss']
 })
 export class BookingComponent implements OnInit {
-
   panelOpenState = false;
   group:Group;
   bookingPerons:BookingPerson[];
-  familyMembers:User[]=[];
+  //familyMembers:User[]=[];
+  familyBookingUsers:FamilyBookingUser[]=[];
+  friendBookingUser:FriendBookingUser[]=[];
 
   allUsers: string[] = [];
   allUsersObject: User[];
-  myControl = new FormControl();
+  myControl = new FormControl(undefined, [Validators.required, this.requireMatch.bind(this)]);
   filteredUsers: Observable<string[]>;
   selectedUsers: User[] = [];
 
-  constructor(private groupService:GroupService, private bookingService:BookingsService, private accountService:AccountService, private activatedRoute:ActivatedRoute) { }
+  constructor(private groupService:GroupService, private dialogRef:MatDialog, private bookingService:BookingsService, private accountService:AccountService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -66,6 +69,17 @@ export class BookingComponent implements OnInit {
 
     return this.allUsers.filter(option => option.toLowerCase().includes(filterValue));
   }
+  
+  private requireMatch(control: FormControl): ValidationErrors | null {
+    const selection: any = control.value;
+    if (selection == null) return { requireMatch:false};
+    console.log("selections: ", selection);
+    if (this.allUsers && this.allUsers.indexOf(selection) < 0) {
+      return { requireMatch: true };
+    }
+    return null;
+  } 
+
 
   getGroupDetail(groupDocId:string) {
     this.groupService.getGroup(groupDocId).subscribe(g=>{
@@ -95,18 +109,16 @@ export class BookingComponent implements OnInit {
   getFamilyMembers(acc:Account) {
     this.accountService.getFamilyUsers(acc.docId).subscribe(users=>{
       console.log('family: ', users);
-      var my = { docId: acc.docId, name: acc.name} as User;
-      this.familyMembers.push(my);
+      var my = { userDocId: acc.docId, name: acc.name, selected:true } as FamilyBookingUser;
+      this.familyBookingUsers.push(my);
       if (users) {
         users.forEach(u=>{
-          this.familyMembers.push(u);
+          var fu = { userDocId: u.docId, name: u.name, selected:false} as FamilyBookingUser;
+          this.familyBookingUsers.push(fu);
         });
       }
-      console.log('family members: ', this.familyMembers);
-
-
+      console.log('family booking users: ', this.familyBookingUsers);
     })
-
   }
 
 
@@ -118,14 +130,31 @@ export class BookingComponent implements OnInit {
       return x.name === selectedUserControl.value
     });
     this.selectedUsers.push(test[0]);
-
-
   }
 
   removeFriend(item) {
     this.selectedUsers = this.selectedUsers.filter(x => x != item);
   }
 
+  onConfirmClick() {
+    this.dialogRef.closeAll();
+    console.log("Family bookings: ", this.familyBookingUsers);
+    console.log("Friends booking: ", this.selectedUsers);
+  }
+}
+
+
+
+export class FamilyBookingUser {
+  userDocId: string;
+  name: string;
+  selected: boolean;
+}
+
+export class FriendBookingUser {
+  userDocId: string;
+  name: string;
+  useMyCredit: boolean;
 
 
 }
