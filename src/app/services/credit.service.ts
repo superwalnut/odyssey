@@ -17,11 +17,13 @@ export class CreditService extends FirestoreBaseService<Credit>{
     super(firestore.collection('credits'));
    }
 
-   public createCredit(credit:Credit, previousBalance:number, createdBy:string) {
+   public createCredit(credit:Credit, previousBalance:number, createdBy:string, createdByDisplayName:string) {
     if(credit.userDocId){
       credit.created = this.getTodayTimestamp();
       credit.balance = previousBalance + credit.amount;
+      credit.userDisplayName = credit.userDisplayName;
       credit.createdBy = createdBy;
+      credit.createdByDisplayName = createdByDisplayName;
       return this.create(credit);
     }
     

@@ -46,6 +46,8 @@ export class BookingComponent implements OnInit {
     this.getCurrentBooking(groupDocId);
     this.getFamilyMembers(acc);
 
+    
+
     // var loggedInUser = this.accountService.getLoginAccount();
     // this.accountService.getUserByDocId(loggedInUser.docId).subscribe(x => {
     //   this.selectedUsers.push(x);//current user default to be the committee;
@@ -140,11 +142,37 @@ export class BookingComponent implements OnInit {
   }
 
   onConfirmClick() {
-    this.dialogRef.closeAll();
+    //this.dialogRef.closeAll();
+    this.familyBookingUsers = this.familyBookingUsers.filter(x=>x.selected === true);
+
     console.log("Family bookings: ", this.familyBookingUsers);
     console.log("Friends booking: ", this.friendBookingUsers);
     //TODO: now we have final booking users, convert them to BookingPerson and save to db!
 
+    let i = 0;
+    this.familyBookingUsers.forEach(u=>{
+      
+      if (i == 0) {
+        u.amount = GlobalConstants.rateCredit;
+      }
+      else {
+        u.amount = GlobalConstants.rateFamily;
+      }
+
+      if (this.isCommittee(u.userDocId)) {
+        u.amount = 0; //if committee reset it to 0;
+      }
+      i++;
+    });
+
+    console.log("Family bookings: ", this.familyBookingUsers);
+
+
+  }
+
+  isCommittee(userDocId:string) {
+    console.log("is committee: ", this.group.committees.find(x=>x === userDocId));
+    return this.group.committees.find(x=>x === userDocId);
   }
 }
 
@@ -153,12 +181,14 @@ export class BookingComponent implements OnInit {
 export class FamilyBookingUser {
   userDocId: string;
   name: string;
+  amount: number;
   selected: boolean;
 }
 
 export class FriendBookingUser {
   userDocId: string;
   name: string;
+  amount: number;
   useMyCredit: boolean;
 
 

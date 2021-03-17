@@ -1,7 +1,6 @@
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 
-//TODO: isVIP,
 export class User {
     docId: string;
     email: string;

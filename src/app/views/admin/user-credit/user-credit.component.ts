@@ -74,10 +74,11 @@ export class UserCreditComponent implements OnInit {
       amount: this.form.value.amount,
       note: this.form.value.note,
       userDocId: this.userDocId,
+      userDisplayName: this.user.name,
     } as Credit;
 
     this.creditService
-      .createCredit(credit, this.balance, this.loggedInUser.docId)
+      .createCredit(credit, this.balance, this.loggedInUser.docId, this.loggedInUser.name)
       .then((x) => {
         this.snackBar.open(`Your account settings have been updated.`, null, {
           duration: 5000,
