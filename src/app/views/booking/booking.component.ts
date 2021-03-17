@@ -7,6 +7,7 @@ import { GroupService } from "../../services/group.service";
 import { Booking } from "../../models/booking";
 import { BookingPerson } from "../../models/booking-person";
 import { Account } from "../../models/account";
+import { CreditService } from "../../services/credit.service";
 
 import { BookingsService } from "../../services/bookings.service";
 import { ActivatedRoute } from "@angular/router";
@@ -26,66 +27,38 @@ export class BookingComponent implements OnInit {
   panelOpenState = false;
   group:Group;
   bookingPerons:BookingPerson[];
+  totalAmount: number;
+  hasCredit: boolean;
+  isCommittee:boolean;
   //familyMembers:User[]=[];
   familyBookingUsers:FamilyBookingUser[]=[];
   friendBookingUsers:FriendBookingUser[]=[];
+  loggedInAccount;
 
-  allUsers: string[] = [];
-  allUsersObject: User[];
-  myControl = new FormControl(undefined, [Validators.required, this.requireMatch.bind(this)]);
-  filteredUsers: Observable<string[]>;
-  selectedUsers: User[] = [];
-
-  constructor(private groupService:GroupService, private dialogRef:MatDialog, private bookingService:BookingsService, private accountService:AccountService, private activatedRoute:ActivatedRoute) { }
+  constructor(private groupService:GroupService, private dialogRef:MatDialog, private bookingService:BookingsService, private creditService:CreditService, private accountService:AccountService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
 
     var groupDocId = this.activatedRoute.snapshot.params.id;
-    var acc = this.accountService.getLoginAccount();
-    this.getGroupDetail(groupDocId);
-    this.getCurrentBooking(groupDocId);
-    this.getFamilyMembers(acc);
-
+    this.loggedInAccount = this.accountService.getLoginAccount();
     
 
-    // var loggedInUser = this.accountService.getLoginAccount();
-    // this.accountService.getUserByDocId(loggedInUser.docId).subscribe(x => {
-    //   this.selectedUsers.push(x);//current user default to be the committee;
-    // });
+    this.creditService.getBalance(this.loggedInAccount.docId).subscribe(result=>{
+      console.log('my credit balance: ' + result);
+      this.hasCredit = result > 0;
+    })
+    this.getGroupDetail(groupDocId);
 
-    this.filteredUsers = this.myControl.valueChanges
-    .pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
-
-    this.accountService.getAllUsers().subscribe((x) => {
-      this.allUsersObject = x;
-      x.forEach(u => { if (u) { this.allUsers.push(u.name); }})
-    });
+    this.getCurrentBooking(groupDocId);
+    this.getFamilyMembers(this.loggedInAccount);    
+    this.getFriendsList(this.loggedInAccount);
   }
-
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allUsers.filter(option => option.toLowerCase().includes(filterValue));
-  }
-  
-  private requireMatch(control: FormControl): ValidationErrors | null {
-    const selection: any = control.value;
-    if (selection == null) return { requireMatch:false};
-    console.log("selections: ", selection);
-    if (this.allUsers && this.allUsers.indexOf(selection) < 0) {
-      return { requireMatch: true };
-    }
-    return null;
-  } 
-
 
   getGroupDetail(groupDocId:string) {
     this.groupService.getGroup(groupDocId).subscribe(g=>{
       this.group = g;
+      this.isCommitteeCheck(this.loggedInAccount.docId);
+
       console.log(this.group);
     });
   }
@@ -104,7 +77,6 @@ export class BookingComponent implements OnInit {
     this.bookingService.getThisWeeksBooking(groupDocId).subscribe(b=>{
       console.log("getcurrentbooking(): ", b);
       this.bookingPerons=b.people;
-
     });
   }
 
@@ -123,34 +95,31 @@ export class BookingComponent implements OnInit {
     })
   }
 
-
-  addFriend(selectedUserControl) {
-    if (selectedUserControl.value == null) {
-      return false;
-    }
-    var test = this.allUsersObject.filter(x => {
-      return x.name === selectedUserControl.value
-    });
-    console.log("selected friend: ", test);
-    var friendBookingUser = { userDocId: test[0].docId, name: test[0].name } as FriendBookingUser;
-    this.friendBookingUsers.push(friendBookingUser);
-    //this.selectedUsers.push(test[0]);
+  getFriendsList(acc:Account) {
+    let f1 = { userDocId: acc.docId, name: "Friend 1(" +acc.name+")" } as FriendBookingUser;
+    let f2 = { userDocId: acc.docId, name: "Friend 2("+acc.name+")" } as FriendBookingUser;
+    this.friendBookingUsers.push(f1);
+    this.friendBookingUsers.push(f2);
   }
 
-  removeFriend(item) {
-    this.friendBookingUsers = this.friendBookingUsers.filter(x => x != item);
+  onSelectionChange() {
+    console.log("toggle changed");
+    this.calculateTotal();
+
   }
 
   onConfirmClick() {
     //this.dialogRef.closeAll();
-    this.familyBookingUsers = this.familyBookingUsers.filter(x=>x.selected === true);
+    let selectedfamilyBookingUsers = this.familyBookingUsers.filter(x=>x.selected === true);
+    let selectedFriendBookingUsers = this.friendBookingUsers.filter(x=>x.selected === true);
 
-    console.log("Family bookings: ", this.familyBookingUsers);
-    console.log("Friends booking: ", this.friendBookingUsers);
+
+    console.log("Family bookings: ", selectedfamilyBookingUsers);
+    console.log("Friends booking: ", selectedFriendBookingUsers);
     //TODO: now we have final booking users, convert them to BookingPerson and save to db!
 
     let i = 0;
-    this.familyBookingUsers.forEach(u=>{
+    selectedfamilyBookingUsers.forEach(u=>{
       
       if (i == 0) {
         u.amount = GlobalConstants.rateCredit;
@@ -159,24 +128,53 @@ export class BookingComponent implements OnInit {
         u.amount = GlobalConstants.rateFamily;
       }
 
-      if (this.isCommittee(u.userDocId)) {
+      if (this.isCommitteeCheck(u.userDocId)) {
         u.amount = 0; //if committee reset it to 0;
       }
       i++;
     });
+  
+  }
 
-    console.log("Family bookings: ", this.familyBookingUsers);
+  calculateTotal(){
+    let selectedfamilyBookingUsers = this.familyBookingUsers.filter(x=>x.selected === true);
+    let selectedFriendBookingUsers = this.friendBookingUsers.filter(x=>x.selected === true);
+    let i = 0; let amount = 0;
+    selectedfamilyBookingUsers.forEach(u=>{
+      
+      if (i == 0) {
+        u.amount = GlobalConstants.rateCredit;
+      }
+      else {
+        u.amount = GlobalConstants.rateFamily;
+      }
 
+      if(!this.hasCredit) u.amount=GlobalConstants.rateCash;
+
+      if (this.isCommitteeCheck(u.userDocId)) {
+        u.amount = 0; //if committee reset it to 0;
+      }
+      amount+=u.amount;
+      i++;
+    });
+
+    amount += selectedFriendBookingUsers.length* GlobalConstants.rateCash;
+    console.log(amount);
+    this.totalAmount = amount;
 
   }
 
-  isCommittee(userDocId:string) {
-    console.log("is committee: ", this.group.committees.find(x=>x === userDocId));
-    return this.group.committees.find(x=>x === userDocId);
+  isCommitteeCheck(userDocId:string) {
+    let isCommittee = this.group.committees.find(x=>x === userDocId);
+this.isCommittee = isCommittee != null;
+    console.log("is committee: ", this.isCommittee);
+    return isCommittee;
+  }
+
+  mapToBookingPerson(){
+    let newBookingPersons: BookingPerson[] = [];    
   }
 }
-
-
 
 export class FamilyBookingUser {
   userDocId: string;
@@ -189,7 +187,6 @@ export class FriendBookingUser {
   userDocId: string;
   name: string;
   amount: number;
-  useMyCredit: boolean;
-
+  selected: boolean;
 
 }
