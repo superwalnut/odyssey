@@ -81,7 +81,7 @@ export class TriggersService {
         peoples = this.mapCommitteesToBookingPerson(result[0], group.docId, bookingDocId);
         console.log('booking persons ready for insert: ', peoples);
 
-        this.bookingPersonService.createBookingPersonBatch(peoples);
+        //this.bookingPersonService.createBookingPersonBatch(peoples);
 
       });
     })

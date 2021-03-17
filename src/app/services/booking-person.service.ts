@@ -44,7 +44,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
 
 
     this.firestore.collection('bookingPersons')
-    return this.firestore.collection('bookingPersons', q => q.where('bookingDocId', '==', bookingDocId).orderBy('createdOn', 'desc')).snapshotChanges().pipe(
+    return this.firestore.collection('bookingPersons', q => q.where('bookingDocId', '==', bookingDocId).orderBy('createdOn', 'asc')).snapshotChanges().pipe(
       map(actions => {
         var items = actions.map(p => {
           var data = p.payload.doc.data() as BookingPerson;
