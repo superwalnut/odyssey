@@ -8,6 +8,7 @@ import { Booking } from "../../models/booking";
 import { BookingPerson } from "../../models/booking-person";
 import { Account } from "../../models/account";
 import { CreditService } from "../../services/credit.service";
+import { BookingPersonService } from "../../services/booking-person.service";
 
 import { BookingsService } from "../../services/bookings.service";
 import { ActivatedRoute } from "@angular/router";
@@ -35,7 +36,7 @@ export class BookingComponent implements OnInit {
   friendBookingUsers:FriendBookingUser[]=[];
   loggedInAccount;
 
-  constructor(private groupService:GroupService, private dialogRef:MatDialog, private bookingService:BookingsService, private creditService:CreditService, private accountService:AccountService, private activatedRoute:ActivatedRoute) { }
+  constructor(private groupService:GroupService, private dialogRef:MatDialog, private bookingService:BookingsService, private bookingPersonService:BookingPersonService, private creditService:CreditService, private accountService:AccountService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -73,10 +74,16 @@ export class BookingComponent implements OnInit {
     }
   }
 
+  
   getCurrentBooking(groupDocId:string) {
     this.bookingService.getThisWeeksBooking(groupDocId).subscribe(b=>{
       console.log("getcurrentbooking(): ", b);
-      this.bookingPerons=b.people;
+      this.bookingPersonService.getByBookingDocId(b.docId).subscribe(bps=>{
+        console.log("getByBookingPersonsByBookingDocId(): ", bps);
+
+        this.bookingPerons=bps;
+      })
+    
     });
   }
 

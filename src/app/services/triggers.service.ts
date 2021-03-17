@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 //import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { GroupService } from './group.service';
 import { BookingsService } from './bookings.service';
+import { BookingPersonService } from './booking-person.service';
+
 import { AccountService } from './account.service';
 import { Group } from '../models/group';
 import { Booking } from '../models/booking';
@@ -20,7 +22,7 @@ import { combineLatest, forkJoin } from 'rxjs';
 
 //This service will be replaced by Firebase cloud schedulers in the future
 export class TriggersService {
-  constructor(private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService, private helperService: HelperService) {}
+  constructor(private groupService: GroupService, private bookingService: BookingsService, private bookingPersonService:BookingPersonService, private accountService: AccountService, private helperService: HelperService) {}
 
   prepopulateBookings() {
     //1. getting all active groups
@@ -62,19 +64,26 @@ export class TriggersService {
 
       console.log('forkjoin 1: ', result[0]);
       console.log('forkJoin 2: ', result[1]);
-      peoples = this.mapCommitteesToBookingPerson(result[0]);
       var nextEventStartDateTime = this.getEventStartDateTime(group, result[1]);
 
       var booking = {
         groupDocId: group.docId,
-        people: peoples,
+        //people: peoples,
         isLocked: false,
         eventStartDateTime: nextEventStartDateTime,
         bookingStartDay: group.bookingStartDay,
         weekDay: group.eventStartDay,
       } as Booking;
       console.log('new booking; ', booking);  
-      this.bookingService.createBooking(booking);
+      this.bookingService.createBooking(booking).then(bookingDocId =>{ 
+        console.log('newly generated booking docID: ', bookingDocId);
+        
+        peoples = this.mapCommitteesToBookingPerson(result[0], group.docId, bookingDocId);
+        console.log('booking persons ready for insert: ', peoples);
+
+        this.bookingPersonService.createBookingPersonBatch(peoples);
+
+      });
     })
   }
 
@@ -99,9 +108,9 @@ export class TriggersService {
     return this.helperService.convertToTimestamp(nextEventStartDateTime);
   }
 
-  mapCommitteesToBookingPerson(users: User[]) {
+  mapCommitteesToBookingPerson(users: User[], groupDocId:string, bookingDocId:string) {
     var bookingpersons: BookingPerson[] = [];
-    users
+    
     console.log("users original input: ", users);
     console.log("users length: ", users.length);
 
@@ -109,6 +118,8 @@ export class TriggersService {
       console.log("u =>: ", u);
 
       var bookingPerson = {
+        groupDocId:groupDocId,
+        bookingDocId:bookingDocId,
         userId: u.docId,
         userDisplayName: u.name,
         paymentMethod: GlobalConstants.paymentCredit,

@@ -19,7 +19,7 @@ export class BookingsService extends FirestoreBaseService<Booking>{
 
 
   public createBooking(booking: Booking) {
-    super.create(booking);
+    return super.create(booking);
   }
 
   public createGroupExpense(booking: Booking) {
