@@ -58,8 +58,10 @@ export class BookingComponent implements OnInit {
     this.getGroupDetail(groupDocId);
 
     this.getCurrentBooking(groupDocId);
-    this.getFamilyMembers(this.loggedInAccount);    
     this.getFriendsList(this.loggedInAccount);
+    this.getFamilyMembers(this.loggedInAccount);    
+    
+    //this.prepareBookingModal();
   }
 
   getGroupDetail(groupDocId:string) {
@@ -98,7 +100,7 @@ export class BookingComponent implements OnInit {
           this.allLocalBookingUsers.push(user);
         });
         
-        console.log("getByBookingPersonsByBookingDocId(): ", bps);
+        console.log("getByBookingPersonsByBookingDocId(): ", this.allLocalBookingUsers);
 
         //this.bookingPerons=bps;
       })
@@ -109,15 +111,16 @@ export class BookingComponent implements OnInit {
   getFamilyMembers(acc:Account) {
     this.accountService.getFamilyUsers(acc.docId).subscribe(users=>{
       console.log('family: ', users);
-      var my = { userDocId: acc.docId, name: acc.name, selected:true } as LocalBookingUser;
+      var my = { userDocId: acc.docId, name: acc.name } as LocalBookingUser;
       this.familyBookingUsers.push(my);
       if (users) {
         users.forEach(u=>{
-          var fu = { userDocId: u.docId, name: u.name, selected:false} as LocalBookingUser;
+          var fu = { userDocId: u.docId, name: u.name} as LocalBookingUser;
           this.familyBookingUsers.push(fu);
         });
       }
       console.log('family booking users: ', this.familyBookingUsers);
+      this.prepareBookingModal();
     })
   }
 
@@ -128,6 +131,29 @@ export class BookingComponent implements OnInit {
     this.friendBookingUsers.push(f2);
   }
 
+  prepareBookingModal(){
+
+    this.familyBookingUsers.forEach(b=>{
+      let xx = this.allLocalBookingUsers.find(bookingUser=> {
+        bookingUser.userDocId == b.userDocId
+      });
+      if(this.allLocalBookingUsers.find(item=> item.userDocId == b.userDocId)) {
+        b.selected = true;
+      }
+    });
+
+    this.friendBookingUsers.forEach(b=>{
+      if(this.allLocalBookingUsers.filter(item=> item.userDocId == b.userDocId)) {
+        b.selected = true;
+      }
+    })
+
+  }
+
+  bookClicked() {
+    this.prepareBookingModal();
+  }
+
   onSelectionChange() {
     console.log("toggle changed");
     this.calculateTotal();
@@ -136,12 +162,24 @@ export class BookingComponent implements OnInit {
 
   onRemoveClick(p) {
     console.log('to remove: ', p);
+    this.allLocalBookingUsers = this.allLocalBookingUsers.filter(item=> item !== p);
+    //TODO: delete from BookingPerson table 
+
+    //this.familyBookingUsers = this.familyBookingUsers.filter(item=> item.userDocId == p.userDocId);
+    this.familyBookingUsers.forEach((element, index)=>{
+      if (element.userDocId==p.userDocId) element.selected = false;
+    })
+
+    this.friendBookingUsers.forEach((element, index)=>{
+      if (element.userDocId==p.userDocId && element.name==p.name) element.selected = false;
+    })
+    console.log('familybookinguser: ', this.familyBookingUsers);
+    console.log('friendbookinguser: ', this.friendBookingUsers);
   }
   onConfirmClick() {
     //this.dialogRef.closeAll();
     let selectedfamilyBookingUsers = this.familyBookingUsers.filter(x=>x.selected === true);
     let selectedFriendBookingUsers = this.friendBookingUsers.filter(x=>x.selected === true);
-
 
     console.log("Family bookings: ", selectedfamilyBookingUsers);
     console.log("Friends booking: ", selectedFriendBookingUsers);

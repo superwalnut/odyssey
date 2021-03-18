@@ -20,14 +20,14 @@
                 <th scope="col">Name</th>
                 <th scope="col">Payment</th>
                 <th scope="col">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Book</button>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="bookClicked()">Book</button>
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let p of allLocalBookingUsers; let i=index">
                 <th scope="row">{{ i+1 }}</th>
-                <td>{{p.name}}</td>
+                <td>{{p.name}} {{p.userDocId}}</td>
                 <td><i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
                 <td> <button mat-icon-button color="warn" (click)="onRemoveClick(p)" *ngIf="p.isMyBooking"><mat-icon>remove</mat-icon></button></td>
               </tr>
