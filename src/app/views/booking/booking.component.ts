@@ -176,18 +176,18 @@ export class BookingComponent implements OnInit {
     console.log('familybookinguser: ', this.familyBookingUsers);
     console.log('friendbookinguser: ', this.friendBookingUsers);
   }
-  onConfirmClick() {
-    //this.dialogRef.closeAll();
-    let selectedfamilyBookingUsers = this.familyBookingUsers.filter(x=>x.selected === true);
-    let selectedFriendBookingUsers = this.friendBookingUsers.filter(x=>x.selected === true);
 
-    console.log("Family bookings: ", selectedfamilyBookingUsers);
-    console.log("Friends booking: ", selectedFriendBookingUsers);
+  onConfirmClick() {
+    //let selectedfamilyBookingUsers = this.familyBookingUsers.filter(x=>x.selected === true);
+    //let selectedFriendBookingUsers = this.friendBookingUsers.filter(x=>x.selected === true);
+
+    //console.log("Family bookings: ", selectedfamilyBookingUsers);
+    //console.log("Friends booking: ", selectedFriendBookingUsers);
     //TODO: now we have final booking users, convert them to BookingPerson and save to db!
     let bookingPersons:BookingPerson[]=[];
 
     let i = 0;
-    selectedfamilyBookingUsers.forEach(u=>{
+    this.familyBookingUsers.forEach(u=>{
       if (i == 0) {
         u.amount = this.hasCredit ? GlobalConstants.rateCredit : GlobalConstants.rateCash;
       }
@@ -215,7 +215,7 @@ export class BookingComponent implements OnInit {
       bookingPersons.push(bp);
     });
 
-    selectedFriendBookingUsers.forEach(u=>{
+    this.friendBookingUsers.forEach(u=>{
       var bp = { 
         bookingDocId: this.bookingDocId,
         groupDocId: this.group.docId,
@@ -230,8 +230,50 @@ export class BookingComponent implements OnInit {
       bookingPersons.push(bp);
     });
     console.log('final booking person confirmed: ', bookingPersons);
-    this.bookingPersonService.createBookingPersonBatch(bookingPersons);
+    this.preDbProcess();
+    //this.bookingPersonService.createBookingPersonBatch(bookingPersons);
   }
+
+
+  preDbProcess() {
+    //loop through all myselection
+    var allMyBooking:LocalBookingUser[]=this.familyBookingUsers;
+    allMyBooking = allMyBooking.concat(this.friendBookingUsers);
+
+    console.log('allmybooking ', allMyBooking)
+
+    let toAdd: LocalBookingUser[]=[];
+    let toDelete: LocalBookingUser[]=[];
+
+
+    allMyBooking.forEach(user=> {
+
+      if (user.selected)
+      {
+        //check if this user already in the booking?
+        var find = this.allLocalBookingUsers.find(x=>x.userDocId == user.userDocId);
+        console.log("check if this user already in the booking?", find);
+        if (find === undefined) {
+          toAdd.push(user);
+        }
+
+      }
+      else{
+        //only delete if this user already in the booking
+        var find = this.allLocalBookingUsers.find(x=>x.userDocId == user.userDocId);
+        if (find) {
+          toDelete.push(user);
+        }
+      }
+      
+    });
+    console.log('toadd ', toAdd);
+    console.log('todelete ', toDelete);
+
+
+
+  }
+
 
   calculateTotal(){
     let selectedfamilyBookingUsers = this.familyBookingUsers.filter(x=>x.selected === true);
@@ -261,9 +303,10 @@ export class BookingComponent implements OnInit {
 
   }
 
+
   isCommitteeCheck(userDocId:string) {
     let isCommittee = this.group.committees.find(x=>x === userDocId);
-this.isCommittee = isCommittee != null;
+    this.isCommittee = isCommittee != null;
     console.log("is committee: ", this.isCommittee);
     return isCommittee;
   }
