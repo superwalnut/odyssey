@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, startWith, take } from 'rxjs/operators';
 import { FormBuilder, FormGroup, FormControl, Validators, ValidationErrors } from "@angular/forms";
@@ -20,6 +20,7 @@ import { MatDialog,MatDialogRef } from '@angular/material/dialog';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { match } from 'node:assert';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-booking',
@@ -34,17 +35,13 @@ export class BookingComponent implements OnInit {
   totalAmount: number;
   hasCredit: boolean;
   isCommittee:boolean;
-  //familyMembers:User[]=[];
-  // familyBookingUsers:FamilyBookingUser[]=[];
-  // friendBookingUsers:FriendBookingUser[]=[];
-
   allLocalBookingUsers: LocalBookingUser[]=[];
   familyBookingUsers:LocalBookingUser[]=[];
   friendBookingUsers:LocalBookingUser[]=[];
   
   loggedInAccount;
 
-  constructor(private groupService:GroupService, private dialogRef:MatDialog, private bookingService:BookingsService, private bookingPersonService:BookingPersonService, private creditService:CreditService, private accountService:AccountService, private activatedRoute:ActivatedRoute) { }
+  constructor(@Inject(DOCUMENT) private document:Document, private groupService:GroupService, private dialogRef:MatDialog, private bookingService:BookingsService, private bookingPersonService:BookingPersonService, private creditService:CreditService, private accountService:AccountService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -155,6 +152,8 @@ export class BookingComponent implements OnInit {
 
   bookClicked() {
     this.prepareBookingModal();
+    this.calculateTotal();
+
   }
 
   onSelectionChange() {
@@ -162,34 +161,8 @@ export class BookingComponent implements OnInit {
     this.calculateTotal();
   }
 
-  // onRemoveClick(p) {
-  //   console.log('to remove: ', p);
-  //   this.allLocalBookingUsers = this.allLocalBookingUsers.filter(item=> item !== p);
-  //   //TODO: delete from BookingPerson table 
-
-  //   //this.familyBookingUsers = this.familyBookingUsers.filter(item=> item.userDocId == p.userDocId);
-  //   this.familyBookingUsers.forEach((element, index)=>{
-  //     if (element.userDocId==p.userDocId) element.selected = false;
-  //   })
-
-  //   this.friendBookingUsers.forEach((element, index)=>{
-  //     if (element.userDocId==p.userDocId && element.name==p.name) element.selected = false;
-  //   })
-  //   console.log('familybookinguser: ', this.familyBookingUsers);
-  //   console.log('friendbookinguser: ', this.friendBookingUsers);
-  // }
-
   onConfirmClick() {
-    //let selectedfamilyBookingUsers = this.familyBookingUsers.filter(x=>x.selected === true);
-    //let selectedFriendBookingUsers = this.friendBookingUsers.filter(x=>x.selected === true);
-
-    //console.log("Family bookings: ", selectedfamilyBookingUsers);
-    //console.log("Friends booking: ", selectedFriendBookingUsers);
-    //TODO: now we have final booking users, convert them to BookingPerson and save to db!
-    //let bookingPersons:BookingPerson[]=[];
     console.log("Family bookingsxxxxx: ", this.familyBookingUsers);
-
-
     //1. merge family and friends into one list
     var result = this.preDbProcess();
     console.log("xxxxx: ", result.toAdd);
@@ -221,6 +194,9 @@ export class BookingComponent implements OnInit {
     var finalBookingPersonsToDelete = this.mapToBookingPersons(result.toDelete);
     console.log('finalBookingPersonsToAdd: ', finalBookingPersonsToAdd);
     console.log('finalBookingPersonsToDelete: ', finalBookingPersonsToDelete);
+    this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd);
+    this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete);
+    //this.document.location.reload();
   }
 
   mapToBookingPersons(localBookingUsers:LocalBookingUser[]) {
@@ -266,8 +242,8 @@ export class BookingComponent implements OnInit {
         if (find === undefined) {
           toAdd.push(user);
         }
-
       }
+
       else{
         //only delete if this user already in the booking
         var find = this.allLocalBookingUsers.find(x=>x.userDocId == user.userDocId);
@@ -289,6 +265,7 @@ export class BookingComponent implements OnInit {
   calculateTotal(){
     let selectedfamilyBookingUsers = this.familyBookingUsers.filter(x=>x.selected === true);
     let selectedFriendBookingUsers = this.friendBookingUsers.filter(x=>x.selected === true);
+    console.log('calculateTotal: ', this.familyBookingUsers);
     let i = 0; let amount = 0;
     selectedfamilyBookingUsers.forEach(u=>{
       
@@ -334,21 +311,3 @@ export class LocalBookingUser {
   isMyBooking: boolean;
   isFamily: boolean;
 }
-
-
-// export class FamilyBookingUser {
-//   userDocId: string;
-//   name: string;
-//   amount: number;
-//   selected: boolean;
-//   isMyBooking: boolean;
-// }
-
-// export class FriendBookingUser {
-//   userDocId: string;
-//   name: string;
-//   amount: number;
-//   selected: boolean;
-//   isMyBooking: boolean;
-
-// }

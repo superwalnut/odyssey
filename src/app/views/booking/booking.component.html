@@ -25,11 +25,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let p of allLocalBookingUsers; let i=index">
+              <tr *ngFor="let p of allLocalBookingUsers; let i=index" [ngClass]="{'mybooking':p.isMyBooking}">
                 <th scope="row">{{ i+1 }}</th>
                 <td>{{p.name}} {{p.userDocId}}<br/> bookingPersonID: {{p.docId}}</td>
                 <td><i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
-                <td> <button mat-icon-button color="warn" *ngIf="p.isMyBooking"><mat-icon>remove</mat-icon></button></td>
+                <td></td>
               </tr>
               <!-- <tr>
                 <th scope="row">2</th>
