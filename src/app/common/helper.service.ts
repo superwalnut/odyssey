@@ -87,5 +87,4 @@ var year = date.getFullYear();
     return this.convertToTimestamp(new Date());
   }
 
-
 }

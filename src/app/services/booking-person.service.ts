@@ -41,8 +41,6 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
 
 
   public getByBookingDocId(bookingDocId: string) {
-
-
     this.firestore.collection('bookingPersons')
     return this.firestore.collection('bookingPersons', q => q.where('bookingDocId', '==', bookingDocId).orderBy('createdOn', 'asc')).snapshotChanges().pipe(
       map(actions => {
@@ -54,6 +52,12 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
         return items;
       })
     );
+  }
+
+  public deleteBatch(bookingPersons:BookingPerson[]) {
+    bookingPersons.forEach(x=>{
+      super.delete(x.docId);
+    })
   }
 
 
