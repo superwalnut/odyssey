@@ -11,6 +11,7 @@ export class BookingPerson {
     notes: string; //Only admin can enter notes
     paymentMethod: string; //Credit | Cash | Bank Transfer
     parentUserId: string; //payment deduct from this user if payment method is CREDIT
+    parentUserDisplayName:string;
     amount: number;
     isPaid: boolean; //this usually apply to cash only
     createdOn: Timestamp;

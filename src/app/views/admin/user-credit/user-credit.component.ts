@@ -79,13 +79,15 @@ export class UserCreditComponent implements OnInit {
       createdByDisplayName: this.loggedInUser.name,
     } as Credit;
 
-    this.creditService
-      .createCredit(credit)
-      .then((x) => {
-        this.snackBar.open(`Your account settings have been updated.`, null, {
-          duration: 5000,
-          verticalPosition: "top",
-        });
-      });
+    this.creditService.createCredit(credit);
+
+    // this.creditService
+    //   .createCredit(credit)
+    //   .then((x) => {
+    //     this.snackBar.open(`Your account settings have been updated.`, null, {
+    //       duration: 5000,
+    //       verticalPosition: "top",
+    //     });
+    //   });
   }
 }

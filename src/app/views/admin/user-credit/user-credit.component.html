@@ -1,11 +1,13 @@
-  <div class="app-body">
-    <main class="main d-flex align-items-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-                <div class="card-body p-4">
-                    <h1>{{user?.name}}'s Credit</h1>
+
+
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="card">
+          <div class="card-body p-4">
+            <h1>{{user?.name}}'s Credit</h1>
                     {{balance}}
                     <h2>Current Balance: ${{balance | number: '2.2'}}</h2>
                     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-4">
@@ -24,10 +26,12 @@
                     </div>
                     <button type="submit" class="btn btn-block btn-success">Save</button>
                     </form>
-                </div>
-            </div>
+
+
+          </div>
         </div>
+      </div>
     </div>
-</div>
-</main>
-</div>
+  </div>
+
+  

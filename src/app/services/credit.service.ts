@@ -18,14 +18,15 @@ export class CreditService extends FirestoreBaseService<Credit>{
    }
 
    public createCredit(credit:Credit) {
+     console.log('create credit: ', credit);
      if (!credit.userDocId) return Promise.reject('no user is provided');
 
      this.getBalance(credit.userDocId).subscribe(result=> {
+      console.log('create credit balance result: ', result);
+
       credit.created = this.getTodayTimestamp();
-      credit.balance = result.balance + credit.amount;
-      credit.userDisplayName = credit.userDisplayName;
-      credit.createdBy = credit.createdBy;
-      credit.createdByDisplayName = credit.createdByDisplayName;
+      credit.balance = result ? result.balance : 0 + credit.amount;
+      console.log('adding to credit: ', credit);
       return this.create(credit);
      })
    }
@@ -45,8 +46,14 @@ export class CreditService extends FirestoreBaseService<Credit>{
    public getBalance(userDocId:string) {
     return  this.firestore.collection('credits', q => q.where('userDocId', '==', userDocId).orderBy('created', 'desc').limit(1)).snapshotChanges().pipe(
       map(actions => {
-        var data = actions[0].payload.doc.data() as Credit;
-        return { ...data, docId: actions[0].payload.doc.id } as Credit;
+        console.log(actions);
+        if (actions && actions.length>0){
+          var data = actions[0].payload.doc.data() as Credit;
+          return { ...data, docId: actions[0].payload.doc.id } as Credit;
+        } else {
+          return null;
+        }
+        
       })
     );
 
@@ -65,13 +72,18 @@ export class CreditService extends FirestoreBaseService<Credit>{
   public getByUser(userDocId:string) {
     return this.firestore.collection('credits', q=>q.where('userDocId', '==', userDocId).orderBy('created','desc')).snapshotChanges().pipe(
       map(actions => {
-        return actions.map(x=>{
-          var credit = x.payload.doc.data() as Credit;
-          return {
-            ...credit,
-            docId: x.payload.doc.id
-          } as Credit;
-        });
+        if (actions) {
+          return actions.map(x=>{
+            var credit = x.payload.doc.data() as Credit;
+            return {
+              ...credit,
+              docId: x.payload.doc.id
+            } as Credit;
+          });
+        } else {
+          return null;
+        }
+        
       }));
   }
 }

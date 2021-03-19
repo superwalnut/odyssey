@@ -6,13 +6,16 @@ import { BookingPerson } from "../models/booking-person";
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { Booking } from '../models/booking';
+import { CreditService } from './credit.service';
+import { Credit } from '../models/credit';
+import { CreditstatementComponent } from '../views/settings/creditstatement/creditstatement.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(private firestore: AngularFirestore, private creditService:CreditService) {
     super(firestore.collection('bookingPersons'));
   }
 
@@ -22,12 +25,25 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
 
   public async createBookingPersonBatch(bookingPersons:BookingPerson[]) {
   
+    var credit = {
+      userDocId: bookingPersons[0].userId,
+      userDisplayName: bookingPersons[0].userDisplayName,
+      createdBy:bookingPersons[0].parentUserId,
+      createdByDisplayName:bookingPersons[0].parentUserDisplayName,
+    } as Credit;
+    let fees=0;
+
     var batch = this.firestore.firestore.batch();
     bookingPersons.forEach(bp=>{
       var ref = this.firestore.collection('bookingPersons').doc().ref;
       batch.set(ref, bp);
+      fees+=bp.amount;
     });
-    await batch.commit();
+    credit.amount = -fees;
+    await batch.commit().then(()=>{
+      
+      this.creditService.createCredit(credit);
+    });
   }
 
    public get(bookingPersonDocId: string) {

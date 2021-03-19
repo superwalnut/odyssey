@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Group } from "../../models/group";
 import { GroupService } from "../../services/group.service";
 import { BookingPerson } from "../../models/booking-person";
@@ -14,13 +14,14 @@ import { MatDialog,MatDialogRef } from '@angular/material/dialog';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { DOCUMENT } from '@angular/common';
+import { BaseComponent } from '../base-component';
 
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.scss']
 })
-export class BookingComponent implements OnInit {
+export class BookingComponent extends BaseComponent implements OnInit {
   panelOpenState = false;
   group:Group;
   bookingDocId:string;
@@ -33,8 +34,9 @@ export class BookingComponent implements OnInit {
   friendBookingUsers:LocalBookingUser[]=[];
   isLoading:boolean;
   loggedInAccount;
+  
 
-  constructor(@Inject(DOCUMENT) private document:Document, private groupService:GroupService, private dialogRef:MatDialog, private bookingService:BookingsService, private bookingPersonService:BookingPersonService, private creditService:CreditService, private accountService:AccountService, private activatedRoute:ActivatedRoute) { }
+  constructor(@Inject(DOCUMENT) private document:Document, private groupService:GroupService, private dialogRef:MatDialog, private bookingService:BookingsService, private bookingPersonService:BookingPersonService, private creditService:CreditService, private accountService:AccountService, private activatedRoute:ActivatedRoute) { super()}
 
   ngOnInit(): void {
 
@@ -43,7 +45,8 @@ export class BookingComponent implements OnInit {
     
     this.creditService.getBalance(this.loggedInAccount.docId).subscribe(result=>{
       console.log('my credit balance: ' + result);
-      this.hasCredit = result.balance > 0;
+      if (result)
+        this.hasCredit = result.balance > 0;
     })
     this.getGroupDetail(groupDocId);
 
@@ -169,7 +172,7 @@ export class BookingComponent implements OnInit {
     if (finalBookingPersonsToAdd.length >0) 
       this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd).then(()=> {
         this.isLoading = false;
-        this.document.location.reload();
+        //this.document.location.reload();
       });
     if (finalBookingPersonsToDelete.length > 0)
       this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete).then(()=>this.document.location.reload());
@@ -185,6 +188,7 @@ export class BookingComponent implements OnInit {
         userDisplayName:u.name,
         amount: u.amount,
         parentUserId: this.loggedInAccount.docId,
+        parentUserDisplayName: this.loggedInAccount.name,
         paymentMethod: this.hasCredit ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
         isPaid:true,
         createdOn: Timestamp.now(),
