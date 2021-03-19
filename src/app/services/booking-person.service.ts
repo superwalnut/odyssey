@@ -32,18 +32,23 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
       createdByDisplayName:bookingPersons[0].parentUserDisplayName,
     } as Credit;
     let fees=0;
+    let notes = "booking: ";
 
     var batch = this.firestore.firestore.batch();
     bookingPersons.forEach(bp=>{
       var ref = this.firestore.collection('bookingPersons').doc().ref;
       batch.set(ref, bp);
       fees+=bp.amount;
+      notes+=bp.userDisplayName+"|";
     });
+
     credit.amount = -fees;
-    await batch.commit().then(()=>{
-      
-      this.creditService.createCredit(credit);
-    });
+    credit.note = notes;
+    var ref = this.firestore.collection('credits').doc().ref;
+    batch.set(ref, credit);
+
+    await batch.commit()
+    
   }
 
    public get(bookingPersonDocId: string) {
@@ -66,11 +71,29 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
 
   public async deleteBatch(bookingPersons:BookingPerson[]) {
     
+    var credit = {
+      userDocId: bookingPersons[0].userId,
+      userDisplayName: bookingPersons[0].userDisplayName,
+      createdBy:bookingPersons[0].parentUserId,
+      createdByDisplayName:bookingPersons[0].parentUserDisplayName,
+    } as Credit;
+    let fees=0;
+    let notes="withdraw: ";
+
     var batch = this.firestore.firestore.batch();
 
     bookingPersons.forEach(bp=>{
       batch.delete(this.firestore.collection('bookingPersons').doc(bp.docId).ref);
+      fees+=bp.amount;
+      notes+=bp.userDisplayName+"|";
     });
+
+    //now dealing with credit table
+    
+    var ref = this.firestore.collection('credits').doc().ref;
+    credit.amount = fees; //credit back to user
+    credit.note = notes;
+    batch.set(ref, credit);
     return await batch.commit();
     //return true;
   }

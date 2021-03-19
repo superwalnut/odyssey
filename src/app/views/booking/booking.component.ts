@@ -111,8 +111,8 @@ export class BookingComponent extends BaseComponent implements OnInit {
   }
 
   getFriendsList(acc:Account) {
-    let f1 = { userDocId: acc.docId, name: "Friend 1(" + acc.name + ")", isFamily:false } as LocalBookingUser;
-    let f2 = { userDocId: acc.docId, name: "Friend 2(" + acc.name + ")", isFamily:false } as LocalBookingUser;
+    let f1 = { userDocId: acc.docId, name: "Friend 1(" + acc.name + ")", amount:GlobalConstants.rateCash, isFamily:false } as LocalBookingUser;
+    let f2 = { userDocId: acc.docId, name: "Friend 2(" + acc.name + ")", amount:GlobalConstants.rateCash, isFamily:false } as LocalBookingUser;
     this.friendBookingUsers.push(f1);
     this.friendBookingUsers.push(f2);
   }
@@ -169,13 +169,12 @@ export class BookingComponent extends BaseComponent implements OnInit {
     console.log('finalBookingPersonsToAdd: ', finalBookingPersonsToAdd);
     console.log('finalBookingPersonsToDelete: ', finalBookingPersonsToDelete);
     this.allLocalBookingUsers =[];
-    if (finalBookingPersonsToAdd.length >0) 
-      this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd).then(()=> {
-        this.isLoading = false;
-        //this.document.location.reload();
-      });
+    if (finalBookingPersonsToAdd.length >0) {
+      this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd);
+    }
+      
     if (finalBookingPersonsToDelete.length > 0)
-      this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete).then(()=>this.document.location.reload());
+      this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete);//.then(()=>this.document.location.reload());
   }
 
   mapToBookingPersons(localBookingUsers:LocalBookingUser[]) {
