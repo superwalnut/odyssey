@@ -170,11 +170,11 @@ export class BookingComponent extends BaseComponent implements OnInit {
     console.log('finalBookingPersonsToDelete: ', finalBookingPersonsToDelete);
     this.allLocalBookingUsers =[];
     if (finalBookingPersonsToAdd.length >0) {
-      this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd);
+      this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd).then(()=>this.document.location.reload());
     }
       
     if (finalBookingPersonsToDelete.length > 0)
-      this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete);//.then(()=>this.document.location.reload());
+      this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete).then(()=>this.document.location.reload());
   }
 
   mapToBookingPersons(localBookingUsers:LocalBookingUser[]) {
