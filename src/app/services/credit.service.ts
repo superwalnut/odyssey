@@ -17,30 +17,49 @@ export class CreditService extends FirestoreBaseService<Credit>{
     super(firestore.collection('credits'));
    }
 
-   public createCredit(credit:Credit, previousBalance:number, createdBy:string, createdByDisplayName:string) {
-    if(credit.userDocId){
+   public createCredit(credit:Credit) {
+     if (!credit.userDocId) return Promise.reject('no user is provided');
+
+     this.getBalance(credit.userDocId).subscribe(result=> {
       credit.created = this.getTodayTimestamp();
-      credit.balance = previousBalance + credit.amount;
+      credit.balance = result.balance + credit.amount;
       credit.userDisplayName = credit.userDisplayName;
-      credit.createdBy = createdBy;
-      credit.createdByDisplayName = createdByDisplayName;
+      credit.createdBy = credit.createdBy;
+      credit.createdByDisplayName = credit.createdByDisplayName;
       return this.create(credit);
-    }
-    
-    return Promise.reject('no user is provided');
+     })
    }
+  //  public createCredit(credit:Credit, previousBalance:number, createdBy:string, createdByDisplayName:string) {
+  //   if(credit.userDocId){
+  //     credit.created = this.getTodayTimestamp();
+  //     credit.balance = previousBalance + credit.amount;
+  //     credit.userDisplayName = credit.userDisplayName;
+  //     credit.createdBy = createdBy;
+  //     credit.createdByDisplayName = createdByDisplayName;
+  //     return this.create(credit);
+  //   }
+    
+  //   return Promise.reject('no user is provided');
+  //  }
 
    public getBalance(userDocId:string) {
-    return this.firestore.collection('credits', q=>q.where('userDocId', '==', userDocId)).snapshotChanges().pipe(map(actions=>{
-      var sum = 0;
-      actions.forEach(x=> {
-        if(x){
-          const credit = x.payload.doc.data() as Credit;
-          sum += credit.amount;
-        }
-      });
-      return sum;
-    }));
+    return  this.firestore.collection('credits', q => q.where('userDocId', '==', userDocId).orderBy('created', 'desc').limit(1)).snapshotChanges().pipe(
+      map(actions => {
+        var data = actions[0].payload.doc.data() as Credit;
+        return { ...data, docId: actions[0].payload.doc.id } as Credit;
+      })
+    );
+
+    // return this.firestore.collection('credits', q=>q.where('userDocId', '==', userDocId)).snapshotChanges().pipe(map(actions=>{
+    //   var sum = 0;
+    //   actions.forEach(x=> {
+    //     if(x){
+    //       const credit = x.payload.doc.data() as Credit;
+    //       sum += credit.amount;
+    //     }
+    //   });
+    //   return sum;
+    // }));
   }
 
   public getByUser(userDocId:string) {

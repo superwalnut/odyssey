@@ -53,7 +53,7 @@ export class UserCreditComponent implements OnInit {
 
       this.creditService.getBalance(this.userDocId).subscribe((x) => {
         if (x) {
-          this.balance = x;
+          this.balance = x.balance;
         }
       });
     }
@@ -75,10 +75,12 @@ export class UserCreditComponent implements OnInit {
       note: this.form.value.note,
       userDocId: this.userDocId,
       userDisplayName: this.user.name,
+      createdBy: this.loggedInUser.docId,
+      createdByDisplayName: this.loggedInUser.name,
     } as Credit;
 
     this.creditService
-      .createCredit(credit, this.balance, this.loggedInUser.docId, this.loggedInUser.name)
+      .createCredit(credit)
       .then((x) => {
         this.snackBar.open(`Your account settings have been updated.`, null, {
           duration: 5000,
