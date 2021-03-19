@@ -16,32 +16,26 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     super(firestore.collection('bookingPersons'));
   }
 
-
   public createBookingPerson(bookingPerson: BookingPerson) {
     return super.create(bookingPerson);
   }
 
   public async createBookingPersonBatch(bookingPersons:BookingPerson[]) {
-
-    bookingPersons.forEach(bp=> this.createBookingPerson(bp));
-    //Batch inserts doesn't work
-    // var batch = this.firestore.firestore.batch();
-    // var refx = this.firestore.collection('bookingPersons').doc().ref;
-
-    // bookingPersons.forEach(b=>{
-    //   console.log('batch inserting: ', b);
-    //   batch.set(refx, b);
-    // });
-    // await batch.commit();
+  
+    var batch = this.firestore.firestore.batch();
+    bookingPersons.forEach(bp=>{
+      var ref = this.firestore.collection('bookingPersons').doc().ref;
+      batch.set(ref, bp);
+    });
+    await batch.commit();
   }
 
    public get(bookingPersonDocId: string) {
-    return super.getByDocId(bookingPersonDocId);
-  }
+      return super.getByDocId(bookingPersonDocId);
+    }
 
 
   public getByBookingDocId(bookingDocId: string) {
-    this.firestore.collection('bookingPersons')
     return this.firestore.collection('bookingPersons', q => q.where('bookingDocId', '==', bookingDocId).orderBy('createdOn', 'asc')).snapshotChanges().pipe(
       map(actions => {
         var items = actions.map(p => {
@@ -54,10 +48,15 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     );
   }
 
-  public deleteBatch(bookingPersons:BookingPerson[]) {
-    bookingPersons.forEach(x=>{
-      super.delete(x.docId);
-    })
+  public async deleteBatch(bookingPersons:BookingPerson[]) {
+    
+    var batch = this.firestore.firestore.batch();
+
+    bookingPersons.forEach(bp=>{
+      batch.delete(this.firestore.collection('bookingPersons').doc(bp.docId).ref);
+    });
+    return await batch.commit();
+    //return true;
   }
 
 

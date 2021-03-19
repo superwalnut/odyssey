@@ -151,7 +151,9 @@ aria-hidden="true"
       Amount: ${{ totalAmount }} 
       <button mat-raised-button data-dismiss="modal">Cancel</button>
 
-      <button mat-raised-button color="primary" (click)="onConfirmClick()">Confirm</button>
+      <button mat-raised-button color="primary" (click)="onConfirmClick()" *ngIf="!isLoading">Confirm</button>
+      <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+
     </div>
   </div>
 </div>

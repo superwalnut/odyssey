@@ -1,10 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, startWith, take } from 'rxjs/operators';
-import { FormBuilder, FormGroup, FormControl, Validators, ValidationErrors } from "@angular/forms";
 import { Group } from "../../models/group";
 import { GroupService } from "../../services/group.service";
-import { Booking } from "../../models/booking";
 import { BookingPerson } from "../../models/booking-person";
 import { Account } from "../../models/account";
 import { CreditService } from "../../services/credit.service";
@@ -14,12 +10,9 @@ import { BookingsService } from "../../services/bookings.service";
 import { ActivatedRoute } from "@angular/router";
 import { GlobalConstants } from '../../common/global-constants';
 import { AccountService } from '../../services/account.service';
-import { User } from '../../models/user';
-//import {MatDialog} from '@angular/material';
 import { MatDialog,MatDialogRef } from '@angular/material/dialog';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
-import { match } from 'node:assert';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -38,7 +31,7 @@ export class BookingComponent implements OnInit {
   allLocalBookingUsers: LocalBookingUser[]=[];
   familyBookingUsers:LocalBookingUser[]=[];
   friendBookingUsers:LocalBookingUser[]=[];
-  
+  isLoading:boolean;
   loggedInAccount;
 
   constructor(@Inject(DOCUMENT) private document:Document, private groupService:GroupService, private dialogRef:MatDialog, private bookingService:BookingsService, private bookingPersonService:BookingPersonService, private creditService:CreditService, private accountService:AccountService, private activatedRoute:ActivatedRoute) { }
@@ -48,7 +41,6 @@ export class BookingComponent implements OnInit {
     var groupDocId = this.activatedRoute.snapshot.params.id;
     this.loggedInAccount = this.accountService.getLoginAccount();
     
-
     this.creditService.getBalance(this.loggedInAccount.docId).subscribe(result=>{
       console.log('my credit balance: ' + result);
       this.hasCredit = result > 0;
@@ -58,8 +50,6 @@ export class BookingComponent implements OnInit {
     this.getCurrentBooking(groupDocId);
     this.getFriendsList(this.loggedInAccount);
     this.getFamilyMembers(this.loggedInAccount);    
-    
-    //this.prepareBookingModal();
   }
 
   getGroupDetail(groupDocId:string) {
@@ -73,12 +63,8 @@ export class BookingComponent implements OnInit {
 
   //cil-dollar, cil-credit-card
   getPaymentClass(paymentMethod:string) {
-    if (paymentMethod == GlobalConstants.paymentCredit) {
-      return "cil-credit-card";
-    }
-    else if (paymentMethod == GlobalConstants.paymentCash) {
-      return "cil-dollar";
-    }
+    if (paymentMethod == GlobalConstants.paymentCredit) { return "cil-credit-card"; }
+    else if (paymentMethod == GlobalConstants.paymentCash) { return "cil-dollar"; }
   }
   
   getCurrentBooking(groupDocId:string) {
@@ -101,9 +87,7 @@ export class BookingComponent implements OnInit {
         });
         
         console.log("getByBookingPersonsByBookingDocId(): ", this.allLocalBookingUsers);
-
       })
-    
     });
   }
 
@@ -132,7 +116,7 @@ export class BookingComponent implements OnInit {
 
   prepareBookingModal() {
     this.familyBookingUsers.forEach(b=>{
-      let match = this.allLocalBookingUsers.find(bookingUser=> bookingUser.userDocId == b.userDocId );
+      let match = this.allLocalBookingUsers.find(bookingUser=> bookingUser.userDocId == b.userDocId && bookingUser.name == b.name);
       console.log("found xxxxxx: ", match);
       if(match) {
         b.selected = true;
@@ -147,23 +131,11 @@ export class BookingComponent implements OnInit {
         b.docId = match.docId;
       }
     })
-
-  }
-
-  bookClicked() {
-    this.prepareBookingModal();
-    this.calculateTotal();
-
-  }
-
-  onSelectionChange() {
-    console.log("toggle changed");
-    this.calculateTotal();
   }
 
   onConfirmClick() {
-    console.log("Family bookingsxxxxx: ", this.familyBookingUsers);
     //1. merge family and friends into one list
+    this.isLoading = true;
     var result = this.preDbProcess();
     console.log("xxxxx: ", result.toAdd);
     console.log("delete ssss ", result.toDelete);
@@ -189,21 +161,24 @@ export class BookingComponent implements OnInit {
       }
     });
 
-    //add person is wrong
     var finalBookingPersonsToAdd = this.mapToBookingPersons(result.toAdd);
     var finalBookingPersonsToDelete = this.mapToBookingPersons(result.toDelete);
     console.log('finalBookingPersonsToAdd: ', finalBookingPersonsToAdd);
     console.log('finalBookingPersonsToDelete: ', finalBookingPersonsToDelete);
-    this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd);
-    this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete);
-    //this.document.location.reload();
+    this.allLocalBookingUsers =[];
+    if (finalBookingPersonsToAdd.length >0) 
+      this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd).then(()=> {
+        this.isLoading = false;
+        this.document.location.reload();
+      });
+    if (finalBookingPersonsToDelete.length > 0)
+      this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete).then(()=>this.document.location.reload());
   }
 
   mapToBookingPersons(localBookingUsers:LocalBookingUser[]) {
     let bookingPersons:BookingPerson[]=[];
     localBookingUsers.forEach(u=>{
       var bp = { 
-        docId: u.docId,
         bookingDocId: this.bookingDocId,
         groupDocId: this.group.docId,
         userId: u.userDocId,
@@ -213,14 +188,13 @@ export class BookingComponent implements OnInit {
         paymentMethod: this.hasCredit ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
         isPaid:true,
         createdOn: Timestamp.now(),
-
       } as BookingPerson;
+      if (u.docId) bp.docId = u.docId;
       bookingPersons.push(bp);
 
     });
     return bookingPersons;
   }
-
 
   preDbProcess() {
     //loop through all myselection
@@ -228,16 +202,14 @@ export class BookingComponent implements OnInit {
     allMyBooking = allMyBooking.concat(this.friendBookingUsers);
 
     console.log('allmybooking ', allMyBooking)
-
     let toAdd: LocalBookingUser[]=[];
     let toDelete: LocalBookingUser[]=[];
-
 
     allMyBooking.forEach(user=> {
       if (user.selected)
       {
         //check if this user already in the booking?
-        var find = this.allLocalBookingUsers.find(x=>x.userDocId == user.userDocId);
+        var find = this.allLocalBookingUsers.find(x=>x.userDocId == user.userDocId && x.name == user.name);
         console.log("check if this user already in the booking?", find);
         if (find === undefined) {
           toAdd.push(user);
@@ -246,7 +218,7 @@ export class BookingComponent implements OnInit {
 
       else{
         //only delete if this user already in the booking
-        var find = this.allLocalBookingUsers.find(x=>x.userDocId == user.userDocId);
+        var find = this.allLocalBookingUsers.find(x=>x.userDocId == user.userDocId && x.name == user.name);
         if (find) {
           toDelete.push(user);
         }
@@ -262,6 +234,17 @@ export class BookingComponent implements OnInit {
     //this.bookingPersonService.createBookingPersonBatch(toAdd);
   }
 
+
+  bookClicked() {
+    this.prepareBookingModal();
+    this.calculateTotal();
+
+  }
+
+  onSelectionChange() {
+    console.log("toggle changed");
+    this.calculateTotal();
+  }
   calculateTotal(){
     let selectedfamilyBookingUsers = this.familyBookingUsers.filter(x=>x.selected === true);
     let selectedFriendBookingUsers = this.friendBookingUsers.filter(x=>x.selected === true);
