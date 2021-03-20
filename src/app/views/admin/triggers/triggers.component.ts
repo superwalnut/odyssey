@@ -32,6 +32,13 @@ export class TriggersComponent implements OnInit {
     this.helperService.addDays(5, daysfromToday);
     this.helperService.combinDateAndTime('2021-01-01', '20:00');
     this.helperService.findNextDayOfTheWeek('friday', true, lastMonday);
+
+    var d1 = new Date('2021-02-26T00:00:00'); 
+    var d2 = new Date('2021-03-31T00:00:00'); 
+    var d3 = new Date('2022-01-01T00:00:00'); 
+
+    this.helperService.findDateRangeOfCurrentWeek(d3);
+
   }
 
 }

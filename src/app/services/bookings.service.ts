@@ -7,13 +7,14 @@ import { Booking } from "../models/booking";
 
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
+import { HelperService } from '../common/helper.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingsService extends FirestoreBaseService<Booking>{
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(private firestore: AngularFirestore, private helpService:HelperService) {
     super(firestore.collection('bookings'));
   }
 
@@ -60,6 +61,19 @@ export class BookingsService extends FirestoreBaseService<Booking>{
     );
   }
 
+  public getCurrentWeekBooking() {
+    var dateRange = this.helpService.findDateRangeOfCurrentWeek(new Date());
+    return this.firestore.collection('bookings', q=>q.where('eventStartDateTime','>=', dateRange.firstday).where('eventStartDateTime','<=', dateRange.lastday)).snapshotChanges().pipe(
+      map(actions=> {
+        var items = actions.map(p => {
+          var data = p.payload.doc.data() as Booking;
+          return { ...data, docId: p.payload.doc.id } as Booking;
+        });
+        console.log('getCurrentWeekBooking() ', items);
+        return items;
+      })
+    )
+  }
 
   public getThisWeeksBooking(groupDocId: string) {
     return this.firestore.collection('bookings', q => q.where('groupDocId', '==', groupDocId).where('eventStartDateTime','>=', Timestamp.now()).orderBy('eventStartDateTime', 'asc').limit(1)).snapshotChanges().pipe(

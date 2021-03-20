@@ -15,6 +15,7 @@ import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { DOCUMENT } from '@angular/common';
 import { BaseComponent } from '../base-component';
+import { Booking } from '../../models/booking';
 
 @Component({
   selector: 'app-booking',
@@ -24,6 +25,7 @@ import { BaseComponent } from '../base-component';
 export class BookingComponent extends BaseComponent implements OnInit {
   panelOpenState = false;
   group:Group;
+  booking:Booking;
   bookingDocId:string;
   bookingPerons:BookingPerson[];
   totalAmount: number;
@@ -40,7 +42,9 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
 
-    var groupDocId = this.activatedRoute.snapshot.params.id;
+    var bookingDocId = this.activatedRoute.snapshot.params.id;
+    var groupDocId = this.activatedRoute.snapshot.params.groupId;
+
     this.loggedInAccount = this.accountService.getLoginAccount();
     
     this.creditService.getBalance(this.loggedInAccount.docId).subscribe(result=>{
@@ -49,8 +53,8 @@ export class BookingComponent extends BaseComponent implements OnInit {
         this.hasCredit = result.balance > 0;
     })
     this.getGroupDetail(groupDocId);
-
-    this.getCurrentBooking(groupDocId);
+    this.getCurrentBooking(bookingDocId);
+    this.getCurrentBookingPersons(bookingDocId);
     this.getFriendsList(this.loggedInAccount);
     this.getFamilyMembers(this.loggedInAccount);    
   }
@@ -64,19 +68,9 @@ export class BookingComponent extends BaseComponent implements OnInit {
     });
   }
 
-  //cil-dollar, cil-credit-card
-  getPaymentClass(paymentMethod:string) {
-    if (paymentMethod == GlobalConstants.paymentCredit) { return "cil-credit-card"; }
-    else if (paymentMethod == GlobalConstants.paymentCash) { return "cil-dollar"; }
-  }
-  
-  getCurrentBooking(groupDocId:string) {
-    this.bookingService.getThisWeeksBooking(groupDocId).subscribe(b=>{
-      this.bookingDocId = b.docId;
-      console.log("getcurrentbooking(): ", b);
-      this.bookingPersonService.getByBookingDocId(b.docId).subscribe(bps=>{
-
-        bps.forEach(u=>{
+  getCurrentBookingPersons(bookingDocId:string) {
+      this.bookingPersonService.getByBookingDocId(bookingDocId).subscribe(bs=>{
+        bs.forEach(u=>{
           var user = {
             docId: u.docId,
             userDocId: u.userId,
@@ -91,9 +85,15 @@ export class BookingComponent extends BaseComponent implements OnInit {
         
         console.log("getByBookingPersonsByBookingDocId(): ", this.allLocalBookingUsers);
       })
-    });
   }
 
+  getCurrentBooking(bookingDocId:string) {
+    this.bookingService.get(bookingDocId).subscribe(booking=>{
+
+      this.booking=booking;
+    });
+
+  }
   getFamilyMembers(acc:Account) {
     this.accountService.getFamilyUsers(acc.docId).subscribe(users=>{
       console.log('family: ', users);
@@ -278,6 +278,12 @@ export class BookingComponent extends BaseComponent implements OnInit {
   }
 
 
+  //cil-dollar, cil-credit-card
+  getPaymentClass(paymentMethod:string) {
+    if (paymentMethod == GlobalConstants.paymentCredit) { return "cil-credit-card"; }
+    else if (paymentMethod == GlobalConstants.paymentCash) { return "cil-dollar"; }
+  }
+  
   isCommitteeCheck(userDocId:string) {
     let isCommittee = this.group.committees.find(x=>x === userDocId);
     this.isCommittee = isCommittee != null;

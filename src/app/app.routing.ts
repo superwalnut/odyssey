@@ -33,7 +33,7 @@ export const routes: Routes = [
   },
 
   {
-    path: "booking/:id",
+    path: "booking/:id/:groupId",
     component: BookingComponent,
     canActivate: [AuthGuard],
     data: {

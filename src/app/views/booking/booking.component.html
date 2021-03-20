@@ -10,8 +10,9 @@
 
     <div class="row light">
       <div class="col-sm">
-        <section>
-          <h3> {{ group?.groupName}} {{ group?.eventStartTime}}</h3>
+        <section>           
+
+          <h3> {{ group?.groupName}} {{ group?.eventStartTime}} {{ booking.eventStartDateTime.toDate() | date: 'yyyy/MM/dd'}}</h3>
 
           <table class="table table-hover table-dark booking">
             <thead>
@@ -76,8 +77,8 @@ aria-hidden="true"
      
           <table class="table table-sm table-borderless">
             <tr *ngFor="let user of familyBookingUsers">
-              <td>{{ user.name}} {{ user.amount }}</td>
-              <td><mat-slide-toggle [(ngModel)]="user.selected" (change)="onSelectionChange()"></mat-slide-toggle></td>
+              <td>{{ user.name}}</td>
+              <td style="text-align: right;"><mat-slide-toggle [(ngModel)]="user.selected" (change)="onSelectionChange()"></mat-slide-toggle></td>
             </tr>
           </table>
 
@@ -85,8 +86,8 @@ aria-hidden="true"
           <p>Reserve sports for your friends if they don't have account in the system</p>
           <table class="table table-sm table-borderless">
             <tr *ngFor="let user of friendBookingUsers">
-              <td>{{ user.name}}  {{ user.amount }}</td>
-              <td><mat-slide-toggle [(ngModel)]="user.selected" (change)="onSelectionChange()"></mat-slide-toggle></td>
+              <td>{{ user.name}}</td>
+              <td style="text-align: right;"><mat-slide-toggle [(ngModel)]="user.selected" (change)="onSelectionChange()"></mat-slide-toggle></td>
             </tr>
           </table>
 
@@ -97,9 +98,11 @@ aria-hidden="true"
         closure.
       </p>
       <p>Happy Badminton!</p> -->
+      <div class="booking-sum">Amount: ${{ totalAmount }} {{ hasCredit ? "Credit" : "Cash"}}</div>
     </div>
     <div class="modal-footer">
-      Amount: ${{ totalAmount }} 
+      
+      
       <button mat-raised-button data-dismiss="modal">Cancel</button>
 
       <button mat-raised-button color="primary" (click)="onConfirmClick()" *ngIf="!isLoading">Confirm</button>
