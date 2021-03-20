@@ -5,7 +5,7 @@ export class BookingPerson {
     docId:string;
     bookingDocId:string;
     groupDocId:string;
-
+    bookingDesc:string; //desc, so we don't need extra query for description
     userId: string;
     userDisplayName: string;
     notes: string; //Only admin can enter notes

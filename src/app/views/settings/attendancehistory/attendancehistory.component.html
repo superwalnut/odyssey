@@ -3,27 +3,23 @@
     <div class="col-md-12 mx-auto">
       <div class="card">
         <div class="card-body p-4">
-          <h1>Attendance History</h1>
+          <h1>Booking History</h1>
           <table class="table">
             <thead>
               <tr>
                 <th scope="col">Date</th>
+                <th scope="col">Name</th>
                 <th scope="col">Description</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">12/01/2021</th>
-                <td>Tuesday social</td>
+
+              <tr *ngFor="let bookings of myBookingHistory">
+                <th scope="row">{{ bookings.createdOn.toDate() | date: 'yyyy/MM/dd'}}</th>
+                <td>{{bookings.userDisplayName}}</td>
+                <td>{{bookings.bookingDesc}}</td>
               </tr>
-              <tr>
-                <th scope="row">11/01/2021</th>
-                <td>Friday social</td>
-              </tr>
-              <tr>
-                <th scope="row">12/01/2021</th>
-                <td>Saturday social</td>
-              </tr>
+             
             </tbody>
           </table>
         </div>

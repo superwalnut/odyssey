@@ -25,6 +25,8 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
 
   public async createBookingPersonBatch(bookingPersons:BookingPerson[]) {
   
+    console.log('createBookingPersonBatch service: ', bookingPersons);
+
     var credit = {
       userDocId: bookingPersons[0].userId,
       userDisplayName: bookingPersons[0].userDisplayName,
@@ -47,13 +49,26 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     var ref = this.firestore.collection('credits').doc().ref;
     batch.set(ref, credit);
 
+    console.log('createBookingPersonBatch service: ', credit);
+
     await batch.commit()
-    
   }
 
    public get(bookingPersonDocId: string) {
       return super.getByDocId(bookingPersonDocId);
     }
+
+  public getByUserDocId(userDocId: string) {
+    return this.firestore.collection('bookingPersons', q=>q.where('parentUserId', '==', userDocId).orderBy('createdOn','desc')).snapshotChanges().pipe(
+      map(actions=> {
+        var items = actions.map(p=>{
+          var data = p.payload.doc.data() as BookingPerson;
+          return { ...data, docId:p.payload.doc.id} as BookingPerson;
+        });
+        return items;
+      })
+    )
+  }
 
 
   public getByBookingDocId(bookingDocId: string) {

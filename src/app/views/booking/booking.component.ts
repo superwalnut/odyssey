@@ -27,6 +27,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   group:Group;
   booking:Booking;
   bookingDocId:string;
+  groupDocId:string;
   bookingPerons:BookingPerson[];
   totalAmount: number;
   hasCredit: boolean;
@@ -42,9 +43,10 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
 
-    var bookingDocId = this.activatedRoute.snapshot.params.id;
-    var groupDocId = this.activatedRoute.snapshot.params.groupId;
+    this.bookingDocId = this.activatedRoute.snapshot.params.id;
+    this.groupDocId = this.activatedRoute.snapshot.params.groupId;
 
+    console.log('url params: ', this.bookingDocId, this.groupDocId)
     this.loggedInAccount = this.accountService.getLoginAccount();
     
     this.creditService.getBalance(this.loggedInAccount.docId).subscribe(result=>{
@@ -52,9 +54,9 @@ export class BookingComponent extends BaseComponent implements OnInit {
       if (result)
         this.hasCredit = result.balance > 0;
     })
-    this.getGroupDetail(groupDocId);
-    this.getCurrentBooking(bookingDocId);
-    this.getCurrentBookingPersons(bookingDocId);
+    this.getGroupDetail(this.groupDocId);
+    this.getCurrentBooking(this.bookingDocId);
+    this.getCurrentBookingPersons(this.bookingDocId);
     this.getFriendsList(this.loggedInAccount);
     this.getFamilyMembers(this.loggedInAccount);    
   }
@@ -182,7 +184,8 @@ export class BookingComponent extends BaseComponent implements OnInit {
     localBookingUsers.forEach(u=>{
       var bp = { 
         bookingDocId: this.bookingDocId,
-        groupDocId: this.group.docId,
+        groupDocId: this.groupDocId,
+        bookingDesc: this.group.groupName,
         userId: u.userDocId,
         userDisplayName:u.name,
         amount: u.amount,

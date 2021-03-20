@@ -48,6 +48,23 @@ export class DefaultLayoutComponent {
         name: "Account",
       },
       {
+        name: "Booking History",
+        url: "/settings/attendancehistory",
+        icon: "cil-check",
+      },
+
+      {
+        name: "Credit Transactions",
+        url: "/settings/creditstatement",
+        icon: "cil-dollar",
+      },
+      {
+        name: "Booking Schedule",
+        url: "/settings/schedule",
+        icon: "cil-tennis",
+      },
+      
+      {
         name: "Account Settings",
         url: "",
         icon: "cil-cog",
@@ -69,22 +86,7 @@ export class DefaultLayoutComponent {
           },
         ],
       },
-
-      {
-        name: "Credit Transactions",
-        url: "/settings/creditstatement",
-        icon: "cil-dollar",
-      },
-      {
-        name: "Booking Schedule",
-        url: "/settings/schedule",
-        icon: "cil-tennis",
-      },
-      {
-        name: "Attendance History",
-        url: "/settings/attendancehistory",
-        icon: "cil-check",
-      },
+      
     ];
 
     if (isAdmin) {
