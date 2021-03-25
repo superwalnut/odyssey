@@ -22,6 +22,7 @@ export class BookingsService extends FirestoreBaseService<Booking>{
   public createBooking(booking: Booking) {
     return super.create(booking).then(x=>{
       //do the second call, x is your booking docId
+      return x;
     });
   }
 
