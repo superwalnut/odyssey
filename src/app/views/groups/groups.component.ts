@@ -17,6 +17,7 @@ export class GroupsComponent extends BaseComponent implements OnInit {
 
   groups:Group[];
   bookings:Booking[];
+  seatsLimit: number;
 
   groupBookings:GroupBooking[]=[];
   //groupIds:string[]=["Dmpgn7MWD5BhR40xTEPG", "Q1tO8IGOJmavSMFYkZbi", "m1RjIA1IfoDuxq00XqRk"];
@@ -30,7 +31,8 @@ export class GroupsComponent extends BaseComponent implements OnInit {
   }
 
   getGroupName(groupDocId:string) {
-    var g = this.groups.find(x=>x.docId == groupDocId);
+    var g = this.groups.find(x=>x.docId == groupDocId); 
+    this.seatsLimit = g.seats;
     return g.groupName;
   }
 

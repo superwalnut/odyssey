@@ -13,7 +13,7 @@
         <mat-card *ngFor="let b of bookings" class="card-sm booking"> 
           <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}">
           <mat-card-header>
-            <mat-card-title>{{ getGroupName(b.groupDocId)}}</mat-card-title>
+            <mat-card-title>{{ getGroupName(b.groupDocId)}} [Seats: {{seatsLimit}}]</mat-card-title>
           </mat-card-header>
           
           <img mat-card-image src="assets/img/banners/badminton.jpg">

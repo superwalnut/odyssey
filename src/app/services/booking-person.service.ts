@@ -113,5 +113,9 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     //return true;
   }
 
+  public async delete(bookingPersonDocId:string) {
+    await super.delete(bookingPersonDocId);
+  }
+
 
 }

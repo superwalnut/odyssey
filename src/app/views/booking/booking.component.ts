@@ -1,4 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { timer } from 'rxjs';
 import { Group } from "../../models/group";
 import { GroupService } from "../../services/group.service";
 import { BookingPerson } from "../../models/booking-person";
@@ -16,6 +17,7 @@ import Timestamp = firebase.firestore.Timestamp;
 import { DOCUMENT } from '@angular/common';
 import { BaseComponent } from '../base-component';
 import { Booking } from '../../models/booking';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-booking',
@@ -37,6 +39,8 @@ export class BookingComponent extends BaseComponent implements OnInit {
   friendBookingUsers:LocalBookingUser[]=[];
   isLoading:boolean;
   loggedInAccount;
+  seatsLeft:number;
+  isSeatsLeft:boolean;
   
 
   constructor(@Inject(DOCUMENT) private document:Document, private groupService:GroupService, private dialogRef:MatDialog, private bookingService:BookingsService, private bookingPersonService:BookingPersonService, private creditService:CreditService, private accountService:AccountService, private activatedRoute:ActivatedRoute) { super()}
@@ -64,9 +68,10 @@ export class BookingComponent extends BaseComponent implements OnInit {
   getGroupDetail(groupDocId:string) {
     this.groupService.getGroup(groupDocId).subscribe(g=>{
       this.group = g;
+      
       this.isCommitteeCheck(this.loggedInAccount.docId);
 
-      console.log(this.group);
+      console.log('getGroupDetails()', this.group);
     });
   }
 
@@ -86,7 +91,22 @@ export class BookingComponent extends BaseComponent implements OnInit {
         });
         
         console.log("getByBookingPersonsByBookingDocId(): ", this.allLocalBookingUsers);
+        this.seatsAvailable();
+
       })
+  }
+
+  seatsAvailable()
+  {
+    let seatsLimit = this.group.seats;
+    let seatsBooked = this.allLocalBookingUsers.length;
+    let seatsLeft = seatsLimit - seatsBooked;
+    this.isSeatsLeft = seatsLeft > 0;
+    console.log('seats left: ', seatsLeft);
+    return seatsLeft;
+
+
+
   }
 
   getCurrentBooking(bookingDocId:string) {
@@ -120,6 +140,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   }
 
   prepareBookingModal() {
+
     this.familyBookingUsers.forEach(b=>{
       let match = this.allLocalBookingUsers.find(bookingUser=> bookingUser.userDocId == b.userDocId && bookingUser.name == b.name);
       console.log("found xxxxxx: ", match);
@@ -179,6 +200,9 @@ export class BookingComponent extends BaseComponent implements OnInit {
       this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete).then(()=>this.document.location.reload());
   }
 
+  testClick() {
+    this.allLocalBookingUsers = [];
+  }
   mapToBookingPersons(localBookingUsers:LocalBookingUser[]) {
     let bookingPersons:BookingPerson[]=[];
     localBookingUsers.forEach(u=>{
@@ -242,9 +266,19 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
 
   bookClicked() {
+   
     this.prepareBookingModal();
     this.calculateTotal();
+    let seatsLeft = this.seatsAvailable();
 
+
+  }
+
+  deleteBooking(user) {
+    if(confirm("Are you sure to withdraw? " + user.name)) {
+      console.log('deleting...', user);
+      this.bookingPersonService.delete(user.docId).then(()=>this.document.location.reload());
+    }    
   }
 
   onSelectionChange() {

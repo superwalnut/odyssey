@@ -7,6 +7,7 @@ export class Group {
   docId: string;
   groupName: string;
   groupDesc: string;
+  seats:number; //headcount limit
   committees: string[]; // VIPs for this group, userDocId, //every time group is closed we need to distrbute  group profit to group committees as dividend
   isClosed: boolean; //every time group is closed we need to distrbute  group profit to group committees as dividend
   startDate: Timestamp; //default to Date.Now()
