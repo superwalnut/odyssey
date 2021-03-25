@@ -193,6 +193,21 @@ export class AccountService extends FirestoreBaseService<User>{
       }));
   }
 
+  public getUserByEmail(email:string) {
+    return this.firestore.collection('users', q => q.where("email", "==", email).limit(1)).snapshotChanges().pipe(
+      map(actions => {
+        if (actions && actions.length > 0) {
+          var acc = actions[0].payload.doc.data() as User;
+          return {
+            ...acc,
+            docId: actions[0].payload.doc.id
+          } as User;
+        } else {
+          return null;
+        }
+      }));
+  }
+
   public getUsersByUserDocIds(docIds: string[]) {
     console.log("getUsersByUserDocIds: ", docIds);
 

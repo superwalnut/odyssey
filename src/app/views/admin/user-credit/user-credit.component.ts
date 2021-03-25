@@ -7,6 +7,7 @@ import { User } from "../../../models/user";
 import { AccountService } from "../../../services/account.service";
 import { CreditService } from "../../../services/credit.service";
 import { Account } from "../../../models/account";
+import { MailgunService } from "../../../services/mailgun.service";
 
 @Component({
   selector: "app-user-credit",
@@ -28,7 +29,8 @@ export class UserCreditComponent implements OnInit {
     private accountService: AccountService,
     private creditService: CreditService,
     private fb: FormBuilder,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private mailService:MailgunService,
   ) {}
 
   // convenience getter for easy access to form fields
@@ -79,7 +81,9 @@ export class UserCreditComponent implements OnInit {
       createdByDisplayName: this.loggedInUser.name,
     } as Credit;
 
-    this.creditService.createCredit(credit);
+    this.creditService.createCredit(credit).then(x=>{
+      this.mailService.sendTopupSucceed(this.user.email, this.user.name, credit.amount);
+    });
 
     // this.creditService
     //   .createCredit(credit)

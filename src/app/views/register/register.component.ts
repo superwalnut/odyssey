@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { AccountService } from '../../services/account.service';
 import { combineLatest } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { MailgunService } from '../../services/mailgun.service';
+import { HelperService } from '../../common/helper.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +17,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router) {
+  constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router, private mailService:MailgunService, private helpService:HelperService) {
 
   }
 
@@ -86,6 +88,8 @@ export class RegisterComponent implements OnInit {
       } else {
         // create user
         this.accountService.createUser(user).then(x => {
+          var hashkey = this.helpService.encryptData(user.email);
+          this.mailService.sendRegistration(user.email, user.name, hashkey);
           this.snackBar.open(`you have successfully registered.`, null, {
             duration: 5000,
             verticalPosition: 'top'
