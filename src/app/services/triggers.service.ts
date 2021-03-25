@@ -13,8 +13,8 @@ import { GlobalConstants } from '../common/global-constants';
 import { HelperService } from '../common/helper.service';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
-import { take } from 'rxjs/operators';
-import { combineLatest, forkJoin } from 'rxjs';
+import { concatMap, map, mergeMap, switchMap, take } from 'rxjs/operators';
+import { combineLatest, forkJoin, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -135,4 +135,18 @@ export class TriggersService {
     console.log("booking persons: ", bookingpersons);
     return bookingpersons;
   }
+
+  public getBookingAndPersons(groupId:string) {
+    return this.bookingService.getLastBookingByGroupDocId(groupId).pipe(
+      mergeMap(booking => {
+          var persons = this.bookingPersonService.getByBookingDocId(booking.docId);
+          return combineLatest([of(booking),persons]);
+        }),
+        map(([booking, persons]) => {
+            console.log('this booking', booking);
+            console.log('persons in this booking', persons);
+        }));
+  }
+
+
 }
