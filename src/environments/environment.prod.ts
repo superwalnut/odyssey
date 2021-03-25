@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
+  api_url: "https://us-central1-hbclub-919aa.cloudfunctions.net",
   firebase: {
-
     apiKey: "AIzaSyDdRojW_gDRUM6rCoMApNu0Q585rU2GIe8",
     authDomain: "hbclub-919aa.firebaseapp.com",
     projectId: "hbclub-919aa",

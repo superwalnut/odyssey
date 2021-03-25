@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection } from '@angular/fire/firestore';
-import * as CryptoJS from 'crypto-js';
 import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -10,7 +9,6 @@ import Timestamp = firebase.firestore.Timestamp;
   providedIn: 'root'
 })
 export class FirestoreBaseService<T> {
-  private encryptSecretKey = "5ed40d89-0194-47da-8e3f-04df8be154a6";
 
   constructor(private collection: AngularFirestoreCollection) { }
 
@@ -70,26 +68,6 @@ export class FirestoreBaseService<T> {
         docId: actions.payload.id
       } as T;
     }));
-  }
-
-  protected encryptData(data) {
-    try {
-      return CryptoJS.AES.encrypt(JSON.stringify(data), this.encryptSecretKey).toString();
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  protected decryptData(data) {
-    try {
-      const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
-      if (bytes.toString()) {
-        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-      }
-      return data;
-    } catch (e) {
-      console.log(e);
-    }
   }
 
   protected convertToTimestamp(date: Date): Timestamp {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { helpers } from 'chart.js';
 import { take } from 'rxjs/operators';
+import { HelperService } from '../../common/helper.service';
 import { AccountService } from '../../services/account.service';
 import { MailgunService } from '../../services/mailgun.service';
 
@@ -13,7 +15,7 @@ export class ResetpasswordComponent implements OnInit {
   resetForm: FormGroup;
   submitted = false;
 
-  constructor(private mailgunService:MailgunService, private fb:FormBuilder, private accountService:AccountService) { }
+  constructor(private mailgunService:MailgunService, private fb:FormBuilder, private accountService:AccountService, private helpService:HelperService) { }
 
   ngOnInit(): void {
     this.resetForm = this.fb.group({
@@ -35,7 +37,8 @@ export class ResetpasswordComponent implements OnInit {
 
     this.accountService.isEmailExist(this.resetForm.value.email).pipe(take(1)).subscribe(x=>{
       if(x && x.length >0){
-        this.mailgunService.sendMail(this.resetForm.value.email, "HBC Reset Password", "test reset password")
+        var hashkey = this.helpService.encryptData(this.resetForm.value.email);
+        this.mailgunService.sendForgotPassword(this.resetForm.value.email, hashkey);
       }
     });
   }

@@ -12,6 +12,8 @@ import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { merge } from 'rxjs';
 import { Runner } from 'protractor';
+import { MailgunService } from './mailgun.service';
+import { HelperService } from '../common/helper.service';
 
 
 @Injectable({
@@ -21,7 +23,7 @@ export class AccountService extends FirestoreBaseService<User>{
   private accountSubject: BehaviorSubject<User>;
   public account: Observable<User>;
 
-  constructor(private firestore: AngularFirestore, private router: Router, private route: ActivatedRoute, private snackBar: MatSnackBar) {
+  constructor(private firestore: AngularFirestore, private router: Router, private route: ActivatedRoute, private snackBar: MatSnackBar, private helpService:HelperService) {
     super(firestore.collection('users'));
     this.accountSubject = new BehaviorSubject<User>(null);
     this.account = this.accountSubject.asObservable();
@@ -191,6 +193,21 @@ export class AccountService extends FirestoreBaseService<User>{
       }));
   }
 
+  public getUserByEmail(email:string) {
+    return this.firestore.collection('users', q => q.where("email", "==", email).limit(1)).snapshotChanges().pipe(
+      map(actions => {
+        if (actions && actions.length > 0) {
+          var acc = actions[0].payload.doc.data() as User;
+          return {
+            ...acc,
+            docId: actions[0].payload.doc.id
+          } as User;
+        } else {
+          return null;
+        }
+      }));
+  }
+
   public getUsersByUserDocIds(docIds: string[]) {
     console.log("getUsersByUserDocIds: ", docIds);
 
@@ -217,14 +234,14 @@ export class AccountService extends FirestoreBaseService<User>{
 
   private saveLocal(user: User) {
     console.log('local', user);
-    var encripted = this.encryptData(JSON.stringify({ docId: user.docId, name: user.name, role: user.role }));
+    var encripted = this.helpService.encryptData(JSON.stringify({ docId: user.docId, name: user.name, role: user.role }));
     localStorage.setItem("user", encripted);
   }
 
   private getLocal(): Account {
     var json = localStorage.getItem("user");
     if (json) {
-      var decripted = this.decryptData(json);
+      var decripted = this.helpService.decryptData(json);
       var user = JSON.parse(decripted);
       return user as Account;
     }

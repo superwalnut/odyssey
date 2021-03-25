@@ -63,6 +63,9 @@
                       <div *ngIf="f.password.errors.required">
                         Password is required
                       </div>
+                      <div *ngIf="f.password.errors.minlength">
+                        Password is too short
+                      </div>
                     </div>
                   </div>
                   <div class="row">

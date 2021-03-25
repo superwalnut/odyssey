@@ -5,17 +5,38 @@
     </p>
 
     <div formArrayName="families" *ngFor="let fam of families.controls; index as i">
-      <div [formGroupName]="i">
-          <div class="input-group mb-3">
-              <input type="hidden" id="{{'userDocId' + i}}" formControlName="userDocId" />
-              <input id="{{'name' + i}}" formControlName="name" placeholder="Name..." class="form-control" type="text" >
-              <div class="input-group-append">
-                  <div (click)="deleteFamily(i)" class="input-group-text">
-                      <i  class="cil-x"></i>
-                  </div>
-              </div>
+      <div [formGroupName]="i" class="form-row align-items-center mb-3">
+        <div class="col-sm-6 my-1">
+          <div class="input-group">
+            <input type="hidden" id="{{'userDocId' + i}}" formControlName="userDocId" />
+            <input id="{{'name' + i}}" formControlName="name" placeholder="Name..." class="form-control" type="text" >
+            <div class="input-group-append">
+                <div (click)="deleteFamily(i)" class="input-group-text">
+                    <i  class="cil-x"></i>
+                </div>
+            </div>
           </div>
+        </div>
+        <div class="col-sm-3 my-1">
+          <select class="custom-select mr-sm-2" id="{{'gender' + i}}" formControlName="gender">
+            <option selected>Choose Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div class="col-sm-3 my-1">
+          <select class="custom-select mr-sm-2" id="{{'agegroup' + i}}" formControlName="agegroup">
+            <option selected>Choose Age Group</option>
+            <option value="Adult">Adult</option>
+            <option value="Child">Child</option>
+          </select>
+        </div>
       </div>
     </div>
       <button type="submit" class="btn btn-block btn-success">Save</button>
   </form>
+
+
+
+
+  

@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../hbc-functions"
+		}
+	],
+	"settings": {}
+}
