@@ -28,18 +28,21 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       name: ['', Validators.required],
       mobile: ['', Validators.required],
+      gender:[''],
     });
 
     console.log('userId', this.userDocId);
 
     this.accountService.getUserByDocId(this.userDocId).subscribe(x => {
       this.user = x;
-
-      this.profileForm = this.fb.group({
-        email: [this.user.email, [Validators.required, Validators.email]],
-        name: [this.user.name, Validators.required],
-        mobile: [this.user.mobile, Validators.required],
-      });
+      this.profileForm.patchValue(
+        {
+          email: this.user.email,
+          name: this.user.name,
+          mobile: this.user.mobile,
+          gender: this.user.gender,
+        }
+      );
     });
   }
 
@@ -61,6 +64,8 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       name: this.profileForm.value.name,
       email: this.profileForm.value.email,
       mobile: this.profileForm.value.mobile,
+      gender: this.profileForm.value.gender,
+      isChild: false,
     } as User;
 
     const emailCheck$ = this.accountService.isEmailExist(user.email);

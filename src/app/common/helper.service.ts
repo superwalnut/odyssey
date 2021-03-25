@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelperService {
+  private encryptSecretKey = "5ed40d89-0194-47da-8e3f-04df8be154a6";
 
   constructor() { }
 
@@ -97,4 +99,23 @@ var year = date.getFullYear();
     return this.convertToTimestamp(new Date());
   }
 
+  encryptData(data) {
+    try {
+      return CryptoJS.AES.encrypt(JSON.stringify(data), this.encryptSecretKey).toString();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  decryptData(data) {
+    try {
+      const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
+      if (bytes.toString()) {
+        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      }
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }

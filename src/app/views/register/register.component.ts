@@ -50,6 +50,7 @@ export class RegisterComponent implements OnInit {
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
       mobile: this.registerForm.value.mobile,
+      isChild:false,
     } as User;
 
     const emailCheck$ = this.accountService.isEmailExist(user.email);
@@ -117,5 +118,5 @@ export class RegisterComponent implements OnInit {
             matchingControl.setErrors(null);
         }
     }
-}
+  }
 }
