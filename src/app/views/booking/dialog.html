@@ -34,17 +34,14 @@
       <div class="booking-sum">Amount: ${{ totalAmount }} {{ data.hasCredit ? "Credit" : "Cash"}}</div>
     </div>
 
-    <div *ngIf="!isSeatsLeft">
+    <div *ngIf="!data.isSeatsLeft">
 
       <p>All seats are booked, pelase check back later should some seats freed up.</p>
     </div>
 
   </div>
   <div class="modal-footer">
-    
-    
     <button mat-raised-button (click)="onNoClick()">Close</button>
-
     <button mat-raised-button color="primary" (click)="onConfirmClick()" *ngIf="!isLoading && data.isSeatsLeft">Confirm</button>
     <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
 
