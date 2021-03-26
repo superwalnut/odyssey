@@ -17,6 +17,7 @@ import { DOCUMENT } from '@angular/common';
 import { BaseComponent } from '../base-component';
 import { Booking } from '../../models/booking';
 import { LocalBookingUser } from '../../models/custom-models';
+import { map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-booking',
@@ -374,18 +375,26 @@ export class DialogOverviewExampleDialog {
     testData: DialogData;
     totalAmount:number;
     isLoading:boolean;
+    allBookings:BookingPerson[];
 
 
   ngOnInit() {
-    let loggedInAccount = this.accountService.getLoginAccount();
-    this.testData = this.data;
-    console.log(this.testData);
+    this.bookingPersonService.getByBookingDocId(this.data.bookingDocId).subscribe(allBookings=>{
+      this.allBookings = allBookings; //get a live connection to all booking persons.
+    })
+
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   onConfirmClick(): void {
+
+    if (this.allBookings.length >= this.data.group.seats) {
+      this.hasError = true;
+      this.errorMessage = "This session is full";
+      return;
+    }
     //1. merge family and friends into one list
 
     this.isLoading = true;
@@ -421,7 +430,7 @@ export class DialogOverviewExampleDialog {
 
 
     if (finalBookingPersonsToAdd.length >0) {
-      //this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd).then(()=>this.document.location.reload());
+
       this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd)
         .then(()=>this.dialogRef.close())
         .catch((err) => {

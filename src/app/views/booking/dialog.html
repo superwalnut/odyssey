@@ -12,6 +12,7 @@
     <div *ngIf="!data.hasCredit && !data.isCommittee">You don't have any credit left, cash rate appllied</div>
     
     <div *ngIf="data.isSeatsLeft">
+      {{ data.allLocalBookingUsers.length}}
       <h2>You & Your Family</h2>
   
       <table class="table table-sm table-borderless">

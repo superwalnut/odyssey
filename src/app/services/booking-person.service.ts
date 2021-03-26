@@ -27,7 +27,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
 
   public async createBookingPersonBatch(bookingPersons:BookingPerson[]) {
   
-    throw new Error("test throw error");
+    //throw new Error("test throw error");
 
     console.log('createBookingPersonBatch service: ', bookingPersons);
 

@@ -28,7 +28,7 @@
             <tbody>
               <tr *ngFor="let p of allLocalBookingUsers; let i=index" [ngClass]="{'mybooking':p.isMyBooking}">
                 <th scope="row">{{ i+1 }}</th>
-                <td>{{p.name}}  {{ p.amount }}<br/></td>
+                <td>{{p.name}}<br/></td>
                 <td><i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
                 <td>
                   <button mat-icon-button color="warn" (click)="deleteBooking(p)" *ngIf="p.isMyBooking">
