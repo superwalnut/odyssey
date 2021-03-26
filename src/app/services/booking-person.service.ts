@@ -8,6 +8,7 @@ import Timestamp = firebase.firestore.Timestamp;
 import { Booking } from '../models/booking';
 import { CreditService } from './credit.service';
 import { Credit } from '../models/credit';
+import { LocalBookingUser } from '../models/custom-models';
 import { CreditstatementComponent } from '../views/settings/creditstatement/creditstatement.component';
 
 @Injectable({
@@ -83,6 +84,32 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
       })
     );
   }
+
+
+  public getCustomByBookingDocId(bookingDocId: string, myUserDocId:string) {
+    return this.firestore.collection('bookingPersons', q => q.where('bookingDocId', '==', bookingDocId).orderBy('createdOn', 'asc')).snapshotChanges().pipe(
+      map(actions => {
+        var items = actions.map(p => {
+          var u = p.payload.doc.data() as BookingPerson;
+
+          var user = {
+            docId: u.docId,
+            userDocId: u.userId,
+            name: u.userDisplayName,
+            amount: u.amount,
+            paymentMethod: u.paymentMethod,
+            isMyBooking: u.userId == myUserDocId || u.parentUserId == myUserDocId,
+            isFamily: u.parentUserId == myUserDocId || u.userId == myUserDocId,
+          } as LocalBookingUser;
+
+          console.log('getCustomByBookingDocId()', user);
+          return { ...user, docId: p.payload.doc.id } as LocalBookingUser;
+        });
+        return items;
+      })
+    );
+  }
+
 
   public async deleteBatch(bookingPersons:BookingPerson[]) {
     

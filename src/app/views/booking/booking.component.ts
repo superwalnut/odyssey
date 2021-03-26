@@ -17,6 +17,8 @@ import Timestamp = firebase.firestore.Timestamp;
 import { DOCUMENT } from '@angular/common';
 import { BaseComponent } from '../base-component';
 import { Booking } from '../../models/booking';
+import { LocalBookingUser } from '../../models/custom-models';
+
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
@@ -76,24 +78,29 @@ export class BookingComponent extends BaseComponent implements OnInit {
   }
 
   getCurrentBookingPersons(bookingDocId:string) {
-      this.bookingPersonService.getByBookingDocId(bookingDocId).subscribe(bs=>{
-        bs.forEach(u=>{
-          var user = {
-            docId: u.docId,
-            userDocId: u.userId,
-            name: u.userDisplayName,
-            amount: u.amount,
-            paymentMethod: u.paymentMethod,
-            isMyBooking: u.userId == this.loggedInAccount.docId || u.parentUserId == this.loggedInAccount.docId,
-            isFamily: u.parentUserId == this.loggedInAccount.docId || u.userId == this.loggedInAccount.docId,
-          } as LocalBookingUser;
-          this.allLocalBookingUsers.push(user);
-        });
+    //this.allLocalBookingUsers = [];
+      // this.bookingPersonService.getByBookingDocId(bookingDocId).subscribe(bs=>{
+      //   bs.forEach(u=>{
+      //     var user = {
+      //       docId: u.docId,
+      //       userDocId: u.userId,
+      //       name: u.userDisplayName,
+      //       amount: u.amount,
+      //       paymentMethod: u.paymentMethod,
+      //       isMyBooking: u.userId == this.loggedInAccount.docId || u.parentUserId == this.loggedInAccount.docId,
+      //       isFamily: u.parentUserId == this.loggedInAccount.docId || u.userId == this.loggedInAccount.docId,
+      //     } as LocalBookingUser;
+      //     this.allLocalBookingUsers.push(user);
+      //   });
         
+      this.bookingPersonService.getCustomByBookingDocId(bookingDocId, this.loggedInAccount.docId).subscribe(bs=>{
+        this.allLocalBookingUsers = bs;
         console.log("getByBookingPersonsByBookingDocId(): ", this.allLocalBookingUsers);
         this.seatsAvailable();
 
       })
+        
+
   }
 
   seatsAvailable()
@@ -161,6 +168,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
   onConfirmClick() {
     //1. merge family and friends into one list
+
     this.isLoading = true;
     var result = this.preDbProcess();
     console.log("xxxxx: ", result.toAdd);
@@ -187,17 +195,24 @@ export class BookingComponent extends BaseComponent implements OnInit {
       }
     });
 
+        this.allLocalBookingUsers =[];
+    this.familyBookingUsers=[];
+    this.friendBookingUsers=[];
+
     var finalBookingPersonsToAdd = this.mapToBookingPersons(result.toAdd);
     var finalBookingPersonsToDelete = this.mapToBookingPersons(result.toDelete);
     console.log('finalBookingPersonsToAdd: ', finalBookingPersonsToAdd);
     console.log('finalBookingPersonsToDelete: ', finalBookingPersonsToDelete);
-    this.allLocalBookingUsers =[];
+
+
     if (finalBookingPersonsToAdd.length >0) {
-      this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd).then(()=>this.document.location.reload());
+      //this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd).then(()=>this.document.location.reload());
+      this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd);
     }
       
     if (finalBookingPersonsToDelete.length > 0)
-      this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete).then(()=>this.document.location.reload());
+      //this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete).then(()=>this.document.location.reload());
+      this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete);
   }
 
   testClick() {
@@ -330,13 +345,13 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
 }
 
-export class LocalBookingUser {
-  docId:string;
-  userDocId: string;
-  name: string;
-  amount: number;
-  paymentMethod: string;
-  selected: boolean;
-  isMyBooking: boolean;
-  isFamily: boolean;
-}
+// export class LocalBookingUser {
+//   docId:string;
+//   userDocId: string;
+//   name: string;
+//   amount: number;
+//   paymentMethod: string;
+//   selected: boolean;
+//   isMyBooking: boolean;
+//   isFamily: boolean;
+// }
