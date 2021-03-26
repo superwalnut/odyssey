@@ -26,6 +26,8 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
 
   public async createBookingPersonBatch(bookingPersons:BookingPerson[]) {
   
+    //throw 'asdfasd';
+
     console.log('createBookingPersonBatch service: ', bookingPersons);
 
     var credit = {

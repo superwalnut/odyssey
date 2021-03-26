@@ -1,0 +1,52 @@
+
+<!-- Modal -->
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLongTitle">{{ data.group?.groupName}} {{ data.group?.eventStartTime}}</h5>
+    <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
+  </div>
+
+  <div class="modal-body">
+    <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage }}</div>
+
+    <div *ngIf="!data.hasCredit && !data.isCommittee">You don't have any credit left, cash rate appllied</div>
+    
+    <div *ngIf="data.isSeatsLeft">
+      <h2>You & Your Family</h2>
+  
+      <table class="table table-sm table-borderless">
+        <tr *ngFor="let user of data.familyBookingUsers">
+          <td>{{ user.name}}</td>
+          <td style="text-align: right;"><mat-slide-toggle [(ngModel)]="user.selected" (change)="onSelectionChange()"></mat-slide-toggle></td>
+        </tr>
+      </table>
+
+      <h2>Your Friends</h2>
+      <p>Reserve sports for your friends if they don't have account in the system</p>
+      <table class="table table-sm table-borderless">
+        <tr *ngFor="let user of data.friendBookingUsers">
+          <td>{{ user.name}}</td>
+          <td style="text-align: right;"><mat-slide-toggle [(ngModel)]="user.selected" (change)="onSelectionChange()"></mat-slide-toggle></td>
+        </tr>
+      </table>
+
+      <div class="booking-sum">Amount: ${{ totalAmount }} {{ data.hasCredit ? "Credit" : "Cash"}}</div>
+    </div>
+
+    <div *ngIf="!isSeatsLeft">
+
+      <p>All seats are booked, pelase check back later should some seats freed up.</p>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    
+    
+    <button mat-raised-button (click)="onNoClick()">Close</button>
+
+    <button mat-raised-button color="primary" (click)="onConfirmClick()" *ngIf="!isLoading && data.isSeatsLeft">Confirm</button>
+    <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+
+  </div>
+</div>
+
