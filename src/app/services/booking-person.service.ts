@@ -10,6 +10,7 @@ import { CreditService } from './credit.service';
 import { Credit } from '../models/credit';
 import { LocalBookingUser } from '../models/custom-models';
 import { CreditstatementComponent } from '../views/settings/creditstatement/creditstatement.component';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
 
   public async createBookingPersonBatch(bookingPersons:BookingPerson[]) {
   
-    //throw 'asdfasd';
+    throw new Error("test throw error");
 
     console.log('createBookingPersonBatch service: ', bookingPersons);
 

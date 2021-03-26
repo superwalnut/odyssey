@@ -42,7 +42,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   isSeatsLeft:boolean;
   
 
-  constructor(@Inject(DOCUMENT) private document:Document, private groupService:GroupService, private dialogRef:MatDialog, 
+  constructor(private groupService:GroupService, private dialogRef:MatDialog, 
     private bookingService:BookingsService, private bookingPersonService:BookingPersonService, private creditService:CreditService, 
     private accountService:AccountService, private activatedRoute:ActivatedRoute, public dialog:MatDialog) { super()}
 
@@ -279,7 +279,8 @@ export class BookingComponent extends BaseComponent implements OnInit {
   deleteBooking(user) {
     if(confirm("Are you sure to withdraw? " + user.name)) {
       console.log('deleting...', user);
-      this.bookingPersonService.delete(user.docId).then(()=>this.document.location.reload());
+      this.bookingPersonService.delete(user.docId);
+      
     }    
   }
 
@@ -375,11 +376,11 @@ export class DialogOverviewExampleDialog {
     isLoading:boolean;
 
 
-    ngOnInit() {
-      let loggedInAccount = this.accountService.getLoginAccount();
-      this.testData = this.data;
-      console.log(this.testData);
-    }
+  ngOnInit() {
+    let loggedInAccount = this.accountService.getLoginAccount();
+    this.testData = this.data;
+    console.log(this.testData);
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -440,7 +441,9 @@ export class DialogOverviewExampleDialog {
           console.log(err);
         });
     }
-    this.dialogRef.close();
+
+    if (finalBookingPersonsToAdd.length == 0 && finalBookingPersonsToDelete.length == 0)
+      this.dialogRef.close();
   }
 
   preDbProcess() {
