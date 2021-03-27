@@ -128,8 +128,6 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
         var ref = this.firestore.collection('bookingPersons').doc(forSaleDocId).ref;
         batch.delete(ref);
 
-        
-
         //3. buy 
         var ref = this.firestore.collection('bookingPersons').doc().ref;
         batch.set(ref, buyer);
@@ -147,17 +145,20 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
         } as Credit;
         
         batch.set(ref, sellerCredit);
+        console.log('seller credit...', sellerCredit);
 
+        var ref = this.firestore.collection('credits').doc().ref;
         var buyerCredit = {
-          userDocId: buyer.docId,
+          userDocId: buyer.userId,
           userDisplayName: buyer.userDisplayName,
-          createdBy: buyer.docId,
+          createdBy: buyer.userId,
           createdByDisplayName:buyer.userDisplayName,
           amount: -buyer.amount,
           created: Timestamp.now(),
           note: 'purchased seat from ' + result.userDisplayName,
         } as Credit;
         batch.set(ref, buyerCredit);
+        console.log('buyer credit...', buyerCredit);
 
         batch.commit();
       }

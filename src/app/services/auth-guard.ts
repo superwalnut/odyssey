@@ -14,14 +14,14 @@ export class AuthGuard implements CanActivate {
         console.log('acc', account);
         if(account && account.docId){
              // check if route is restricted by role
-             if (route.data.roles) {
-                const matches = route.data.roles.filter(value => account.role.includes(value));
-                if(!matches || matches.length <= 0){
-                    // role not authorised so redirect to home page
-                    this.router.navigate(['/']);
-                    return false;
-                }
-            }
+            //  if (route.data.roles) {
+            //     const matches = route.data.roles.filter(value => account.role.includes(value));
+            //     if(!matches || matches.length <= 0){
+            //         // role not authorised so redirect to home page
+            //         this.router.navigate(['/']);
+            //         return false;
+            //     }
+            // }
 
             // authorised so return true
             return true;
