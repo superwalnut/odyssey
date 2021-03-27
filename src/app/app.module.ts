@@ -63,7 +63,7 @@ import { DesignDashboardComponent } from "./views/design/design-dashboard/design
 import { HomeComponent } from "./views/home/home.component";
 import { MatMenuModule } from "@angular/material/menu";
 import { CarouselModule } from "ngx-bootstrap/carousel";
-import { BookingComponent, BookingDialog } from "./views/booking/booking.component";
+import { BookingComponent, BookingDialog, WithdrawDialog } from "./views/booking/booking.component";
 import { HeaderComponent } from "./views/header/header.component";
 import { TermsComponent } from "./views/terms/terms.component";
 import { LogoutComponent } from "./views/logout/logout.component";
@@ -114,6 +114,7 @@ import { HttpClientModule } from "@angular/common/http";
     ResetpasswordComponent,
     GroupsComponent,
     BookingDialog,
+    WithdrawDialog,
   ],
   providers: [
     {

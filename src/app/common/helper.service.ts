@@ -33,8 +33,8 @@ export class HelperService {
     console.log('xxxxx: ', time);
 
     var month = ('0' + (date.getMonth() + 1)).slice(-2);
-var day = ('0' + date.getDate()).slice(-2);
-var year = date.getFullYear();
+    var day = ('0' + date.getDate()).slice(-2);
+    var year = date.getFullYear();
     var newdate = year + "-" + month + "-" + day;
     
     console.log('combinDateTypeAndTime: ', newdate);
@@ -97,6 +97,14 @@ var year = date.getFullYear();
 
   getTodayTimestamp() {
     return this.convertToTimestamp(new Date());
+  }
+
+  findTimeDifference(ts1: Timestamp, ts2:Timestamp = Timestamp.now()) {
+
+    let seconds = ts1.seconds - ts2.seconds;
+    return seconds;
+
+    
   }
 
   encryptData(data) {

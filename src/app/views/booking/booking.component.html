@@ -31,7 +31,8 @@
                 <td>{{p.name}}<br/></td>
                 <td><i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
                 <td>
-                  <button mat-icon-button color="warn" (click)="deleteBooking(p)" *ngIf="p.isMyBooking">
+                  <!-- <button mat-icon-button color="warn" (click)="deleteBooking(p)" *ngIf="p.isMyBooking"> -->
+                  <button mat-icon-button color="warn" (click)="withdrawClicked(p)" *ngIf="p.isMyBooking">
                     <mat-icon>remove_circle</mat-icon>
                   </button>
                 </td>

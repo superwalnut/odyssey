@@ -11,6 +11,8 @@ import { ActivatedRoute } from "@angular/router";
 import { GlobalConstants } from '../../common/global-constants';
 import { AccountService } from '../../services/account.service';
 import { MatDialog,MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { HelperService } from "../../common/helper.service";
+
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { DOCUMENT } from '@angular/common';
@@ -144,113 +146,6 @@ export class BookingComponent extends BaseComponent implements OnInit {
     })
   }
 
-  // onConfirmClick() {
-  //   //1. merge family and friends into one list
-
-  //   this.isLoading = true;
-  //   var result = this.preDbProcess();
-  //   console.log("xxxxx: ", result.toAdd);
-  //   console.log("delete ssss ", result.toDelete);
-
-  //   //2. calculate price for added recored;
-  //   let i = 0;
-  //   result.toAdd.forEach(u=>{
-  //     if (u.isFamily) { //Family
-  //       if (i == 0) {
-  //         u.amount = this.hasCredit ? GlobalConstants.rateCredit : GlobalConstants.rateCash;
-  //       }
-  //       else {
-  //         u.amount = this.hasCredit ? GlobalConstants.rateFamily : GlobalConstants.rateCash;
-  //       }
-  
-  //       if (this.isCommitteeCheck(u.userDocId)) {
-  //         u.amount = 0; //if committee reset it to 0;
-  //       }
-  //       i++;
-
-  //     } else { //Friends
-  //       u.amount = GlobalConstants.rateCash;
-  //     }
-  //   });
-
-  //   var finalBookingPersonsToAdd = this.mapToBookingPersons(result.toAdd);
-  //   var finalBookingPersonsToDelete = this.mapToBookingPersons(result.toDelete);
-  //   console.log('finalBookingPersonsToAdd: ', finalBookingPersonsToAdd);
-  //   console.log('finalBookingPersonsToDelete: ', finalBookingPersonsToDelete);
-
-
-  //   if (finalBookingPersonsToAdd.length >0) {
-  //     //this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd).then(()=>this.document.location.reload());
-  //     this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd);
-  //   }
-      
-  //   if (finalBookingPersonsToDelete.length > 0)
-  //     //this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete).then(()=>this.document.location.reload());
-  //     this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete);
-  // }
-
-  // mapToBookingPersons(localBookingUsers:LocalBookingUser[]) {
-  //   let bookingPersons:BookingPerson[]=[];
-  //   localBookingUsers.forEach(u=>{
-  //     var bp = { 
-  //       bookingDocId: this.bookingDocId,
-  //       groupDocId: this.groupDocId,
-  //       bookingDesc: this.group.groupName,
-  //       userId: u.userDocId,
-  //       userDisplayName:u.name,
-  //       amount: u.amount,
-  //       parentUserId: this.loggedInAccount.docId,
-  //       parentUserDisplayName: this.loggedInAccount.name,
-  //       paymentMethod: this.hasCredit ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
-  //       isPaid:true,
-  //       createdOn: Timestamp.now(),
-  //     } as BookingPerson;
-  //     if (u.docId) bp.docId = u.docId;
-  //     bookingPersons.push(bp);
-
-  //   });
-  //   return bookingPersons;
-  // }
-
-  // preDbProcess() {
-  //   //loop through all myselection
-  //   var allMyBooking:LocalBookingUser[]=this.familyBookingUsers;
-  //   allMyBooking = allMyBooking.concat(this.friendBookingUsers);
-
-  //   console.log('allmybooking ', allMyBooking)
-  //   let toAdd: LocalBookingUser[]=[];
-  //   let toDelete: LocalBookingUser[]=[];
-
-  //   allMyBooking.forEach(user=> {
-  //     if (user.selected)
-  //     {
-  //       //check if this user already in the booking?
-  //       var find = this.allLocalBookingUsers.find(x=>x.userDocId == user.userDocId && x.name == user.name);
-  //       console.log("check if this user already in the booking?", find);
-  //       if (find === undefined) {
-  //         toAdd.push(user);
-  //       }
-  //     }
-
-  //     else{
-  //       //only delete if this user already in the booking
-  //       var find = this.allLocalBookingUsers.find(x=>x.userDocId == user.userDocId && x.name == user.name);
-  //       if (find) {
-  //         toDelete.push(user);
-  //       }
-  //     }
-      
-  //   });
-
-  //   console.log('toadd ', toAdd);
-  //   console.log('todelete ', toDelete);
-
-  //   return { toAdd, toDelete};
-    
-  //   //this.bookingPersonService.createBookingPersonBatch(toAdd);
-  // }
-
-
   bookClicked() {
     const dialogRef = this.dialog.open(BookingDialog, {
       width: '650px',
@@ -271,10 +166,30 @@ export class BookingComponent extends BaseComponent implements OnInit {
       console.log('The dialog was closed');
       
     });
-   
-    // this.prepareBookingModal();
-    // this.calculateTotal();
-    // let seatsLeft = this.seatsAvailable();
+
+  }
+
+  withdrawClicked(lbu:LocalBookingUser) {
+    const dialogRef = this.dialog.open(WithdrawDialog, {
+      width: '650px',
+      data: { 
+        loggedInUser: this.loggedInAccount,
+        booking: this.booking,
+        group: this.group, 
+        inputBookingPerson: lbu,
+        allLocalBookingUsers: this.allLocalBookingUsers,
+        familyBookingUsers: this.familyBookingUsers,
+        friendBookingUsers: this.friendBookingUsers,
+        hasCredit: this.hasCredit,
+        isCommittee: this.isCommittee,
+        isSeatsLeft: this.isSeatsLeft,
+        }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The withdraw dialog was closed');
+      
+    });
   }
 
   deleteBooking(user) {
@@ -284,40 +199,6 @@ export class BookingComponent extends BaseComponent implements OnInit {
       
     }    
   }
-
-  // onSelectionChange() {
-  //   console.log("toggle changed");
-  //   this.calculateTotal();
-  // }
-  // calculateTotal(){
-  //   let selectedfamilyBookingUsers = this.familyBookingUsers.filter(x=>x.selected === true);
-  //   let selectedFriendBookingUsers = this.friendBookingUsers.filter(x=>x.selected === true);
-  //   console.log('calculateTotal: ', this.familyBookingUsers);
-  //   let i = 0; let amount = 0;
-  //   selectedfamilyBookingUsers.forEach(u=>{
-      
-  //     if (i == 0) {
-  //       u.amount = GlobalConstants.rateCredit;
-  //     }
-  //     else {
-  //       u.amount = GlobalConstants.rateFamily;
-  //     }
-
-  //     if(!this.hasCredit) u.amount=GlobalConstants.rateCash;
-
-  //     if (this.isCommitteeCheck(u.userDocId)) {
-  //       u.amount = 0; //if committee reset it to 0;
-  //     }
-  //     amount+=u.amount;
-  //     i++;
-  //   });
-
-  //   amount += selectedFriendBookingUsers.length* GlobalConstants.rateCash;
-  //   console.log(amount);
-  //   this.totalAmount = amount;
-
-  // }
-
 
   //cil-dollar, cil-credit-card
   getPaymentClass(paymentMethod:string) {
@@ -332,32 +213,6 @@ export class BookingComponent extends BaseComponent implements OnInit {
     return isCommittee;
   }
 
-
-  // testClick() {
-
-  //   const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-  //     width: '650px',
-  //     data: { 
-  //       loggedInUser: this.loggedInAccount,
-  //       bookingDocId: this.bookingDocId,
-  //       group: this.group, 
-  //       allLocalBookingUsers: this.allLocalBookingUsers,
-  //       familyBookingUsers: this.familyBookingUsers,
-  //       friendBookingUsers: this.friendBookingUsers,
-  //       hasCredit: this.hasCredit,
-  //       isCommittee: this.isCommittee,
-  //       isSeatsLeft: this.isSeatsLeft,
-  //       name: 'asfasdf', animal: 'asfdasfdadsf'}
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-      
-  //   });
-
-  // }
-
-
 }
 
 
@@ -368,11 +223,11 @@ export class BookingComponent extends BaseComponent implements OnInit {
 export class BookingDialog {
   constructor(
     public dialogRef: MatDialogRef<BookingDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, private bookingPersonService:BookingPersonService, private accountService:AccountService) {}
+    @Inject(MAT_DIALOG_DATA) public data: BookingDialogData, private bookingPersonService:BookingPersonService, private accountService:AccountService) {}
 
     hasError:boolean;
     errorMessage:string;
-    testData: DialogData;
+    testData: BookingDialogData;
     totalAmount:number;
     isLoading:boolean;
     allBookings:BookingPerson[];
@@ -553,7 +408,7 @@ export class BookingDialog {
 
 }
 
-export interface DialogData {
+export interface BookingDialogData {
   loggedInUser:Account,
   bookingDocId:string;
   group: Group;
@@ -564,3 +419,61 @@ export interface DialogData {
   isCommittee: boolean;
   isSeatsLeft: boolean;
 }
+
+
+
+
+@Component({
+  selector: 'withdraw-dialog',
+  templateUrl: 'withdraw.html',
+})
+export class WithdrawDialog {
+  constructor(
+    public dialogRef: MatDialogRef<WithdrawDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: WithdrawDialogData, private bookingPersonService:BookingPersonService, private helperService:HelperService, private accountService:AccountService) {}
+
+    hasError:boolean;
+    errorMessage:string;
+    timeLeft:number;
+    isWithdrawAllowed:boolean;
+    bookingWithdrawHours: number = GlobalConstants.bookingWithdrawHours;
+    totalAmount:number;
+    isLoading:boolean;
+    allBookings:BookingPerson[];
+
+
+  ngOnInit() {
+    let eventStartDateTime = this.data.booking.eventStartDateTime;
+    let diff = this.helperService.findTimeDifference(eventStartDateTime);
+    if (diff > GlobalConstants.bookingWithdrawHours*3600) {
+      console.log('withdraw is allowed');
+      this.isWithdrawAllowed = true;
+    }
+    else {
+      console.log('withdraw isnot allowed, mark it for available');
+      this.isWithdrawAllowed = false;
+
+    }
+    console.log('time diff: ', diff)
+    
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+
+}
+
+export interface WithdrawDialogData {
+  loggedInUser:Account,
+  booking:Booking;
+  group: Group;
+  inputBookingPerson: LocalBookingUser;
+  allLocalBookingUsers: LocalBookingUser[];
+  familyBookingUsers: LocalBookingUser[];
+  friendBookingUsers: LocalBookingUser[];
+  hasCredit: boolean;
+  isCommittee: boolean;
+  isSeatsLeft: boolean;
+}
+
