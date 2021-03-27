@@ -18,14 +18,14 @@
       <div *ngIf="!isWithdrawAllowed"> 
         <h2>Withdraw is not allowed</h2>
         <p>Withdraw is only allowed {{bookingWithdrawHours}} hours before the session start.</p>
-        <p>However, you can mark your seat as available. credit will be refunded if someone take your spot.</p>
+        <p>However, you can mark your seat [Up for sale]. credit will be refunded if someone take your spot.</p>
       </div>
   
     </div>
     <div class="modal-footer">
       <button mat-raised-button (click)="onNoClick()">Close</button>
       <button mat-raised-button color="warn" *ngIf="isWithdrawAllowed">Withdraw</button>
-      <button mat-raised-button color="primary" *ngIf="!isWithdrawAllowed">Mark as available</button>
+      <button mat-raised-button color="primary" *ngIf="!isWithdrawAllowed" (click)="forSaleClicked()">Up for sale</button>
 
       
 

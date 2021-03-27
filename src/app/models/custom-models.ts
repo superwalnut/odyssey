@@ -11,6 +11,7 @@ export class LocalBookingUser {
     selected: boolean;
     isMyBooking: boolean;
     isFamily: boolean;
+    isForSale: boolean;
   }
 
   

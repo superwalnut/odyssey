@@ -12,7 +12,9 @@ export class BookingPerson {
     paymentMethod: string; //Credit | Cash | Bank Transfer
     parentUserId: string; //payment deduct from this user if payment method is CREDIT
     parentUserDisplayName:string;
+    isForSale:boolean; //user can mark the spot for sale once passed withdraw window.
     amount: number;
     isPaid: boolean; //this usually apply to cash only
     createdOn: Timestamp;
+    updatedOn: Timestamp;
 }

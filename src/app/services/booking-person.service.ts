@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreBaseService } from "./firestore-base.service";
-import { map, concatMap, finalize } from "rxjs/operators";
+import { map, concatMap, finalize, timestamp } from "rxjs/operators";
 import { BookingPerson } from "../models/booking-person";
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
@@ -103,6 +103,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
             paymentMethod: u.paymentMethod,
             isMyBooking: u.userId == myUserDocId || u.parentUserId == myUserDocId,
             isFamily: u.parentUserId == myUserDocId || u.userId == myUserDocId,
+            isForSale: u.isForSale,
           } as LocalBookingUser;
 
           console.log('getCustomByBookingDocId()', user);
@@ -114,6 +115,12 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
   }
 
 
+  public markForSale(bookingPersonDocId:string, bookingPerson:BookingPerson) {
+    bookingPerson.updatedOn = Timestamp.now();
+    bookingPerson.isForSale = true;
+    return this.update(bookingPersonDocId, bookingPerson);
+  }
+  
   public async deleteBatch(bookingPersons:BookingPerson[]) {
     
     var credit = {

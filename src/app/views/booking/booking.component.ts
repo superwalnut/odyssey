@@ -461,6 +461,34 @@ export class WithdrawDialog {
     this.dialogRef.close();
   }
 
+  forSaleClicked() {
+    this.bookingPersonService.markForSale(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson))
+      .then(()=>this.dialogRef.close())
+      .catch((err) => {
+        this.hasError = true;
+        //errorMessage = err.toString();
+        console.log(err);
+      });
+  }
+
+  mapToBookingPerson(lbu:LocalBookingUser) : BookingPerson{
+
+    var bp = { 
+      docId: lbu.docId,
+      // bookingDocId: this.data.booking.docId,
+      // groupDocId: this.data.group.docId,
+      // bookingDesc: this.data.group.groupName,
+      // userId: lbu.userDocId,
+      // userDisplayName:lbu.name,
+      // amount: lbu.amount,
+      // parentUserId: this.data.loggedInUser.docId,
+      // parentUserDisplayName: this.data.loggedInUser.name,
+      // paymentMethod: this.data.hasCredit ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
+      // isPaid:true,
+    } as BookingPerson;
+    return bp;
+  }
+
 
 }
 
