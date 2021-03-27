@@ -166,8 +166,27 @@ export class BookingComponent extends BaseComponent implements OnInit {
       console.log('The dialog was closed');
       
     });
-
   }
+
+  forSaleClicked(p:LocalBookingUser) {
+    console.log(p);
+    var bp = { 
+      bookingDocId: this.bookingDocId,
+      groupDocId: this.group.docId,
+      bookingDesc: this.group.groupName,
+      userId: this.loggedInAccount.docId,
+      userDisplayName: this.loggedInAccount.name,
+      amount: this.hasCredit ? GlobalConstants.rateCredit: GlobalConstants.rateCash,
+      parentUserId: this.loggedInAccount.docId,
+      parentUserDisplayName: this.loggedInAccount.name,
+      paymentMethod: this.hasCredit ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
+      isPaid:true,
+      createdOn: Timestamp.now(),
+    } as BookingPerson;
+
+    this.bookingPersonService.buySeat(p.docId, bp);
+  }
+
 
   withdrawClicked(lbu:LocalBookingUser) {
     const dialogRef = this.dialog.open(WithdrawDialog, {
@@ -301,7 +320,7 @@ export class BookingDialog {
         .then(()=>this.dialogRef.close())
         .catch((err) => {
           this.hasError = true;
-          //errorMessage = err.toString();
+          this.errorMessage = err.Error;
           console.log(err);
         });
     }
@@ -461,7 +480,7 @@ export class WithdrawDialog {
     this.dialogRef.close();
   }
 
-  forSaleClicked() {
+  markForSaleClicked() {
     this.bookingPersonService.markForSale(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson))
       .then(()=>this.dialogRef.close())
       .catch((err) => {
@@ -470,6 +489,8 @@ export class WithdrawDialog {
         console.log(err);
       });
   }
+
+ 
 
   mapToBookingPerson(lbu:LocalBookingUser) : BookingPerson{
 

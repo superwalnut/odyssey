@@ -36,7 +36,7 @@
                     <mat-icon>remove_circle</mat-icon>
                   </button>
 
-                  <button mat-raised-button color="accent" *ngIf="p.isForSale">For sale</button>
+                  <button mat-raised-button color="accent" (click)="forSaleClicked(p)" *ngIf="p.isForSale">For sale</button>
                 </td>
               </tr>  
             </tbody>

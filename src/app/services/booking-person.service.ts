@@ -26,9 +26,8 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
   }
 
   public async createBookingPersonBatch(bookingPersons:BookingPerson[]) {
-  
     //throw new Error("test throw error");
-
+    //return throwError(new Error("test throw error"));
     console.log('createBookingPersonBatch service: ', bookingPersons);
 
     var credit = {
@@ -74,7 +73,6 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     )
   }
 
-
   public getByBookingDocId(bookingDocId: string) {
     return this.firestore.collection('bookingPersons', q => q.where('bookingDocId', '==', bookingDocId).orderBy('createdOn', 'asc')).snapshotChanges().pipe(
       map(actions => {
@@ -87,7 +85,6 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
       })
     );
   }
-
 
   public getCustomByBookingDocId(bookingDocId: string, myUserDocId:string) {
     return this.firestore.collection('bookingPersons', q => q.where('bookingDocId', '==', bookingDocId).orderBy('createdOn', 'asc')).snapshotChanges().pipe(
@@ -119,6 +116,52 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     bookingPerson.updatedOn = Timestamp.now();
     bookingPerson.isForSale = true;
     return this.update(bookingPersonDocId, bookingPerson);
+  }
+
+  public buySeat(forSaleDocId:string, buyer:BookingPerson) {
+
+    //1. check is spot is still up for sale
+    this.get(forSaleDocId).subscribe(result => {
+      if (result && result.isForSale) {
+        var batch = this.firestore.firestore.batch();
+        //2. delete 
+        var ref = this.firestore.collection('bookingPersons').doc(forSaleDocId).ref;
+        batch.delete(ref);
+
+        
+
+        //3. buy 
+        var ref = this.firestore.collection('bookingPersons').doc().ref;
+        batch.set(ref, buyer);
+
+        //refund and deduct
+        var ref = this.firestore.collection('credits').doc().ref;
+        var sellerCredit = {
+          userDocId: forSaleDocId,
+          userDisplayName: result.userDisplayName,
+          createdBy:result.parentUserId,
+          createdByDisplayName:result.parentUserDisplayName,
+          amount: result.amount,
+          created: Timestamp.now(),
+          note: 'seat sold to ' + buyer.userDisplayName,
+        } as Credit;
+        
+        batch.set(ref, sellerCredit);
+
+        var buyerCredit = {
+          userDocId: buyer.docId,
+          userDisplayName: buyer.userDisplayName,
+          createdBy: buyer.docId,
+          createdByDisplayName:buyer.userDisplayName,
+          amount: -buyer.amount,
+          created: Timestamp.now(),
+          note: 'purchased seat from ' + result.userDisplayName,
+        } as Credit;
+        batch.set(ref, buyerCredit);
+
+        batch.commit();
+      }
+    })
   }
   
   public async deleteBatch(bookingPersons:BookingPerson[]) {

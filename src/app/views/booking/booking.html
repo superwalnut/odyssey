@@ -7,7 +7,7 @@
   </div>
 
   <div class="modal-body">
-    <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage }}</div>
+    <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage | json }}</div>
 
     <div *ngIf="!data.hasCredit && !data.isCommittee">You don't have any credit left, cash rate appllied</div>
     
