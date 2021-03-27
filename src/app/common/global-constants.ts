@@ -14,13 +14,10 @@ export class GlobalConstants {
     //BOOKING
     public static bookingOpenDay: string = "Monday";
     public static bookingOpenTime: string = "6:00AM";
-    public static bookingWithdrawLHours: number = 3; //can't withdraw 3 hours before the session starts
+    public static bookingWithdrawHours: number = 4; //can't withdraw 3 hours before the session starts
     // public static tueSeats: number = 16;
     // public static friSeats: number = 42;
     // public static satSeats: number = 34;
-    public static tueSeats: number = 2;
-    public static friSeats: number = 2;
-    public static satSeats: number = 2;
 
     public static autoBookingFee: number = 10; //$10 for setting up auto booking
     public static paymentCredit: string = "Credit";

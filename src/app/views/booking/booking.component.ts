@@ -252,7 +252,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
 
   bookClicked() {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    const dialogRef = this.dialog.open(BookingDialog, {
       width: '650px',
       data: { 
         loggedInUser: this.loggedInAccount,
@@ -264,7 +264,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
         hasCredit: this.hasCredit,
         isCommittee: this.isCommittee,
         isSeatsLeft: this.isSeatsLeft,
-        name: 'asfasdf', animal: 'asfdasfdadsf'}
+        }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -362,12 +362,12 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
 
 @Component({
-  selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog.html',
+  selector: 'booking-dialog',
+  templateUrl: 'booking.html',
 })
-export class DialogOverviewExampleDialog {
+export class BookingDialog {
   constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    public dialogRef: MatDialogRef<BookingDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData, private bookingPersonService:BookingPersonService, private accountService:AccountService) {}
 
     hasError:boolean;
@@ -563,6 +563,4 @@ export interface DialogData {
   hasCredit: boolean;
   isCommittee: boolean;
   isSeatsLeft: boolean;
-  animal: string;
-  name: string;
 }
