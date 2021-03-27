@@ -1,6 +1,9 @@
 // export class CustomModels {
 // }
 
+import firebase from 'firebase/app';
+import Timestamp = firebase.firestore.Timestamp;
+
 
 export class LocalBookingUser {
     docId:string;
@@ -12,6 +15,7 @@ export class LocalBookingUser {
     isMyBooking: boolean;
     isFamily: boolean;
     isForSale: boolean;
+    createdOn: Timestamp;
   }
 
   

@@ -43,8 +43,10 @@ export class GroupService extends FirestoreBaseService<Group> {
   }
   //Get all groups that this user belongs to
   public getGroupsByUserDocId(userDocId: string) {
+
     return this.firestore.collection('groups', q => q.where('committees', 'array-contains', userDocId)).snapshotChanges().pipe(
       map(actions => {
+        console.log('getGroupsByUserDocId ', actions)
         return actions.map(x => {
           var group = x.payload.doc.data() as Group;
           return {

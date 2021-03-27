@@ -60,9 +60,11 @@ export class BookingsComponent implements OnInit {
     this.myGroups = [];
 
     this.groupService.getGroupsByUserDocId(this.myDocId).subscribe(x => {
-      x.forEach(g => {
-        this.myGroups.push({ 'docId': g.docId, 'groupName': g.groupName });
-      })
+      console.log('my groups', x);
+      this.myGroups = x;
+      // x.forEach(g => {
+      //   this.myGroups.push({ 'docId': g.docId, 'groupName': g.groupName });
+      // })
     });
   }
 
