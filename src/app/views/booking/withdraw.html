@@ -11,6 +11,7 @@
 
       <div *ngIf="isWithdrawAllowed"> 
         <h2>Withdraw</h2>
+        <p>Refund: {{data.inputBookingPerson.amount | currency}}</p>
         <p>We will see you next time!</p>
 
       </div>
@@ -24,7 +25,7 @@
     </div>
     <div class="modal-footer">
       <button mat-raised-button (click)="onNoClick()">Close</button>
-      <button mat-raised-button color="warn" *ngIf="isWithdrawAllowed">Withdraw</button>
+      <button mat-raised-button color="warn" *ngIf="isWithdrawAllowed" (click)="withdrawClicked()">Withdraw</button>
       <button mat-raised-button color="primary" *ngIf="!isWithdrawAllowed" (click)="markForSaleClicked()">Up for sale</button>
 
       

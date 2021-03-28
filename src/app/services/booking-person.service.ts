@@ -29,10 +29,11 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     console.log('createBookingPersonBatch service: ', bookingPersons);
 
     var credit = {
-      userDocId: bookingPersons[0].userId,
+      userDocId: bookingPersons[0].parentUserId, //charge the parent user ID
       userDisplayName: bookingPersons[0].userDisplayName,
       createdBy:bookingPersons[0].parentUserId,
       createdByDisplayName:bookingPersons[0].parentUserDisplayName,
+      created: Timestamp.now(),
     } as Credit;
     let fees=0;
     let notes = "booking: ";
@@ -94,6 +95,8 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
             docId: u.docId,
             userDocId: u.userId,
             name: u.userDisplayName,
+            parentUserId: u.parentUserId,
+            parentUserDisplayName: u.parentUserDisplayName,
             amount: u.amount,
             paymentMethod: u.paymentMethod,
             isMyBooking: u.userId == myUserDocId || u.parentUserId == myUserDocId,
@@ -110,6 +113,26 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     );
   }
 
+  public withdraw(bookingPersonDocId:string, bookingPerson:BookingPerson) {
+    var batch = this.firestore.firestore.batch();
+    var bpref = this.firestore.collection('bookingPersons').doc(bookingPersonDocId).ref;
+    batch.delete(bpref);
+
+    //refund
+    var cref = this.firestore.collection('credits').doc().ref;
+    var credit = {
+      userDocId: bookingPerson.parentUserId, //refund to the parent user ID!
+      userDisplayName: bookingPerson.userDisplayName,
+      createdBy:bookingPerson.parentUserId,
+      createdByDisplayName:bookingPerson.parentUserDisplayName,
+      amount: bookingPerson.amount,
+      created: Timestamp.now(),
+      note: 'withdraw refund',
+    } as Credit;
+    batch.set(cref, credit);
+    return batch.commit();
+  }
+
 
   public markForSale(bookingPersonDocId:string, bookingPerson:BookingPerson) {
     bookingPerson.updatedOn = Timestamp.now();
@@ -117,14 +140,14 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     return this.update(bookingPersonDocId, bookingPerson);
   }
 
-  public buySeat(forSaleDocId:string, buyer:BookingPerson) {
+  public buySeat(seller:LocalBookingUser, buyer:BookingPerson) {
 
     //1. check is spot is still up for sale
-    this.get(forSaleDocId).subscribe(result => {
+    this.get(seller.docId).subscribe(result => {
       if (result && result.isForSale) {
         var batch = this.firestore.firestore.batch();
         //2. delete 
-        var ref = this.firestore.collection('bookingPersons').doc(forSaleDocId).ref;
+        var ref = this.firestore.collection('bookingPersons').doc(seller.docId).ref;
         batch.delete(ref);
 
         //3. buy 
@@ -134,7 +157,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
         //refund and deduct
         var ref = this.firestore.collection('credits').doc().ref;
         var sellerCredit = {
-          userDocId: forSaleDocId,
+          userDocId: seller.parentUserId, //refund to parent user id
           userDisplayName: result.userDisplayName,
           createdBy:result.parentUserId,
           createdByDisplayName:result.parentUserDisplayName,
@@ -167,10 +190,11 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
   public async deleteBatch(bookingPersons:BookingPerson[]) {
     
     var credit = {
-      userDocId: bookingPersons[0].userId,
+      userDocId: bookingPersons[0].parentUserId, //refund back to the parent user ID
       userDisplayName: bookingPersons[0].userDisplayName,
       createdBy:bookingPersons[0].parentUserId,
       createdByDisplayName:bookingPersons[0].parentUserDisplayName,
+      created: Timestamp.now()
     } as Credit;
     let fees=0;
     let notes="withdraw: ";

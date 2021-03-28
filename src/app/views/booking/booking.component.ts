@@ -168,9 +168,9 @@ export class BookingComponent extends BaseComponent implements OnInit {
     });
   }
 
-  forSaleClicked(p:LocalBookingUser) {
-    console.log(p);
-    var bp = { 
+  forSaleClicked(seller:LocalBookingUser) {
+    console.log(seller);
+    var buyer = { 
       bookingDocId: this.bookingDocId,
       groupDocId: this.group.docId,
       bookingDesc: this.group.groupName,
@@ -180,11 +180,11 @@ export class BookingComponent extends BaseComponent implements OnInit {
       parentUserId: this.loggedInAccount.docId,
       parentUserDisplayName: this.loggedInAccount.name,
       paymentMethod: this.hasCredit ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
-      isPaid:true,
+      isPaid: this.hasCredit,
       createdOn: Timestamp.now(),
     } as BookingPerson;
 
-    this.bookingPersonService.buySeat(p.docId, bp);
+    this.bookingPersonService.buySeat(seller, buyer);
   }
 
 
@@ -480,6 +480,18 @@ export class WithdrawDialog {
     this.dialogRef.close();
   }
 
+  withdrawClicked() {
+    console.log('refund: ', this.mapToBookingPerson(this.data.inputBookingPerson))
+    this.bookingPersonService.withdraw(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson))
+      .then(()=>this.dialogRef.close())
+      .catch((err) => {
+        this.hasError = true;
+        //errorMessage = err.toString();
+        console.log(err);
+      });
+
+  }
+
   markForSaleClicked() {
     this.bookingPersonService.markForSale(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson))
       .then(()=>this.dialogRef.close())
@@ -499,11 +511,11 @@ export class WithdrawDialog {
       // bookingDocId: this.data.booking.docId,
       // groupDocId: this.data.group.docId,
       // bookingDesc: this.data.group.groupName,
-      // userId: lbu.userDocId,
-      // userDisplayName:lbu.name,
-      // amount: lbu.amount,
-      // parentUserId: this.data.loggedInUser.docId,
-      // parentUserDisplayName: this.data.loggedInUser.name,
+      userId: lbu.userDocId,
+      userDisplayName:lbu.name,
+      amount: lbu.amount,
+      parentUserId: this.data.loggedInUser.docId,
+      parentUserDisplayName: this.data.loggedInUser.name,
       // paymentMethod: this.data.hasCredit ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
       // isPaid:true,
     } as BookingPerson;
