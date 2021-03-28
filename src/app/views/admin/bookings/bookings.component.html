@@ -32,7 +32,7 @@
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef>Date</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.eventStartDateTime.toDate() | date: "yyyy/MM/dd" }}
+            {{ element.eventStartDateTime.toDate() | date: "EE dd/MM/yyyy" }}
           </td>
         </ng-container>
 

@@ -18,14 +18,14 @@ export class BookingsService extends FirestoreBaseService<Booking>{
     super(firestore.collection('bookings'));
   }
 
-
   public createBooking(booking: Booking) {
     return super.create(booking);
-    // return super.create(booking).then(x=>{
-    //   //do the second call, x is your booking docId
-    //   return x;
-    // });
   }
+
+  public updateBooking(bookingDocId:string, booking: Booking) {
+    return super.update(bookingDocId, booking);
+  }
+
 
   public createGroupExpense(booking: Booking) {
     return this.create(booking);

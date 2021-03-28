@@ -4,10 +4,12 @@
         <div class="card">
           <div class="card-body p-4">
             {{booking?.weekDay}} 
-            {{booking?.eventStartDateTime.toDate() |  date: "yyyy/MM/dd"}}
-            Lock status: {{booking?.isLocked}}
+            {{booking?.eventStartDateTime.toDate() |  date: "EE dd/MM/yyyy"}}
             <h3>
-              <a href="#"><i class="cil-lock-locked"></i></a>
+              <button mat-icon-button color="primary" (click)="toggleLockStatus()">
+                <mat-icon>{{ booking?.isLocked ? 'lock': 'lock_open'}}</mat-icon>
+              </button>
+
               <a href="#" data-toggle="modal" data-target="#printModal"><i class="cil-print"></i></a>
             </h3>
 

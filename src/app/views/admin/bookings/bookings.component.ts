@@ -56,10 +56,13 @@ export class BookingsComponent implements OnInit {
 
   createBookingClicked() {
     console.log(this.selectedFutureDate);
-    this.createEmptyBooking();
-    this.addCommitteesToBooking();
 
+    if (!this.selectedFutureDate) return false;
 
+    if(confirm("Are you sure to start a new booking - 接龙? " + this.selectedFutureDate)) {
+      this.createEmptyBooking();
+      this.addCommitteesToBooking();
+    }    
   }
 
   createEmptyBooking(){

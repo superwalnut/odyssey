@@ -55,5 +55,11 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     else if (paymentMethod == GlobalConstants.paymentCash) { return "cil-dollar"; }
   }
 
+  toggleLockStatus() {
+    this.booking.isLocked = !this.booking.isLocked;
+    this.bookingService.updateBooking(this.bookingDocId, this.booking);
+  }
+
+
 
 }
