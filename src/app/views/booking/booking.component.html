@@ -13,13 +13,14 @@
       <div class="col-sm">
         <section>           
           <h3> {{ group?.groupName}} {{ group?.eventStartTime}} {{ booking?.eventStartDateTime.toDate() | date: 'yyyy/MM/dd'}} [Seats: {{group?.seats}}]</h3>
+          <p>Status: {{ booking?.isLocked ? 'Locked':'Open'}}</p>
           <table class="table table-hover table-dark booking">
             <thead>
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Payment</th>
-                <th scope="col">
+                <th scope="col" *ngIf="!booking?.isLocked">
                   <button type="button" class="btn btn-primary" (click)="bookClicked()" *ngIf="isSeatsLeft">Book</button>
                   <button mat-raised-button color="warn" *ngIf="!isSeatsLeft">Full</button>
                 </th>
@@ -30,7 +31,7 @@
                 <th scope="row">{{ i+1 }}</th>
                 <td>{{p.name}} {{p.amount}}<br/> {{p.isForSale}}</td>
                 <td><i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
-                <td>
+                <td *ngIf="!booking?.isLocked">
                   <!-- <button mat-icon-button color="warn" (click)="deleteBooking(p)" *ngIf="p.isMyBooking"> -->
                   <button mat-icon-button color="warn" (click)="withdrawClicked(p)" *ngIf="p.isMyBooking && !p.isForSale">
                     <mat-icon>remove_circle</mat-icon>

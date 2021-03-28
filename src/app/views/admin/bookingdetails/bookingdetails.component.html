@@ -10,7 +10,9 @@
                 <mat-icon>{{ booking?.isLocked ? 'lock': 'lock_open'}}</mat-icon>
               </button>
 
-              <a href="#" data-toggle="modal" data-target="#printModal"><i class="cil-print"></i></a>
+              <button mat-icon-button color="primary">
+                <mat-icon>print</mat-icon>
+              </button>
             </h3>
 
             <table class="table table-sm">
@@ -18,6 +20,7 @@
                 <tr>
                   <th scope="col">User</th>
                   <th scope="col">Payment</th>
+                  <th scope="col">Amount</th>
                   <th scope="col">On</th>
                   <th scope="col">
                     <a href="#" data-toggle="modal" data-target="#addPlayerModal"><i class="cil-plus"></i></a>
@@ -28,12 +31,13 @@
                 <tr *ngFor="let p of allLocalBookingUsers; let i=index" >
                   <td scope="row">{{ i+1 }} {{p.name}} {{p.isForSale}} <i class="cil-description"></i></td>
                   <td scope="row"><i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
-                  <td scope="row">{{p.createdOn.toDate() | date: "yyyy/MM/dd hh:MM"}}</td>
+                  <td scope="row">{{ p.amount | currency}}</td>
+                  <td scope="row">{{p.createdOn.toDate() | date: "dd/MM/yyyy hh:MM"}}</td>
                   <td><i class="cil-minus"></i> <i class="cil-description"></i></td>
                 </tr>
                 <tr>
-                  <th scope="row">Total</th>
-                  <td colspan="4">$300 Credit, $60 Cash</td>
+                  <th scope="row">Total {{total | currency}}</th>
+                  <td colspan="4">Credit: {{totalCredit | currency}} Cash: {{totalCash | currency}} </td>
                 </tr>
               </tbody>
             </table>

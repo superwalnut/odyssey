@@ -39,7 +39,7 @@
         <ng-container matColumnDef="isLocked">
           <th mat-header-cell *matHeaderCellDef>Locked</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.isLocked }}
+            {{ element.isLocked ? 'Locked' : 'Open' }}
           </td>
         </ng-container>
 

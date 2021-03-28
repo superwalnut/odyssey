@@ -73,7 +73,7 @@ export class BookingsComponent implements OnInit {
       eventStartDateTime: startDateTimeTimeStamp,
       bookingStartDay: this.group.bookingStartDay,
       weekDay: this.group.eventStartDay,
-      isLocked: false,
+      isLocked: true, //new booking default to locked, need God manually open it. for extra layer of control
     } as Booking;
 
     this.bookingService.createBooking(booking).then(bookingDocId=>{

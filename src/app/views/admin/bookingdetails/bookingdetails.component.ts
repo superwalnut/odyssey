@@ -23,7 +23,10 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   bookingDocId:string;
   booking:Booking;
   allLocalBookingUsers: LocalBookingUser[];
-  
+  //total
+  total:number=0;
+  totalCredit:number=0;
+  totalCash:number=0;
 
   constructor(private bookingService:BookingsService, private bookingPersonService:BookingPersonService, private accountService:AccountService, private creditService:CreditService, private activatedRoute:ActivatedRoute) { super() }
 
@@ -46,9 +49,18 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     this.bookingPersonService.getCustomByBookingDocId(this.bookingDocId, this.loggedInAccount.docId).subscribe(result=>{
       this.allLocalBookingUsers = result;
       console.log("getByBookingPersonsByBookingDocId(): ", this.allLocalBookingUsers);
+      this.calculateTotal();
     })
   }
 
+  calculateTotal() {
+    this.allLocalBookingUsers.forEach(b=>{
+      this.total+=b.amount;
+      console.log(this.total);
+      if (b.paymentMethod == GlobalConstants.paymentCredit) { this.totalCredit += b.amount}
+      if (b.paymentMethod == GlobalConstants.paymentCash) { this.totalCash += b.amount}
+    })
+  }
   //cil-dollar, cil-credit-card
   getPaymentClass(paymentMethod:string) {
     if (paymentMethod == GlobalConstants.paymentCredit) { return "cil-credit-card"; }
