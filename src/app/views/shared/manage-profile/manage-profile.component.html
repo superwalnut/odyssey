@@ -2,11 +2,10 @@
     <h1>Update Profile</h1>
     <p class="text-muted">Profile</p>
     <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text"><i class="icon-bubbles"></i></span>
-      </div>
-      <input type="text" class="form-control" formControlName="name" placeholder="WeChat or WhatsApp ID" >
-      
+      <mat-form-field>
+        <mat-label>Display name</mat-label>
+        <input matInput placeholder="" formControlName="name"/>
+      </mat-form-field>
       <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
         <div *ngIf="f.name.errors.required">Display name is required</div>
         <div *ngIf="f.name.errors.incorrect">name is already exist</div>
@@ -14,20 +13,21 @@
 
     </div>
     <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text"><i class="icon-phone"></i></span>
-      </div>
-      <input type="text" class="form-control" formControlName="mobile" placeholder="mobile">
+      <mat-form-field>
+        <mat-label>Phone</mat-label>
+        <input matInput placeholder="" formControlName="mobile"/>
+      </mat-form-field>
       <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
         <div *ngIf="f.mobile.errors.required">mobile is required</div>
         <div *ngIf="f.mobile.errors.incorrect">mobile is exist</div>
     </div>
-    </div>                
+    </div>
+    
     <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">@</span>
-      </div>
-      <input type="text" class="form-control" formControlName="email"  placeholder="Email">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="" type="email" formControlName="email"/>
+      </mat-form-field>
       <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
         <div *ngIf="f.email.errors.required">Email is required</div>
         <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
@@ -53,5 +53,8 @@
         </div>
       </div>
     </fieldset>
-    <button type="submit" class="btn btn-block btn-success">Update Profile</button>
+    <p>
+      <button mat-raised-button color="primary">Update Profile</button>
+    </p>
+    
   </form>

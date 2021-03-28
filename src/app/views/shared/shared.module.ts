@@ -10,7 +10,8 @@ import { ManageProfileComponent } from './manage-profile/manage-profile.componen
     imports: [
       FormsModule,
       CommonModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      AppMaterialModule
     ],
     declarations: [
       TransactionListComponent,

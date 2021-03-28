@@ -18,7 +18,7 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
   profileForm: FormGroup;
   submitted = false;
   user: User = new User();
-
+  
   constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router) {
     super();
   }
@@ -101,6 +101,19 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       } else {
         // update user
         this.accountService.updateUser(this.user.docId, user).then(x => {
+
+          // if user updated its name, update family's parent display name
+          if(user.name) {
+            this.accountService.getFamilyUsers(this.userDocId).pipe(take(1)).subscribe(x=>{
+              if(x && x.length>0) {
+                x.forEach(u=>{
+                  const family = { ParentUserDisplayName: user.name } as User;
+                  this.accountService.updateUser(u.docId, family);
+                });
+              }
+            });
+          }
+
           this.snackBar.open(`you have successfully updated profile.`, null, {
             duration: 5000,
             verticalPosition: 'top'
