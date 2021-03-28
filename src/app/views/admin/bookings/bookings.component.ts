@@ -142,18 +142,14 @@ export class BookingsComponent implements OnInit {
     users.forEach(u => {
       console.log("u =>: ", u);
 
-      let parentUserDocId = '';
-      if (!u.parentUserDocId) {
-        parentUserDocId = u.docId; //set the main account's parentuserid to himself
-      }
-
       var bookingPerson = {
         groupDocId:groupDocId,
         bookingDocId:bookingDocId,
         bookingDesc: this.group.groupDesc,
         userId: u.docId,
         userDisplayName: u.name,
-        parentUserId: parentUserDocId,
+        parentUserId: u.parentUserDocId ? u.parentUserDocId : u.docId,
+        parentUserDisplayName: u.parentUserDisplayName ? u.parentUserDisplayName : u.name,
         paymentMethod: GlobalConstants.paymentCredit,
         amount: 0,
         isPaid: true,

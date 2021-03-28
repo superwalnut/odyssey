@@ -107,7 +107,7 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
             this.accountService.getFamilyUsers(this.userDocId).pipe(take(1)).subscribe(x=>{
               if(x && x.length>0) {
                 x.forEach(u=>{
-                  const family = { ParentUserDisplayName: user.name } as User;
+                  const family = { parentUserDisplayName: user.name } as User;
                   this.accountService.updateUser(u.docId, family);
                 });
               }

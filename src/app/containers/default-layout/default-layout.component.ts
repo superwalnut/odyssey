@@ -114,11 +114,11 @@ export class DefaultLayoutComponent {
           icon: "cil-group",
         },
 
-        {
-          name: "Bookings",
-          url: "/admin/bookings",
-          icon: "cil-notes",
-        },
+        // {
+        //   //name: "Bookings",
+        //   url: "/admin/bookings",
+        //   icon: "cil-notes",
+        // },
         {
           name: "Site Settings",
           url: "/admin/sitesettings",

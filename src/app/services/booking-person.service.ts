@@ -24,40 +24,64 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
   }
 
   public async createBookingPersonBatch(bookingPersons:BookingPerson[]) {
-    //throw new Error("test throw error");
-    //return throwError(new Error("test throw error"));
-    console.log('createBookingPersonBatch service: ', bookingPersons);
-
-    //TODO: the credit logic here is WRONG!, won't be all family batch
-    // when creating new bookings, there will be many families, and users!
-
-    var credit = {
-      //userDocId: bookingPersons[0]?.parentUserId ?? bookingPersons[], //charge the parent user ID
-      userDisplayName: bookingPersons[0].userDisplayName,
-      createdBy:bookingPersons[0].parentUserId,
-      createdByDisplayName:bookingPersons[0].parentUserDisplayName,
-      created: Timestamp.now(),
-    } as Credit;
-    let fees=0;
-    let notes = "booking: ";
-
     var batch = this.firestore.firestore.batch();
+
     bookingPersons.forEach(bp=>{
       var ref = this.firestore.collection('bookingPersons').doc().ref;
+      console.log('createBookingPersonBatch booking person: ', bp);
       batch.set(ref, bp);
-      fees+=bp.amount;
-      notes+=bp.userDisplayName+"|";
+
+      var ref = this.firestore.collection('credits').doc().ref;
+      var credit = {
+        amount: -bp.amount,
+        userDocId: bp.parentUserId ? bp.parentUserId : bp.userId,
+        userDisplayName: bp.userDisplayName,
+        createdBy: bp.parentUserId ? bp.parentUserId : bp.userId,
+        createdByDisplayName: bp.parentUserDisplayName ? bp.parentUserDisplayName : bp.userDisplayName,
+        note: bp.bookingDesc + ': ' + bp.userDisplayName + ",",
+        created: Timestamp.now(),
+      } as Credit;
+      console.log('createBookingPersonBatch service: ', credit);
+      batch.set(ref, credit);
     });
-
-    credit.amount = -fees;
-    credit.note = notes;
-    var ref = this.firestore.collection('credits').doc().ref;
-    batch.set(ref, credit);
-
-    console.log('createBookingPersonBatch service: ', credit);
-
-    await batch.commit()
+    await batch.commit();
   }
+
+  // public async createBookingPersonBatch(bookingPersons:BookingPerson[]) {
+  //   //throw new Error("test throw error");
+  //   //return throwError(new Error("test throw error"));
+  //   console.log('createBookingPersonBatch service: ', bookingPersons);
+
+  //   //TODO: the credit logic here is WRONG!, won't be all family batch
+  //   // when creating new bookings, there will be many families, and users!
+
+  //   var credit = {
+  //     //userDocId: bookingPersons[0]?.parentUserId ?? bookingPersons[], //charge the parent user ID
+  //     userDisplayName: bookingPersons[0].userDisplayName,
+  //     createdBy:bookingPersons[0].parentUserId,
+  //     createdByDisplayName:bookingPersons[0].parentUserDisplayName,
+  //     created: Timestamp.now(),
+  //   } as Credit;
+  //   let fees=0;
+  //   let notes = "booking: ";
+
+  //   var batch = this.firestore.firestore.batch();
+  //   bookingPersons.forEach(bp=>{
+  //     var ref = this.firestore.collection('bookingPersons').doc().ref;
+  //     batch.set(ref, bp);
+  //     fees+=bp.amount;
+  //     notes+=bp.userDisplayName+"|";
+  //   });
+
+  //   credit.amount = -fees;
+  //   credit.note = notes;
+  //   var ref = this.firestore.collection('credits').doc().ref;
+  //   batch.set(ref, credit);
+
+  //   console.log('createBookingPersonBatch service: ', credit);
+
+  //   await batch.commit()
+  // }
 
    public get(bookingPersonDocId: string) {
       return super.getByDocId(bookingPersonDocId);
