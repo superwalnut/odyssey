@@ -15,6 +15,31 @@
               </button>
             </h3>
 
+
+            <section title="Add new booking">
+              <form>
+                <mat-form-field>
+                  <mat-label>Search player name</mat-label>
+                  <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let user of filteredUsers | async" [value]="user">{{user}}</mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                  <mat-label>Payment method</mat-label>
+                  <mat-select (selectionChange)="selectedValue($event)">
+                    <mat-option *ngFor="let method of paymentMethods" [value]="method">
+                      {{method}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="createBooking(myControl)">Add</button>
+
+                <!-- <button mat-raised-button color="primary" (click)="createBooking(myControl, myControl2)">Add</button> -->
+              </form>
+            </section>
+
             <table class="table table-sm">
               <thead>
                 <tr>
@@ -22,14 +47,12 @@
                   <th scope="col">Payment</th>
                   <th scope="col">Amount</th>
                   <th scope="col">On</th>
-                  <th scope="col">
-                    <a href="#" data-toggle="modal" data-target="#addPlayerModal"><i class="cil-plus"></i></a>
-                  </th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let p of allLocalBookingUsers; let i=index" >
-                  <td scope="row">{{ i+1 }} {{p.name}} {{p.isForSale}} <i class="cil-description"></i></td>
+                  <td scope="row">{{ i+1 }} {{p.name}} {{p.isForSale}} <i class="cil-description" *ngIf="p.note"></i></td>
                   <td scope="row"><i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
                   <td scope="row">{{ p.amount | currency}}</td>
                   <td scope="row">{{p.createdOn.toDate() | date: "dd/MM/yyyy hh:MM"}}</td>
@@ -41,6 +64,8 @@
                 </tr>
               </tbody>
             </table>
+
+            <h1>TODO: adjustment field to be added</h1>
 
           </div>
         </div>
