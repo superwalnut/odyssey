@@ -8,7 +8,6 @@
         <div class="card">
           <div class="card-body p-4">
             <h1>{{user?.name}}'s Credit</h1>
-                    {{balance}}
                     <h2>Current Balance: ${{balance | number: '2.2'}}</h2>
                     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-4">
         
@@ -24,10 +23,10 @@
                             <div *ngIf="f.note.errors.required">Note is required</div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-block btn-success">Save</button>
-                    </form>
-
-
+                    <p>
+                      <button mat-raised-button color="primary">Confirm deposit</button>
+                    </p>
+                </form>
           </div>
         </div>
       </div>

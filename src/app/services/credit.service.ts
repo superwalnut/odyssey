@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import firebase from 'firebase/app';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Credit } from '../models/credit';
 import { User } from '../models/user';
@@ -20,15 +21,7 @@ export class CreditService extends FirestoreBaseService<Credit>{
    public createCredit(credit:Credit) {
      console.log('create credit: ', credit);
      if (!credit.userDocId) return Promise.reject('no user is provided');
-
-     this.getBalance(credit.userDocId).subscribe(result=> {
-      console.log('create credit balance result: ', result);
-
-      credit.created = this.getTodayTimestamp();
-      credit.balance = result ? result.balance : 0 + credit.amount;
-      console.log('adding to credit: ', credit);
-      return this.create(credit);
-     })
+     return this.create(credit);
    }
   //  public createCredit(credit:Credit, previousBalance:number, createdBy:string, createdByDisplayName:string) {
   //   if(credit.userDocId){
@@ -43,17 +36,14 @@ export class CreditService extends FirestoreBaseService<Credit>{
   //   return Promise.reject('no user is provided');
   //  }
 
-   public getBalance(userDocId:string) {
-    return  this.firestore.collection('credits', q => q.where('userDocId', '==', userDocId).orderBy('created', 'desc').limit(1)).snapshotChanges().pipe(
+   public getBalance(userDocId:string) : Observable<number>{
+    return  this.firestore.collection('credits', q => q.where('userDocId', '==', userDocId)).snapshotChanges().pipe(
       map(actions => {
-        console.log(actions);
-        if (actions && actions.length>0){
-          var data = actions[0].payload.doc.data() as Credit;
-          return { ...data, docId: actions[0].payload.doc.id } as Credit;
-        } else {
-          return null;
-        }
-        
+        const amounts = actions.map(x=> (x.payload.doc.data() as Credit).amount);
+        const total = amounts.reduce((a, b) => a + b, 0);
+
+        console.log(total);
+        return total;
       })
     );
 

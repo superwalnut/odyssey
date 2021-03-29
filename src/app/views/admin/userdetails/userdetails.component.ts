@@ -44,7 +44,7 @@ export class UserdetailsComponent implements OnInit {
 
       this.creditService.getBalance(this.userDocId).subscribe(x => {
         if (x) {
-          this.balance = x.balance;
+          this.balance = x;
         }
       });
 

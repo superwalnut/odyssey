@@ -61,7 +61,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
     this.creditService.getBalance(this.loggedInAccount.docId).subscribe(result=>{
       console.log('my credit balance: ' + result);
       if (result)
-        this.hasCredit = result.balance > 0;
+        this.hasCredit = result > 0;
     })
     this.getGroupDetail(this.groupDocId);
     this.getCurrentBooking(this.bookingDocId);

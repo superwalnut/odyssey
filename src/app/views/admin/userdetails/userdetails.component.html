@@ -12,17 +12,7 @@
                     <app-manage-profile [userDocId]="userDocId" [isAdmin]="true"></app-manage-profile>
                   </mat-tab>
                   <mat-tab label="Password">
-                    <form class="mt-4" [formGroup]="passwordForm" (ngSubmit)="onPasswordSubmit()">
-                      <p>
-                        <mat-form-field>
-                          <mat-label>Password</mat-label>
-                          <input matInput placeholder="" formControlName="password"/>
-                        </mat-form-field>
-                      </p>
-                      <p>
-                        <button mat-raised-button color="primary">Save</button>
-                      </p>
-                    </form>
+                    <app-manage-password [userDocId]="userDocId" [isAdmin]="true"></app-manage-password>
                   </mat-tab>
                   <mat-tab label="Family members">
                     <app-manage-family [userDocId]="userDocId"></app-manage-family>

@@ -5,6 +5,7 @@ import { TransactionListComponent } from "./transaction-list/transaction-list.co
 import { AppMaterialModule } from "../../app-material.module";
 import { ManageFamilyComponent } from './manage-family/manage-family.component';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
+import { ManagePasswordComponent } from './manage-password/manage-password.component';
 
 @NgModule({
     imports: [
@@ -16,12 +17,14 @@ import { ManageProfileComponent } from './manage-profile/manage-profile.componen
     declarations: [
       TransactionListComponent,
       ManageFamilyComponent,
-      ManageProfileComponent
+      ManageProfileComponent,
+      ManagePasswordComponent
     ],
     exports: [
       TransactionListComponent,
       ManageFamilyComponent,
-      ManageProfileComponent
+      ManageProfileComponent,
+      ManagePasswordComponent
     ],
   })
   export class SharedModule {}

@@ -38,6 +38,7 @@ const routes: Routes = [
         component: GroupsComponent,
         data: {
           title: "Groups",
+          roles: ["God"],
         },
       },
       {

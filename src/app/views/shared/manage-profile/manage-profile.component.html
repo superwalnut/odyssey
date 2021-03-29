@@ -32,33 +32,23 @@
         <div *ngIf="f.email.errors.required">Email is required</div>
         <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
         <div *ngIf="f.email.errors.incorrect">email is already exist</div>
-    </div>
-    </div>
-    <fieldset class="form-group">
-      <div class="row">
-        <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-        <div class="col-sm-10">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="gender" formControlName="gender" id="gridRadios1" value="Male">
-            <label class="form-check-label" for="gridRadios1">
-              Male
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="gender" formControlName="gender" id="gridRadios2" value="Female">
-            <label class="form-check-label" for="gridRadios2">
-              Female
-            </label>
-          </div>
-        </div>
       </div>
-    </fieldset>
+    </div>
     <div class="input-group mb-3">
-      <select class="custom-select mr-sm-2" formControlName="agegroup">
-        <option selected>Choose Age Group</option>
-        <option value="Adult">Adult</option>
-        <option value="Child">Child</option>
-      </select>
+      <mat-radio-group aria-label="Select gender" formControlName="gender">
+        <mat-radio-button value="Male">Male</mat-radio-button>
+        <mat-radio-button value="Female">Female</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="input-group mb-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Age Group</mat-label>
+        <select matNativeControl required formControlName="agegroup">
+          <option value="Adult">Adult</option>
+          <option value="Child">Child</option>
+        </select>
+      </mat-form-field>
+      
     </div>
     <div class="input-group mb-3" *ngIf="isAdmin">
       <mat-checkbox formControlName="isMember">Is Member</mat-checkbox>

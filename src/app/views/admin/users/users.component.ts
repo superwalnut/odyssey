@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../../../models/user';
+import { UserFamily } from '../../../models/user-family';
 import { AccountService } from '../../../services/account.service';
 
 @Component({
@@ -10,8 +11,8 @@ import { AccountService } from '../../../services/account.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['name', 'balance', 'docId'];
-  dataSource: MatTableDataSource<User>;
+  displayedColumns: string[] = ['name', 'balance', 'families' ,'docId'];
+  dataSource: MatTableDataSource<UserFamily>;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private service: AccountService) { }
@@ -21,7 +22,15 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.service.getAllUsers().subscribe((x) => {
-      this.dataSource = new MatTableDataSource(x);
+      const userFamilies = x.filter(u=>u.parentUserDocId == null).map(m=> {
+        return {
+          docId : m.docId, 
+          user : m, 
+          families : x.filter(y=>y.parentUserDocId == m.docId).map(z=>z.name)
+        } as UserFamily;
+      });
+
+      this.dataSource = new MatTableDataSource(userFamilies);
       this.dataSource.sort = this.sort;
     });
   }

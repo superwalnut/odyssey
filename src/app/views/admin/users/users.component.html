@@ -16,12 +16,12 @@
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
             <td mat-cell *matCellDef="let element"> 
-              {{element.name}} 
-              <!-- <span *ngIf="element.mobile">
-                <i class="material-icons phone">phone_iphone</i><a href="tel:{{element.mobile}}">{{element.mobile}}</a> 
+              {{element.user.name}} 
+              <!-- <span *ngIf="element.user.mobile">
+                <i class="material-icons phone">phone_iphone</i><a href="tel:{{element.user.mobile}}">{{element.user.mobile}}</a> 
               </span>
               <br>
-              {{element.email}}  -->
+              {{element.user.email}}  -->
             </td>
         </ng-container>
 
@@ -37,7 +37,15 @@
         <ng-container matColumnDef="balance">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Balance </th>
           <td mat-cell *matCellDef="let element">
-            {{element.balance | currency : 'AUD'}}
+              $0
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="families">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Families </th>
+          <td mat-cell *matCellDef="let element">
+              {{element.families?.join(", ")}}
           </td>
         </ng-container>
 
@@ -45,8 +53,8 @@
         <ng-container matColumnDef="docId">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
           <td mat-cell *matCellDef="let element"> 
-            <a class="btn btn-sm btn-secondary" routerLink="/admin/userdetails/{{element.docId}}">View Details</a>
-            <a class="btn btn-sm btn-info" routerLink="/admin/usercredits/{{element.docId}}">Credit</a>
+            <a class="btn btn-sm btn-secondary" routerLink="/admin/userdetails/{{element.user.docId}}">View Details</a>
+            <a class="btn btn-sm btn-info" routerLink="/admin/usercredits/{{element.user.docId}}">Credit</a>
           </td>
         </ng-container>
 

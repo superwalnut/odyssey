@@ -8,7 +8,6 @@ export class Credit {
     amount:number;
     created:Timestamp;
     note:string;
-    balance:number;
     createdBy:string;
     createdByDisplayName:string;
 }
