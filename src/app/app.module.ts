@@ -59,7 +59,6 @@ import { ChartsModule } from "ng2-charts";
 import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
-import { DesignDashboardComponent } from "./views/design/design-dashboard/design-dashboard.component";
 import { HomeComponent } from "./views/home/home.component";
 import { MatMenuModule } from "@angular/material/menu";
 import { CarouselModule } from "ngx-bootstrap/carousel";
