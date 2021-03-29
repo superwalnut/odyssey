@@ -3,8 +3,8 @@
       <div class="col-md-12 mx-auto">
         <div class="card">
           <div class="card-body p-4">
-            {{booking?.weekDay}} 
-            {{booking?.eventStartDateTime.toDate() |  date: "EE dd/MM/yyyy"}}
+            <h2>{{booking?.weekDay}} 
+            {{booking?.eventStartDateTime.toDate() |  date: "EE dd/MM/yyyy"}}</h2>
             <h3>
               <button mat-icon-button color="primary" (click)="toggleLockStatus()">
                 <mat-icon>{{ booking?.isLocked ? 'lock': 'lock_open'}}</mat-icon>
@@ -52,7 +52,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let p of allLocalBookingUsers; let i=index" >
-                  <td scope="row">{{ i+1 }} {{p.name}} {{p.isForSale}} {{p.docId}}<i class="cil-description" *ngIf="p.note"></i></td>
+                  <td scope="row">{{ i+1 }} {{p.name}} {{p.isForSale}}<i class="cil-description" *ngIf="p.note" title="{{p.note}}"></i></td>
                   <td scope="row"><i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
                   <td scope="row">{{ p.amount | currency}}</td>
                   <td scope="row">{{p.createdOn.toDate() | date: "dd/MM/yyyy hh:MM"}}</td>
@@ -61,8 +61,8 @@
                       <mat-icon>remove</mat-icon>
                     </button> 
 
-                    <button mat-icon-button color="accent" title="notes">
-                      <mat-icon>notes</mat-icon>
+                    <button mat-icon-button color="accent" title="add notes" (click)="addNoteClicked(p)">
+                      <mat-icon>add_comment</mat-icon>
                     </button> 
                 </tr>
                 <tr>
@@ -72,7 +72,23 @@
               </tbody>
             </table>
 
-            <h1>TODO: adjustment field to be added</h1>
+            <h3>Booking adjustment</h3>
+            //insert into GroupTransaction table
+
+            <form [formGroup]="adjustForm" (ngSubmit)="onSubmit()">
+              <mat-form-field>
+                <mat-label>Adjusted amount</mat-label>
+                <input matInput placeholder="amount" formControlName="adjustAmount" type="number" required />
+              </mat-form-field>
+        
+              <mat-form-field>
+                <mat-label>Description</mat-label>
+                <input matInput placeholder="description" formControlName="adjustDesc" required/>
+              </mat-form-field>
+              <button mat-raised-button color="primary" [disabled]="adjustForm.invalid">Save</button>
+            </form>
+
+
 
           </div>
         </div>
