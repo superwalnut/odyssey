@@ -9,7 +9,7 @@
                 
                 <mat-tab-group>
                   <mat-tab label="Profile">
-                    <app-manage-profile [userDocId]="userDocId"></app-manage-profile>
+                    <app-manage-profile [userDocId]="userDocId" [isAdmin]="true"></app-manage-profile>
                   </mat-tab>
                   <mat-tab label="Password">
                     <form class="mt-4" [formGroup]="passwordForm" (ngSubmit)="onPasswordSubmit()">
