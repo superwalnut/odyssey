@@ -93,7 +93,7 @@ export class AccountService extends FirestoreBaseService<User>{
 
   isAdmin() {
     const role = this.getLoginAccount()?.role ?? [];
-    if (role.indexOf('Admin') || role.indexOf('God')) {
+    if (role.indexOf('Admin') >= 0 || role.indexOf('God') >= 0) {
       return true;
     }
 
@@ -102,7 +102,7 @@ export class AccountService extends FirestoreBaseService<User>{
 
   isGod() {
     const role = this.getLoginAccount()?.role ?? '';
-    if (role.indexOf('God')) {
+    if (role.indexOf('God') >= 0) {
       return true;
     }
 

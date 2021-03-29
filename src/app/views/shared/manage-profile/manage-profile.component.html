@@ -53,6 +53,16 @@
         </div>
       </div>
     </fieldset>
+    <div class="input-group mb-3">
+      <select class="custom-select mr-sm-2" formControlName="agegroup">
+        <option selected>Choose Age Group</option>
+        <option value="Adult">Adult</option>
+        <option value="Child">Child</option>
+      </select>
+    </div>
+    <div class="input-group mb-3" *ngIf="isAdmin">
+      <mat-checkbox formControlName="isMember">Is Member</mat-checkbox>
+    </div>
     <p>
       <button mat-raised-button color="primary">Update Profile</button>
     </p>

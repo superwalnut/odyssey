@@ -19,8 +19,6 @@ export class DefaultLayoutComponent {
     this.isAdmin = this.accountService.isAdmin();
     var acc = this.accountService.getLoginAccount();
     this.name = acc.name;
-
-    console.log("isadmin", this.isAdmin);
     this.navItems = this.initNav(this.isAdmin);
   }
 
@@ -89,11 +87,26 @@ export class DefaultLayoutComponent {
       
     ];
 
+    if(this.isGod) {
+      const godNavs = [
+        {
+          title: true,
+          //name: 'Components'，
+          name: "God Only",
+        },
+        {
+          name: "Groups",
+          url: "/admin/groups",
+          icon: "cil-layers",
+        },
+      ];
+      godNavs.forEach((x) => {
+        items.push(x);
+      });
+    }
+    
     if (isAdmin) {
       const adminNavs = [
-        {
-          divider: true,
-        },
         //For Admin
         {
           divider: true,
@@ -102,11 +115,6 @@ export class DefaultLayoutComponent {
           title: true,
           //name: 'Components'，
           name: "Admin Only",
-        },
-        {
-          name: "Groups",
-          url: "/admin/groups",
-          icon: "cil-layers",
         },
         {
           name: "Users",

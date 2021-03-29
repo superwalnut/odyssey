@@ -14,6 +14,7 @@ import { take } from 'rxjs/operators';
 })
 export class ManageProfileComponent extends BaseComponent implements OnInit {
   @Input() userDocId:string;
+  @Input() isAdmin:boolean;
 
   profileForm: FormGroup;
   submitted = false;
@@ -29,6 +30,8 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       name: ['', Validators.required],
       mobile: ['', Validators.required],
       gender:[''],
+      agegroup:[''],
+      isMember:['']
     });
 
     console.log('userId', this.userDocId);
@@ -41,6 +44,8 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
           name: this.user.name,
           mobile: this.user.mobile,
           gender: this.user.gender,
+          agegroup: this.user.isChild? "Child" : "Adult",
+          isMember: this.user.isMember
         }
       );
     });
@@ -65,8 +70,12 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       email: this.profileForm.value.email,
       mobile: this.profileForm.value.mobile,
       gender: this.profileForm.value.gender,
-      isChild: false,
+      isChild: this.profileForm.value.agegroup == 'Child'?true:false,
     } as User;
+
+    if(this.isAdmin){
+      user.isMember = this.profileForm.value.isMember;
+    }
 
     const emailCheck$ = this.accountService.isEmailExist(user.email);
     const nameCheck$ = this.accountService.isNameExist(user.name);
