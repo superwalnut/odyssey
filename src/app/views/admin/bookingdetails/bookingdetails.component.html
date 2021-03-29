@@ -28,7 +28,7 @@
 
                 <mat-form-field appearance="fill">
                   <mat-label>Payment method</mat-label>
-                  <mat-select (selectionChange)="selectedValue($event)">
+                  <mat-select (selectionChange)="selectedValue($event)" >
                     <mat-option *ngFor="let method of paymentMethods" [value]="method">
                       {{method}}
                     </mat-option>
@@ -52,11 +52,18 @@
               </thead>
               <tbody>
                 <tr *ngFor="let p of allLocalBookingUsers; let i=index" >
-                  <td scope="row">{{ i+1 }} {{p.name}} {{p.isForSale}} <i class="cil-description" *ngIf="p.note"></i></td>
+                  <td scope="row">{{ i+1 }} {{p.name}} {{p.isForSale}} {{p.docId}}<i class="cil-description" *ngIf="p.note"></i></td>
                   <td scope="row"><i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
                   <td scope="row">{{ p.amount | currency}}</td>
                   <td scope="row">{{p.createdOn.toDate() | date: "dd/MM/yyyy hh:MM"}}</td>
-                  <td><i class="cil-minus"></i> <i class="cil-description"></i></td>
+                  <td>
+                    <button mat-icon-button color="accent" title="withdraw" (click)="withdrawBooking(p)">
+                      <mat-icon>remove</mat-icon>
+                    </button> 
+
+                    <button mat-icon-button color="accent" title="notes">
+                      <mat-icon>notes</mat-icon>
+                    </button> 
                 </tr>
                 <tr>
                   <th scope="row">Total {{total | currency}}</th>

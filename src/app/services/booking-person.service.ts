@@ -9,6 +9,8 @@ import { Booking } from '../models/booking';
 import { CreditService } from './credit.service';
 import { Credit } from '../models/credit';
 import { LocalBookingUser } from '../models/custom-models';
+import { User } from '../models/user';
+import { Group } from '../models/group';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +21,28 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     super(firestore.collection('bookingPersons'));
   }
 
-  public createBookingPerson(bookingPerson: BookingPerson) {
-    return super.create(bookingPerson);
-  }
+  public createBookingPerson(bp: BookingPerson) {
+    var batch = this.firestore.firestore.batch();
+
+    var ref = this.firestore.collection('bookingPersons').doc().ref;
+      console.log('createBookingPerson: ', bp);
+      batch.set(ref, bp);
+
+      var ref = this.firestore.collection('credits').doc().ref;
+      var credit = {
+        amount: -bp.amount,
+        userDocId: bp.parentUserId ? bp.parentUserId : bp.userId,
+        userDisplayName: bp.userDisplayName,
+        createdBy: bp.parentUserId ? bp.parentUserId : bp.userId,
+        createdByDisplayName: bp.parentUserDisplayName ? bp.parentUserDisplayName : bp.userDisplayName,
+        note: bp.bookingDesc + ': ' + bp.userDisplayName + ",",
+        created: Timestamp.now(),
+      } as Credit;
+      console.log('createBookingPerson service: ', credit);
+      batch.set(ref, credit);
+
+      batch.commit();
+    }
 
   public async createBookingPersonBatch(bookingPersons:BookingPerson[]) {
     var batch = this.firestore.firestore.batch();
@@ -248,5 +269,18 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     await super.delete(bookingPersonDocId);
   }
 
+
+  //Helper Methods
+  getRate(user:User, group:Group) {
+
+    let committee = group.committees.find(x=>x === user.docId);
+    if (committee != null) return 0;
+
+    
+
+
+
+
+  }
 
 }

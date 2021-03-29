@@ -7,6 +7,7 @@ import { BookingPersonService } from "../../../services/booking-person.service";
 import { BookingsService } from "../../../services/bookings.service";
 import { Account } from "../../../models/account";
 import { User } from "../../../models/user";
+import { BookingPerson } from "../../../models/booking-person";
 
 import { CreditService } from "../../../services/credit.service";
 import { BaseComponent } from '../../base-component';
@@ -15,6 +16,8 @@ import { AccountService } from '../../../services/account.service';
 import { LocalBookingUser } from '../../../models/custom-models';
 import { GlobalConstants } from '../../../common/global-constants';
 import { MatSelectChange } from "@angular/material/select";
+import firebase from 'firebase/app';
+import Timestamp = firebase.firestore.Timestamp;
 
 @Component({
   selector: 'app-bookingdetails',
@@ -28,6 +31,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   booking:Booking;
   allLocalBookingUsers: LocalBookingUser[];
   hasCredit:boolean;
+  defaultPayment = GlobalConstants.paymentCredit;
   //total
   total:number=0;
   totalCredit:number=0;
@@ -39,9 +43,9 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   allUsersObject: User[];
   filteredUsers: Observable<string[]>;
   //selectedUser: User;
-selectedPaymentMethod:string;
+  selectedPaymentMethod:string;
 
-  paymentMethods: string[] = [ GlobalConstants.paymentCredit, GlobalConstants.paymentCash ];
+  paymentMethods: string[] = [ GlobalConstants.paymentCredit, GlobalConstants.paymentCash, GlobalConstants.paymentBank ];
   
   constructor(private bookingService:BookingsService, private bookingPersonService:BookingPersonService, private accountService:AccountService, private creditService:CreditService, private activatedRoute:ActivatedRoute) { super() }
 
@@ -51,6 +55,7 @@ selectedPaymentMethod:string;
     this.getBookingDetail();
     this.getBookingPersons()
 
+    //this.selectedPaymentMethod = GlobalConstants.paymentCredit;
     this.filteredUsers = this.myControl.valueChanges
       .pipe(
         startWith(''),
@@ -77,23 +82,50 @@ selectedPaymentMethod:string;
   }
   createBooking(selectedUserControl) {
     console.log(this.selectedPaymentMethod);
-
+    if (this.selectedPaymentMethod == null) { return false; }
     if (selectedUserControl.value == null) { return false; }
     var user = this.allUsersObject.filter(x => { return x.name === selectedUserControl.value });
-    //this.selectedUser = user[0];
     console.log(user);
 
+    let bp = {
+      bookingDocId:this.bookingDocId,
+      groupDocId:this.booking.groupDocId,
+      bookingDesc:this.booking.weekDay,
+      userId: user[0].docId,
+      userDisplayName: user[0].name,
+      paymentMethod: this.selectedPaymentMethod, //Credit | Cash | Bank Transfer`
+      parentUserId: user[0].parentUserDocId ?  user[0].parentUserDocId : user[0].docId,
+      parentUserDisplayName: user[0].parentUserDisplayName ?  user[0].parentUserDisplayName : user[0].name,
+      isForSale:false,
+      amount: this.selectedPaymentMethod == GlobalConstants.paymentCredit ? GlobalConstants.rateCredit : GlobalConstants.rateCash,
+      isPaid: this.selectedPaymentMethod == GlobalConstants.paymentCredit,
+      createdOn: Timestamp.now(),
+    } as BookingPerson;
 
-    // this.creditService.getBalance(user[0].docId).subscribe(result=>{
-    //   console.log('my credit balance: ' + result);
-    //   if (result)
-    //     this.hasCredit = result.balance > 0;
-    // })
-
-
+    console.log(bp);
+    this.bookingPersonService.createBookingPerson(bp);
+   
   }
 
+  withdrawBooking(lbu:LocalBookingUser) {
 
+    if(confirm("Are you sure to withdraw? " + lbu.name)) {
+      var bp = { 
+        docId: lbu.docId,
+        userId: lbu.userDocId,
+        userDisplayName:lbu.name,
+        amount: lbu.amount,
+        parentUserId: lbu.parentUserId ? lbu.parentUserId : lbu.userDocId,
+        parentUserDisplayName: lbu.parentUserDisplayName ? lbu.parentUserDisplayName : lbu.name,
+      } as BookingPerson;
+      this.bookingPersonService.withdraw(bp.docId, bp)
+        .catch((err) => {
+          //errorMessage = err.toString();
+          alert(err);
+          console.log(err);
+        });
+    }    
+  }
 
   getBookingDetail(){
     this.bookingService.get(this.bookingDocId).subscribe(result=>{
@@ -110,6 +142,7 @@ selectedPaymentMethod:string;
   }
 
   calculateTotal() {
+    this.total = 0;
     this.allLocalBookingUsers.forEach(b=>{
       this.total+=b.amount;
       console.log(this.total);
