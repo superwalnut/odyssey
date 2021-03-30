@@ -9,10 +9,11 @@ import { Account } from "../../../models/account";
 import { User } from "../../../models/user";
 import { BookingPerson } from "../../../models/booking-person";
 import { Credit } from "../../../models/credit";
-
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { CreditService } from "../../../services/credit.service";
 import { BaseComponent } from '../../base-component';
 import { Booking } from '../../../models/booking';
+import { GroupTransaction } from '../../../models/group-transaction';
 import { AccountService } from '../../../services/account.service';
 import { GroupTransactionService } from "../../../services/group-transaction.service";
 
@@ -49,10 +50,13 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   filteredUsers: Observable<string[]>;
   //selectedUser: User;
   selectedPaymentMethod: string;
+  groupTransactions: GroupTransaction[];
+  groupTransactionsAdjusted: GroupTransaction[];
+
 
   paymentMethods: string[] = [GlobalConstants.paymentCredit, GlobalConstants.paymentCash, GlobalConstants.paymentBank];
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialog, public dialog: MatDialog, private groupTransactionService: GroupTransactionService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute) { super() }
+  constructor(private fb: FormBuilder, private dialogRef: MatDialog, private snackBar: MatSnackBar, public dialog: MatDialog, private groupTransactionService: GroupTransactionService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute) { super() }
 
   ngOnInit(): void {
     this.bookingDocId = this.activatedRoute.snapshot.params.id;
@@ -86,8 +90,13 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   getGroupTransaction() {
     this.groupTransactionService.getByBookingDocId(this.bookingDocId).subscribe(result => {
       console.log('grouptrans', result);
-
+      this.groupTransactions = result;
+      this.getGroupTransactionAdjusted();
     });
+  }
+
+  getGroupTransactionAdjusted() {
+    this.groupTransactionsAdjusted = this.groupTransactions.filter(x => x.paymentMethod == GlobalConstants.paymentAdjust);
 
   }
 
@@ -184,37 +193,27 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   }
 
   onSubmit() {
-
-    //insert into GroupTransaction table
-
-    var credit = {
+    var groupTransaction = {
       amount: this.adjustForm.value.adjustAmount,
-      note: this.adjustForm.value.note,
-
-
-
-    } as Credit;
-    // this.creditService.createCredit(credit)
-    //   .catch((err) => {
-    //     //errorMessage = err.toString();
-    //     alert(err);
-    //     console.log(err);
-    //   });
-
-
-    // var group = {
-
-    //   eventStartDay: this.groupForm.value.eventStartDay,
-    //   eventStartTime: this.groupForm.value.eventStartTime,
-    //   bookingStartDay: this.groupForm.value.bookingStartDay,
-    //   groupName: this.groupForm.value.groupName,
-    //   groupDesc: this.groupForm.value.groupDesc,
-    //   seats: this.groupForm.value.seats,
-    //   committees: this.getCommitteeUserDocIds(),
-    //   isClosed: false,
-    // } as Group;
-
+      notes: this.adjustForm.value.adjustDesc,
+      paymentMethod: GlobalConstants.paymentAdjust,
+      groupDocId: this.booking.groupDocId,
+      bookingDocId: this.bookingDocId,
+      createdBy: this.loggedInAccount.docId,
+      createdByDisplayName: this.loggedInAccount.name,
+      created: Timestamp.now(),
+    } as GroupTransaction;
+    console.log('grouptransaction adjustment: ', groupTransaction);
+    this.groupTransactionService.createGroupTransaction(groupTransaction)
+      .then(() => {
+        this.snackBar.open(`Adjustment has been created.`, null, {
+          duration: 5000,
+          verticalPosition: "top",
+        });
+      })
+      .catch((err) => { alert(err) })
   }
+
   get f() {
     return this.adjustForm.controls;
   }

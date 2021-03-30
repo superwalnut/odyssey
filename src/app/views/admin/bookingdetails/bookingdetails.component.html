@@ -73,7 +73,24 @@
             </table>
 
             <h3>Booking adjustment</h3>
-            //insert into GroupTransaction table
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Note</th>
+                  <th scope="col">Made by</th>
+                  <th scope="col">Made on</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let t of groupTransactionsAdjusted">
+                  <td>{{ t.amount | currency}}</td>
+                  <td>{{ t.notes}}</td>
+                  <td>{{ t.createdByDisplayName }}</td>
+                  <td>{{ t.created.toDate() | date: 'dd/MM/yyyy HH:mm'}}</td>
+                </tr>
+              </tbody>
+            </table>
 
             <form [formGroup]="adjustForm" (ngSubmit)="onSubmit()">
               <mat-form-field>

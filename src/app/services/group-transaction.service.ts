@@ -18,12 +18,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
 
   }
 
-  public createGroupTransaction(groupTransaction: GroupTransaction, createdBy: string) {
-    groupTransaction.created = this.getTodayTimestamp();
-    groupTransaction.createdBy = createdBy;
-    groupTransaction.updated = this.getTodayTimestamp();
-    groupTransaction.updatedBy = createdBy;
-
+  public createGroupTransaction(groupTransaction: GroupTransaction) {
     return this.create(groupTransaction);
   }
 
@@ -40,7 +35,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
 
   //get transaction by booking Id
   public getByBookingDocId(bookingDocId: string) {
-    return this.firestore.collection('groupTransactions', q => q.where('bookingDocId', '==', bookingDocId)).snapshotChanges().pipe(
+    return this.firestore.collection('groupTransactions', q => q.where('bookingDocId', '==', bookingDocId).orderBy('createdOn', 'desc')).snapshotChanges().pipe(
       map(actions => {
         return actions.map(x => {
           var trans = x.payload.doc.data() as GroupTransaction;
