@@ -14,6 +14,8 @@ import { CreditService } from "../../../services/credit.service";
 import { BaseComponent } from '../../base-component';
 import { Booking } from '../../../models/booking';
 import { AccountService } from '../../../services/account.service';
+import { GroupTransactionService } from "../../../services/group-transaction.service";
+
 import { LocalBookingUser } from '../../../models/custom-models';
 import { GlobalConstants } from '../../../common/global-constants';
 import { MatSelectChange } from "@angular/material/select";
@@ -50,13 +52,14 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
 
   paymentMethods: string[] = [GlobalConstants.paymentCredit, GlobalConstants.paymentCash, GlobalConstants.paymentBank];
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialog, public dialog: MatDialog, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute) { super() }
+  constructor(private fb: FormBuilder, private dialogRef: MatDialog, public dialog: MatDialog, private groupTransactionService: GroupTransactionService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute) { super() }
 
   ngOnInit(): void {
     this.bookingDocId = this.activatedRoute.snapshot.params.id;
     this.loggedInAccount = this.accountService.getLoginAccount();
     this.getBookingDetail();
-    this.getBookingPersons()
+    this.getBookingPersons();
+    this.getGroupTransaction();
 
     //this.selectedPaymentMethod = GlobalConstants.paymentCredit;
     this.filteredUsers = this.myControl.valueChanges
@@ -76,6 +79,14 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     this.adjustForm = this.fb.group({
       adjustAmount: ["", Validators.required],
       adjustDesc: ["", Validators.required],
+    });
+
+  }
+
+  getGroupTransaction() {
+    this.groupTransactionService.getByBookingDocId(this.bookingDocId).subscribe(result => {
+      console.log('grouptrans', result);
+
     });
 
   }
@@ -120,9 +131,12 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     if (confirm("Are you sure to withdraw? " + lbu.name)) {
       var bp = {
         docId: lbu.docId,
+        bookingDocId: this.bookingDocId,
+        groupDocId: this.booking.groupDocId,
         userId: lbu.userDocId,
         userDisplayName: lbu.name,
         amount: lbu.amount,
+        paymentMethod: lbu.paymentMethod,
         parentUserId: lbu.parentUserId ? lbu.parentUserId : lbu.userDocId,
         parentUserDisplayName: lbu.parentUserDisplayName ? lbu.parentUserDisplayName : lbu.name,
       } as BookingPerson;

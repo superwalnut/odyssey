@@ -6,17 +6,18 @@ import Timestamp = firebase.firestore.Timestamp;
 export class GroupTransaction {
     docId: string;
     groupDocId: string;
-    bookingDocId: string;
+    bookingDocId: string; //nullable
+    referenceId: string; //nullable, can be userDocId
     notes: string; //description of this transaction
-    creditAmount: number;
-    cashAmount: number;
-    bankTransferAmount: number;
-    adjustAmount: number;
-    adjustNotes: string;
+    amount:number;
+    paymentMethod:string; //credit|cash|bank|adjusted
+
     created: Timestamp;
     createdBy: string;
+    createdByDisplayName: string;
     updated: Timestamp;
     updatedBy: string;
+    updatedByDisplayName: string;
 
 }
 

@@ -14,7 +14,7 @@ import { GroupTransaction } from "../models/group-transaction";
 export class GroupTransactionService extends FirestoreBaseService<GroupTransaction>{
 
   constructor(private firestore: AngularFirestore) {
-    super(firestore.collection('groupTransaction'));
+    super(firestore.collection('groupTransactions'));
 
   }
 
@@ -29,7 +29,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
 
   //get transaction by group Id
   public getByGroupDocId(groupDocId: string) {
-    return this.firestore.collection('groupTransaction', q => q.where('groupDocId', '==', groupDocId).limit(1)).snapshotChanges().pipe(
+    return this.firestore.collection('groupTransactions', q => q.where('groupDocId', '==', groupDocId).limit(1)).snapshotChanges().pipe(
       map(actions => {
         var data = actions[0].payload.doc.data() as GroupTransaction;
         return { ...data, docId: actions[0].payload.doc.id } as GroupTransaction;
@@ -40,13 +40,13 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
 
   //get transaction by booking Id
   public getByBookingDocId(bookingDocId: string) {
-    return this.firestore.collection('groupTransaction', q => q.where('bookingDocId', '==', bookingDocId).limit(1)).snapshotChanges().pipe(
+    return this.firestore.collection('groupTransactions', q => q.where('bookingDocId', '==', bookingDocId)).snapshotChanges().pipe(
       map(actions => {
-        var data = actions[0].payload.doc.data() as GroupTransaction;
-        return { ...data, docId: actions[0].payload.doc.id } as GroupTransaction;
-
-      })
-    );
+        return actions.map(x => {
+          var trans = x.payload.doc.data() as GroupTransaction;
+          return { ...trans, docId: x.payload.doc.id } as GroupTransaction;
+        });
+      }));
   }
 
   //TODO: get transaction by date range
