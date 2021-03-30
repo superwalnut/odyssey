@@ -8,6 +8,7 @@ export class User {
     password: string;
     mobile: string;
     parentUserDocId: string;
+    parentUserDisplayName: string;
     role: string[];
     gender: string;
     isChild: boolean;

@@ -3,13 +3,16 @@
   <div class="col-md-12 mx-auto">
     <div class="card">
       <div class="card-body p-4">
-                
-          <mat-form-field appearance="fill">
-            <mat-label>My Groups</mat-label>
-            <mat-select  (selectionChange)="onGroupChange()"  [(ngModel)]="selectedGroupDocId">
-              <mat-option *ngFor="let group of myGroups" [value]="group.docId">{{group.groupName}}</mat-option>
-            </mat-select>
-          </mat-form-field>
+
+        <h2>Create new booking</h2>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Booking Dates</mat-label>
+          <mat-select [(ngModel)]="selectedFutureDate">
+            <mat-option *ngFor="let d of futureBookingDates" [value]="d">{{d | date:'EE dd/MM/yyyy'}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="createBookingClicked()">Create</button>
 
       </div>
     </div>
@@ -23,6 +26,8 @@
     <div class="card">
       <div class="card-body p-4">
         <h2>Bookings</h2>
+        <div>{{committeesDump}}</div>
+
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef>Date</th>

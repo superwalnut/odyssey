@@ -60,7 +60,6 @@ export class TriggersService {
 
     combineLatest([getCommittees, getLastBooking])
     .subscribe(result=>{
-      console.log;
 
       console.log('forkjoin 1: ', result[0]);
       console.log('forkJoin 2: ', result[1]);

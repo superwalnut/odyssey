@@ -110,6 +110,7 @@ export class ManageFamilyComponent implements OnInit {
           const user = {
             name : name,
             parentUserDocId : this.userDocId,
+            parentUserDisplayName: this.user.name,
           } as User;
           this.accountService.createUser(user).then(x=>{
             if(i == this.families.value.length - 1){

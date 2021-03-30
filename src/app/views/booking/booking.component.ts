@@ -20,6 +20,7 @@ import { BaseComponent } from '../base-component';
 import { Booking } from '../../models/booking';
 import { LocalBookingUser } from '../../models/custom-models';
 import { map, mergeMap } from 'rxjs/operators';
+import { features } from 'node:process';
 
 @Component({
   selector: 'app-booking',
@@ -169,20 +170,34 @@ export class BookingComponent extends BaseComponent implements OnInit {
   }
 
   forSaleClicked(seller:LocalBookingUser) {
-    console.log(seller);
+    let found = this.allLocalBookingUsers.find(x=> x.userDocId == this.loggedInAccount.docId && !x.isForSale);
+    console.log('has found: ', found);
+    if (found) {
+      alert('You have already booked');
+      return false;
+    }
+
+    var fee:Number;
+
+    if (this.isCommittee) fee = 0;
+    else {
+      fee = this.hasCredit ? GlobalConstants.rateCredit: GlobalConstants.rateCash;
+    }
+
     var buyer = { 
       bookingDocId: this.bookingDocId,
       groupDocId: this.group.docId,
       bookingDesc: this.group.groupName,
       userId: this.loggedInAccount.docId,
       userDisplayName: this.loggedInAccount.name,
-      amount: this.hasCredit ? GlobalConstants.rateCredit: GlobalConstants.rateCash,
+      amount: fee,
       parentUserId: this.loggedInAccount.docId,
       parentUserDisplayName: this.loggedInAccount.name,
       paymentMethod: this.hasCredit ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
       isPaid: this.hasCredit,
       createdOn: Timestamp.now(),
     } as BookingPerson;
+    console.log('has found readed end!!!: ');
 
     this.bookingPersonService.buySeat(seller, buyer);
   }

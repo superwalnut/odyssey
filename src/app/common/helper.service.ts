@@ -76,10 +76,25 @@ export class HelperService {
     return refDate;
   }
 
+  findWeekdays(dayName: string, maxOccurence: number,  refDate = new Date()) {
+    var dateList:Date[]=[];
+    var initDay = refDate;
+
+    for (let i = 0; i < maxOccurence; i++) {
+      var d = new Date();
+
+      d = this.findNextDayOfTheWeek(dayName, true, initDay);
+      initDay = d;
+      dateList.push(new Date(+d));
+      console.log("days: ", d)
+    }
+
+    console.log("days: ", dateList)
+    return dateList;
+  }
+
   extractHour(str: any) {
-
     var h = String(str).split(':')[0]
-
     console.log("new date: ", String(str).split(':'));
     return Number(h);
     //let newDate = str.toDate().toDateString();

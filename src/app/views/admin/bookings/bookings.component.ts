@@ -4,16 +4,19 @@ import { MatTableDataSource } from "@angular/material/table";
 import { ActivatedRoute } from "@angular/router";
 
 import { Group } from "../../../models/group";
+import { GlobalConstants } from '../../../common/global-constants';
 
 import { GroupService } from "../../../services/group.service";
 import { AccountService } from "../../../services/account.service";
 import { BookingsService } from "../../../services/bookings.service";
+import { BookingPersonService } from "../../../services/booking-person.service";
+
 import { Booking } from '../../../models/booking';
 import { BookingPerson } from '../../../models/booking-person';
-import { timestamp } from 'rxjs/operators';
-
+import { User } from '../../../models/user';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
+import { HelperService } from '../../../common/helper.service';
 @Component({
   selector: 'app-bookings',
   templateUrl: './bookings.component.html',
@@ -22,40 +25,81 @@ import Timestamp = firebase.firestore.Timestamp;
 export class BookingsComponent implements OnInit {
   myGroups = [];
   myDocId: string;
-  selectedGroupDocId: string;
+  group:Group;
+  //selectedGroupDocId: string;
   displayedColumns: string[] = [
     "date",
     "isLocked",
     "Action",
   ];
   dataSource = new MatTableDataSource<Booking>();
+  futureBookingDates:Date[];
+  selectedFutureDate:Date;
+  committees:User[];
+  committeesDump:string;
+  committeeBookingPersons:BookingPerson[];
 
-
-
-  constructor(public dialog: MatDialog, private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService, private activatedRoute: ActivatedRoute) { }
+  constructor(public dialog: MatDialog, private groupService: GroupService, private bookingService: BookingsService, 
+    private accountService: AccountService, private activatedRoute: ActivatedRoute, private bookingPersonService:BookingPersonService, private helpService:HelperService) { }
 
   ngOnInit(): void {
     this.myDocId = this.accountService.getLoginAccount().docId;
+    
     this.getMyGroups();
 
     var groupDocId = this.activatedRoute.snapshot.params.id;
     if (groupDocId) {
+      this.getGroupDetails(groupDocId);
       this.getBookingsByGroupDocId(groupDocId);
     }
+  }
+
+  createBookingClicked() {
+    console.log(this.selectedFutureDate);
+    this.createEmptyBooking();
+    this.addCommitteesToBooking();
 
 
   }
 
-  toggleLock(name: string) {
-    if (confirm("Comfirm to lock/unlock " + name)) {
-      console.log("Implement delete functionality here");
-    }
+  createEmptyBooking(){
+    var startDateTime = this.helpService.combinDateTypeAndTime(this.selectedFutureDate, this.group.eventStartTime);
+    var startDateTimeTimeStamp = this.helpService.convertToTimestamp(startDateTime);
+    var booking = {
+      groupDocId: this.group.docId,
+      eventStartDateTime: startDateTimeTimeStamp,
+      bookingStartDay: this.group.bookingStartDay,
+      weekDay: this.group.eventStartDay,
+      isLocked: false,
+    } as Booking;
+
+    this.bookingService.createBooking(booking).then(bookingDocId=>{
+      console.log(bookingDocId);
+      var peoples = this.mapCommitteesToBookingPerson(this.committees, this.group.docId, bookingDocId);
+      console.log('booking persons ready for insert: ', peoples);
+      this.bookingPersonService.createBookingPersonBatch(peoples);
+    });
   }
 
-  onGroupChange() {
-    console.log(this.selectedGroupDocId);
-    this.getBookingsByGroupDocId(this.selectedGroupDocId);
+  addCommitteesToBooking() {
+
   }
+
+  getGroupDetails(groupDocId:string) {
+    this.groupService.getGroup(groupDocId).subscribe(g=>{
+      this.group = g;
+      this.futureBookingDates = this.helpService.findWeekdays(g.eventStartDay, 10);
+
+      this.accountService.getUsersByUserDocIds(g.committees).subscribe(result=>{
+        this.committees = result;
+        this.committeesDump = this.dumpCommittees(result);
+        console.log(this.committees);
+
+      });
+
+    })
+  }
+
   getMyGroups() {
     this.myGroups = [];
 
@@ -68,6 +112,12 @@ export class BookingsComponent implements OnInit {
     });
   }
 
+  dumpCommittees(users:User[]) {
+    var cs = this.group.eventStartDay + ' committees: ';
+    users.forEach(u=> cs+=u.name+", ");
+    return cs;
+
+  }
   getBookingsByGroupDocId(groupDocId: string) {
     
     this.bookingService.getByGroupDocId(groupDocId).subscribe(bookings => {
@@ -79,6 +129,44 @@ export class BookingsComponent implements OnInit {
       });
     });
   }
+
+
+
+  mapCommitteesToBookingPerson(users: User[], groupDocId:string, bookingDocId:string) {
+    var bookingpersons: BookingPerson[] = [];
+    
+    console.log("users original input: ", users);
+    console.log("users length: ", users.length);
+
+    users.forEach(u => {
+      console.log("u =>: ", u);
+
+      let parentUserDocId = '';
+      if (!u.parentUserDocId) {
+        parentUserDocId = u.docId; //set the main account's parentuserid to himself
+      }
+
+      var bookingPerson = {
+        groupDocId:groupDocId,
+        bookingDocId:bookingDocId,
+        bookingDesc: this.group.groupDesc,
+        userId: u.docId,
+        userDisplayName: u.name,
+        parentUserId: parentUserDocId,
+        paymentMethod: GlobalConstants.paymentCredit,
+        amount: 0,
+        isPaid: true,
+        createdOn: Timestamp.now(),
+      } as BookingPerson;
+      console.log("booking person: ", bookingPerson);
+
+      bookingpersons.push(bookingPerson);
+    });
+
+    console.log("booking persons: ", bookingpersons);
+    return bookingpersons;
+  }
+
 
 }
 

@@ -39,6 +39,8 @@ export class TriggersComponent implements OnInit {
 
     this.helperService.findDateRangeOfCurrentWeek(d3);
 
+    this.helperService.findWeekdays('tue', 10);
+
   }
 
 }
