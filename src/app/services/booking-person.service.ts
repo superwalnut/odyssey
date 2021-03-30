@@ -28,8 +28,11 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     //return throwError(new Error("test throw error"));
     console.log('createBookingPersonBatch service: ', bookingPersons);
 
+    //TODO: the credit logic here is WRONG!, won't be all family batch
+    // when creating new bookings, there will be many families, and users!
+
     var credit = {
-      userDocId: bookingPersons[0].parentUserId, //charge the parent user ID
+      //userDocId: bookingPersons[0]?.parentUserId ?? bookingPersons[], //charge the parent user ID
       userDisplayName: bookingPersons[0].userDisplayName,
       createdBy:bookingPersons[0].parentUserId,
       createdByDisplayName:bookingPersons[0].parentUserDisplayName,

@@ -23,6 +23,15 @@ export class TriggersComponent implements OnInit {
 
   //Test cases
   onCombineDatesClick() {
+     
+
+
+    const example = {a: 'a'} as Test;
+
+    example?.a  // ["first", {b:3}, false]
+    let x = example.b ? 'xxx':'yyy' // undefined
+
+    console.log('print out x: ', x);
 
     const lastMonday = new Date('2021-03-08');
     console.log('last monday: ', lastMonday)
@@ -43,4 +52,9 @@ export class TriggersComponent implements OnInit {
 
   }
 
+}
+
+export class Test {
+  a:string;
+  b:string;
 }

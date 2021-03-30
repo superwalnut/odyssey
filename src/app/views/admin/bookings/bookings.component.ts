@@ -133,6 +133,7 @@ export class BookingsComponent implements OnInit {
 
 
   mapCommitteesToBookingPerson(users: User[], groupDocId:string, bookingDocId:string) {
+    
     var bookingpersons: BookingPerson[] = [];
     
     console.log("users original input: ", users);
