@@ -47,18 +47,16 @@
             <table class="table table-sm">
               <thead>
                 <tr>
-                  <th scope="col">Amount</th>
+                  <th scope="col">Date</th>
                   <th scope="col">Note</th>
-                  <th scope="col">User</th>
-                  <th scope="col">On</th>
+                  <th scope="col">Amount</th>                  
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let c of credits">
-                  <td>{{ c.amount | currency}}</td>
-                  <td>{{ c.notes}}</td>
-                  <td>{{ c.userDisplayName }}</td>
                   <td>{{ c.created.toDate() | date: 'dd/MM/yyyy HH:mm'}}</td>
+                  <td>{{ c.notes}}</td>
+                  <td>{{ c.amount | currency}}</td>
                 </tr>
               </tbody>
             </table>
