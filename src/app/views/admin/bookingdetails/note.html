@@ -2,28 +2,30 @@
 <!-- Modal -->
 <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title">{{ data.group?.groupName}} {{ data.group?.eventStartTime}}</h5>
+      <h5 class="modal-title"></h5>
       <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
     </div>
   
     <div class="modal-body">
       <p>
         <mat-checkbox [(ngModel)]="paid">Paid</mat-checkbox>
+        <button mat-raised-button color="warn" (click)="savePayStatusClick()">Save pay status</button>  
       </p>
 
         <mat-form-field>
             <mat-label>Add notes (to overwrite existing notes)</mat-label>
             <input matInput placeholder="notes" [(ngModel)]="data.localBookingUser.note" required />
         </mat-form-field>
+        <button mat-raised-button color="warn" (click)="saveNotesClick()">Save notes</button>  
 
-        <p>{{data.localBookingUser.note}}</p>
+
+        <!-- <p>{{data.localBookingUser.note}}</p> -->
 
 
   
     </div>
     <div class="modal-footer">
       <button mat-raised-button (click)="onNoClick()">Close</button>
-      <button mat-raised-button color="warn" (click)="saveClick()">Save</button>  
     </div>
   </div>
   

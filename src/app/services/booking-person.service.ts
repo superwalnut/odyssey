@@ -208,6 +208,12 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     return this.update(bookingPerson.docId, bookingPerson);
   }
 
+  public updatePaymentStatus(bookingPerson: BookingPerson) {
+
+    //apply to both booking-peson and group transaction table!
+
+
+  }
 
   public buySeat(seller: LocalBookingUser, buyer: BookingPerson) {
 
