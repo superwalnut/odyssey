@@ -265,7 +265,6 @@ export class BookingDialog {
   isLoading: boolean;
   allBookings: BookingPerson[];
 
-
   ngOnInit() {
     this.bookingPersonService.getByBookingDocId(this.data.bookingDocId).subscribe(allBookings => {
       this.allBookings = allBookings; //get a live connection to all booking persons.
@@ -291,21 +290,12 @@ export class BookingDialog {
     console.log("delete ssss ", result.toDelete);
 
     //2. calculate price for added recored;
-    let i = 0;
     result.toAdd.forEach(u => {
       if (u.isFamily) { //Family
-        if (i == 0) {
-          u.amount = this.data.hasCredit ? GlobalConstants.rateCredit : GlobalConstants.rateCash;
-        }
-        else {
-          u.amount = this.data.hasCredit ? GlobalConstants.rateFamily : GlobalConstants.rateCash;
-        }
-
+        u.amount = this.data.hasCredit ? GlobalConstants.rateCredit : GlobalConstants.rateCash;
         if (this.isCommitteeCheck(u.userDocId)) {
           u.amount = 0; //if committee reset it to 0;
         }
-        i++;
-
       } else { //Friends
         u.amount = GlobalConstants.rateCash;
       }

@@ -9,6 +9,8 @@ import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { Booking } from '../models/booking';
 import { CreditService } from './credit.service';
+import { HelperService } from '../common/helper.service';
+
 import { Credit } from '../models/credit';
 import { LocalBookingUser } from '../models/custom-models';
 import { User } from '../models/user';
@@ -19,7 +21,7 @@ import { Group } from '../models/group';
 })
 export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
 
-  constructor(private firestore: AngularFirestore, private creditService: CreditService) {
+  constructor(private firestore: AngularFirestore, private creditService: CreditService, private helperService: HelperService) {
     super(firestore.collection('bookingPersons'));
   }
 
@@ -115,6 +117,26 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
         return items;
       })
     )
+  }
+
+  public getCurrentWeekByUserDocId(userDocId: string) {
+    var dateRange = this.helperService.findDateRangeOfCurrentWeek(new Date());
+    console.log(dateRange)
+    return this.firestore.collection('bookingPersons', q => q.where('parentUserId', '==', userDocId)).snapshotChanges().pipe(
+      map(actions => {
+        var items = actions.map(p => {
+          var data = p.payload.doc.data() as BookingPerson;
+          if (data.createdOn >= this.helperService.convertToTimestamp(dateRange.firstday) &&
+            data.createdOn <= this.helperService.convertToTimestamp(dateRange.lastday)) {
+            return { ...data, docId: p.payload.doc.id } as BookingPerson;
+          }
+          return null;
+
+        });
+        return items;
+      })
+    );
+
   }
 
   public getByBookingDocId(bookingDocId: string) {
