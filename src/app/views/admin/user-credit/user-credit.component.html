@@ -1,32 +1,71 @@
 
-
-
-
 <div class="container">
     <div class="row">
       <div class="col-md-12 mx-auto">
         <div class="card">
           <div class="card-body p-4">
             <h1>{{user?.name}}'s Credit</h1>
-                    <h2>Current Balance: ${{balance | number: '2.2'}}</h2>
-                    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-4">
-        
-                    <div class="input-group mb-3">
-                        <input type="number" class="form-control" formControlName="amount" placeholder="Amount">
-                        <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
-                            <div *ngIf="f.amount.errors.required">Amount is required</div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" formControlName="note" placeholder="Note">
-                        <div *ngIf="submitted && f.note.errors" class="invalid-feedback">
-                            <div *ngIf="f.note.errors.required">Note is required</div>
-                        </div>
-                    </div>
-                    <p>
-                      <button mat-raised-button color="primary">Confirm deposit</button>
-                    </p>
-                </form>
+            <h2>Current Balance: ${{balance | number: '2.2'}}</h2>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-4">
+
+              <mat-form-field>
+                <mat-label>Amount</mat-label>
+                <input matInput placeholder="amount" type="number" formControlName="amount" required />
+              </mat-form-field>
+              <!-- <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                <div *ngIf="f.amount.errors.required">Amount is required</div>
+              </div> -->
+
+              <mat-form-field>
+                <mat-label>Note</mat-label>
+                <input matInput placeholder="notes" formControlName="note" required />
+              </mat-form-field>
+              <!-- <div *ngIf="submitted && f.note.errors" class="invalid-feedback">
+                <div *ngIf="f.note.errors.required">Note is required</div>
+              </div> -->
+              <button mat-raised-button color="primary">Confirm deposit</button>
+  <!--         
+              <div class="input-group mb-3">
+                  <input type="number" class="form-control" formControlName="amount" placeholder="Amount">
+                  <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                      <div *ngIf="f.amount.errors.required">Amount is required</div>
+                  </div>
+              </div> -->
+              <!-- <div class="input-group mb-3">
+                  <input type="text" class="form-control" formControlName="note" placeholder="Note">
+                  <div *ngIf="submitted && f.note.errors" class="invalid-feedback">
+                      <div *ngIf="f.note.errors.required">Note is required</div>
+                  </div>
+              </div> -->
+              <!-- <p>
+                <button mat-raised-button color="primary">Confirm deposit</button>
+              </p> -->
+            </form>
+
+            <h2>Credit History</h2>
+
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Note</th>
+                  <th scope="col">User</th>
+                  <th scope="col">On</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of credits">
+                  <td>{{ c.amount | currency}}</td>
+                  <td>{{ c.notes}}</td>
+                  <td>{{ c.userDisplayName }}</td>
+                  <td>{{ c.created.toDate() | date: 'dd/MM/yyyy HH:mm'}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+
           </div>
         </div>
       </div>

@@ -21,8 +21,8 @@ export class UserCreditComponent implements OnInit {
 
   form: FormGroup;
   submitted = false;
-
   loggedInUser: Account;
+  credits: Credit[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,8 +30,8 @@ export class UserCreditComponent implements OnInit {
     private creditService: CreditService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private mailService:MailgunService,
-  ) {}
+    private mailService: MailgunService,
+  ) { }
 
   // convenience getter for easy access to form fields
   get f() {
@@ -53,6 +53,9 @@ export class UserCreditComponent implements OnInit {
         this.user = x;
       });
 
+      this.getUserCreditHistory();
+
+
       this.creditService.getBalance(this.userDocId).subscribe((x) => {
         if (x) {
           this.balance = x;
@@ -61,6 +64,12 @@ export class UserCreditComponent implements OnInit {
     }
   }
 
+  getUserCreditHistory() {
+    this.creditService.getByUser(this.userDocId).subscribe(result => {
+      this.credits = result;
+      console.log(result)
+    })
+  }
   onSubmit() {
     this.submitted = true;
 
@@ -81,7 +90,7 @@ export class UserCreditComponent implements OnInit {
       createdByDisplayName: this.loggedInUser.name,
     } as Credit;
 
-    this.creditService.createCredit(credit).then(x=>{
+    this.creditService.createCredit(credit).then(x => {
       this.mailService.sendTopupSucceed(this.user.email, this.user.name, credit.amount);
     });
 
