@@ -193,7 +193,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
       parentUserId: this.loggedInAccount.docId,
       parentUserDisplayName: this.loggedInAccount.name,
       paymentMethod: this.hasCredit ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
-      isPaid: this.hasCredit,
+      isPaid: true,
       createdOn: Timestamp.now(),
     } as BookingPerson;
     console.log('has found readed end!!!: ');

@@ -144,6 +144,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
             parentUserDisplayName: u.parentUserDisplayName,
             amount: u.amount,
             note: u.notes,
+            isPaid: u.isPaid,
             paymentMethod: u.paymentMethod,
             isMyBooking: u.userId == myUserDocId || u.parentUserId == myUserDocId,
             isFamily: u.parentUserId == myUserDocId || u.userId == myUserDocId,

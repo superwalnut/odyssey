@@ -7,9 +7,13 @@
     </div>
   
     <div class="modal-body">
+      <p>
+        <mat-checkbox [(ngModel)]="paid">Paid</mat-checkbox>
+      </p>
+
         <mat-form-field>
             <mat-label>Add notes (to overwrite existing notes)</mat-label>
-            <input matInput placeholder="notes" [(ngModel)]="note" required />
+            <input matInput placeholder="notes" [(ngModel)]="data.localBookingUser.note" required />
         </mat-form-field>
 
         <p>{{data.localBookingUser.note}}</p>

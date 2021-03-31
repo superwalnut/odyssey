@@ -40,9 +40,16 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   hasCredit: boolean;
   defaultPayment = GlobalConstants.paymentCredit;
   //total
-  total: number = 0;
-  totalCredit: number = 0;
-  totalCash: number = 0;
+  // total: number = 0;
+  // totalCredit: number = 0;
+  // totalCash: number = 0;
+
+  total = 0;
+  totalCredit = 0;
+  totalCash = 0;
+  totalBank = 0;
+  totalAdjust = 0;
+
   //type ahead
   myControl = new FormControl();
   allUsers: string[] = [];
@@ -96,6 +103,25 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   }
 
   getGroupTransactionAdjusted() {
+
+    this.total = 0;
+    this.totalCredit = 0;
+    this.totalCash = 0;
+    this.totalBank = 0;
+
+    //let paidTransaction = this.groupTransactions.filter(x=>x.)
+    this.groupTransactions.forEach(tran => {
+      this.total += tran.amount;
+      if (tran.paymentMethod == GlobalConstants.paymentCredit) {
+        this.totalCredit += tran.amount;
+      } else if (tran.paymentMethod == GlobalConstants.paymentCash) {
+        this.totalCash += tran.amount;
+      } else if (tran.paymentMethod == GlobalConstants.paymentBank) {
+        this.totalBank += tran.amount;
+      } else if (tran.paymentMethod == GlobalConstants.paymentAdjust) {
+        this.totalAdjust += tran.amount;
+      }
+    })
     this.groupTransactionsAdjusted = this.groupTransactions.filter(x => x.paymentMethod == GlobalConstants.paymentAdjust);
 
   }
@@ -126,7 +152,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
       parentUserDisplayName: user[0].parentUserDisplayName ? user[0].parentUserDisplayName : user[0].name,
       isForSale: false,
       amount: this.selectedPaymentMethod == GlobalConstants.paymentCredit ? GlobalConstants.rateCredit : GlobalConstants.rateCash,
-      isPaid: this.selectedPaymentMethod == GlobalConstants.paymentCredit,
+      isPaid: true,
       createdOn: Timestamp.now(),
     } as BookingPerson;
 
@@ -168,7 +194,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     this.bookingPersonService.getCustomByBookingDocId(this.bookingDocId, this.loggedInAccount.docId).subscribe(result => {
       this.allLocalBookingUsers = result;
       console.log("getByBookingPersonsByBookingDocId(): ", this.allLocalBookingUsers);
-      this.calculateTotal();
+      //this.calculateTotal();
     })
   }
 
@@ -183,8 +209,12 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   }
   //cil-dollar, cil-credit-card
   getPaymentClass(paymentMethod: string) {
-    if (paymentMethod == GlobalConstants.paymentCredit) { return "cil-credit-card"; }
-    else if (paymentMethod == GlobalConstants.paymentCash) { return "cil-dollar"; }
+    // if (paymentMethod == GlobalConstants.paymentCredit) { return "cil-credit-card"; }
+    // else if (paymentMethod == GlobalConstants.paymentCash) { return "cil-dollar"; }
+    if (paymentMethod == GlobalConstants.paymentCredit) { return "credit_card"; }
+    else if (paymentMethod == GlobalConstants.paymentCash) { return "attach_money"; }
+    else if (paymentMethod == GlobalConstants.paymentBank) { return "atm"; }
+
   }
 
   toggleLockStatus() {
@@ -249,7 +279,8 @@ export class NoteDialog {
   hasError: boolean;
   errorMessage: string;
 
-  note: string;
+  paid: boolean = this.data.localBookingUser.isPaid;
+  //note: string;
 
   ngOnInit() {
 
@@ -261,8 +292,8 @@ export class NoteDialog {
   }
 
   saveClick() {
-    console.log(this.note);
-    if (!this.note) {
+    console.log(this.data.localBookingUser.note, this.paid);
+    if (!this.data.localBookingUser.note) {
       this.dialogRef.close()
       return false;
     }
@@ -270,7 +301,8 @@ export class NoteDialog {
 
     var bp = {
       docId: this.data.localBookingUser.docId,
-      notes: this.note,
+      notes: this.data.localBookingUser.note,
+      isPaid: this.paid,
     } as BookingPerson;
 
     this.bookingPersonService.updateBookingPerson(bp)
