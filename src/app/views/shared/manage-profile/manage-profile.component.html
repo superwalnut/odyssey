@@ -43,10 +43,10 @@
     <div class="input-group mb-3">
       <mat-form-field appearance="fill">
         <mat-label>Age Group</mat-label>
-        <select matNativeControl required formControlName="agegroup">
-          <option value="Adult">Adult</option>
-          <option value="Child">Child</option>
-        </select>
+        <mat-select matNativeControl required formControlName="agegroup">
+          <mat-option value="Adult">Adult</mat-option>
+          <mat-option value="Child">Child</mat-option>
+        </mat-select>
       </mat-form-field>
       
     </div>
@@ -54,7 +54,7 @@
       <mat-checkbox formControlName="isMember">Is Member</mat-checkbox>
     </div>
     <p>
-      <button mat-raised-button color="primary">Update Profile</button>
+      <button mat-raised-button color="primary">Update</button>
     </p>
     
   </form>
