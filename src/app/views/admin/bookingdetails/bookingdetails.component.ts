@@ -299,28 +299,54 @@ export class NoteDialog {
       return false;
     }
 
-    let paymentAmount = this.paid ? this.data.localBookingUser.amount : -this.data.localBookingUser.amount;
-    let paymentNotes = this.paid ? 'paid' : 'unpaid';
+    var bp = {
+      docId: this.data.localBookingUser.docId,
+      isPaid: this.paid,
+    } as BookingPerson;
 
-
-    //add to group transaction table
-    var groupTransaction = {
-      amount: paymentAmount,
-      notes: paymentNotes,
-      paymentMethod: GlobalConstants.paymentAdjust,
-      referenceId: this.data.loggedInUser.docId,
-      groupDocId: this.data.booking.groupDocId,
+    var bpFull = {
+      docId: this.data.localBookingUser.docId,
       bookingDocId: this.data.booking.docId,
-      createdBy: this.data.loggedInUser.docId,
-      createdByDisplayName: this.data.loggedInUser.name,
-      created: Timestamp.now(),
-    } as GroupTransaction;
-    console.log('mark payment status: ', groupTransaction);
-    this.groupTransactionService.createGroupTransaction(groupTransaction)
+      groupDocId: this.data.booking.groupDocId,
+      userId: this.data.localBookingUser.userDocId,
+      userDisplayName: this.data.localBookingUser.name,
+      paymentMethod: this.data.localBookingUser.paymentMethod,
+      parentUserId: this.data.localBookingUser.parentUserId,
+      parentUserDisplayName: this.data.localBookingUser.parentUserDisplayName,
+      amount: this.data.localBookingUser.amount,
+      isPaid: this.paid,
+      updatedOn: Timestamp.now()
+    } as BookingPerson;
+
+
+    this.bookingPersonService.updatePaymentStatus(bp, bpFull, this.data.loggedInUser.docId, this.data.loggedInUser.name)
       .then(() => {
         this.dialogRef.close();
       })
       .catch((err) => { alert(err) })
+
+    // let paymentAmount = this.paid ? this.data.localBookingUser.amount : -this.data.localBookingUser.amount;
+    // let paymentNotes = this.paid ? 'paid' : 'unpaid';
+
+
+    // //add to group transaction table
+    // var groupTransaction = {
+    //   amount: paymentAmount,
+    //   notes: paymentNotes,
+    //   paymentMethod: GlobalConstants.paymentAdjust,
+    //   referenceId: this.data.loggedInUser.docId,
+    //   groupDocId: this.data.booking.groupDocId,
+    //   bookingDocId: this.data.booking.docId,
+    //   createdBy: this.data.loggedInUser.docId,
+    //   createdByDisplayName: this.data.loggedInUser.name,
+    //   created: Timestamp.now(),
+    // } as GroupTransaction;
+    // console.log('mark payment status: ', groupTransaction);
+    // this.groupTransactionService.createGroupTransaction(groupTransaction)
+    //   .then(() => {
+    //     this.dialogRef.close();
+    //   })
+    //   .catch((err) => { alert(err) })
   }
 
   saveNotesClick() {

@@ -208,11 +208,29 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     return this.update(bookingPerson.docId, bookingPerson);
   }
 
-  public updatePaymentStatus(bookingPerson: BookingPerson) {
-
+  public updatePaymentStatus(bp: BookingPerson, bpFull: BookingPerson, updatedByUserDocId: string, updatedByUserName: string) {
+    var batch = this.firestore.firestore.batch();
     //apply to both booking-peson and group transaction table!
+    var ref = this.firestore.collection('bookingPersons').doc(bp.docId).ref;
+    batch.update(ref, bp);
 
-
+    var ref = this.firestore.collection('groupTransactions').doc().ref;
+    let paymentAmount = bpFull.isPaid ? bpFull.amount : -bpFull.amount;
+    let paymentNotes = bpFull.isPaid ? 'paid ' : 'unpaid ';
+    //add to group transaction table
+    var groupTransaction = {
+      amount: paymentAmount,
+      notes: paymentNotes + bpFull.userDisplayName,
+      paymentMethod: bpFull.paymentMethod,
+      referenceId: bpFull.userId,
+      groupDocId: bpFull.groupDocId,
+      bookingDocId: bpFull.bookingDocId,
+      createdBy: updatedByUserDocId,
+      createdByDisplayName: updatedByUserName,
+      created: Timestamp.now(),
+    } as GroupTransaction;
+    batch.set(ref, groupTransaction);
+    return batch.commit();
   }
 
   public buySeat(seller: LocalBookingUser, buyer: BookingPerson) {
