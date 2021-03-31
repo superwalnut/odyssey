@@ -15,7 +15,6 @@
               </button>
             </h3>
 
-
             <section title="Add new booking">
               <form>
                 <mat-form-field>
@@ -54,7 +53,9 @@
               <tbody>
                 <tr *ngFor="let p of allLocalBookingUsers; let i=index"  [ngClass]="{'unpaid-bg':!p.isPaid}">
                   <td scope="row">{{ i+1 }} {{p.name}} 
-                    <mat-icon title="for sale">{{ p.isForSale ? 'social_distance':''}}</mat-icon> <i class="cil-description" *ngIf="p.note" title="{{p.note}}"></i></td>
+                    <mat-icon title="for sale">{{ p.isForSale ? 'social_distance':''}}</mat-icon> 
+                    <mat-icon *ngIf="p.note" title="{{p.note}}">sticky_note_2</mat-icon>
+                  </td>
                   <td scope="row"><mat-icon>{{getPaymentClass(p.paymentMethod)}}</mat-icon> <i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
                   <td scope="row">{{ p.amount | currency}}</td>
                   <td scope="row" ><mat-icon>{{ p.isPaid ? 'check' : 'close'}}</mat-icon></td>
