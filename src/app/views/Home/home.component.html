@@ -15,13 +15,60 @@
       </div>
     </div> -->
 
+    <div class="row light">
+      <div class="col">
+        <div class="hero-section">
+
+          <div class="left">
+            <p class="hero">Life is a game,<br/> badminton is serious!</p>
+          </div>
+          <div class="right">
+            <p ><b>Address:</b> 2/2 Inglewood Pl, Norwest NSW 2153 <a href="https://g.page/badmintonworx-norwest?share" target="_blank"><i class="material-icons">location_on</i></a></p>
+            <p><button mat-raised-button color="accent" routerLink="/groups">Book badminton sessions</button></p>
+
+            <section *ngIf="isLoggedIn">
+              <h3>My Current Bookings</h3>
+
+              <ul>
+                <li *ngFor="let b of myCurrentWeekBookings">
+                  <a routerLink="/booking/{{b.bookingDocId}}/{{b.groupDocId}}">{{ b.bookingDesc }}</a>
+                  {{ b.userDisplayName}}
+                </li>
+              </ul>
+            
+            </section>
+
+            
+          </div>
+          
+        </div>
+      </div>
+
+   
+    </div>
+
     <div class="row light" *ngIf="show">
       <div class="col">
-        <h2 class="section-heading">
-          WEEK <span class="badge badge-dark">{{weekStart.toDate() | date:'dd/MM/yyyy'}}</span> BADMINTON SESSIONS
-        </h2>
+        <div class="clearfix">
+          <h2 class="section-heading">
+            WEEK <span class="badge badge-dark">{{weekStart.toDate() | date:'dd/MM/yyyy'}}</span> BADMINTON SESSIONS
+          </h2>
+          </div>
+
+        <mat-card class="card-sm booking" *ngFor="let g of groups">
+          <mat-card-header>
+            <div mat-card-avatar class="group-header-image"></div>
+            <mat-card-title>{{ g.eventStartDay}}  </mat-card-title>
+            <mat-card-subtitle>{{ g.eventStartTime}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="assets/img/banners/badminton.jpg" alt="badminton court">
+          <mat-card-content>
+            <p>{{ g.groupDesc }}</p>
+          </mat-card-content>
+        </mat-card>
+
         
-        <table class="table table-hover table-dark booking">
+        <!-- <table class="table table-dark booking">
           <thead>
             <tr>
               <th scope="col">Sessions</th>
@@ -34,27 +81,24 @@
               <td class="text-center">{{ g.seats}}</td>
             </tr>
             <tr>
-              <th></th>
+              <td><b>Address:</b> 2/2 Inglewood Pl, Norwest NSW 2153 
+                <a href="https://g.page/badmintonworx-norwest?share" target="_blank"><i class="material-icons">location_on</i></a></td>
               <td class="text-right">
                 <button mat-raised-button color="accent" routerLink="/groups">Book badminton sessions</button>
                 </td>
             </tr>
           </tbody>
-        </table>
+        </table> -->
 
-        <section *ngIf="isLoggedIn">
+        
 
-          <h2>My Current Bookings</h2>
-          <table class="table table-sm">
-            <tbody>
-              <tr *ngFor="let b of myCurrentWeekBookings">
-                <td scope="row">
-                  <a routerLink="/booking/{{b.bookingDocId}}/{{b.groupDocId}}">{{ b.bookingDesc }}</a>
-                  {{ b.userDisplayName}}</td>
+      </div>
+    </div>
 
-            </tbody>
-          </table>
-        </section>
+
+    <div class="row light">
+      <div class="col">
+        
 
 
         <div class="video-responsive">
@@ -62,8 +106,9 @@
         </div>
 
 
-      </div>
-    </div>
+        </div>
+        </div>
+
 
 
     

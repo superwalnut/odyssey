@@ -82,6 +82,31 @@ mat-icon[md-list-icon]{
   order:10;
 }
 //4b0063
+
+.hero-section {
+  min-height: 300px;
+  padding:30px 20px;
+  margin-bottom: 40px;
+  background-image: url(../assets/img/banners/abstract-blue-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+
+  .left{
+    width: 55%;
+  }
+  .right{
+    width:45%;
+  }
+
+
+}
+.hero {
+  font-family: 'Dela Gothic One', cursive!important;
+  font-size: 38px!important;
+  line-height: 3rem;
+  margin-top:30px!important;
+}
 nav {
   background-color: $nav-bar-color;
   padding: $nav-padding;
@@ -142,6 +167,8 @@ nav {
 .admin-card-m {
   max-width: 400px;
 }
+
+
 .card-sm {
   max-width: 20rem;
   
@@ -159,6 +186,11 @@ nav {
     }
 
   }
+}
+
+.group-header-image {
+  background-image: url(../assets/img/banners/shuttle-sm.jpg);
+  background-size: cover;
 }
 
 .section-heading {
@@ -197,6 +229,35 @@ nav {
       }
     }
   }
+
+  .hero-section {
+    min-height:200px;
+
+    .left{
+      display: none;
+    }
+  
+  
+  }
+
+  .card-sm {
+    max-width: 100%;
+    
+    &.booking{
+      a {
+        text-decoration: none;
+        color:black;
+      }
+      //float: left;
+      margin: 16px;
+      &:hover{
+        box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  
+      }
+  
+    }
+  }
+
 
   .col {
     padding-left: 0;
