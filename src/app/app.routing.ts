@@ -26,7 +26,7 @@ export const routes: Routes = [
   {
     path: "groups",
     component: GroupsComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     data: {
       title: "groups",
     },

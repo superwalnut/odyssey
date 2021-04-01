@@ -4,7 +4,8 @@
   <div class="container">
     <div class="row light">
       <div class="col">
-        <h1 class="section-heading">This Week's Events</h1>
+        <h1 class="section-heading">This Week's Badminton Sessions</h1>
+        <h2 class="section-heading">{{weekStart.toDate() | date:'dd/MM/yyyy'}} - {{weekEnd.toDate() | date:'dd/MM/yyyy'}}</h2>
       </div>
     </div>
     <div class="row light">
@@ -19,15 +20,13 @@
           <img mat-card-image src="assets/img/banners/badminton.jpg">
           <mat-card-content>
             <p>{{ getGroupDesc(b.groupDocId)}}</p>
-            <p>{{ b.eventStartDateTime.toDate() | date: 'yyyy/MM/dd HH:mm'}}</p>
+            <p>{{ b.eventStartDateTime.toDate() | date: 'dd/MM/yyyy HH:mm'}}</p>
           </mat-card-content>
         </a>
         </mat-card> 
         
-
       </div>      
     </div>
-
   </div>
 </div>
 

@@ -63,20 +63,24 @@
           </tbody>
         </table>
 
-        <h2>My Current Bookings</h2>
-        <table class="table table-sm">
-          <tbody>
-            <tr *ngFor="let b of myCurrentWeekBookings">
-              <td scope="row">
-                <a routerLink="/booking/{{b.bookingDocId}}/{{b.groupDocId}}">{{ b.bookingDesc }}</a>
-                 {{ b.userDisplayName}}</td>
+        <section *ngIf="isLoggedIn">
 
-          </tbody>
-        </table>
+          <h2>My Current Bookings</h2>
+          <table class="table table-sm">
+            <tbody>
+              <tr *ngFor="let b of myCurrentWeekBookings">
+                <td scope="row">
+                  <a routerLink="/booking/{{b.bookingDocId}}/{{b.groupDocId}}">{{ b.bookingDesc }}</a>
+                  {{ b.userDisplayName}}</td>
+
+            </tbody>
+          </table>
+        </section>
 
 
-        <iframe width="100%" height="650" src="https://www.youtube.com/embed/p2UEYZ-ENKk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+        <div class="video-responsive">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/p2UEYZ-ENKk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
 
 
       </div>

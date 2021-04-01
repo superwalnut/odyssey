@@ -16,6 +16,7 @@ import { HelperService } from '../../common/helper.service';
 export class HomeComponent extends BaseComponent implements OnInit {
   show: boolean = true;
   loggedInAccount: Account;
+  isLoggedIn: boolean;
   myCurrentWeekBookings: BookingPerson[];
 
 
@@ -23,13 +24,16 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
-    this.getMyCurrentWeekBookings();
+    this.isLoggedIn = this.loggedInAccount.docId != null;
+
+    if (this.isLoggedIn) {
+      this.getMyCurrentWeekBookings();
+    }
 
   }
 
   getMyCurrentWeekBookings() {
-    var dateRange = this.helperService.findDateRangeOfCurrentWeek(new Date());
-
+    console.log("getMyCurrentWeekBookings");
     this.bookingPersonService.getCurrentWeekByUserDocId(this.loggedInAccount.docId).subscribe(result => {
       this.myCurrentWeekBookings = result.filter(x => x != null);
       console.log(this.myCurrentWeekBookings)
