@@ -26,19 +26,15 @@
             <p ><b>Address:</b> 2/2 Inglewood Pl, Norwest NSW 2153 <a href="https://g.page/badmintonworx-norwest?share" target="_blank"><i class="material-icons">location_on</i></a></p>
             <p><button mat-raised-button color="accent" routerLink="/groups">Book badminton sessions</button></p>
 
-            <section *ngIf="isLoggedIn">
+            <div *ngIf="isLoggedIn">
               <h3>My Current Bookings</h3>
-
               <ul>
                 <li *ngFor="let b of myCurrentWeekBookings">
-                  <a routerLink="/booking/{{b.bookingDocId}}/{{b.groupDocId}}">{{ b.bookingDesc }}</a>
-                  {{ b.userDisplayName}}
+                  <a routerLink="/booking/{{b.bookingDocId}}/{{b.groupDocId}}">{{ b.bookingDesc }} {{ b.userDisplayName}}</a>
                 </li>
               </ul>
-            
-            </section>
-
-            
+         
+            </div>
           </div>
           
         </div>
@@ -49,13 +45,38 @@
 
     <div class="row light" *ngIf="show">
       <div class="col">
-        <div class="clearfix">
-          <h2 class="section-heading">
-            WEEK <span class="badge badge-dark">{{weekStart.toDate() | date:'dd/MM/yyyy'}}</span> BADMINTON SESSIONS
-          </h2>
+
+          <div class="homepage-intro">
+            <h2>HBC plays at Badmintonworx Norwest</h2>
+            <h3>We run 3 badminton social sessions a week</h3>
+
+            <!-- <h2 class="section-heading">
+              WEEK <span class="badge badge-dark">{{weekStart.toDate() | date:'dd/MM/yyyy'}}</span> BADMINTON SESSIONS
+            </h2> -->
+
+
+            <ul>
+              <li *ngFor="let g of groups">
+                {{ g.eventStartDay}} {{ g.eventStartTime}} {{ g.groupDesc }}
+              </li>
+            </ul>
+
+            <p><button mat-raised-button color="accent" routerLink="/groups">Book badminton sessions</button></p>
+
+            <div class="socialicons">
+              <a href="https://www.facebook.com/groups/hbchome" target="_blank"><img src="./assets/img/banners/f_logo_RGB-Blue_72.png"/></a>
+              <a href="https://www.youtube.com/channel/UCuMYy7h9al0UXcsTS6DG63A" target="_blank"><img src="./assets/img/banners/youtube_social_circle_red.png"/></a>
+              <a href="mailto:hbc666.club@gmail.com" target="_blank"><img src="./assets/img/banners/gmailicon.png"/></a>
+            </div>
+
+
+            
+
+
+
           </div>
 
-        <mat-card class="card-sm booking" *ngFor="let g of groups">
+        <!-- <mat-card class="card-sm booking" *ngFor="let g of groups">
           <mat-card-header>
             <div mat-card-avatar class="group-header-image"></div>
             <mat-card-title>{{ g.eventStartDay}}  </mat-card-title>
@@ -65,7 +86,7 @@
           <mat-card-content>
             <p>{{ g.groupDesc }}</p>
           </mat-card-content>
-        </mat-card>
+        </mat-card> -->
 
         
         <!-- <table class="table table-dark booking">

@@ -82,11 +82,36 @@ mat-icon[md-list-icon]{
   order:10;
 }
 //4b0063
+.homepage-intro {
+  min-height: 430px;
+  padding:30px 20px;
+  margin-bottom: 40px;
+  background-image: url(../assets/img/banners/jumpsmashbg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color:white;
 
+  .socialicons {
+    margin-top:50px;
+    img {
+      width:32px;
+      margin-right:30px;
+    }
+  }
+  h2{
+    font-size: 30px;
+  }
+
+  ul {
+    li {
+      font-size: 20px;
+      line-height: 2rem;
+    }
+  }
+}
 .hero-section {
   min-height: 300px;
   padding:30px 20px;
-  margin-bottom: 40px;
   background-image: url(../assets/img/banners/abstract-blue-bg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -99,6 +124,19 @@ mat-icon[md-list-icon]{
     width:45%;
   }
 
+  ul {
+    list-style-type:none;
+    padding: 0!important;
+    li {
+
+    }
+  }
+
+  h3 {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
 
 }
 .hero {
