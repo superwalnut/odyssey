@@ -57,11 +57,11 @@ export class DefaultLayoutComponent {
         icon: "cil-dollar",
       },
       {
-        name: "Booking Schedule",
+        name: "Auto Booking",
         url: "/settings/schedule",
         icon: "cil-tennis",
       },
-      
+
       {
         name: "Account Settings",
         url: "",
@@ -84,10 +84,10 @@ export class DefaultLayoutComponent {
           },
         ],
       },
-      
+
     ];
 
-    if(this.isGod) {
+    if (this.isGod) {
       const godNavs = [
         {
           title: true,
@@ -104,7 +104,7 @@ export class DefaultLayoutComponent {
         items.push(x);
       });
     }
-    
+
     if (isAdmin) {
       const adminNavs = [
         //For Admin

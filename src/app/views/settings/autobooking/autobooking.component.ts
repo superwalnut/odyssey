@@ -33,7 +33,6 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     this.getGroups();
     this.loggedInAccount = this.accountService.getLoginAccount();
 
-
     this.autoForm = this.fb.group({
       duration: ['', Validators.required],
       sessions: ['', Validators.required]
@@ -41,7 +40,6 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
   }
 
   getGroups() {
-
     this.groupService.getGroups().subscribe(gs => {
       this.groups = gs;
     })
@@ -58,9 +56,8 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
 
 
   }
-  get f() {
-    return this.autoForm.controls;
-  }
+
+  get f() { return this.autoForm.controls; }
 
 }
 
