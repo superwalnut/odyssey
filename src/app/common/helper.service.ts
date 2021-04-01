@@ -36,7 +36,7 @@ export class HelperService {
     var day = ('0' + date.getDate()).slice(-2);
     var year = date.getFullYear();
     var newdate = year + "-" + month + "-" + day;
-    
+
     console.log('combinDateTypeAndTime: ', newdate);
     console.log(this.combinDateAndTime(newdate, time));
 
@@ -55,14 +55,14 @@ export class HelperService {
   }
 
 
-  findDateRangeOfCurrentWeek(curr:Date) {
+  findDateRangeOfCurrentWeek(curr: Date) {
     //var curr = new Date('2014-10-01T00:00:00'); 
-    var first = curr.getDate() - curr.getDay()+1; 
+    var first = curr.getDate() - curr.getDay() + 1;
     var last = first + 6; // last day is the first day + 6   
-    var firstday = new Date(curr.setDate(first));   
-    var lastday = new Date(curr.setDate(firstday.getDate()+6));
-    console.log("findDateRangeOfCurrentWeek", {firstday, lastday})
-    return {firstday, lastday};
+    var firstday = new Date(curr.setDate(first));
+    var lastday = new Date(curr.setDate(firstday.getDate() + 6));
+    console.log("findDateRangeOfCurrentWeek", { firstday, lastday })
+    return { firstday, lastday };
   }
 
   //It returns next Week's day. ie. if today is Monday, it won't return THIS FRIDAY, but Next FRIDAY!
@@ -76,8 +76,8 @@ export class HelperService {
     return refDate;
   }
 
-  findWeekdays(dayName: string, maxOccurence: number,  refDate = new Date()) {
-    var dateList:Date[]=[];
+  findWeekdays(dayName: string, maxOccurence: number, refDate = new Date()) {
+    var dateList: Date[] = [];
     var initDay = refDate;
 
     for (let i = 0; i < maxOccurence; i++) {
@@ -114,12 +114,12 @@ export class HelperService {
     return this.convertToTimestamp(new Date());
   }
 
-  findTimeDifference(ts1: Timestamp, ts2:Timestamp = Timestamp.now()) {
+  findTimeDifference(ts1: Timestamp, ts2: Timestamp = Timestamp.now()) {
 
     let seconds = ts1.seconds - ts2.seconds;
     return seconds;
 
-    
+
   }
 
   encryptData(data) {

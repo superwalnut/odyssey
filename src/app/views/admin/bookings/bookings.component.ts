@@ -23,9 +23,10 @@ import { HelperService } from '../../../common/helper.service';
   styleUrls: ['./bookings.component.scss']
 })
 export class BookingsComponent implements OnInit {
+  isGod: Boolean;
   myGroups = [];
   myDocId: string;
-  group:Group;
+  group: Group;
   //selectedGroupDocId: string;
   displayedColumns: string[] = [
     "date",
@@ -33,18 +34,18 @@ export class BookingsComponent implements OnInit {
     "Action",
   ];
   dataSource = new MatTableDataSource<Booking>();
-  futureBookingDates:Date[];
-  selectedFutureDate:Date;
-  committees:User[];
-  committeesDump:string;
-  committeeBookingPersons:BookingPerson[];
+  futureBookingDates: Date[];
+  selectedFutureDate: Date;
+  committees: User[];
+  committeesDump: string;
+  committeeBookingPersons: BookingPerson[];
 
-  constructor(public dialog: MatDialog, private groupService: GroupService, private bookingService: BookingsService, 
-    private accountService: AccountService, private activatedRoute: ActivatedRoute, private bookingPersonService:BookingPersonService, private helpService:HelperService) { }
+  constructor(public dialog: MatDialog, private groupService: GroupService, private bookingService: BookingsService,
+    private accountService: AccountService, private activatedRoute: ActivatedRoute, private bookingPersonService: BookingPersonService, private helpService: HelperService) { }
 
   ngOnInit(): void {
     this.myDocId = this.accountService.getLoginAccount().docId;
-    
+
     this.getMyGroups();
 
     var groupDocId = this.activatedRoute.snapshot.params.id;
@@ -52,6 +53,8 @@ export class BookingsComponent implements OnInit {
       this.getGroupDetails(groupDocId);
       this.getBookingsByGroupDocId(groupDocId);
     }
+
+    this.isGod = this.accountService.isGod();
   }
 
   createBookingClicked() {
@@ -59,13 +62,13 @@ export class BookingsComponent implements OnInit {
 
     if (!this.selectedFutureDate) return false;
 
-    if(confirm("Are you sure to start a new booking - 接龙? " + this.selectedFutureDate)) {
+    if (confirm("Are you sure to start a new booking - 接龙? " + this.selectedFutureDate)) {
       this.createEmptyBooking();
       this.addCommitteesToBooking();
-    }    
+    }
   }
 
-  createEmptyBooking(){
+  createEmptyBooking() {
     var startDateTime = this.helpService.combinDateTypeAndTime(this.selectedFutureDate, this.group.eventStartTime);
     var startDateTimeTimeStamp = this.helpService.convertToTimestamp(startDateTime);
     var booking = {
@@ -76,7 +79,7 @@ export class BookingsComponent implements OnInit {
       isLocked: true, //new booking default to locked, need God manually open it. for extra layer of control
     } as Booking;
 
-    this.bookingService.createBooking(booking).then(bookingDocId=>{
+    this.bookingService.createBooking(booking).then(bookingDocId => {
       console.log(bookingDocId);
       var peoples = this.mapCommitteesToBookingPerson(this.committees, this.group.docId, bookingDocId);
       console.log('booking persons ready for insert: ', peoples);
@@ -88,12 +91,12 @@ export class BookingsComponent implements OnInit {
 
   }
 
-  getGroupDetails(groupDocId:string) {
-    this.groupService.getGroup(groupDocId).subscribe(g=>{
+  getGroupDetails(groupDocId: string) {
+    this.groupService.getGroup(groupDocId).subscribe(g => {
       this.group = g;
       this.futureBookingDates = this.helpService.findWeekdays(g.eventStartDay, 10);
 
-      this.accountService.getUsersByUserDocIds(g.committees).subscribe(result=>{
+      this.accountService.getUsersByUserDocIds(g.committees).subscribe(result => {
         this.committees = result;
         this.committeesDump = this.dumpCommittees(result);
         console.log(this.committees);
@@ -115,14 +118,14 @@ export class BookingsComponent implements OnInit {
     });
   }
 
-  dumpCommittees(users:User[]) {
+  dumpCommittees(users: User[]) {
     var cs = this.group.eventStartDay + ' committees: ';
-    users.forEach(u=> cs+=u.name+", ");
+    users.forEach(u => cs += u.name + ", ");
     return cs;
 
   }
   getBookingsByGroupDocId(groupDocId: string) {
-    
+
     this.bookingService.getByGroupDocId(groupDocId).subscribe(bookings => {
       this.dataSource.data = bookings;
       console.log("get bookings...", bookings);
@@ -135,10 +138,10 @@ export class BookingsComponent implements OnInit {
 
 
 
-  mapCommitteesToBookingPerson(users: User[], groupDocId:string, bookingDocId:string) {
-    
+  mapCommitteesToBookingPerson(users: User[], groupDocId: string, bookingDocId: string) {
+
     var bookingpersons: BookingPerson[] = [];
-    
+
     console.log("users original input: ", users);
     console.log("users length: ", users.length);
 
@@ -146,8 +149,8 @@ export class BookingsComponent implements OnInit {
       console.log("u =>: ", u);
 
       var bookingPerson = {
-        groupDocId:groupDocId,
-        bookingDocId:bookingDocId,
+        groupDocId: groupDocId,
+        bookingDocId: bookingDocId,
         bookingDesc: this.group.groupDesc,
         userId: u.docId,
         userDisplayName: u.name,

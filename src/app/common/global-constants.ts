@@ -19,12 +19,18 @@ export class GlobalConstants {
     // public static friSeats: number = 42;
     // public static satSeats: number = 34;
 
-    public static autoBookingFee: number = 10; //$10 for setting up auto booking
+    //public static autoBookingFee: number = 10; //$10 for setting up auto booking
     public static paymentCredit: string = "Credit";
     public static paymentCash: string = "Cash";
     public static paymentBank: string = "Bank";
     public static paymentAdjust: string = "Adjust"; //used by admin only, when make adjustment to group income
 
+
+    //Auto Booking
+    public static autoBookingRates = [
+        { name: '2 months ($5)', value: 2, price: 5, desc: '2 months auto booking for $5' },
+        { name: '6 months ($10)', value: 6, price: 10, desc: '6 months auto booking for $10' },
+    ]
 
 
     //Price, Rates

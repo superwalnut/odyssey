@@ -5,13 +5,7 @@
         <div class="card-body p-4">
           <h1>Groups</h1>
           <h3>Manage groups</h3>
-          <button
-            mat-raised-button
-            color="primary"
-            routerLink="/admin/groupdetails"
-          >
-            New group
-          </button>
+          <button mat-raised-button color="primary" routerLink="/admin/groupdetails" *ngIf="isGod">New group (god only button!)</button>
 
           <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
             <ng-container matColumnDef="endDate">

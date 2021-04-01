@@ -4,8 +4,8 @@
   <div class="container">
     <div class="row light">
       <div class="col">
-        <h1 class="section-heading">This Week's Badminton Sessions</h1>
-        <h2 class="section-heading">{{weekStart.toDate() | date:'dd/MM/yyyy'}} - {{weekEnd.toDate() | date:'dd/MM/yyyy'}}</h2>
+        <h1 class="section-heading">{{weekStart.toDate() | date:'MMM dd'}} - {{weekEnd.toDate() | date:'MMM dd, yyyy'}} Badminton Sessions</h1>
+    
       </div>
     </div>
     <div class="row light">
@@ -14,12 +14,12 @@
         <mat-card *ngFor="let b of bookings" class="card-sm booking"> 
           <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}">
           <mat-card-header>
-            <mat-card-title>{{ getGroupName(b.groupDocId)}} [Seats: {{seatsLimit}}]</mat-card-title>
+            <mat-card-title>{{ getGroupName(b.groupDocId)}} </mat-card-title>
           </mat-card-header>
           
           <img mat-card-image src="assets/img/banners/badminton.jpg">
           <mat-card-content>
-            <p>{{ getGroupDesc(b.groupDocId)}}</p>
+            <p>{{ getGroupDesc(b.groupDocId)}} Seats: {{seatsLimit}}</p>
             <p>{{ b.eventStartDateTime.toDate() | date: 'dd/MM/yyyy HH:mm'}}</p>
           </mat-card-content>
         </a>
