@@ -5,6 +5,10 @@ import { AccountService } from '../../services/account.service';
 import { Account } from '../../models/account';
 import { BookingPerson } from "../../models/booking-person";
 import { HelperService } from '../../common/helper.service';
+import { GroupService } from '../../services/group.service';
+import { Group } from "../../models/group";
+import firebase from 'firebase/app';
+import Timestamp = firebase.firestore.Timestamp;
 
 
 @Component({
@@ -16,20 +20,33 @@ import { HelperService } from '../../common/helper.service';
 export class HomeComponent extends BaseComponent implements OnInit {
   show: boolean = true;
   loggedInAccount: Account;
+  groups: Group[];
   isLoggedIn: boolean;
   myCurrentWeekBookings: BookingPerson[];
+  weekStart: Timestamp;
 
 
-  constructor(private bookingPersonService: BookingPersonService, private accountService: AccountService, private helperService: HelperService) { super() }
+  constructor(private bookingPersonService: BookingPersonService, private accountService: AccountService, private groupService: GroupService, private helperService: HelperService) { super() }
 
   ngOnInit(): void {
+    this.getAllGroups();
     this.loggedInAccount = this.accountService.getLoginAccount();
     this.isLoggedIn = this.loggedInAccount.docId != null;
+
+    let dateRange = this.helperService.findDateRangeOfCurrentWeek(new Date());
+    this.weekStart = this.helperService.convertToTimestamp(dateRange.firstday);
 
     if (this.isLoggedIn) {
       this.getMyCurrentWeekBookings();
     }
 
+  }
+
+  getAllGroups() {
+    this.groupService.getGroups().subscribe(gs => {
+      this.groups = gs;
+      console.log('groups ', gs)
+    })
   }
 
   getMyCurrentWeekBookings() {

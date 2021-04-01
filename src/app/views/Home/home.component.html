@@ -18,47 +18,26 @@
     <div class="row light" *ngIf="show">
       <div class="col">
         <h2 class="section-heading">
-          WEEK <span class="bg-dark text-white">MAR 1</span> BADMINTON SESSIONS
+          WEEK <span class="badge badge-dark">{{weekStart.toDate() | date:'dd/MM/yyyy'}}</span> BADMINTON SESSIONS
         </h2>
-
+        
         <table class="table table-hover table-dark booking">
           <thead>
             <tr>
               <th scope="col">Sessions</th>
-              <th scope="col">Seats</th>
-              <th scope="col"></th>
+              <th scope="col" class="text-center">Seats</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">TUESDAY 8-11PM</th>
-
-              <td>16</td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  routerLink="groups" 
-                >
-                  Book
-                </button>
-              </td>
+            <tr *ngFor="let g of groups">
+              <th scope="row">{{ g.eventStartDay}} {{ g.eventStartTime}}</th>
+              <td class="text-center">{{ g.seats}}</td>
             </tr>
             <tr>
-              <th scope="row">FRIDAY 8-11PM</th>
-
-              <td>5</td>
-              <td>
-                <button type="button" class="btn btn-primary">Book</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">SATURDAY 5-8PM</th>
-
-              <td>10</td>
-              <td>
-                <button type="button" class="btn btn-primary">Book</button>
-              </td>
+              <th></th>
+              <td class="text-right">
+                <button mat-raised-button color="accent" routerLink="/groups">Book badminton sessions</button>
+                </td>
             </tr>
           </tbody>
         </table>
