@@ -81,6 +81,11 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     // })
   }
 
+  statusClicked(schedule: BookingSchedule) {
+    schedule.isPaused = !schedule.isPaused;
+    this.bookingScheduleService.updateIsPaused(schedule.docId, schedule);
+  }
+
   onSelectClicked() {
 
     if (!this.selectedGroup) return false;

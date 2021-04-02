@@ -23,7 +23,8 @@
                 <th scope="col">Session</th>
                 <th scope="col">User</th>
                 <th scope="col">Expire on</th>
-                <th scope="col">Paused</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -31,7 +32,12 @@
                 <td>{{ s.groupName }}</td>
                 <td>{{ s.userDisplayName }}</td>
                 <td>{{ s.expireOn.toDate() | date: 'dd/MM/yyyy' }}</td>
-                <td>{{ s.isPaused }}</td>
+                <td>
+                  <span class="material-icons">{{ s.isPaused ? 'pause' : 'play_arrow' }}</span>
+                </td>
+                <td>
+                  <button mat-button (click)="statusClicked(s)">{{ s.isPaused ? 'Resume' : 'Pause' }}</button>
+                </td>
 
               </tr>
 

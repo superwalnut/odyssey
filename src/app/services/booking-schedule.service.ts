@@ -27,6 +27,11 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
     super(firestore.collection('bookingSchedules'));
   }
 
+  updateIsPaused(docId: string, bookingSchedule: BookingSchedule) {
+    return super.update(docId, bookingSchedule);
+
+  }
+
   getMyBookingSchedules(userDocId: string) {
     return this.firestore.collection('bookingSchedules', q => q.where('createdBy', '==', userDocId).orderBy('createdOn', 'desc')).snapshotChanges().pipe(
       map(actions => {
