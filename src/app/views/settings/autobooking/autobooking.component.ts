@@ -17,10 +17,11 @@ import { GlobalConstants } from '../../../common/global-constants';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelectChange } from "@angular/material/select";
 
-import { GroupTransactionService } from "../../../services/group-transaction.service";
+import { BookingScheduleService } from "../../../services/booking-schedule.service";
 
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
+import { BookingSchedule } from "../../../models/booking-schedule";
 
 @Component({
   selector: "app-autobooking",
@@ -32,17 +33,20 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
   selectedGroup: Group;
   loggedInAccount: Account;
   familyMembers: User[];
+  mySchedules: BookingSchedule[];
 
 
   //autoForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialog, public dialog: MatDialog, private helperService: HelperService, private groupService: GroupService, private accountService: AccountService) { super() }
+  constructor(private fb: FormBuilder, private dialogRef: MatDialog, public dialog: MatDialog, private bookingScheduleService: BookingScheduleService, private helperService: HelperService, private groupService: GroupService, private accountService: AccountService) { super() }
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
 
     this.getGroups();
     this.getFamily();
+    this.getMySchedules();
+    this.getMyActiveBookingSchedules();
 
     // this.autoForm = this.fb.group({
     //   duration: ['', Validators.required],
@@ -62,6 +66,21 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     })
   }
 
+
+  getMySchedules() {
+    this.bookingScheduleService.getMyBookingSchedules(this.loggedInAccount.docId).subscribe(schedules => {
+      this.mySchedules = schedules;
+
+    })
+  }
+
+  getMyActiveBookingSchedules() {
+    // this.bookingScheduleService.getMyActiveBookingSchedules(this.loggedInAccount.docId).subscribe(schedules => {
+    //   console.log(schedules);
+
+    // })
+  }
+
   onSelectClicked() {
 
     if (!this.selectedGroup) return false;
@@ -72,6 +91,7 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
         loggedInUser: this.loggedInAccount,
         group: this.selectedGroup,
         family: this.familyMembers,
+        mySchedules: this.mySchedules,
       }
     });
 
@@ -79,22 +99,7 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
-
-  // onSubmit() {
-  //   console.log(this.autoForm.value.duration);
-  //   console.log(this.autoForm.value.sessions);
-
-  //   if (confirm("Confirm to setup auto booking - " + this.autoForm.value.duration.desc)) {
-
-  //   }
-  // }
-
-
-  //get f() { return this.autoForm.controls; }
-
 }
-
-
 
 @Component({
   selector: 'booking-scheduler',
@@ -103,28 +108,28 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
 export class BookingSchedulerDialog {
   constructor(
     public dialogRef: MatDialogRef<BookingSchedulerDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: BookingSchedulerDialogData, private helperService: HelperService, private groupTransactionService: GroupTransactionService, private accountService: AccountService) { }
+    @Inject(MAT_DIALOG_DATA) public data: BookingSchedulerDialogData, private helperService: HelperService, private bookingScheduleService: BookingScheduleService, private accountService: AccountService) { }
 
   hasError: boolean;
   errorMessage: string;
   selectedDuration: Duration;
   durations = GlobalConstants.autoBookingRates;
+  isLoading = false;
 
+  hasActiveAutoBooking = false;
   userSelectList: UserSelection[] = [];
 
   dayRange = { start: Timestamp.now(), end: Timestamp.now() };
 
   ngOnInit() {
 
-    this.buildUserSelectionList();
-
-    // var mySelf = {
-    //   docId: this.data.loggedInUser.docId,
-    //   name: this.data.loggedInUser.name,
-    // } as User;
-
-    // this.data.family.push(mySelf);
-
+    let myActives = this.checkActiveSchedules();
+    if (myActives && myActives.length > 0) {
+      this.hasActiveAutoBooking = true;
+    }
+    else {
+      this.buildUserSelectionList();
+    }
 
   }
 
@@ -136,43 +141,53 @@ export class BookingSchedulerDialog {
     })
   }
 
+  checkActiveSchedules() {
+    let myActives = this.data.mySchedules.filter(x => x.groupDocId == this.data.group.docId && x.expireOn > Timestamp.now());
+    console.log(' check actives ', myActives.length);
+
+    return myActives;
+  }
+
+
+
   durationChanged(event) {
-    console.log(event);
+    //console.log(event);
+    this.selectedDuration = event;
+
     let endDate = this.helperService.addDays(event.value);
     let today = this.helperService.convertToTimestamp(new Date());
     this.dayRange.start = today;
     this.dayRange.end = this.helperService.convertToTimestamp(endDate);
-
-
-
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   onCreateClick() {
-    //this.dialogRef.close();
-    console.log(this.selectedDuration);
-    console.log(this.userSelectList);
     let selectedUsers = this.userSelectList.filter(x => x.selected);
     console.log(selectedUsers);
+    console.log(this.dayRange);
+    console.log(this.selectedDuration);
 
+    this.isLoading = true;
 
+    this.bookingScheduleService.createBookingSchedule(selectedUsers, this.dayRange.end, this.data.loggedInUser, this.data.group, this.selectedDuration.price)
+      .then(() => {
+        this.dialogRef.close();
+      })
+      .catch((err) => {
+        this.isLoading = false;
+        alert(err);
+      })
   }
-
-
 }
-
 
 export interface BookingSchedulerDialogData {
   loggedInUser: Account,
   group: Group,
   family: User[],
-
+  mySchedules: BookingSchedule[],
 }
-
-
-
 
 export interface Duration {
   name: string,

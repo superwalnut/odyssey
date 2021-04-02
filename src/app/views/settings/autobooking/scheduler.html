@@ -10,28 +10,41 @@
         <ul>
             <li>No refund is possible once setup</li>
             <li>You can pause your auto booking should you be away</li>
-            <li>Family benefit: all your family members are free of charge.</li>
-        </ul>
-        <mat-form-field appearance="fill">
-            <mat-label>Duration</mat-label>
-            <mat-select [(ngModel)]="selectedDuration" (ngModelChange)="durationChanged($event)">
-                <mat-option *ngFor="let d of durations" [value]="d" >
-                {{d.name}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        Valid till: {{dayRange.end.toDate() | date:'dd/MM/yyyy'}}
-
-        <ul>
-            <li *ngFor="let u of userSelectList">
-                <mat-checkbox [(ngModel)]="u.selected">{{u.name}}</mat-checkbox>
-            </li>
+            <li>Family benefit: all your family members are free of charge to setup.</li>
         </ul>
 
+
+        
+        <div *ngIf="hasActiveAutoBooking">
+            <div class="p-3 mb-2 bg-success text-white">You alrady have active auto bookings</div>
+        </div>
+
+
+        <div *ngIf="!hasActiveAutoBooking">
+            <mat-form-field appearance="fill">
+                <mat-label>Duration</mat-label>
+                <mat-select [(ngModel)]="selectedDuration" (ngModelChange)="durationChanged($event)">
+                    <mat-option *ngFor="let d of durations" [value]="d" >
+                    {{d.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            Valid till: {{dayRange.end.toDate() | date:'dd/MM/yyyy'}}
+    
+            <ul>
+                <li *ngFor="let u of userSelectList">
+                    <mat-checkbox [(ngModel)]="u.selected">{{u.name}}</mat-checkbox>
+                </li>
+            </ul>
+    
+        </div>
+        
     </div>
     <div class="modal-footer">
         <button mat-raised-button (click)="onNoClick()">Close</button>
-        <button mat-raised-button  color="primary" (click)="onCreateClick()">Create</button>
+        <button mat-raised-button  color="primary" (click)="onCreateClick()"  *ngIf="!isLoading && !hasActiveAutoBooking">Create</button>
+        <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+
     </div>
   </div>
   

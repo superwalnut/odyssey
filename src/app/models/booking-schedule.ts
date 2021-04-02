@@ -12,6 +12,7 @@ export class BookingSchedule {
     notes: string;
     createdOn: Timestamp;
     createdBy: string;
+    createdByDisplayName: string;
     updatedOn: Timestamp;
     updatedBy: string;
 }

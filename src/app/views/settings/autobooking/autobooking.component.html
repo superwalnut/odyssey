@@ -4,7 +4,8 @@
       <div class="card">
         <div class="card-body p-4">
           <h1>Auto Booking <span class="badge badge-warning">paid service</span></h1>
-          <p>Jump the queue by automating your weekly booking for a small fees</p>
+          <p>Jump the queue by automating your weekly booking for a small fee</p>
+
 
           <mat-form-field appearance="fill">
             <mat-label>Social sessions</mat-label>
@@ -13,6 +14,32 @@
             </mat-select>
           </mat-form-field>
           <button mat-raised-button color="primary" (click)="onSelectClicked()">Select</button>
+
+          <h2>My Auto Booking History</h2>
+
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th scope="col">Session</th>
+                <th scope="col">User</th>
+                <th scope="col">Expire on</th>
+                <th scope="col">Paused</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let s of mySchedules">
+                <td>{{ s.groupName }}</td>
+                <td>{{ s.userDisplayName }}</td>
+                <td>{{ s.expireOn.toDate() | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ s.isPaused }}</td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+
 
           <!-- <form [formGroup]="autoForm" (ngSubmit)="onSubmit()">
 
