@@ -45,6 +45,19 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
     );
   }
 
+  getBookingSchedulesByGroupDocId(groupDocId: string) {
+    return this.firestore.collection('bookingSchedules', q => q.where('groupDocId', '==', groupDocId)).snapshotChanges().pipe(
+      map(actions => {
+        var items = actions.map(p => {
+          var data = p.payload.doc.data() as BookingSchedule;
+          console.log('getBookingSchedulesByGroupDocId()', data);
+          return { ...data, docId: p.payload.doc.id } as BookingSchedule;
+        });
+        return items;
+      })
+    );
+  }
+
   // getMyActiveBookingSchedules(userDocId: string) {
   //   return this.firestore.collection('bookingSchedules', q => q.where('createdBy', '==', userDocId).where('expireOn', '>=', Timestamp.now()).orderBy('createdOn', 'desc')).snapshotChanges().pipe(
   //     map(actions => {
@@ -71,7 +84,7 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
       createdBy: loggedInUser.docId,
       createdByDisplayName: loggedInUser.name,
       created: Timestamp.now(),
-      note: 'auto booking -' + expireDate.toDate(),
+      note: 'auto booking',
     } as Credit;
     batch.set(ref, credit);
 

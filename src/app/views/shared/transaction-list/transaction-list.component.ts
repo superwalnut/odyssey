@@ -8,13 +8,19 @@ import { CreditService } from '../../../services/credit.service';
   styleUrls: ['./transaction-list.component.scss']
 })
 export class TransactionListComponent implements OnInit {
-  @Input() userDocId:string;
-  credits:Credit[];
-  
-  constructor(private creditService:CreditService) { }
+  @Input() userDocId: string;
+  credits: Credit[];
+  balance: number;
+
+  constructor(private creditService: CreditService) { }
 
   ngOnInit(): void {
-    this.creditService.getByUser(this.userDocId).subscribe(x=>{
+
+    this.creditService.getBalance(this.userDocId).subscribe(x => {
+      this.balance = x;
+    });
+
+    this.creditService.getByUser(this.userDocId).subscribe(x => {
       console.log('credits', x);
       this.credits = x;
     });

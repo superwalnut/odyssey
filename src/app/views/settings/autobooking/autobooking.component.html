@@ -5,15 +5,22 @@
         <div class="card-body p-4">
           <h1>Auto Booking <span class="badge badge-warning">paid service</span></h1>
           <p>Jump the queue by automating your weekly booking for a small fee</p>
+          <div class="p-3 mb-2 bg-warning text-dark"  *ngIf="!hsaCredit">
+            <p>Your current credit balance: {{myCreditBalance | currency}}</p>
+            You don't have enought credit to use this service: 
+          </div>
 
+          <div *ngIf="hsaCredit">
+            <mat-form-field appearance="fill">
+              <mat-label>Social sessions</mat-label>
+              <mat-select [(ngModel)]="selectedGroup">
+                <mat-option *ngFor="let g of groups" [value]="g" >{{g.eventStartDay}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="onSelectClicked()">Select</button>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Social sessions</mat-label>
-            <mat-select [(ngModel)]="selectedGroup">
-              <mat-option *ngFor="let g of groups" [value]="g" >{{g.eventStartDay}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <button mat-raised-button color="primary" (click)="onSelectClicked()">Select</button>
+          </div>
+          
 
           <h2>My Auto Booking History</h2>
 
@@ -33,16 +40,14 @@
                 <td>{{ s.userDisplayName }}</td>
                 <td>{{ s.expireOn.toDate() | date: 'dd/MM/yyyy' }}</td>
                 <td>
-                  <span class="material-icons">{{ s.isPaused ? 'pause' : 'play_arrow' }}</span>
+                  <span class="material-icons" title="{{ s.isPaused ? 'paused' : 'ongoing' }}">{{ s.isPaused ? 'pause' : 'play_arrow' }}</span>
                 </td>
                 <td>
                   <button mat-button (click)="statusClicked(s)">{{ s.isPaused ? 'Resume' : 'Pause' }}</button>
                 </td>
 
               </tr>
-
             </tbody>
-
           </table>
 
 

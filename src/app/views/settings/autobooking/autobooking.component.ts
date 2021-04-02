@@ -34,29 +34,35 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
   loggedInAccount: Account;
   familyMembers: User[];
   mySchedules: BookingSchedule[];
+  hasCredit: boolean;
+  myCreditBalance: number;
 
 
   //autoForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialog, public dialog: MatDialog, private bookingScheduleService: BookingScheduleService, private helperService: HelperService, private groupService: GroupService, private accountService: AccountService) { super() }
+  constructor(private fb: FormBuilder, private dialogRef: MatDialog, public dialog: MatDialog, private creditService: CreditService,
+    private bookingScheduleService: BookingScheduleService, private helperService: HelperService, private groupService: GroupService, private accountService: AccountService) { super() }
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
 
+    this.getMyCreditBalance();
     this.getGroups();
     this.getFamily();
     this.getMySchedules();
     this.getMyActiveBookingSchedules();
-
-    // this.autoForm = this.fb.group({
-    //   duration: ['', Validators.required],
-    //   sessions: ['', Validators.required]
-    // });
   }
 
   getGroups() {
     this.groupService.getGroups().subscribe(gs => {
       this.groups = gs;
+    })
+  }
+
+  getMyCreditBalance() {
+    this.creditService.getBalance(this.loggedInAccount.docId).subscribe(result => {
+      this.myCreditBalance = result;
+      this.hasCredit = this.myCreditBalance > 0;
     })
   }
 
@@ -82,8 +88,13 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
   }
 
   statusClicked(schedule: BookingSchedule) {
-    schedule.isPaused = !schedule.isPaused;
-    this.bookingScheduleService.updateIsPaused(schedule.docId, schedule);
+
+    let status = schedule.isPaused ? 'resume' : 'pause'
+    if (confirm('Conform to ' + status + ' your auto booking?')) {
+      schedule.isPaused = !schedule.isPaused;
+      this.bookingScheduleService.updateIsPaused(schedule.docId, schedule);
+    }
+
   }
 
   onSelectClicked() {

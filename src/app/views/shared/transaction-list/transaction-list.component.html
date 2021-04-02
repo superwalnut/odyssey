@@ -1,3 +1,9 @@
+
+<h2>Credit balance <span class="badge {{ hsaCredit ? 'badge-light': 'badge-danger'}} ">{{ balance | currency }}</span></h2>
+
+<div class="p-3 mb-2 bg-danger text-white" *ngIf="!hasCredit">Your credit is low, please top up ASAP!</div>
+
+
 <table class="table table-sm">
     <thead>
       <tr>

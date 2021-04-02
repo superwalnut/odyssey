@@ -10,6 +10,7 @@ import { GroupService } from "../../../services/group.service";
 import { AccountService } from "../../../services/account.service";
 import { BookingsService } from "../../../services/bookings.service";
 import { BookingPersonService } from "../../../services/booking-person.service";
+import { BookingScheduleService } from "../../../services/booking-schedule.service";
 
 import { Booking } from '../../../models/booking';
 import { BookingPerson } from '../../../models/booking-person';
@@ -27,6 +28,7 @@ export class BookingsComponent implements OnInit {
   myGroups = [];
   myDocId: string;
   group: Group;
+  groupDocId: string;
   //selectedGroupDocId: string;
   displayedColumns: string[] = [
     "date",
@@ -41,18 +43,22 @@ export class BookingsComponent implements OnInit {
   committeeBookingPersons: BookingPerson[];
 
   constructor(public dialog: MatDialog, private groupService: GroupService, private bookingService: BookingsService,
-    private accountService: AccountService, private activatedRoute: ActivatedRoute, private bookingPersonService: BookingPersonService, private helpService: HelperService) { }
+    private accountService: AccountService, private activatedRoute: ActivatedRoute, private bookingPersonService: BookingPersonService,
+    private bookingScheduleService: BookingScheduleService, private helpService: HelperService) { }
 
   ngOnInit(): void {
     this.myDocId = this.accountService.getLoginAccount().docId;
 
     this.getMyGroups();
 
-    var groupDocId = this.activatedRoute.snapshot.params.id;
-    if (groupDocId) {
-      this.getGroupDetails(groupDocId);
-      this.getBookingsByGroupDocId(groupDocId);
+
+    this.groupDocId = this.activatedRoute.snapshot.params.id;
+    if (this.groupDocId) {
+      this.getGroupDetails(this.groupDocId);
+      this.getBookingsByGroupDocId(this.groupDocId);
     }
+
+    this.addAutoBookingUsers();
 
     this.isGod = this.accountService.isGod();
   }
@@ -65,6 +71,7 @@ export class BookingsComponent implements OnInit {
     if (confirm("Are you sure to start a new booking - 接龙? " + this.selectedFutureDate)) {
       this.createEmptyBooking();
       this.addCommitteesToBooking();
+      this.addAutoBookingUsers();
     }
   }
 
@@ -90,6 +97,15 @@ export class BookingsComponent implements OnInit {
   addCommitteesToBooking() {
 
   }
+
+  addAutoBookingUsers() {
+
+    this.bookingScheduleService.getBookingSchedulesByGroupDocId(this.groupDocId).subscribe(result => {
+      console.log('addAutoBookingUsers', result);
+    })
+
+  }
+
 
   getGroupDetails(groupDocId: string) {
     this.groupService.getGroup(groupDocId).subscribe(g => {
