@@ -1,0 +1,38 @@
+
+<!-- Modal -->
+<div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title">Auto booking scheduler</h1>
+      <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
+    </div>
+  
+    <div class="modal-body">
+        <ul>
+            <li>No refund is possible once setup</li>
+            <li>You can pause your auto booking should you be away</li>
+            <li>Family benefit: all your family members are free of charge.</li>
+        </ul>
+        <mat-form-field appearance="fill">
+            <mat-label>Duration</mat-label>
+            <mat-select [(ngModel)]="selectedDuration" (ngModelChange)="durationChanged($event)">
+                <mat-option *ngFor="let d of durations" [value]="d" >
+                {{d.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        Valid till: {{dayRange.end.toDate() | date:'dd/MM/yyyy'}}
+
+        <ul>
+            <li *ngFor="let u of userSelectList">
+                <mat-checkbox [(ngModel)]="u.selected">{{u.name}}</mat-checkbox>
+            </li>
+        </ul>
+
+    </div>
+    <div class="modal-footer">
+        <button mat-raised-button (click)="onNoClick()">Close</button>
+        <button mat-raised-button  color="primary" (click)="onCreateClick()">Create</button>
+    </div>
+  </div>
+  
+  

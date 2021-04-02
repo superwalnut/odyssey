@@ -6,6 +6,7 @@ export class BookingSchedule {
     userDocId: string;
     userDisplayName: string;
     groupDocId: string;
+    groupName: string;
     expireOn: Timestamp;
     isPaused: boolean;
     notes: string;

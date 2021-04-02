@@ -23,3 +23,8 @@ export class LocalBookingUser {
   createdOn: Timestamp;
 }
 
+export class UserSelection {
+  docId: string;
+  name: string;
+  selected: boolean;
+}

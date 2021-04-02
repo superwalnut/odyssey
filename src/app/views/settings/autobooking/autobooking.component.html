@@ -5,7 +5,16 @@
         <div class="card-body p-4">
           <h1>Auto Booking <span class="badge badge-warning">paid service</span></h1>
           <p>Jump the queue by automating your weekly booking for a small fees</p>
-          <form [formGroup]="autoForm" (ngSubmit)="onSubmit()">
+
+          <mat-form-field appearance="fill">
+            <mat-label>Social sessions</mat-label>
+            <mat-select [(ngModel)]="selectedGroup">
+              <mat-option *ngFor="let g of groups" [value]="g" >{{g.eventStartDay}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="onSelectClicked()">Select</button>
+
+          <!-- <form [formGroup]="autoForm" (ngSubmit)="onSubmit()">
 
             <mat-form-field appearance="fill">
               <mat-label>Duration</mat-label>
@@ -25,6 +34,8 @@
 
             <button mat-raised-button color="primary" [disabled]="autoForm.invalid">CONFIRM</button>
           </form>
+
+          <button (click)="createSchedulerClicked()">create</button> -->
 
         </div>
       </div>
