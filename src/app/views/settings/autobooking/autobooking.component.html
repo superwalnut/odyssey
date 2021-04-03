@@ -5,12 +5,12 @@
         <div class="card-body p-4">
           <h1>Auto Booking <span class="badge badge-warning">paid service</span></h1>
           <p>Jump the queue by automating your weekly booking for a small fee</p>
-          <div class="p-3 mb-2 bg-warning text-dark"  *ngIf="!hsaCredit">
+          <div class="p-3 mb-2 bg-warning text-dark"  *ngIf="!hasCredit">
             <p>Your current credit balance: {{myCreditBalance | currency}}</p>
             You don't have enought credit to use this service: 
           </div>
 
-          <div *ngIf="hsaCredit">
+          <div *ngIf="hasCredit">
             <mat-form-field appearance="fill">
               <mat-label>Social sessions</mat-label>
               <mat-select [(ngModel)]="selectedGroup">
@@ -18,7 +18,6 @@
               </mat-select>
             </mat-form-field>
             <button mat-raised-button color="primary" (click)="onSelectClicked()">Select</button>
-
           </div>
           
 

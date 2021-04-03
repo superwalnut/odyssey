@@ -2,27 +2,14 @@
 <div class="row">
   <div class="col-md-12 mx-auto">
     <div class="card">
-      <div class="card-body p-4">
-        <h1>Credit Transactions</h1>
-        
-        <p>
+      <div class="card-body p-4">        
           <mat-card>
-            <mat-card-header>
-              <mat-card-title>Bank Account</mat-card-title>
-              <mat-card-subtitle>Transfer the amount and show admin the receipt</mat-card-subtitle>
-
-            </mat-card-header>
-            <mat-card-content>
-              <p>
-                <b>Bank Details</b>
-                PayID: 82741485323 (Type: ABN)<br/>
-                Account Name: HBC<br>
-                BSB: 032111 Account: 335387<br/>
-                * 转账时请注明你的微信用户名以便核对. 并截屏微信给群管理员
-              </p>
-            </mat-card-content>
+            <b>Bank Details</b>
+            PayID: 82741485323 (Type: ABN)<br/>
+            Account Name: HBC<br>
+            BSB: 032111 Account: 335387<br/>
+            * 转账时请注明你的微信用户名以便核对. 并截屏微信给群管理员
           </mat-card>
-        </p>
         <div *ngIf="userDocId">
           <app-transaction-list [userDocId]="userDocId"></app-transaction-list>
         </div>

@@ -63,6 +63,8 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     this.creditService.getBalance(this.loggedInAccount.docId).subscribe(result => {
       this.myCreditBalance = result;
       this.hasCredit = this.myCreditBalance > 0;
+      console.log('credit balance: ', this.hasCredit);
+      //this.hasCredit = true;
     })
   }
 
