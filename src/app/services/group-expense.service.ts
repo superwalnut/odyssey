@@ -74,6 +74,19 @@ export class GroupExpenseService extends FirestoreBaseService<GroupExpense>{
 
   }
 
+
+  public getBalance(groupDocId: string) {
+    return this.firestore.collection('groupexpenses', q => q.where('groupDocId', '==', groupDocId)).snapshotChanges().pipe(
+      map(actions => {
+        const amounts = actions.map(x => (x.payload.doc.data() as GroupExpense).amount);
+        const total = amounts.reduce((a, b) => a + b, 0);
+        return total;
+      })
+    );
+  }
+
+
+
   //TODO
   public getByDateRange(groupDocId: string, startDate: Timestamp, endDate: Timestamp) {
 

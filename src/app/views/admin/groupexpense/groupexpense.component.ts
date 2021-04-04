@@ -39,7 +39,6 @@ export class GroupexpenseComponent implements OnInit {
     "expenseType",
     "amount",
     "notes",
-    "Action",
   ];
   dataSource = new MatTableDataSource<GroupExpense>();
   @ViewChild(MatSort) sort: MatSort;
@@ -49,9 +48,7 @@ export class GroupexpenseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.groupDocId = this.activatedRoute.snapshot.params.id;
-
     this.loggedInUser = this.accountService.getLoginAccount();
 
 
@@ -90,13 +87,15 @@ export class GroupexpenseComponent implements OnInit {
       startDate: this.form.value.startDate,
       endDate: this.form.value.endDate,
       expenseType: this.form.value.expenseType,
-      amount: this.form.value.amount,
+      amount: -this.form.value.amount,
       notes: this.form.value.notes,
+      createdByDisplayName: this.loggedInUser.name,
     } as GroupExpense;
 
     console.log(expense);
 
     this.groupExpenseService.createGroupExpense(expense, this.loggedInUser.docId).then((x) => {
+      this.form.reset();
       this.snackBar.open(`Expense has been created.`, null, {
         duration: 5000,
         verticalPosition: "top"
@@ -105,24 +104,24 @@ export class GroupexpenseComponent implements OnInit {
     });
 
 
-    if (this.groupDocId) {
-      console.log("expense has doc id");
-      expense.docId = this.groupDocId;
-      expense.updatedBy = this.loggedInUser.docId;
+    // if (this.groupDocId) {
+    //   console.log("expense has doc id");
+    //   expense.docId = this.groupDocId;
+    //   expense.updatedBy = this.loggedInUser.docId;
 
-      //this.groupService.updateGroup(this.groupDocId, expense);
-    } else {
-      console.log("expense has no doc id");
-      //expense.createdBy = this.loggedInUser.docId;
-      this.groupExpenseService.createGroupExpense(expense, this.loggedInUser.docId).then((x) => {
-        this.snackBar.open(`Expense has been created.`, null, {
-          duration: 5000,
-          verticalPosition: "top"
-        })
+    //   //this.groupService.updateGroup(this.groupDocId, expense);
+    // } else {
+    //   console.log("expense has no doc id");
+    //   //expense.createdBy = this.loggedInUser.docId;
+    //   this.groupExpenseService.createGroupExpense(expense, this.loggedInUser.docId).then((x) => {
+    //     this.snackBar.open(`Expense has been created.`, null, {
+    //       duration: 5000,
+    //       verticalPosition: "top"
+    //     })
 
-      });
-    }
-    this.router.navigate(["/admin/groups"]);
+    //   });
+    // }
+    //this.router.navigate(["/admin/groups"]);
   }
 
   getExpenseByGroupDocId(groupDocId: string) {

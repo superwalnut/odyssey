@@ -138,7 +138,7 @@ export class DefaultLayoutComponent {
           icon: "cil-chart",
           children: [
             {
-              name: "Income",
+              name: "Group finance",
               url: "/admin/rptincome",
               icon: "cil-paperclip",
             },

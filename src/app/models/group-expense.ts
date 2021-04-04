@@ -12,6 +12,7 @@ export class GroupExpense {
     endDate: Timestamp;
     created: Timestamp;
     createdBy: string;
+    createdByDisplayName: string;
     updated: Timestamp;
     updatedBy: string;
 }

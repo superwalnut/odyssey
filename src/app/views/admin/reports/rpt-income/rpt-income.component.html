@@ -3,8 +3,67 @@
       <div class="col-md-12 mx-auto">
         <div class="card">
           <div class="card-body p-4">
-            <h1>Income Report</h1>
-           group drop down (access level) + date range picker
+            <h1>Group Finance Report</h1>
+            <mat-form-field appearance="fill">
+              <mat-label>Groups</mat-label>
+              <mat-select [(ngModel)]="selectedGroup">
+                <mat-option *ngFor="let g of groups" [value]="g">{{ g.groupName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Income/Expense</mat-label>
+              <mat-select [(ngModel)]="selectedMode">
+                <mat-option value="income">Income</mat-option>
+                <mat-option value="expense">Expense</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="viewClicked()">View</button>
+
+            <div *ngIf="selectedMode=='income'">
+              <h2>Income Balance <span class="badge badge-light ">{{ groupBalance | currency }}</span></h2>
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Notes</th>
+                    <th scope="col">Payment method</th>
+                    <th scope="col">User</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let t of transactions">
+                    <td scope="row">{{ t.created.toDate() | date:'dd/MM/yyyy'}}</td>
+                    <td scope="row">{{ t.amount | currency}} </td>
+                    <td scope="row">{{ t.notes }}</td>
+                    <td scope="row">{{ t.paymentMethod }}</td>
+                    <td scope="row">{{ t.createdByDisplayName }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div *ngIf="selectedMode=='expense'">
+              <h2>Expense Balance <span class="badge badge-light ">{{ groupExpenseBalance | currency }}</span></h2>
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Notes</th>
+                    <th scope="col">User</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let t of expenses">
+                    <td scope="row">{{ t.created.toDate() | date:'dd/MM/yyyy'}}</td>
+                    <td scope="row">{{ t.amount | currency}} </td>
+                    <td scope="row">{{ t.notes }}</td>
+                    <td scope="row">{{ t.createdByDisplayName }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
   
             
           </div>

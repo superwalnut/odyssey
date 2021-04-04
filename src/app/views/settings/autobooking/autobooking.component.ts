@@ -37,9 +37,6 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
   hasCredit: boolean;
   myCreditBalance: number;
 
-
-  //autoForm: FormGroup;
-
   constructor(private fb: FormBuilder, private dialogRef: MatDialog, public dialog: MatDialog, private creditService: CreditService,
     private bookingScheduleService: BookingScheduleService, private helperService: HelperService, private groupService: GroupService, private accountService: AccountService) { super() }
 
@@ -90,7 +87,6 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
   }
 
   statusClicked(schedule: BookingSchedule) {
-
     let status = schedule.isPaused ? 'resume' : 'pause'
     if (confirm('Conform to ' + status + ' your auto booking?')) {
       schedule.isPaused = !schedule.isPaused;
@@ -133,7 +129,7 @@ export class BookingSchedulerDialog {
   selectedDuration: Duration;
   durations = GlobalConstants.autoBookingRates;
   isLoading = false;
-
+  isCommittee: boolean;
   hasActiveAutoBooking = false;
   userSelectList: UserSelection[] = [];
 
@@ -149,6 +145,8 @@ export class BookingSchedulerDialog {
       this.buildUserSelectionList();
     }
 
+    let committee = this.data.group.committees.find(x => x == this.data.loggedInUser.docId);
+    this.isCommittee = committee != null;
   }
 
   buildUserSelectionList() {
@@ -168,8 +166,6 @@ export class BookingSchedulerDialog {
     return myActives;
   }
 
-
-
   durationChanged(event) {
     //console.log(event);
     this.selectedDuration = event;
@@ -188,10 +184,12 @@ export class BookingSchedulerDialog {
     console.log(selectedUsers);
     console.log(this.dayRange);
     console.log(this.selectedDuration);
+    let price = this.selectedDuration.price;
+    if (this.isCommittee) { price = 0 } // committee free 
 
     this.isLoading = true;
 
-    this.bookingScheduleService.createBookingSchedule(selectedUsers, this.dayRange.end, this.data.loggedInUser, this.data.group, this.selectedDuration.price)
+    this.bookingScheduleService.createBookingSchedule(selectedUsers, this.dayRange.end, this.data.loggedInUser, this.data.group, price)
       .then(() => {
         this.dialogRef.close();
       })

@@ -102,7 +102,11 @@ export class GroupdetailsComponent implements OnInit {
   }
 
   removeCommittee(item) {
-    this.selectedUsers = this.selectedUsers.filter(x => x != item);
+
+    if (confirm('Cofirm to remove a committee from the group')) {
+      this.selectedUsers = this.selectedUsers.filter(x => x != item);
+    }
+
   }
 
 
@@ -123,7 +127,7 @@ export class GroupdetailsComponent implements OnInit {
 
         console.log('committeeIds', x.committees);
 
-        this.accountService.getUsersByUserDocIds(x.committees).pipe(take(1)).subscribe(o=>{
+        this.accountService.getUsersByUserDocIds(x.committees).pipe(take(1)).subscribe(o => {
           this.selectedUsers = o
           console.log('getting committees', o);
         });
