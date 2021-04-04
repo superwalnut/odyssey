@@ -13,7 +13,6 @@ import { browser } from 'protractor';
 @NgModule({
   imports: [
     CommonModule,
-
     FormsModule,
     DashboardRoutingModule,
     ChartsModule,

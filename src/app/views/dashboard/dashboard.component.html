@@ -9,11 +9,7 @@
           <h4 class="card-title">God Only</h4>
         </div>
 
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <a routerLink="/admin/triggers" class="card-link">Pre-populate bookings</a>
-          </li>
-        </ul>
+        
       </div>
     </div>
 
@@ -41,7 +37,7 @@
             <a routerLink="/admin/users" class="card-link">Users</a>
           </li>
           <li class="list-group-item">
-            <a routerLink="/admin/bookings" class="card-link">Bookings</a>
+            <a routerLink="/admin/groups" class="card-link">Groups</a>
           </li>
           <li class="list-group-item">
             <a routerLink="" class="card-link">Public Site</a>
@@ -53,41 +49,13 @@
     <div class="col-sm">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Site Settings</h4>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <a routerLink="/admin/sitesettings" class="card-link"
-              >Terms Dates&Costs</a
-            >
-          </li>
-          <li class="list-group-item">
-            <a routerLink="/admin/sitesettings" class="card-link"
-              >Shuttle Purchase</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="col-sm">
-      <div class="card">
-        <div class="card-body">
           <h4 class="card-title">Reports</h4>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Income</li>
-          <li class="list-group-item">Attendance</li>
-          <li class="list-group-item">Credit</li>
-          <li class="list-group-item">Unpaid users</li>
+          <li class="list-group-item"><a routerLink="/admin/rptincome">Finance</a></li>
+          <li class="list-group-item"><a routerLink="/admin/rptunpaid">Unpaid users</a></li>
         </ul>
-        <div class="card-body">
-          <a routerLink="Reports" class="card-link">View</a>
-        </div>
+    
       </div>
     </div>
   </div>
@@ -101,13 +69,13 @@
       <div class="card">
         <img class="card-img-top" src="./assets/img/banners/mycredit.jpg" alt="Card image cap"/>
         <div class="card-body">
-          <h5 class="card-title">BALANCE</h5>
-          <p class="card-number">$260</p>
+          <h4 class="card-title">BALANCE</h4>
+          <p class="card-number">{{ myCreditBalance | currency }}</p>
         </div>
-        <ul class="list-group list-group-flush">
+        <!-- <ul class="list-group list-group-flush">
           <li class="list-group-item">LAST RENEWED: 12/01/2021</li>
           <li class="list-group-item">LAST DEDUCTED: 10/02/2021</li>
-        </ul>
+        </ul> -->
         <div class="card-body">
           <a routerLink="/settings/creditstatement" class="card-link">VIEW STATEMENT</a>
         </div>
@@ -119,7 +87,7 @@
         <img class="card-img-top" src="./assets/img/banners/badmintoncourt.jpg" alt="Card image cap"/>
 
         <div class="card-body">
-          <h5 class="card-title">ATTENDANCE</h5>
+          <h4 class="card-title">ATTENDANCE</h4>
           <p class="card-number">66</p>
         </div>
         <ul class="list-group list-group-flush">
@@ -137,12 +105,12 @@
         <img class="card-img-top" src="./assets/img/banners/autobooking.jpg" alt="Card image cap"/>
 
         <div class="card-body">
-          <h5 class="card-title">SCHEDULE</h5>
-          <p class="card-text">$10 to automate your booking schedule so you don't miss a session!</p>
+          <h4 class="card-title">SCHEDULE <span class="badge badge-warning">paid service</span></h4>
+          <p class="card-text">Automate your booking schedule so you don't miss a session!</p>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            <a routerLink="settings/schedule" class="card-link">AUTO BOOKING</a>
+            <a routerLink="/settings/schedule" class="card-link">AUTO BOOKING</a>
           </li>
         </ul>
       
