@@ -4,34 +4,33 @@
         <div class="card">
           <div class="card-body p-4">
             <h1>Unpaid users</h1>
-          
-           
-              <h2>Income Balance <span class="badge badge-light ">{{ groupBalance | currency }}</span></h2>
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Session</th>
+            <table class="table table-sm">
+            <thead>
+                <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Session</th>
 
-                    <th scope="col">Notes</th>
-                    <th scope="col">User</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let u of unpaidUsers">
-                    <td scope="row">{{ u.createdOn.toDate() | date:'dd/MM/yyyy'}}</td>
-                    <td scope="row">{{ u.amount | currency}} </td>
-                    <td scope="row">{{ u.bookingDesc }}</td>
+                <th scope="col">Notes</th>
+                <th scope="col">User</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let u of unpaidUsers">
+                <td scope="row">{{ u.createdOn.toDate() | date:'dd/MM/yyyy'}}</td>
+                <td scope="row">{{ u.amount | currency}} </td>
+                <td scope="row">{{ u.bookingDesc }}</td>
 
-                    <td scope="row">{{ u.notes }}</td>
-                    <td scope="row">
-                        <a routerLink="/admin/userdetails/{{u.userId}}">{{ u.userDisplayName }}</a>
-                        (<a routerLink="/admin/userdetails/{{u.parentUserId}}">{{ u.parentUserDisplayName }}</a>)
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                <td scope="row">{{ u.notes }}</td>
+                <td scope="row">
+                    <a routerLink="/admin/userdetails/{{u.userId}}">{{ u.userDisplayName }}</a>
+                    (<a routerLink="/admin/userdetails/{{u.parentUserId}}">{{ u.parentUserDisplayName }}</a>)
+                </td>
+                </tr>
+            </tbody>
+            </table>
+
+            <p>* list of all onced unpaid users. they may have already paid</p>
 
           </div>
         </div>
