@@ -107,6 +107,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     return super.getByDocId(bookingPersonDocId);
   }
 
+
   public getByUserDocId(userDocId: string) {
     return this.firestore.collection('bookingPersons', q => q.where('parentUserId', '==', userDocId).orderBy('createdOn', 'desc')).snapshotChanges().pipe(
       map(actions => {

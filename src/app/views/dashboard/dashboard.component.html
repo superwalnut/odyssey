@@ -87,13 +87,9 @@
         <img class="card-img-top" src="./assets/img/banners/badmintoncourt.jpg" alt="Card image cap"/>
 
         <div class="card-body">
-          <h4 class="card-title">ATTENDANCE</h4>
-          <p class="card-number">66</p>
+          <h4 class="card-title">ATTENDANCE POINTS</h4>
+          <p class="card-number">{{myAttendanceCount}}</p>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">WITHDRAW: 10</li>
-          <li class="list-group-item">RANK: 4</li>
-        </ul>
         <div class="card-body">
           <a routerLink="/settings/attendancehistory" class="card-link">VIEW HISTORY</a>
         </div>
@@ -108,11 +104,10 @@
           <h4 class="card-title">SCHEDULE <span class="badge badge-warning">paid service</span></h4>
           <p class="card-text">Automate your booking schedule so you don't miss a session!</p>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <a routerLink="/settings/schedule" class="card-link">AUTO BOOKING</a>
-          </li>
-        </ul>
+
+        <div class="card-body">
+          <a routerLink="/settings/schedule" class="card-link">AUTO BOOKING</a>
+        </div>
       
       </div>
     </div>
