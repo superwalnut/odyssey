@@ -23,7 +23,7 @@ export class AccountService extends FirestoreBaseService<User>{
   private accountSubject: BehaviorSubject<User>;
   public account: Observable<User>;
 
-  constructor(private firestore: AngularFirestore, private router: Router, private route: ActivatedRoute, private snackBar: MatSnackBar, private helpService:HelperService) {
+  constructor(private firestore: AngularFirestore, private router: Router, private route: ActivatedRoute, private snackBar: MatSnackBar, private helpService: HelperService) {
     super(firestore.collection('users'));
     this.accountSubject = new BehaviorSubject<User>(null);
     this.account = this.accountSubject.asObservable();
@@ -193,7 +193,7 @@ export class AccountService extends FirestoreBaseService<User>{
       }));
   }
 
-  public getUserByEmail(email:string) {
+  public getUserByEmail(email: string) {
     return this.firestore.collection('users', q => q.where("email", "==", email).limit(1)).snapshotChanges().pipe(
       map(actions => {
         if (actions && actions.length > 0) {
@@ -209,14 +209,13 @@ export class AccountService extends FirestoreBaseService<User>{
   }
 
   public getUsersByUserDocIds(docIds: string[]) {
+    //docIds = ['EzyLM1KrG0vdosRCZq0Y', 'Sao2W8mYPHsEPQ2Nx6mg', 'nuu6LConn2h2aHHacyJu'];
     console.log("getUsersByUserDocIds: ", docIds);
-
-    return this.firestore.collection('users', q => q.where("docId", "in", docIds)).snapshotChanges().pipe(
+    return this.firestore.collection('users', q => q.where(firebase.firestore.FieldPath.documentId(), "in", docIds)).snapshotChanges().pipe(
       map(actions => {
         return actions.map(p => {
           var user = p.payload.doc.data() as User;
           console.log("getUsersByUserDocIds user: ", user);
-
           return { ...user, docId: p.payload.doc.id } as User;
         });
       }));

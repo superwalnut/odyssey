@@ -3,9 +3,7 @@
   <div class="col-md-12 mx-auto">
     <div class="card">
       <div class="card-body p-4">
-
         <h2>Create new booking - GOD ONLY FUNCTION!</h2>
-
         <mat-form-field appearance="fill">
           <mat-label>Booking Dates</mat-label>
           <mat-select [(ngModel)]="selectedFutureDate">
@@ -13,10 +11,8 @@
           </mat-select>
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="createBookingClicked()">Create</button>
-
       </div>
     </div>
-
   </div>
 </div>
 
@@ -26,7 +22,17 @@
     <div class="card">
       <div class="card-body p-4">
         <h2>{{group?.eventStartDay}} Bookings</h2>
-        <div>{{committeesDump}}</div>
+        <div>
+          
+          <ul class="simple-horizontal-list">
+            <li>Committees:</li>
+            <li *ngFor="let u of committees"><a routerLink="/admin/userdetails/{{u.docId}}">{{ u.name}}</a></li>
+          </ul>
+          <ul class="simple-horizontal-list">
+            <li>Auto booking users: </li>
+            <li *ngFor="let u of autoBookingUsers"><a routerLink="/admin/userdetails/{{u.docId}}">{{ u.name}}</a></li>
+          </ul>
+        </div>
 
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="date">

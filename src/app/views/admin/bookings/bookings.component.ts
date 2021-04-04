@@ -18,6 +18,7 @@ import { User } from '../../../models/user';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { HelperService } from '../../../common/helper.service';
+
 @Component({
   selector: 'app-bookings',
   templateUrl: './bookings.component.html',
@@ -41,6 +42,7 @@ export class BookingsComponent implements OnInit {
   committees: User[];
   committeesDump: string;
   committeeBookingPersons: BookingPerson[];
+  autoBookingUsers: User[];
 
   constructor(public dialog: MatDialog, private groupService: GroupService, private bookingService: BookingsService,
     private accountService: AccountService, private activatedRoute: ActivatedRoute, private bookingPersonService: BookingPersonService,
@@ -48,30 +50,22 @@ export class BookingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.myDocId = this.accountService.getLoginAccount().docId;
-
-    this.getMyGroups();
-
+    //this.getMyGroups();
 
     this.groupDocId = this.activatedRoute.snapshot.params.id;
     if (this.groupDocId) {
       this.getGroupDetails(this.groupDocId);
       this.getBookingsByGroupDocId(this.groupDocId);
+      this.getAutoBookingUsers(this.groupDocId);
     }
-
-    this.addAutoBookingUsers();
-
     this.isGod = this.accountService.isGod();
   }
 
   createBookingClicked() {
     console.log(this.selectedFutureDate);
-
     if (!this.selectedFutureDate) return false;
-
     if (confirm("Are you sure to start a new booking - 接龙? " + this.selectedFutureDate)) {
       this.createEmptyBooking();
-      this.addCommitteesToBooking();
-      this.addAutoBookingUsers();
     }
   }
 
@@ -88,24 +82,21 @@ export class BookingsComponent implements OnInit {
 
     this.bookingService.createBooking(booking).then(bookingDocId => {
       console.log(bookingDocId);
-      var peoples = this.mapCommitteesToBookingPerson(this.committees, this.group.docId, bookingDocId);
-      console.log('booking persons ready for insert: ', peoples);
-      this.bookingPersonService.createBookingPersonBatch(peoples);
+      var autoBookingPersons = this.mapUsersToBookingPerson(this.autoBookingUsers, this.group.docId, bookingDocId);
+      console.log('booking persons ready for insert: ', autoBookingPersons);
+      this.bookingPersonService.createBookingPersonBatch(autoBookingPersons);
     });
   }
 
-  addCommitteesToBooking() {
-
-  }
-
-  addAutoBookingUsers() {
-
-    this.bookingScheduleService.getBookingSchedulesByGroupDocId(this.groupDocId).subscribe(result => {
-      console.log('addAutoBookingUsers', result);
+  getAutoBookingUsers(groupDocId: string) {
+    this.bookingScheduleService.getBookingSchedulesByGroupDocIdInUserIdArray(groupDocId).subscribe(userIds => {
+      console.log('addAutoBookingUsers', userIds);
+      this.accountService.getUsersByUserDocIds(userIds).subscribe(result => {
+        this.autoBookingUsers = result;
+        console.log('auto booking users: ', result);
+      })
     })
-
   }
-
 
   getGroupDetails(groupDocId: string) {
     this.groupService.getGroup(groupDocId).subscribe(g => {
@@ -114,48 +105,26 @@ export class BookingsComponent implements OnInit {
 
       this.accountService.getUsersByUserDocIds(g.committees).subscribe(result => {
         this.committees = result;
-        this.committeesDump = this.dumpCommittees(result);
-        console.log(this.committees);
-
       });
-
     })
   }
 
-  getMyGroups() {
-    this.myGroups = [];
+  // getMyGroups() {
+  //   this.myGroups = [];
 
-    this.groupService.getGroupsByUserDocId(this.myDocId).subscribe(x => {
-      console.log('my groups', x);
-      this.myGroups = x;
-      // x.forEach(g => {
-      //   this.myGroups.push({ 'docId': g.docId, 'groupName': g.groupName });
-      // })
-    });
-  }
+  //   this.groupService.getGroupsByUserDocId(this.myDocId).subscribe(x => {
+  //     console.log('my groups', x);
+  //     this.myGroups = x;
+  //   });
+  // }
 
-  dumpCommittees(users: User[]) {
-    var cs = this.group.eventStartDay + ' committees: ';
-    users.forEach(u => cs += u.name + ", ");
-    return cs;
-
-  }
   getBookingsByGroupDocId(groupDocId: string) {
-
     this.bookingService.getByGroupDocId(groupDocId).subscribe(bookings => {
       this.dataSource.data = bookings;
-      console.log("get bookings...", bookings);
-      bookings.forEach(b => {
-        console.log(b);
-
-      });
     });
   }
 
-
-
-  mapCommitteesToBookingPerson(users: User[], groupDocId: string, bookingDocId: string) {
-
+  mapUsersToBookingPerson(users: User[], groupDocId: string, bookingDocId: string) {
     var bookingpersons: BookingPerson[] = [];
 
     console.log("users original input: ", users);
@@ -185,7 +154,6 @@ export class BookingsComponent implements OnInit {
     console.log("booking persons: ", bookingpersons);
     return bookingpersons;
   }
-
 
 }
 

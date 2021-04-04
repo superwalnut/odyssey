@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreBaseService } from "./firestore-base.service";
-import { map, concatMap, finalize, timestamp } from "rxjs/operators";
+import { map, concatMap, finalize, timestamp, switchMap } from "rxjs/operators";
 import { BookingPerson } from "../models/booking-person";
 import { BookingSchedule } from '../models/booking-schedule';
 import { GroupTransaction } from "../models/group-transaction";
@@ -56,6 +56,18 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
         return items;
       })
     );
+  }
+
+  //return array of UserDocIds. ie ['xxxxx','yyyyy']
+  getBookingSchedulesByGroupDocIdInUserIdArray(groupDocId: string) {
+    return this.firestore.collection('bookingSchedules', q => q.where('groupDocId', '==', groupDocId)).snapshotChanges().pipe(
+      map(actions => {
+        const ids = actions.map(p => (p.payload.doc.data() as BookingSchedule).userDocId);
+        return ids;
+      })
+    );
+
+
   }
 
   // getMyActiveBookingSchedules(userDocId: string) {

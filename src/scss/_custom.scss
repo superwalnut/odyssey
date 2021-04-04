@@ -81,6 +81,16 @@ footer {
 mat-icon[md-list-icon]{
   order:10;
 }
+
+ul.simple-horizontal-list {
+  margin: 0!important;
+  padding: 0!important;
+  > li {
+    display: inline-block;
+    padding-right:5px;
+  }
+}
+
 //4b0063
 .homepage-intro {
   min-height: 430px;
