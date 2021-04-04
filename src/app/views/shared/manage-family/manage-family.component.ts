@@ -11,53 +11,55 @@ import { User } from '../../../models/user';
   styleUrls: ['./manage-family.component.scss']
 })
 export class ManageFamilyComponent implements OnInit {
-  @Input() userDocId:string;
+  @Input() userDocId: string;
 
   form: FormGroup;
-  user:User;
+  user: User;
   submitted = false;
-  loadedFamilies:User[];
+  loadedFamilies: User[];
 
-  constructor(private fb: FormBuilder, private accountService:AccountService, private snackBar:MatSnackBar, private router: Router) { 
-    
+  constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router) {
+
   }
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      families : this.fb.array([this.buildFamilyGroup('','', '','')]),
+      families: this.fb.array([this.buildFamilyGroup('', '', '', '')]),
     });
 
-    console.log('userid',this.userDocId);
+    console.log('userid', this.userDocId);
 
-    this.accountService.getUserByDocId(this.userDocId).subscribe(x=>{
+    this.accountService.getUserByDocId(this.userDocId).subscribe(x => {
       this.user = x;
       console.log('user', this.user);
     });
-    
-    this.accountService.getFamilyUsers(this.userDocId).subscribe(x=>{
+
+    this.accountService.getFamilyUsers(this.userDocId).subscribe(x => {
       this.families.clear();
-      if (x && x.length>0) {
+      if (x && x.length > 0) {
         this.loadedFamilies = x;
         console.log('x', x)
         x.forEach(o => {
           console.log('push', o);
-          this.families.push(this.buildFamilyGroup(o.docId, o.name, o.gender, o.isChild?'Child':'Adult'));
+          this.families.push(this.buildFamilyGroup(o.docId, o.name, o.gender, o.isChild ? 'Child' : 'Adult'));
         });
       }
     });
   }
 
-  buildFamilyGroup(userDocId:string, name:string, gender:string, agegroup:string): FormGroup {
+  buildFamilyGroup(userDocId: string, name: string, gender: string, agegroup: string): FormGroup {
     return this.fb.group({
-            userDocId: userDocId,
-            name: name,
-            gender: gender,
-            agegroup: agegroup,
+      userDocId: userDocId,
+      name: name,
+      gender: gender,
+      agegroup: agegroup,
     });
   }
 
   deleteFamily(index) {
-    this.families.removeAt(index);
+    if (confirm("Confirm to delete a family member?")) {
+      this.families.removeAt(index);
+    }
   }
 
   get families(): FormArray {
@@ -65,7 +67,7 @@ export class ManageFamilyComponent implements OnInit {
   }
 
   addFamily() {
-    this.families.push(this.buildFamilyGroup('','','',''));
+    this.families.push(this.buildFamilyGroup('', '', '', ''));
   }
 
   onSubmit() {
@@ -79,27 +81,27 @@ export class ManageFamilyComponent implements OnInit {
 
     console.log(this.families.value);
 
-    var familUserIds : string[] = this.families.value.map(x=>{
+    var familUserIds: string[] = this.families.value.map(x => {
       return x.userDocId as string;
     });
 
-    if(this.families.value) {
+    if (this.families.value) {
       this.families.value.forEach((x, i) => {
         const userDocId = x.userDocId;
         const name = x.name;
         const gender = x.gender;
-        const isChild = x.agegroup == 'Child'?true:false;
-        
-        if(userDocId) {
+        const isChild = x.agegroup == 'Child' ? true : false;
+
+        if (userDocId) {
           // updating family user
           const user = {
-            name : name,
+            name: name,
             gender: gender,
             isChild: isChild,
           } as User;
-          this.accountService.updateUser(userDocId, user).then(x=>{
-            if(i == this.families.value.length - 1){
-              this.snackBar.open(`Your family is updated.`, null , {
+          this.accountService.updateUser(userDocId, user).then(x => {
+            if (i == this.families.value.length - 1) {
+              this.snackBar.open(`Your family is updated.`, null, {
                 duration: 5000,
                 verticalPosition: 'top'
               });
@@ -108,13 +110,13 @@ export class ManageFamilyComponent implements OnInit {
         } else {
           // create new family user
           const user = {
-            name : name,
-            parentUserDocId : this.userDocId,
-            parentUserDisplayName : this.user.name,
+            name: name,
+            parentUserDocId: this.userDocId,
+            parentUserDisplayName: this.user.name,
           } as User;
-          this.accountService.createUser(user).then(x=>{
-            if(i == this.families.value.length - 1){
-              this.snackBar.open(`Your family is updated.`, null , {
+          this.accountService.createUser(user).then(x => {
+            if (i == this.families.value.length - 1) {
+              this.snackBar.open(`Your family is updated.`, null, {
                 duration: 5000,
                 verticalPosition: 'top'
               });
@@ -125,11 +127,11 @@ export class ManageFamilyComponent implements OnInit {
     }
 
     // delete families 
-    if(this.loadedFamilies){
-      this.loadedFamilies.forEach(x=>{
-        if(!familUserIds.includes(x.docId)){
+    if (this.loadedFamilies) {
+      this.loadedFamilies.forEach(x => {
+        if (!familUserIds.includes(x.docId)) {
           //remove family off user
-          const user = { parentUserDocId : '' } as User;
+          const user = { parentUserDocId: '' } as User;
           this.accountService.updateUser(x.docId, user);
         }
       });

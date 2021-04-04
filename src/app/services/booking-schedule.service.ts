@@ -111,16 +111,20 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
         userDisplayName: u.name,
         groupDocId: group.docId,
         groupName: group.groupName,
+        parentDocId: u.parentUserDocId,
+        parentDisplayName: u.parentUserDisplayName,
         expireOn: expireDate,
         isPaused: false,
         createdOn: Timestamp.now(),
         createdBy: loggedInUser.docId,
         createdByDisplayName: loggedInUser.name,
       } as BookingSchedule;
+      console.log('booking schedule model: ', schedule);
       batch.set(ref, schedule);
     });
 
     return batch.commit();
+    //return Promise.reject();
   }
 
 

@@ -11,6 +11,7 @@ export class TransactionListComponent implements OnInit {
   @Input() userDocId: string;
   credits: Credit[];
   balance: number;
+  hasCredit: boolean;
 
   constructor(private creditService: CreditService) { }
 
@@ -18,6 +19,7 @@ export class TransactionListComponent implements OnInit {
 
     this.creditService.getBalance(this.userDocId).subscribe(x => {
       this.balance = x;
+      this.hasCredit = x > 0;
     });
 
     this.creditService.getByUser(this.userDocId).subscribe(x => {

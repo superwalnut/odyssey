@@ -152,11 +152,13 @@ export class BookingSchedulerDialog {
   }
 
   buildUserSelectionList() {
-    this.userSelectList.push({ docId: this.data.loggedInUser.docId, name: this.data.loggedInUser.name, selected: false } as UserSelection);
+    this.userSelectList.push({ docId: this.data.loggedInUser.docId, name: this.data.loggedInUser.name, selected: false, parentUserDocId: this.data.loggedInUser.docId, parentUserDisplayName: this.data.loggedInUser.name } as UserSelection);
     this.data.family.forEach(f => {
-      let u = { docId: f.docId, name: f.name, selected: false } as UserSelection;
+      let u = { docId: f.docId, name: f.name, selected: false, parentUserDocId: f.parentUserDocId, parentUserDisplayName: f.parentUserDisplayName, } as UserSelection;
       this.userSelectList.push(u);
     })
+
+    console.log('user list: ', this.userSelectList)
   }
 
   checkActiveSchedules() {

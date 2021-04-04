@@ -27,4 +27,6 @@ export class UserSelection {
   docId: string;
   name: string;
   selected: boolean;
+  parentUserDocId: string;
+  parentUserDisplayName: string;
 }
