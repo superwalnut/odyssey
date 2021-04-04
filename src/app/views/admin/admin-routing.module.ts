@@ -11,6 +11,8 @@ import { GroupsComponent } from "./groups/groups.component";
 import { GroupdetailsComponent } from "./groupdetails/groupdetails.component";
 import { GroupexpenseComponent } from "./groupexpense/groupexpense.component";
 import { RptIncomeComponent } from "./reports/rpt-income/rpt-income.component";
+import { RptUnpaidComponent } from "./reports/rpt-unpaid/rpt-unpaid.component";
+
 import { TriggersComponent } from "./triggers/triggers.component";
 
 import { groupCollapsed } from "console";
@@ -112,7 +114,15 @@ const routes: Routes = [
         path: "rptincome",
         component: RptIncomeComponent,
         data: {
-          title: "Income report",
+          title: "Finance report",
+        },
+      },
+
+      {
+        path: "rptunpaid",
+        component: RptUnpaidComponent,
+        data: {
+          title: "Unpaid users",
         },
       },
 

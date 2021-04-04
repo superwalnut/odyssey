@@ -20,6 +20,7 @@ import { SharedModule } from "../shared/shared.module";
 import { RptIncomeComponent } from './reports/rpt-income/rpt-income.component';
 import { TriggersComponent } from './triggers/triggers.component';
 import { BookingdetailsComponent, NoteDialog } from './bookingdetails/bookingdetails.component';
+import { RptUnpaidComponent } from './reports/rpt-unpaid/rpt-unpaid.component';
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import { BookingdetailsComponent, NoteDialog } from './bookingdetails/bookingdet
     TriggersComponent,
     BookingdetailsComponent,
     NoteDialog,
+    RptUnpaidComponent,
   ],
 })
 export class AdminModule { }

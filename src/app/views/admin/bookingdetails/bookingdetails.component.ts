@@ -324,29 +324,6 @@ export class NoteDialog {
         this.dialogRef.close();
       })
       .catch((err) => { alert(err) })
-
-    // let paymentAmount = this.paid ? this.data.localBookingUser.amount : -this.data.localBookingUser.amount;
-    // let paymentNotes = this.paid ? 'paid' : 'unpaid';
-
-
-    // //add to group transaction table
-    // var groupTransaction = {
-    //   amount: paymentAmount,
-    //   notes: paymentNotes,
-    //   paymentMethod: GlobalConstants.paymentAdjust,
-    //   referenceId: this.data.loggedInUser.docId,
-    //   groupDocId: this.data.booking.groupDocId,
-    //   bookingDocId: this.data.booking.docId,
-    //   createdBy: this.data.loggedInUser.docId,
-    //   createdByDisplayName: this.data.loggedInUser.name,
-    //   created: Timestamp.now(),
-    // } as GroupTransaction;
-    // console.log('mark payment status: ', groupTransaction);
-    // this.groupTransactionService.createGroupTransaction(groupTransaction)
-    //   .then(() => {
-    //     this.dialogRef.close();
-    //   })
-    //   .catch((err) => { alert(err) })
   }
 
   saveNotesClick() {

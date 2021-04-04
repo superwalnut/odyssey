@@ -127,11 +127,11 @@ export class DefaultLayoutComponent {
         //   url: "/admin/bookings",
         //   icon: "cil-notes",
         // },
-        {
-          name: "Site Settings",
-          url: "/admin/sitesettings",
-          icon: "cil-cog",
-        },
+        // {
+        //   name: "Site Settings",
+        //   url: "/admin/sitesettings",
+        //   icon: "cil-cog",
+        // },
         {
           name: "Reports",
           url: "/base",
@@ -149,7 +149,7 @@ export class DefaultLayoutComponent {
             },
             {
               name: "Unpaid users",
-              url: "/base/cards",
+              url: "/admin/rptunpaid",
               icon: "cil-paperclip",
             },
           ],
