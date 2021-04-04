@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreBaseService } from "./firestore-base.service";
-import { map, concatMap, finalize, timestamp } from "rxjs/operators";
+import { map, concatMap, finalize, timestamp, take } from "rxjs/operators";
 import { BookingPerson } from "../models/booking-person";
 import { GroupTransaction } from "../models/group-transaction";
 
@@ -103,6 +103,16 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     await batch.commit();
   }
 
+  public getAllBookingPersons() {
+    return this.firestore.collection('bookingPersons', q=>q.orderBy('createdOn', 'desc').limit(1600)).snapshotChanges().pipe(
+      map(actions => {
+        var items = actions.map(p => {
+          var data = p.payload.doc.data() as BookingPerson;
+          return { ...data, docId: p.payload.doc.id } as BookingPerson;
+        });
+        return items;
+      }), take(1)
+    )  }
   public get(bookingPersonDocId: string) {
     return super.getByDocId(bookingPersonDocId);
   }

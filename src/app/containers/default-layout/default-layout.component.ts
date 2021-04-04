@@ -144,7 +144,7 @@ export class DefaultLayoutComponent {
             },
             {
               name: "Attendance",
-              url: "/base/cards",
+              url: "/admin/rptattend",
               icon: "cil-paperclip",
             },
             {

@@ -12,6 +12,7 @@ import { GroupdetailsComponent } from "./groupdetails/groupdetails.component";
 import { GroupexpenseComponent } from "./groupexpense/groupexpense.component";
 import { RptIncomeComponent } from "./reports/rpt-income/rpt-income.component";
 import { RptUnpaidComponent } from "./reports/rpt-unpaid/rpt-unpaid.component";
+import { RptAttendanceComponent } from "./reports/rpt-attendance/rpt-attendance.component";
 
 import { TriggersComponent } from "./triggers/triggers.component";
 
@@ -117,6 +118,14 @@ const routes: Routes = [
           title: "Finance report",
         },
       },
+      {
+        path: "rptattend",
+        component: RptAttendanceComponent,
+        data: {
+          title: "Attendance report",
+        },
+      },
+
 
       {
         path: "rptunpaid",
