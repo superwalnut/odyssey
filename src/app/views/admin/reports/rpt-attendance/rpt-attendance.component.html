@@ -9,6 +9,8 @@
                 <tr>
                 <th scope="col">Date</th>
                 <th scope="col">Amount</th>
+                <th scope="col">Payment</th>
+
                 <th scope="col">Session</th>
 
                 <th scope="col">Notes</th>
@@ -21,6 +23,8 @@
                 <tr *ngFor="let u of bps">
                 <td scope="row">{{ u.createdOn.toDate() | date:'dd/MM/yyyy hh:mm'}}</td>
                 <td scope="row">{{ u.amount | currency}} </td>
+                <td scope="row">{{ u.paymentMethod }}</td>
+
                 <td scope="row">{{ u.bookingDesc }}</td>
 
                 <td scope="row">{{ u.notes }}</td>
