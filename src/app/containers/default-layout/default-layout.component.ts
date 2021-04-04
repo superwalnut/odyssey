@@ -152,6 +152,11 @@ export class DefaultLayoutComponent {
               url: "/admin/rptunpaid",
               icon: "cil-paperclip",
             },
+            {
+              name: "Event viewer",
+              url: "/admin/rpteventview",
+              icon: "cil-paperclip",
+            },
           ],
         },
       ];

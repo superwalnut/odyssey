@@ -13,6 +13,7 @@ import { GroupexpenseComponent } from "./groupexpense/groupexpense.component";
 import { RptIncomeComponent } from "./reports/rpt-income/rpt-income.component";
 import { RptUnpaidComponent } from "./reports/rpt-unpaid/rpt-unpaid.component";
 import { RptAttendanceComponent } from "./reports/rpt-attendance/rpt-attendance.component";
+import { RptEventviewerComponent } from "./reports/rpt-eventviewer/rpt-eventviewer.component";
 
 import { TriggersComponent } from "./triggers/triggers.component";
 
@@ -126,7 +127,7 @@ const routes: Routes = [
         },
       },
 
-
+      
       {
         path: "rptunpaid",
         component: RptUnpaidComponent,
@@ -134,6 +135,14 @@ const routes: Routes = [
           title: "Unpaid users",
         },
       },
+      {
+        path: "rpteventview",
+        component: RptEventviewerComponent,
+        data: {
+          title: "Event viewer",
+        },
+      },
+
 
       {
         path: "triggers",

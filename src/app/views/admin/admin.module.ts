@@ -22,6 +22,7 @@ import { TriggersComponent } from './triggers/triggers.component';
 import { BookingdetailsComponent, NoteDialog } from './bookingdetails/bookingdetails.component';
 import { RptUnpaidComponent } from './reports/rpt-unpaid/rpt-unpaid.component';
 import { RptAttendanceComponent } from './reports/rpt-attendance/rpt-attendance.component';
+import { RptEventviewerComponent } from './reports/rpt-eventviewer/rpt-eventviewer.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { RptAttendanceComponent } from './reports/rpt-attendance/rpt-attendance.
     NoteDialog,
     RptUnpaidComponent,
     RptAttendanceComponent,
+    RptEventviewerComponent,
   ],
 })
 export class AdminModule { }
