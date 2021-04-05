@@ -15,6 +15,7 @@ import { GroupsComponent } from "./views/groups/groups.component";
 import { TermsComponent } from "./views/terms/terms.component";
 import { LogoutComponent } from "./views/logout/logout.component";
 import { ResetpasswordComponent } from "./views/resetpassword/resetpassword.component";
+import { CreateNewPasswordComponent } from "./views/create-new-password/create-new-password.component";
 export const routes: Routes = [
   {
     path: "",
@@ -83,6 +84,13 @@ export const routes: Routes = [
     component: ResetpasswordComponent,
     data: {
       title: "Reset password",
+    },
+  },
+  {
+    path: "createpassword/:hashkey",
+    component: CreateNewPasswordComponent,
+    data: {
+      title: "Create a new password",
     },
   },
 

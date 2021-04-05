@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { HelperService } from '../../common/helper.service';
 import { User } from '../../models/user';
 import { AccountService } from '../../services/account.service';
-import { MailgunService } from '../../services/mailgun.service';
 
 @Component({
   selector: 'app-create-new-password',
@@ -18,12 +17,19 @@ export class CreateNewPasswordComponent implements OnInit {
   submitted = false;
   user:User;
 
-  constructor(private mailgunService:MailgunService, private fb:FormBuilder, private accountService:AccountService, private helpService:HelperService, private activatedRoute: ActivatedRoute, private snackBar: MatSnackBar) {
+  constructor(private fb:FormBuilder, private accountService:AccountService, private helpService:HelperService, private activatedRoute: ActivatedRoute, private snackBar: MatSnackBar, private router:Router) {
     var haskey = this.activatedRoute.snapshot.params.hashkey;
-    var email = this.helpService.decryptData(haskey);
-    this.accountService.getUserByEmail(email).pipe(take(1)).subscribe(x=>{
-      this.user = x;
-    });
+
+    if(haskey){
+      const decoded = decodeURIComponent(haskey);
+      var email = this.helpService.decryptData(decoded);
+      this.accountService.getUserByEmail(email).pipe(take(1)).subscribe(x=>{
+        this.user = x;
+      });
+    } else {
+      this.router.navigate(['/']);
+    }
+    
    }
 
   ngOnInit(): void {
@@ -49,10 +55,12 @@ export class CreateNewPasswordComponent implements OnInit {
 
     // update user
     this.accountService.updateUser(this.user.docId, updated).then(x => {
-      this.snackBar.open(`you have successfully updated profile.`, null, {
+      this.snackBar.open(`you have successfully updated password.`, null, {
         duration: 5000,
         verticalPosition: 'top'
       });
+
+      this.router.navigate(['/login']);
     }).catch(x=>{
       this.snackBar.open(x, null, {
         duration: 5000,

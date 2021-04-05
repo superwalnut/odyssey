@@ -70,6 +70,7 @@ import { ResetpasswordComponent } from './views/resetpassword/resetpassword.comp
 import { SharedModule } from "./views/shared/shared.module";
 import { GroupsComponent } from './views/groups/groups.component';
 import { HttpClientModule } from "@angular/common/http";
+import { CreateNewPasswordComponent } from "./views/create-new-password/create-new-password.component";
 
 @NgModule({
   imports: [
@@ -114,6 +115,7 @@ import { HttpClientModule } from "@angular/common/http";
     GroupsComponent,
     BookingDialog,
     WithdrawDialog,
+    CreateNewPasswordComponent,
   ],
   providers: [
     {

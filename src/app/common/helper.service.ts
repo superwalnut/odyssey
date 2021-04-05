@@ -139,6 +139,7 @@ export class HelperService {
     try {
       const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
       if (bytes.toString()) {
+        console.log('bytes', bytes.toString());
         return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
       }
       return data;

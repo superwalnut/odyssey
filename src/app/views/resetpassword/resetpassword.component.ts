@@ -37,8 +37,12 @@ export class ResetpasswordComponent implements OnInit {
 
     this.accountService.isEmailExist(this.resetForm.value.email).pipe(take(1)).subscribe(x=>{
       if(x && x.length >0){
+        console.log('email', this.resetForm.value.email);
         var hashkey = this.helpService.encryptData(this.resetForm.value.email);
-        this.mailgunService.sendForgotPassword(this.resetForm.value.email, hashkey);
+        console.log('hashkey', hashkey);
+        const encoded = encodeURIComponent(hashkey);
+        console.log('encoded', encoded);
+        this.mailgunService.sendForgotPassword(this.resetForm.value.email, encoded);
       }
     });
   }

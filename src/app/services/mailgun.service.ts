@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class MailgunService {
-  mailUrl:string = `${environment.mail_url}/sendmail`;
+  mailUrl:string = `${environment.mail_url}/sendemail`;
 
   constructor(private http: HttpClient) {
   }
@@ -18,10 +18,10 @@ export class MailgunService {
         .toPromise()
         .then(
           res => { // Success
-            console.log(res);
             resolve(true);
           }
         ).catch(err=>{
+          console.log(err);
           reject(err);
         });
     });
@@ -38,6 +38,7 @@ export class MailgunService {
     };
 
     console.log('forgot', mail);
+    console.log('url', this.mailUrl);
     return this.sendMail(mail);
   }
 
