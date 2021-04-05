@@ -50,6 +50,18 @@ export class GlobalConstants {
     public static eventWebActivity: string = "login/web activity"; //for user is browsing the website
 
 
+    //Event Logger
+    public static logCategoryBooking: string = "booking";
+    public static logCategoryWithdraw: string = "withdraw";
+    public static logCategorySale: string = "sale"
+    public static logCategoryTopup: string = "topup";
+
+    public static logCategoryLogin: string = "login";
+    public static logCategoryChangepassword: string = "change password";
+    public static logCategoryProfile: string = "update profile";
+
+
+
 
 
 

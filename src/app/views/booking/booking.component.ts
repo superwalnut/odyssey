@@ -21,6 +21,9 @@ import { Booking } from '../../models/booking';
 import { LocalBookingUser } from '../../models/custom-models';
 import { map, mergeMap } from 'rxjs/operators';
 import { features } from 'node:process';
+import { EventLoggerService } from '../../services/event-logger.service';
+import { EventLogger } from '../../models/event-logger';
+
 
 @Component({
   selector: 'app-booking',
@@ -46,7 +49,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   isSeatsLeft: boolean;
 
 
-  constructor(private groupService: GroupService, private dialogRef: MatDialog,
+  constructor(private groupService: GroupService, private dialogRef: MatDialog, private eventLogService:EventLoggerService,
     private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private creditService: CreditService,
     private accountService: AccountService, private activatedRoute: ActivatedRoute, public dialog: MatDialog) { super() }
 
@@ -452,7 +455,7 @@ export interface BookingDialogData {
 export class WithdrawDialog {
   constructor(
     public dialogRef: MatDialogRef<WithdrawDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: WithdrawDialogData, private bookingPersonService: BookingPersonService, private helperService: HelperService, private accountService: AccountService) { }
+    @Inject(MAT_DIALOG_DATA) public data: WithdrawDialogData, private eventLogService:EventLoggerService, private bookingPersonService: BookingPersonService, private helperService: HelperService, private accountService: AccountService) { }
 
   hasError: boolean;
   errorMessage: string;
@@ -486,7 +489,14 @@ export class WithdrawDialog {
   withdrawClicked() {
     console.log('refund: ', this.mapToBookingPerson(this.data.inputBookingPerson))
     this.bookingPersonService.withdraw(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson))
-      .then(() => this.dialogRef.close())
+      .then(() => {
+        let log = {
+          eventCategory: GlobalConstants.eventbookingWithdraw,
+          notes: this.data.inputBookingPerson.name
+        } as EventLogger;
+        this.eventLogService.createLog(log, this.data.inputBookingPerson.userDocId, this.data.inputBookingPerson.parentUserDisplayName);
+        this.dialogRef.close()
+      })
       .catch((err) => {
         this.hasError = true;
         //errorMessage = err.toString();
