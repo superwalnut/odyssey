@@ -7,14 +7,14 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class MailgunService {
-  mailUrl:string = `${environment.api_url}/sendmail`;
+  mailUrl:string = `${environment.mail_url}/sendmail`;
 
   constructor(private http: HttpClient) {
   }
 
   private sendMail(mail:any) : Promise<boolean>{
     let promise = new Promise<boolean>((resolve, reject) => {
-      this.http.post(this.mailUrl, mail)
+      this.http.post(this.mailUrl, mail, { responseType: 'text' })
         .toPromise()
         .then(
           res => { // Success
@@ -36,6 +36,8 @@ export class MailgunService {
       template: "forgotpassword",
       'v:hashkey': hashKey,
     };
+
+    console.log('forgot', mail);
     return this.sendMail(mail);
   }
 
