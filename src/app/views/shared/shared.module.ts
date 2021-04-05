@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { TransactionListComponent } from "./transaction-list/transaction-list.component";
+import { UserCreditListComponent } from "./usercredit-list/usercredit-list.component";
 import { AppMaterialModule } from "../../app-material.module";
 import { ManageFamilyComponent } from './manage-family/manage-family.component';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
@@ -15,13 +15,13 @@ import { ManagePasswordComponent } from './manage-password/manage-password.compo
       AppMaterialModule
     ],
     declarations: [
-      TransactionListComponent,
+      UserCreditListComponent,
       ManageFamilyComponent,
       ManageProfileComponent,
       ManagePasswordComponent
     ],
     exports: [
-      TransactionListComponent,
+      UserCreditListComponent,
       ManageFamilyComponent,
       ManageProfileComponent,
       ManagePasswordComponent

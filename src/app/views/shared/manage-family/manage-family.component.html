@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <h1>Manage Family</h1>
     <p class="text-muted mb-3 text-right">
-      <button mat-raised-button color="primary" (click)="addFamily()">Add family member</button>
+      <button *ngIf="!isFamilyUser" mat-raised-button color="primary" (click)="addFamily()">Add family member</button>
     </p>
 
     <div formArrayName="families" *ngFor="let fam of families.controls; index as i">
@@ -34,7 +34,7 @@
       </div>
     </div>
       <p>
-        <button mat-raised-button color="primary">Update Family</button>
+        <button mat-raised-button color="primary" *ngIf="!isFamilyUser">Update Family</button>
       </p>
   </form>
 

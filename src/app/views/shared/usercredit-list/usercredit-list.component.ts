@@ -3,11 +3,11 @@ import { Credit } from '../../../models/credit';
 import { CreditService } from '../../../services/credit.service';
 
 @Component({
-  selector: 'app-transaction-list',
-  templateUrl: './transaction-list.component.html',
-  styleUrls: ['./transaction-list.component.scss']
+  selector: 'app-usercredit-list',
+  templateUrl: './usercredit-list.component.html',
+  styleUrls: ['./usercredit-list.component.scss']
 })
-export class TransactionListComponent implements OnInit {
+export class UserCreditListComponent implements OnInit {
   @Input() userDocId: string;
   credits: Credit[];
   balance: number;

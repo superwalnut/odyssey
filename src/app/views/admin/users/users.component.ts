@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../../../models/user';
-import { UserFamily } from '../../../models/user-family';
+import { UserFamily } from '../../../viewmodels/user-family';
 import { AccountService } from '../../../services/account.service';
 
 @Component({
@@ -24,6 +24,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
     this.service.getAllUsers().subscribe((x) => {
       const userFamilies = x.filter(u=>u.parentUserDocId == null).map(m=> {
         return {
+          name: m.name,
           docId : m.docId, 
           user : m, 
           families : x.filter(y=>y.parentUserDocId == m.docId).map(z=>z.name)

@@ -17,6 +17,7 @@ export class ManageFamilyComponent implements OnInit {
   user: User;
   submitted = false;
   loadedFamilies: User[];
+  isFamilyUser:boolean;
 
   constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router) {
 
@@ -31,6 +32,7 @@ export class ManageFamilyComponent implements OnInit {
 
     this.accountService.getUserByDocId(this.userDocId).subscribe(x => {
       this.user = x;
+      this.isFamilyUser = x.parentUserDocId != null;
       console.log('user', this.user);
     });
 
