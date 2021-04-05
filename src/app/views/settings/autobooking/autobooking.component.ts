@@ -22,6 +22,8 @@ import { BookingScheduleService } from "../../../services/booking-schedule.servi
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { BookingSchedule } from "../../../models/booking-schedule";
+import { EventLoggerService } from '../../../services/event-logger.service';
+import { EventLogger } from '../../../models/event-logger';
 
 @Component({
   selector: "app-autobooking",
@@ -121,7 +123,7 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
 })
 export class BookingSchedulerDialog {
   constructor(
-    public dialogRef: MatDialogRef<BookingSchedulerDialog>,
+    public dialogRef: MatDialogRef<BookingSchedulerDialog>, private eventLogService: EventLoggerService,
     @Inject(MAT_DIALOG_DATA) public data: BookingSchedulerDialogData, private helperService: HelperService, private bookingScheduleService: BookingScheduleService, private accountService: AccountService) { }
 
   hasError: boolean;
@@ -191,6 +193,12 @@ export class BookingSchedulerDialog {
 
     this.bookingScheduleService.createBookingSchedule(selectedUsers, this.dayRange.end, this.data.loggedInUser, this.data.group, price)
       .then(() => {
+        let log = {
+          eventCategory: GlobalConstants.eventAutoBooking,
+          notes: price + ' ' + this.data.loggedInUser.name
+        } as EventLogger;
+        this.eventLogService.createLog(log, this.data.loggedInUser.docId, this.data.loggedInUser.name);
+        
         this.dialogRef.close();
       })
       .catch((err) => {

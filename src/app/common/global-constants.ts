@@ -39,8 +39,9 @@ export class GlobalConstants {
     public static rateFamily: number = 14; //1 person charge 15, the rest 14 each
 
     //EVENTS for Audit table
-    public static eventbookingWithdraw: string = "social booking withdraw";
-    public static eventBooking: string = "social booking";
+    public static eventbookingWithdraw: string = "booking withdraw";
+    public static eventBooking: string = "booking";
+    public static eventBookingForSale: string = "booking sale";
     public static eventTopupCredit: string = "credit topup";
     public static eventPasswordChange: string = "password change";
     public static eventProfileChange: string = "profile change";
@@ -49,16 +50,6 @@ export class GlobalConstants {
     public static eventFamilyMember: string = "family member change";
     public static eventWebActivity: string = "login/web activity"; //for user is browsing the website
 
-
-    //Event Logger
-    public static logCategoryBooking: string = "booking";
-    public static logCategoryWithdraw: string = "withdraw";
-    public static logCategorySale: string = "sale"
-    public static logCategoryTopup: string = "topup";
-
-    public static logCategoryLogin: string = "login";
-    public static logCategoryChangepassword: string = "change password";
-    public static logCategoryProfile: string = "update profile";
 
 
 
