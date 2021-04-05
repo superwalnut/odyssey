@@ -507,7 +507,13 @@ export class WithdrawDialog {
 
   markForSaleClicked() {
     this.bookingPersonService.markForSale(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson))
-      .then(() => this.dialogRef.close())
+      .then(() => {
+        let log = {
+          eventCategory: GlobalConstants.eventBookingForSale,
+          notes: this.data.inputBookingPerson.name
+        } as EventLogger;
+        this.eventLogService.createLog(log, this.data.inputBookingPerson.userDocId, this.data.inputBookingPerson.parentUserDisplayName);
+        this.dialogRef.close()})
       .catch((err) => {
         this.hasError = true;
         //errorMessage = err.toString();
