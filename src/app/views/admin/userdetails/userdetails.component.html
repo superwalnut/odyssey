@@ -21,30 +21,9 @@
                   <mat-tab label="Credit Transactions">
                     <app-usercredit-list [userDocId]="userDocId"></app-usercredit-list>
                   </mat-tab>
-                  <mat-tab label="Attendance">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th scope="col">Date</th>
-                          <th scope="col">Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">12/01/2021</th>
-                          <td>Tuesday social</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">11/01/2021</th>
-                          <td>Friday social</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">12/01/2021</th>
-                          <td>Saturday social</td>
-                        </tr>
-                      </tbody>
-                    </table></mat-tab
-                  >
+                  <mat-tab label="Booking History">
+                    <app-attendance-list [userDocId]="userDocId"></app-attendance-list>
+                  </mat-tab>
                 </mat-tab-group>
               </div>
           </div>
