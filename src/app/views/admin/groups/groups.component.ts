@@ -16,7 +16,7 @@ export class GroupsComponent implements OnInit {
   groups: Group[] = [];
   displayedColumns: string[] = [
     //"startDate",
-    "endDate",
+    //"endDate",
     "groupName",
     "committees",
     "isClosed",
