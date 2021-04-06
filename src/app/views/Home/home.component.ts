@@ -24,6 +24,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
   isLoggedIn: boolean;
   myCurrentWeekBookings: BookingPerson[];
   weekStart: Timestamp;
+  hasBooking:boolean;
 
 
   constructor(private bookingPersonService: BookingPersonService, private accountService: AccountService, private groupService: GroupService, private helperService: HelperService) { super() }
@@ -53,7 +54,8 @@ export class HomeComponent extends BaseComponent implements OnInit {
     console.log("getMyCurrentWeekBookings");
     this.bookingPersonService.getCurrentWeekByUserDocId(this.loggedInAccount.docId).subscribe(result => {
       this.myCurrentWeekBookings = result.filter(x => x != null);
-      console.log(this.myCurrentWeekBookings)
+      this.hasBooking = result.length > 0;
+      console.log("xxxxx",this.myCurrentWeekBookings.length)
 
     })
   }

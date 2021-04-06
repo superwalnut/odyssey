@@ -26,9 +26,9 @@
             <p ><b>Address:</b> 2/2 Inglewood Pl, Norwest NSW 2153 <a href="https://g.page/badmintonworx-norwest?share" target="_blank"><i class="material-icons">location_on</i></a></p>
             <p><button mat-raised-button color="accent" routerLink="/groups">Book badminton sessions</button></p>
 
-            <div *ngIf="isLoggedIn">
+            <div *ngIf="isLoggedIn && hasBooking">
               <h3>My Current Bookings</h3>
-              <ul>
+              <ul> 
                 <li *ngFor="let b of myCurrentWeekBookings">
                   <a routerLink="/booking/{{b.bookingDocId}}/{{b.groupDocId}}">{{ b.bookingDesc }} {{ b.userDisplayName}}</a>
                 </li>

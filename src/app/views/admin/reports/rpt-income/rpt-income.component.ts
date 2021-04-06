@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Group } from '../../../../models/group';
 import { GroupService } from "../../../../services/group.service";
 import { AccountService } from "../../../../services/account.service";
@@ -8,8 +8,13 @@ import { GroupsComponent } from '../../../groups/groups.component';
 import { Account } from '../../../../models/account';
 import { GroupTransaction } from '../../../../models/group-transaction';
 import { User } from '../../../../models/user';
+import { GlobalConstants } from '../../../../common/global-constants';
 
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EventLoggerService } from '../../../../services/event-logger.service';
+import { EventLogger } from '../../../../models/event-logger';
+import firebase from 'firebase/app';
+import Timestamp = firebase.firestore.Timestamp;
 
 @Component({
   selector: 'app-rpt-income',
@@ -22,13 +27,12 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
   selectedGroup: Group;
   loggedInAccount: Account;
   transactions: GroupTransaction[];
-  groupExpenseBalance: number;
   groupBalance: number;
   committeeUsers: User[];
   //selectedMode = "income";
 
   constructor(private groupService: GroupService, private groupTransactionService: GroupTransactionService,
-    private accountService: AccountService) { super() }
+    private accountService: AccountService, public dialog: MatDialog) { super() }
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
@@ -70,6 +74,58 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
 
   }
 
+  dividendClicked(){
+    const dialogRef = this.dialog.open(DividendDialog, {
+      width: '650px',
+      data: {
+        loggedInUser: this.loggedInAccount,
+        groupBalance: this.groupBalance,
+        group: this.selectedGroup,
+        committees: this.committeeUsers,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dividend dialog was closed');
+
+    });
+  }
+}
 
 
+@Component({
+  selector: 'dividend-dialog',
+  templateUrl: 'dividend.html',
+})
+export class DividendDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DividendDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DividendDialogData, private eventLogService:EventLoggerService, private accountService: AccountService) { }
+
+  hasError: boolean;
+  errorMessage: string;
+  isLoading: boolean;
+  unitDividend:number;
+
+
+  ngOnInit() {
+    this.unitDividend = this.data.groupBalance / this.data.committees.length;
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  confirmClicked() {
+    
+    this.isLoading = true;
+  }
+}
+
+export interface DividendDialogData {
+  loggedInUser: Account,
+  groupBalance: number;
+  group: Group;
+  committees:User[];
+  
 }
