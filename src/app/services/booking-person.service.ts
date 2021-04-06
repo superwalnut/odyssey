@@ -386,7 +386,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
         createdByDisplayName: credit.createdByDisplayName,
         created: Timestamp.now(),
       } as GroupTransaction;
-      console.log('createBookingPersonBatch service groupTransaction: ', trans);
+      console.log('deleteBatch service groupTransaction: ', trans);
       batch.set(ref, trans);
     });
     batch.commit();
