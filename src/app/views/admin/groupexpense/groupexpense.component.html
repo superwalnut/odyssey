@@ -54,69 +54,13 @@
                 </p>
             </form>
 
+            <a routerLink="/admin/rptincome">View group finance report</a>
+
            
           </div>
         </div>
 
-        <div class="card">
-            <div class="card-body p-4">
-                <h3>Expense History</h3>
-                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-                    <ng-container matColumnDef="startDate">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Start</th>
-                    <td mat-cell *matCellDef="let element">
-                        {{ element.startDate.toDate() | date: "yyyy/MM/dd" }}
-                    </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="endDate">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>End</th>
-                    <td mat-cell *matCellDef="let element">
-                        {{ element.endDate.toDate() | date: "yyyy/MM/dd" }}
-                    </td>
-                    </ng-container>
-
-                
-                    <ng-container matColumnDef="expenseType">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
-                    <td mat-cell *matCellDef="let element">
-                        {{ element.expenseType }}
-                    </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="amount">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
-                    <td mat-cell *matCellDef="let element">{{ element.amount | currency}}</td>
-                    </ng-container>
-                    <ng-container matColumnDef="notes">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Notes</th>
-                        <td mat-cell *matCellDef="let element">{{ element.notes }}</td>
-                    </ng-container>
-
-                    <!-- <ng-container matColumnDef="Action">
-                    <th mat-header-cell *matHeaderCellDef></th>
-                    <td mat-cell *matCellDef="let element">
-                        <button
-                        mat-button
-                        routerLink="/admin/groupexpense/{{ element.docId }}"
-                        >
-                        Edit
-                        </button>
-                        <button
-                        mat-button
-                        routerLink="/admin/groupexpense/{{ element.docId}}"
-                        >
-                        Expense
-                        </button>
-
-                    </td>
-                    </ng-container> -->
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-                </table>
-            </div>
-        </div>
+       
       </div>
     </div>
   </div>

@@ -13,11 +13,14 @@ import { GlobalConstants } from '../../../common/global-constants';
 import { Group } from "../../../models/group";
 import { AccountService } from "../../../services/account.service";
 import { GroupService } from "../../../services/group.service";
-import { GroupExpenseService } from "../../../services/group-expense.service";
+//import { GroupExpenseService } from "../../../services/group-expense.service";
+import { GroupTransactionService } from "../../../services/group-transaction.service";
+import { GroupTransaction } from "../../../models/group-transaction";
 
 import { User } from "../../../models/user";
-import { GroupExpense } from "../../../models/group-expense";
-
+//import { GroupExpense } from "../../../models/group-expense";
+import firebase from 'firebase/app';
+import Timestamp = firebase.firestore.Timestamp;
 
 @Component({
   selector: 'app-groupexpense',
@@ -33,18 +36,18 @@ export class GroupexpenseComponent implements OnInit {
   expenseTypes: string[] = GlobalConstants.groupExpenseTypes;
 
   groups: Group[] = [];
-  displayedColumns: string[] = [
-    "startDate",
-    "endDate",
-    "expenseType",
-    "amount",
-    "notes",
-  ];
-  dataSource = new MatTableDataSource<GroupExpense>();
-  @ViewChild(MatSort) sort: MatSort;
+  // displayedColumns: string[] = [
+  //   "startDate",
+  //   "endDate",
+  //   "expenseType",
+  //   "amount",
+  //   "notes",
+  // ];
+  // dataSource = new MatTableDataSource<GroupExpense>();
+  // @ViewChild(MatSort) sort: MatSort;
 
 
-  constructor(private fb: FormBuilder, private groupExpenseService: GroupExpenseService, private groupService: GroupService, private accountService: AccountService, private snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private fb: FormBuilder, private groupTransactionService:GroupTransactionService, private groupService: GroupService, private accountService: AccountService, private snackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -67,13 +70,8 @@ export class GroupexpenseComponent implements OnInit {
       notes: ["", Validators.required],
     });
 
-    this.getExpenseByGroupDocId(this.groupDocId);
+    //this.getExpenseByGroupDocId(this.groupDocId);
   }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-  }
-
 
   onSubmit() {
     this.submitted = true;
@@ -82,66 +80,54 @@ export class GroupexpenseComponent implements OnInit {
       return false;
     }
 
-    var expense = {
+    // var expense = {
+    //   groupDocId: this.groupDocId,
+    //   startDate: this.form.value.startDate,
+    //   endDate: this.form.value.endDate,
+    //   expenseType: this.form.value.expenseType,
+    //   amount: -this.form.value.amount,
+    //   notes: this.form.value.notes,
+    //   createdByDisplayName: this.loggedInUser.name,
+    // } as GroupExpense;
+
+    var expenseTrans = {
+
       groupDocId: this.groupDocId,
+      notes: this.form.value.expenseType + ': ' + this.form.value.notes,
+      paymentMethod: GlobalConstants.paymentExpense,
+      amount: -this.form.value.amount,
       startDate: this.form.value.startDate,
       endDate: this.form.value.endDate,
-      expenseType: this.form.value.expenseType,
-      amount: -this.form.value.amount,
-      notes: this.form.value.notes,
+      created: Timestamp.now(),
+      createdBy: this.loggedInUser.docId,
       createdByDisplayName: this.loggedInUser.name,
-    } as GroupExpense;
+    } as GroupTransaction;
 
-    console.log(expense);
+    console.log(expenseTrans);
 
-    this.groupExpenseService.createGroupExpense(expense, this.loggedInUser.docId).then((x) => {
+    this.groupTransactionService.createGroupTransaction(expenseTrans).then((x)=>{
       this.form.reset();
       this.snackBar.open(`Expense has been created.`, null, {
         duration: 5000,
         verticalPosition: "top"
       })
-
     });
 
+    // this.groupExpenseService.createGroupExpense(expense, this.loggedInUser.docId).then((x) => {
+    //   this.form.reset();
+    //   this.snackBar.open(`Expense has been created.`, null, {
+    //     duration: 5000,
+    //     verticalPosition: "top"
+    //   })
 
-    // if (this.groupDocId) {
-    //   console.log("expense has doc id");
-    //   expense.docId = this.groupDocId;
-    //   expense.updatedBy = this.loggedInUser.docId;
-
-    //   //this.groupService.updateGroup(this.groupDocId, expense);
-    // } else {
-    //   console.log("expense has no doc id");
-    //   //expense.createdBy = this.loggedInUser.docId;
-    //   this.groupExpenseService.createGroupExpense(expense, this.loggedInUser.docId).then((x) => {
-    //     this.snackBar.open(`Expense has been created.`, null, {
-    //       duration: 5000,
-    //       verticalPosition: "top"
-    //     })
-
-    //   });
-    // }
-    //this.router.navigate(["/admin/groups"]);
+    // });
   }
 
-  getExpenseByGroupDocId(groupDocId: string) {
-    this.groupExpenseService.getByGroupDocId(groupDocId).subscribe(x => {
-      this.dataSource.data = x;
-    });
-  }
-
-  getByDocId(docId: string) {
-    // if (this.groupDocId) {
-    //   this.groupService.getGroup(this.groupDocId).subscribe((x) => {
-    //     this.form.patchValue({
-    //       startDate: x.startDate.toDate(),
-    //       endDate: x.endDate.toDate(),
-    //       expenseType: x.,
-    //     });
-
-    //   });
-    // }
-  }
+  // getExpenseByGroupDocId(groupDocId: string) {
+  //   this.groupExpenseService.getByGroupDocId(groupDocId).subscribe(x => {
+  //     this.dataSource.data = x;
+  //   });
+  // }
 
 
   get f() {

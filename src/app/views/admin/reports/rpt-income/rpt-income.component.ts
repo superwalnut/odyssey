@@ -7,8 +7,6 @@ import { BaseComponent } from '../../../base-component';
 import { GroupsComponent } from '../../../groups/groups.component';
 import { Account } from '../../../../models/account';
 import { GroupTransaction } from '../../../../models/group-transaction';
-import { GroupExpense } from '../../../../models/group-expense';
-import { GroupExpenseService } from '../../../../services/group-expense.service';
 
 
 
@@ -23,13 +21,12 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
   selectedGroup: Group;
   loggedInAccount: Account;
   transactions: GroupTransaction[];
-  expenses: GroupExpense[];
   groupExpenseBalance: number;
   groupBalance: number;
-  selectedMode = "income";
+  //selectedMode = "income";
 
   constructor(private groupService: GroupService, private groupTransactionService: GroupTransactionService,
-    private accountService: AccountService, private groupExpenseService: GroupExpenseService) { super() }
+    private accountService: AccountService) { super() }
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
@@ -48,17 +45,11 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
     let isCommittee = this.selectedGroup.committees.find(x => x == this.loggedInAccount.docId);
     if (!isCommittee) { alert("you are not a committee of this group"); return false; }
 
-    console.log(this.selectedMode);
-    if (this.selectedMode == "income") {
-      this.getIncomeReport();
-    }
-    else {
-      this.getExpenseReport();
-    }
+    this.getGroupTransactionReport();
   }
 
 
-  getIncomeReport() {
+  getGroupTransactionReport() {
     this.groupTransactionService.getByGroupDocId(this.selectedGroup.docId).subscribe(gts => {
       this.transactions = gts;
       console.log(gts)
@@ -71,17 +62,6 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
 
   }
 
-  getExpenseReport() {
-    this.groupExpenseService.getByGroupDocId(this.selectedGroup.docId).subscribe(gts => {
-      this.expenses = gts;
-      console.log(gts)
-    })
-
-    this.groupExpenseService.getBalance(this.selectedGroup.docId).subscribe(balance => {
-      this.groupExpenseBalance = -balance;
-      console.log(balance)
-    })
-  }
 
 
 }

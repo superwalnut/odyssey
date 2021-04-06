@@ -10,16 +10,16 @@
                 <mat-option *ngFor="let g of groups" [value]="g">{{ g.groupName}}</mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <!-- <mat-form-field appearance="fill">
               <mat-label>Income/Expense</mat-label>
               <mat-select [(ngModel)]="selectedMode">
                 <mat-option value="income">Income</mat-option>
                 <mat-option value="expense">Expense</mat-option>
               </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
             <button mat-raised-button color="primary" (click)="viewClicked()">View</button>
 
-            <div *ngIf="selectedMode=='income'">
+            <div>
               <h2>Income Balance <span class="badge badge-light ">{{ groupBalance | currency }}</span></h2>
               <table class="table table-sm">
                 <thead>
@@ -42,7 +42,7 @@
                 </tbody>
               </table>
             </div>
-            <div *ngIf="selectedMode=='expense'">
+            <!-- <div *ngIf="selectedMode=='expense'">
               <h2>Expense Balance <span class="badge badge-light ">{{ groupExpenseBalance | currency }}</span></h2>
               <table class="table table-sm">
                 <thead>
@@ -62,7 +62,7 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
+            </div> -->
 
   
             

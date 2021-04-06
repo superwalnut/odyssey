@@ -11,7 +11,8 @@ export class GroupTransaction {
     notes: string; //description of this transaction
     amount:number;
     paymentMethod:string; //credit|cash|bank|adjusted
-
+    startDate: Timestamp; //moved from GroupExpense
+    endDate: Timestamp; //moved from GroupExpense
     created: Timestamp;
     createdBy: string;
     createdByDisplayName: string;
