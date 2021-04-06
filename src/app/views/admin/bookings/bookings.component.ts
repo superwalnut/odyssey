@@ -30,6 +30,7 @@ export class BookingsComponent implements OnInit {
   myDocId: string;
   group: Group;
   groupDocId: string;
+  bookings: Booking[];
   //selectedGroupDocId: string;
   displayedColumns: string[] = [
     "date",
@@ -63,6 +64,14 @@ export class BookingsComponent implements OnInit {
 
   createBookingClicked() {
     console.log(this.selectedFutureDate);
+    let ts = this.helpService.convertToTimestamp(this.selectedFutureDate);
+
+    let found = this.bookings.find(b=> this.helpService.compareDates(b.eventStartDateTime, ts));
+    if (found) {
+      alert('Booking with same date already existed! Create booking Aborted.');
+      return false;
+    }
+    console.log('compare dates: ', found)
     if (!this.selectedFutureDate) return false;
     if (confirm("Are you sure to start a new booking - 接龙? " + this.selectedFutureDate)) {
       this.createEmptyBooking();
@@ -121,6 +130,7 @@ export class BookingsComponent implements OnInit {
   getBookingsByGroupDocId(groupDocId: string) {
     this.bookingService.getByGroupDocId(groupDocId).subscribe(bookings => {
       this.dataSource.data = bookings;
+      this.bookings = bookings;
     });
   }
 

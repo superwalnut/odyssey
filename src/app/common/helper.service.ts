@@ -16,6 +16,11 @@ export class HelperService {
     return new Date();
   }
 
+  compareDates(d1:Timestamp, d2:Timestamp) {
+   
+    //console.log(d1.toDate().setHours(0,0,0,0) == d2.toDate().setHours(0,0,0,0));
+    return d1.toDate().setHours(0,0,0,0) == d2.toDate().setHours(0,0,0,0);
+  }
   //DAY FORMAT: 2021-01-01, TIME format 20:00 (24hours)
   combinDateAndTime(day: string, time: string) {
 

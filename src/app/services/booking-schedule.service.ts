@@ -60,7 +60,7 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
 
   //return array of UserDocIds. ie ['xxxxx','yyyyy']
   getBookingSchedulesByGroupDocIdInUserIdArray(groupDocId: string) {
-    return this.firestore.collection('bookingSchedules', q => q.where('groupDocId', '==', groupDocId)).snapshotChanges().pipe(
+    return this.firestore.collection('bookingSchedules', q => q.where('groupDocId', '==', groupDocId).where('isPaused', '==', false)).snapshotChanges().pipe(
       map(actions => {
         const ids = actions.map(p => (p.payload.doc.data() as BookingSchedule).userDocId);
         return ids;
