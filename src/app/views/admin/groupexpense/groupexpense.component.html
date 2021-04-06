@@ -3,13 +3,14 @@
       <div class="col-md-12 mx-auto">
         <div class="card">
           <div class="card-body p-4">
-            <h1>Group Expense</h1>
-            <h3>Log a new expense for this group (ie. court hire, shuttle purchase)</h3>
+            <h1>Group Adjustment</h1>
+            <h3>Log a new expense or income for this group (ie. court hire, shuttle purchase, donation)</h3>
+            <h4>Enter negative number for expenses, positive number for income</h4>
   
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 
                 <mat-form-field appearance="fill">
-                    <mat-label>Expense types</mat-label>
+                    <mat-label>Adjustment types</mat-label>
                     <mat-select  formControlName="expenseType" required>
                       <mat-option *ngFor="let type of expenseTypes" [value]="type">{{type}}</mat-option>
                     </mat-select>

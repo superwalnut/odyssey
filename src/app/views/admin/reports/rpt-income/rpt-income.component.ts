@@ -117,7 +117,8 @@ export class DividendDialog {
   }
 
   confirmClicked() {
-    
+    // substract total balance from groupTransaction table.
+    // add credit to each committee
     this.isLoading = true;
   }
 }

@@ -90,12 +90,12 @@ export class GroupexpenseComponent implements OnInit {
     //   createdByDisplayName: this.loggedInUser.name,
     // } as GroupExpense;
 
-    var expenseTrans = {
+    var groupAdjustmentTrans = {
 
       groupDocId: this.groupDocId,
       notes: this.form.value.expenseType + ': ' + this.form.value.notes,
-      paymentMethod: GlobalConstants.paymentExpense,
-      amount: -this.form.value.amount,
+      paymentMethod: GlobalConstants.paymentGroupAdjust,
+      amount: this.form.value.amount,
       startDate: this.form.value.startDate,
       endDate: this.form.value.endDate,
       created: Timestamp.now(),
@@ -103,11 +103,11 @@ export class GroupexpenseComponent implements OnInit {
       createdByDisplayName: this.loggedInUser.name,
     } as GroupTransaction;
 
-    console.log(expenseTrans);
+    console.log(groupAdjustmentTrans);
 
-    this.groupTransactionService.createGroupTransaction(expenseTrans).then((x)=>{
+    this.groupTransactionService.createGroupTransaction(groupAdjustmentTrans).then((x)=>{
       this.form.reset();
-      this.snackBar.open(`Expense has been created.`, null, {
+      this.snackBar.open(`Group adjustment has been created.`, null, {
         duration: 5000,
         verticalPosition: "top"
       })
