@@ -28,8 +28,8 @@ export class GlobalConstants {
 
     //Auto Booking
     public static autoBookingRates = [
-        { name: '2 months ($5)', value: 60, price: 5, desc: '2 months auto booking for $5' },
-        { name: '6 months ($10)', value: 180, price: 10, desc: '6 months auto booking for $10' },
+        { name: '3 months ($5)', value: 91, price: 5, desc: '3 months auto booking for $5' },
+        { name: '6 months ($9)', value: 182, price: 9, desc: '6 months auto booking for $9' },
     ]
 
 
