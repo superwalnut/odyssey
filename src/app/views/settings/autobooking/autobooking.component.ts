@@ -38,6 +38,7 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
   mySchedules: BookingSchedule[];
   hasCredit: boolean;
   myCreditBalance: number;
+  miniumCreditRequired = GlobalConstants.autoBookingMiniumCreditRequired
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialog, public dialog: MatDialog, private creditService: CreditService,
     private bookingScheduleService: BookingScheduleService, private helperService: HelperService, private groupService: GroupService, private accountService: AccountService) { super() }
@@ -61,7 +62,7 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
   getMyCreditBalance() {
     this.creditService.getBalance(this.loggedInAccount.docId).subscribe(result => {
       this.myCreditBalance = result;
-      this.hasCredit = this.myCreditBalance > 0;
+      this.hasCredit = this.myCreditBalance >= GlobalConstants.autoBookingMiniumCreditRequired;
       console.log('credit balance: ', this.hasCredit);
       //this.hasCredit = true;
     })
