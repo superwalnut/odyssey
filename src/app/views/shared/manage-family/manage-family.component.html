@@ -1,9 +1,9 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h1>Manage Family</h1>
-    <p class="text-muted mb-3 text-right">
-      <button *ngIf="!isFamilyUser" mat-raised-button color="primary" (click)="addFamily()">Add family member</button>
-    </p>
+<h1>Manage Family</h1>
+<p class="text-muted mb-3 text-right">
+  <button *ngIf="!isFamilyUser" mat-raised-button color="primary" (click)="addFamily()">Add family member</button>
+</p>
 
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div formArrayName="families" *ngFor="let fam of families.controls; index as i">
       <div [formGroupName]="i" class="form-row align-items-center mb-3">
         <div class="col-sm-6 my-1">
