@@ -41,6 +41,7 @@ export class GroupsComponent implements OnInit {
   getAllGroups() {
     this.groupService.getGroups().subscribe((x) => {
       this.dataSource.data = x;
+    
     });
   }
 }

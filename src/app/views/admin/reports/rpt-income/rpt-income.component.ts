@@ -7,6 +7,7 @@ import { BaseComponent } from '../../../base-component';
 import { GroupsComponent } from '../../../groups/groups.component';
 import { Account } from '../../../../models/account';
 import { GroupTransaction } from '../../../../models/group-transaction';
+import { User } from '../../../../models/user';
 
 
 
@@ -23,6 +24,7 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
   transactions: GroupTransaction[];
   groupExpenseBalance: number;
   groupBalance: number;
+  committeeUsers: User[];
   //selectedMode = "income";
 
   constructor(private groupService: GroupService, private groupTransactionService: GroupTransactionService,
@@ -45,10 +47,16 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
     let isCommittee = this.selectedGroup.committees.find(x => x == this.loggedInAccount.docId);
     if (!isCommittee) { alert("you are not a committee of this group"); return false; }
 
+    this.getCommittees();
     this.getGroupTransactionReport();
   }
 
 
+  getCommittees() {
+    this.accountService.getUsersByUserDocIds(this.selectedGroup.committees).subscribe(result=>{
+      this.committeeUsers = result;
+    })
+  }
   getGroupTransactionReport() {
     this.groupTransactionService.getByGroupDocId(this.selectedGroup.docId).subscribe(gts => {
       this.transactions = gts;

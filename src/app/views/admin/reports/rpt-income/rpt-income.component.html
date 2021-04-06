@@ -21,6 +21,12 @@
 
             <div>
               <h2>Income Balance <span class="badge badge-light ">{{ groupBalance | currency }}</span></h2>
+
+              <ul class="simple-horizontal-list" *ngIf="committeeUsers">
+                <li>Committees: </li>
+                <li *ngFor="let u of committeeUsers">{{ u.name }}, </li>
+                <li><button mat-raised-button color="accent">Dividend...</button></li>
+              </ul>
               <table class="table table-sm">
                 <thead>
                   <tr>
