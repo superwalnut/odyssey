@@ -527,14 +527,15 @@ export class WithdrawDialog {
 
     var bp = {
       docId: lbu.docId,
-      // bookingDocId: this.data.booking.docId,
-      // groupDocId: this.data.group.docId,
-      // bookingDesc: this.data.group.groupName,
+      bookingDocId: this.data.booking.docId,
+      groupDocId: this.data.group.docId,
+      bookingDesc: this.data.group.groupName,
       userId: lbu.userDocId,
       userDisplayName: lbu.name,
       amount: lbu.amount,
       parentUserId: this.data.loggedInUser.docId,
       parentUserDisplayName: this.data.loggedInUser.name,
+      paymentMethod: lbu.paymentMethod,
       // paymentMethod: this.data.hasCredit ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
       // isPaid:true,
     } as BookingPerson;
