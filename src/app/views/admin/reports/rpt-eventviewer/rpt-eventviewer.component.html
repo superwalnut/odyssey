@@ -8,32 +8,20 @@
             <thead>
                 <tr>
                 <th scope="col">Date</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Payment</th>
-
-                <th scope="col">Session</th>
-
-                <th scope="col">Notes</th>
-                <th scope="col">For sale</th>
-
+                <th scope="col">Category</th>
+                <th scope="col">Description</th>
                 <th scope="col">User</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let u of bps">
-                <td scope="row">{{ u.createdOn.toDate() | date:'dd/MM/yyyy hh:mm'}}</td>
-                <td scope="row">{{ u.amount | currency}} </td>
-                <td scope="row">{{ u.paymentMethod }}</td>
+                <tr *ngFor="let log of logs">
+                <td scope="row">{{ log.createdOn.toDate() | date:'dd/MM/yyyy hh:mm'}}</td>
+                <td scope="row">{{ log.eventCategory }} </td>
+                <td scope="row">{{ log.notes }}</td>
 
-                <td scope="row">{{ u.bookingDesc }}</td>
+                <td scope="row">{{ log.createdByDisplayName }}</td>
 
-                <td scope="row">{{ u.notes }}</td>
-                <td scope="row">{{ u.isForSale }}</td>
-
-                <td scope="row">
-                    <a routerLink="/admin/userdetails/{{u.userId}}">{{ u.userDisplayName }}</a>
-                    (<a routerLink="/admin/userdetails/{{u.parentUserId}}">{{ u.parentUserDisplayName }}</a>)
-                </td>
+            
                 </tr>
             </tbody>
             </table>
