@@ -89,21 +89,28 @@ export class BookingsComponent implements OnInit {
       isLocked: true, //new booking default to locked, need God manually open it. for extra layer of control
     } as Booking;
 
+    console.log(booking)
     this.bookingService.createBooking(booking).then(bookingDocId => {
       console.log(bookingDocId);
       var autoBookingPersons = this.mapUsersToBookingPerson(this.autoBookingUsers, this.group.docId, bookingDocId);
       console.log('booking persons ready for insert: ', autoBookingPersons);
-      this.bookingPersonService.createBookingPersonBatch(autoBookingPersons);
+      if (autoBookingPersons.length > 0) {
+        this.bookingPersonService.createBookingPersonBatch(autoBookingPersons);
+      }
+      
     });
   }
 
   getAutoBookingUsers(groupDocId: string) {
     this.bookingScheduleService.getBookingSchedulesByGroupDocIdInUserIdArray(groupDocId).subscribe(userIds => {
       console.log('addAutoBookingUsers', userIds);
-      this.accountService.getUsersByUserDocIds(userIds).subscribe(result => {
-        this.autoBookingUsers = result;
-        console.log('auto booking users: ', result);
-      })
+      if (userIds.length > 0) {
+        this.accountService.getUsersByUserDocIds(userIds).subscribe(result => {
+          this.autoBookingUsers = result;
+          console.log('auto booking users: ', result);
+        })
+      }
+      
     })
   }
 
@@ -136,6 +143,7 @@ export class BookingsComponent implements OnInit {
 
   mapUsersToBookingPerson(users: User[], groupDocId: string, bookingDocId: string) {
     var bookingpersons: BookingPerson[] = [];
+    if (!users || users.length == 0) {return bookingpersons;}
 
     console.log("users original input: ", users);
     console.log("users length: ", users.length);
