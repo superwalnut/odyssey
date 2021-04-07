@@ -16,4 +16,5 @@ export class User {
     created: Timestamp;
     updated: Timestamp;
     status: string;
+    grade: string;
 }
