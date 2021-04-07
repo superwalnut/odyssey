@@ -25,7 +25,7 @@
               <ul class="simple-horizontal-list" *ngIf="committeeUsers">
                 <li>Committees: </li>
                 <li *ngFor="let u of committeeUsers">{{ u.name }}, </li>
-                <li><button mat-raised-button color="accent" (click)="dividendClicked()">Dividend...</button></li>
+                <li><button mat-raised-button color="accent" *ngIf="isGod" (click)="dividendClicked()">Dividend...</button></li>
               </ul>
               <table class="table table-sm">
                 <thead>

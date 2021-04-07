@@ -23,6 +23,7 @@ import Timestamp = firebase.firestore.Timestamp;
 })
 export class RptIncomeComponent extends BaseComponent implements OnInit {
 
+  isGod:boolean;
   groups: Group[];
   selectedGroup: Group;
   loggedInAccount: Account;
@@ -36,6 +37,8 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
+    this.isGod = this.accountService.isGod();
+
     this.getGroups();
   }
 
