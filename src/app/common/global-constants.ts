@@ -38,7 +38,7 @@ export class GlobalConstants {
     //Price, Rates
     public static rateCash: number = 18;
     public static rateCredit: number = 15;
-    public static rateFamily: number = 14; //1 person charge 15, the rest 14 each
+    public static rateFamily: number = 15; //1 person charge 15, the rest 14 each
 
     //EVENTS for Audit table
     public static eventbookingWithdraw: string = "booking withdraw";
