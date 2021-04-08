@@ -58,7 +58,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
     var groupTrans = {
       groupDocId: groupDocId,
       amount: -netProfit, 
-      notes: 'dividend',
+      notes: 'dividend to committee',
       paymentMethod: 'Dividend',
       created: Timestamp.now(),
       createdBy: operatorUserId,
