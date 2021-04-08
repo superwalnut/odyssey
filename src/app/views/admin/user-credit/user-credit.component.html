@@ -55,7 +55,7 @@
               <tbody>
                 <tr *ngFor="let c of credits">
                   <td>{{ c.created.toDate() | date: 'dd/MM/yyyy HH:mm'}}</td>
-                  <td>{{ c.notes}}</td>
+                  <td>{{ c.note}}</td>
                   <td>{{ c.amount | currency}}</td>
                 </tr>
               </tbody>

@@ -51,6 +51,8 @@ export class GlobalConstants {
     public static eventAutoBookingCancel: string = "auto booking schedule cancel";
     public static eventFamilyMember: string = "family member change";
     public static eventWebActivity: string = "login/web activity"; //for user is browsing the website
+    public static eventDividend: string = "grouop devidend"; //for user is browsing the website
+
 
 
 

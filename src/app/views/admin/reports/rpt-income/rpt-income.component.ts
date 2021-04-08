@@ -103,7 +103,7 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
 export class DividendDialog {
   constructor(
     public dialogRef: MatDialogRef<DividendDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DividendDialogData, private eventLogService:EventLoggerService, private accountService: AccountService) { }
+    @Inject(MAT_DIALOG_DATA) public data: DividendDialogData, private eventLogService:EventLoggerService, private groupTransactionService:GroupTransactionService, private accountService: AccountService) { }
 
   hasError: boolean;
   errorMessage: string;
@@ -120,9 +120,15 @@ export class DividendDialog {
   }
 
   confirmClicked() {
-    // substract total balance from groupTransaction table.
-    // add credit to each committee
     this.isLoading = true;
+
+    this.groupTransactionService.allocateDividend(this.data.group.docId, this.data.group.groupName, this.data.groupBalance, this.data.committees, this.data.loggedInUser.docId, this.data.loggedInUser.name)
+    .then(() => this.dialogRef.close())
+        .catch((err) => {
+          this.hasError = true;
+          alert(err);
+          console.log(err);
+        });
   }
 }
 
