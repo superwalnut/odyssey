@@ -279,9 +279,13 @@ nav {
 
   .hero-section {
     min-height:200px;
+    padding: 10px 20px;
 
     .left{
       display: none;
+    }
+    .right{
+      width:100%;
     }
   
   

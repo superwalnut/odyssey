@@ -23,7 +23,6 @@
             <p class="hero">Life is a game,<br/> badminton is serious!</p>
           </div>
           <div class="right">
-            <p ><b>Address:</b> 2/2 Inglewood Pl, Norwest NSW 2153 <a href="https://g.page/badmintonworx-norwest?share" target="_blank"><i class="material-icons">location_on</i></a></p>
             <p><button mat-raised-button color="accent" routerLink="/groups">Book badminton sessions</button></p>
 
             <div *ngIf="isLoggedIn && hasBooking">
@@ -47,10 +46,11 @@
       <div class="col">
 
           <div class="homepage-intro">
-            <h2>HBC <img src="./assets/img/banners/love.png" width="28"> Badmintonworx Norwest</h2>
+            <h2>HBC <img src="./assets/img/banners/love.png" width="28"> Badmintonworx Norwest 
+              <a href="https://g.page/badmintonworx-norwest?share" target="_blank"><img src="./assets/img/banners/mapicon.png" width="30"/></a></h2>
             <h3>We run 3 badminton social sessions a week, 3 hours per session</h3>
 
-            <!-- <h2 class="section-heading">
+            <!-- <h2 class="section-heading"> 
               WEEK <span class="badge badge-dark">{{weekStart.toDate() | date:'dd/MM/yyyy'}}</span> BADMINTON SESSIONS
             </h2> -->
 
@@ -67,6 +67,7 @@
               <a href="https://www.facebook.com/groups/hbchome" target="_blank"><img src="./assets/img/banners/f_logo_RGB-Blue_72.png"/></a>
               <a href="https://www.youtube.com/channel/UCuMYy7h9al0UXcsTS6DG63A" target="_blank"><img src="./assets/img/banners/youtube_social_circle_red.png"/></a>
               <a href="mailto:hbc666.club@gmail.com" target="_blank"><img src="./assets/img/banners/gmailicon.png"/></a>
+              <a href="https://g.page/badmintonworx-norwest?share" target="_blank"><img src="./assets/img/banners/mapicon.png"/></a>
               <img src="./assets/img/banners/wechat.png"/>
             </div>
 
@@ -148,6 +149,9 @@
     <span>&copy; 2021.</span>
   </div>
   <div class="ml-auto">
-    <a routerLink="/termsconditions">Terms & Conditions</a>
+    <p ><b>Address:</b> 2/2 Inglewood Pl, Norwest NSW 2153 <a href="https://g.page/badmintonworx-norwest?share" target="_blank"><i class="material-icons">location_on</i></a></p>
+
+    <a routerLink="/termsconditions">FAQs</a>
   </div>
 </footer>
+ 

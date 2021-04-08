@@ -4,16 +4,21 @@
   <div class="container">
     <div class="row light">
       <div class="col">
-        <h1 class="section-heading">Bookings</h1>
+        <h2 class="section-heading"> {{ group?.groupName}} {{ group?.eventStartTime}} {{ booking?.eventStartDateTime.toDate() | date: 'dd/MM/yyyy'}} </h2>
+
+        <!-- <h1 class="section-heading">Bookings</h1> -->
         <!-- <button mat-raised-button color="warn" (click)="testClick()">test</button> -->
       </div>
     </div>
 
     <div class="row light">
       <div class="col-sm">
-        <section>           
-          <h3> {{ group?.groupName}} {{ group?.eventStartTime}} {{ booking?.eventStartDateTime.toDate() | date: 'yyyy/MM/dd'}} [Seats: {{group?.seats}}]</h3>
-          <p>Status: {{ booking?.isLocked ? 'Locked':'Open'}}</p>
+        <section> 
+          <ul class="simple-horizontal-list">
+            <li><h3>Seats   {{group?.seats}}</h3></li>
+            <li><span class="material-icons" title="{{ booking?.isLocked ? 'Booking Locked': 'Booking is open'}}">{{ booking?.isLocked ? 'lock':'lock_open'}}</span></li>
+          </ul>
+          
           <table class="table table-hover table-dark booking">
             <thead>
               <tr>
