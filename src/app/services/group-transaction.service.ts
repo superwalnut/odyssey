@@ -85,7 +85,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
     var ref = this.firestore.collection('eventLogs').doc().ref;
     var log = {
       eventCategory: GlobalConstants.eventDividend,
-      notes: '',
+      notes: groupName + ' ' + netProfit + ', ' + committees.length + ' committees',
       createdOn: Timestamp.now(),
       createdBy: operatorUserId,
       createdByDisplayName: operatorUserDisplayName,
