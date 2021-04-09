@@ -4,7 +4,12 @@
   <div class="container">
     <div class="row light">
       <div class="col">
-        <h2 class="section-heading"> {{ group?.groupName}} {{ group?.eventStartTime}} {{ booking?.eventStartDateTime.toDate() | date: 'dd/MM/yyyy'}} </h2>
+        <h2 class="section-heading"> {{ group?.groupName}} 
+          <mat-icon>event</mat-icon> {{ booking?.eventStartDateTime.toDate() | date: 'dd/MM/yyyy'}}
+          <mat-icon>access_time</mat-icon> {{ group?.eventStartTime}} 
+          <mat-icon>location_on</mat-icon> <a href="https://g.page/badmintonworx-norwest?share" target="_blank">Norwest</a>
+        </h2>
+          
 
         <!-- <h1 class="section-heading">Bookings</h1> -->
         <!-- <button mat-raised-button color="warn" (click)="testClick()">test</button> -->

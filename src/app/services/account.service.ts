@@ -215,6 +215,7 @@ export class AccountService extends FirestoreBaseService<User>{
       map(actions => {
         return actions.map(p => {
           var user = p.payload.doc.data() as User;
+          user.password = '';
           console.log("getUsersByUserDocIds user: ", user);
           return { ...user, docId: p.payload.doc.id } as User;
         });
