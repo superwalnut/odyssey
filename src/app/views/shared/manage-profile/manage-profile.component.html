@@ -1,5 +1,8 @@
+
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <h1>Update Profile</h1>
+    <h1>Update Profile <span class="badge badge-success"> {{ user.isCreditUser ? 'Credit User' : 'Cash User'}}</span></h1>
+
+
     <p class="text-muted">Profile</p>
     <div class="input-group mb-3">
       <mat-form-field>
@@ -53,6 +56,11 @@
     <div class="input-group mb-3" *ngIf="isAdmin">
       <mat-checkbox formControlName="isMember">Is Member</mat-checkbox>
     </div>
+
+
+   
+
+
     <p>
       <button mat-raised-button color="primary">Update</button>
     </p>

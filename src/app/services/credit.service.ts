@@ -2,10 +2,16 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import firebase from 'firebase/app';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
+import { combineLatest, forkJoin, of } from 'rxjs';
+
 import { Credit } from '../models/credit';
 import { User } from '../models/user';
 import { AccountService } from './account.service';
+import { EventLoggerService } from './event-logger.service';
+import { EventLogger } from "../models/event-logger";
+import { GlobalConstants } from '../common/global-constants';
+
 import { FirestoreBaseService } from './firestore-base.service';
 import Timestamp = firebase.firestore.Timestamp;
 
@@ -14,15 +20,30 @@ import Timestamp = firebase.firestore.Timestamp;
 })
 export class CreditService extends FirestoreBaseService<Credit>{
 
-  constructor(private firestore: AngularFirestore, private accountService: AccountService) {
+  constructor(private firestore: AngularFirestore, private eventLoggerService: EventLoggerService, private accountService: AccountService) {
     super(firestore.collection('credits'));
   }
 
   public createCredit(credit: Credit) {
     console.log('create credit: ', credit);
     if (!credit.userDocId) return Promise.reject('no user is provided');
+
+    var batch = this.firestore.firestore.batch();
+    var ref = this.firestore.collection('credits').doc().ref;
     credit.created = Timestamp.now();
-    return this.create(credit);
+    batch.set(ref, credit);
+
+    var ref = this.firestore.collection('eventLogs').doc().ref;
+    var log = {
+      eventCategory: GlobalConstants.eventTopupCredit,
+      notes: credit.userDisplayName + ' ' + credit.amount,
+      createdOn: Timestamp.now(),
+      createdBy: credit.createdBy,
+      createdByDisplayName: credit.createdByDisplayName,
+    } as EventLogger;
+    batch.set(ref, log);
+
+    return batch.commit();
   }
   //  public createCredit(credit:Credit, previousBalance:number, createdBy:string, createdByDisplayName:string) {
   //   if(credit.userDocId){
@@ -59,6 +80,22 @@ export class CreditService extends FirestoreBaseService<Credit>{
     //   return sum;
     // }));
   }
+
+  // public getUserAndBalance(userDocId: string) {
+  //   return this.firestore.collection('users', q => q.where(firebase.firestore.FieldPath.documentId(), '==', userDocId).limit(1)).snapshotChanges().pipe(
+  //     mergeMap(result => {
+  //       var user = result.pay.doc.data() as Credit;
+
+  //       var balance = this.getBalance(userDocId);
+  //       return combineLatest([of(user), balance]);
+  //     }),
+  //     // map(([user, balance]) => {
+  //     //   console.log('this user', user);
+  //     //   console.log('balance', balance);
+  //     // })
+  //   );
+
+  //}
 
   public getByUser(userDocId: string) {
     console.log(userDocId);

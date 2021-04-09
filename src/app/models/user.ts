@@ -8,7 +8,7 @@ export class User {
     password: string;
     mobile: string;
     parentUserDocId: string;
-    parentUserDisplayName:string;
+    parentUserDisplayName: string;
     role: string[];
     gender: string;
     isChild: boolean;
@@ -17,4 +17,5 @@ export class User {
     updated: Timestamp;
     status: string;
     grade: string;
+    isCreditUser: boolean;
 }

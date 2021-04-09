@@ -92,6 +92,11 @@ export class UserCreditComponent implements OnInit {
 
     this.creditService.createCredit(credit).then(x => {
       this.mailService.sendTopupSucceed(this.user.email, this.user.name, credit.amount);
+      if (!this.user.isCreditUser && credit.amount >= 100) {
+        this.user.isCreditUser = true;
+        this.accountService.updateUser(this.userDocId, this.user);
+      }
+
     });
 
     // this.creditService

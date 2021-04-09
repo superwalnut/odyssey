@@ -23,6 +23,8 @@ import { map, mergeMap } from 'rxjs/operators';
 import { features } from 'node:process';
 import { EventLoggerService } from '../../services/event-logger.service';
 import { EventLogger } from '../../models/event-logger';
+import { User } from '../../models/user';
+import { combineLatest } from 'rxjs';
 
 
 @Component({
@@ -35,10 +37,12 @@ export class BookingComponent extends BaseComponent implements OnInit {
   group: Group;
   booking: Booking;
   bookingDocId: string;
+  user: User;
   groupDocId: string;
   bookingPerons: BookingPerson[];
   totalAmount: number;
-  hasCredit: boolean;
+  creditBalance: number;
+  isCreditUser: boolean;
   isCommittee: boolean;
   allLocalBookingUsers: LocalBookingUser[] = [];
   familyBookingUsers: LocalBookingUser[] = [];
@@ -49,23 +53,26 @@ export class BookingComponent extends BaseComponent implements OnInit {
   isSeatsLeft: boolean;
 
 
-  constructor(private groupService: GroupService, private dialogRef: MatDialog, private eventLogService:EventLoggerService,
+  constructor(private groupService: GroupService, private dialogRef: MatDialog, private eventLogService: EventLoggerService,
     private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private creditService: CreditService,
     private accountService: AccountService, private activatedRoute: ActivatedRoute, public dialog: MatDialog) { super() }
 
   ngOnInit(): void {
-
     this.bookingDocId = this.activatedRoute.snapshot.params.id;
     this.groupDocId = this.activatedRoute.snapshot.params.groupId;
-
     console.log('url params: ', this.bookingDocId, this.groupDocId)
     this.loggedInAccount = this.accountService.getLoginAccount();
 
-    this.creditService.getBalance(this.loggedInAccount.docId).subscribe(result => {
-      console.log('my credit balance: ' + result);
-      if (result)
-        this.hasCredit = result > 0;
+    let getUser = this.accountService.getUserByDocId(this.loggedInAccount.docId);
+    let getBalance = this.creditService.getBalance(this.loggedInAccount.docId);
+    combineLatest([getUser, getBalance]).subscribe(result => {
+      console.log('forkjoin 1: ', result[0]);
+      console.log('forkJoin 2: ', result[1]);
+      this.user = result[0];
+      this.isCreditUser = result[0].isCreditUser;
+      this.creditBalance = result[1];
     })
+
     this.getGroupDetail(this.groupDocId);
     this.getCurrentBooking(this.bookingDocId);
     this.getCurrentBookingPersons(this.bookingDocId);
@@ -78,7 +85,6 @@ export class BookingComponent extends BaseComponent implements OnInit {
       this.group = g;
 
       this.isCommitteeCheck(this.loggedInAccount.docId);
-
       console.log('getGroupDetails()', this.group);
     });
   }
@@ -159,7 +165,8 @@ export class BookingComponent extends BaseComponent implements OnInit {
         allLocalBookingUsers: this.allLocalBookingUsers,
         familyBookingUsers: this.familyBookingUsers,
         friendBookingUsers: this.friendBookingUsers,
-        hasCredit: this.hasCredit,
+        isCreditUser: this.isCreditUser,
+        creditBalance: this.creditBalance,
         isCommittee: this.isCommittee,
         isSeatsLeft: this.isSeatsLeft,
       }
@@ -183,7 +190,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
     if (this.isCommittee) fee = 0;
     else {
-      fee = this.hasCredit ? GlobalConstants.rateCredit : GlobalConstants.rateCash;
+      fee = this.isCreditUser ? GlobalConstants.rateCredit : GlobalConstants.rateCash;
     }
 
     var buyer = {
@@ -195,7 +202,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
       amount: fee,
       parentUserId: this.loggedInAccount.docId,
       parentUserDisplayName: this.loggedInAccount.name,
-      paymentMethod: this.hasCredit ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
+      paymentMethod: this.isCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
       isPaid: true,
       createdOn: Timestamp.now(),
     } as BookingPerson;
@@ -216,7 +223,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
         allLocalBookingUsers: this.allLocalBookingUsers,
         familyBookingUsers: this.familyBookingUsers,
         friendBookingUsers: this.friendBookingUsers,
-        hasCredit: this.hasCredit,
+        isCreditUser: this.isCreditUser,
         isCommittee: this.isCommittee,
         isSeatsLeft: this.isSeatsLeft,
       }
@@ -267,8 +274,16 @@ export class BookingDialog {
   totalAmount: number;
   isLoading: boolean;
   allBookings: BookingPerson[];
+  // isCreditUser: boolean;
+  // creditBalance: number;
+  hasCredit: boolean;
+  lowCredit: boolean;
 
   ngOnInit() {
+
+    this.hasCredit = this.data.creditBalance > 0;
+    this.lowCredit = this.data.creditBalance <= 40;
+
     this.bookingPersonService.getByBookingDocId(this.data.bookingDocId).subscribe(allBookings => {
       this.allBookings = allBookings; //get a live connection to all booking persons.
     })
@@ -295,7 +310,7 @@ export class BookingDialog {
     //2. calculate price for added recored;
     result.toAdd.forEach(u => {
       if (u.isFamily) { //Family
-        u.amount = this.data.hasCredit ? GlobalConstants.rateCredit : GlobalConstants.rateCash;
+        u.amount = this.data.isCreditUser ? GlobalConstants.rateCredit : GlobalConstants.rateCash;
         if (this.isCommitteeCheck(u.userDocId)) {
           u.amount = 0; //if committee reset it to 0;
         }
@@ -382,7 +397,7 @@ export class BookingDialog {
         amount: u.amount,
         parentUserId: this.data.loggedInUser.docId,
         parentUserDisplayName: this.data.loggedInUser.name,
-        paymentMethod: this.data.hasCredit ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
+        paymentMethod: this.data.isCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
         isPaid: true,
         createdOn: Timestamp.now(),
       } as BookingPerson;
@@ -411,7 +426,7 @@ export class BookingDialog {
         u.amount = GlobalConstants.rateFamily;
       }
 
-      if (!this.data.hasCredit) u.amount = GlobalConstants.rateCash;
+      if (!this.data.isCreditUser) u.amount = GlobalConstants.rateCash;
 
       if (this.isCommitteeCheck(u.userDocId)) {
         u.amount = 0; //if committee reset it to 0;
@@ -440,13 +455,11 @@ export interface BookingDialogData {
   allLocalBookingUsers: LocalBookingUser[];
   familyBookingUsers: LocalBookingUser[];
   friendBookingUsers: LocalBookingUser[];
-  hasCredit: boolean;
+  isCreditUser: boolean;
+  creditBalance: number;
   isCommittee: boolean;
   isSeatsLeft: boolean;
 }
-
-
-
 
 @Component({
   selector: 'withdraw-dialog',
@@ -455,7 +468,7 @@ export interface BookingDialogData {
 export class WithdrawDialog {
   constructor(
     public dialogRef: MatDialogRef<WithdrawDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: WithdrawDialogData, private eventLogService:EventLoggerService, private bookingPersonService: BookingPersonService, private helperService: HelperService, private accountService: AccountService) { }
+    @Inject(MAT_DIALOG_DATA) public data: WithdrawDialogData, private eventLogService: EventLoggerService, private bookingPersonService: BookingPersonService, private helperService: HelperService, private accountService: AccountService) { }
 
   hasError: boolean;
   errorMessage: string;
@@ -513,7 +526,8 @@ export class WithdrawDialog {
           notes: this.data.inputBookingPerson.name
         } as EventLogger;
         this.eventLogService.createLog(log, this.data.inputBookingPerson.userDocId, this.data.inputBookingPerson.parentUserDisplayName);
-        this.dialogRef.close()})
+        this.dialogRef.close()
+      })
       .catch((err) => {
         this.hasError = true;
         //errorMessage = err.toString();
