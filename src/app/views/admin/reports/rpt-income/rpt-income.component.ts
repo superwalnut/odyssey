@@ -66,7 +66,7 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
   viewClicked() {
     console.log(this.selectedGroup)
 
-    let isCommittee = this.selectedGroup.committees.find(x => x == this.loggedInAccount.docId);
+    let isCommittee = this.selectedGroup.committees.find(x => x.docId == this.loggedInAccount.docId);
     if (!isCommittee) { alert("you are not a committee of this group"); return false; }
 
     this.getCommittees();
@@ -77,9 +77,11 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
 
 
   getCommittees() {
-    this.accountService.getUsersByUserDocIds(this.selectedGroup.committees).subscribe(result => {
-      this.committeeUsers = result;
-    })
+    this.committeeUsers = this.selectedGroup.committees;
+
+    // this.accountService.getUsersByUserDocIds(this.selectedGroup.committees).subscribe(result => {
+    //   this.committeeUsers = result;
+    // })
   }
   getGroupTransactionReport() {
     this.groupTransactionService.getByGroupDocId(this.selectedGroup.docId).subscribe(gts => {

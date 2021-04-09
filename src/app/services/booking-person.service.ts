@@ -104,7 +104,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
   }
 
   public getAllBookingPersons() {
-    return this.firestore.collection('bookingPersons', q=>q.orderBy('createdOn', 'desc').limit(1600)).snapshotChanges().pipe(
+    return this.firestore.collection('bookingPersons', q => q.orderBy('createdOn', 'desc').limit(1600)).snapshotChanges().pipe(
       map(actions => {
         var items = actions.map(p => {
           var data = p.payload.doc.data() as BookingPerson;
@@ -112,7 +112,8 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
         });
         return items;
       }), take(1)
-    )  }
+    )
+  }
   public get(bookingPersonDocId: string) {
     return super.getByDocId(bookingPersonDocId);
   }
@@ -395,7 +396,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
   //Helper Methods
   getRate(user: User, group: Group) {
 
-    let committee = group.committees.find(x => x === user.docId);
+    let committee = group.committees.find(x => x.docId === user.docId);
     if (committee != null) return 0;
 
 

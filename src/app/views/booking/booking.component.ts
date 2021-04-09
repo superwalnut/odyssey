@@ -187,7 +187,6 @@ export class BookingComponent extends BaseComponent implements OnInit {
     }
 
     var fee: Number;
-
     if (this.isCommittee) fee = 0;
     else {
       fee = this.isCreditUser ? GlobalConstants.rateCredit : GlobalConstants.rateCash;
@@ -210,7 +209,6 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
     this.bookingPersonService.buySeat(seller, buyer);
   }
-
 
   withdrawClicked(lbu: LocalBookingUser) {
     const dialogRef = this.dialog.open(WithdrawDialog, {
@@ -235,14 +233,6 @@ export class BookingComponent extends BaseComponent implements OnInit {
     });
   }
 
-  // deleteBooking(user:LocalBookingUser) {
-  //   if(confirm("Are you sure to withdraw? " + user.name)) {
-  //     console.log('deleting...', user);
-  //     this.bookingPersonService.delete(user.docId);
-
-  //   }    
-  // }
-
   //cil-dollar, cil-credit-card
   getPaymentClass(paymentMethod: string) {
     if (paymentMethod == GlobalConstants.paymentCredit) { return "cil-credit-card"; }
@@ -250,7 +240,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   }
 
   isCommitteeCheck(userDocId: string) {
-    let isCommittee = this.group.committees.find(x => x === userDocId);
+    let isCommittee = this.group.committees.find(x => x.docId === userDocId);
     this.isCommittee = isCommittee != null;
     console.log("is committee: ", this.isCommittee);
     return isCommittee;
@@ -326,7 +316,6 @@ export class BookingDialog {
 
 
     if (finalBookingPersonsToAdd.length > 0) {
-
       this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd)
         .then(() => this.dialogRef.close())
         .catch((err) => {
@@ -442,7 +431,7 @@ export class BookingDialog {
   }
 
   isCommitteeCheck(userDocId: string) {
-    let found = this.data.group.committees.find(x => x === userDocId);
+    let found = this.data.group.committees.find(x => x.docId === userDocId);
     return found != null;
   }
 

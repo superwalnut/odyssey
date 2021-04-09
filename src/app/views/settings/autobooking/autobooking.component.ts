@@ -148,7 +148,7 @@ export class BookingSchedulerDialog {
       this.buildUserSelectionList();
     }
 
-    let committee = this.data.group.committees.find(x => x == this.data.loggedInUser.docId);
+    let committee = this.data.group.committees.find(x => x.docId == this.data.loggedInUser.docId);
     this.isCommittee = committee != null;
   }
 
@@ -199,7 +199,7 @@ export class BookingSchedulerDialog {
           notes: price + ' ' + this.data.loggedInUser.name
         } as EventLogger;
         this.eventLogService.createLog(log, this.data.loggedInUser.docId, this.data.loggedInUser.name);
-        
+
         this.dialogRef.close();
       })
       .catch((err) => {

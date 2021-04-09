@@ -11,6 +11,7 @@ import { GroupService } from "../../../services/group.service";
 import { User } from "../../../models/user";
 import { Timestamp } from "rxjs/internal/operators/timestamp";
 import { GlobalConstants } from "../../../common/global-constants";
+import { ThisReceiver } from "@angular/compiler";
 
 @Component({
   selector: "app-groupdetails",
@@ -40,17 +41,17 @@ export class GroupdetailsComponent implements OnInit {
     this.groupDocId = this.activatedRoute.snapshot.params.id;
 
     this.loggedInUser = this.accountService.getLoginAccount();
-    this.accountService.getUserByDocId(this.loggedInUser.docId).subscribe(x => {
-      this.selectedUsers.push(x);//current user default to be the committee;
-    });
+    // this.accountService.getUserByDocId(this.loggedInUser.docId).subscribe(x => {
+    //   x.password = '';
+    //   this.selectedUsers.push(x);//current user default to be the committee;
+    //   console.log('selected users: ', x)
+    // });
 
     console.log("edit mode: ", this.isEditMode);
     console.log("group id: ", this.groupDocId);
 
     if (this.groupDocId) {
       this.isEditMode = true;
-
-
     }
 
     this.filteredUsers = this.myControl.valueChanges
@@ -59,12 +60,10 @@ export class GroupdetailsComponent implements OnInit {
         map(value => this._filter(value))
       );
 
-
     this.accountService.getAllUsers().subscribe((x) => {
       this.allUsersObject = x;
       x.forEach(u => {
         if (u) {
-
           this.allUsers.push(u.name);
         }
       })
@@ -93,10 +92,18 @@ export class GroupdetailsComponent implements OnInit {
     if (selectedUserControl.value == null) {
       return false;
     }
-    var test = this.allUsersObject.filter(x => {
+
+    var users = this.allUsersObject.filter(x => {
       return x.name === selectedUserControl.value
     });
-    this.selectedUsers.push(test[0]);
+    console.log(users);
+    console.log(this.selectedUsers);
+
+
+    users[0].password = null;
+    users[0].role = null;
+
+    this.selectedUsers.push(users[0]);
 
 
   }
@@ -127,10 +134,13 @@ export class GroupdetailsComponent implements OnInit {
 
         console.log('committeeIds', x.committees);
 
-        this.accountService.getUsersByUserDocIds(x.committees).pipe(take(1)).subscribe(o => {
-          this.selectedUsers = o
-          console.log('getting committees', o);
-        });
+        if (x.committees) {
+          this.selectedUsers = x.committees;
+        }
+
+        // this.accountService.getUsersByUserDocIds(x.committees).pipe(take(1)).subscribe(o => {
+        //   console.log('getting committees', o);
+        // });
       });
     }
   }
@@ -138,12 +148,15 @@ export class GroupdetailsComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    var committeeUserDocIds = this.getCommitteeUserDocIds();
-    if (committeeUserDocIds.length == 0) {
+    if (this.selectedUsers.length == 0) {
       this.committeeRequired = true;
       return false;
-
     }
+    // var committeeUserDocIds = this.getCommitteeUserDocIds();
+    // if (committeeUserDocIds.length == 0) {
+
+
+    // }
 
     var group = {
 
@@ -153,7 +166,7 @@ export class GroupdetailsComponent implements OnInit {
       groupName: this.groupForm.value.groupName,
       groupDesc: this.groupForm.value.groupDesc,
       seats: this.groupForm.value.seats,
-      committees: this.getCommitteeUserDocIds(),
+      committees: this.selectedUsers,
       isClosed: false,
     } as Group;
 
@@ -180,12 +193,12 @@ export class GroupdetailsComponent implements OnInit {
     return this.groupForm.controls;
   }
 
-  getCommitteeUserDocIds() {
-    let committeeUserDocIds: string[] = [];
+  // getCommitteeUserDocIds() {
+  //   let committeeUserDocIds: string[] = [];
 
-    this.selectedUsers.forEach(x => {
-      committeeUserDocIds.push(x.docId);
-    });
-    return committeeUserDocIds;
-  }
+  //   this.selectedUsers.forEach(x => {
+  //     committeeUserDocIds.push(x.docId);
+  //   });
+  //   return committeeUserDocIds;
+  // }
 }

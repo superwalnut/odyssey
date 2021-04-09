@@ -53,7 +53,7 @@
         <ng-container matColumnDef="Action">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element">
-            <button mat-button routerLink="/admin/bookingdetails/{{ element.docId }}">View</button>
+            <button mat-button routerLink="/admin/bookingdetails/{{ element.docId }}/{{ element.groupDocId}}">View</button>
           </td>
         </ng-container>
 

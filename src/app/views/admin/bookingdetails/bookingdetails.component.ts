@@ -16,6 +16,8 @@ import { Booking } from '../../../models/booking';
 import { GroupTransaction } from '../../../models/group-transaction';
 import { AccountService } from '../../../services/account.service';
 import { GroupTransactionService } from "../../../services/group-transaction.service";
+import { GroupService } from "../../../services/group.service";
+import { Group } from '../../../models/group';
 
 import { LocalBookingUser } from '../../../models/custom-models';
 import { GlobalConstants } from '../../../common/global-constants';
@@ -30,26 +32,20 @@ import Timestamp = firebase.firestore.Timestamp;
   styleUrls: ['./bookingdetails.component.scss']
 })
 export class BookingdetailsComponent extends BaseComponent implements OnInit {
-
   adjustForm: FormGroup;
-
   loggedInAccount: Account;
   bookingDocId: string;
+  groupDocId: string;
   booking: Booking;
   allLocalBookingUsers: LocalBookingUser[];
   hasCredit: boolean;
   defaultPayment = GlobalConstants.paymentCredit;
-  //total
-  // total: number = 0;
-  // totalCredit: number = 0;
-  // totalCash: number = 0;
-
   total = 0;
   totalCredit = 0;
   totalCash = 0;
   totalBank = 0;
   totalAdjust = 0;
-
+  group: Group;
   //type ahead
   myControl = new FormControl();
   allUsers: string[] = [];
@@ -63,14 +59,16 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
 
   paymentMethods: string[] = [GlobalConstants.paymentCredit, GlobalConstants.paymentCash, GlobalConstants.paymentBank];
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialog, private snackBar: MatSnackBar, public dialog: MatDialog, private groupTransactionService: GroupTransactionService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute) { super() }
+  constructor(private fb: FormBuilder, private dialogRef: MatDialog, private snackBar: MatSnackBar, public dialog: MatDialog, private groupService: GroupService, private groupTransactionService: GroupTransactionService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute) { super() }
 
   ngOnInit(): void {
     this.bookingDocId = this.activatedRoute.snapshot.params.id;
+    this.groupDocId = this.activatedRoute.snapshot.params.groupId;
     this.loggedInAccount = this.accountService.getLoginAccount();
     this.getBookingDetail();
     this.getBookingPersons();
     this.getGroupTransaction();
+    this.getGroupDetail();
 
     //this.selectedPaymentMethod = GlobalConstants.paymentCredit;
     this.filteredUsers = this.myControl.valueChanges
@@ -86,12 +84,10 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
       })
     });
 
-
     this.adjustForm = this.fb.group({
       adjustAmount: ["", Validators.required],
       adjustDesc: ["", Validators.required],
     });
-
   }
 
   getGroupTransaction() {
@@ -102,8 +98,13 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     });
   }
 
-  getGroupTransactionAdjusted() {
+  getGroupDetail() {
+    this.groupService.getGroup(this.groupDocId).subscribe(g => {
+      this.group = g;
+    })
+  }
 
+  getGroupTransactionAdjusted() {
     this.total = 0;
     this.totalCredit = 0;
     this.totalCash = 0;
@@ -151,7 +152,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
       parentUserId: user[0].parentUserDocId ? user[0].parentUserDocId : user[0].docId,
       parentUserDisplayName: user[0].parentUserDisplayName ? user[0].parentUserDisplayName : user[0].name,
       isForSale: false,
-      amount: this.selectedPaymentMethod == GlobalConstants.paymentCredit ? GlobalConstants.rateCredit : GlobalConstants.rateCash,
+      amount: this.getPaymentAmount(user[0].docId, this.selectedPaymentMethod),
       isPaid: true,
       createdOn: Timestamp.now(),
     } as BookingPerson;
@@ -182,6 +183,19 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
           console.log(err);
         });
     }
+  }
+
+  getPaymentAmount(userDocId: string, paymentMethod: string): number {
+    let committees = this.group.committees;
+
+    let found = committees.find(c => c.docId == userDocId);
+    if (found) { return 0; } // committee is free of charge
+
+    if (paymentMethod == GlobalConstants.paymentCredit) {
+      return GlobalConstants.rateCredit;
+    }
+    return GlobalConstants.rateCash;
+
   }
 
   getBookingDetail() {

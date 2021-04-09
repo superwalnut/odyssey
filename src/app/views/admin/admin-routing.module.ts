@@ -83,7 +83,7 @@ const routes: Routes = [
         },
       },
       {
-        path: "bookingdetails/:id",
+        path: "bookingdetails/:id/:groupId",
         component: BookingdetailsComponent,
         data: {
           title: "Booking detailss",
@@ -127,7 +127,7 @@ const routes: Routes = [
         },
       },
 
-      
+
       {
         path: "rptunpaid",
         component: RptUnpaidComponent,
