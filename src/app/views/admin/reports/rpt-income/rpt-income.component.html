@@ -39,7 +39,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let t of transactions">
-                    <td scope="row">{{ t.created.toDate() | date:'dd/MM/yyyy'}}</td>
+                    <td scope="row">{{ t.created.toDate() | date:'dd/MM/yyyy HH:mm'}}</td>
                     <td scope="row">{{ t.amount | currency}} </td>
                     <td scope="row">{{ t.notes }}</td>
                     <td scope="row">{{ t.paymentMethod }}</td>

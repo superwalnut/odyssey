@@ -9,6 +9,8 @@ import { Account } from '../../../../models/account';
 import { GroupTransaction } from '../../../../models/group-transaction';
 import { User } from '../../../../models/user';
 import { GlobalConstants } from '../../../../common/global-constants';
+import { BookingsService } from '../../../../services/bookings.service';
+import { Booking } from '../../../../models/booking';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EventLoggerService } from '../../../../services/event-logger.service';
@@ -23,17 +25,20 @@ import Timestamp = firebase.firestore.Timestamp;
 })
 export class RptIncomeComponent extends BaseComponent implements OnInit {
 
-  isGod:boolean;
+  isGod: boolean;
   groups: Group[];
   selectedGroup: Group;
   loggedInAccount: Account;
   transactions: GroupTransaction[];
   groupBalance: number;
   committeeUsers: User[];
+  hasUnlockedBookings: boolean;
+  unlockedBookings: Booking[];
+
   //selectedMode = "income";
 
   constructor(private groupService: GroupService, private groupTransactionService: GroupTransactionService,
-    private accountService: AccountService, public dialog: MatDialog) { super() }
+    private accountService: AccountService, private bookingService: BookingsService, public dialog: MatDialog) { super() }
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
@@ -48,21 +53,35 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
     })
   }
 
+  getUnlockedBookings() {
+    this.bookingService.getUnlockedBooking(this.selectedGroup.docId).subscribe(results => {
+
+      this.unlockedBookings = results;
+      this.hasUnlockedBookings = results.length > 0;
+      console.log('unlockedbookings: ', results);
+
+    })
+    //  getUnlockedBooking
+  }
   viewClicked() {
     console.log(this.selectedGroup)
 
-    let isCommittee = this.selectedGroup.committees.find(x => x == this.loggedInAccount.docId);
+    let isCommittee = this.selectedGroup.committees.find(x => x.docId == this.loggedInAccount.docId);
     if (!isCommittee) { alert("you are not a committee of this group"); return false; }
 
     this.getCommittees();
     this.getGroupTransactionReport();
+    this.getUnlockedBookings();
+
   }
 
 
   getCommittees() {
-    this.accountService.getUsersByUserDocIds(this.selectedGroup.committees).subscribe(result=>{
-      this.committeeUsers = result;
-    })
+    this.committeeUsers = this.selectedGroup.committees;
+
+    // this.accountService.getUsersByUserDocIds(this.selectedGroup.committees).subscribe(result => {
+    //   this.committeeUsers = result;
+    // })
   }
   getGroupTransactionReport() {
     this.groupTransactionService.getByGroupDocId(this.selectedGroup.docId).subscribe(gts => {
@@ -77,7 +96,7 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
 
   }
 
-  dividendClicked(){
+  dividendClicked() {
     const dialogRef = this.dialog.open(DividendDialog, {
       width: '650px',
       data: {
@@ -85,6 +104,7 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
         groupBalance: this.groupBalance,
         group: this.selectedGroup,
         committees: this.committeeUsers,
+        unlockedBookings: this.unlockedBookings,
       }
     });
 
@@ -103,15 +123,18 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
 export class DividendDialog {
   constructor(
     public dialogRef: MatDialogRef<DividendDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DividendDialogData, private eventLogService:EventLoggerService, private groupTransactionService:GroupTransactionService, private accountService: AccountService) { }
+    @Inject(MAT_DIALOG_DATA) public data: DividendDialogData, private eventLogService: EventLoggerService, private groupTransactionService: GroupTransactionService, private accountService: AccountService) { }
 
   hasError: boolean;
   errorMessage: string;
   isLoading: boolean;
-  unitDividend:number;
+  unitDividend: number;
+  hasUnlockedBookings: boolean;
+  //unlockedBookings:Booking[];
 
 
   ngOnInit() {
+    this.hasUnlockedBookings = this.data.unlockedBookings.length > 0;
     this.unitDividend = this.data.groupBalance / this.data.committees.length;
   }
 
@@ -123,12 +146,12 @@ export class DividendDialog {
     this.isLoading = true;
 
     this.groupTransactionService.allocateDividend(this.data.group.docId, this.data.group.groupName, this.data.groupBalance, this.data.committees, this.data.loggedInUser.docId, this.data.loggedInUser.name)
-    .then(() => this.dialogRef.close())
-        .catch((err) => {
-          this.hasError = true;
-          alert(err);
-          console.log(err);
-        });
+      .then(() => this.dialogRef.close())
+      .catch((err) => {
+        this.hasError = true;
+        alert(err);
+        console.log(err);
+      });
   }
 }
 
@@ -136,6 +159,7 @@ export interface DividendDialogData {
   loggedInUser: Account,
   groupBalance: number;
   group: Group;
-  committees:User[];
-  
+  committees: User[];
+  unlockedBookings: Booking[];
+
 }

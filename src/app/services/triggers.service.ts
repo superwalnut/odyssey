@@ -22,7 +22,7 @@ import { combineLatest, forkJoin, of } from 'rxjs';
 
 //This service will be replaced by Firebase cloud schedulers in the future
 export class TriggersService {
-  constructor(private groupService: GroupService, private bookingService: BookingsService, private bookingPersonService:BookingPersonService, private accountService: AccountService, private helperService: HelperService) {}
+  constructor(private groupService: GroupService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private helperService: HelperService) { }
 
   prepopulateBookings() {
     //1. getting all active groups
@@ -37,61 +37,62 @@ export class TriggersService {
     //   isClosed:false,
     //   isRecursive:true
     // } as Group;
-    
+
     // this.bookingWorker(group);
 
     this.groupService.getGroupByStatus(false).subscribe(groups => {
       groups.forEach(g => {
         console.log("active groups: ", g);
-        this.bookingWorker(g);
+        //this.bookingWorker(g);
       })
     });
   }
 
-  bookingWorker(group: Group) {
-    console.log("bookingworkser:", group);
-    var committees = group.committees;
-    console.log('committee users: ', committees);
+  // bookingWorker(group: Group) {
+  //   console.log("bookingworkser:", group);
+  //   var committees = group.committees;
+  //   console.log('committee users: ', committees);
 
-    var peoples: BookingPerson[] = [];
+  //   var peoples: BookingPerson[] = [];
 
-    let getCommittees = this.accountService.getUsersByUserDocIds(committees);
-    let getLastBooking = this.bookingService.getLastBookingByGroupDocId(group.docId).pipe(take(1));
+  //   //let getCommittees = this.accountService.getUsersByUserDocIds(committees);
 
-    combineLatest([getCommittees, getLastBooking])
-    .subscribe(result=>{
+  //   let getLastBooking = this.bookingService.getLastBookingByGroupDocId(group.docId).pipe(take(1));
 
-      console.log('forkjoin 1: ', result[0]);
-      console.log('forkJoin 2: ', result[1]);
-      var nextEventStartDateTime = this.getEventStartDateTime(group, result[1]);
+  //   combineLatest([getCommittees, getLastBooking])
+  //   .subscribe(result=>{
 
-      var booking = {
-        groupDocId: group.docId,
-        //people: peoples,
-        isLocked: false,
-        eventStartDateTime: nextEventStartDateTime,
-        bookingStartDay: group.bookingStartDay,
-        weekDay: group.eventStartDay,
-      } as Booking;
-      console.log('new booking; ', booking);  
-      this.bookingService.createBooking(booking).then(bookingDocId =>{ 
-        console.log('newly generated booking docID: ', bookingDocId);
-        
-        peoples = this.mapCommitteesToBookingPerson(result[0], group.docId, bookingDocId);
-        console.log('booking persons ready for insert: ', peoples);
+  //     console.log('forkjoin 1: ', result[0]);
+  //     console.log('forkJoin 2: ', result[1]);
+  //     var nextEventStartDateTime = this.getEventStartDateTime(group, result[1]);
 
-        //this.bookingPersonService.createBookingPersonBatch(peoples);
+  //     var booking = {
+  //       groupDocId: group.docId,
+  //       //people: peoples,
+  //       isLocked: false,
+  //       eventStartDateTime: nextEventStartDateTime,
+  //       bookingStartDay: group.bookingStartDay,
+  //       weekDay: group.eventStartDay,
+  //     } as Booking;
+  //     console.log('new booking; ', booking);  
+  //     this.bookingService.createBooking(booking).then(bookingDocId =>{ 
+  //       console.log('newly generated booking docID: ', bookingDocId);
 
-      });
-    })
-  }
+  //       peoples = this.mapCommitteesToBookingPerson(result[0], group.docId, bookingDocId);
+  //       console.log('booking persons ready for insert: ', peoples);
 
-  getEventStartDateTime(group:Group, booking: Booking) {
+  //       //this.bookingPersonService.createBookingPersonBatch(peoples);
+
+  //     });
+  //   })
+  // }
+
+  getEventStartDateTime(group: Group, booking: Booking) {
     let startDay = group.eventStartDay;
     let startTime = group.eventStartTime;
     var lastBooking = booking;
 
-    let lastBookingEventStartDate:Date;
+    let lastBookingEventStartDate: Date;
     if (lastBooking == null) {
       lastBookingEventStartDate = this.helperService.today();
     } else {
@@ -107,9 +108,9 @@ export class TriggersService {
     return this.helperService.convertToTimestamp(nextEventStartDateTime);
   }
 
-  mapCommitteesToBookingPerson(users: User[], groupDocId:string, bookingDocId:string) {
+  mapCommitteesToBookingPerson(users: User[], groupDocId: string, bookingDocId: string) {
     var bookingpersons: BookingPerson[] = [];
-    
+
     console.log("users original input: ", users);
     console.log("users length: ", users.length);
 
@@ -117,8 +118,8 @@ export class TriggersService {
       console.log("u =>: ", u);
 
       var bookingPerson = {
-        groupDocId:groupDocId,
-        bookingDocId:bookingDocId,
+        groupDocId: groupDocId,
+        bookingDocId: bookingDocId,
         userId: u.docId,
         userDisplayName: u.name,
         paymentMethod: GlobalConstants.paymentCredit,
@@ -135,16 +136,16 @@ export class TriggersService {
     return bookingpersons;
   }
 
-  public getBookingAndPersons(groupId:string) {
+  public getBookingAndPersons(groupId: string) {
     return this.bookingService.getLastBookingByGroupDocId(groupId).pipe(
       mergeMap(booking => {
-          var persons = this.bookingPersonService.getByBookingDocId(booking.docId);
-          return combineLatest([of(booking),persons]);
-        }),
-        map(([booking, persons]) => {
-            console.log('this booking', booking);
-            console.log('persons in this booking', persons);
-        }));
+        var persons = this.bookingPersonService.getByBookingDocId(booking.docId);
+        return combineLatest([of(booking), persons]);
+      }),
+      map(([booking, persons]) => {
+        console.log('this booking', booking);
+        console.log('persons in this booking', persons);
+      }));
   }
 
 

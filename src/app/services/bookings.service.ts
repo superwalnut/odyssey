@@ -14,7 +14,7 @@ import { HelperService } from '../common/helper.service';
 })
 export class BookingsService extends FirestoreBaseService<Booking>{
 
-  constructor(private firestore: AngularFirestore, private helpService:HelperService) {
+  constructor(private firestore: AngularFirestore, private helpService: HelperService) {
     super(firestore.collection('bookings'));
   }
 
@@ -22,7 +22,7 @@ export class BookingsService extends FirestoreBaseService<Booking>{
     return super.create(booking);
   }
 
-  public updateBooking(bookingDocId:string, booking: Booking) {
+  public updateBooking(bookingDocId: string, booking: Booking) {
     return super.update(bookingDocId, booking);
   }
 
@@ -34,6 +34,18 @@ export class BookingsService extends FirestoreBaseService<Booking>{
   //get 1 booking by bookingDocId
   public get(bookingDocId: string) {
     return super.getByDocId(bookingDocId);
+  }
+
+  public getUnlockedBooking(groupDocId: string) {
+    return this.firestore.collection('bookings', q => q.where('groupDocId', '==', groupDocId).where('isLocked', '==', false).orderBy('eventStartDateTime', 'desc')).snapshotChanges().pipe(
+      map(actions => {
+        var items = actions.map(p => {
+          var data = p.payload.doc.data() as Booking;
+          return { ...data, docId: p.payload.doc.id } as Booking;
+        });
+        return items;
+      })
+    );
   }
 
   //Get all bookings by GroupDocId, sorted by date
@@ -67,8 +79,8 @@ export class BookingsService extends FirestoreBaseService<Booking>{
 
   public getCurrentWeekBooking() {
     var dateRange = this.helpService.findDateRangeOfCurrentWeek(new Date());
-    return this.firestore.collection('bookings', q=>q.where('eventStartDateTime','>=', dateRange.firstday).where('eventStartDateTime','<=', dateRange.lastday)).snapshotChanges().pipe(
-      map(actions=> {
+    return this.firestore.collection('bookings', q => q.where('eventStartDateTime', '>=', dateRange.firstday).where('eventStartDateTime', '<=', dateRange.lastday)).snapshotChanges().pipe(
+      map(actions => {
         var items = actions.map(p => {
           var data = p.payload.doc.data() as Booking;
           return { ...data, docId: p.payload.doc.id } as Booking;
@@ -80,7 +92,7 @@ export class BookingsService extends FirestoreBaseService<Booking>{
   }
 
   public getThisWeeksBooking(groupDocId: string) {
-    return this.firestore.collection('bookings', q => q.where('groupDocId', '==', groupDocId).where('eventStartDateTime','>=', Timestamp.now()).orderBy('eventStartDateTime', 'asc').limit(1)).snapshotChanges().pipe(
+    return this.firestore.collection('bookings', q => q.where('groupDocId', '==', groupDocId).where('eventStartDateTime', '>=', Timestamp.now()).orderBy('eventStartDateTime', 'asc').limit(1)).snapshotChanges().pipe(
       map(actions => {
         if (actions && actions.length > 0) {
           var booking = actions[0].payload.doc.data() as Booking;

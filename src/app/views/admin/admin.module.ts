@@ -7,7 +7,7 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { ButtonsModule } from "ngx-bootstrap/buttons";
 
 import { AdminRoutingModule } from "./admin-routing.module";
-import { UsersComponent } from "./users/users.component";
+import { UsersComponent, NewUserDialog } from "./users/users.component";
 import { BookingsComponent } from "./bookings/bookings.component";
 import { AppMaterialModule } from "../../app-material.module";
 import { UserdetailsComponent } from "./userdetails/userdetails.component";
@@ -42,6 +42,7 @@ import { RptEventviewerComponent } from './reports/rpt-eventviewer/rpt-eventview
     UserdetailsComponent,
     SitesettingsComponent,
     UserCreditComponent,
+    NewUserDialog,
     GroupsComponent,
     GroupdetailsComponent,
     GroupexpenseComponent,

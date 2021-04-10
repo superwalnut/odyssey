@@ -8,8 +8,11 @@
 
   <div class="modal-body">
     <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage | json }}</div>
+    <h3 *ngIf="data.isCreditUser">Credit Balance: <span class="badge badge-warning">{{ data.creditBalance | currency}}</span></h3>
 
-    <div *ngIf="!data.hasCredit && !data.isCommittee">You don't have any credit left, cash rate appllied</div>
+    <div class="p-3 mb-2 bg-warning text-dark" *ngIf="lowCredit && hasCredit && !data.isCommittee">Your credit is low, pelase topup ASAP, or you won't be able to make bookings.</div>
+    <div class="p-3 mb-2 bg-danger text-white" *ngIf="!hasCredit && !data.isCommittee">You don't have any credit left, please top up your credit now!</div>
+
     
     <div *ngIf="data.isSeatsLeft">
       <h3>You & Your Family</h3>
@@ -30,7 +33,7 @@
         </tr>
       </table>
 
-      <div class="booking-sum">Amount: ${{ totalAmount }} {{ data.hasCredit ? "Credit" : "Cash"}}</div>
+      <div class="booking-sum">Amount: ${{ totalAmount }} {{ data.isCreditUser ? "Credit" : "Cash"}}</div>
     </div>
 
     <div *ngIf="!data.isSeatsLeft">
@@ -39,7 +42,7 @@
     </div>
 
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer" *ngIf="hasCredit || data.isCommittee">
     <button mat-raised-button (click)="onNoClick()">Close</button>
     <button mat-raised-button color="primary" (click)="onConfirmClick()" *ngIf="!isLoading && data.isSeatsLeft">Confirm</button>
     <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>

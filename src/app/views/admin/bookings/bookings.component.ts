@@ -66,7 +66,7 @@ export class BookingsComponent implements OnInit {
     console.log(this.selectedFutureDate);
     let ts = this.helpService.convertToTimestamp(this.selectedFutureDate);
 
-    let found = this.bookings.find(b=> this.helpService.compareDates(b.eventStartDateTime, ts));
+    let found = this.bookings.find(b => this.helpService.compareDates(b.eventStartDateTime, ts));
     if (found) {
       alert('Booking with same date already existed! Create booking Aborted.');
       return false;
@@ -97,7 +97,7 @@ export class BookingsComponent implements OnInit {
       if (autoBookingPersons.length > 0) {
         this.bookingPersonService.createBookingPersonBatch(autoBookingPersons);
       }
-      
+
     });
   }
 
@@ -110,7 +110,7 @@ export class BookingsComponent implements OnInit {
           console.log('auto booking users: ', result);
         })
       }
-      
+
     })
   }
 
@@ -119,9 +119,10 @@ export class BookingsComponent implements OnInit {
       this.group = g;
       this.futureBookingDates = this.helpService.findWeekdays(g.eventStartDay, 10);
 
-      this.accountService.getUsersByUserDocIds(g.committees).subscribe(result => {
-        this.committees = result;
-      });
+      this.committees = g.committees;
+      // this.accountService.getUsersByUserDocIds(g.committees).subscribe(result => {
+      //   this.committees = result;
+      // });
     })
   }
 
@@ -143,7 +144,7 @@ export class BookingsComponent implements OnInit {
 
   mapUsersToBookingPerson(users: User[], groupDocId: string, bookingDocId: string) {
     var bookingpersons: BookingPerson[] = [];
-    if (!users || users.length == 0) {return bookingpersons;}
+    if (!users || users.length == 0) { return bookingpersons; }
 
     console.log("users original input: ", users);
     console.log("users length: ", users.length);

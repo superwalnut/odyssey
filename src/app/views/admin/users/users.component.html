@@ -9,6 +9,9 @@
               <mat-label>Search user</mat-label>
               <input matInput (keyup)="applyFilter($event)" placeholder="Search by name" #input>
             </mat-form-field>
+            <!-- <button mat-raised-button color="primary" (click)="onNewUserClicked()">New user</button> -->
+
+
           </p>
 
           <table mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort>

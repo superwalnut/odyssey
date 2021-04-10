@@ -7,24 +7,58 @@
     </div>
   
     <div class="modal-body">
-      <div class="alert alert-danger" role="alert" *ngIf="hasError">Error occurred</div>
 
-      <h2>By clicking Confirm button, group net profit will be evenly distributed among committees</h2>
-      <p>Group: {{ data.group.groupName}}</p>
 
-      Net profit: {{ data.groupBalance | currency}}
-      <ul class="simple-horizontal-list" *ngIf="data.committees">
-        <li>Committees: </li>
-        <li *ngFor="let u of data.committees">{{ u.name }}, </li>
-      </ul>
+      <div *ngIf="hasUnlockedBookings">
+        <div class="p-3 mb-2 bg-warning text-dark">You can only allocate dividend when all bookings are locked</div>
 
-      <h3>Each committee gets: {{unitDividend | currency}}</h3>
 
+        <h3></h3>
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Date</th>
+              <th scope="col">Locked</th>
+              
+         
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of data.unlockedBookings">
+              <td>{{ s.weekDay }}</td>
+              <td>{{ s.eventStartDateTime.toDate() | date: 'dd/MM/yyyy' }}</td>
+              <td><a routerLink="/admin/bookingdetails/{{s.docId}}" target="_blank">{{ s.isLocked }}</a></td>
+              
+             
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+
+      <div *ngIf="!hasUnlockedBookings">
+        <div class="alert alert-danger" role="alert" *ngIf="hasError">Error occurred</div>
+
+        <h2>By clicking Confirm button, group net profit will be evenly distributed among committees</h2>
+        <p>Group: {{ data.group.groupName}}</p>
+  
+        Net profit: {{ data.groupBalance | currency}}
+        <ul class="simple-horizontal-list" *ngIf="data.committees">
+          <li>Committees: </li>
+          <li *ngFor="let u of data.committees">{{ u.name }}, </li>
+        </ul>
+  
+        <h3>Each committee gets: {{unitDividend | currency}}</h3>  
+      </div>
+
+     
      
     </div>
     <div class="modal-footer">
       <button mat-raised-button (click)="onNoClick()">Close</button>
-      <button mat-raised-button color="warn" *ngIf="!isLoading" (click)="confirmClicked()">Confirm</button>
+      <button mat-raised-button color="warn" *ngIf="!isLoading && !hasUnlockedBookings" (click)="confirmClicked()">Confirm</button>
       <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
   
     </div>
