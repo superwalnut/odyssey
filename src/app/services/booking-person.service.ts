@@ -15,6 +15,7 @@ import { Credit } from '../models/credit';
 import { LocalBookingUser } from '../models/custom-models';
 import { User } from '../models/user';
 import { Group } from '../models/group';
+import { cifBg } from '@coreui/icons';
 
 @Injectable({
   providedIn: 'root'
@@ -220,7 +221,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
       createdByDisplayName: bookingPerson.parentUserDisplayName,
       amount: bookingPerson.amount,
       created: Timestamp.now(),
-      note: 'withdraw refund',
+      note: 'withdraw ' + bookingPerson.userDisplayName + ' refund to ' + bookingPerson.parentUserDisplayName,
     } as Credit;
     batch.set(cref, credit);
 
@@ -231,7 +232,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
       groupDocId: bookingPerson.groupDocId,
       bookingDocId: bookingPerson.bookingDocId, //nullable
       referenceId: credit.userDocId, //nullable
-      notes: credit.note,
+      notes: credit.note + ':' + bookingPerson.userDisplayName,
       createdBy: credit.createdBy,
       createdByDisplayName: credit.createdByDisplayName,
       created: Timestamp.now(),
@@ -265,7 +266,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     //add to group transaction table
     var groupTransaction = {
       amount: paymentAmount,
-      notes: paymentNotes + bpFull.userDisplayName,
+      notes: paymentNotes + ':' + bpFull.userDisplayName,
       paymentMethod: bpFull.paymentMethod,
       referenceId: bpFull.userId,
       groupDocId: bpFull.groupDocId,
@@ -368,7 +369,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
         amount: bp.amount,
         userDocId: bp.parentUserId, //refund back to the parent user ID
         userDisplayName: bp.userDisplayName,
-        note: bp.bookingDesc + ": withdraw",
+        note: bp.bookingDesc + ": withdraw : " + bp.userDisplayName,
         createdBy: bp.parentUserId,
         createdByDisplayName: bp.parentUserDisplayName,
         created: Timestamp.now()
