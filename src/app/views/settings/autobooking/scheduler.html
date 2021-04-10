@@ -29,7 +29,7 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            Valid till: {{dayRange.end.toDate() | date:'dd/MM/yyyy'}}
+            Valid till: <b>{{dayRange.end.toDate() | date:'dd/MM/yyyy'}}</b>
     
             <ul>
                 <li *ngFor="let u of userSelectList">

@@ -102,9 +102,7 @@ export class GroupdetailsComponent implements OnInit {
 
     users[0].password = null;
     users[0].role = null;
-
     this.selectedUsers.push(users[0]);
-
 
   }
 

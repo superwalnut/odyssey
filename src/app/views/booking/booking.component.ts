@@ -50,6 +50,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   isLoading: boolean;
   loggedInAccount;
   seatsLeft: number;
+  seatsBooked: number;
   isSeatsLeft: boolean;
 
 
@@ -99,11 +100,11 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
   seatsAvailable() {
     let seatsLimit = this.group.seats;
-    let seatsBooked = this.allLocalBookingUsers.length;
-    let seatsLeft = seatsLimit - seatsBooked;
-    this.isSeatsLeft = seatsLeft > 0;
-    console.log('seats left: ', seatsLeft);
-    return seatsLeft;
+    this.seatsBooked = this.allLocalBookingUsers.length;
+    this.seatsLeft = seatsLimit - this.seatsBooked;
+    this.isSeatsLeft = this.seatsLeft > 0;
+    console.log('seats left: ', this.seatsLeft);
+    return this.seatsLeft;
   }
 
   getCurrentBooking(bookingDocId: string) {

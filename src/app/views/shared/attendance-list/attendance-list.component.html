@@ -15,7 +15,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let bookings of myBookingHistory">
-                    <th scope="row">{{ bookings.createdOn.toDate() | date: 'yyyy/MM/dd'}}</th>
+                    <th scope="row">{{ bookings.createdOn.toDate() | date: 'dd/MM/yyyy'}}</th>
                     <td>{{bookings.userDisplayName}}</td>
                     <td>{{bookings.bookingDesc}}</td>
                   </tr>             
