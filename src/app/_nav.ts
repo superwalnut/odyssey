@@ -21,7 +21,7 @@ export const navItems: INavData[] = [
     icon: "cil-lock-locked",
   },
   {
-    name: "Credit Statement",
+    name: "HBCoin Statement",
     url: "/theme/typography",
     icon: "cil-dollar",
   },
@@ -47,7 +47,7 @@ export const navItems: INavData[] = [
   },
   {
     name: "Users",
-    url: "/admin/users", 
+    url: "/admin/users",
     icon: "cil-group",
   },
   {
