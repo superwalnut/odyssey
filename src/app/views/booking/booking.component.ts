@@ -138,6 +138,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   prepareBookingModal() {
 
     this.familyBookingUsers.forEach(b => {
+      b.selected = false;
       let match = this.allLocalBookingUsers.find(bookingUser => bookingUser.userDocId == b.userDocId && bookingUser.name == b.name);
       console.log("found xxxxxx: ", match);
       if (match) {
@@ -147,6 +148,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
     });
 
     this.friendBookingUsers.forEach(b => {
+      b.selected = false;
       let match = this.allLocalBookingUsers.find(item => item.name == b.name);
       if (match) {
         b.selected = true;
