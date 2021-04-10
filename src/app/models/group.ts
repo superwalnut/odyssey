@@ -8,6 +8,7 @@ export class Group {
   groupName: string;
   groupDesc: string;
   seats: number; //headcount limit
+  seatsAutoBooking: number; //max seats for autobooking
   committees: User[]; // VIPs for this group, userDocId, //every time group is closed we need to distrbute  group profit to group committees as dividend
   isClosed: boolean; //every time group is closed we need to distrbute  group profit to group committees as dividend
   startDate: Timestamp; //default to Date.Now()

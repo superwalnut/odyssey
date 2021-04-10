@@ -73,6 +73,7 @@ export class GroupdetailsComponent implements OnInit {
       // startDate: ["", Validators.required],
       // endDate: ["", Validators.required],
       seats: ["", Validators.required],
+      seatsAutobooking: ["", Validators.required],
       eventStartDay: ["", Validators.required],
       bookingStartDay: ["", Validators.required],
       groupName: ["", Validators.required],
@@ -123,6 +124,7 @@ export class GroupdetailsComponent implements OnInit {
           //startDate: x.startDate.toDate(),
           //endDate: x.endDate.toDate(),
           seats: x.seats,
+          seatsAutobooking: x.seatsAutoBooking,
           eventStartDay: x.eventStartDay,
           eventStartTime: x.eventStartTime,
           bookingStartDay: x.bookingStartDay,
@@ -164,6 +166,7 @@ export class GroupdetailsComponent implements OnInit {
       groupName: this.groupForm.value.groupName,
       groupDesc: this.groupForm.value.groupDesc,
       seats: this.groupForm.value.seats,
+      seatsAutoBooking: this.groupForm.value.seatsAutobooking,
       committees: this.selectedUsers,
       isClosed: false,
     } as Group;

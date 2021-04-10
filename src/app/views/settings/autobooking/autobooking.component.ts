@@ -50,7 +50,6 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     this.getGroups();
     this.getFamily();
     this.getMySchedules();
-    this.getMyActiveBookingSchedules();
   }
 
   getGroups() {
@@ -82,12 +81,6 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     })
   }
 
-  getMyActiveBookingSchedules() {
-    // this.bookingScheduleService.getMyActiveBookingSchedules(this.loggedInAccount.docId).subscribe(schedules => {
-    //   console.log(schedules);
-
-    // })
-  }
 
   statusClicked(schedule: BookingSchedule) {
     let status = schedule.isPaused ? 'resume' : 'pause'
@@ -135,6 +128,7 @@ export class BookingSchedulerDialog {
   isCommittee: boolean;
   hasActiveAutoBooking = false;
   userSelectList: UserSelection[] = [];
+  isMaxAutoBookingLimitReached: boolean;
 
   dayRange = { start: Timestamp.now(), end: Timestamp.now() };
 
@@ -145,12 +139,22 @@ export class BookingSchedulerDialog {
       this.hasActiveAutoBooking = true;
     }
     else {
+      this.getAllActiveBookingSchedules();
       this.buildUserSelectionList();
     }
 
     let committee = this.data.group.committees.find(x => x.docId == this.data.loggedInUser.docId);
     this.isCommittee = committee != null;
   }
+
+
+  getAllActiveBookingSchedules() {
+    this.bookingScheduleService.getActiveBookingSchedules(this.data.group.docId).subscribe(schedules => {
+      console.log('getAllActiveBookingSchedules', schedules);
+      this.isMaxAutoBookingLimitReached = schedules.length >= this.data.group.seatsAutoBooking;
+    })
+  }
+
 
   buildUserSelectionList() {
     this.userSelectList.push({ docId: this.data.loggedInUser.docId, name: this.data.loggedInUser.name, selected: false, parentUserDocId: this.data.loggedInUser.docId, parentUserDisplayName: this.data.loggedInUser.name } as UserSelection);

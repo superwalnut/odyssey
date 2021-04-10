@@ -33,6 +33,13 @@
                 <input matInput placeholder="headcount limit" formControlName="seats" type="number" required />
               </mat-form-field>
             </p>
+            <p>
+              <mat-form-field>
+                <mat-label>Auto booking seats</mat-label>
+                <input matInput placeholder="auto booking limit" formControlName="seatsAutobooking" type="number" required />
+              </mat-form-field>
+            </p>
+
             <div *ngIf="f.seats.invalid && (f.seats.dirty || f.seats.touched)" class="invalid-feedback">
               <div *ngIf="f.seats.errors.required">Seats(max limit) is required.</div>
             </div>

@@ -7,6 +7,8 @@
     </div>
   
     <div class="modal-body">
+
+
         <ul>
             <li>No refund is possible once setup</li>
             <li>You can pause your auto booking should you be away</li>
@@ -14,7 +16,9 @@
         </ul>
 
 
-        
+        <div *ngIf="isMaxAutoBookingLimitReached">
+            <div class="p-3 mb-2 bg-warning  text-dark">Auto booking for this session is all full</div>
+        </div>
         <div *ngIf="hasActiveAutoBooking">
             <div class="p-3 mb-2 bg-success text-white">You alrady have active auto bookings</div>
         </div>
@@ -42,7 +46,7 @@
     </div>
     <div class="modal-footer">
         <button mat-raised-button (click)="onNoClick()">Close</button>
-        <button mat-raised-button  color="primary" (click)="onCreateClick()"  *ngIf="!isLoading && !hasActiveAutoBooking">Create</button>
+        <button mat-raised-button  color="primary" (click)="onCreateClick()"  *ngIf="!isLoading && !hasActiveAutoBooking && !isMaxAutoBookingLimitReached">Create</button>
         <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
 
     </div>
