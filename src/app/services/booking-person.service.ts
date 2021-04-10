@@ -361,6 +361,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
       //delete this bookingPerson
       batch.delete(this.firestore.collection('bookingPersons').doc(bp.docId).ref);
 
+      console.log('delete batch, delete booking person: ', bp.docId);
       //refund credit back
       var ref = this.firestore.collection('credits').doc().ref;
       var credit = {

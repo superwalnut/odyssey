@@ -326,7 +326,6 @@ export class BookingDialog {
     }
 
     if (finalBookingPersonsToDelete.length > 0) {
-      //this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete).then(()=>this.document.location.reload());
       this.bookingPersonService.deleteBatch(finalBookingPersonsToDelete)
         .then(() => this.dialogRef.close())
         .catch((err) => {
@@ -363,6 +362,8 @@ export class BookingDialog {
         //only delete if this user already in the booking
         var find = this.data.allLocalBookingUsers.find(x => x.userDocId == user.userDocId && x.name == user.name);
         if (find) {
+          user.amount = find.amount;
+          user.docId = find.docId;
           toDelete.push(user);
         }
       }

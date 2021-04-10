@@ -52,7 +52,7 @@ export class DefaultLayoutComponent {
       },
 
       {
-        name: "Credit Transactions",
+        name: "Credit Statement",
         url: "/settings/creditstatement",
         icon: "cil-dollar",
       },

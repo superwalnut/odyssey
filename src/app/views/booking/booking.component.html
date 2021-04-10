@@ -20,7 +20,7 @@
       <div class="col-sm">
         <section> 
           <ul class="simple-horizontal-list">
-            <li><h3>Seats   {{group?.seats}}</h3></li>
+            <li><h3>Seats: {{group?.seats}}</h3></li>
             <li><span class="material-icons" title="{{ booking?.isLocked ? 'Booking Locked': 'Booking is open'}}">{{ booking?.isLocked ? 'lock':'lock_open'}}</span></li>
           </ul>
           
@@ -39,7 +39,7 @@
             <tbody>
               <tr *ngFor="let p of allLocalBookingUsers; let i=index" [ngClass]="{'mybooking':p.isMyBooking}">
                 <th scope="row">{{ i+1 }}</th>
-                <td>{{p.name}} {{p.amount}}</td>
+                <td>{{p.name}} {{p.amount}} {{ p.docId}}</td>
                 <td><i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
                 <td *ngIf="!booking?.isLocked">
                   <!-- <button mat-icon-button color="warn" (click)="deleteBooking(p)" *ngIf="p.isMyBooking"> -->
