@@ -5,6 +5,7 @@ import { BookingPerson } from "../../models/booking-person";
 import { Account } from "../../models/account";
 import { CreditService } from "../../services/credit.service";
 import { BookingPersonService } from "../../services/booking-person.service";
+import { MailgunService } from "../../services/mailgun.service";
 
 import { BookingsService } from "../../services/bookings.service";
 import { ActivatedRoute } from "@angular/router";
@@ -259,7 +260,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
 export class BookingDialog {
   constructor(
     public dialogRef: MatDialogRef<BookingDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: BookingDialogData, private bookingPersonService: BookingPersonService, private accountService: AccountService) { }
+    @Inject(MAT_DIALOG_DATA) public data: BookingDialogData, private mailgunService:MailgunService, private bookingPersonService: BookingPersonService, private accountService: AccountService) { }
 
   hasError: boolean;
   errorMessage: string;
@@ -277,15 +278,22 @@ export class BookingDialog {
     this.hasCredit = this.data.creditBalance > 0;
     this.lowCredit = this.data.creditBalance <= 40;
 
+    
     this.bookingPersonService.getByBookingDocId(this.data.bookingDocId).subscribe(allBookings => {
       this.allBookings = allBookings; //get a live connection to all booking persons.
     })
+
+    if (this.lowCredit) { this.lowbalanceEmailNotification();}
 
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
 
+  lowbalanceEmailNotification() {
+
+    this.mailgunService.sendCreditReminder(this.data.loggedInUser.email, this.data.loggedInUser.name, this.data.creditBalance);
+  }
   onConfirmClick(): void {
 
     if (this.allBookings.length >= this.data.group.seats) {

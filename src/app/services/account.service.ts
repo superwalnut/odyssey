@@ -118,7 +118,7 @@ export class AccountService extends FirestoreBaseService<User>{
     const user = this.accountValue;
     if (user) {
       // logged in so return true
-      return { docId: user.docId, name: user.name, role: user.role } as Account;
+      return { docId: user.docId, name: user.name, role: user.role, email: user.email } as Account;
     }
 
     return null;
@@ -234,7 +234,7 @@ export class AccountService extends FirestoreBaseService<User>{
 
   private saveLocal(user: User) {
     console.log('local', user);
-    var encripted = this.helpService.encryptData(JSON.stringify({ docId: user.docId, name: user.name, role: user.role }));
+    var encripted = this.helpService.encryptData(JSON.stringify({ docId: user.docId, name: user.name, role: user.role, email: user.email }));
     localStorage.setItem("user", encripted);
   }
 
