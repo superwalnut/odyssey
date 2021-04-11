@@ -40,7 +40,9 @@
             <ng-container matColumnDef="iscredituser">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>HBCoin</th>
               <td mat-cell *matCellDef="let element">
-                  {{element.iscredituser}}
+                <span class="material-icons-outlined">
+                  {{element.iscredituser ？ 'credit_card' : 'attach_money'}}
+                  </span>
               </td>
             </ng-container>
 
