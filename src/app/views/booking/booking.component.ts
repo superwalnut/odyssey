@@ -292,6 +292,7 @@ export class BookingDialog {
 
   lowbalanceEmailNotification() {
 
+    console.log(this.data.loggedInUser.email);
     this.mailgunService.sendCreditReminder(this.data.loggedInUser.email, this.data.loggedInUser.name, this.data.creditBalance);
   }
   onConfirmClick(): void {
