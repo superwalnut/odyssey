@@ -2,13 +2,13 @@
 <!-- Modal -->
 <div class="modal-content">
   <div class="modal-header">
-    <h2 class="modal-title" id="exampleModalLongTitle">{{ data.group?.groupName}} {{ data.group?.eventStartTime}}</h2>
+    <h2 class="modal-title" id="exampleModalLongTitle">{{ data.group?.groupName}} {{ data.group?.eventStartTime}} : Balance: <span class="badge badge-warning">{{ data.creditBalance | currency}}</span></h2>
     <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
   </div>
 
   <div class="modal-body">
     <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage | json }}</div>
-    <h3 *ngIf="data.isCreditUser">Credit Balance: <span class="badge badge-warning">{{ data.creditBalance | currency}}</span></h3>
+    <!-- <h3 *ngIf="data.isCreditUser">Credit Balance: <span class="badge badge-warning">{{ data.creditBalance | currency}}</span></h3> -->
 
     <div class="p-3 mb-2 bg-warning text-dark" *ngIf="lowCredit && hasCredit && !data.isCommittee">Your credit is low, pelase topup ASAP, or you won't be able to make bookings.</div>
     <div class="p-3 mb-2 bg-danger text-white" *ngIf="!hasCredit && !data.isCommittee">You don't have any credit left, please top up your credit now!</div>
@@ -17,21 +17,28 @@
     <div *ngIf="data.isSeatsLeft">
       <h3>You & Your Family</h3>
   
-      <table class="table table-sm table-borderless">
+      <ul class="simple-horizontal-list">
+        <li *ngFor="let user of data.familyBookingUsers">{{ user.name }} <mat-slide-toggle [(ngModel)]="user.selected" (change)="onSelectionChange()"></mat-slide-toggle> &nbsp; &nbsp; &nbsp; </li>
+      </ul>
+      <!-- <table class="table table-sm table-borderless">
         <tr *ngFor="let user of data.familyBookingUsers">
           <td>{{ user.name}}</td>
           <td style="text-align: right;"><mat-slide-toggle [(ngModel)]="user.selected" (change)="onSelectionChange()"></mat-slide-toggle></td>
         </tr>
-      </table>
+      </table> -->
 
       <h3>Your Friends</h3>
       <p>Reserve sports for your friends if they don't have account in the system</p>
-      <table class="table table-sm table-borderless">
+
+      <ul class="simple-horizontal-list">
+        <li *ngFor="let user of data.friendBookingUsers">{{ user.name}} <mat-slide-toggle [(ngModel)]="user.selected" (change)="onSelectionChange()"></mat-slide-toggle> &nbsp; &nbsp; &nbsp; </li>
+      </ul>
+      <!-- <table class="table table-sm table-borderless">
         <tr *ngFor="let user of data.friendBookingUsers">
-          <td>{{ user.name}}</td>
+          <td>{{ user.name}} </td>
           <td style="text-align: right;"><mat-slide-toggle [(ngModel)]="user.selected" (change)="onSelectionChange()"></mat-slide-toggle></td>
         </tr>
-      </table>
+      </table> -->
 
       <div class="booking-sum">Amount: ${{ totalAmount }} {{ data.isCreditUser ? "Credit" : "Cash"}}</div>
     </div>

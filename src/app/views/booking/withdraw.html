@@ -25,8 +25,8 @@
     </div>
     <div class="modal-footer">
       <button mat-raised-button (click)="onNoClick()">Close</button>
-      <button mat-raised-button color="warn" *ngIf="isWithdrawAllowed" (click)="withdrawClicked()">Withdraw</button>
-      <button mat-raised-button color="primary" *ngIf="!isWithdrawAllowed" (click)="markForSaleClicked()">Up for sale</button>
+      <button mat-raised-button color="warn" *ngIf="isWithdrawAllowed && !isLoading" (click)="withdrawClicked()">Withdraw</button>
+      <button mat-raised-button color="primary" *ngIf="!isWithdrawAllowed && !isLoading" (click)="markForSaleClicked()">Up for sale</button>
 
       
 

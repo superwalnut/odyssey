@@ -215,6 +215,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   }
 
   withdrawClicked(lbu: LocalBookingUser) {
+    lbu.isLoading = true;
     const dialogRef = this.dialog.open(WithdrawDialog, {
       width: '650px',
       data: {
@@ -232,6 +233,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      lbu.isLoading = false;
       console.log('The withdraw dialog was closed');
 
     });
@@ -502,6 +504,7 @@ export class WithdrawDialog {
   }
 
   withdrawClicked() {
+    this.isLoading = true;
     console.log('refund: ', this.mapToBookingPerson(this.data.inputBookingPerson))
     this.bookingPersonService.withdraw(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson))
       .then(() => {
@@ -515,12 +518,14 @@ export class WithdrawDialog {
       .catch((err) => {
         this.hasError = true;
         //errorMessage = err.toString();
+        this.isLoading = false;
         console.log(err);
       });
 
   }
 
   markForSaleClicked() {
+    this.isLoading = true;
     this.bookingPersonService.markForSale(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson))
       .then(() => {
         let log = {
@@ -532,6 +537,7 @@ export class WithdrawDialog {
       })
       .catch((err) => {
         this.hasError = true;
+        this.isLoading = false;
         //errorMessage = err.toString();
         console.log(err);
       });

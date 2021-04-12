@@ -132,7 +132,9 @@ export class BookingSchedulerDialog {
 
   dayRange = { start: Timestamp.now(), end: Timestamp.now() };
 
+  
   ngOnInit() {
+    console.log(this.data.group.seatsAutoBooking);
 
     let myActives = this.checkActiveSchedules();
     if (myActives && myActives.length > 0) {

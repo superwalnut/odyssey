@@ -20,6 +20,7 @@ export class LocalBookingUser {
   isForSale: boolean;
   note: string;
   isPaid: boolean;
+  isLoading: boolean;
   createdOn: Timestamp;
 }
 

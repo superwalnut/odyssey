@@ -43,11 +43,13 @@
                 <td><i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
                 <td *ngIf="!booking?.isLocked">
                   <!-- <button mat-icon-button color="warn" (click)="deleteBooking(p)" *ngIf="p.isMyBooking"> -->
-                  <button mat-icon-button color="warn" (click)="withdrawClicked(p)" *ngIf="p.isMyBooking && !p.isForSale">
+                  <button mat-icon-button color="warn" (click)="withdrawClicked(p)" *ngIf="p.isMyBooking && !p.isForSale && !p.isLoading">
                     <mat-icon>remove_circle</mat-icon>
                   </button>
 
-                  <button mat-raised-button color="accent" (click)="forSaleClicked(p)" *ngIf="p.isForSale">For sale</button>
+                  <button mat-raised-button color="accent" (click)="forSaleClicked(p)" *ngIf="p.isForSale && !p.isLoading">For sale</button>
+                  <mat-spinner diameter="20" color="accent" *ngIf="p.isLoading"></mat-spinner>
+
                 </td>
               </tr>  
             </tbody>
