@@ -31,19 +31,22 @@
                 <thead>
                   <tr>
                     <th scope="col">Date</th>
-                    <th scope="col">Amount</th>
                     <th scope="col">Notes</th>
                     <th scope="col">Payment method</th>
                     <th scope="col">User</th>
+                    <th scope="col">Amount</th>
+
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let t of transactions">
                     <td scope="row">{{ t.created.toDate() | date:'dd/MM/yyyy HH:mm'}}</td>
-                    <td scope="row">{{ t.amount | currency}} </td>
                     <td scope="row">{{ t.notes }}</td>
                     <td scope="row">{{ t.paymentMethod }}</td>
                     <td scope="row">{{ t.createdByDisplayName }}</td>
+
+                    <td scope="row" class="{{ t.amount>0 ? 'text-success': 'text-danger'}}">{{ t.amount | currency}} </td>
+
                   </tr>
                 </tbody>
               </table>

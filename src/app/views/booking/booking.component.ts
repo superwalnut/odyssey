@@ -278,9 +278,8 @@ export class BookingDialog {
 
   ngOnInit() {
 
-    this.hasCredit = this.data.creditBalance > 0;
+    this.hasCredit = this.data.creditBalance >= 0;
     this.lowCredit = this.data.creditBalance <= 40;
-
     
     this.bookingPersonService.getByBookingDocId(this.data.bookingDocId).subscribe(allBookings => {
       this.allBookings = allBookings; //get a live connection to all booking persons.
