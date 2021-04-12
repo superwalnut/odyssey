@@ -255,7 +255,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     return this.update(bookingPerson.docId, bookingPerson);
   }
 
-  public updatePaymentStatus(bp: BookingPerson, bpFull: BookingPerson, updatedByUserDocId: string, updatedByUserName: string) {
+  public updatePaymentStatus(bp: BookingPerson, bpFull: BookingPerson, updatedByUserDocId: string, updatedByUserName: string, booking:Booking) {
     var batch = this.firestore.firestore.batch();
     //apply to both booking-peson and group transaction table!
     var ref = this.firestore.collection('bookingPersons').doc(bp.docId).ref;
@@ -267,7 +267,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     //add to group transaction table
     var groupTransaction = {
       amount: paymentAmount,
-      notes: paymentNotes + ':' + bpFull.userDisplayName,
+      notes: paymentNotes + ':' + booking.weekDay +':' + bpFull.userDisplayName,
       paymentMethod: bpFull.paymentMethod,
       referenceId: bpFull.userId,
       groupDocId: bpFull.groupDocId,
@@ -277,6 +277,23 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
       created: Timestamp.now(),
     } as GroupTransaction;
     batch.set(ref, groupTransaction);
+
+
+    //refund and deduct
+    var ref = this.firestore.collection('credits').doc().ref;
+    var sellerCredit = {
+      userDocId: bpFull.userId, //refund to parent user id
+      userDisplayName: bpFull.userDisplayName,
+      createdBy: updatedByUserDocId,
+      createdByDisplayName: updatedByUserName,
+      amount: -paymentAmount,
+      created: Timestamp.now(),
+      note: paymentNotes + ':' + booking.weekDay,
+    } as Credit;
+
+    batch.set(ref, sellerCredit);
+    console.log('seller credit...', sellerCredit);
+
     return batch.commit();
   }
 

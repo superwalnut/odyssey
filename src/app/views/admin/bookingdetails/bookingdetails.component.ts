@@ -333,7 +333,7 @@ export class NoteDialog {
     } as BookingPerson;
 
 
-    this.bookingPersonService.updatePaymentStatus(bp, bpFull, this.data.loggedInUser.docId, this.data.loggedInUser.name)
+    this.bookingPersonService.updatePaymentStatus(bp, bpFull, this.data.loggedInUser.docId, this.data.loggedInUser.name, this.data.booking)
       .then(() => {
         this.dialogRef.close();
       })
