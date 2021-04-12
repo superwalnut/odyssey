@@ -48,6 +48,18 @@ export class HelperService {
     return this.combinDateAndTime(newdate, time);
   }
 
+  getFormattedTimestamp(ts:Timestamp) {
+    let dt = ts.toDate();
+    let date = dt.getDate();
+    let month = dt.getMonth() + 1;
+    let year = dt.getFullYear();
+    let hr = dt.getHours();
+    let min = dt.getMinutes();
+
+    return date + '/' + month + '/' + year + ' ' + hr + ':' + min;
+
+  }
+
 
 
 

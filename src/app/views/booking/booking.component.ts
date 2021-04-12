@@ -166,6 +166,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
         loggedInUser: this.loggedInAccount,
         bookingDocId: this.bookingDocId,
         group: this.group,
+        booking: this.booking,
         allLocalBookingUsers: this.allLocalBookingUsers,
         familyBookingUsers: this.familyBookingUsers,
         friendBookingUsers: this.friendBookingUsers,
@@ -330,7 +331,7 @@ export class BookingDialog {
 
 
     if (finalBookingPersonsToAdd.length > 0) {
-      this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd)
+      this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd, this.data.booking)
         .then(() => this.dialogRef.close())
         .catch((err) => {
           this.hasError = true;
@@ -456,6 +457,7 @@ export interface BookingDialogData {
   loggedInUser: Account,
   bookingDocId: string;
   group: Group;
+  booking: Booking;
   allLocalBookingUsers: LocalBookingUser[];
   familyBookingUsers: LocalBookingUser[];
   friendBookingUsers: LocalBookingUser[];

@@ -158,7 +158,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     } as BookingPerson;
 
     console.log(bp);
-    this.bookingPersonService.createBookingPerson(bp);
+    this.bookingPersonService.createBookingPerson(bp, this.booking);
 
   }
 

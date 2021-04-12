@@ -95,7 +95,7 @@ export class BookingsComponent implements OnInit {
       var autoBookingPersons = this.mapUsersToBookingPerson(this.autoBookingUsers, this.group.docId, bookingDocId);
       console.log('booking persons ready for insert: ', autoBookingPersons);
       if (autoBookingPersons.length > 0) {
-        this.bookingPersonService.createBookingPersonBatch(autoBookingPersons);
+        this.bookingPersonService.createBookingPersonBatch(autoBookingPersons, booking);
       }
 
     });

@@ -26,7 +26,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     super(firestore.collection('bookingPersons'));
   }
 
-  public createBookingPerson(bp: BookingPerson) {
+  public createBookingPerson(bp: BookingPerson, booking:Booking) {
     var batch = this.firestore.firestore.batch();
 
     var ref = this.firestore.collection('bookingPersons').doc().ref;
@@ -40,7 +40,8 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
       userDisplayName: bp.userDisplayName,
       createdBy: bp.parentUserId ? bp.parentUserId : bp.userId,
       createdByDisplayName: bp.parentUserDisplayName ? bp.parentUserDisplayName : bp.userDisplayName,
-      note: bp.bookingDesc + ': ' + bp.userDisplayName + ",",
+      //note: bp.bookingDesc + ': ' + bp.userDisplayName + ",",
+      note: 'Booking:' + booking.weekDay + ':' + this.helperService.getFormattedTimestamp(booking.eventStartDateTime) + ' ' + bp.userDisplayName + ",",
       created: Timestamp.now(),
     } as Credit;
     console.log('createBookingPerson service credit: ', credit);
@@ -64,7 +65,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     batch.commit();
   }
 
-  public async createBookingPersonBatch(bookingPersons: BookingPerson[]) {
+  public async createBookingPersonBatch(bookingPersons: BookingPerson[], booking:Booking) {
     var batch = this.firestore.firestore.batch();
 
     bookingPersons.forEach(bp => {
@@ -79,7 +80,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
         userDisplayName: bp.userDisplayName,
         createdBy: bp.parentUserId ? bp.parentUserId : bp.userId,
         createdByDisplayName: bp.parentUserDisplayName ? bp.parentUserDisplayName : bp.userDisplayName,
-        note: bp.bookingDesc + ': ' + bp.userDisplayName + ",",
+        note: 'Booking:' + booking.weekDay + ':' + this.helperService.getFormattedTimestamp(booking.eventStartDateTime) + ' ' + bp.userDisplayName + ",",
         created: Timestamp.now(),
       } as Credit;
       console.log('createBookingPersonBatch service: ', credit);
@@ -221,7 +222,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
       createdByDisplayName: bookingPerson.parentUserDisplayName,
       amount: bookingPerson.amount,
       created: Timestamp.now(),
-      note: 'withdraw ' + bookingPerson.userDisplayName + ' refund to ' + bookingPerson.parentUserDisplayName,
+      note: 'withdraw ' + bookingPerson.userDisplayName + ' from ' + bookingPerson.bookingDesc + ', refund to ' + bookingPerson.parentUserDisplayName,
     } as Credit;
     batch.set(cref, credit);
 
@@ -369,7 +370,8 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
         amount: bp.amount,
         userDocId: bp.parentUserId, //refund back to the parent user ID
         userDisplayName: bp.userDisplayName,
-        note: bp.bookingDesc + ": withdraw : " + bp.userDisplayName,
+        //note: bp.bookingDesc + ": withdraw : " + bp.userDisplayName,
+        note: 'withdraw ' + bp.userDisplayName + ' from ' + bp.bookingDesc + ', refund to ' + bp.parentUserDisplayName,
         createdBy: bp.parentUserId,
         createdByDisplayName: bp.parentUserDisplayName,
         created: Timestamp.now()
