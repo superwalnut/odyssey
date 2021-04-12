@@ -21,6 +21,6 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_HBC666_UAT }}'
           channelId: live
-          projectId: hbc-dev-c5967
+          projectId: hbc-uat-9f2ad
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
