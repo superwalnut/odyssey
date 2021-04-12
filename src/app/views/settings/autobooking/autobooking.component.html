@@ -9,8 +9,12 @@
             <p>Your current credit balance: {{myCreditBalance | currency}}</p>
             You don't have enought credit to use this service: mimium credit required: {{ miniumCreditRequired | currency}}
           </div>
+          <div class="p-3 mb-2 bg-warning text-dark"  *ngIf="!isCreditUser">
+            <p>You don't have any HBCoins</p>
+            Auto Booking is only available for HBCoins holders.
+          </div>
 
-          <div *ngIf="hasCredit">
+          <div *ngIf="hasCredit && isCreditUser">
             <mat-form-field appearance="fill">
               <mat-label>Social sessions</mat-label>
               <mat-select [(ngModel)]="selectedGroup">

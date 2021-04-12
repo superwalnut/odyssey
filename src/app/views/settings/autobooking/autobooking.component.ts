@@ -32,6 +32,7 @@ import { EventLogger } from '../../../models/event-logger';
 })
 export class AutobookingComponent extends BaseComponent implements OnInit {
   groups: Group[];
+  user: User;
   selectedGroup: Group;
   loggedInAccount: Account;
   familyMembers: User[];
@@ -39,6 +40,7 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
   hasCredit: boolean;
   myCreditBalance: number;
   miniumCreditRequired = GlobalConstants.autoBookingMiniumCreditRequired
+  isCreditUser:boolean;
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialog, public dialog: MatDialog, private creditService: CreditService,
     private bookingScheduleService: BookingScheduleService, private helperService: HelperService, private groupService: GroupService, private accountService: AccountService) { super() }
@@ -46,6 +48,7 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
 
+    this.getUserDetails();
     this.getMyCreditBalance();
     this.getGroups();
     this.getFamily();
@@ -71,6 +74,13 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     this.accountService.getFamilyUsers(this.loggedInAccount.docId).subscribe(result => {
       this.familyMembers = result;
     })
+  }
+
+  getUserDetails() {
+    this.accountService.getLoginUser().subscribe(u=>{
+      this.user = u;
+      this.isCreditUser = u.isCreditUser;
+    });
   }
 
 

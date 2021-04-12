@@ -149,8 +149,11 @@ export class BookingsComponent implements OnInit {
     console.log("users original input: ", users);
     console.log("users length: ", users.length);
 
+
     users.forEach(u => {
       console.log("u =>: ", u);
+
+      let rate = this.getUserRate(u.docId, this.committees);
 
       var bookingPerson = {
         groupDocId: groupDocId,
@@ -161,7 +164,7 @@ export class BookingsComponent implements OnInit {
         parentUserId: u.parentUserDocId ? u.parentUserDocId : u.docId,
         parentUserDisplayName: u.parentUserDisplayName ? u.parentUserDisplayName : u.name,
         paymentMethod: GlobalConstants.paymentCredit,
-        amount: 0,
+        amount: rate,
         isPaid: true,
         createdOn: Timestamp.now(),
       } as BookingPerson;
@@ -172,6 +175,16 @@ export class BookingsComponent implements OnInit {
 
     console.log("booking persons: ", bookingpersons);
     return bookingpersons;
+  }
+
+  getUserRate(userDocId:string, committees:User[]) {
+    let found = committees.find(x=>x.docId == userDocId);
+    if (found) {
+      return 0; //committess is free
+    } else {
+      return GlobalConstants.rateCredit; // only credit user can setup auto booking.
+    }
+
   }
 
 }
