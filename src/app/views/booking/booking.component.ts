@@ -402,7 +402,7 @@ export class BookingDialog {
         parentUserId: this.data.loggedInUser.docId,
         parentUserDisplayName: this.data.loggedInUser.name,
         paymentMethod: this.data.isCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
-        isPaid: true,
+        isPaid: this.data.isCreditUser ? true : false, //cash user booking, mark them as unpaid, not not to add to group transaction untile we received the cash
         createdOn: Timestamp.now(),
       } as BookingPerson;
       if (u.docId) bp.docId = u.docId;
@@ -507,7 +507,7 @@ export class WithdrawDialog {
   withdrawClicked() {
     this.isLoading = true;
     console.log('refund: ', this.mapToBookingPerson(this.data.inputBookingPerson))
-    this.bookingPersonService.withdraw(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson))
+    this.bookingPersonService.withdraw(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson), this.data.booking)
       .then(() => {
         let log = {
           eventCategory: GlobalConstants.eventbookingWithdraw,

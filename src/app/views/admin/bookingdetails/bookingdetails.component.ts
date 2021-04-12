@@ -153,7 +153,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
       parentUserDisplayName: user[0].parentUserDisplayName ? user[0].parentUserDisplayName : user[0].name,
       isForSale: false,
       amount: this.getPaymentAmount(user[0].docId, this.selectedPaymentMethod),
-      isPaid: true,
+      isPaid: this.selectedPaymentMethod == GlobalConstants.paymentCredit ? true : false,
       createdOn: Timestamp.now(),
     } as BookingPerson;
 
@@ -163,6 +163,11 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   }
 
   withdrawBooking(lbu: LocalBookingUser) {
+
+    if (lbu.isPaid && lbu.paymentMethod == GlobalConstants.paymentCash){
+      alert('Cash user who has already paid, cannot be deleted!');
+      return false;
+    }
 
     if (confirm("Are you sure to withdraw? " + lbu.name)) {
       var bp = {
@@ -176,7 +181,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
         parentUserId: lbu.parentUserId ? lbu.parentUserId : lbu.userDocId,
         parentUserDisplayName: lbu.parentUserDisplayName ? lbu.parentUserDisplayName : lbu.name,
       } as BookingPerson;
-      this.bookingPersonService.withdraw(bp.docId, bp)
+      this.bookingPersonService.withdraw(bp.docId, bp, this.booking)
         .catch((err) => {
           //errorMessage = err.toString();
           alert(err);

@@ -3,8 +3,11 @@
       <div class="col-md-12 mx-auto">
         <div class="card">
           <div class="card-body p-4">
-            <h2>{{booking?.weekDay}} 
-            {{booking?.eventStartDateTime.toDate() |  date: "EE dd/MM/yyyy"}}</h2>
+            <h2>{{booking?.weekDay}} {{booking?.eventStartDateTime.toDate() |  date: "EE dd/MM/yyyy"}}</h2>
+            <ul class="simple-horizontal-list">
+              <li>Committees: </li>
+              <li *ngFor="let c of group?.committees">{{ c.name}}, </li>
+            </ul>
             <h3>
               <button mat-icon-button color="primary" (click)="toggleLockStatus()">
                 <mat-icon>{{ booking?.isLocked ? 'lock': 'lock_open'}}</mat-icon>
