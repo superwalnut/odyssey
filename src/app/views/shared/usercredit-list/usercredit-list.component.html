@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of credits">
-        <th scope="row">{{item.created.toDate() | date : 'dd/MM/yyyy'}}</th>
+        <th scope="row">{{item.created.toDate() | date : 'dd/MM/yyyy HH:mm'}}</th>
         <td>{{item.note}}</td>
         <td class="{{ item.amount>0 ? 'text-success': 'text-danger'}}">{{item.amount | currency}}</td>
         <!-- <td>${{item.balance | number: '2.2'}}</td> -->
