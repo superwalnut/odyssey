@@ -22,6 +22,7 @@
     "postinstall": "ngcc --properties es5 browser module main --first-only",
     "start": "ng serve",
     "build": "ng build --prod --progress --output-path=public",
+    "uatbuild" : "ng build --progress --output-path=public",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
