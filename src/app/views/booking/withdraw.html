@@ -2,7 +2,7 @@
 <!-- Modal -->
 <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title">{{ data.group?.groupName}} {{ data.group?.eventStartTime}}</h5>
+      <h2 class="modal-title">{{ data.group?.groupName}} {{ data.group?.eventStartTime}} | Withdraw</h2>
       <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
     </div>
   
@@ -10,7 +10,6 @@
       <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage }}</div>
 
       <div *ngIf="isWithdrawAllowed"> 
-        <h2>Withdraw</h2>
         <p>Refund: {{data.inputBookingPerson.amount | currency}}</p>
         <p>We will see you next time!</p>
 
