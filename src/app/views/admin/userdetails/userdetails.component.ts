@@ -37,10 +37,10 @@ export class UserdetailsComponent implements OnInit {
   ngOnInit(): void {
     this.userDocId = this.activatedRoute.snapshot.params.id;
     if (this.userDocId) {
-      this.accountService.getUserByDocId(this.userDocId).subscribe(x => {
-        console.log(x);
-        this.user = x;
-      });
+      // this.accountService.getUserByDocId(this.userDocId).subscribe(x => {
+      //   console.log(x);
+      //   this.user = x;
+      // });
 
       this.creditService.getBalance(this.userDocId).subscribe(x => {
         if (x) {
