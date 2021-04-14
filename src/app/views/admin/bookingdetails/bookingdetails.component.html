@@ -9,9 +9,14 @@
               <li *ngFor="let c of group?.committees">{{ c.name}}, </li>
             </ul>
             <h3>
-              <button mat-icon-button color="primary" (click)="toggleLockStatus()">
+              <button mat-icon-button color="primary" (click)="toggleLockStatus()" title="lock/unlock this booking">
                 <mat-icon>{{ booking?.isLocked ? 'lock': 'lock_open'}}</mat-icon>
               </button>
+
+              <button mat-icon-button color="primary" title="change seats" (click)="changeSeatClicked()">
+                <mat-icon>chair</mat-icon>
+              </button>
+
 
               <button mat-icon-button color="primary">
                 <mat-icon>print</mat-icon>

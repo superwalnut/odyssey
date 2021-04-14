@@ -87,6 +87,7 @@ export class BookingsComponent implements OnInit {
       bookingStartDay: this.group.bookingStartDay,
       weekDay: this.group.eventStartDay,
       isLocked: true, //new booking default to locked, need God manually open it. for extra layer of control
+      seatsOverwrite: this.group.seats, //initial value copied from group, and admin can change it on booking level
     } as Booking;
 
     console.log(booking)

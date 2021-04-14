@@ -10,5 +10,6 @@ export class Booking {
     weekDay: string; // TUE | FRI | SAT - make it easier for query, copy from Group.eventStartDay
     //people: BookingPerson[];
     isLocked: boolean // once locked, even admin can't make edit, only God can make changes to it
+    seatsOverwrite: number; //initial value is copied from Groupo.seats, but allow admin to overwrite on booking level
 }
 

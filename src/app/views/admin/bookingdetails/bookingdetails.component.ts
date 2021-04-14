@@ -241,6 +241,21 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     this.bookingService.updateBooking(this.bookingDocId, this.booking);
   }
 
+  changeSeatClicked() {
+    const dialogRef = this.dialog.open(SeatDialog, {
+      width: '650px',
+      data: {
+        loggedInUser: this.loggedInAccount,
+        booking: this.booking,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Seat change dialog was closed');
+
+    });
+  }
+
   onSubmit() {
     var groupTransaction = {
       amount: this.adjustForm.value.adjustAmount,
@@ -373,6 +388,38 @@ export class NoteDialog {
     //   });
 
   }
+}
+
+
+@Component({
+  selector: 'seat-dialog',
+  templateUrl: 'seats.html',
+})
+export class SeatDialog {
+  constructor(
+    public dialogRef: MatDialogRef<NoteDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: NoteDialogData, bookingService:BookingsService) { }
+
+  hasError: boolean;
+  errorMessage: string;
+  seatsNumber: number;
+
+  //note: string;
+
+  ngOnInit() {
+
+    console.log(this.data.localBookingUser)
+
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  onConfirmClick() {
+    console.log(this.seatsNumber)
+  }
+
+
 }
 
 
