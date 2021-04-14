@@ -18,4 +18,5 @@ export class User {
     status: string;
     grade: string;
     isCreditUser: boolean;
+    disabled: boolean;
 }

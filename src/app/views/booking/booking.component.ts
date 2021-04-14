@@ -100,7 +100,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   }
 
   seatsAvailable() {
-    let seatsLimit = this.group.seats;
+    let seatsLimit = this.booking.seatsOverwrite;
     this.seatsBooked = this.allLocalBookingUsers.length;
     this.seatsLeft = seatsLimit - this.seatsBooked;
     this.isSeatsLeft = this.seatsLeft > 0;
@@ -299,7 +299,7 @@ export class BookingDialog {
   }
   onConfirmClick(): void {
 
-    if (this.allBookings.length >= this.data.group.seats) {
+    if (this.allBookings.length >= this.data.booking.seatsOverwrite) {
       this.hasError = true;
       this.errorMessage = "This session is full";
       return;

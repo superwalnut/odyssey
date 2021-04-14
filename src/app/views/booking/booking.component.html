@@ -20,7 +20,7 @@
       <div class="col-sm">
         <section> 
           <ul class="simple-horizontal-list">
-            <li><h3>Seats: {{seatsBooked}} / {{group?.seats}}</h3></li>
+            <li><h3>Seats: {{seatsBooked}} / {{booking?.seatsOverwrite}}</h3></li>
             <li><span class="material-icons" title="{{ booking?.isLocked ? 'Booking Locked': 'Booking is open'}}">{{ booking?.isLocked ? 'lock':'lock_open'}}</span></li>
           </ul>
           

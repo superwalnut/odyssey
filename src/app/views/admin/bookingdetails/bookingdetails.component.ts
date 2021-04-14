@@ -397,8 +397,8 @@ export class NoteDialog {
 })
 export class SeatDialog {
   constructor(
-    public dialogRef: MatDialogRef<NoteDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: NoteDialogData, bookingService:BookingsService) { }
+    public dialogRef: MatDialogRef<SeatDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: NoteDialogData, private bookingService:BookingsService) { }
 
   hasError: boolean;
   errorMessage: string;
@@ -417,6 +417,14 @@ export class SeatDialog {
 
   onConfirmClick() {
     console.log(this.seatsNumber)
+
+    var booking = {
+      docId: this.data.booking.docId,
+      seatsOverwrite: this.seatsNumber,
+    } as Booking;
+    this.bookingService.updateBooking(this.data.booking.docId, booking)
+    .then(() => this.dialogRef.close())
+    .catch((err) => { alert(err) })
   }
 
 
