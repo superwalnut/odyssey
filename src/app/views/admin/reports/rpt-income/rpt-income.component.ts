@@ -11,6 +11,7 @@ import { User } from '../../../../models/user';
 import { GlobalConstants } from '../../../../common/global-constants';
 import { BookingsService } from '../../../../services/bookings.service';
 import { Booking } from '../../../../models/booking';
+import { ActivatedRoute } from "@angular/router";
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EventLoggerService } from '../../../../services/event-logger.service';
@@ -25,6 +26,7 @@ import Timestamp = firebase.firestore.Timestamp;
 })
 export class RptIncomeComponent extends BaseComponent implements OnInit {
 
+  groupDocId:string;
   isGod: boolean;
   groups: Group[];
   selectedGroup: Group;
@@ -37,10 +39,13 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
 
   //selectedMode = "income";
 
-  constructor(private groupService: GroupService, private groupTransactionService: GroupTransactionService,
+  constructor(private groupService: GroupService, private groupTransactionService: GroupTransactionService,private activatedRoute: ActivatedRoute,
     private accountService: AccountService, private bookingService: BookingsService, public dialog: MatDialog) { super() }
 
   ngOnInit(): void {
+    this.groupDocId = this.activatedRoute.snapshot.params.id;
+
+    console.log('sdadfasdf',this.groupDocId);
     this.loggedInAccount = this.accountService.getLoginAccount();
     this.isGod = this.accountService.isGod();
 
@@ -50,6 +55,9 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
   getGroups() {
     this.groupService.getGroups().subscribe(gs => {
       this.groups = gs;
+      let found = gs.find(x=>x.docId == this.groupDocId);
+      this.selectedGroup = found;
+      this.loadGroupFinance();
     })
   }
 
@@ -65,6 +73,11 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
   }
   viewClicked() {
     console.log(this.selectedGroup)
+    this.loadGroupFinance();
+
+  }
+
+  loadGroupFinance(){
 
     let isCommittee = this.selectedGroup.committees.find(x => x.docId == this.loggedInAccount.docId);
     if (!isCommittee) { alert("you are not a committee of this group"); return false; }
@@ -72,7 +85,6 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
     this.getCommittees();
     this.getGroupTransactionReport();
     this.getUnlockedBookings();
-
   }
 
 
@@ -123,7 +135,7 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
 export class DividendDialog {
   constructor(
     public dialogRef: MatDialogRef<DividendDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DividendDialogData, private eventLogService: EventLoggerService, private groupTransactionService: GroupTransactionService, private accountService: AccountService) { }
+    @Inject(MAT_DIALOG_DATA) public data: DividendDialogData, private eventLogService: EventLoggerService,  private groupTransactionService: GroupTransactionService, private accountService: AccountService) { }
 
   hasError: boolean;
   errorMessage: string;
@@ -134,6 +146,7 @@ export class DividendDialog {
 
 
   ngOnInit() {
+    
     this.hasUnlockedBookings = this.data.unlockedBookings.length > 0;
     this.unitDividend = this.data.groupBalance / this.data.committees.length;
   }

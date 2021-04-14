@@ -13,6 +13,7 @@ import { MatTableDataSource } from "@angular/material/table";
 })
 export class GroupsComponent implements OnInit {
   isGod: Boolean;
+  groupDocId:string;
   groups: Group[] = [];
   displayedColumns: string[] = [
     //"startDate",
@@ -28,6 +29,8 @@ export class GroupsComponent implements OnInit {
   constructor(private groupService: GroupService, private accountService: AccountService) { }
 
   ngOnInit(): void {
+   
+
     this.getAllGroups();
     this.isGod = this.accountService.isGod();
 

@@ -120,6 +120,13 @@ const routes: Routes = [
         },
       },
       {
+        path: "rptincome/:id",
+        component: RptIncomeComponent,
+        data: {
+          title: "Finance report",
+        },
+      },
+      {
         path: "rptattend",
         component: RptAttendanceComponent,
         data: {
