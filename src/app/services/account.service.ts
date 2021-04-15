@@ -60,6 +60,7 @@ export class AccountService extends FirestoreBaseService<User>{
       map(actions => {
         if (actions && actions.length > 0) {
           var acc = actions[0].payload.doc.data() as User;
+          if (acc.disabled) { return null }
           return {
             ...acc,
             docId: actions[0].payload.doc.id

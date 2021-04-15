@@ -160,6 +160,11 @@ export class BookingComponent extends BaseComponent implements OnInit {
   }
 
   bookClicked() {
+
+    if (this.user.disabled) {
+      alert('You account is disabled!');
+      return false;
+    }
     const dialogRef = this.dialog.open(BookingDialog, {
       width: '650px',
       data: {
