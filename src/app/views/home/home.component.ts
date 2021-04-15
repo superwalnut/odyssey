@@ -9,6 +9,7 @@ import { GroupService } from '../../services/group.service';
 import { Group } from "../../models/group";
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
+import { environment } from "../../../environments/environment";
 
 
 @Component({
@@ -26,6 +27,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
   weekStart: Timestamp;
   hasBooking:boolean;
 
+  domain:string=environment.domain;
 
   constructor(private bookingPersonService: BookingPersonService, private accountService: AccountService, private groupService: GroupService, private helperService: HelperService) { super() }
 
