@@ -73,13 +73,14 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       mobile: this.profileForm.value.mobile,
       gender: this.profileForm.value.gender,
       isChild: this.profileForm.value.agegroup == 'Child'?true:false,
-      isMember: this.profileForm.value.isMember,
-      isCreditUser: this.profileForm.value.isCreditUser,
-      disabled: this.profileForm.value.disabled,
+      
     } as User;
 
     if(this.isAdmin){
       user.isMember = this.profileForm.value.isMember;
+      //isMember: this.profileForm.value.isMember,
+      user.isCreditUser = this.profileForm.value.isCreditUser;
+      user.disabled = this.profileForm.value.disabled;
     }
 
     const emailCheck$ = this.accountService.isEmailExist(user.email);
