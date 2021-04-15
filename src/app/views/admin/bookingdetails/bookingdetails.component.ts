@@ -461,9 +461,7 @@ export class LvlPointsDialog {
   //note: string;
 
   ngOnInit() {
-
     console.log(this.data.localBookingUser)
-
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -471,7 +469,6 @@ export class LvlPointsDialog {
 
   onConfirmClick() {
     console.log(this.levelPoints)
-
     var booking = {
       docId: this.data.booking.docId,
       levelRestrictionOverwrite: this.levelPoints,

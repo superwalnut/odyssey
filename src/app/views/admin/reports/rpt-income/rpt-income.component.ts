@@ -55,9 +55,13 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
   getGroups() {
     this.groupService.getGroups().subscribe(gs => {
       this.groups = gs;
-      let found = gs.find(x=>x.docId == this.groupDocId);
-      this.selectedGroup = found;
-      this.loadGroupFinance();
+      if (this.groupDocId) {
+        let found = gs.find(x=>x.docId == this.groupDocId);
+        this.selectedGroup = found;
+        this.loadGroupFinance();
+      }
+      
+      
     })
   }
 
@@ -72,15 +76,15 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
     //  getUnlockedBooking
   }
   viewClicked() {
-    console.log(this.selectedGroup)
-    this.loadGroupFinance();
-
+    if(this.selectedGroup) {
+      this.loadGroupFinance();
+    }
   }
 
   loadGroupFinance(){
 
     let isCommittee = this.selectedGroup.committees.find(x => x.docId == this.loggedInAccount.docId);
-    if (!isCommittee) { alert("you are not a committee of this group"); return false; }
+    if (!this.isGod && !isCommittee) { alert("you are not a committee of this group"); return false; }
 
     this.getCommittees();
     this.getGroupTransactionReport();
