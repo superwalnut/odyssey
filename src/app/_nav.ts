@@ -5,10 +5,10 @@ export const navItems: INavData[] = [
     name: "Dashboard",
     url: "/dashboard",
     icon: "icon-speedometer",
-    badge: {
-      variant: "info",
-      text: "NEW",
-    },
+    // badge: {
+    //   variant: "info",
+    //   text: "NEW",
+    // },
   },
   //For Casuals
   {
