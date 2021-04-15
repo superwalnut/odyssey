@@ -20,7 +20,7 @@ import { Account } from "../../../models/account";
 export class UsersComponent implements OnInit, AfterViewInit {
   loggedInAccount: Account;
 
-  displayedColumns: string[] = ['name', 'iscredituser', 'families', 'created', 'docId' ];
+  displayedColumns: string[] = ['name', 'iscredituser', 'families', 'grade', 'created', 'docId' ];
   dataSource: MatTableDataSource<UserFamily>;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -40,7 +40,8 @@ export class UsersComponent implements OnInit, AfterViewInit {
           docId: m.docId,
           user: m,
           families: x.filter(y => y.parentUserDocId == m.docId).map(z => z.name),
-          created: m.created
+          created: m.created,
+          grade: m.grade + m.gradePoints,
         } as UserFamily;
       });
 

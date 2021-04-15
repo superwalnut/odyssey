@@ -31,10 +31,10 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       mobile: ['', Validators.required],
       gender:[''],
       agegroup:[''],
-      isMember:['']
+      isMember:[''],
+      isCreditUser:[''],
+      disabled:[''],
     });
-
-    console.log('userId', this.userDocId);
 
     this.accountService.getUserByDocId(this.userDocId).subscribe(x => {
       this.user = x;
@@ -45,7 +45,9 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
           mobile: this.user.mobile,
           gender: this.user.gender,
           agegroup: this.user.isChild? "Child" : "Adult",
-          isMember: this.user.isMember
+          isMember: this.user.isMember,
+          isCreditUser: this.user.isCreditUser,
+          disabled:this.user.disabled,
         }
       );
     });
@@ -71,6 +73,9 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       mobile: this.profileForm.value.mobile,
       gender: this.profileForm.value.gender,
       isChild: this.profileForm.value.agegroup == 'Child'?true:false,
+      isMember: this.profileForm.value.isMember,
+      isCreditUser: this.profileForm.value.isCreditUser,
+      disabled: this.profileForm.value.disabled,
     } as User;
 
     if(this.isAdmin){

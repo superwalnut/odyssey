@@ -51,11 +51,19 @@
           <mat-option value="Child">Child</mat-option>
         </mat-select>
       </mat-form-field>
-      
     </div>
     <div class="input-group mb-3" *ngIf="isAdmin">
-      <mat-checkbox formControlName="isMember">Is Member</mat-checkbox>
+      <mat-checkbox formControlName="isMember">Is Member</mat-checkbox><br/>
     </div>
+    <div class="input-group mb-3" *ngIf="isAdmin">
+      <mat-checkbox formControlName="isCreditUser">HBCoin holer</mat-checkbox> 
+      <p class="text-primary">* User become HBCoin user automatically when topup $100+, Don't tick off thick box unless Admin wants to make this user back to Cash user</p>
+    </div>
+    <div class="input-group mb-3" *ngIf="isAdmin">
+      <mat-checkbox formControlName="disabled">Block this account</mat-checkbox> 
+      <p class="text-primary">* User won't be able to login to the system once blocked</p>
+    </div>
+
 
 
    
