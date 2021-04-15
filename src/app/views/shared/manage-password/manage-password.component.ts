@@ -4,6 +4,9 @@ import { User } from '../../../models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../services/account.service';
+import { EventLogger } from "../../../models/event-logger";
+import { EventLoggerService } from '../../../services/event-logger.service';
+import { GlobalConstants } from '../../../common/global-constants';
 
 @Component({
   selector: 'app-manage-password',
@@ -18,7 +21,7 @@ export class ManagePasswordComponent implements OnInit {
   submitted = false;
   user:User;
 
-  constructor(private fb: FormBuilder, private accountService:AccountService, private snackBar:MatSnackBar, private router: Router) { 
+  constructor(private fb: FormBuilder, private accountService:AccountService, private eventLogService:EventLoggerService, private snackBar:MatSnackBar, private router: Router) { 
     
   }
 
@@ -55,6 +58,13 @@ export class ManagePasswordComponent implements OnInit {
 
     if(this.user){
       this.accountService.updateUser(this.user.docId, user).then(x=>{
+
+        var log = {
+          eventCategory: GlobalConstants.eventPasswordChange,
+          createdBy: this.user.docId,
+          createdByDisplayName: this.user.name,
+        } as EventLogger;
+        this.eventLogService.createLog(log, this.user.docId, this.user.name);
         this.snackBar.open(`Your password have been updated.`, null , {
           duration: 5000,
           verticalPosition: 'top'

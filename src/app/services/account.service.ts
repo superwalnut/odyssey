@@ -231,6 +231,9 @@ export class AccountService extends FirestoreBaseService<User>{
     return this.getByDocId(docId);
   }
 
+  public deleteUser(userDocId:string) {
+    return this.delete(userDocId);
+  }
 
 
   private saveLocal(user: User) {

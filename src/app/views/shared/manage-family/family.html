@@ -1,0 +1,38 @@
+
+<!-- Modal -->
+<div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Add a family member</h2>
+      <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
+    </div>
+  
+    <div class="modal-body">
+        <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage }}</div>
+
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="John Smith" autocomplete="off" required [(ngModel)]="user.name" />
+        </mat-form-field>
+        <p>
+            <mat-radio-group aria-label="Select Gender" [(ngModel)]="user.gender">
+                <mat-radio-button value="Male">Male</mat-radio-button>
+                <mat-radio-button value="Female">Female</mat-radio-button>
+          </mat-radio-group>
+        </p>
+        <p>
+            <mat-radio-group aria-label="Select Age Group" [(ngModel)]="user.isChild">
+                <mat-radio-button [value]="true">Kid</mat-radio-button>
+                <mat-radio-button [value]="false">Adult</mat-radio-button>
+            </mat-radio-group>
+        </p>
+
+    </div>
+    <div class="modal-footer">
+      <button mat-raised-button (click)="onNoClick()">Close</button>
+      <button mat-raised-button color="primary" (click)="confirmClicked()" *ngIf="!isLoading">Confirm</button>
+      <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+  
+    </div>
+  </div>
+  
+  

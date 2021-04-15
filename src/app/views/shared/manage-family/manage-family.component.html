@@ -1,42 +1,75 @@
-<h1>Manage Family</h1>
+<!-- 
 <p class="text-muted mb-3 text-right">
   <button *ngIf="!isFamilyUser" mat-raised-button color="primary" (click)="addFamily()">Add family member</button>
 </p>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div formArrayName="families" *ngFor="let fam of families.controls; index as i">
-      <div [formGroupName]="i" class="form-row align-items-center mb-3">
-        <div class="col-sm-6 my-1">
-          <div class="input-group">
-            <input type="hidden" id="{{'userDocId' + i}}" formControlName="userDocId" />
-            <input id="{{'name' + i}}" formControlName="name" placeholder="Name..." class="form-control" type="text" >
-            <div class="input-group-append">
-                <div (click)="deleteFamily(i)" class="input-group-text">
-                    <i  class="cil-x"></i>
-                </div>
-            </div>
+  <div formArrayName="families" *ngFor="let fam of families.controls; index as i">
+    <div [formGroupName]="i" class="form-row align-items-center mb-3">
+      <div class="col-sm-6 my-1">
+        <div class="input-group">
+          <input type="hidden" id="{{'userDocId' + i}}" formControlName="userDocId" />
+          <input id="{{'name' + i}}" formControlName="name" placeholder="Name..." class="form-control" type="text" >
+          <div class="input-group-append">
+              <div (click)="deleteFamily(i)" class="input-group-text">
+                  <i  class="cil-x"></i>
+              </div>
           </div>
         </div>
-        <div class="col-sm-3 my-1">
-          <select class="custom-select mr-sm-2" id="{{'gender' + i}}" formControlName="gender">
-            <option selected>Choose Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        </div>
-        <div class="col-sm-3 my-1">
-          <select class="custom-select mr-sm-2" id="{{'agegroup' + i}}" formControlName="agegroup">
-            <option selected>Choose Age Group</option>
-            <option value="Adult">Adult</option>
-            <option value="Child">Child</option>
-          </select>
-        </div>
+      </div>
+      <div class="col-sm-3 my-1">
+        <select class="custom-select mr-sm-2" id="{{'gender' + i}}" formControlName="gender">
+          <option selected>Choose Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+      <div class="col-sm-3 my-1">
+        <select class="custom-select mr-sm-2" id="{{'agegroup' + i}}" formControlName="agegroup">
+          <option selected>Choose Age Group</option>
+          <option value="Adult">Adult</option>
+          <option value="Child">Child</option>
+        </select>
       </div>
     </div>
-      <p>
-        <button mat-raised-button color="primary" *ngIf="!isFamilyUser">Update Family</button>
-      </p>
-  </form>
+  </div>
+    <p>
+      <button mat-raised-button color="primary" *ngIf="!isFamilyUser">Update Family</button>
+    </p>
+</form> -->
+
+
+
+<h2>Family Members</h2>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Age group</th>
+      <th><button mat-raised-button color="primary" *ngIf="!isFamilyUser" (click)="addFamilyClicked()">Add</button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of loadedFamilies">
+      <td>{{ u.name }}</td>
+      <td>{{ u.gender }}</td>
+      <td>{{ u.isChild ? 'Kid' : 'Adult' }}</td>
+      <th>
+        <button mat-icon-button color="primary" (click)="updateFamilyMember(u)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="warn" (click)="removeFamilyMember(u)">
+          <mat-icon>remove_circle</mat-icon>
+        </button>
+      </th>
+    </tr>
+  </tbody>
+</table>
+
 
 
 
