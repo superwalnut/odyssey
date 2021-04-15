@@ -233,13 +233,13 @@ export class AccountService extends FirestoreBaseService<User>{
 
 
 
-  private saveLocal(user: User) {
+  saveLocal(user: User) {
     console.log('local', user);
     var encripted = this.helpService.encryptData(JSON.stringify({ docId: user.docId, name: user.name, role: user.role, email: user.email }));
     localStorage.setItem("user", encripted);
   }
 
-  private getLocal(): Account {
+  getLocal(): Account {
     var json = localStorage.getItem("user");
     if (json) {
       var decripted = this.helpService.decryptData(json);
