@@ -15,10 +15,12 @@ export class DashboardComponent implements OnInit {
   isGod: boolean;
   isAdmin: boolean;
   isUser: boolean;
+  user: User;
   show: boolean = true;
   loggedInUser:Account;
   myCreditBalance:number;
   myAttendanceCount:number;
+  creditImageSrc:string;
 
   constructor(private accountService: AccountService, private creditService:CreditService, private bookingPersonService:BookingPersonService) {
     this.isGod = this.accountService.isGod();
@@ -31,6 +33,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUserDetails();
     this.getCreditBalance();
     this.getAttendanceCount();
   }
@@ -38,6 +41,13 @@ export class DashboardComponent implements OnInit {
   getCreditBalance() {
     this.creditService.getBalance(this.loggedInUser.docId).subscribe(balance=>{
       this.myCreditBalance = balance;
+    })
+  }
+
+  getUserDetails() {
+    this.accountService.getUserByDocId(this.loggedInUser.docId).subscribe(u=>{
+      this.user = u;
+      this.creditImageSrc = u.isCreditUser ? "./assets/img/banners/HBCoin.png" : "./assets/img/banners/HBCredit.jpg";
     })
   }
 

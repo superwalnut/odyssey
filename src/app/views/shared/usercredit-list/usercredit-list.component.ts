@@ -9,6 +9,8 @@ import { CreditService } from '../../../services/credit.service';
 })
 export class UserCreditListComponent implements OnInit {
   @Input() userDocId: string;
+  @Input() isCreditUser: boolean;
+
   credits: Credit[];
   balance: number;
   hasCredit: boolean;

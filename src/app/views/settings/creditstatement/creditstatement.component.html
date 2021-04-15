@@ -1,6 +1,14 @@
 <div class="container">
 <div class="row">
   <div class="col-md-12 mx-auto">
+
+    <div class="p-3 mb-2 bg-warning text-dark" *ngIf="!isCreditUser">
+      You're a cash user, why not considering become a HBCoin user to enjoy cheaper fees, cashless payment and heaps other benefits?
+      <a routerLink="/termsconditions" target="_blank">more details</a>
+
+    </div>
+
+
     <div class="card">
       <div class="card-body p-4">        
           <mat-card>
@@ -11,7 +19,7 @@
             * 转账时请注明你的微信用户名以便核对. 并截屏微信给群管理员
           </mat-card>
         <div *ngIf="userDocId">
-          <app-usercredit-list [userDocId]="userDocId"></app-usercredit-list>
+          <app-usercredit-list [userDocId]="userDocId" [isCreditUser]="isCreditUser"></app-usercredit-list>
         </div>
       </div>
     </div>
