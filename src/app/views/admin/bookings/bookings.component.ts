@@ -103,14 +103,16 @@ export class BookingsComponent implements OnInit {
   }
 
   getAutoBookingUsers(groupDocId: string) { 
-    this.bookingScheduleService.getBookingSchedulesByGroupDocIdInUserIdArray(groupDocId).subscribe(userIds => {
-      console.log('addAutoBookingUsers', userIds);
-      if (userIds.length > 0) {
-        this.accountService.getUsersByUserDocIds(userIds).subscribe(result => {
-          this.autoBookingUsers = result;
-          console.log('auto booking users: ', result);
-        })
-      }
+    this.bookingScheduleService.getBookingSchedulesByGroupDocId(groupDocId).subscribe(schedule => {
+      this.autoBookingUsers = schedule.map(s=>s.user);
+      console.log(this.autoBookingUsers);
+
+      // if (userIds.length > 0) {
+      //   this.accountService.getUsersByUserDocIds(userIds).subscribe(result => {
+      //     this.autoBookingUsers = result;
+      //     console.log('auto booking users: ', result);
+      //   })
+      // }
 
     })
   }

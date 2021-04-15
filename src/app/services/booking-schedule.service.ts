@@ -11,7 +11,7 @@ import { Credit } from '../models/credit';
 
 import { CreditService } from './credit.service';
 import { HelperService } from '../common/helper.service';
-import { UserSelection } from "../models/custom-models";
+import { User } from "../models/user";
 
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
@@ -72,16 +72,17 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
   }
 
   //return array of UserDocIds. ie ['xxxxx','yyyyy']
-  getBookingSchedulesByGroupDocIdInUserIdArray(groupDocId: string) {
-    return this.firestore.collection('bookingSchedules', q => q.where('groupDocId', '==', groupDocId).where('isPaused', '==', false)).snapshotChanges().pipe(
-      map(actions => {
-        const ids = actions.map(p => (p.payload.doc.data() as BookingSchedule).userDocId);
-        return ids;
-      })
-    );
-
-
-  }
+  // getBookingSchedulesByGroupDocIdInUserIdArray(groupDocId: string) {
+  //   return this.firestore.collection('bookingSchedules', q => q.where('groupDocId', '==', groupDocId).where('isPaused', '==', false)).snapshotChanges().pipe(
+  //     map(actions => {
+  //       var items = actions.map(p => {
+  //         var data = p.payload.doc.data() as BookingSchedule
+  //         return { ...data, docId: p.payload.doc.id} as BookingSchedule;
+  //       });
+  //       return items;
+  //     })
+  //   );
+  // }
 
   // getMyActiveBookingSchedules(userDocId: string) {
   //   return this.firestore.collection('bookingSchedules', q => q.where('createdBy', '==', userDocId).where('expireOn', '>=', Timestamp.now()).orderBy('createdOn', 'desc')).snapshotChanges().pipe(
@@ -96,7 +97,7 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
   // }
 
 
-  createBookingSchedule(users: UserSelection[], expireDate: Timestamp, loggedInUser: Account, group: Group, fee: number) {
+  createBookingSchedule(users: User[], expireDate: Timestamp, loggedInUser: Account, group: Group, fee: number) {
     var batch = this.firestore.firestore.batch();
 
     //1. deduct user's credit
@@ -132,12 +133,13 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
     users.forEach(u => {
       var ref = this.firestore.collection('bookingSchedules').doc().ref;
       var schedule = {
-        userDocId: u.docId,
-        userDisplayName: u.name,
         groupDocId: group.docId,
         groupName: group.groupName,
-        parentDocId: u.parentUserDocId,
-        parentDisplayName: u.parentUserDisplayName,
+        user: u,
+        // userDocId: u.docId,
+        // userDisplayName: u.name,
+        // parentDocId: u.parentUserDocId,
+        // parentDisplayName: u.parentUserDisplayName,
         expireOn: expireDate,
         isPaused: false,
         createdOn: Timestamp.now(),

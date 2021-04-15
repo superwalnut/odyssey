@@ -178,6 +178,17 @@ export class BookingSchedulerDialog {
     console.log('user list: ', this.userSelectList)
   }
 
+  mapUserSelectionToUser(userSelectList: UserSelection[]) : User[]{
+    let users = userSelectList.map(s=> ({
+      docId: s.docId,
+      name: s.name,
+      parentUserDocId: s.parentUserDocId,
+      parentUserDisplayName: s.parentUserDisplayName
+    }) as User);
+    console.log('mapUserSelectionToUser', users);
+    return users;
+  }
+
   checkActiveSchedules() {
     let myActives = this.data.mySchedules.filter(x => x.groupDocId == this.data.group.docId && x.expireOn > Timestamp.now());
     console.log(' check actives ', myActives.length);
@@ -198,24 +209,19 @@ export class BookingSchedulerDialog {
     this.dialogRef.close();
   }
 
-  onCreateClick() {
-    let selectedUsers = this.userSelectList.filter(x => x.selected);
-    console.log(selectedUsers);
-    console.log(this.dayRange);
-    console.log(this.selectedDuration);
+  onCreateClick() {   
     let price = this.selectedDuration.price;
     if (this.isCommittee) { price = 0 } // committee free 
-
     this.isLoading = true;
+    let users = this.mapUserSelectionToUser(this.userSelectList.filter(x => x.selected));
 
-    this.bookingScheduleService.createBookingSchedule(selectedUsers, this.dayRange.end, this.data.loggedInUser, this.data.group, price)
+    this.bookingScheduleService.createBookingSchedule(users, this.dayRange.end, this.data.loggedInUser, this.data.group, price)
       .then(() => {
         let log = {
           eventCategory: GlobalConstants.eventAutoBooking,
           notes: price + ' ' + this.data.loggedInUser.name
         } as EventLogger;
         this.eventLogService.createLog(log, this.data.loggedInUser.docId, this.data.loggedInUser.name);
-
         this.dialogRef.close();
       })
       .catch((err) => {

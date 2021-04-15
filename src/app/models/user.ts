@@ -17,6 +17,20 @@ export class User {
     updated: Timestamp;
     status: string;
     grade: string;
+    gradePoints: number; //to further classify user skill levels by points 1-10 （decimal allowed)
     isCreditUser: boolean;
     disabled: boolean;
 }
+
+/*
+
+O - 10 ERIC
+A - 8 ZAKA
+B - 6 MATT
+C - 6 LUC
+D - 4 GARY
+E - 2 Du
+F - 0 JACK
+
+
+*/
