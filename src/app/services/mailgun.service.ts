@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class MailgunService {
   mailUrl:string = `${environment.mail_url}/sendemail`;
+  domain:string = environment.domain;
 
   constructor(private http: HttpClient) {
   }
@@ -34,6 +35,7 @@ export class MailgunService {
       to: email,
       subject: 'HBC - Reset your password',
       template: "forgotpassword",
+      'v:domain': this.domain,
       'v:hashkey': hashKey,
     };
 
@@ -48,6 +50,7 @@ export class MailgunService {
       to: email,
       subject: 'Welcome to the HBC',
       template: "registration",
+      'v:domain': this.domain,
       'v:name': name,
       'v:hashkey': hashKey,
     };
@@ -60,6 +63,7 @@ export class MailgunService {
       to: email,
       subject: 'You credit is running low',
       template: "creditreminder",
+      'v:domain': this.domain,
       'v:name': name,
       'v:balance': formatCurrency(balance,'en', '$'),
     };
@@ -72,6 +76,7 @@ export class MailgunService {
       to: email,
       subject: 'Your topup is successful',
       template: "topup",
+      'v:domain': this.domain,
       'v:name': name,
       'v:amount': formatCurrency(amount,'en', '$'),
     };
