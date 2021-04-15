@@ -174,6 +174,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
         creditBalance: this.creditBalance,
         isCommittee: this.isCommittee,
         isSeatsLeft: this.isSeatsLeft,
+        userLevelPoints: this.user.gradePoints,
       }
     });
 
@@ -275,11 +276,13 @@ export class BookingDialog {
   // creditBalance: number;
   hasCredit: boolean;
   lowCredit: boolean;
+  meetBasePoints: boolean;
 
   ngOnInit() {
 
     this.hasCredit = this.data.creditBalance >= 0;
     this.lowCredit = this.data.creditBalance <= 40;
+    this.meetBasePoints = this.data.userLevelPoints >= this.data.booking.levelRestrictionOverwrite;
     
     this.bookingPersonService.getByBookingDocId(this.data.bookingDocId).subscribe(allBookings => {
       this.allBookings = allBookings; //get a live connection to all booking persons.
@@ -462,6 +465,7 @@ export interface BookingDialogData {
   friendBookingUsers: LocalBookingUser[];
   isCreditUser: boolean;
   creditBalance: number;
+  userLevelPoints: number;
   isCommittee: boolean;
   isSeatsLeft: boolean;
 }

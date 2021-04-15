@@ -19,7 +19,7 @@ import { GroupexpenseComponent } from './groupexpense/groupexpense.component';
 import { SharedModule } from "../shared/shared.module";
 import { RptIncomeComponent, DividendDialog } from './reports/rpt-income/rpt-income.component';
 import { TriggersComponent } from './triggers/triggers.component';
-import { BookingdetailsComponent, NoteDialog, SeatDialog } from './bookingdetails/bookingdetails.component';
+import { BookingdetailsComponent, NoteDialog, SeatDialog, LvlPointsDialog } from './bookingdetails/bookingdetails.component';
 import { RptUnpaidComponent } from './reports/rpt-unpaid/rpt-unpaid.component';
 import { RptAttendanceComponent } from './reports/rpt-attendance/rpt-attendance.component';
 import { RptEventviewerComponent } from './reports/rpt-eventviewer/rpt-eventviewer.component';
@@ -52,6 +52,7 @@ import { RptEventviewerComponent } from './reports/rpt-eventviewer/rpt-eventview
     BookingdetailsComponent,
     NoteDialog,
     SeatDialog,
+    LvlPointsDialog,
     RptUnpaidComponent,
     RptAttendanceComponent,
     RptEventviewerComponent,

@@ -74,6 +74,7 @@ export class GroupdetailsComponent implements OnInit {
       // endDate: ["", Validators.required],
       seats: ["", Validators.required],
       seatsAutobooking: ["", Validators.required],
+      levelRestrictionPoints: ["", Validators.required],
       eventStartDay: ["", Validators.required],
       bookingStartDay: ["", Validators.required],
       groupName: ["", Validators.required],
@@ -108,13 +109,11 @@ export class GroupdetailsComponent implements OnInit {
   }
 
   removeCommittee(item) {
-
     if (confirm('Cofirm to remove a committee from the group')) {
       this.selectedUsers = this.selectedUsers.filter(x => x != item);
     }
 
   }
-
 
   getByDocId(docId: string) {
     if (this.groupDocId) {
@@ -125,6 +124,7 @@ export class GroupdetailsComponent implements OnInit {
           //endDate: x.endDate.toDate(),
           seats: x.seats,
           seatsAutobooking: x.seatsAutoBooking,
+          levelRestrictionPoints: x.levelRestrictionPoints,
           eventStartDay: x.eventStartDay,
           eventStartTime: x.eventStartTime,
           bookingStartDay: x.bookingStartDay,
@@ -167,6 +167,7 @@ export class GroupdetailsComponent implements OnInit {
       groupDesc: this.groupForm.value.groupDesc,
       seats: this.groupForm.value.seats,
       seatsAutoBooking: this.groupForm.value.seatsAutobooking,
+      levelRestrictionPoints: this.groupForm.value.levelRestrictionPoints,
       committees: this.selectedUsers,
       isClosed: false,
     } as Group;

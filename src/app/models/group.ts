@@ -9,6 +9,7 @@ export class Group {
   groupDesc: string;
   seats: number; //headcount limit
   seatsAutoBooking: number; //max seats for autobooking
+  levelRestrictionPoints: number //future proof - use this to block some low level user from booking for graded sessions
   committees: User[]; // VIPs for this group, userDocId, //every time group is closed we need to distrbute  group profit to group committees as dividend
   isClosed: boolean; //every time group is closed we need to distrbute  group profit to group committees as dividend
   startDate: Timestamp; //default to Date.Now()

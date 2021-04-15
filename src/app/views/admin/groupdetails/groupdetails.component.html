@@ -43,7 +43,16 @@
             <div *ngIf="f.seats.invalid && (f.seats.dirty || f.seats.touched)" class="invalid-feedback">
               <div *ngIf="f.seats.errors.required">Seats(max limit) is required.</div>
             </div>
+            <p>
+              <mat-form-field>
+                <mat-label>Skill points requirement</mat-label>
+                <input matInput placeholder="Skill level points" formControlName="levelRestrictionPoints" type="number" required />
+              </mat-form-field>
+            </p>
 
+            <div *ngIf="f.levelRestrictionPoints.invalid && (f.levelRestrictionPoints.dirty || f.levelRestrictionPoints.touched)" class="invalid-feedback">
+              <div *ngIf="f.levelRestrictionPoints.errors.required">Skill level points is required.</div>
+            </div>
 
             <p>
             <mat-form-field appearance="fill">

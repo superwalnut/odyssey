@@ -256,6 +256,21 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     });
   }
 
+  changeLvlPointsClicked() {
+    const dialogRef = this.dialog.open(LvlPointsDialog, {
+      width: '650px',
+      data: {
+        loggedInUser: this.loggedInAccount,
+        booking: this.booking,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Level points change dialog was closed');
+
+    });
+  }
+
   onSubmit() {
     var groupTransaction = {
       amount: this.adjustForm.value.adjustAmount,
@@ -426,10 +441,46 @@ export class SeatDialog {
     .then(() => this.dialogRef.close())
     .catch((err) => { alert(err) })
   }
-
-
 }
 
+
+
+@Component({
+  selector: 'lvlpoint-dialog',
+  templateUrl: 'lvlpoints.html',
+})
+export class LvlPointsDialog {
+  constructor(
+    public dialogRef: MatDialogRef<LvlPointsDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: NoteDialogData, private bookingService:BookingsService) { }
+
+  hasError: boolean;
+  errorMessage: string;
+  levelPoints: number;
+
+  //note: string;
+
+  ngOnInit() {
+
+    console.log(this.data.localBookingUser)
+
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  onConfirmClick() {
+    console.log(this.levelPoints)
+
+    var booking = {
+      docId: this.data.booking.docId,
+      levelRestrictionOverwrite: this.levelPoints,
+    } as Booking;
+    this.bookingService.updateBooking(this.data.booking.docId, booking)
+    .then(() => this.dialogRef.close())
+    .catch((err) => { alert(err) })
+  }
+}
 
 export interface NoteDialogData {
   loggedInUser: Account,

@@ -14,7 +14,7 @@
     <div class="p-3 mb-2 bg-danger text-white" *ngIf="!hasCredit && !data.isCommittee">You don't have any credit left, please top up your credit now!</div>
 
     
-    <div *ngIf="data.isSeatsLeft">
+    <div *ngIf="data.isSeatsLeft && meetBasePoints">
       <h3>You & Your Family </h3>
   
       <ul class="simple-horizontal-list">
@@ -44,15 +44,16 @@
       <div class="booking-sum">Amount: ${{ totalAmount }} {{ data.isCreditUser ? "Credit" : "Cash"}}</div>
     </div>
 
-    <div *ngIf="!data.isSeatsLeft">
+    <div class="p-3 mb-2 bg-warning text-dark" *ngIf="!data.isSeatsLeft"><p>All seats are booked, pelase check back later should some seats freed up.</p></div>
 
-      <p>All seats are booked, pelase check back later should some seats freed up.</p>
+    <div class="p-3 mb-2 bg-warning text-dark" *ngIf="!data.meetBasePoints">
+      <p>We are sorry that this is a graded session, unfortunately you haven't met the level requirement.</p>
     </div>
 
   </div>
   <div class="modal-footer" *ngIf="hasCredit || data.isCommittee">
     <button mat-raised-button (click)="onNoClick()">Close</button>
-    <button mat-raised-button color="primary" (click)="onConfirmClick()" *ngIf="!isLoading && data.isSeatsLeft">Confirm</button>
+    <button mat-raised-button color="primary" (click)="onConfirmClick()" *ngIf="!isLoading && data.isSeatsLeft && meetBasePoints">Confirm</button>
     <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
 
   </div>

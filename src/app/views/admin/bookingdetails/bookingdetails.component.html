@@ -13,13 +13,14 @@
                 <mat-icon>{{ booking?.isLocked ? 'lock': 'lock_open'}}</mat-icon>
               </button>
 
-              <button mat-icon-button color="primary" title="change seats" (click)="changeSeatClicked()">
+              <button mat-icon-button color="primary" title="change seats" (click)="changeSeatClicked()" autocomplete="off">
                 <mat-icon>chair</mat-icon>
               </button>
               {{ booking?.seatsOverwrite}}
-           
-              
-
+              <button mat-icon-button color="primary" title="skill level points" (click)="changeLvlPointsClicked()" autocomplete="off">
+                <mat-icon>military_tech</mat-icon>
+              </button>
+              {{ booking?.levelRestrictionOverwrite}}
 
               <button mat-icon-button color="primary">
                 <mat-icon>print</mat-icon>
