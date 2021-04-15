@@ -4,7 +4,7 @@
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "module": "es2020",
-    "target": "es2015",
+    "target": "es5",
     "types": [],
     "paths": {
       "@angular/*": [

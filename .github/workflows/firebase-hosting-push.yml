@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: '10.16.3'
       - run: npm install
-      - run: npm run uatbuild
+      - run: ng build --configuration uat  --output-path=public
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
