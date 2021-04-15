@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { INavData } from "@coreui/angular";
+import { environment } from "../../../environments/environment";
 import { AccountService } from "../../services/account.service";
 
 @Component({
@@ -13,6 +14,8 @@ export class DefaultLayoutComponent {
   isGod: boolean;
   isAdmin: boolean;
   name: string;
+
+  domain:string=environment.domain;
 
   constructor(private accountService: AccountService) {
     this.isGod = this.accountService.isGod();
