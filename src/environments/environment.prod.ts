@@ -9,5 +9,6 @@ export const environment = {
     messagingSenderId: "662012824452",
     appId: "1:662012824452:web:53cfe97159e39745a5abd1",
     measurementId: "G-E3M8ZFWFZB",
-  }
+  },
+  domain: "https://hbclub-919aa.web.app",
 };

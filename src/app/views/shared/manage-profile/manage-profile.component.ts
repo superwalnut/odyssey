@@ -127,7 +127,7 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
               }
             });
           }
-
+          this.accountService.saveLocal(user);
           this.snackBar.open(`you have successfully updated profile.`, null, {
             duration: 5000,
             verticalPosition: 'top'
