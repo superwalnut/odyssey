@@ -29,7 +29,7 @@ export class User {
 O - 10 ERIC
 A - 8 ZAKA
 B - 6 MATT
-C - 6 LUC
+C - 5 LUC
 D - 4 GARY
 E - 2 Du
 F - 0 JACK

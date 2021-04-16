@@ -137,7 +137,7 @@ export class BookingSchedulerDialog {
   hasError: boolean;
   errorMessage: string;
   selectedDuration: Duration;
-  durations = GlobalConstants.autoBookingRates;
+  //durations = GlobalConstants.autoBookingRates;
   isLoading = false;
   isCommittee: boolean;
   //hasActiveAutoBooking = false;
@@ -227,7 +227,7 @@ export class BookingSchedulerDialog {
 
   onWeekChange(week:number){
     console.log(week);
-    let unitPrice = 0.5;
+    let unitPrice = GlobalConstants.autoBookingWeekUnitPrice;
     if (this.isCommittee) { unitPrice = 0 } // committee free 
 
     this.totalCost = week * unitPrice;
@@ -244,7 +244,7 @@ export class BookingSchedulerDialog {
     console.log(this.numberWeeks);
     console.log(this.selectedUser);
 
-    if (this.numberWeeks < 4 || !this.selectedUser) {
+    if (this.numberWeeks < 4 || this.numberWeeks > 52 || !this.selectedUser) {
       this.hasError = true;
       return false;
     }
