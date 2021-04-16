@@ -1,0 +1,22 @@
+
+<!-- Modal -->
+<div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title">Toggle Autobooking Status</h1>
+      <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
+    </div>
+  
+    <div class="modal-body">
+     
+        <h3>{{currentStatus}}</h3>
+
+    </div>
+    <div class="modal-footer">
+        <button mat-raised-button (click)="onNoClick()">Close</button>
+        <button mat-raised-button  color="primary" (click)="onCreateClick()">Confirm</button>
+        <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+
+    </div>
+  </div>
+  
+  
