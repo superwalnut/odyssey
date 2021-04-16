@@ -32,6 +32,10 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
 
   }
 
+  deleteSchedule(docId:string) {
+    return this.delete(docId);
+  }
+
   getMyBookingSchedules(userDocId: string) {
     return this.firestore.collection('bookingSchedules', q => q.where('createdBy', '==', userDocId).orderBy('createdOn', 'desc')).snapshotChanges().pipe(
       map(actions => {

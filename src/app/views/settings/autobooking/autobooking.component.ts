@@ -24,6 +24,7 @@ import Timestamp = firebase.firestore.Timestamp;
 import { BookingSchedule } from "../../../models/booking-schedule";
 import { EventLoggerService } from '../../../services/event-logger.service';
 import { EventLogger } from '../../../models/event-logger';
+import { BookingsComponent } from "../../admin/bookings/bookings.component";
 
 @Component({
   selector: "app-autobooking",
@@ -83,23 +84,26 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     });
   }
 
-
   getMySchedules() {
     this.bookingScheduleService.getMyBookingSchedules(this.loggedInAccount.docId).subscribe(schedules => {
       this.mySchedules = schedules;
 
     })
   }
-
-
   statusClicked(schedule: BookingSchedule) {
     let status = schedule.isPaused ? 'resume' : 'pause'
     if (confirm('Conform to ' + status + ' your auto booking?')) {
       schedule.isPaused = !schedule.isPaused;
       this.bookingScheduleService.updateIsPaused(schedule.docId, schedule);
     }
-
   }
+
+  deleteClicked(schedule: BookingSchedule) {
+    if (confirm('No refund is possible when deleting a schedule, are you sure to delete?')) {
+      this.bookingScheduleService.deleteSchedule(schedule.docId);
+    }
+  }
+
 
   onSelectClicked() {
 
@@ -136,29 +140,32 @@ export class BookingSchedulerDialog {
   durations = GlobalConstants.autoBookingRates;
   isLoading = false;
   isCommittee: boolean;
-  hasActiveAutoBooking = false;
+  //hasActiveAutoBooking = false;
   userSelectList: UserSelection[] = [];
   isMaxAutoBookingLimitReached: boolean;
 
-  dayRange = { start: Timestamp.now(), end: Timestamp.now() };
+  myActiveSchedules: BookingSchedule[];
+  numberWeeks: number = 12;
+  selectedUser:User;
+  totalCost: number;
 
+  dayRange = { start: Timestamp.now(), end: Timestamp.now() };
   
   ngOnInit() {
     console.log(this.data.group.seatsAutoBooking);
+    this.onWeekChange(this.numberWeeks);
+    this.getAllActiveBookingSchedules();
 
-    let myActives = this.checkActiveSchedules();
-    if (myActives && myActives.length > 0) {
-      this.hasActiveAutoBooking = true;
-    }
-    else {
-      this.getAllActiveBookingSchedules();
-      this.buildUserSelectionList();
-    }
-
+    this.myActiveSchedules = this.checkActiveSchedules();
+    this.buildUserSelectionList();
+    // if (myActives && myActives.length > 0) {
+    //   //this.hasActiveAutoBooking = true;
+    // }
+    // else {
+    // }
     let committee = this.data.group.committees.find(x => x.docId == this.data.loggedInUser.docId);
     this.isCommittee = committee != null;
   }
-
 
   getAllActiveBookingSchedules() {
     this.bookingScheduleService.getActiveBookingSchedules(this.data.group.docId).subscribe(schedules => {
@@ -167,12 +174,21 @@ export class BookingSchedulerDialog {
     })
   }
 
-
   buildUserSelectionList() {
-    this.userSelectList.push({ docId: this.data.loggedInUser.docId, name: this.data.loggedInUser.name, selected: false, parentUserDocId: this.data.loggedInUser.docId, parentUserDisplayName: this.data.loggedInUser.name } as UserSelection);
+    console.log('my active schedules ', this.myActiveSchedules);
+
+    //console.log('has found: ', found);
+    let found = this.myActiveSchedules.find(x=>x.user.docId == this.data.loggedInUser.docId);
+    if (!found) {
+      this.userSelectList.push({ docId: this.data.loggedInUser.docId, name: this.data.loggedInUser.name, selected: false, parentUserDocId: this.data.loggedInUser.docId, parentUserDisplayName: this.data.loggedInUser.name } as UserSelection);
+    }
+
     this.data.family.forEach(f => {
-      let u = { docId: f.docId, name: f.name, selected: false, parentUserDocId: f.parentUserDocId, parentUserDisplayName: f.parentUserDisplayName, } as UserSelection;
-      this.userSelectList.push(u);
+      let found = this.myActiveSchedules.find(x=>x.user.docId == f.docId);
+      if (!found) {
+        let u = { docId: f.docId, name: f.name, selected: false, parentUserDocId: f.parentUserDocId, parentUserDisplayName: f.parentUserDisplayName, } as UserSelection;
+        this.userSelectList.push(u);
+      }
     })
 
     console.log('user list: ', this.userSelectList)
@@ -209,17 +225,44 @@ export class BookingSchedulerDialog {
     this.dialogRef.close();
   }
 
-  onCreateClick() {   
-    let price = this.selectedDuration.price;
-    if (this.isCommittee) { price = 0 } // committee free 
-    this.isLoading = true;
-    let users = this.mapUserSelectionToUser(this.userSelectList.filter(x => x.selected));
+  onWeekChange(week:number){
+    console.log(week);
+    let unitPrice = 0.5;
+    if (this.isCommittee) { unitPrice = 0 } // committee free 
 
-    this.bookingScheduleService.createBookingSchedule(users, this.dayRange.end, this.data.loggedInUser, this.data.group, price)
+    this.totalCost = week * unitPrice;
+
+    let endDate = this.helperService.addDays(week * 7);
+    let today = this.helperService.convertToTimestamp(new Date());
+    this.dayRange.start = today;
+    this.dayRange.end = this.helperService.convertToTimestamp(endDate);
+    console.log(this.dayRange);
+
+
+  } 
+  onCreateClick() {   
+    console.log(this.numberWeeks);
+    console.log(this.selectedUser);
+
+    if (this.numberWeeks < 4 || !this.selectedUser) {
+      this.hasError = true;
+      return false;
+    }
+
+    this.isLoading = true;
+    let user = this.mapUserSelectionToUser(this.userSelectList.filter(x => x.docId == this.selectedUser.docId));
+    console.log('selected user: ', user)
+
+
+    // let price = this.selectedDuration.price;
+    // if (this.isCommittee) { price = 0 } // committee free 
+    //let users = this.mapUserSelectionToUser(this.userSelectList.filter(x => x.selected));
+
+    this.bookingScheduleService.createBookingSchedule(user, this.dayRange.end, this.data.loggedInUser, this.data.group, this.totalCost)
       .then(() => {
         let log = {
           eventCategory: GlobalConstants.eventAutoBooking,
-          notes: price + ' ' + this.data.loggedInUser.name
+          notes: this.totalCost + ' ' + this.data.loggedInUser.name
         } as EventLogger;
         this.eventLogService.createLog(log, this.data.loggedInUser.docId, this.data.loggedInUser.name);
         this.dialogRef.close();

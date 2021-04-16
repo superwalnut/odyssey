@@ -7,49 +7,47 @@
     </div>
   
     <div class="modal-body">
-
-
         <ul>
             <li>No refund is possible once setup</li>
             <li>You can pause your auto booking should you be away</li>
-            <li>Family benefit: all your family members are free of charge to setup.</li>
         </ul>
-
 
         <div *ngIf="isMaxAutoBookingLimitReached">
             <div class="p-3 mb-2 bg-warning  text-dark">Auto booking for this session is all full</div>
         </div>
-        <div *ngIf="hasActiveAutoBooking">
+        <!-- <div *ngIf="hasActiveAutoBooking">
             <div class="p-3 mb-2 bg-success text-white">You alrady have active auto bookings</div>
-        </div>
+        </div> -->
+
+        <div class="p-3 mb-2 bg-danger text-white" *ngIf="hasError">
+            Errors: 
+            Please specify minium 4 weeks and user for Autobooking</div>
 
 
-        <div *ngIf="!hasActiveAutoBooking">
-            <h3>Select duration</h3>
-            <mat-form-field appearance="fill">
-                <mat-label>Duration</mat-label>
-                <mat-select [(ngModel)]="selectedDuration" (ngModelChange)="durationChanged($event)">
-                    <mat-option *ngFor="let d of durations" [value]="d" >
-                    {{d.name}}
-                    </mat-option>
-                </mat-select>
+        <div >
+            <mat-form-field>
+            <mat-label>Weeks</mat-label>
+            <input matInput placeholder="4-52 weeks" type="number" [(ngModel)]="numberWeeks" (input)="onWeekChange($event.target.value)" min="4" max="52" required autocomplete="off" />
             </mat-form-field>
-            Valid till: <b>{{dayRange.end.toDate() | date:'dd/MM/yyyy'}}</b>
-    
-            <ul>
-                <li *ngFor="let u of userSelectList">
-                    <mat-checkbox [(ngModel)]="u.selected">{{u.name}}</mat-checkbox>
-                </li>
-            </ul>
-    
+
+            <mat-form-field appearance="fill">
+            <mat-label>Users</mat-label>
+            <mat-select [(ngModel)]="selectedUser">
+                <mat-option *ngFor="let u of userSelectList" [value]="u" >
+                {{u.name}}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+
+            <p>{{totalCost | currency}} Valid till: <b>{{dayRange.end.toDate() | date:'dd/MM/yyyy'}}</b></p>
+            
         </div>
         
     </div>
     <div class="modal-footer">
         <button mat-raised-button (click)="onNoClick()">Close</button>
-        <button mat-raised-button  color="primary" (click)="onCreateClick()"  *ngIf="!isLoading && !hasActiveAutoBooking && !isMaxAutoBookingLimitReached">Create</button>
+        <button mat-raised-button  color="primary" (click)="onCreateClick()"  *ngIf="!isLoading && !isMaxAutoBookingLimitReached">Create</button>
         <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
-
     </div>
   </div>
   
