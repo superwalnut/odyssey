@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
+import { HelperService } from "../../common/helper.service";
 import { AccountService } from "../../services/account.service";
 
 @Component({
@@ -16,7 +18,9 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private accountService: AccountService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private helpService:HelperService
   ) {
     // redirect to home if already logged in
     if (this.accountService.accountValue) {
@@ -52,9 +56,29 @@ export class LoginComponent implements OnInit {
 
     console.log("login", this.loginForm);
 
-    this.accountService.login(
-      this.loginForm.value.phone,
-      this.loginForm.value.password
-    );
+    this.accountService.authenticate(this.loginForm.value.phone,this.loginForm.value.password).subscribe(x=>{
+      if (x) {
+        this.accountService.saveLocal(x);
+
+        if(x.requireChangePassword){
+          var hashkey = this.helpService.encryptData(x.email);
+          const encoded = encodeURIComponent(hashkey);
+          this.router.navigate([`/createpassword`, encoded]);
+        }
+        else {
+          // get return url from query parameters or default to home page
+          var returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/dashboard';
+                  
+          if (returnUrl == '/login' || returnUrl == '/register')
+            returnUrl = '/dashboard';
+          this.router.navigateByUrl(returnUrl);
+        }
+      } else {
+        this.snackBar.open(`Failed to login, your username/password is incorrect.`, null, {
+          duration: 5000,
+          verticalPosition: 'top'
+        });
+      }
+    });
   }
 }

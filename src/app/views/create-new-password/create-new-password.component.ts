@@ -51,7 +51,7 @@ export class CreateNewPasswordComponent implements OnInit {
       return;
     }
 
-    var updated = { password: this.resetForm.value.password } as User;
+    var updated = { password: this.resetForm.value.password, requireChangePassword: false } as User;
 
     // update user
     this.accountService.updateUser(this.user.docId, updated).then(x => {

@@ -20,6 +20,8 @@ export class User {
     gradePoints: number; //to further classify user skill levels by points 1-10 （decimal allowed)
     isCreditUser: boolean;
     disabled: boolean;
+
+    requireChangePassword:boolean;
 }
 
 /*
