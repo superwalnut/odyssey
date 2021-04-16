@@ -1,5 +1,8 @@
 <div class="container">
     <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="card">
+          <div class="card-body p-4">
 
         <h1>Autbooking Report</h1>
 
@@ -19,9 +22,9 @@
               </ng-container>
     
             <ng-container matColumnDef="isPaused">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Paused</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Active</th>
               <td mat-cell *matCellDef="let element">
-                  {{element.isPaused}}
+                  {{element.isPaused ? 'Paused' : 'Active'}}
               </td>
             </ng-container>
 
@@ -49,6 +52,10 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
+
+        </div>
+    </div>
+</div>
 
     </div>
   </div>
