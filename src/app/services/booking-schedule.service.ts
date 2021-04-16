@@ -36,6 +36,7 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
     return this.delete(docId);
   }
 
+  
   getMyBookingSchedules(userDocId: string) {
     return this.firestore.collection('bookingSchedules', q => q.where('createdBy', '==', userDocId).orderBy('createdOn', 'desc')).snapshotChanges().pipe(
       map(actions => {
@@ -61,6 +62,18 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
     );
   }
 
+
+  getAllBookingSchedules() {
+    return this.firestore.collection('bookingSchedules').snapshotChanges().pipe(
+      map(actions => {
+        var items = actions.map(p => {
+          var data = p.payload.doc.data() as BookingSchedule;
+          return { ...data, docId: p.payload.doc.id } as BookingSchedule;
+        });
+        return items;
+      })
+    );
+  }
 
   getBookingSchedulesByGroupDocId(groupDocId: string) {
     return this.firestore.collection('bookingSchedules', q => q.where('groupDocId', '==', groupDocId)).snapshotChanges().pipe(

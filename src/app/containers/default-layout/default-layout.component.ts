@@ -146,6 +146,11 @@ export class DefaultLayoutComponent {
               icon: "cil-paperclip",
             },
             {
+              name: "Autobooking",
+              url: "/admin/rptautobook",
+              icon: "cil-paperclip",
+            },
+            {
               name: "Attendance",
               url: "/admin/rptattend",
               icon: "cil-paperclip",

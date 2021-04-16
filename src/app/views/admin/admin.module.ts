@@ -23,6 +23,7 @@ import { BookingdetailsComponent, NoteDialog, SeatDialog, LvlPointsDialog } from
 import { RptUnpaidComponent } from './reports/rpt-unpaid/rpt-unpaid.component';
 import { RptAttendanceComponent } from './reports/rpt-attendance/rpt-attendance.component';
 import { RptEventviewerComponent } from './reports/rpt-eventviewer/rpt-eventviewer.component';
+import { RptAutobookComponent } from './reports/rpt-autobook/rpt-autobook.component';
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import { RptEventviewerComponent } from './reports/rpt-eventviewer/rpt-eventview
     RptUnpaidComponent,
     RptAttendanceComponent,
     RptEventviewerComponent,
+    RptAutobookComponent,
   ],
 })
 export class AdminModule { }

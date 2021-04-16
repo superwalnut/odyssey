@@ -14,6 +14,7 @@ import { RptIncomeComponent } from "./reports/rpt-income/rpt-income.component";
 import { RptUnpaidComponent } from "./reports/rpt-unpaid/rpt-unpaid.component";
 import { RptAttendanceComponent } from "./reports/rpt-attendance/rpt-attendance.component";
 import { RptEventviewerComponent } from "./reports/rpt-eventviewer/rpt-eventviewer.component";
+import { RptAutobookComponent } from "./reports/rpt-autobook/rpt-autobook.component";
 
 import { TriggersComponent } from "./triggers/triggers.component";
 
@@ -122,6 +123,13 @@ const routes: Routes = [
       {
         path: "rptincome/:id",
         component: RptIncomeComponent,
+        data: {
+          title: "Finance report",
+        },
+      },
+      {
+        path: "rptautobook",
+        component: RptAutobookComponent,
         data: {
           title: "Finance report",
         },
