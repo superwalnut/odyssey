@@ -53,6 +53,7 @@ export class RegisterComponent implements OnInit {
       password: this.registerForm.value.password,
       mobile: this.registerForm.value.mobile,
       isChild:false,
+      requireChangePassword:false,
     } as User;
 
     const emailCheck$ = this.accountService.isEmailExist(user.email);
@@ -89,7 +90,9 @@ export class RegisterComponent implements OnInit {
         // create user
         this.accountService.createUser(user).then(x => {
           var hashkey = this.helpService.encryptData(user.email);
-          this.mailService.sendRegistration(user.email, user.name, hashkey);
+          const encoded = encodeURIComponent(hashkey);
+
+          this.mailService.sendRegistration(user.email, user.name, encoded);
           this.snackBar.open(`you have successfully registered.`, null, {
             duration: 5000,
             verticalPosition: 'top'

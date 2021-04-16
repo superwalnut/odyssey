@@ -34,7 +34,6 @@ export class AccountService extends FirestoreBaseService<User>{
   }
 
   login(mobile: string, password: string) {
-    // login with facebook then authenticate with the API to get a JWT auth token
     this.authenticate(mobile, password).subscribe(x => {
       if (x) {
         this.saveLocal(x);
