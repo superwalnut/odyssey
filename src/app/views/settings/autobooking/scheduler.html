@@ -25,6 +25,7 @@
 
 
         <div *ngIf="!hasActiveAutoBooking">
+            <h3>Select duration</h3>
             <mat-form-field appearance="fill">
                 <mat-label>Duration</mat-label>
                 <mat-select [(ngModel)]="selectedDuration" (ngModelChange)="durationChanged($event)">

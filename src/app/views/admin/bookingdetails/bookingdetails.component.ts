@@ -21,7 +21,9 @@ import { Group } from '../../../models/group';
 
 import { LocalBookingUser } from '../../../models/custom-models';
 import { GlobalConstants } from '../../../common/global-constants';
-import { MatSelectChange } from "@angular/material/select";
+import { MatSelectChange} from "@angular/material/select";
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
@@ -55,8 +57,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   selectedPaymentMethod: string;
   groupTransactions: GroupTransaction[];
   groupTransactionsAdjusted: GroupTransaction[];
-
-
+  userPaymentMethod:string;
   paymentMethods: string[] = [GlobalConstants.paymentCredit, GlobalConstants.paymentCash, GlobalConstants.paymentBank];
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialog, private snackBar: MatSnackBar, public dialog: MatDialog, private groupService: GroupService, private groupTransactionService: GroupTransactionService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute) { super() }
@@ -124,17 +125,25 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
       }
     })
     this.groupTransactionsAdjusted = this.groupTransactions.filter(x => x.paymentMethod == GlobalConstants.paymentAdjust);
-
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
+    console.log(filterValue);
     return this.allUsers.filter(option => option.toLowerCase().includes(filterValue));
   }
   selectedValue(event: MatSelectChange) {
     this.selectedPaymentMethod = event.value;
     console.log(this.selectedPaymentMethod);
   }
+
+  userListSelected(event: MatAutocompleteSelectedEvent) {
+    let found = this.allUsersObject.find(x=>x.name == event.option.value);
+    if (found) {
+      this.userPaymentMethod = found.isCreditUser ? 'HBCoin' : 'Cash';
+    }
+  }
+
   createBooking(selectedUserControl) {
     console.log(this.selectedPaymentMethod);
     if (this.selectedPaymentMethod == null) { return false; }

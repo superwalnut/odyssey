@@ -19,6 +19,8 @@ export class UserCreditListComponent implements OnInit {
 
   ngOnInit(): void {
 
+    
+
     this.creditService.getBalance(this.userDocId).subscribe(x => {
       this.balance = x;
       this.hasCredit = x > 0;

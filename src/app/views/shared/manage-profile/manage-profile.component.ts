@@ -77,11 +77,15 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
     } as User;
 
     if(this.isAdmin){
-      user.isMember = this.profileForm.value.isMember;
+      user.isMember = this.profileForm.value.isMember ;
       //isMember: this.profileForm.value.isMember,
       user.isCreditUser = this.profileForm.value.isCreditUser;
       user.disabled = this.profileForm.value.disabled;
     }
+
+    console.log(user);
+    //return false;
+
 
     const emailCheck$ = this.accountService.isEmailExist(user.email);
     const nameCheck$ = this.accountService.isNameExist(user.name);

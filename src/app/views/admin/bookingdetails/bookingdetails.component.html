@@ -31,22 +31,21 @@
               <form>
                 <mat-form-field>
                   <mat-label>Search player name</mat-label>
-                  <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                  <mat-autocomplete #auto="matAutocomplete">
+                  <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" >
+                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="userListSelected($event)">
                     <mat-option *ngFor="let user of filteredUsers | async" [value]="user">{{user}}</mat-option>
                   </mat-autocomplete>
                 </mat-form-field>
+                {{userPaymentMethod}}
 
                 <mat-form-field appearance="fill">
                   <mat-label>Payment method</mat-label>
-                  <mat-select (selectionChange)="selectedValue($event)" >
-                    <mat-option *ngFor="let method of paymentMethods" [value]="method">
-                      {{method}}
-                    </mat-option>
+                  <mat-select (selectionChange)="selectedValue($event)">
+                    <mat-option *ngFor="let method of paymentMethods" [value]="method">{{method}}</mat-option>
                   </mat-select>
                 </mat-form-field>
                 <button mat-raised-button color="primary" (click)="createBooking(myControl)">Add</button>
-
+                <p></p>
                 <!-- <button mat-raised-button color="primary" (click)="createBooking(myControl, myControl2)">Add</button> -->
               </form>
             </section>
