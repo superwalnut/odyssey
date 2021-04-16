@@ -28,7 +28,6 @@ export class RptAutobookComponent implements OnInit, AfterViewInit {
   constructor(private bookingScheduleService:BookingScheduleService) { }
 
   ngOnInit(): void {
-    this.getAllBookingSchedules();
   }
   ngAfterViewInit(): void {
     this.bookingScheduleService.getAllBookingSchedules().subscribe(x=>{
@@ -36,10 +35,4 @@ export class RptAutobookComponent implements OnInit, AfterViewInit {
       this.dataSource.sort = this.sort;
     })
   }
-
-
-  getAllBookingSchedules() {
-    
-  }
-
 }

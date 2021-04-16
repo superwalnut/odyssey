@@ -131,7 +131,7 @@ const routes: Routes = [
         path: "rptautobook",
         component: RptAutobookComponent,
         data: {
-          title: "Finance report",
+          title: "Autobook",
         },
       },
       {
