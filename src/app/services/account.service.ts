@@ -226,11 +226,19 @@ export class AccountService extends FirestoreBaseService<User>{
   }
 
   public getAllUsers() {
-    return this.getAll();
+    return this.getAll().pipe(map(x=>{
+      return x.map(o=> {
+        o.password = '';
+        return o;
+      });
+    }));
   }
 
   public getUserByDocId(docId: string) {
-    return this.getByDocId(docId);
+    return this.getByDocId(docId).pipe(map(x=>{
+      x.password = '';
+      return x;
+    }));
   }
 
   public deleteUser(userDocId:string) {
