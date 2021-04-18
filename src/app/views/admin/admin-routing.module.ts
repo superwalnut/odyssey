@@ -15,6 +15,7 @@ import { RptUnpaidComponent } from "./reports/rpt-unpaid/rpt-unpaid.component";
 import { RptAttendanceComponent } from "./reports/rpt-attendance/rpt-attendance.component";
 import { RptEventviewerComponent } from "./reports/rpt-eventviewer/rpt-eventviewer.component";
 import { RptAutobookComponent } from "./reports/rpt-autobook/rpt-autobook.component";
+import { RptBookingpersonComponent } from "./reports/rpt-bookingperson/rpt-bookingperson.component";
 
 import { TriggersComponent } from "./triggers/triggers.component";
 
@@ -132,6 +133,13 @@ const routes: Routes = [
         component: RptAutobookComponent,
         data: {
           title: "Autobook",
+        },
+      },
+      {
+        path: "rptbookingperson/:id",
+        component: RptBookingpersonComponent,
+        data: {
+          title: "Booking Person",
         },
       },
       {

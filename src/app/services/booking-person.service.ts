@@ -123,6 +123,19 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
       }), take(1)
     )
   }
+
+  public getBookingPersonsByGroupDocId(groupDocId:string) {
+    return this.firestore.collection('bookingPersons', q => q.where('groupDocId', '==', groupDocId).limit(2000)).snapshotChanges().pipe(
+      map(actions => {
+        var items = actions.map(p => {
+          var data = p.payload.doc.data() as BookingPerson;
+          return { ...data, docId: p.payload.doc.id } as BookingPerson;
+        });
+        return items;
+      }), take(1)
+    )
+  }
+
   public get(bookingPersonDocId: string) {
     return super.getByDocId(bookingPersonDocId);
   }

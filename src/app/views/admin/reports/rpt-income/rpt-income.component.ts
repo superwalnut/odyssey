@@ -45,7 +45,6 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.groupDocId = this.activatedRoute.snapshot.params.id;
 
-    console.log('sdadfasdf',this.groupDocId);
     this.loggedInAccount = this.accountService.getLoginAccount();
     this.isGod = this.accountService.isGod();
 
