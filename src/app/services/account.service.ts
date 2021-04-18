@@ -283,6 +283,7 @@ export class AccountService extends FirestoreBaseService<User>{
         gradePoints: u.gradePoints,
         isCreditUser: u.isCreditUser,
         requireChangePassword: u.requireChangePassword,
+        disabled: false,
         created: Timestamp.now(),
         updated: Timestamp.now(),
       } as User;
@@ -305,7 +306,7 @@ export class AccountService extends FirestoreBaseService<User>{
       //import family members!
       console.log('family print', u.family);
 
-      if (u.family.length > 0) {
+      if (u.family.length > 0 && u.family[0] != "") {
         u.family.forEach(f=>{
           var familyRef = this.firestore.collection('users').doc().ref;
           var family = {

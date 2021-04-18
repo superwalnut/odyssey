@@ -4,6 +4,7 @@
       <div class="card">
         <div class="card-body p-4">
           <h1>All Users</h1>
+          <p>Total Users: {{totalUserCount}}</p>
      
           <p>
             <mat-form-field>
@@ -11,8 +12,6 @@
               <input matInput (keyup)="applyFilter($event)" placeholder="Search by name" #input>
             </mat-form-field>
             <!-- <button mat-raised-button color="primary" (click)="onNewUserClicked()">New user</button> -->
-
-
           </p>
 
           <table mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort>

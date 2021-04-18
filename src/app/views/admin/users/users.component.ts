@@ -19,6 +19,7 @@ import { Account } from "../../../models/account";
 })
 export class UsersComponent implements OnInit, AfterViewInit {
   loggedInAccount: Account;
+  totalUserCount: number;
 
   displayedColumns: string[] = ['name', 'iscredituser', 'families', 'grade', 'created', 'docId' ];
   dataSource: MatTableDataSource<UserFamily>;
@@ -33,6 +34,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.accountService.getAllUsers().subscribe((x) => {
+      this.totalUserCount = x.length;
       const userFamilies = x.filter(u => u.parentUserDocId == null).map(m => {
         return {
           name: m.name,
