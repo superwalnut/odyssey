@@ -163,6 +163,9 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
 
   userListSelected(event: MatAutocompleteSelectedEvent) {
     let found = this.allUsersObject.find(x=>x.name == event.option.value);
+    if (found.parentUserDocId) {
+      found = this.allUsersObject.find(x=>x.docId == found.parentUserDocId);
+    }
     if (found) {
       this.userPaymentMethod = found.isCreditUser ? 'HBCoin' : 'Cash';
     }
@@ -226,7 +229,14 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   getPaymentAmount(userDocId: string, paymentMethod: string): number {
     let committees = this.group.committees;
 
+    console.log('committees: ', committees);
+
+    console.log('committees input docId: ', userDocId);
+
+
     let found = committees.find(c => c.docId == userDocId);
+    console.log('committees found: ', found);
+
     if (found) { return 0; } // committee is free of charge
 
     if (paymentMethod == GlobalConstants.paymentCredit) {

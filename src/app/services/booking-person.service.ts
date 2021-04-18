@@ -34,37 +34,37 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     console.log('createBookingPerson: ', bp);
     batch.set(ref, bp);
 
-    var ref = this.firestore.collection('credits').doc().ref;
-    var credit = {
-      amount: -bp.amount,
-      userDocId: bp.parentUserId ? bp.parentUserId : bp.userId,
-      userDisplayName: bp.userDisplayName,
-      createdBy: bp.parentUserId ? bp.parentUserId : bp.userId,
-      createdByDisplayName: bp.parentUserDisplayName ? bp.parentUserDisplayName : bp.userDisplayName,
-      //note: bp.bookingDesc + ': ' + bp.userDisplayName + ",",
-      note: 'Booking:' + booking.weekDay + ':' + this.helperService.getFormattedTimestamp(booking.eventStartDateTime) + ' ' + bp.userDisplayName + ",",
-      created: Timestamp.now(),
-    } as Credit;
-    console.log('createBookingPerson service credit: ', credit);
-    batch.set(ref, credit);
+    // var ref = this.firestore.collection('credits').doc().ref;
+    // var credit = {
+    //   amount: -bp.amount,
+    //   userDocId: bp.parentUserId ? bp.parentUserId : bp.userId,
+    //   userDisplayName: bp.userDisplayName,
+    //   createdBy: bp.parentUserId ? bp.parentUserId : bp.userId,
+    //   createdByDisplayName: bp.parentUserDisplayName ? bp.parentUserDisplayName : bp.userDisplayName,
+    //   //note: bp.bookingDesc + ': ' + bp.userDisplayName + ",",
+    //   note: 'Booking:' + booking.weekDay + ':' + this.helperService.getFormattedTimestamp(booking.eventStartDateTime) + ' ' + bp.userDisplayName + ",",
+    //   created: Timestamp.now(),
+    // } as Credit;
+    // console.log('createBookingPerson service credit: ', credit);
+    // batch.set(ref, credit);
 
     //for cash user booking, we don't add to Group transaction, untile we received the cash. then we mark them as paid, and add to grouoptransaction
-    if (bp.paymentMethod == GlobalConstants.paymentCredit) {
-      var ref = this.firestore.collection('groupTransactions').doc().ref;
-      var trans = {
-        amount: bp.amount,
-        paymentMethod: bp.paymentMethod,
-        groupDocId: bp.groupDocId,
-        bookingDocId: bp.bookingDocId, //nullable
-        referenceId: credit.userDocId, //nullable
-        notes: credit.note,
-        createdBy: credit.createdBy,
-        createdByDisplayName: credit.createdByDisplayName,
-        created: Timestamp.now(),
-      } as GroupTransaction;
-      console.log('createBookingPerson service groupTransaction: ', trans);
-      batch.set(ref, trans);
-    }
+    // if (bp.paymentMethod == GlobalConstants.paymentCredit) {
+    //   var ref = this.firestore.collection('groupTransactions').doc().ref;
+    //   var trans = {
+    //     amount: bp.amount,
+    //     paymentMethod: bp.paymentMethod,
+    //     groupDocId: bp.groupDocId,
+    //     bookingDocId: bp.bookingDocId, //nullable
+    //     referenceId: credit.userDocId, //nullable
+    //     notes: credit.note,
+    //     createdBy: credit.createdBy,
+    //     createdByDisplayName: credit.createdByDisplayName,
+    //     created: Timestamp.now(),
+    //   } as GroupTransaction;
+    //   console.log('createBookingPerson service groupTransaction: ', trans);
+    //   batch.set(ref, trans);
+    // }
     
     batch.commit();
   }
@@ -77,36 +77,36 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
       console.log('createBookingPersonBatch booking person: ', bp);
       batch.set(ref, bp);
 
-      var ref = this.firestore.collection('credits').doc().ref;
-      var credit = {
-        amount: -bp.amount,
-        userDocId: bp.parentUserId ? bp.parentUserId : bp.userId,
-        userDisplayName: bp.userDisplayName,
-        createdBy: bp.parentUserId ? bp.parentUserId : bp.userId,
-        createdByDisplayName: bp.parentUserDisplayName ? bp.parentUserDisplayName : bp.userDisplayName,
-        note: 'Booking:' + booking.weekDay + ':' + this.helperService.getFormattedTimestamp(booking.eventStartDateTime) + ' ' + bp.userDisplayName + ",",
-        created: Timestamp.now(),
-      } as Credit;
-      console.log('createBookingPersonBatch service: ', credit);
-      batch.set(ref, credit);
+      // var ref = this.firestore.collection('credits').doc().ref;
+      // var credit = {
+      //   amount: -bp.amount,
+      //   userDocId: bp.parentUserId ? bp.parentUserId : bp.userId,
+      //   userDisplayName: bp.userDisplayName,
+      //   createdBy: bp.parentUserId ? bp.parentUserId : bp.userId,
+      //   createdByDisplayName: bp.parentUserDisplayName ? bp.parentUserDisplayName : bp.userDisplayName,
+      //   note: 'Booking:' + booking.weekDay + ':' + this.helperService.getFormattedTimestamp(booking.eventStartDateTime) + ' ' + bp.userDisplayName + ",",
+      //   created: Timestamp.now(),
+      // } as Credit;
+      // console.log('createBookingPersonBatch service: ', credit);
+      // batch.set(ref, credit);
 
-      //for cash user booking, we don't add to Group transaction, untile we received the cash. then we mark them as paid, and add to grouoptransaction
-      if (bp.paymentMethod == GlobalConstants.paymentCredit) {
-        var ref = this.firestore.collection('groupTransactions').doc().ref;
-        var trans = {
-          amount: bp.amount,
-          paymentMethod: bp.paymentMethod,
-          groupDocId: bp.groupDocId,
-          bookingDocId: bp.bookingDocId, //nullable
-          referenceId: credit.userDocId, //nullable
-          notes: credit.note,
-          createdBy: credit.createdBy,
-          createdByDisplayName: credit.createdByDisplayName,
-          created: Timestamp.now(),
-        } as GroupTransaction;
-        console.log('createBookingPersonBatch service groupTransaction: ', trans);
-        batch.set(ref, trans);
-      }
+      // //for cash user booking, we don't add to Group transaction, untile we received the cash. then we mark them as paid, and add to grouoptransaction
+      // if (bp.paymentMethod == GlobalConstants.paymentCredit) {
+      //   var ref = this.firestore.collection('groupTransactions').doc().ref;
+      //   var trans = {
+      //     amount: bp.amount,
+      //     paymentMethod: bp.paymentMethod,
+      //     groupDocId: bp.groupDocId,
+      //     bookingDocId: bp.bookingDocId, //nullable
+      //     referenceId: credit.userDocId, //nullable
+      //     notes: credit.note,
+      //     createdBy: credit.createdBy,
+      //     createdByDisplayName: credit.createdByDisplayName,
+      //     created: Timestamp.now(),
+      //   } as GroupTransaction;
+      //   console.log('createBookingPersonBatch service groupTransaction: ', trans);
+      //   batch.set(ref, trans);
+      // }
     
     });
     await batch.commit();
@@ -221,34 +221,34 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     batch.delete(bpref);
 
     //refund
-    var cref = this.firestore.collection('credits').doc().ref;
-    var credit = {
-      userDocId: bookingPerson.parentUserId, //refund to the parent user ID!
-      userDisplayName: bookingPerson.userDisplayName,
-      createdBy: bookingPerson.parentUserId,
-      createdByDisplayName: bookingPerson.parentUserDisplayName,
-      amount: bookingPerson.amount,
-      created: Timestamp.now(),
-      note: 'withdraw ' + bookingPerson.userDisplayName + ' from ' + booking.weekDay + ', refund to ' + bookingPerson.parentUserDisplayName,
-    } as Credit;
-    batch.set(cref, credit);
+    // var cref = this.firestore.collection('credits').doc().ref;
+    // var credit = {
+    //   userDocId: bookingPerson.parentUserId, //refund to the parent user ID!
+    //   userDisplayName: bookingPerson.userDisplayName,
+    //   createdBy: bookingPerson.parentUserId,
+    //   createdByDisplayName: bookingPerson.parentUserDisplayName,
+    //   amount: bookingPerson.amount,
+    //   created: Timestamp.now(),
+    //   note: 'withdraw ' + bookingPerson.userDisplayName + ' from ' + booking.weekDay + ', refund to ' + bookingPerson.parentUserDisplayName,
+    // } as Credit;
+    // batch.set(cref, credit);
 
-    if (bookingPerson.paymentMethod == GlobalConstants.paymentCredit) {
-      var ref = this.firestore.collection('groupTransactions').doc().ref;
-      var trans = {
-        amount: -credit.amount,
-        paymentMethod: bookingPerson.paymentMethod,
-        groupDocId: bookingPerson.groupDocId,
-        bookingDocId: bookingPerson.bookingDocId, //nullable
-        referenceId: credit.userDocId, //nullable
-        notes: credit.note + ':' + bookingPerson.userDisplayName,
-        createdBy: credit.createdBy,
-        createdByDisplayName: credit.createdByDisplayName,
-        created: Timestamp.now(),
-      } as GroupTransaction;
-      console.log('withdraw service groupTransaction: ', trans);
-      batch.set(ref, trans);
-    }
+    // if (bookingPerson.paymentMethod == GlobalConstants.paymentCredit) {
+    //   var ref = this.firestore.collection('groupTransactions').doc().ref;
+    //   var trans = {
+    //     amount: -credit.amount,
+    //     paymentMethod: bookingPerson.paymentMethod,
+    //     groupDocId: bookingPerson.groupDocId,
+    //     bookingDocId: bookingPerson.bookingDocId, //nullable
+    //     referenceId: credit.userDocId, //nullable
+    //     notes: credit.note + ':' + bookingPerson.userDisplayName,
+    //     createdBy: credit.createdBy,
+    //     createdByDisplayName: credit.createdByDisplayName,
+    //     created: Timestamp.now(),
+    //   } as GroupTransaction;
+    //   console.log('withdraw service groupTransaction: ', trans);
+    //   batch.set(ref, trans);
+    // }
     
     return batch.commit();
   }
@@ -271,38 +271,38 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     var ref = this.firestore.collection('bookingPersons').doc(bp.docId).ref;
     batch.update(ref, bp);
 
-    var ref = this.firestore.collection('groupTransactions').doc().ref;
-    let paymentAmount = bpFull.isPaid ? bpFull.amount : -bpFull.amount;
-    let paymentNotes = bpFull.isPaid ? 'paid ' : 'unpaid ';
-    //add to group transaction table
-    var groupTransaction = {
-      amount: paymentAmount,
-      notes: paymentNotes + ':' + booking.weekDay +':' + bpFull.userDisplayName,
-      paymentMethod: bpFull.paymentMethod,
-      referenceId: bpFull.userId,
-      groupDocId: bpFull.groupDocId,
-      bookingDocId: bpFull.bookingDocId,
-      createdBy: updatedByUserDocId,
-      createdByDisplayName: updatedByUserName,
-      created: Timestamp.now(),
-    } as GroupTransaction;
-    batch.set(ref, groupTransaction);
+    // var ref = this.firestore.collection('groupTransactions').doc().ref;
+    // let paymentAmount = bpFull.isPaid ? bpFull.amount : -bpFull.amount;
+    // let paymentNotes = bpFull.isPaid ? 'paid ' : 'unpaid ';
+    // //add to group transaction table
+    // var groupTransaction = {
+    //   amount: paymentAmount,
+    //   notes: paymentNotes + ':' + booking.weekDay +':' + bpFull.userDisplayName,
+    //   paymentMethod: bpFull.paymentMethod,
+    //   referenceId: bpFull.userId,
+    //   groupDocId: bpFull.groupDocId,
+    //   bookingDocId: bpFull.bookingDocId,
+    //   createdBy: updatedByUserDocId,
+    //   createdByDisplayName: updatedByUserName,
+    //   created: Timestamp.now(),
+    // } as GroupTransaction;
+    // batch.set(ref, groupTransaction);
 
 
-    //refund and deduct
-    var ref = this.firestore.collection('credits').doc().ref;
-    var sellerCredit = {
-      userDocId: bpFull.userId, //refund to parent user id
-      userDisplayName: bpFull.userDisplayName,
-      createdBy: updatedByUserDocId,
-      createdByDisplayName: updatedByUserName,
-      amount: paymentAmount,
-      created: Timestamp.now(),
-      note: paymentNotes + ':' + booking.weekDay,
-    } as Credit;
+    // //refund and deduct
+    // var ref = this.firestore.collection('credits').doc().ref;
+    // var sellerCredit = {
+    //   userDocId: bpFull.userId, //refund to parent user id
+    //   userDisplayName: bpFull.userDisplayName,
+    //   createdBy: updatedByUserDocId,
+    //   createdByDisplayName: updatedByUserName,
+    //   amount: paymentAmount,
+    //   created: Timestamp.now(),
+    //   note: paymentNotes + ':' + booking.weekDay,
+    // } as Credit;
 
-    batch.set(ref, sellerCredit);
-    console.log('seller credit...', sellerCredit);
+    // batch.set(ref, sellerCredit);
+    // console.log('seller credit...', sellerCredit);
 
     return batch.commit();
   }
@@ -322,63 +322,63 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
         batch.set(ref, buyer);
 
         //refund and deduct
-        var ref = this.firestore.collection('credits').doc().ref;
-        var sellerCredit = {
-          userDocId: seller.parentUserId, //refund to parent user id
-          userDisplayName: result.userDisplayName,
-          createdBy: result.parentUserId,
-          createdByDisplayName: result.parentUserDisplayName,
-          amount: result.amount,
-          created: Timestamp.now(),
-          note: 'seat sold to ' + buyer.userDisplayName,
-        } as Credit;
+        // var ref = this.firestore.collection('credits').doc().ref;
+        // var sellerCredit = {
+        //   userDocId: seller.parentUserId, //refund to parent user id
+        //   userDisplayName: result.userDisplayName,
+        //   createdBy: result.parentUserId,
+        //   createdByDisplayName: result.parentUserDisplayName,
+        //   amount: result.amount,
+        //   created: Timestamp.now(),
+        //   note: 'seat sold to ' + buyer.userDisplayName,
+        // } as Credit;
 
-        batch.set(ref, sellerCredit);
-        console.log('seller credit...', sellerCredit);
+        // batch.set(ref, sellerCredit);
+        // console.log('seller credit...', sellerCredit);
 
-        var ref = this.firestore.collection('groupTransactions').doc().ref;
-        var sellerTrans = {
-          amount: -result.amount,
-          paymentMethod: result.paymentMethod,
-          groupDocId: result.groupDocId,
-          bookingDocId: result.bookingDocId, //nullable
-          referenceId: sellerCredit.userDocId, //nullable
-          notes: sellerCredit.note,
-          createdBy: sellerCredit.createdBy,
-          createdByDisplayName: sellerCredit.createdByDisplayName,
-          created: Timestamp.now(),
-        } as GroupTransaction;
-        console.log('createBookingPerson service buySeat Seller: ', sellerTrans);
-        batch.set(ref, sellerTrans);
+        // var ref = this.firestore.collection('groupTransactions').doc().ref;
+        // var sellerTrans = {
+        //   amount: -result.amount,
+        //   paymentMethod: result.paymentMethod,
+        //   groupDocId: result.groupDocId,
+        //   bookingDocId: result.bookingDocId, //nullable
+        //   referenceId: sellerCredit.userDocId, //nullable
+        //   notes: sellerCredit.note,
+        //   createdBy: sellerCredit.createdBy,
+        //   createdByDisplayName: sellerCredit.createdByDisplayName,
+        //   created: Timestamp.now(),
+        // } as GroupTransaction;
+        // console.log('createBookingPerson service buySeat Seller: ', sellerTrans);
+        // batch.set(ref, sellerTrans);
 
 
-        var ref = this.firestore.collection('credits').doc().ref;
-        var buyerCredit = {
-          userDocId: buyer.userId,
-          userDisplayName: buyer.userDisplayName,
-          createdBy: buyer.userId,
-          createdByDisplayName: buyer.userDisplayName,
-          amount: -buyer.amount,
-          created: Timestamp.now(),
-          note: 'purchased seat from ' + result.userDisplayName,
-        } as Credit;
-        batch.set(ref, buyerCredit);
-        console.log('buyer credit...', buyerCredit);
+        // var ref = this.firestore.collection('credits').doc().ref;
+        // var buyerCredit = {
+        //   userDocId: buyer.userId,
+        //   userDisplayName: buyer.userDisplayName,
+        //   createdBy: buyer.userId,
+        //   createdByDisplayName: buyer.userDisplayName,
+        //   amount: -buyer.amount,
+        //   created: Timestamp.now(),
+        //   note: 'purchased seat from ' + result.userDisplayName,
+        // } as Credit;
+        // batch.set(ref, buyerCredit);
+        // console.log('buyer credit...', buyerCredit);
 
-        var ref = this.firestore.collection('groupTransactions').doc().ref;
-        var buyerTrans = {
-          amount: buyerCredit.amount,
-          paymentMethod: buyer.paymentMethod,
-          groupDocId: result.groupDocId,
-          bookingDocId: result.bookingDocId, //nullable
-          referenceId: buyerCredit.userDocId, //nullable
-          notes: buyerCredit.note,
-          createdBy: buyerCredit.createdBy,
-          createdByDisplayName: buyerCredit.createdByDisplayName,
-          created: Timestamp.now(),
-        } as GroupTransaction;
-        console.log('createBookingPerson service buySeat buyer: ', buyerTrans);
-        batch.set(ref, buyerTrans);
+        // var ref = this.firestore.collection('groupTransactions').doc().ref;
+        // var buyerTrans = {
+        //   amount: buyerCredit.amount,
+        //   paymentMethod: buyer.paymentMethod,
+        //   groupDocId: result.groupDocId,
+        //   bookingDocId: result.bookingDocId, //nullable
+        //   referenceId: buyerCredit.userDocId, //nullable
+        //   notes: buyerCredit.note,
+        //   createdBy: buyerCredit.createdBy,
+        //   createdByDisplayName: buyerCredit.createdByDisplayName,
+        //   created: Timestamp.now(),
+        // } as GroupTransaction;
+        // console.log('createBookingPerson service buySeat buyer: ', buyerTrans);
+        // batch.set(ref, buyerTrans);
         batch.commit();
       }
     })
@@ -392,36 +392,36 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
 
       console.log('delete batch, delete booking person: ', bp.docId);
       //refund credit back
-      var ref = this.firestore.collection('credits').doc().ref;
-      var credit = {
-        amount: bp.amount,
-        userDocId: bp.parentUserId, //refund back to the parent user ID
-        userDisplayName: bp.userDisplayName,
-        //note: bp.bookingDesc + ": withdraw : " + bp.userDisplayName,
-        note: 'withdraw ' + bp.userDisplayName + ' from ' + bp.bookingDesc + ', refund to ' + bp.parentUserDisplayName,
-        createdBy: bp.parentUserId,
-        createdByDisplayName: bp.parentUserDisplayName,
-        created: Timestamp.now()
-      } as Credit;
-      batch.set(ref, credit);
+    //   var ref = this.firestore.collection('credits').doc().ref;
+    //   var credit = {
+    //     amount: bp.amount,
+    //     userDocId: bp.parentUserId, //refund back to the parent user ID
+    //     userDisplayName: bp.userDisplayName,
+    //     //note: bp.bookingDesc + ": withdraw : " + bp.userDisplayName,
+    //     note: 'withdraw ' + bp.userDisplayName + ' from ' + bp.bookingDesc + ', refund to ' + bp.parentUserDisplayName,
+    //     createdBy: bp.parentUserId,
+    //     createdByDisplayName: bp.parentUserDisplayName,
+    //     created: Timestamp.now()
+    //   } as Credit;
+    //   batch.set(ref, credit);
 
-      if (bp.paymentMethod == GlobalConstants.paymentCredit) {
-        //add to groupTransaction table
-        var ref = this.firestore.collection('groupTransactions').doc().ref;
-        var trans = {
-          amount: -bp.amount,
-          paymentMethod: bp.paymentMethod,
-          groupDocId: bp.groupDocId,
-          bookingDocId: bp.bookingDocId, //nullable
-          referenceId: credit.userDocId, //nullable
-          notes: credit.note,
-          createdBy: credit.createdBy,
-          createdByDisplayName: credit.createdByDisplayName,
-          created: Timestamp.now(),
-        } as GroupTransaction;
-        console.log('deleteBatch service groupTransaction: ', trans);
-        batch.set(ref, trans);
-      }
+    //   if (bp.paymentMethod == GlobalConstants.paymentCredit) {
+    //     //add to groupTransaction table
+    //     var ref = this.firestore.collection('groupTransactions').doc().ref;
+    //     var trans = {
+    //       amount: -bp.amount,
+    //       paymentMethod: bp.paymentMethod,
+    //       groupDocId: bp.groupDocId,
+    //       bookingDocId: bp.bookingDocId, //nullable
+    //       referenceId: credit.userDocId, //nullable
+    //       notes: credit.note,
+    //       createdBy: credit.createdBy,
+    //       createdByDisplayName: credit.createdByDisplayName,
+    //       created: Timestamp.now(),
+    //     } as GroupTransaction;
+    //     console.log('deleteBatch service groupTransaction: ', trans);
+    //     batch.set(ref, trans);
+    //   }
     });
     batch.commit();
   }

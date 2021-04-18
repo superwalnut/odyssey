@@ -15,6 +15,7 @@ import { Group } from '../models/group';
 import { Booking } from '../models/booking';
 import { LocalBookingUser } from '../models/custom-models';
 import { Account } from '../models/account';
+import { MatListSubheaderCssMatStyler } from '@angular/material/list';
 
 
 @Injectable({
@@ -124,14 +125,20 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
     lbus.forEach(lbu =>{
       //deduct from user credits
       var ref = this.firestore.collection('credits').doc().ref;
-      total += lbu.amount;
-      var userAmount = lbu.amount; //cash/bank user add back, to make their balance 0;
-      if (lbu.paymentMethod == GlobalConstants.paymentCredit) {
-        userAmount = -lbu.amount; //credit user keep substract
+      if (lbu.isPaid) {
+        total += lbu.amount;
       }
-
+      //var userAmount = -lbu.amount; //cash/bank user add back, to make their balance 0;
+      // if (lbu.paymentMethod == GlobalConstants.paymentCredit) {
+      //   userAmount = -lbu.amount; //credit user keep substract
+      // } else {
+      //   //cash user, we check isPaid or not
+      //   if (!lbu.isPaid) {
+      //     userAmount = 0; //if not paid, add back zero, so user stay negative!
+      //   }
+      // }
       var credit = {
-        amount: userAmount,
+        amount: -lbu.amount,
         userDocId: lbu.parentUserId,
         userDisplayName: lbu.name,
         note: group.groupName+': '+ lbu.name,
@@ -139,7 +146,25 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
         createdByDisplayName: operator.name,
         created: Timestamp.now(),
       } as Credit;
+      if (lbu.paymentMethod == GlobalConstants.paymentCash) { credit.note += ": Cash reveivable"}
       batch.set(ref, credit);
+
+      if (lbu.paymentMethod == GlobalConstants.paymentCash) { //for cash user, we need to credit back to make balance 0
+        var userAmount = lbu.amount;
+        if (!lbu.isPaid) userAmount = 0; //if unpaid, credit back 0, so user stay negative;
+
+        var cashRef = this.firestore.collection('credits').doc().ref;
+        var credit = {
+          amount: userAmount,
+          userDocId: lbu.parentUserId,
+          userDisplayName: lbu.name,
+          note: group.groupName+': '+ lbu.name +': Cash on hand',
+          createdBy: operator.docId,
+          createdByDisplayName: operator.name,
+          created: Timestamp.now(),
+        } as Credit;
+        batch.set(cashRef, credit);
+      }
     });
 
     //add total to groupTransactions

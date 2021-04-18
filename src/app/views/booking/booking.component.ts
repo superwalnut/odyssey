@@ -213,7 +213,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
       parentUserId: this.loggedInAccount.docId,
       parentUserDisplayName: this.loggedInAccount.name,
       paymentMethod: this.isCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
-      isPaid: true,
+      isPaid: this.isCreditUser ? true: false,
       createdOn: Timestamp.now(),
     } as BookingPerson;
     console.log('has found readed end!!!: ');
@@ -288,6 +288,9 @@ export class BookingDialog {
     this.hasCredit = this.data.creditBalance >= 0;
     this.lowCredit = this.data.creditBalance <= 40;
     this.meetBasePoints = this.data.userLevelPoints >= this.data.booking.levelRestrictionOverwrite;
+
+    console.log('dialog', this.data);
+    
     
     this.bookingPersonService.getByBookingDocId(this.data.bookingDocId).subscribe(allBookings => {
       this.allBookings = allBookings; //get a live connection to all booking persons.
