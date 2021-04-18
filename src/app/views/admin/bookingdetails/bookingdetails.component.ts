@@ -71,6 +71,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   bookingTotalBank = 0;
   bookingTotalAdjusted = 0;
   reconciliationInProgress:boolean;
+  isLoading:boolean;
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialog, private snackBar: MatSnackBar, public dialog: MatDialog, private groupService: GroupService, private groupTransactionService: GroupTransactionService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute,private eventLogService: EventLoggerService) { super() }
 
@@ -142,8 +143,12 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
         this.bookingTotalBank += lbu.amount;
       } 
     });
-    this.bookingTotalAdjusted = this.groupTransactionsAdjusted.map(trans => trans.amount).reduce((a,b) => a+b);
-    this.bookingTotal += this.bookingTotalAdjusted;
+
+    if (this.groupTransactionsAdjusted.length > 0) {
+      this.bookingTotalAdjusted = this.groupTransactionsAdjusted.map(trans => trans.amount).reduce((a,b) => a+b);
+      this.bookingTotal += this.bookingTotalAdjusted;
+    }
+    
   }
 
   private _filter(value: string): string[] {
@@ -343,6 +348,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
 
   reconciled() {
     if (confirm('This action cannot be undone and I confirm this booking is reconciled and to be closed forever!')) {
+      this.isLoading = true;
       this.groupTransactionService.bookingReconciliation(this.group, this.booking, this.allLocalBookingUsers, this.loggedInAccount)
       .then(() => {
         let log = {
@@ -350,8 +356,10 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
           notes: this.group.groupName,
         } as EventLogger;
         this.eventLogService.createLog(log, this.loggedInAccount.docId, this.loggedInAccount.name);
+        this.isLoading = false;
       })
       .catch((err) => {
+        this.isLoading = false;
         alert(err);
         console.log(err);
       });

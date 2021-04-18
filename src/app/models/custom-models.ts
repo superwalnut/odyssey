@@ -31,3 +31,24 @@ export class UserSelection {
   parentUserDocId: string;
   parentUserDisplayName: string;
 }
+
+
+export class UserImport {
+  email: string;
+    name: string;
+    password: string;
+    mobile: string;
+    parentUserDocId: string;
+    parentUserDisplayName: string;
+    gender: string;
+    isChild: boolean;
+    isMember: boolean;
+    created: Timestamp;
+    grade: string;
+    gradePoints: number; //to further classify user skill levels by points 1-10 （decimal allowed)
+    isCreditUser: boolean;
+    creditBalance:number;
+    requireChangePassword:boolean;
+
+
+}

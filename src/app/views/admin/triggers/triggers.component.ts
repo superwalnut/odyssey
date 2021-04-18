@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TriggersService } from "../../../services/triggers.service";
 import { HelperService } from "../../../common/helper.service";
+import { User } from "../../../models/user";
+import { AccountService } from "../../../services/account.service";
+import { UserImport } from "../../../models/custom-models";
+
+
+
 @Component({
   selector: 'app-triggers',
   templateUrl: './triggers.component.html',
@@ -8,12 +14,12 @@ import { HelperService } from "../../../common/helper.service";
 })
 export class TriggersComponent implements OnInit {
 
-  constructor(private triggerService: TriggersService, private helperService: HelperService) { }
+  constructor(private triggerService: TriggersService, private accountService:AccountService, private helperService: HelperService) { }
 
    userJson = [
     {
       "NewName": "Ada",
-      "Mobile": 413262488,
+      "Mobile": "0413262488",
       "Email": "ada.zhu80@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -26,7 +32,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Alex Ge",
-      "Mobile": 430458688,
+      "Mobile": "0430458688",
       "Email": "completege1@hotmail.com",
       "Grade": "C",
       "GradePoints": "",
@@ -39,7 +45,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "AlexR",
-      "Mobile": 431391842,
+      "Mobile": "0431391842",
       "Email": "raffier.alex@gmail.com",
       "Grade": "C",
       "GradePoints": "",
@@ -52,7 +58,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "80kg Alex Zhang",
-      "Mobile": 425432866,
+      "Mobile": "0425432866",
       "Email": "alexlongma@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -65,7 +71,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Andi",
-      "Mobile": 405828485,
+      "Mobile": "0405828485",
       "Email": "andichow@gmail.com",
       "Grade": "C",
       "GradePoints": "",
@@ -77,8 +83,21 @@ export class TriggersComponent implements OnInit {
       "Gender": "Male"
     },
     {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "D",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "Angela Li",
+      "FamilyUsers": "",
+      "CreditBalance": "$26.00",
+      "Gender": "Female"
+    },
+    {
       "NewName": "Anna Kan",
-      "Mobile": 424074803,
+      "Mobile": "0424074803",
       "Email": "Ranekan@hotmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -91,7 +110,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Apple Yuan",
-      "Mobile": 404131309,
+      "Mobile": "0404131309",
       "Email": "appleyuan@hotmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -104,7 +123,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Audrey Chen",
-      "Mobile": 411037608,
+      "Mobile": "0411037608",
       "Email": "audreychenyx@hotmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -117,7 +136,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Bella",
-      "Mobile": 415087758,
+      "Mobile": "0415087758",
       "Email": "apriloz@hotmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -130,7 +149,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Jennifer Xu",
-      "Mobile": 414360152,
+      "Mobile": "0414360152",
       "Email": "jenniferwen00@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -143,7 +162,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Benson",
-      "Mobile": 416538984,
+      "Mobile": "0416538984",
       "Email": "asfacas13@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -156,7 +175,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Brendan",
-      "Mobile": 433034006,
+      "Mobile": "0433034006",
       "Email": "brendanlow@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -169,7 +188,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Bryan",
-      "Mobile": 430858417,
+      "Mobile": "0430858417",
       "Email": "henicoo@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -182,7 +201,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Canny",
-      "Mobile": 410673878,
+      "Mobile": "0410673878",
       "Email": "cannyclk11@hotmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -195,7 +214,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "CC",
-      "Mobile": 410988832,
+      "Mobile": "0410988832",
       "Email": "cecilsiu428@yahoo.com.au",
       "Grade": "E",
       "GradePoints": "",
@@ -208,7 +227,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Charles Wang",
-      "Mobile": 413734993,
+      "Mobile": "0413734993",
       "Email": "cwang1110@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -221,7 +240,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Charles Song",
-      "Mobile": 416440603,
+      "Mobile": "0416440603",
       "Email": "13467915@student.uts.edu.au",
       "Grade": "D",
       "GradePoints": "",
@@ -234,7 +253,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Chins",
-      "Mobile": 412965086,
+      "Mobile": "0412965086",
       "Email": "chinmay.rangras@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -247,7 +266,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Chook",
-      "Mobile": 402504362,
+      "Mobile": "0402504362",
       "Email": "kmchook@outlook.com",
       "Grade": "D",
       "GradePoints": "",
@@ -260,7 +279,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Christina Lee",
-      "Mobile": 415415985,
+      "Mobile": "0415415985",
       "Email": "christina3000@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -273,7 +292,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "David Dong",
-      "Mobile": 428184056,
+      "Mobile": "0428184056",
       "Email": "David.Iris1314@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -285,8 +304,21 @@ export class TriggersComponent implements OnInit {
       "Gender": "Male"
     },
     {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "E",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "David Fung",
+      "FamilyUsers": "",
+      "CreditBalance": "$91.00",
+      "Gender": "Male"
+    },
+    {
       "NewName": "David He",
-      "Mobile": 435528870,
+      "Mobile": "0435528870",
       "Email": "dzch961@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -299,7 +331,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "David Wang",
-      "Mobile": 436658500,
+      "Mobile": "0436658500",
       "Email": "jiabowang05@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -312,7 +344,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Edward D",
-      "Mobile": 403052102,
+      "Mobile": "0403052102",
       "Email": "drd777@outlook.com",
       "Grade": "E",
       "GradePoints": "",
@@ -325,7 +357,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Elaine Ho",
-      "Mobile": 452612565,
+      "Mobile": "0452612565",
       "Email": "oikhei@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -338,7 +370,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Elly赵欣",
-      "Mobile": 408642329,
+      "Mobile": "0408642329",
       "Email": "ecnu_2000@163.com",
       "Grade": "D",
       "GradePoints": "",
@@ -351,7 +383,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Ethan Jin",
-      "Mobile": 468512080,
+      "Mobile": "0468512080",
       "Email": "yingwu.jin@hotmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -364,7 +396,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Feng",
-      "Mobile": 401599736,
+      "Mobile": "0401599736",
       "Email": "marco_yufeng@hotmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -377,7 +409,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Francis",
-      "Mobile": 434087284,
+      "Mobile": "0434087284",
       "Email": "francishe2007@yahoo.com.au",
       "Grade": "E",
       "GradePoints": "",
@@ -390,7 +422,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Frank",
-      "Mobile": 402155868,
+      "Mobile": "0402155868",
       "Email": "frankyangtao@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -403,7 +435,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Frank Z",
-      "Mobile": 415615698,
+      "Mobile": "0415615698",
       "Email": "changle2012@yahoo.com.au",
       "Grade": "C",
       "GradePoints": "",
@@ -416,7 +448,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Gary",
-      "Mobile": 478151916,
+      "Mobile": "0478151916",
       "Email": "gychang2000@hotmail.com",
       "Grade": "C",
       "GradePoints": 4.6,
@@ -429,7 +461,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Glen",
-      "Mobile": 406436861,
+      "Mobile": "0406436861",
       "Email": "wangxiao_ch@yahoo.com",
       "Grade": "D",
       "GradePoints": "",
@@ -442,7 +474,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Hannah",
-      "Mobile": 403649446,
+      "Mobile": "0403649446",
       "Email": "ka_zling@hotmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -455,7 +487,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Henry Su",
-      "Mobile": 423523823,
+      "Mobile": "0423523823",
       "Email": "henrysuplus@yahoo.com.au",
       "Grade": "D",
       "GradePoints": "",
@@ -468,7 +500,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Herbert",
-      "Mobile": 420572215,
+      "Mobile": "0420572215",
       "Email": "herbertyuan22@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -481,7 +513,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Hugh",
-      "Mobile": 451668958,
+      "Mobile": "0451668958",
       "Email": "huhe1969@hotmail.com",
       "Grade": "C",
       "GradePoints": "",
@@ -494,7 +526,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Cream",
-      "Mobile": 431695247,
+      "Mobile": "0431695247",
       "Email": "happyjane_crying@hotmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -507,7 +539,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Jack L",
-      "Mobile": 404139888,
+      "Mobile": "0404139888",
       "Email": "nice_jack@live.cn",
       "Grade": "F",
       "GradePoints": 0,
@@ -520,7 +552,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Jacky Z",
-      "Mobile": 410138150,
+      "Mobile": "0410138150",
       "Email": "jacky.zhang.au@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -533,7 +565,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Jason Chin",
-      "Mobile": 405536604,
+      "Mobile": "0405536604",
       "Email": "jasonchchin@gmail.com",
       "Grade": "C",
       "GradePoints": "",
@@ -545,8 +577,21 @@ export class TriggersComponent implements OnInit {
       "Gender": "Male"
     },
     {
+      "NewName": "Jason Cui",
+      "Mobile": "0478958816",
+      "Email": "great_jason@hotmail.com",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "Jason Cui",
+      "FamilyUsers": "",
+      "CreditBalance": "$117.00",
+      "Gender": "Male"
+    },
+    {
       "NewName": "Jeff Wang",
-      "Mobile": 417009871,
+      "Mobile": "0417009871",
       "Email": "wenoch@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -559,7 +604,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Jency",
-      "Mobile": 438680029,
+      "Mobile": "0438680029",
       "Email": "adepttravels@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -572,7 +617,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "JessicaW",
-      "Mobile": 452581109,
+      "Mobile": "0452581109",
       "Email": "wang_j1122@hotmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -584,8 +629,21 @@ export class TriggersComponent implements OnInit {
       "Gender": "Female"
     },
     {
+      "NewName": "JessicaZ",
+      "Mobile": "0415859799",
+      "Email": "Yijie33@hotmail.com",
+      "Grade": "E",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "Jessica Z",
+      "FamilyUsers": "",
+      "CreditBalance": "$0.00",
+      "Gender": "Female"
+    },
+    {
       "NewName": "Jim L",
-      "Mobile": 466475033,
+      "Mobile": "0466475033",
       "Email": "topliu88@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -598,7 +656,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Jocelyn",
-      "Mobile": 433848970,
+      "Mobile": "0433848970",
       "Email": "leunglksm@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -610,8 +668,21 @@ export class TriggersComponent implements OnInit {
       "Gender": "Female"
     },
     {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "C",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "John",
+      "FamilyUsers": "Annie(John)",
+      "CreditBalance": "$39.00",
+      "Gender": "Male"
+    },
+    {
       "NewName": "Josh Zhang",
-      "Mobile": 433330987,
+      "Mobile": "0433330987",
       "Email": "joshzhangjobs@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -624,7 +695,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "JZ",
-      "Mobile": 409979198,
+      "Mobile": "0409979198",
       "Email": "jackeal_zhuj@hotmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -637,7 +708,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Kai",
-      "Mobile": 402822228,
+      "Mobile": "0402822228",
       "Email": "kaisquared90@gmail.com",
       "Grade": "C",
       "GradePoints": "",
@@ -650,7 +721,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Karthik",
-      "Mobile": 469241444,
+      "Mobile": "0469241444",
       "Email": "r.karthik@yahoo.com",
       "Grade": "E",
       "GradePoints": "",
@@ -663,7 +734,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Kathy",
-      "Mobile": 414266070,
+      "Mobile": "0414266070",
       "Email": "Kathy0721@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -676,7 +747,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "KevinW",
-      "Mobile": 433499901,
+      "Mobile": "0433499901",
       "Email": "kevin.wangwei@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -689,7 +760,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Lance",
-      "Mobile": 423432057,
+      "Mobile": "0423432057",
       "Email": "truehoho@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -702,7 +773,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Lenise",
-      "Mobile": 469915138,
+      "Mobile": "0469915138",
       "Email": "lenise_yeoh@hotmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -715,7 +786,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Leon",
-      "Mobile": 433671656,
+      "Mobile": "0433671656",
       "Email": "leonlai1997@hotmail.com",
       "Grade": "C",
       "GradePoints": "",
@@ -728,7 +799,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Lionel",
-      "Mobile": 423080826,
+      "Mobile": "0423080826",
       "Email": "lionelong@yahoo.com",
       "Grade": "D",
       "GradePoints": "",
@@ -741,7 +812,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Long",
-      "Mobile": 401021568,
+      "Mobile": "0401021568",
       "Email": "h_lx@hotmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -754,7 +825,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Luc",
-      "Mobile": 413780136,
+      "Mobile": "0413780136",
       "Email": "bei2004@gmail.com",
       "Grade": "C",
       "GradePoints": 5,
@@ -767,7 +838,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Magesh",
-      "Mobile": 424611007,
+      "Mobile": "0424611007",
       "Email": "rymagesh@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -780,7 +851,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Maggie 瀚文",
-      "Mobile": 468488368,
+      "Mobile": "0468488368",
       "Email": "mzhangau@outlook.com",
       "Grade": "D",
       "GradePoints": "",
@@ -793,7 +864,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Manny",
-      "Mobile": 406726588,
+      "Mobile": "0406726588",
       "Email": "manny.gongz@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -806,7 +877,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Mark Chen",
-      "Mobile": 466556068,
+      "Mobile": "0466556068",
       "Email": "mloves.chen@gmail.com",
       "Grade": "",
       "GradePoints": "",
@@ -814,12 +885,12 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Mark Chen",
       "FamilyUsers": "",
-      "CreditBalance": 0,
+      "CreditBalance": "$0.00",
       "Gender": "Male"
     },
     {
       "NewName": "Matt",
-      "Mobile": 439116666,
+      "Mobile": "0439116666",
       "Email": "mattshi81@hotmail.com",
       "Grade": "C",
       "GradePoints": 6,
@@ -832,7 +903,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Michael",
-      "Mobile": 425033441,
+      "Mobile": "0425033441",
       "Email": "845524343@qq.com",
       "Grade": "D",
       "GradePoints": "",
@@ -844,8 +915,21 @@ export class TriggersComponent implements OnInit {
       "Gender": "Male"
     },
     {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "D",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "Michael M",
+      "FamilyUsers": "",
+      "CreditBalance": "$13.00",
+      "Gender": "Male"
+    },
+    {
       "NewName": "Michael Xu",
-      "Mobile": 411652088,
+      "Mobile": "0411652088",
       "Email": "michael202125@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -858,7 +942,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Michael Zhang",
-      "Mobile": 421437705,
+      "Mobile": "0421437705",
       "Email": "mzhang668@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -871,7 +955,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Owen",
-      "Mobile": 420518070,
+      "Mobile": "0420518070",
       "Email": "zquake@hotmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -884,7 +968,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Patrick H",
-      "Mobile": 432125002,
+      "Mobile": "0432125002",
       "Email": "patrickhu26358787@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -897,7 +981,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Peggy",
-      "Mobile": 479159678,
+      "Mobile": "0479159678",
       "Email": "peggy.ling.au@gmail.com",
       "Grade": "",
       "GradePoints": "",
@@ -910,7 +994,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Peter wang",
-      "Mobile": 433007578,
+      "Mobile": "0433007578",
       "Email": "qiudongw@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -923,7 +1007,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Poh",
-      "Mobile": 413228977,
+      "Mobile": "0413228977",
       "Email": "bukit_chong@yahoo.com",
       "Grade": "D",
       "GradePoints": "",
@@ -936,7 +1020,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "hipolly",
-      "Mobile": 415885188,
+      "Mobile": "0415885188",
       "Email": "topollykwok@yahoo.com",
       "Grade": "D",
       "GradePoints": "",
@@ -949,7 +1033,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Prakash",
-      "Mobile": 404371773,
+      "Mobile": "0404371773",
       "Email": "Prakash.varu@yahoo.com.au",
       "Grade": "D",
       "GradePoints": "",
@@ -962,7 +1046,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "RobinZhang",
-      "Mobile": 407803979,
+      "Mobile": "0407803979",
       "Email": "cs.zhanghong@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -974,8 +1058,21 @@ export class TriggersComponent implements OnInit {
       "Gender": "Male"
     },
     {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "D",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "Samuel",
+      "FamilyUsers": "",
+      "CreditBalance": "$39.00",
+      "Gender": "Male"
+    },
+    {
       "NewName": "Scott Zhuo",
-      "Mobile": 406368287,
+      "Mobile": "0406368287",
       "Email": "scott.z.zhuo@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -988,7 +1085,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Shirley",
-      "Mobile": 410638127,
+      "Mobile": "0410638127",
       "Email": "shiroly@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1001,7 +1098,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Simon T",
-      "Mobile": 421132308,
+      "Mobile": "0421132308",
       "Email": "simonpt2000@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1013,8 +1110,21 @@ export class TriggersComponent implements OnInit {
       "Gender": "Male"
     },
     {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "F",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "Stanley",
+      "FamilyUsers": "Sara",
+      "CreditBalance": "$30.00",
+      "Gender": "Male"
+    },
+    {
       "NewName": "Steven Liu",
-      "Mobile": 402505299,
+      "Mobile": "0402505299",
       "Email": "2339297951@qq.com",
       "Grade": "",
       "GradePoints": "",
@@ -1027,7 +1137,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Tammy",
-      "Mobile": 431662310,
+      "Mobile": "0431662310",
       "Email": "au.tammy@gmail.com",
       "Grade": "",
       "GradePoints": "",
@@ -1040,7 +1150,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Thomas",
-      "Mobile": 422945805,
+      "Mobile": "0422945805",
       "Email": "thomastsang7388@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1053,7 +1163,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Ting CA",
-      "Mobile": 415226713,
+      "Mobile": "0415226713",
       "Email": "ququ1102@hotmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1066,7 +1176,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Tom",
-      "Mobile": 418215888,
+      "Mobile": "0418215888",
       "Email": "shihuaichen@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1079,7 +1189,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Tony C",
-      "Mobile": 430511668,
+      "Mobile": "0430511668",
       "Email": "tony.cao77@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -1092,7 +1202,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Vincent",
-      "Mobile": 427392166,
+      "Mobile": "0427392166",
       "Email": "vshc1@yahoo.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1105,7 +1215,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Visitor",
-      "Mobile": 0,
+      "Mobile": "0000000000",
       "Email": "visitor@gmail.com",
       "Grade": "",
       "GradePoints": "",
@@ -1118,7 +1228,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Wei",
-      "Mobile": 449984324,
+      "Mobile": "0449984324",
       "Email": "wei_lu@live.com.au",
       "Grade": "C",
       "GradePoints": "",
@@ -1126,12 +1236,38 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Wei",
       "FamilyUsers": "",
-      "CreditBalance": 0,
+      "CreditBalance": "$0.00",
+      "Gender": "Male"
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "D",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "William",
+      "FamilyUsers": "Amanda,Xiayan",
+      "CreditBalance": "$39.00",
+      "Gender": "Male"
+    },
+    {
+      "NewName": "Wilson Li",
+      "Mobile": "0403608678",
+      "Email": "mchdlw@gmail.com",
+      "Grade": "E",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "Wilson",
+      "FamilyUsers": "Annie",
+      "CreditBalance": "$91.00",
       "Gender": "Male"
     },
     {
       "NewName": "Wing",
-      "Mobile": 424125197,
+      "Mobile": "0424125197",
       "Email": "wingyang502@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1144,7 +1280,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Xiao",
-      "Mobile": 434130413,
+      "Mobile": "0434130413",
       "Email": "mailtohx@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1157,7 +1293,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Yang",
-      "Mobile": 424907646,
+      "Mobile": "0424907646",
       "Email": "yyl901015@126.com",
       "Grade": "",
       "GradePoints": "",
@@ -1170,7 +1306,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Zaka",
-      "Mobile": 433396668,
+      "Mobile": "0433396668",
       "Email": "zaka.lei@gmail.com",
       "Grade": "A",
       "GradePoints": 8,
@@ -1183,7 +1319,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "何平He",
-      "Mobile": 420779229,
+      "Mobile": "0420779229",
       "Email": "1171750071@qq.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1196,7 +1332,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "佳音Jia",
-      "Mobile": 421169787,
+      "Mobile": "0421169787",
       "Email": "gloria_j_tan@hotmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1209,7 +1345,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "凯Kai",
-      "Mobile": 421135679,
+      "Mobile": "0421135679",
       "Email": "fgxr2583@gmail.com",
       "Grade": "C",
       "GradePoints": "",
@@ -1222,7 +1358,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "双鱼王yao",
-      "Mobile": 451496846,
+      "Mobile": "0451496846",
       "Email": "wyaozu0220@163.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1235,7 +1371,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "杜和成du",
-      "Mobile": 414336218,
+      "Mobile": "0414336218",
       "Email": "chen@minchen.com.au",
       "Grade": "D",
       "GradePoints": 2,
@@ -1248,7 +1384,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "Lin Du",
-      "Mobile": 421440055,
+      "Mobile": "0421440055",
       "Email": "dulin.du2@gmail.com",
       "Grade": "D",
       "GradePoints": 2.2,
@@ -1261,7 +1397,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "美丽Mannie",
-      "Mobile": 415518936,
+      "Mobile": "0415518936",
       "Email": "mannieruan@hotmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1274,7 +1410,7 @@ export class TriggersComponent implements OnInit {
     },
     {
       "NewName": "贝林Bei",
-      "Mobile": 415098898,
+      "Mobile": "0415098898",
       "Email": "bluesky9989@outlook.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1282,12 +1418,12 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "贝林",
       "FamilyUsers": "",
-      "CreditBalance": 13,
+      "CreditBalance": "$13.00",
       "Gender": "Female"
     },
     {
       "NewName": "远方Yuan",
-      "Mobile": 415706307,
+      "Mobile": "0415706307",
       "Email": "ruanfang816@gmail.com",
       "Grade": "D",
       "GradePoints": "",
@@ -1295,12 +1431,12 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "远方",
       "FamilyUsers": "张扬zhang",
-      "CreditBalance": 104,
+      "CreditBalance": "$104.00",
       "Gender": "Female"
     },
     {
       "NewName": "阿布Bu",
-      "Mobile": 420330886,
+      "Mobile": "0420330886",
       "Email": "deltazhang0886@gmail.com",
       "Grade": "E",
       "GradePoints": "",
@@ -1308,27 +1444,94 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "阿布bu",
       "FamilyUsers": "",
-      "CreditBalance": 39,
+      "CreditBalance": "$39.00",
       "Gender": "Male"
+    },
+    {
+      "NewName": "System",
+      "Mobile": "0000000000",
+      "Email": "hbc666.club@gmail.com",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "",
+      "FamilyUsers": "",
+      "CreditBalance": "$0.00",
+      "Gender": "Male"
+    },
+    {
+      "NewName": "Katy kakaka",
+      "Mobile": "0451993908",
+      "Email": "thesweetkitchenau@gmail.com",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "",
+      "FamilyUsers": "",
+      "CreditBalance": "",
+      "Gender": "Female"
+    },
+    {
+      "NewName": "Crystal香香",
+      "Mobile": "0424060916",
+      "Email": "crystalyuxiangyang@hotmail.com",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Crystal香香",
+      "FamilyUsers": "",
+      "CreditBalance": "",
+      "Gender": "Female"
     }
-  ];
+  ]
 
   ngOnInit(): void {
-    //this.onCombineDatesClick();
-    this.readUserJsonFile();
+    
   }
 
   onPrepopulateBookingClick() {
-    //this.triggerService.prepopulateBookings();
   }
 
-  importUser() {
+  importMainAccount() {
     this.readUserJsonFile();
   }
 
+  importFamily() {
+    //his.readUserJsonFile();
+  }
+
+
   readUserJsonFile() {
-    var found = this.userJson.filter(x=> x.NewName!="");
-    console.log(found)
+    var usersJson = this.userJson.filter(x=> x.NewName!="");
+    var userObjects:UserImport[]=[];
+    console.log(usersJson);
+    //main account import
+
+    usersJson.forEach(uj => {
+      var user = {
+        name: uj.NewName,
+        email: uj.Email,
+        mobile: uj.Mobile,
+        gender: uj.Gender,
+        isMember: false,
+        isChild: false,
+        grade: uj.Grade,
+        gradePoints: uj.GradePoints,
+        isCreditUser: uj.IsCreditUser == 'TRUE'? true:false,
+        requireChangePassword: true,
+        password:'1111111',
+        creditBalance: 100,
+      } as UserImport;
+      userObjects.push(user);
+
+
+
+    })
+
+
     
   }
 

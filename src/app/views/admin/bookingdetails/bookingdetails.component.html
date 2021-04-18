@@ -40,7 +40,6 @@
                   </mat-autocomplete>
                 </mat-form-field>
                 {{userPaymentMethod}}
-
                 <mat-form-field appearance="fill">
                   <mat-label>Payment method</mat-label>
                   <mat-select (selectionChange)="selectedValue($event)">
@@ -48,8 +47,6 @@
                   </mat-select>
                 </mat-form-field>
                 <button mat-raised-button color="primary" (click)="createBooking(myControl)">Add</button>
-                <p></p>
-                <!-- <button mat-raised-button color="primary" (click)="createBooking(myControl, myControl2)">Add</button> -->
               </form>
             </section>
 
@@ -150,7 +147,9 @@
 
               <div *ngIf="reconciliationInProgress">
                 <p>I confirm this booking is reconciled and to be closed!</p>
-                <button mat-raised-button color="accent" (click)="reconciled()" >收钱&关账</button>
+                <button mat-raised-button color="accent" (click)="reconciled()" *ngIf="!isLoading">收钱&关账</button>
+                <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+
               </div>
              
             </div>
