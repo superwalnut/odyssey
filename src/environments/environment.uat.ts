@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    mail_url: "http://localhost:5001/hbclub-919aa/us-central1",
+    mail_url: "https://us-central1-hbclub-919aa.cloudfunctions.net",
     firebase: {
       apiKey: "AIzaSyARtsKbJSMmNK4gX-KVODBGc6JNociGU8M",
       authDomain: "hbc-uat-9f2ad.firebaseapp.com",
