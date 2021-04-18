@@ -3,6 +3,8 @@ import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreBaseService } from "./firestore-base.service";
 import { map, concatMap, finalize } from "rxjs/operators";
 import { Booking } from "../models/booking";
+import { Account } from "../models/account";
+
 //import { BookingPerson } from "../models/booking-person";
 
 import firebase from 'firebase/app';
@@ -103,6 +105,14 @@ export class BookingsService extends FirestoreBaseService<Booking>{
         }
       })
     );
+  }
+
+  public toggleReconciliationInProgress(booking:Booking, user:Account, isReconciliationInProgress: boolean) {
+
+    booking.isReconciliationInProgress = isReconciliationInProgress;
+    booking.reconcilationBy = user.name;
+    this.update(booking.docId, booking);
+
   }
 
   //Get bookings by date range

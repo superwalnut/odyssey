@@ -2,7 +2,10 @@
     <div class="row">
       <div class="col-md-12 mx-auto">
         <div class="card">
-          <div class="card-body p-4">
+          <div class="card-body p-4 {{ booking?.reconciled ? 'locked-bg':''}}">
+            <div class="p-3 mb-2 bg-success text-white" *ngIf="booking?.reconciled"><h3>Reconciliated & Closed by {{ booking?.reconcilationBy}}</h3></div>
+
+
             <h2>{{booking?.weekDay}} {{booking?.eventStartDateTime.toDate() |  date: "EE dd/MM/yyyy"}}</h2>
             <ul class="simple-horizontal-list">
               <li>Committees: </li>
@@ -27,7 +30,7 @@
               </button>
             </h3>
 
-            <section title="Add new booking">
+            <section title="Add new booking" *ngIf="!booking?.reconciled">
               <form>
                 <mat-form-field>
                   <mat-label>Search player name</mat-label>
@@ -58,7 +61,7 @@
                   <th scope="col">Amount</th>
                   <th scope="col">Paid</th>
                   <th scope="col">On</th>
-                  <th scope="col"></th>
+                  <th scope="col" *ngIf="!booking?.reconciled"></th>
                 </tr>
               </thead>
               <tbody>
@@ -72,19 +75,25 @@
                   <td scope="row" ><mat-icon>{{ p.isPaid ? 'check' : 'close'}}</mat-icon></td>
 
                   <td scope="row">{{p.createdOn.toDate() | date: "dd/MM/yyyy hh:MM"}}</td>
-                  <td>
+                  <td *ngIf="!booking?.reconciled">
                     <button mat-icon-button color="accent" title="withdraw" (click)="withdrawBooking(p)">
                       <mat-icon>remove</mat-icon>
                     </button> 
 
                     <button mat-icon-button color="accent" title="add notes" (click)="addNoteClicked(p)">
-                      <mat-icon>add_comment</mat-icon>
+                      <mat-icon>edit</mat-icon>
                     </button> 
                 </tr>
-                <tr>
+                <!-- <tr>
                   <th scope="row">Total {{total | currency}}</th>
                   <td colspan="5">Credit: {{totalCredit | currency}} Cash: {{totalCash | currency}} Bank: {{totalBank | currency}} Adjusted: {{totalAdjust | currency}}</td>
+                </tr> -->
+                <tr>
+                  <th scope="row">Total {{bookingTotal | currency}}</th>
+                  <td colspan="5">Credit: {{bookingTotalCredit | currency}} Cash: {{bookingTotalCash | currency}} Bank: {{bookingTotalBank | currency}} Adjusted: {{bookingTotalAdjusted | currency}}</td>
                 </tr>
+
+
               </tbody>
             </table>
 
@@ -108,20 +117,43 @@
               </tbody>
             </table>
 
-            <form [formGroup]="adjustForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="adjustForm" (ngSubmit)="onSubmit()" *ngIf="!booking?.reconciled">
               <mat-form-field>
                 <mat-label>Adjusted amount</mat-label>
-                <input matInput placeholder="amount" formControlName="adjustAmount" type="number" required />
+                <input matInput placeholder="amount" formControlName="adjustAmount" type="number" required autocomplete="off"/>
               </mat-form-field>
         
               <mat-form-field>
                 <mat-label>Description</mat-label>
-                <input matInput placeholder="description" formControlName="adjustDesc" required/>
+                <input matInput placeholder="description" formControlName="adjustDesc" required autocomplete="off"/>
               </mat-form-field>
               <button mat-raised-button color="primary" [disabled]="adjustForm.invalid">Save</button>
             </form>
 
 
+            <div class="p-3 mb-2 bg-primary text-white" *ngIf="!booking?.reconciled">
+              <h3>最后一步 Reconciliation</h3>
+              <p>
+                管理员在核对好所有人员及费用包括现金用户的款目，调节adjustment，一切无误后请点击 【收钱&关账】按钮。
+                按下后系统会扣用户的credit 并存入Group的收入Pool里。该操作无法撤销！  
+              </p>
+
+              <p>为确保数据正确，系统只允许一人进行账目核对，按下[Start reconciliation]后他人不能在同一时刻核对账目</p>
+
+              
+              <p *ngIf="booking?.reconcilationBy">
+                {{booking?.reconcilationBy}} {{booking.isReconciliationInProgress ? 'is reconciliating.' : 'cancelled reconciliation.'}} 
+              </p>
+              
+              <button mat-raised-button color="primary" (click)="startReconciliationClicked()" *ngIf="!reconciliationInProgress">Start reconciliation</button>
+              <button mat-raised-button color="primary" (click)="cancelReconciliationClicked()" *ngIf="reconciliationInProgress">Cancel reconciliation</button>
+
+              <div *ngIf="reconciliationInProgress">
+                <p>I confirm this booking is reconciled and to be closed!</p>
+                <button mat-raised-button color="accent" (click)="reconciled()" >收钱&关账</button>
+              </div>
+             
+            </div>
 
           </div>
         </div>

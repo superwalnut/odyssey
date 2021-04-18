@@ -12,5 +12,9 @@ export class Booking {
     isLocked: boolean // once locked, even admin can't make edit, only God can make changes to it
     seatsOverwrite: number; //initial value is copied from Groupo.seats, but allow admin to overwrite on booking level
     levelRestrictionOverwrite: number; //use level points to filter user skills
+    isReconciliationInProgress :boolean; //booking only can be autited by one person, to avoid data conflict.
+    reconcilationBy: string;
+    reconciled: boolean; // booking is reconciled and hence closed - cannot be undone!
+    
 }
 

@@ -45,6 +45,8 @@ export class GlobalConstants {
     public static eventbookingWithdraw: string = "booking withdraw";
     public static eventBooking: string = "booking";
     public static eventBookingForSale: string = "booking sale";
+    public static eventBookingReconciliated: string = "booking reconciliated";
+
     public static eventTopupCredit: string = "credit topup";
     public static eventPasswordChange: string = "password change";
     public static eventProfileChange: string = "profile change";

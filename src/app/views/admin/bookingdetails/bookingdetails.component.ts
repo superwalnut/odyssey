@@ -19,11 +19,15 @@ import { GroupTransactionService } from "../../../services/group-transaction.ser
 import { GroupService } from "../../../services/group.service";
 import { Group } from '../../../models/group';
 
+import { EventLoggerService } from "../../../services/event-logger.service";
+import { EventLogger } from '../../../models/event-logger';
+
+
 import { LocalBookingUser } from '../../../models/custom-models';
 import { GlobalConstants } from '../../../common/global-constants';
 import { MatSelectChange} from "@angular/material/select";
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
-
+import { combineLatest, forkJoin, of } from 'rxjs';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
@@ -42,11 +46,11 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   allLocalBookingUsers: LocalBookingUser[];
   hasCredit: boolean;
   defaultPayment = GlobalConstants.paymentCredit;
-  total = 0;
-  totalCredit = 0;
-  totalCash = 0;
-  totalBank = 0;
-  totalAdjust = 0;
+  // total = 0;
+  // totalCredit = 0;
+  // totalCash = 0;
+  // totalBank = 0;
+  // totalAdjust = 0;
   group: Group;
   //type ahead
   myControl = new FormControl();
@@ -60,17 +64,27 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   userPaymentMethod:string;
   paymentMethods: string[] = [GlobalConstants.paymentCredit, GlobalConstants.paymentCash, GlobalConstants.paymentBank];
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialog, private snackBar: MatSnackBar, public dialog: MatDialog, private groupService: GroupService, private groupTransactionService: GroupTransactionService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute) { super() }
+  //new for booking
+  bookingTotal = 0;
+  bookingTotalCredit = 0;
+  bookingTotalCash = 0;
+  bookingTotalBank = 0;
+  bookingTotalAdjusted = 0;
+  reconciliationInProgress:boolean;
+
+  constructor(private fb: FormBuilder, private dialogRef: MatDialog, private snackBar: MatSnackBar, public dialog: MatDialog, private groupService: GroupService, private groupTransactionService: GroupTransactionService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute,private eventLogService: EventLoggerService) { super() }
 
   ngOnInit(): void {
     this.bookingDocId = this.activatedRoute.snapshot.params.id;
     this.groupDocId = this.activatedRoute.snapshot.params.groupId;
     this.loggedInAccount = this.accountService.getLoginAccount();
     this.getBookingDetail();
-    this.getBookingPersons();
-    this.getGroupTransaction();
     this.getGroupDetail();
-
+    //money related - merge query
+    this.getBookingPersonAndGroupAdjustment();
+    //this.getBookingPersons();
+    //this.getGroupTransaction();
+    
     //this.selectedPaymentMethod = GlobalConstants.paymentCredit;
     this.filteredUsers = this.myControl.valueChanges
       .pipe(
@@ -91,12 +105,16 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     });
   }
 
-  getGroupTransaction() {
-    this.groupTransactionService.getByBookingDocId(this.bookingDocId).subscribe(result => {
-      console.log('grouptrans', result);
-      this.groupTransactions = result;
-      this.getGroupTransactionAdjusted();
-    });
+  getBookingPersonAndGroupAdjustment(){
+    let bps = this.bookingPersonService.getCustomByBookingDocId(this.bookingDocId, this.loggedInAccount.docId);
+    let groupAdjusted = this.groupTransactionService.getByBookingDocIdAndPaymentMethod(this.bookingDocId, GlobalConstants.paymentAdjust);
+    combineLatest([bps, groupAdjusted]).subscribe(result => {
+      console.log('bps: ', result[0]);
+      console.log('groupAdjusted: ', result[1]);
+      this.allLocalBookingUsers = result[0];
+      this.groupTransactionsAdjusted = result[1];
+      this.getBookingTotal(result[0]);
+    })
   }
 
   getGroupDetail() {
@@ -105,26 +123,27 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     })
   }
 
-  getGroupTransactionAdjusted() {
-    this.total = 0;
-    this.totalCredit = 0;
-    this.totalCash = 0;
-    this.totalBank = 0;
+  getBookingTotal(lbus:LocalBookingUser[]){
+    this.bookingTotal = 0;
+    this.bookingTotalCredit = 0;
+    this.bookingTotalCash = 0;
+    this.bookingTotalBank = 0;
+    this.bookingTotalAdjusted = 0;
 
-    //let paidTransaction = this.groupTransactions.filter(x=>x.)
-    this.groupTransactions.forEach(tran => {
-      this.total += tran.amount;
-      if (tran.paymentMethod == GlobalConstants.paymentCredit) {
-        this.totalCredit += tran.amount;
-      } else if (tran.paymentMethod == GlobalConstants.paymentCash) {
-        this.totalCash += tran.amount;
-      } else if (tran.paymentMethod == GlobalConstants.paymentBank) {
-        this.totalBank += tran.amount;
-      } else if (tran.paymentMethod == GlobalConstants.paymentAdjust) {
-        this.totalAdjust += tran.amount;
+    lbus.forEach(lbu=> {
+      if (lbu.isPaid) {
+        this.bookingTotal += lbu.amount;
       }
-    })
-    this.groupTransactionsAdjusted = this.groupTransactions.filter(x => x.paymentMethod == GlobalConstants.paymentAdjust);
+      if (lbu.paymentMethod == GlobalConstants.paymentCredit) {
+        this.bookingTotalCredit += lbu.amount;
+      } else if (lbu.paymentMethod == GlobalConstants.paymentCash && lbu.isPaid) {
+        this.bookingTotalCash += lbu.amount;
+      } else if (lbu.paymentMethod == GlobalConstants.paymentBank && lbu.isPaid) {
+        this.bookingTotalBank += lbu.amount;
+      } 
+    });
+    this.bookingTotalAdjusted = this.groupTransactionsAdjusted.map(trans => trans.amount).reduce((a,b) => a+b);
+    this.bookingTotal += this.bookingTotalAdjusted;
   }
 
   private _filter(value: string): string[] {
@@ -218,23 +237,6 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     })
   }
 
-  getBookingPersons() {
-    this.bookingPersonService.getCustomByBookingDocId(this.bookingDocId, this.loggedInAccount.docId).subscribe(result => {
-      this.allLocalBookingUsers = result;
-      console.log("getByBookingPersonsByBookingDocId(): ", this.allLocalBookingUsers);
-      //this.calculateTotal();
-    })
-  }
-
-  calculateTotal() {
-    this.total = 0;
-    this.allLocalBookingUsers.forEach(b => {
-      this.total += b.amount;
-      console.log(this.total);
-      if (b.paymentMethod == GlobalConstants.paymentCredit) { this.totalCredit += b.amount }
-      if (b.paymentMethod == GlobalConstants.paymentCash) { this.totalCash += b.amount }
-    })
-  }
   //cil-dollar, cil-credit-card
   getPaymentClass(paymentMethod: string) {
     // if (paymentMethod == GlobalConstants.paymentCredit) { return "cil-credit-card"; }
@@ -246,11 +248,14 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   }
 
   toggleLockStatus() {
+    if (this.booking.reconciled) { return false; }
     this.booking.isLocked = !this.booking.isLocked;
     this.bookingService.updateBooking(this.bookingDocId, this.booking);
   }
 
   changeSeatClicked() {
+    if (this.booking.reconciled) { return false; }
+
     const dialogRef = this.dialog.open(SeatDialog, {
       width: '650px',
       data: {
@@ -266,6 +271,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   }
 
   changeLvlPointsClicked() {
+    if (this.booking.reconciled) { return false; }
     const dialogRef = this.dialog.open(LvlPointsDialog, {
       width: '650px',
       data: {
@@ -321,6 +327,35 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
       console.log('The dialog was closed');
 
     });
+  }
+
+  startReconciliationClicked() {
+    this.reconciliationInProgress = true;
+    this.bookingService.toggleReconciliationInProgress(this.booking, this.loggedInAccount, true)
+
+  }
+
+  cancelReconciliationClicked() {
+    this.reconciliationInProgress = false;
+    this.bookingService.toggleReconciliationInProgress(this.booking, this.loggedInAccount, false)
+
+  }
+
+  reconciled() {
+    if (confirm('This action cannot be undone and I confirm this booking is reconciled and to be closed forever!')) {
+      this.groupTransactionService.bookingReconciliation(this.group, this.booking, this.allLocalBookingUsers, this.loggedInAccount)
+      .then(() => {
+        let log = {
+          eventCategory: GlobalConstants.eventBookingReconciliated,
+          notes: this.group.groupName,
+        } as EventLogger;
+        this.eventLogService.createLog(log, this.loggedInAccount.docId, this.loggedInAccount.name);
+      })
+      .catch((err) => {
+        alert(err);
+        console.log(err);
+      });
+    }
   }
 }
 
