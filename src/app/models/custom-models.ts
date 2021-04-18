@@ -40,6 +40,7 @@ export class UserImport {
     mobile: string;
     parentUserDocId: string;
     parentUserDisplayName: string;
+    family:string[];
     gender: string;
     isChild: boolean;
     isMember: boolean;

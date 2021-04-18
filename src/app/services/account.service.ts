@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject, forkJoin, Observable, of } from 'rxjs';
 import { User } from '../models/user';
 import { FirestoreBaseService } from './firestore-base.service';
-import { map, concatMap, finalize, mergeMap } from 'rxjs/operators';
+import { map, concatMap, finalize, mergeMap, timestamp } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from '../models/account';
 import firebase from 'firebase/app';
@@ -14,6 +14,9 @@ import { merge } from 'rxjs';
 import { Runner } from 'protractor';
 import { MailgunService } from './mailgun.service';
 import { HelperService } from '../common/helper.service';
+import { UserImport } from '../models/custom-models';
+import { Credit } from '../models/credit';
+
 
 
 @Injectable({
@@ -249,6 +252,73 @@ export class AccountService extends FirestoreBaseService<User>{
       return user as Account;
     }
     return new Account();
+  }
+
+
+  //User Migration Scripts
+
+  ImportMainAccounts(usersJason:UserImport[]) {
+    var batch = this.firestore.firestore.batch();
+
+    usersJason.forEach(u=>{
+      //import main account
+      var userRef = this.firestore.collection('users').doc().ref;
+      var user = {
+        name: u.name,
+        password: u.password,
+        email:u.email,
+        mobile: u.mobile,
+        gender: u.gender,
+        isChild: u.isChild,
+        isMember: u.isMember,
+        grade: u.grade,
+        gradePoints: u.gradePoints,
+        isCreditUser: u.isCreditUser,
+        requireChangePassword: u.requireChangePassword,
+        created: Timestamp.now(),
+        updated: Timestamp.now(),
+      } as User;
+      batch.set(userRef, user);
+      console.log('ImportMainAccounts', userRef.id);
+
+      //import credit
+      var creditRef = this.firestore.collection('credits').doc().ref;
+      var credit = {
+        userDocId: userRef.id,
+        userDisplayName: u.name,
+        note: 'credit balance migrated',
+        amount: u.creditBalance,
+        created: Timestamp.now(),
+        createdBy: userRef.id,
+        createdByDisplayName: u.name,
+      } as Credit;
+      batch.set(creditRef, credit);
+
+      //import family members!
+      console.log('family print', u.family);
+
+      if (u.family.length > 0) {
+        u.family.forEach(f=>{
+          var familyRef = this.firestore.collection('users').doc().ref;
+          var family = {
+            parentUserDocId: userRef.id,
+            parentUserDisplayName: u.name,
+            name: f,
+            isChild: true,
+            grade: 'E',
+            gradePoints: 0,
+            created: Timestamp.now(),
+            updated: Timestamp.now(),
+          } as User;
+          console.log('family print', family);
+
+          batch.set(familyRef, family);
+
+        })
+      }
+    })
+
+    batch.commit();
   }
 
 }

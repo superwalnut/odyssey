@@ -62,6 +62,14 @@ export class HelperService {
 
 
 
+  generateRandomPassword(length:number) {
+    var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+  }
 
   addDays(days: number, startDate = new Date()) {
     startDate.setDate(startDate.getDate() + days);
