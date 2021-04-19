@@ -14,7 +14,7 @@ export class GlobalConstants {
     //BOOKING
     public static bookingOpenDay: string = "Monday";
     public static bookingOpenTime: string = "6:00AM";
-    public static bookingWithdrawHours: number = 4; //can't withdraw 3 hours before the session starts
+    public static bookingWithdrawHours: number = 5; //can't withdraw 5 hours before the session starts
     // public static tueSeats: number = 16;
     // public static friSeats: number = 42;
     // public static satSeats: number = 34;
