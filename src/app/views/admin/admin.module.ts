@@ -25,6 +25,7 @@ import { RptAttendanceComponent } from './reports/rpt-attendance/rpt-attendance.
 import { RptEventviewerComponent } from './reports/rpt-eventviewer/rpt-eventviewer.component';
 import { RptAutobookComponent , ScheduleDialog} from './reports/rpt-autobook/rpt-autobook.component';
 import { RptBookingpersonComponent } from './reports/rpt-bookingperson/rpt-bookingperson.component';
+import { UserGradeComponent, GradeDialog } from './user-grade/user-grade.component';
 
 @NgModule({
   imports: [
@@ -61,6 +62,8 @@ import { RptBookingpersonComponent } from './reports/rpt-bookingperson/rpt-booki
     RptAutobookComponent,
     RptBookingpersonComponent,
     ScheduleDialog,
+    UserGradeComponent,
+    GradeDialog,
   ],
 })
 export class AdminModule { }

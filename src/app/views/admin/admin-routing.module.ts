@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { UsersComponent } from "./users/users.component";
+import { UserGradeComponent } from "./user-grade/user-grade.component";
+
 import { BookingsComponent } from "./bookings/bookings.component";
 import { BookingdetailsComponent } from "./bookingdetails/bookingdetails.component";
 
@@ -37,6 +39,13 @@ const routes: Routes = [
         component: UsersComponent,
         data: {
           title: "Manage users",
+        },
+      },
+      {
+        path: "usergrade",
+        component: UserGradeComponent,
+        data: {
+          title: "User grade",
         },
       },
       {
