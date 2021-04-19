@@ -10,6 +10,8 @@
                 <th scope="col">Date</th>
                 <th scope="col">Amount</th>
                 <th scope="col">Payment</th>
+                <th scope="col">Paid</th>
+
 
                 <th scope="col">Session</th>
 
@@ -24,6 +26,7 @@
                 <td scope="row">{{ u.createdOn.toDate() | date:'dd/MM/yyyy hh:mm'}}</td>
                 <td scope="row">{{ u.amount | currency}} </td>
                 <td scope="row">{{ u.paymentMethod }}</td>
+                <td scope="row">{{ u.isPaid }}</td>
 
                 <td scope="row">{{ u.bookingDesc }}</td>
 
@@ -31,7 +34,7 @@
                 <td scope="row">{{ u.isForSale }}</td>
 
                 <td scope="row">
-                    {{ u.name}}
+                    {{ u.userDisplayName}}
             
                 </td>
                 </tr>

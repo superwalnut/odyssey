@@ -1422,7 +1422,10 @@ export class TriggersComponent implements OnInit {
       users.forEach(u => {
         if (this.vipList.includes(u.name)) {
           console.log(u.name);
-          //this.mailgunService.sendRegistration(u.email, u.name, )
+          var hashkey = this.helperService.encryptData(u.email);
+          const encoded = encodeURIComponent(hashkey);
+
+          this.mailgunService.sendRegistration(u.email, u.name, encoded)
 
         }
       })
@@ -1430,10 +1433,10 @@ export class TriggersComponent implements OnInit {
   }
 
 
-getpassword() {
-  var password = this.helperService.generateRandomPassword(8);
-  console.log(password);
-}
+  getpassword() {
+    var password = this.helperService.generateRandomPassword(8);
+    console.log(password);
+  }
   readUserJsonFile() {
     var usersJson = this.userJson.filter(x=> x.NewName!="");
     var userObjects:UserImport[]=[];
