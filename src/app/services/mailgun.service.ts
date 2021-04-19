@@ -14,6 +14,9 @@ export class MailgunService {
   }
 
   private sendMail(mail:any) : Promise<boolean>{
+    // replace email in uat
+    mail.to = this.substituteEmails(mail.to);
+
     let promise = new Promise<boolean>((resolve, reject) => {
       this.http.post(this.mailUrl, mail, { responseType: 'text' })
         .toPromise()
@@ -96,5 +99,11 @@ export class MailgunService {
   }
 
 
+  substituteEmails(email:string) {
+    if(!environment.production){
+      return 'hbc666.club@gmail.com';
+    }
+    return email;
+  }
 }
 
