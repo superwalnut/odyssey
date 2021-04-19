@@ -105,13 +105,14 @@ export class GroupdetailsComponent implements OnInit {
     users[0].password = null;
     users[0].role = null;
     this.selectedUsers.push(users[0]);
+    return false;
 
   }
 
   removeCommittee(item) {
     if (confirm('Cofirm to remove a committee from the group')) {
       this.selectedUsers = this.selectedUsers.filter(x => x != item);
-    }
+    } else {return false; }
 
   }
 

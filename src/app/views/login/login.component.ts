@@ -4,6 +4,11 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
 import { HelperService } from "../../common/helper.service";
 import { AccountService } from "../../services/account.service";
+import { EventLoggerService } from "../../services/event-logger.service";
+import { EventLogger } from "../../models/event-logger";
+import { GlobalConstants } from "../../common/global-constants";
+
+
 
 @Component({
   selector: "app-dashboard",
@@ -13,6 +18,7 @@ export class LoginComponent implements OnInit {
   showRegisterMsg: boolean;
   loginForm: FormGroup;
   submitted = false;
+  loginSuccess:Boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -20,7 +26,8 @@ export class LoginComponent implements OnInit {
     private accountService: AccountService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private helpService:HelperService
+    private helpService:HelperService,
+    private eventLogService:EventLoggerService
   ) {
     // redirect to home if already logged in
     if (this.accountService.accountValue) {
@@ -48,6 +55,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       console.log("form invalid");
@@ -59,6 +67,7 @@ export class LoginComponent implements OnInit {
     this.accountService.authenticate(this.loginForm.value.phone,this.loginForm.value.password).subscribe(x=>{
       if (x) {
         this.accountService.saveLocal(x);
+        this.loginSuccess = true;
 
         if(x.requireChangePassword){
           var hashkey = this.helpService.encryptData(x.email);
@@ -74,11 +83,18 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl(returnUrl);
         }
       } else {
+        this.loginSuccess = false;
         this.snackBar.open(`Failed to login, your username/password is incorrect.`, null, {
           duration: 5000,
           verticalPosition: 'top'
         });
       }
     });
+
+    var log = {
+      eventCategory: GlobalConstants.eventWebActivity,
+      notes: this.loginForm.value.phone + ' login ' + this.loginSuccess ? 'success':'failed'
+    } as EventLogger
+    this.eventLogService.createLog(log, '', this.loginForm.value.phone);
   }
 }
