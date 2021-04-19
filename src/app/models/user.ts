@@ -22,6 +22,7 @@ export class User {
     disabled: boolean;
     avatarUrl:string;
     requireChangePassword:boolean;
+    avatarUrl:string;
 }
 
 /*
