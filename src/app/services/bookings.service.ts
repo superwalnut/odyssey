@@ -38,8 +38,8 @@ export class BookingsService extends FirestoreBaseService<Booking>{
     return super.getByDocId(bookingDocId);
   }
 
-  public getUnlockedBooking(groupDocId: string) {
-    return this.firestore.collection('bookings', q => q.where('groupDocId', '==', groupDocId).where('isLocked', '==', false).orderBy('eventStartDateTime', 'desc')).snapshotChanges().pipe(
+  public getUnReconciledBooking(groupDocId: string) {
+    return this.firestore.collection('bookings', q => q.where('groupDocId', '==', groupDocId).where('reconciled', '==', false).orderBy('eventStartDateTime', 'desc')).snapshotChanges().pipe(
       map(actions => {
         var items = actions.map(p => {
           var data = p.payload.doc.data() as Booking;

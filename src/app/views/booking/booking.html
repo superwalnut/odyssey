@@ -2,7 +2,11 @@
 <!-- Modal -->
 <div class="modal-content">
   <div class="modal-header">
-    <h2 class="modal-title" id="exampleModalLongTitle">{{ data.group?.groupName}} {{ data.group?.eventStartTime}} | Balance: <span class="badge badge-warning">{{ data.creditBalance | currency}}</span></h2>
+    <h2 class="modal-title" id="exampleModalLongTitle">
+      {{ data.group?.groupName}} {{ data.group?.eventStartTime}} | 
+      Balance: <span class="badge badge-warning">{{ data.creditBalance | currency}}</span>
+      <span class="badge badge-warning">{{data.isCreditUser ? "HBCoin":"Cash"}}</span>
+    </h2>
     <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
   </div>
 
@@ -10,7 +14,7 @@
     <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage | json }}</div>
     <!-- <h3 *ngIf="data.isCreditUser">Credit Balance: <span class="badge badge-warning">{{ data.creditBalance | currency}}</span></h3> -->
 
-    <div class="p-3 mb-2 bg-warning text-dark" *ngIf="lowCredit && hasCredit && !data.isCommittee">Your credit is low, pelase topup ASAP, or you won't be able to make bookings.</div>
+    <div class="p-3 mb-2 bg-warning text-dark" *ngIf="lowCredit && hasCredit && !data.isCommittee">Your balance is low, pelase topup ASAP, or you won't be able to make bookings.</div>
     <div class="p-3 mb-2 bg-danger text-white" *ngIf="!hasCredit && !data.isCommittee">You don't have any credit left, please top up your credit now!</div>
 
     
@@ -41,7 +45,7 @@
         </tr>
       </table> -->
 
-      <div class="booking-sum">Amount: ${{ totalAmount }} {{ data.isCreditUser ? "Credit" : "Cash"}}</div>
+      <div class="booking-sum">Amount: ${{ totalAmount }} {{ data.isCreditUser ? "HBCoin" : "Cash"}}</div>
     </div>
 
     <div class="p-3 mb-2 bg-warning text-dark" *ngIf="!data.isSeatsLeft"><p>All seats are booked, pelase check back later should some seats freed up.</p></div>

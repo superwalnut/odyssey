@@ -87,14 +87,15 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
       var ref = this.firestore.collection('credits').doc().ref;
       var credit = {
         amount: unitDividend,
-        userDocId: c.docId,
-        userDisplayName: c.name,
-        note: 'Dividend from ' + groupName,
+        userDocId: c.parentUserDocId,
+        userDisplayName: c.parentUserDisplayName,
+        note: c.name + ' Dividend from ' + groupName,
         createdBy: operatorUserId,
         createdByDisplayName: operatorUserDisplayName,
         created: Timestamp.now(),
       } as Credit;
       batch.set(ref, credit);
+      console.log('divident committee', credit)
     });
 
     var ref = this.firestore.collection('eventLogs').doc().ref;
@@ -107,6 +108,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
     } as EventLogger;
     batch.set(ref, log);
     return batch.commit();
+    //return null;
   }
 
   public getBalance(groupDocId: string) {

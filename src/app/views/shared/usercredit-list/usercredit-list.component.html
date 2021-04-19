@@ -1,7 +1,7 @@
 
-<h2><span class="badge badge-warning">{{isCreditUser ? 'HBCoin' : 'Cash'}}</span> balance <span class="badge {{ hasCredit ? 'badge-light': 'badge-danger'}} ">{{ balance | currency }}</span></h2>
+<h2>Balance <span class="badge {{ hasCredit ? 'badge-light': 'badge-danger'}} ">{{ balance | currency }}</span> <span class="badge badge-warning">{{isCreditUser ? 'HBCoin' : 'Cash'}}</span></h2>
 
-<div class="p-3 mb-2 bg-danger text-white" *ngIf="!hasCredit">Your credit is low, please top up ASAP!</div>
+<div class="p-3 mb-2 bg-danger text-white" *ngIf="!hasCredit">Your balance is low, please top up ASAP!</div>
 
 
 <table class="table table-sm">

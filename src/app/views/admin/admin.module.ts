@@ -19,13 +19,14 @@ import { GroupexpenseComponent } from './groupexpense/groupexpense.component';
 import { SharedModule } from "../shared/shared.module";
 import { RptIncomeComponent, DividendDialog } from './reports/rpt-income/rpt-income.component';
 import { TriggersComponent } from './triggers/triggers.component';
+import { RptBookingpersonComponent } from './reports/rpt-bookingperson/rpt-bookingperson.component';
+import { UserGradeComponent, GradeDialog } from './user-grade/user-grade.component';
 import { BookingdetailsComponent, NoteDialog, SeatDialog, LvlPointsDialog } from './bookingdetails/bookingdetails.component';
 import { RptUnpaidComponent } from './reports/rpt-unpaid/rpt-unpaid.component';
 import { RptAttendanceComponent } from './reports/rpt-attendance/rpt-attendance.component';
 import { RptEventviewerComponent } from './reports/rpt-eventviewer/rpt-eventviewer.component';
 import { RptAutobookComponent , ScheduleDialog} from './reports/rpt-autobook/rpt-autobook.component';
-import { RptBookingpersonComponent } from './reports/rpt-bookingperson/rpt-bookingperson.component';
-import { UserGradeComponent, GradeDialog } from './user-grade/user-grade.component';
+
 
 @NgModule({
   imports: [

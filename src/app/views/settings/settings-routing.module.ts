@@ -58,7 +58,7 @@ const routes: Routes = [
         path: "creditstatement",
         component: CreditstatementComponent,
         data: {
-          title: "Credit statement",
+          title: "Statement",
         },
       },
     ],

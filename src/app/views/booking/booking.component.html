@@ -39,7 +39,7 @@
             <tbody>
               <tr *ngFor="let p of allLocalBookingUsers; let i=index" [ngClass]="{'mybooking':p.isMyBooking}">
                 <th scope="row">{{ i+1 }}</th>
-                <td>{{p.name}}</td>
+                <td>{{p.name}} <span class="text-success small">{{ getFamilyFlag(p)}}</span></td>
                 <td><i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
                 <td *ngIf="!booking?.isLocked">
                   <!-- <button mat-icon-button color="warn" (click)="deleteBooking(p)" *ngIf="p.isMyBooking"> -->
@@ -68,7 +68,7 @@
     <span>&copy; 2021.</span>
   </div>
   <div class="ml-auto">
-    <a routerLink="termsconditions">Terms & Conditions</a>
+    <a routerLink="/termsconditions">Terms & Conditions</a>
   </div>
 </footer>
 

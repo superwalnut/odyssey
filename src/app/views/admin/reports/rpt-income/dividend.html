@@ -7,10 +7,10 @@
     </div>
   
     <div class="modal-body">
+      
 
-
-      <div *ngIf="hasUnlockedBookings">
-        <div class="p-3 mb-2 bg-warning text-dark">You can only allocate dividend when all bookings are locked</div>
+      <div *ngIf="hasUnReconciledBookings">
+        <div class="p-3 mb-2 bg-warning text-dark">You can only allocate dividend when all bookings are reconciled</div>
 
 
         <h3></h3>
@@ -19,16 +19,16 @@
             <tr>
               <th scope="col">Name</th>
               <th scope="col">Date</th>
-              <th scope="col">Locked</th>
+              <th scope="col">Reconciled</th>
               
          
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let s of data.unlockedBookings">
+            <tr *ngFor="let s of data.hasUnReconciledBookings">
               <td>{{ s.weekDay }}</td>
               <td>{{ s.eventStartDateTime.toDate() | date: 'dd/MM/yyyy' }}</td>
-              <td><a routerLink="/admin/bookingdetails/{{s.docId}}" target="_blank">{{ s.isLocked }}</a></td>
+              <td><a routerLink="/admin/bookingdetails/{{s.docId}}" target="_blank">{{ s.reconciled }}</a></td>
               
              
             </tr>
@@ -38,10 +38,10 @@
 
       </div>
 
-      <div *ngIf="!hasUnlockedBookings">
+      <div *ngIf="!hasUnReconciledBookings">
         <div class="alert alert-danger" role="alert" *ngIf="hasError">Error occurred</div>
 
-        <h2>By clicking Confirm button, group net profit will be evenly distributed among committees</h2>
+        <h2>By clicking Confirm button, group net profit will be evenly distributed among it's committees</h2>
         <p>Group: {{ data.group.groupName}}</p>
   
         Net profit: {{ data.groupBalance | currency}}
@@ -58,7 +58,7 @@
     </div>
     <div class="modal-footer">
       <button mat-raised-button (click)="onNoClick()">Close</button>
-      <button mat-raised-button color="warn" *ngIf="!isLoading && !hasUnlockedBookings" (click)="confirmClicked()">Confirm</button>
+      <button mat-raised-button color="warn" *ngIf="!isLoading && !hasUnReconciledBookings" (click)="confirmClicked()">Confirm</button>
       <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
   
     </div>

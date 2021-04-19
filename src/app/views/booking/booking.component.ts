@@ -114,6 +114,14 @@ export class BookingComponent extends BaseComponent implements OnInit {
     });
   }
 
+
+  getFamilyFlag(lbu:LocalBookingUser) {
+    if (lbu.userDocId != lbu.parentUserId) {
+      return lbu.parentUserDisplayName;
+    }
+    return '';
+  }
+
   getFamilyMembers(acc: Account) {
     this.accountService.getFamilyUsers(acc.docId).subscribe(users => {
       console.log('family: ', users);
@@ -539,7 +547,8 @@ export class WithdrawDialog {
 
   markForSaleClicked() {
     this.isLoading = true;
-    this.bookingPersonService.markForSale(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson))
+    if (confirm("Confirm to purchase this spot?")) {
+      this.bookingPersonService.markForSale(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson))
       .then(() => {
         let log = {
           eventCategory: GlobalConstants.eventBookingForSale,
@@ -554,9 +563,8 @@ export class WithdrawDialog {
         //errorMessage = err.toString();
         console.log(err);
       });
+    }
   }
-
-
 
   mapToBookingPerson(lbu: LocalBookingUser): BookingPerson {
 

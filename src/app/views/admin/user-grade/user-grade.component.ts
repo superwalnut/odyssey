@@ -15,6 +15,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms"
 export class UserGradeComponent implements OnInit,AfterViewInit {
   displayedColumns: string[] = ['name', 'gender', 'grade', 'gradePoints', 'docId' ];
   dataSource: MatTableDataSource<User>;
+  totalUser:number;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private accountService: AccountService, private dialogRef: MatDialog, public dialog: MatDialog) { }
@@ -27,6 +28,7 @@ export class UserGradeComponent implements OnInit,AfterViewInit {
   ngAfterViewInit(): void {
     this.accountService.getAllUsers().subscribe((x) => {
       console.log(x)
+      this.totalUser = x.length;
       this.dataSource = new MatTableDataSource(x);
       this.dataSource.sort = this.sort;
     });
