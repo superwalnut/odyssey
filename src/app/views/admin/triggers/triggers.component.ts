@@ -1425,8 +1425,11 @@ export class TriggersComponent implements OnInit {
           var hashkey = this.helperService.encryptData(u.email);
           const encoded = encodeURIComponent(hashkey);
 
-          this.mailgunService.sendRegistration(u.email, u.name, encoded)
-
+          this.mailgunService.sendRegistration(u.email, u.name, encoded).then(x=>{
+            console.log(`sending email ${u.email}`,x);
+          }).catch(e=>{
+            console.log(`email error ${u.email}`,e);
+          });
         }
       })
     });
