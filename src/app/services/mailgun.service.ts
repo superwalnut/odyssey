@@ -31,7 +31,7 @@ export class MailgunService {
 
   sendForgotPassword(email:string, hashKey:string) {
     const mail = {
-      from: 'HBC Support <support@hbc666.club>',
+      from: 'HBC <support@hbc666.club>',
       to: email,
       subject: 'HBC - Reset your password',
       template: "forgotpassword",
@@ -44,22 +44,34 @@ export class MailgunService {
     return this.sendMail(mail);
   }
 
+  sendImportUser(email:string, mobile:string, hashKey:string) {
+    const mail = {
+      from: 'HBC <support@hbc666.club>',
+      to: email,
+      subject: 'Your account at HBC is created',
+      template: "import",
+      'v:domain': this.domain,
+      'v:mobile': mobile,
+      'v:hashkey': hashKey,
+    };
+    return this.sendMail(mail);
+  }
+
   sendRegistration(email:string, name:string, hashKey:string) {
     const mail = {
-      from: 'HBC Support <support@hbc666.club>',
+      from: 'HBC <support@hbc666.club>',
       to: email,
       subject: 'Welcome to the HBC',
       template: "registration",
       'v:domain': this.domain,
       'v:name': name,
-      'v:hashkey': hashKey,
     };
     return this.sendMail(mail);
   }
 
   sendCreditReminder(email:string, name:string, balance:number) {
     const mail = {
-      from: 'HBC Support <support@hbc666.club>',
+      from: 'HBC <support@hbc666.club>',
       to: email,
       subject: 'You credit is running low',
       template: "creditreminder",
@@ -72,7 +84,7 @@ export class MailgunService {
 
   sendTopupSucceed(email:string, name:string, amount:number) {
     const mail = {
-      from: 'HBC Support <support@hbc666.club>',
+      from: 'HBC <support@hbc666.club>',
       to: email,
       subject: 'Your topup is successful',
       template: "topup",
