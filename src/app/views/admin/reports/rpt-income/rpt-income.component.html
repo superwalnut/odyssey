@@ -19,8 +19,9 @@
             </mat-form-field> -->
             <button mat-raised-button color="primary" (click)="viewClicked()">View</button>
 
+
             <div>
-              <a routerLink="/admin/rptbookingperson/{{selectedGroup?.docId}}">BookingPerson Reports</a>
+              <a routerLink="/admin/rptbookingperson/{{selectedGroup?.docId}}" *ngIf="selectedGroup?.docId">BookingPerson Reports</a>
               <h2>Income Balance <span class="badge badge-light ">{{ groupBalance | currency }}</span></h2>
 
               <ul class="simple-horizontal-list" *ngIf="committeeUsers">

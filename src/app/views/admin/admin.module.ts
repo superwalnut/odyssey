@@ -59,8 +59,8 @@ import { RptBookingpersonComponent } from './reports/rpt-bookingperson/rpt-booki
     RptAttendanceComponent,
     RptEventviewerComponent,
     RptAutobookComponent,
-    ScheduleDialog,
     RptBookingpersonComponent,
+    ScheduleDialog,
   ],
 })
 export class AdminModule { }

@@ -31,6 +31,8 @@ export class RptBookingpersonComponent extends BaseComponent implements OnInit {
 
   getBookingPersons(groupDocId:string) {
 
+    console.log(groupDocId)
+
     this.bookingPersonService.getBookingPersonsByGroupDocId(groupDocId).subscribe(result=>{
 
       this.bps = result;
