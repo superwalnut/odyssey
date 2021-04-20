@@ -256,9 +256,9 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   getPaymentClass(paymentMethod: string) {
     // if (paymentMethod == GlobalConstants.paymentCredit) { return "cil-credit-card"; }
     // else if (paymentMethod == GlobalConstants.paymentCash) { return "cil-dollar"; }
-    if (paymentMethod == GlobalConstants.paymentCredit) { return "credit_card"; }
-    else if (paymentMethod == GlobalConstants.paymentCash) { return "attach_money"; }
-    else if (paymentMethod == GlobalConstants.paymentBank) { return "atm"; }
+    if (paymentMethod == GlobalConstants.paymentCredit || paymentMethod == "Credit") { return GlobalConstants.hbCoinIcon; }
+    else if (paymentMethod == GlobalConstants.paymentCash) { return GlobalConstants.cashIcon; }
+    else if (paymentMethod == GlobalConstants.paymentBank) { return GlobalConstants.bankIcon; }
 
   }
 

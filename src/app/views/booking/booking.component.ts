@@ -256,8 +256,13 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
   //cil-dollar, cil-credit-card
   getPaymentClass(paymentMethod: string) {
-    if (paymentMethod == GlobalConstants.paymentCredit) { return "cil-credit-card"; }
-    else if (paymentMethod == GlobalConstants.paymentCash) { return "cil-dollar"; }
+    if (paymentMethod == GlobalConstants.paymentCredit) { return GlobalConstants.hbCoinIcon; }
+    else if (paymentMethod == GlobalConstants.paymentCash) { return GlobalConstants.cashIcon; }
+  }
+
+  getPaymentText(paymentMethod: string) {
+    if (paymentMethod == GlobalConstants.paymentCredit) { return "HBCoin"; }
+    else if (paymentMethod == GlobalConstants.paymentCash) { return "Cash"; }
   }
 
   isCommitteeCheck(userDocId: string) {

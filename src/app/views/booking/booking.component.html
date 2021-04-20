@@ -40,10 +40,11 @@
               <tr *ngFor="let p of allLocalBookingUsers; let i=index" [ngClass]="{'mybooking':p.isMyBooking}">
                 <th scope="row">{{ i+1 }}</th>
                 <td>{{p.name}} <span class="text-success small">{{ getFamilyFlag(p)}}</span></td>
-                <td><i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
+                <td><span class="material-icons" style="font-size: 18px;" title="{{getPaymentText(p.paymentMethod)}}">{{getPaymentClass(p.paymentMethod)}}</span></td>
+
                 <td *ngIf="!booking?.isLocked">
                   <!-- <button mat-icon-button color="warn" (click)="deleteBooking(p)" *ngIf="p.isMyBooking"> -->
-                  <button mat-icon-button color="warn" (click)="withdrawClicked(p)" *ngIf="p.isMyBooking && !p.isForSale && !p.isLoading">
+                  <button mat-icon-button color="warn" title="withdraw" (click)="withdrawClicked(p)" *ngIf="p.isMyBooking && !p.isForSale && !p.isLoading">
                     <mat-icon>remove_circle</mat-icon>
                   </button>
 

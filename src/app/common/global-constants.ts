@@ -1,6 +1,11 @@
 // Adding all global constants here
 export class GlobalConstants {
 
+    public static hbCoinIcon:string = "monetization_on";
+    public static cashIcon:string = "attach_money"
+    public static bankIcon:string = "atm"
+
+
     //Common
     public static weekdays: string[] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
@@ -20,7 +25,7 @@ export class GlobalConstants {
     // public static satSeats: number = 34;
 
     //public static autoBookingFee: number = 10; //$10 for setting up auto booking
-    public static paymentCredit: string = "Credit";
+    public static paymentCredit: string = "HBCoin";
     public static paymentCash: string = "Cash";
     public static paymentBank: string = "Bank";
     public static paymentAdjust: string = "Adjust"; //used by admin only, when make adjustment to group income
