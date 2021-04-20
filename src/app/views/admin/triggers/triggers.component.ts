@@ -1429,13 +1429,13 @@ export class TriggersComponent implements OnInit {
           console.log(`email error ${u.Email}`,e);
         });
       }
-
     })
   }
 
 
   getpassword() {
-    var password = this.helperService.generateRandomPassword(8);
+    //var password = this.helperService.generateRandomPassword(8);
+    var password = "1111111"
     console.log(password);
   }
   readUserJsonFile() {
@@ -1460,7 +1460,7 @@ export class TriggersComponent implements OnInit {
         gradePoints: uj.GradePoints,
         isCreditUser: uj.IsCreditUser == 'TRUE'? true:false,
         requireChangePassword: true,
-        password: this.helperService.generateRandomPassword(8),
+        password: '1111111',
         creditBalance: uj.CreditBalance,
         family:uj.FamilyUsers.split(',')
       } as UserImport;
