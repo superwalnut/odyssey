@@ -13,7 +13,7 @@
           <div class="right">
             <p><button mat-raised-button color="accent" routerLink="/groups">Book badminton sessions</button></p>
 
-            <h3>My Bookings</h3>
+            <h3 class="hpbookingsection">My Bookings</h3>
             <ul class="hpbooking">
               <li *ngFor="let b of myBookings">
                 <a routerLink="/booking/{{b.bookingDocId}}/{{b.groupDocId}}">{{b.displayText}}</a>
@@ -52,8 +52,8 @@
 
 
             <ul>
-              <li *ngFor="let g of groups">
-                {{ g.eventStartDay}} {{ g.eventStartTime}}
+              <li *ngFor="let g of myBookings">
+                {{ g.displayText}}
               </li>
             </ul>
 

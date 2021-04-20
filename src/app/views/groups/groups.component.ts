@@ -33,12 +33,8 @@ export class GroupsComponent extends BaseComponent implements OnInit {
     let dateRange = this.helperService.findDateRangeOfCurrentWeek(new Date());
     this.weekStart = this.helperService.convertToTimestamp(dateRange.firstday);
     this.weekEnd = this.helperService.convertToTimestamp(dateRange.lastday);
-
-
-
     this.getGroupsAndCurrentBookings();
     console.log('bookings.....', this.bookings);
-
   }
 
   getGroupName(groupDocId: string) {
@@ -53,20 +49,13 @@ export class GroupsComponent extends BaseComponent implements OnInit {
   }
   getGroupsAndCurrentBookings() {
     let getGroups = this.groupService.getGroups();
-
-
-
     let getCurrentWeekBookings = this.bookingService.getCurrentWeekBooking();
-
     combineLatest([getGroups, getCurrentWeekBookings]).subscribe(result => {
       console.log('forkjoin 1: ', result[0]);
       console.log('forkJoin 2: ', result[1]);
       this.groups = result[0];
       this.bookings = result[1];
     })
-
-
-
   }
 }
 
