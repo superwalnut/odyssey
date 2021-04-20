@@ -15,6 +15,7 @@ import { MailgunService } from "../../../services/mailgun.service";
 })
 export class TriggersComponent implements OnInit {
 
+  clonedUsers:User[];
   vipList = ['Luc', 'Ting CA', '美丽Mannie', 'Shirley', 'KevinW', 'Josh Zhang', 'Canny', 'Frank']
   constructor(private triggerService: TriggersService, private accountService:AccountService, private mailgunService:MailgunService, private helperService: HelperService) { }
 
@@ -1416,23 +1417,20 @@ export class TriggersComponent implements OnInit {
   }
 
   email() {
-    
-    this.accountService.getAllUsers().subscribe((users) => {
-      //this.allUsersObject = x;
-      users.forEach(u => {
-        if (this.vipList.includes(u.name)) {
-          console.log(u.name);
-          var hashkey = this.helperService.encryptData(u.email);
-          const encoded = encodeURIComponent(hashkey);
 
-          this.mailgunService.sendImportUser(u.email, u.mobile, encoded).then(x=>{
-            console.log(`sending email ${u.email}`,x);
-          }).catch(e=>{
-            console.log(`email error ${u.email}`,e);
-          });
-        }
-      })
-    });
+    this.userJson.forEach(u=>{
+      if (this.vipList.includes(u.NewName)) {
+        var hashkey = this.helperService.encryptData(u.Email);
+        const encoded = encodeURIComponent(hashkey);
+
+        this.mailgunService.sendImportUser(u.Email, u.Email, encoded).then(x=>{
+          console.log(`sending email ${u.Email}`,x);
+        }).catch(e=>{
+          console.log(`email error ${u.Email}`,e);
+        });
+      }
+
+    })
   }
 
 
