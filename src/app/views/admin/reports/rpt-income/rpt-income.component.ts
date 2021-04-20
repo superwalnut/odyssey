@@ -119,7 +119,7 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
         groupBalance: this.groupBalance,
         group: this.selectedGroup,
         committees: this.committeeUsers,
-        hasReconciledBookings: this.unReconciledBookings,
+        unReconciledBookings: this.unReconciledBookings,
       }
     });
 
