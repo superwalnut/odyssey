@@ -81,6 +81,7 @@ export class BookingsComponent implements OnInit {
   createEmptyBooking() {
     var startDateTime = this.helpService.combinDateTypeAndTime(this.selectedFutureDate, this.group.eventStartTime);
     var startDateTimeTimeStamp = this.helpService.convertToTimestamp(startDateTime);
+    console.log('this group ',this.group)
     var booking = {
       groupDocId: this.group.docId,
       eventStartDateTime: startDateTimeTimeStamp,

@@ -5,7 +5,6 @@
           <div class="card">
               <div class="card-body p-4">
                 <h1 *ngIf="user">{{user.name}}'s Details</h1>
-                <h3 *ngIf="user">Everything about {{user.name}}</h3>
                 
                 <mat-tab-group>
                   <mat-tab label="Profile">
@@ -19,7 +18,7 @@
                   </mat-tab>
         
                   <mat-tab label="Statement">
-                    <app-usercredit-list [userDocId]="userDocId"></app-usercredit-list>
+                    <app-usercredit-list [userDocId]="userDocId" [isCreditUser]="user.isCreditUser"></app-usercredit-list>
                   </mat-tab>
                   <mat-tab label="Booking History">
                     <app-attendance-list [userDocId]="userDocId"></app-attendance-list>

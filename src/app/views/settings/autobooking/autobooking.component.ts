@@ -66,7 +66,7 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     this.creditService.getBalance(this.loggedInAccount.docId).subscribe(result => {
       this.myCreditBalance = result;
       this.hasCredit = this.myCreditBalance >= GlobalConstants.autoBookingMiniumCreditRequired;
-      console.log('credit balance: ', this.hasCredit);
+      console.log('credit balance: ', result);
       //this.hasCredit = true;
     })
   }
@@ -81,6 +81,7 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     this.accountService.getLoginUser().subscribe(u=>{
       this.user = u;
       this.isCreditUser = u.isCreditUser;
+      console.log('user... ',u)
     });
   }
 
@@ -230,7 +231,7 @@ export class BookingSchedulerDialog {
     let unitPrice = GlobalConstants.autoBookingWeekUnitPrice;
     if (this.isCommittee) { unitPrice = 0 } // committee free 
 
-    this.totalCost = week * unitPrice;
+    this.totalCost = week * unitPrice - GlobalConstants.autoBookingDiscount;
 
     let endDate = this.helperService.addDays(week * 7);
     let today = this.helperService.convertToTimestamp(new Date());

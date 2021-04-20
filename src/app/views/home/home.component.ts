@@ -26,7 +26,6 @@ import { combineLatest } from "rxjs";
 export class HomeComponent extends BaseComponent implements OnInit {
   show: boolean = true;
   loggedInAccount: Account;
-  groups: Group[];
   isLoggedIn: boolean;
   myCurrentWeekBookings: BookingPerson[];
   weekStart: Timestamp;
