@@ -2,19 +2,7 @@
 
 <div class="app footer-fixed">
   <div class="container">
-    <!-- <div class="row light">
-      <div class="col">
-        <carousel>
-          <slide>
-            <img src="./assets/img/banners/groupphoto.jpg" alt="first slide" />
-          </slide>
-          <slide>
-            <img src="./assets/img/banners/test3.jpg" alt="second slide" />
-          </slide>
-        </carousel>
-      </div>
-    </div> -->
-
+   
     <div class="row light">
       <div class="col">
         <div class="hero-section">
@@ -25,7 +13,17 @@
           <div class="right">
             <p><button mat-raised-button color="accent" routerLink="/groups">Book badminton sessions</button></p>
 
-            <div *ngIf="isLoggedIn && hasBooking">
+            <h3>My Bookings</h3>
+            <ul class="hpbooking">
+              <li *ngFor="let b of myBookings">
+                <a routerLink="/booking/{{b.bookingDocId}}/{{b.groupDocId}}">{{b.displayText}}</a>
+                <ul class="list-group list-group-horizontal">
+                  <li *ngFor="let p of b.bookingPersons"><span class="dot" title="{{p.userDisplayName}}"></span></li>
+                </ul>
+              </li>
+            </ul>
+           
+            <!-- <div *ngIf="isLoggedIn && hasBooking">
               <h3>My Current Bookings</h3>
               <ul> 
                 <li *ngFor="let b of myCurrentWeekBookings">
@@ -33,13 +31,11 @@
                 </li>
               </ul>
          
-            </div>
+            </div> -->
           </div>
           
         </div>
       </div>
-
-   
     </div>
 
     <div class="row light" *ngIf="show">
