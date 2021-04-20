@@ -1423,7 +1423,7 @@ export class TriggersComponent implements OnInit {
         var hashkey = this.helperService.encryptData(u.Email);
         const encoded = encodeURIComponent(hashkey);
 
-        this.mailgunService.sendImportUser(u.Email, u.Email, encoded).then(x=>{
+        this.mailgunService.sendImportUser(u.Email, u.Mobile, encoded).then(x=>{
           console.log(`sending email ${u.Email}`,x);
         }).catch(e=>{
           console.log(`email error ${u.Email}`,e);
