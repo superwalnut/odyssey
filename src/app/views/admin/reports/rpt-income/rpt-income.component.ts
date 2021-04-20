@@ -150,7 +150,7 @@ export class DividendDialog {
 
   ngOnInit() {
     console.log('unReconciledBookings', this.data.unReconciledBookings);
-    if (this.data.unReconciledBookings === undefined) {
+    if (this.data.unReconciledBookings === undefined || this.data.unReconciledBookings.length == 0) {
       this.hasUnReconciledBookings = false;
       this.unitDividend = this.data.groupBalance / this.data.committees.length;
     } else {
