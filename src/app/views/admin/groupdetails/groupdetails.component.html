@@ -4,9 +4,7 @@
       <div class="card">
         <div class="card-body p-4">
           <h1>Group Details</h1>
-          <h3>Create or edit group</h3>
-          <p>To close this group has monday involved, need a different UI - Waiting on the Income module to be built first</p>
-
+      
           <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
             <p>
               <mat-form-field>
@@ -83,27 +81,6 @@
             </mat-form-field>
           </p>
 
-
-            <!-- <mat-slide-toggle formControlName="isClosed" [color]="color" [checked]="checked" [disabled]="disabled">Close this group!</mat-slide-toggle> -->
-
-            <!-- <mat-form-field appearance="fill">
-              <mat-label>Enter term date range</mat-label>
-              <mat-date-range-input [rangePicker]="picker">
-                <input matStartDate placeholder="Start date" formControlName="startDate" required/>
-                <input matEndDate placeholder="End date" formControlName="endDate" required/>
-              </mat-date-range-input>
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-date-range-picker #picker></mat-date-range-picker>
-
-              <mat-error *ngIf="groupForm.controls.startDate.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-              <mat-error *ngIf="groupForm.controls.endDate.hasError('matEndDateInvalid')">Invalid end date</mat-error>
-            </mat-form-field> -->
-
-           
-            <!-- <p *ngIf="isEditMode">
-              <mat-slide-toggle formControlName="isClosed">Closed</mat-slide-toggle>
-            </p> -->
-
             <h2>Committees</h2>
             <div *ngIf="committeeRequired">A group needs to have at least 1 committee member</div>
               <mat-form-field>
@@ -114,7 +91,7 @@
                 </mat-autocomplete>
               </mat-form-field>
 
-              <button mat-mini-fab color="primary" (click)="addCommittee(myControl)">
+              <button mat-mini-fab color="primary" (click)="addCommittee(myControl)" *ngIf="isGod">
                 <mat-icon>add</mat-icon>
               </button>
                         
@@ -122,7 +99,7 @@
                   <mat-list-item *ngFor="let item of selectedUsers">
                     <span matLine>{{item.name}}</span>
 
-                    <button mat-mini-fab color="warn" (click)="removeCommittee(item)">
+                    <button mat-mini-fab color="warn" (click)="removeCommittee(item)" *ngIf="isGod">
                       <mat-icon>remove</mat-icon>
                     </button>
 
@@ -130,7 +107,7 @@
                 </mat-list>
             <p>
               <button mat-raised-button routerLink="/admin/groups">Cancel</button>
-              <button mat-raised-button color="primary" [disabled]="groupForm.invalid">Save</button>
+              <button mat-raised-button color="primary" [disabled]="groupForm.invalid" *ngIf="isGod">Save</button>
             </p>
           </form>
         </div>

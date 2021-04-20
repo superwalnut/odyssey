@@ -64,6 +64,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   userPaymentMethod:string;
   paymentMethods: string[] = [GlobalConstants.paymentCredit, GlobalConstants.paymentCash, GlobalConstants.paymentBank];
 
+  isGod:boolean;
   //new for booking
   bookingTotal = 0;
   bookingTotalCredit = 0;
@@ -78,15 +79,13 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.bookingDocId = this.activatedRoute.snapshot.params.id;
     this.groupDocId = this.activatedRoute.snapshot.params.groupId;
+    this.isGod = this.accountService.isGod();
     this.loggedInAccount = this.accountService.getLoginAccount();
     this.getBookingDetail();
     this.getGroupDetail();
-    //money related - merge query
     this.getBookingPersonAndGroupAdjustment();
-    //this.getBookingPersons();
-    //this.getGroupTransaction();
-    
-    //this.selectedPaymentMethod = GlobalConstants.paymentCredit;
+
+
     this.filteredUsers = this.myControl.valueChanges
       .pipe(
         startWith(''),

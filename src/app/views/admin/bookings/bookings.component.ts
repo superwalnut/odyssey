@@ -121,7 +121,7 @@ export class BookingsComponent implements OnInit {
   getGroupDetails(groupDocId: string) {
     this.groupService.getGroup(groupDocId).subscribe(g => {
       this.group = g;
-      this.futureBookingDates = this.helpService.findWeekdays(g.eventStartDay, 10);
+      this.futureBookingDates = this.helpService.findWeekdays(g.eventStartDay, 2);
 
       this.committees = g.committees;
       // this.accountService.getUsersByUserDocIds(g.committees).subscribe(result => {

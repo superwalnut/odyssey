@@ -24,7 +24,7 @@ export class GroupdetailsComponent implements OnInit {
   loggedInUser: Account;
   groupDocId: string;
   isEditMode: boolean;
-
+  isGod:boolean;
   committeeRequired: boolean = false;
   myControl = new FormControl();
   allUsers: string[] = [];
@@ -40,6 +40,7 @@ export class GroupdetailsComponent implements OnInit {
   ngOnInit(): void {
     this.groupDocId = this.activatedRoute.snapshot.params.id;
 
+    this.isGod = this.accountService.isGod();
     this.loggedInUser = this.accountService.getLoginAccount();
     // this.accountService.getUserByDocId(this.loggedInUser.docId).subscribe(x => {
     //   x.password = '';

@@ -1,20 +1,20 @@
 <div class="container">
-<div class="row" *ngIf="isGod">
-  <div class="col-md-12 mx-auto">
-    <div class="card">
-      <div class="card-body p-4">
-        <h2>Create new booking - GOD ONLY FUNCTION!</h2>
-        <mat-form-field appearance="fill">
-          <mat-label>Booking Dates</mat-label>
-          <mat-select [(ngModel)]="selectedFutureDate">
-            <mat-option *ngFor="let d of futureBookingDates" [value]="d">{{d | date:'EE dd/MM/yyyy'}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button mat-raised-button color="primary" (click)="createBookingClicked()">Create</button>
+  <div class="row" *ngIf="isGod">
+    <div class="col-md-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4">
+          <h2>Create new booking - GOD ONLY FUNCTION!</h2>
+          <mat-form-field appearance="fill">
+            <mat-label>Booking Dates</mat-label>
+            <mat-select [(ngModel)]="selectedFutureDate">
+              <mat-option *ngFor="let d of futureBookingDates" [value]="d">{{d | date:'EE dd/MM/yyyy'}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="createBookingClicked()">Create</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 <div class="row">

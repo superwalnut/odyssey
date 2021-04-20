@@ -128,7 +128,7 @@
             </form>
 
 
-            <div class="p-3 mb-2 bg-primary text-white" *ngIf="!booking?.reconciled">
+            <div class="p-3 mb-2 bg-primary text-white" *ngIf="!booking?.reconciled && isGod">
               <h3>最后一步 Reconciliation</h3>
               <p>
                 管理员在核对好所有人员及费用包括现金用户的款目，调节adjustment，一切无误后请点击 【收钱&关账】按钮。
