@@ -51,7 +51,7 @@ export class MailgunService {
     const mail = {
       from: 'HBC <support@hbc666.club>',
       to: email,
-      subject: 'Your account at HBC is created',
+      subject: 'Your HBC account is created',
       template: "import",
       'v:domain': this.domain,
       'v:mobile': mobile,
@@ -64,7 +64,7 @@ export class MailgunService {
     const mail = {
       from: 'HBC <support@hbc666.club>',
       to: email,
-      subject: 'Welcome to the HBC',
+      subject: 'Welcome to HBC',
       template: "registration",
       'v:domain': this.domain,
       'v:name': name,
@@ -76,7 +76,7 @@ export class MailgunService {
     const mail = {
       from: 'HBC <support@hbc666.club>',
       to: email,
-      subject: 'You credit is running low',
+      subject: 'You acount balance is running low',
       template: "creditreminder",
       'v:domain': this.domain,
       'v:name': name,
