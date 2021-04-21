@@ -121,7 +121,7 @@ export class TriggersService {
         groupDocId: groupDocId,
         bookingDocId: bookingDocId,
         userId: u.docId,
-        userDisplayName: u.name,
+        userDisplayName: u.name.trim(),
         paymentMethod: GlobalConstants.paymentCredit,
         amount: 0,
         isPaid: true,

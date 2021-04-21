@@ -20,6 +20,7 @@ import { Account } from "../../../models/account";
 export class UsersComponent implements OnInit, AfterViewInit {
   loggedInAccount: Account;
   totalUserCount: number;
+  isGod:boolean;
 
   displayedColumns: string[] = ['name', 'iscredituser', 'families', 'grade', 'created', 'docId' ];
   dataSource: MatTableDataSource<UserFamily>;
@@ -29,6 +30,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
+    this.isGod = this.accountService.isGod();
 
   }
 

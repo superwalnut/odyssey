@@ -1450,17 +1450,17 @@ export class TriggersComponent implements OnInit {
 
       }
       var user = {
-        name: uj.NewName,
-        email: uj.Email,
-        mobile: uj.Mobile,
-        gender: uj.Gender,
+        name: uj.NewName.trim(),
+        email: uj.Email.trim(),
+        mobile: uj.Mobile.trim(),
+        gender: uj.Gender.trim(),
         isMember: false,
         isChild: false,
-        grade: uj.Grade,
+        grade: uj.Grade.trim(),
         gradePoints: uj.GradePoints,
         isCreditUser: uj.IsCreditUser == 'TRUE'? true:false,
         requireChangePassword: true,
-        password: '1111111',
+        password: this.helperService.generateRandomPassword(8),
         creditBalance: uj.CreditBalance,
         family:uj.FamilyUsers.split(',')
       } as UserImport;

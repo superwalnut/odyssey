@@ -5,7 +5,7 @@
         <div class="card-body p-4">
           <h1>All Users</h1>
           <p>Total Users: {{totalUserCount}}</p>
-          <a routerLink="/admin/usergrade">User grade</a>
+          <a routerLink="/admin/usergrade" *ngIf="isGod">User grade</a>
      
           <p>
             <mat-form-field>
@@ -64,7 +64,7 @@
             <ng-container matColumnDef="created">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Created on </th>
               <td mat-cell *matCellDef="let element"> 
-                {{element.created.toDate() | date: 'dd/MM/yyyy'}} 
+                {{element.created.toDate() | date: 'dd/MM/yyyy HH:mm'}} 
                 <!-- <span *ngIf="element.user.mobile">
                   <i class="material-icons phone">phone_iphone</i><a href="tel:{{element.user.mobile}}">{{element.user.mobile}}</a> 
                 </span>
