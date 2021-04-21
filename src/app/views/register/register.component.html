@@ -15,6 +15,8 @@
                   <input type="text" class="form-control" formControlName="name" placeholder="wechat name or your name">
                   <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                     <div *ngIf="f.name.errors.required">name is required</div>
+                    <div *ngIf="f.name.errors.maxlength">you can only have 20 characters</div>
+                    <div *ngIf="f.name.errors.pattern">name is invalid, please only use alphabetic letters, numbers and underscore</div>
                     <div *ngIf="f.name.errors.incorrect">name is already exist</div>
                   </div>
                 </div>
@@ -46,7 +48,7 @@
                   <input type="password" class="form-control" formControlName="password"  placeholder="Password">
                   <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">password is required</div>
-                    <div *ngIf="f.password.errors.minlength">password is too short</div>
+                    <div *ngIf="f.password.errors.minlength">please enter a password with at least 6 characters</div>
                   </div>
                 </div>
                 <div class="input-group mb-4">
@@ -56,7 +58,7 @@
                   <input type="password" class="form-control" formControlName="confirmPassword"  placeholder="Repeat password">
                   <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
                     <div *ngIf="f.confirmPassword.errors.required">confirm password is required</div>
-                    <div *ngIf="f.confirmPassword.errors.minlength">password is too short</div>
+                    <div *ngIf="f.confirmPassword.errors.minlength">please enter a password with at least 6 characters</div>
                   </div>
                 </div>
                 <button type="submit" class="btn btn-block btn-success">Create Account</button>

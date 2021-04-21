@@ -11,6 +11,8 @@
       </mat-form-field>
       <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
         <div *ngIf="f.name.errors.required">Display name is required</div>
+        <div *ngIf="f.name.errors.maxlength">you can only have 20 characters</div>
+        <div *ngIf="f.name.errors.pattern">name is invalid, please only use alphabetic letters, numbers and underscore</div>
         <div *ngIf="f.name.errors.incorrect">name is already exist</div>
     </div>
 
