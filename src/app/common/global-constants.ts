@@ -38,7 +38,7 @@ export class GlobalConstants {
     //     { name: '6 months ($9)', value: 182, price: 9, desc: '6 months auto booking for $9' },
     // ]
     public static autoBookingWeekUnitPrice = 0.5; //$0.5 per week per head
-    public static autoBookingMiniumCreditRequired = 100;
+    public static autoBookingMiniumCreditRequired = 50;
     public static autoBookingDiscount = 2;
 
 
