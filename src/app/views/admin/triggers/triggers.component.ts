@@ -1460,7 +1460,8 @@ export class TriggersComponent implements OnInit {
         gradePoints: uj.GradePoints,
         isCreditUser: uj.IsCreditUser == 'TRUE'? true:false,
         requireChangePassword: true,
-        password: this.helperService.generateRandomPassword(8),
+        //password: this.helperService.generateRandomPassword(8),
+        password: '000000',
         creditBalance: uj.CreditBalance,
         family:uj.FamilyUsers.split(',')
       } as UserImport;
