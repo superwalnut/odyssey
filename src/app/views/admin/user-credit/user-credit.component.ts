@@ -84,11 +84,7 @@ export class UserCreditComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.isLoading = true;
-    // stop here if form is invalid
-    if (this.form.invalid) {
-      console.log("form invalid");
-      return;
-    }
+    if (this.form.invalid) {  return;  }
 
     console.log("register", this.form);
 
@@ -110,14 +106,5 @@ export class UserCreditComponent implements OnInit {
       }
       this.isLoading = false;
     });
-
-    // this.creditService
-    //   .createCredit(credit)
-    //   .then((x) => {
-    //     this.snackBar.open(`Your account settings have been updated.`, null, {
-    //       duration: 5000,
-    //       verticalPosition: "top",
-    //     });
-    //   });
   }
 }
