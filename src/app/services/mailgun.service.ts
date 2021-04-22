@@ -95,7 +95,7 @@ export class MailgunService {
       'v:name': name,
       'v:amount': formatCurrency(amount,'en', '$'),
     };
-    return this.sendMail(mail);
+    //return this.sendMail(mail);
   }
 
 

@@ -299,7 +299,7 @@ export class BookingDialog {
   ngOnInit() {
 
     this.hasCredit = this.data.creditBalance >= 0;
-    this.lowCredit = this.data.creditBalance <= 40;
+    this.lowCredit = this.data.creditBalance <= 20;
     this.meetBasePoints = this.data.userLevelPoints >= this.data.booking.levelRestrictionOverwrite;
 
     console.log('dialog', this.data);
