@@ -154,7 +154,7 @@ export class AccountService extends FirestoreBaseService<User>{
   }
 
   isNameExist(name: string) {
-    return this.firestore.collection('users', q => q.where('name', '==', name)).snapshotChanges().pipe(
+    return this.firestore.collection('users', q => q.where('name', '==', name.trim())).snapshotChanges().pipe(
       map(actions => {
         return actions.map(x => {
           var acc = x.payload.doc.data() as User;
