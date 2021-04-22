@@ -27,7 +27,7 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.profileForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      name: ['', [Validators.required, Validators.maxLength(20), Validators.pattern('^[a-zA-Z0-9_]$')]],
+      name: ['', [Validators.required, Validators.maxLength(20), Validators.pattern('^[a-zA-Z0-9_ ]+$')]],
       mobile: ['', Validators.required],
       gender:[''],
       agegroup:[''],
