@@ -15,6 +15,8 @@ export class GlobalConstants {
     public static groupValidPeriodInYears: number = 3; // group default to 3 years
 
     //Credit Category
+    public static creditCategoryBadminton = 'Badminton';
+    public static creditCategoryDividend = 'Dividend';
     public static creditCategoryTopup = 'Topup';
     public static creditCategoryRefund = 'Refund';
     public static creditCategoryReward = 'Reward';

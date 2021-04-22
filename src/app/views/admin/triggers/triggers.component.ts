@@ -16,7 +16,7 @@ import { MailgunService } from "../../../services/mailgun.service";
 export class TriggersComponent implements OnInit {
 
   clonedUsers:User[];
-  vipList = ['Luc', 'Ting CA', '美丽Mannie', 'Shirley', 'KevinW', 'Josh Zhang', 'Canny', 'Frank']
+  vipList = ['Luc', 'Ting', '美丽Mannie', 'Shirley', 'KevinW', 'Josh Zhang', 'Canny', 'Frank']
   constructor(private triggerService: TriggersService, private accountService:AccountService, private mailgunService:MailgunService, private helperService: HelperService) { }
 
    userJson = [

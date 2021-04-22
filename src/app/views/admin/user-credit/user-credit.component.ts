@@ -47,7 +47,9 @@ export class UserCreditComponent implements OnInit {
       note: ["", Validators.required],
     });
 
-    this.categories = [ 
+    this.categories = [
+      GlobalConstants.creditCategoryBadminton,
+      GlobalConstants.creditCategoryDividend,
       GlobalConstants.creditCategoryTopup,
       GlobalConstants.creditCategoryRefund,
       GlobalConstants.creditCategoryReward,
