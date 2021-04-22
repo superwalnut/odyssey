@@ -8,6 +8,7 @@ import { AccountService } from "../../../services/account.service";
 import { CreditService } from "../../../services/credit.service";
 import { Account } from "../../../models/account";
 import { MailgunService } from "../../../services/mailgun.service";
+import { GlobalConstants } from "../../../common/global-constants";
 
 @Component({
   selector: "app-user-credit",
@@ -18,11 +19,12 @@ export class UserCreditComponent implements OnInit {
   userDocId: string;
   user: User;
   balance: number = 0;
-
+  categories:string[]=[];
   form: FormGroup;
   submitted = false;
   loggedInUser: Account;
   credits: Credit[];
+  isLoading:boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -40,9 +42,20 @@ export class UserCreditComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      amount: [null, [Validators.required]],
+      amount: ['', [Validators.required]],
+      category: ['', [Validators.required]],
       note: ["", Validators.required],
     });
+
+    this.categories = [ 
+      GlobalConstants.creditCategoryTopup,
+      GlobalConstants.creditCategoryRefund,
+      GlobalConstants.creditCategoryReward,
+      GlobalConstants.creditCategoryPromo,
+      GlobalConstants.creditCategoryCashout,
+      GlobalConstants.creditCategoryAdjustment,
+      GlobalConstants.creditCategoryOther
+    ];
 
     this.loggedInUser = this.accountService.getLoginAccount();
 
@@ -54,8 +67,6 @@ export class UserCreditComponent implements OnInit {
       });
 
       this.getUserCreditHistory();
-
-
       this.creditService.getBalance(this.userDocId).subscribe((x) => {
         if (x) {
           this.balance = x;
@@ -72,7 +83,7 @@ export class UserCreditComponent implements OnInit {
   }
   onSubmit() {
     this.submitted = true;
-
+    this.isLoading = true;
     // stop here if form is invalid
     if (this.form.invalid) {
       console.log("form invalid");
@@ -83,6 +94,7 @@ export class UserCreditComponent implements OnInit {
 
     var credit = {
       amount: this.form.value.amount,
+      category: this.form.value.category,
       note: this.form.value.note,
       userDocId: this.userDocId,
       userDisplayName: this.user.name,
@@ -96,7 +108,7 @@ export class UserCreditComponent implements OnInit {
         this.user.isCreditUser = true;
         this.accountService.updateUser(this.userDocId, this.user);
       }
-
+      this.isLoading = false;
     });
 
     // this.creditService
