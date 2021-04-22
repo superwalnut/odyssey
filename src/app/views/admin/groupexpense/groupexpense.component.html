@@ -36,6 +36,13 @@
                     <div *ngIf="f.amount.errors.required">Amount is required.</div>
                   </div>
 
+                  <p>
+                    <mat-form-field>
+                      <mat-label>Booking ID</mat-label>
+                      <input matInput placeholder="" formControlName="bookingDocId" autocomplete="off"/>
+                    </mat-form-field>
+                  </p>
+
                 <mat-form-field appearance="fill">
                   <mat-label>Enter date range</mat-label>
                   <mat-date-range-input [rangePicker]="picker">

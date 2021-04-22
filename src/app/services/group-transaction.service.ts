@@ -96,6 +96,13 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
       } as Credit;
       batch.set(ref, credit);
       console.log('divident committee', credit)
+
+      //update user.balance
+
+      if (!c.parentUserDocId || c.docId == c.parentUserDocId) {
+        //if this is the main account holder
+        
+      }
     });
 
     var ref = this.firestore.collection('eventLogs').doc().ref;

@@ -10,4 +10,5 @@ export class Credit {
     note:string;
     createdBy:string;
     createdByDisplayName:string;
+    category:string;
 }

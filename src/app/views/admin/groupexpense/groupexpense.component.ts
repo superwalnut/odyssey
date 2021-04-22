@@ -67,6 +67,7 @@ export class GroupexpenseComponent implements OnInit {
       endDate: ["", Validators.required],
       expenseType: ["", Validators.required],
       amount: ["", Validators.required],
+      bookingDocId: [],
       notes: ["", Validators.required],
     });
 
@@ -80,22 +81,12 @@ export class GroupexpenseComponent implements OnInit {
       return false;
     }
 
-    // var expense = {
-    //   groupDocId: this.groupDocId,
-    //   startDate: this.form.value.startDate,
-    //   endDate: this.form.value.endDate,
-    //   expenseType: this.form.value.expenseType,
-    //   amount: -this.form.value.amount,
-    //   notes: this.form.value.notes,
-    //   createdByDisplayName: this.loggedInUser.name,
-    // } as GroupExpense;
-
     var groupAdjustmentTrans = {
-
       groupDocId: this.groupDocId,
       notes: this.form.value.expenseType + ': ' + this.form.value.notes,
       paymentMethod: GlobalConstants.paymentGroupAdjust,
       amount: this.form.value.amount,
+      bookingDocId: this.form.value.bookingDocId,
       startDate: this.form.value.startDate,
       endDate: this.form.value.endDate,
       created: Timestamp.now(),
@@ -112,23 +103,7 @@ export class GroupexpenseComponent implements OnInit {
         verticalPosition: "top"
       })
     });
-
-    // this.groupExpenseService.createGroupExpense(expense, this.loggedInUser.docId).then((x) => {
-    //   this.form.reset();
-    //   this.snackBar.open(`Expense has been created.`, null, {
-    //     duration: 5000,
-    //     verticalPosition: "top"
-    //   })
-
-    // });
   }
-
-  // getExpenseByGroupDocId(groupDocId: string) {
-  //   this.groupExpenseService.getByGroupDocId(groupDocId).subscribe(x => {
-  //     this.dataSource.data = x;
-  //   });
-  // }
-
 
   get f() {
     return this.form.controls;

@@ -14,6 +14,11 @@ export class GlobalConstants {
     public static groupExpenseTypes: string[] = ["Court", "Shuttle", "Donation", "Tech Subscription", "Other"];
     public static groupValidPeriodInYears: number = 3; // group default to 3 years
 
+    //Credit Category
+    public static creditCategory1 = 'test1';
+    public static creditCategory2 = 'test2';
+    public static creditCategory3 = 'test3';
+
 
 
     //BOOKING
