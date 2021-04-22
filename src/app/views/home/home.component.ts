@@ -51,27 +51,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   }
 
-  // getAllGroups() {
-  //   this.groupService.getGroups().subscribe(gs => {
-  //     this.groups = gs;
-  //     console.log('groups ', gs)
-  //   })
-  // }
-
-
-  // getGroupsAndCurrentBookings() {
-  //   let getGroups = this.groupService.getGroups();
-  //   let getCurrentWeekBookings = this.bookingService.getCurrentWeekBooking();
-  //   combineLatest([getGroups, getCurrentWeekBookings]).subscribe(result => {
-  //     console.log('forkjoin 1: ', result[0]);
-  //     console.log('forkJoin 2: ', result[1]);
-  //     this.groups = result[0];
-  //     this.bookings = result[1];
-  //   })
-  // }
-
   getMyCurrentWeekBookings() {
-
     let getCurrentWeekBookings = this.bookingService.getCurrentWeekBooking();
     let getMyCurrentWeekBookings = this.bookingPersonService.getCurrentWeekByUserDocId(this.loggedInAccount.docId);
     combineLatest([getCurrentWeekBookings, getMyCurrentWeekBookings]).subscribe(result=>{
@@ -79,19 +59,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
       console.log('forkJoin 2: ', result[1]);
       this.renderMyBookings(result[0], result[1])
     });
-
-    // this.bookingPersonService.getCurrentWeekByUserDocId(this.loggedInAccount.docId).subscribe(result => {
-    //   console.log(result)
-    //   this.myCurrentWeekBookings = result.filter(x => x != null);
-    //   this.getMyBookings();
-    //   this.hasBooking = result.length > 0;
-    //   console.log("xxxxx",this.myCurrentWeekBookings.length)
-
-    // })
   }
 
   renderMyBookings(bookings:Booking[], myBookings:BookingPerson[]) {
-
     this.myBookings=[];
     console.log('all bookings', bookings);
     console.log('my bookings', myBookings);
@@ -103,6 +73,8 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.myBookings.push(b2)
     this.myBookings.push(b3)
 
+    console.log('real bookings', bookings);
+    
     this.myBookings.forEach(b=>{
       let foundBooking = bookings.find(x=> b.weekDay.toLowerCase().includes(x.weekDay.toLowerCase()));
       console.log('foundBooking', foundBooking);
@@ -120,10 +92,8 @@ export class HomeComponent extends BaseComponent implements OnInit {
     })
 
     console.log(this.myBookings)
-
   }
 }
-
 
 export class MyBooking {
   weekDay:string;
@@ -131,5 +101,4 @@ export class MyBooking {
   bookingDocId:string;
   groupDocId:string;
   bookingPersons:BookingPerson[];
-
 }

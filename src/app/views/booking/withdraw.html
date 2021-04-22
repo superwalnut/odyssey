@@ -10,8 +10,8 @@
       <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage }}</div>
 
       <div *ngIf="isWithdrawAllowed"> 
-        <p>Refund: {{data.inputBookingPerson.amount | currency}}</p>
-        <p>We will see you next time!</p>
+        <!-- <p>Refund: {{data.inputBookingPerson.amount | currency}}</p> -->
+        <p class="handwriting">{{ getGoodbyeline() }}</p>
 
       </div>
 

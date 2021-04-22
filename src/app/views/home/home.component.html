@@ -2,7 +2,6 @@
 
 <div class="app footer-fixed">
   <div class="container">
-   
     <div class="row light">
       <div class="col">
         <div class="hero-section">
@@ -22,16 +21,6 @@
                 </ul>
               </li>
             </ul>
-           
-            <!-- <div *ngIf="isLoggedIn && hasBooking">
-              <h3>My Current Bookings</h3>
-              <ul> 
-                <li *ngFor="let b of myCurrentWeekBookings">
-                  <a routerLink="/booking/{{b.bookingDocId}}/{{b.groupDocId}}">{{ b.bookingDesc }} {{ b.userDisplayName}}</a>
-                </li>
-              </ul>
-         
-            </div> -->
           </div>
           
         </div>
@@ -64,44 +53,6 @@
               <a href="https://g.page/badmintonworx-norwest?share" target="_blank"><img src="./assets/img/banners/mapicon.png"/></a>
             </div>
           </div>
-
-        <!-- <mat-card class="card-sm booking" *ngFor="let g of groups">
-          <mat-card-header>
-            <div mat-card-avatar class="group-header-image"></div>
-            <mat-card-title>{{ g.eventStartDay}}  </mat-card-title>
-            <mat-card-subtitle>{{ g.eventStartTime}}</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="assets/img/banners/badminton.jpg" alt="badminton court">
-          <mat-card-content>
-            <p>{{ g.groupDesc }}</p>
-          </mat-card-content>
-        </mat-card> -->
-
-        
-        <!-- <table class="table table-dark booking">
-          <thead>
-            <tr>
-              <th scope="col">Sessions</th>
-              <th scope="col" class="text-center">Seats</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let g of groups">
-              <th scope="row">{{ g.eventStartDay}} {{ g.eventStartTime}}</th>
-              <td class="text-center">{{ g.seats}}</td>
-            </tr>
-            <tr>
-              <td><b>Address:</b> 2/2 Inglewood Pl, Norwest NSW 2153 
-                <a href="https://g.page/badmintonworx-norwest?share" target="_blank"><i class="material-icons">location_on</i></a></td>
-              <td class="text-right">
-                <button mat-raised-button color="accent" routerLink="/groups">Book badminton sessions</button>
-                </td>
-            </tr>
-          </tbody>
-        </table> -->
-
-        
-
       </div>
     </div>
 

@@ -66,6 +66,8 @@
                 <tr *ngFor="let p of allLocalBookingUsers; let i=index"  [ngClass]="{'unpaid-bg':!p.isPaid}">
                   <td scope="row">{{ i+1 }} 
                     <a routerLink="/admin/usercredits/{{p.userDocId}}">{{p.name}}</a>  
+                    <span class="text-success small">{{ p.parentUserDisplayName }}</span>
+
                     <mat-icon title="for sale">{{ p.isForSale ? 'social_distance':''}}</mat-icon> 
                     <mat-icon *ngIf="p.note" title="{{p.note}}">sticky_note_2</mat-icon>
                   </td>
