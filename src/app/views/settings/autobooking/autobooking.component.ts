@@ -229,10 +229,15 @@ export class BookingSchedulerDialog {
   onWeekChange(week:number){
     console.log(week);
     let unitPrice = GlobalConstants.autoBookingWeekUnitPrice;
-    if (this.isCommittee) { unitPrice = 0 } // committee free 
+    
 
     this.totalCost = week * unitPrice - GlobalConstants.autoBookingDiscount;
+    console.log('unit price', unitPrice);
 
+    console.log('actual cost', week*unitPrice);
+    console.log('discount', GlobalConstants.autoBookingDiscount);
+
+    if (this.isCommittee) { this.totalCost = 0 } // committee free 
     let endDate = this.helperService.addDays(week * 7);
     let today = this.helperService.convertToTimestamp(new Date());
     this.dayRange.start = today;
@@ -245,7 +250,7 @@ export class BookingSchedulerDialog {
     console.log(this.numberWeeks);
     console.log(this.selectedUser);
 
-    if (this.numberWeeks < 4 || this.numberWeeks > 52 || !this.selectedUser) {
+    if (this.numberWeeks < 4 || this.numberWeeks > 26 || !this.selectedUser) {
       this.hasError = true;
       return false;
     }
