@@ -198,6 +198,10 @@ export class BookingComponent extends BaseComponent implements OnInit {
   }
 
   forSaleClicked(seller: LocalBookingUser) {
+    if (!confirm('Confirm to take this spot?')) {
+      return false;
+    }
+    
     let found = this.allLocalBookingUsers.find(x => x.userDocId == this.loggedInAccount.docId && !x.isForSale);
     console.log('has found: ', found);
     if (found) {
@@ -553,7 +557,7 @@ export class WithdrawDialog {
 
   markForSaleClicked() {
     this.isLoading = true;
-    if (confirm("Confirm to purchase this spot?")) {
+    if (confirm("Confirm to put your spot up for sale?")) {
       this.bookingPersonService.markForSale(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson))
       .then(() => {
         let log = {
