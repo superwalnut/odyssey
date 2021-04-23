@@ -71,7 +71,7 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       name: this.profileForm.value.name,
       email: this.profileForm.value.email,
       mobile: this.profileForm.value.mobile,
-      gender: this.profileForm.value.gender,
+      gender: this.profileForm.value.gender??'',
       isChild: this.profileForm.value.agegroup == 'Child'?true:false,
       
     } as User;
@@ -83,6 +83,7 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       user.disabled = this.profileForm.value.disabled;
     }
 
+    user.name = user.name.trim();
     console.log(user);
     //return false;
 
@@ -132,7 +133,6 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
               }
             });
           }
-          this.accountService.saveLocal(user);
           this.snackBar.open(`you have successfully updated profile.`, null, {
             duration: 5000,
             verticalPosition: 'top'
