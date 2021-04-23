@@ -19,10 +19,9 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
   profileForm: FormGroup;
   submitted = false;
   user: User = new User();
+  isMainAccount:boolean;
   
-  constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router) {
-    super();
-  }
+  constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router) { super(); }
 
   ngOnInit() {
     this.profileForm = this.fb.group({
@@ -38,6 +37,9 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
 
     this.accountService.getUserByDocId(this.userDocId).subscribe(x => {
       this.user = x;
+      console.log('getuserbydocid', x);
+      this.isMainAccount = x.docId != null && x.parentUserDocId == null;
+
       this.profileForm.patchValue(
         {
           email: this.user.email,

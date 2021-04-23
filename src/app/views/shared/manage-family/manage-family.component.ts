@@ -36,7 +36,6 @@ export class ManageFamilyComponent implements OnInit {
         memberUser: { parentUserDocId: this.user.docId, parentUserDisplayName: this.user.name } as User,
       }
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('Family dialog was closed');
     });
@@ -51,7 +50,6 @@ export class ManageFamilyComponent implements OnInit {
         memberUser: member,
       }
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('Family update dialog was closed');
     });
@@ -65,12 +63,6 @@ export class ManageFamilyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.form = this.fb.group({
-    //   families: this.fb.array([this.buildFamilyGroup('', '', '', '')]),
-    // });
-
-    //console.log('userid', this.userDocId);
-
     this.accountService.getUserByDocId(this.userDocId).subscribe(x => {
       this.user = x;
       this.isFamilyUser = x.parentUserDocId != null;
@@ -209,31 +201,28 @@ export class FamilyDialog {
     this.dialogRef.close();
   }
 
-  confirmClicked() {
-    console.log('member user: ', this.user)
-    this.isLoading = true;
+  // confirmClicked() {
+  //   console.log('member user: ', this.user)
+  //   this.isLoading = true;
 
-    if (this.data.isNew) {
-      console.log('member user: ', this.user)
-      this.accountService.createUser(this.user)
-        .then(() => {
-          this.isLoading = false;
-          this.dialogRef.close();
-        })
-        .catch((err) => { this.isLoading = false; alert(err) })
-    }
-    else{
-      this.accountService.updateUser(this.user.docId, this.user)
-      .then(() => {
-        this.isLoading = false;
-        this.dialogRef.close();
-      })
-      .catch((err) => { this.isLoading = false; alert(err) })
-    }
-
-
-    
-  }
+  //   if (this.data.isNew) {
+  //     console.log('member user: ', this.user)
+  //     this.accountService.createUser(this.user)
+  //       .then(() => {
+  //         this.isLoading = false;
+  //         this.dialogRef.close();
+  //       })
+  //       .catch((err) => { this.isLoading = false; alert(err) })
+  //   }
+  //   else{
+  //     this.accountService.updateUser(this.user.docId, this.user)
+  //     .then(() => {
+  //       this.isLoading = false;
+  //       this.dialogRef.close();
+  //     })
+  //     .catch((err) => { this.isLoading = false; alert(err) })
+  //   }
+  // }
 
 }
 
