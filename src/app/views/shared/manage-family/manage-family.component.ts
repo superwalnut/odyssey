@@ -10,7 +10,6 @@ import { EventLoggerService } from '../../../services/event-logger.service';
 import { EventLogger } from '../../../models/event-logger';
 
 
-
 @Component({
   selector: 'app-manage-family',
   templateUrl: './manage-family.component.html',
