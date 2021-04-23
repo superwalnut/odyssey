@@ -36,7 +36,7 @@ export class CreditService extends FirestoreBaseService<Credit>{
     var ref = this.firestore.collection('eventLogs').doc().ref;
     var log = {
       eventCategory: GlobalConstants.eventTopupCredit,
-      notes: credit.userDisplayName + ' ' + credit.amount,
+      notes: credit.category + ':' + credit.userDisplayName + ' ' + credit.amount,
       createdOn: Timestamp.now(),
       createdBy: credit.createdBy,
       createdByDisplayName: credit.createdByDisplayName,

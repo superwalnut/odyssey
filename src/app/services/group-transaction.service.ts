@@ -87,6 +87,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
       var ref = this.firestore.collection('credits').doc().ref;
       var credit = {
         amount: unitDividend,
+        category: GlobalConstants.creditCategoryDividend,
         userDocId: c.parentUserDocId,
         userDisplayName: c.parentUserDisplayName,
         note: c.name + ' Dividend from ' + groupName,
@@ -148,6 +149,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
       // }
       var credit = {
         amount: -lbu.amount,
+        category:GlobalConstants.creditCategoryBadminton,
         userDocId: lbu.parentUserId,
         userDisplayName: lbu.name,
         note: group.groupName+': '+ lbu.name,
@@ -165,6 +167,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
         var cashRef = this.firestore.collection('credits').doc().ref;
         var credit = {
           amount: userAmount,
+          category:GlobalConstants.creditCategoryBadminton,
           userDocId: lbu.parentUserId,
           userDisplayName: lbu.name,
           note: group.groupName+': '+ lbu.name +': Cash on hand',

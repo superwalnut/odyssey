@@ -122,6 +122,7 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
 
     var credit = {
       amount: -fee,
+      category: GlobalConstants.creditCategoryBadminton,
       userDocId: loggedInUser.docId,
       userDisplayName: loggedInUser.name,
       createdBy: loggedInUser.docId,
