@@ -49,6 +49,11 @@ export class DefaultLayoutComponent {
         name: "Account",
       },
       {
+        name: "Make a Booking",
+        url: "/groups",
+        icon: "cil-check",
+      },
+      {
         name: "Booking History",
         url: "/settings/attendancehistory",
         icon: "cil-check",
@@ -86,12 +91,7 @@ export class DefaultLayoutComponent {
             icon: "icon-people",
           },
         ],
-      },
-      {
-        name: "FAQs",
-        url: "/termsconditions",
-        icon: "cil-info",
-      },
+      }
 
     ];
 
