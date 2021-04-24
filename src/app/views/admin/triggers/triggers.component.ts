@@ -30,8 +30,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Ada",
       "FamilyUsers": "Justin G,Michael G",
-      "CreditBalance": 91,
-      "Gender": "Female"
+      "CreditBalance": 78,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Alex Ge",
@@ -43,8 +46,27 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Alex Ge",
       "FamilyUsers": "",
-      "CreditBalance": 52,
-      "Gender": "Male"
+      "CreditBalance": 39,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Alex Lim",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Alex R",
@@ -56,8 +78,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Alex Raffier",
       "FamilyUsers": "",
-      "CreditBalance": 169,
-      "Gender": "Male"
+      "CreditBalance": 156,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Alex Zhang",
@@ -70,7 +95,42 @@ export class TriggersComponent implements OnInit {
       "OldName": "Alex Zhang",
       "FamilyUsers": "",
       "CreditBalance": 104,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "",
+      "OldName": "Alison",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "",
+      "OldName": "Amanda(小粉熊）",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Andi",
@@ -82,8 +142,27 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Andi",
       "FamilyUsers": "",
-      "CreditBalance": 65,
-      "Gender": "Male"
+      "CreditBalance": 52,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Angel Babe",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Angela L",
@@ -95,8 +174,43 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Angela Li",
       "FamilyUsers": "",
-      "CreditBalance": 26,
-      "Gender": "Female"
+      "CreditBalance": 13,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Ann",
+      "FamilyUsers": "Bryan",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Anna Huang",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Anna Kan",
@@ -107,9 +221,28 @@ export class TriggersComponent implements OnInit {
       "IsCreditUser": "TRUE",
       "requireChangePassword": "TRUE",
       "OldName": "Anna Kan",
+      "FamilyUsers": "Elizabeth",
+      "CreditBalance": 26,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Anuradha",
       "FamilyUsers": "",
-      "CreditBalance": 52,
-      "Gender": "Female"
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Apple Yuan",
@@ -121,8 +254,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Apple",
       "FamilyUsers": "Yongzhen",
-      "CreditBalance": 208,
-      "Gender": "Female"
+      "CreditBalance": 182,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Audrey Chen",
@@ -134,8 +270,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Audrey",
       "FamilyUsers": "Kate Deng",
-      "CreditBalance": 130,
-      "Gender": "Female"
+      "CreditBalance": 104,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Bella",
@@ -148,7 +287,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Bella",
       "FamilyUsers": "",
       "CreditBalance": 39,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Jennifer Xu",
@@ -160,8 +302,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Jennifer",
       "FamilyUsers": "Ben",
-      "CreditBalance": 13,
-      "Gender": "Male"
+      "CreditBalance": -13,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Benson H",
@@ -173,8 +318,43 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Benson",
       "FamilyUsers": "",
-      "CreditBalance": 130,
-      "Gender": "Male"
+      "CreditBalance": 117,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Bill",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Boon",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Brendan",
@@ -186,8 +366,43 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Brendan",
       "FamilyUsers": "",
-      "CreditBalance": 13,
-      "Gender": "Male"
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Brook",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Bruce Chen",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Bryan W",
@@ -200,7 +415,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Bryan Wang(双鱼王）",
       "FamilyUsers": "",
       "CreditBalance": 52,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Canny",
@@ -211,9 +429,12 @@ export class TriggersComponent implements OnInit {
       "IsCreditUser": "TRUE",
       "requireChangePassword": "TRUE",
       "OldName": "Canny",
-      "FamilyUsers": "Simon,Nick,Luke",
+      "FamilyUsers": "Simon S,Nick S,Luke S",
       "CreditBalance": 0,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "CC",
@@ -226,7 +447,26 @@ export class TriggersComponent implements OnInit {
       "OldName": "CC",
       "FamilyUsers": "",
       "CreditBalance": 65,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Charissa",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Charles Wang",
@@ -239,7 +479,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Charles",
       "FamilyUsers": "Zoe",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Charles Song",
@@ -252,7 +495,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Charles Song",
       "FamilyUsers": "",
       "CreditBalance": 143,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Chins",
@@ -265,7 +511,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Chins",
       "FamilyUsers": "",
       "CreditBalance": 26,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Chook",
@@ -278,7 +527,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Chook",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Christina Lee",
@@ -290,8 +542,43 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Christina Lee",
       "FamilyUsers": "",
-      "CreditBalance": 117,
-      "Gender": "Female"
+      "CreditBalance": 104,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Christopher",
+      "FamilyUsers": "Christopher dad",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Crystal香香",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "David Dong",
@@ -304,7 +591,26 @@ export class TriggersComponent implements OnInit {
       "OldName": "David Dong",
       "FamilyUsers": "",
       "CreditBalance": 26,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "E",
+      "GradePoints": 0,
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "David Fung",
+      "FamilyUsers": "",
+      "CreditBalance": 65,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "David He",
@@ -317,7 +623,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "David He",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "David Wang",
@@ -330,7 +639,26 @@ export class TriggersComponent implements OnInit {
       "OldName": "David W",
       "FamilyUsers": "",
       "CreditBalance": 26,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "DecisionTree",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Edward D",
@@ -342,8 +670,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Edward",
       "FamilyUsers": "Christopher",
-      "CreditBalance": 13,
-      "Gender": "Male"
+      "CreditBalance": -13,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Elaine Ho",
@@ -356,7 +687,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Elaine Ho",
       "FamilyUsers": "",
       "CreditBalance": 104,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Elly赵欣",
@@ -369,7 +703,26 @@ export class TriggersComponent implements OnInit {
       "OldName": "Elly赵欣",
       "FamilyUsers": "",
       "CreditBalance": 65,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "",
+      "OldName": "Eric Han",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Ethan Jin",
@@ -382,7 +735,42 @@ export class TriggersComponent implements OnInit {
       "OldName": "Ethan电工",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "eugenia Lee",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Fan Jiang",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Feng",
@@ -395,7 +783,26 @@ export class TriggersComponent implements OnInit {
       "OldName": "Feng",
       "FamilyUsers": "",
       "CreditBalance": 26,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Fiona",
+      "FamilyUsers": "Victor,亮亮",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Francis S",
@@ -408,7 +815,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Francis",
       "FamilyUsers": "",
       "CreditBalance": 117,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Frank Y",
@@ -421,7 +831,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Frank",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Frank Z",
@@ -434,10 +847,13 @@ export class TriggersComponent implements OnInit {
       "OldName": "Frank Zhang",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
-      "NewName": "GaryC",
+      "NewName": "Gary C",
       "Mobile": "0478151916",
       "Email": "gychang2000@hotmail.com",
       "Grade": "C",
@@ -447,7 +863,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Gary",
       "FamilyUsers": "EnochC",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Glen",
@@ -460,7 +879,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Glen",
       "FamilyUsers": "",
       "CreditBalance": 91,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Hannah",
@@ -472,8 +894,27 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Hannah",
       "FamilyUsers": "",
-      "CreditBalance": 117,
-      "Gender": "Female"
+      "CreditBalance": 104,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Hardeep",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Henry Su",
@@ -485,8 +926,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Henry",
       "FamilyUsers": "",
-      "CreditBalance": 52,
-      "Gender": "Male"
+      "CreditBalance": 39,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Herbert",
@@ -499,7 +943,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Herbert",
       "FamilyUsers": "",
       "CreditBalance": 26,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Hugh",
@@ -512,7 +959,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Hugh",
       "FamilyUsers": "Renee",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Cream",
@@ -524,8 +974,27 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Iris",
       "FamilyUsers": "Neil,Sean",
-      "CreditBalance": 104,
-      "Gender": "Female"
+      "CreditBalance": 91,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jack Wang",
+      "FamilyUsers": "Lin",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Jack L",
@@ -537,8 +1006,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Jack(Helen)",
       "FamilyUsers": "Helen,Elma",
-      "CreditBalance": 0,
-      "Gender": "Male"
+      "CreditBalance": -13,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Jacky Z",
@@ -551,7 +1023,106 @@ export class TriggersComponent implements OnInit {
       "OldName": "Jacky Zhang",
       "FamilyUsers": "Megan,Bei,Evan",
       "CreditBalance": 260,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jacob",
+      "FamilyUsers": "Callum",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jacob-Milk",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jade",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "James Chen",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jarvis",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jasmine",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Jason Chin",
@@ -562,9 +1133,12 @@ export class TriggersComponent implements OnInit {
       "IsCreditUser": "TRUE",
       "requireChangePassword": "TRUE",
       "OldName": "Jason Chin",
-      "FamilyUsers": "Kate(Jason)",
-      "CreditBalance": 52,
-      "Gender": "Male"
+      "FamilyUsers": "Kate Deli",
+      "CreditBalance": 13,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Jason Cui",
@@ -577,7 +1151,42 @@ export class TriggersComponent implements OnInit {
       "OldName": "Jason Cui",
       "FamilyUsers": "",
       "CreditBalance": 117,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jason刘",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jay(Indian)",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Jeff Wang",
@@ -589,8 +1198,27 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Jeff",
       "FamilyUsers": "Maggie,Maggie Yao",
-      "CreditBalance": 91,
-      "Gender": "Male"
+      "CreditBalance": 78,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "",
+      "OldName": "Jeff Shen",
+      "FamilyUsers": "PeiPei,FeiFei",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Jency",
@@ -602,8 +1230,91 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Jency",
       "FamilyUsers": "Jason",
-      "CreditBalance": 13,
-      "Gender": "Female"
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "Jennifer P",
+      "FamilyUsers": "Kid,Pengfei",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jenny",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jeremy",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jerry",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jerry Yam",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "JessicaW",
@@ -615,8 +1326,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Jessica W",
       "FamilyUsers": "Jason Z",
-      "CreditBalance": 13,
-      "Gender": "Female"
+      "CreditBalance": -13,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "JessicaZ",
@@ -629,7 +1343,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Jessica Z",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Jim L",
@@ -641,8 +1358,27 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Jim L",
       "FamilyUsers": "Shirley Y",
-      "CreditBalance": 260,
-      "Gender": "Male"
+      "CreditBalance": 234,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Joanne",
+      "FamilyUsers": "Joe",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Jocelyn",
@@ -654,8 +1390,43 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Joceyln",
       "FamilyUsers": "",
-      "CreditBalance": 52,
-      "Gender": "Female"
+      "CreditBalance": 39,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "C",
+      "GradePoints": 0,
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "John",
+      "FamilyUsers": "Annie(John)",
+      "CreditBalance": 39,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jon",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Josh Zhang",
@@ -668,7 +1439,42 @@ export class TriggersComponent implements OnInit {
       "OldName": "Josh",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Josh T",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Jun",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "JZ",
@@ -681,7 +1487,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "JZ",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Kai",
@@ -694,7 +1503,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Kai",
       "FamilyUsers": "",
       "CreditBalance": 91,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Karthik",
@@ -707,7 +1519,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Karthik",
       "FamilyUsers": "",
       "CreditBalance": 39,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Kathy",
@@ -719,11 +1534,14 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Kathy",
       "FamilyUsers": "",
-      "CreditBalance": 65,
-      "Gender": "Female"
+      "CreditBalance": 52,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
-      "NewName": "KevinW",
+      "NewName": "Kevin W",
       "Mobile": "0433499901",
       "Email": "kevin.wangwei@gmail.com",
       "Grade": "E",
@@ -733,7 +1551,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Kevin Wang",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Lance",
@@ -746,7 +1567,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Lance",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Lenise",
@@ -758,8 +1582,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Lenise",
       "FamilyUsers": "Jet,Say",
-      "CreditBalance": 91,
-      "Gender": "Female"
+      "CreditBalance": 78,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Leon",
@@ -771,8 +1598,27 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Leon",
       "FamilyUsers": "",
-      "CreditBalance": 78,
-      "Gender": "Male"
+      "CreditBalance": 65,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "",
+      "OldName": "LilyC",
+      "FamilyUsers": "Angus M",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Lionel",
@@ -785,7 +1631,26 @@ export class TriggersComponent implements OnInit {
       "OldName": "Lionel",
       "FamilyUsers": "",
       "CreditBalance": 39,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Lisa",
+      "FamilyUsers": "Gary,Kevin",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Long",
@@ -797,8 +1662,27 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Long",
       "FamilyUsers": "",
-      "CreditBalance": 104,
-      "Gender": "Male"
+      "CreditBalance": 65,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Lorrence",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Luc",
@@ -811,7 +1695,26 @@ export class TriggersComponent implements OnInit {
       "OldName": "Luc",
       "FamilyUsers": "Sydney,Kate",
       "CreditBalance": 130,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Mae",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Magesh",
@@ -824,7 +1727,26 @@ export class TriggersComponent implements OnInit {
       "OldName": "Magesh",
       "FamilyUsers": "",
       "CreditBalance": 78,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "",
+      "OldName": "Maggie梅",
+      "FamilyUsers": "Maggie2,Grace",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Maggie 瀚文",
@@ -837,7 +1759,26 @@ export class TriggersComponent implements OnInit {
       "OldName": "Maggie瀚文书院",
       "FamilyUsers": "",
       "CreditBalance": 13,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Manju",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Manny",
@@ -850,7 +1791,90 @@ export class TriggersComponent implements OnInit {
       "OldName": "Manny",
       "FamilyUsers": "",
       "CreditBalance": 26,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Marcus",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Maria",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "Mark Chen",
+      "Mobile": "0466556068",
+      "Email": "mloves.chen@gmail.com",
+      "Grade": "D",
+      "GradePoints": 3.5,
+      "IsCreditUser": "",
+      "requireChangePassword": "TRUE",
+      "OldName": "Mark Chen",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Martin马腾",
+      "FamilyUsers": "TIAN",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "mashiry",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Matt",
@@ -862,8 +1886,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Matt",
       "FamilyUsers": "",
-      "CreditBalance": 39,
-      "Gender": "Male"
+      "CreditBalance": 26,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Michael",
@@ -875,8 +1902,27 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Michael",
       "FamilyUsers": "Melody",
-      "CreditBalance": 0,
-      "Gender": "Male"
+      "CreditBalance": 117,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "D",
+      "GradePoints": 0,
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "Michael M",
+      "FamilyUsers": "",
+      "CreditBalance": 13,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Michael Xu",
@@ -889,7 +1935,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Michael Xu",
       "FamilyUsers": "Sarah",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Michael Zhang",
@@ -901,8 +1950,59 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Michael Z",
       "FamilyUsers": "MelodyZ",
-      "CreditBalance": 91,
-      "Gender": "Male"
+      "CreditBalance": 78,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Michelle",
+      "FamilyUsers": "Bruce",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Nancy",
+      "FamilyUsers": "Frank Wu,Sean Wu,Ryan Wu",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Nicole D",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Owen",
@@ -914,8 +2014,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Owen",
       "FamilyUsers": "",
-      "CreditBalance": 52,
-      "Gender": "Male"
+      "CreditBalance": 39,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Patrick H",
@@ -927,8 +2030,27 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Patrick Hu",
       "FamilyUsers": "",
-      "CreditBalance": 130,
-      "Gender": "Male"
+      "CreditBalance": 117,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Paulo",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Peggy",
@@ -940,8 +2062,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Peggy",
       "FamilyUsers": "Rylan,Lincoln,Mason",
-      "CreditBalance": 26,
-      "Gender": "Female"
+      "CreditBalance": 13,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Peter wang",
@@ -953,8 +2078,27 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Peter Wang",
       "FamilyUsers": "Jensen,Eva Wang",
+      "CreditBalance": 234,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Phoebe",
+      "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Poh",
@@ -966,8 +2110,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "POH",
       "FamilyUsers": "",
-      "CreditBalance": 52,
-      "Gender": "Male"
+      "CreditBalance": 39,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Hipolly",
@@ -979,8 +2126,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Polly",
       "FamilyUsers": "Andrew",
-      "CreditBalance": 52,
-      "Gender": "Female"
+      "CreditBalance": 39,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Prakash",
@@ -992,8 +2142,43 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Prakash",
       "FamilyUsers": "",
-      "CreditBalance": 117,
-      "Gender": "Male"
+      "CreditBalance": 104,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Raj",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Robert-Bee",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "RobinZhang",
@@ -1006,7 +2191,74 @@ export class TriggersComponent implements OnInit {
       "OldName": "Robin-Lazycat",
       "FamilyUsers": "Ryan",
       "CreditBalance": 130,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Rozana",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Sammy",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "D",
+      "GradePoints": 0,
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "Samuel",
+      "FamilyUsers": "",
+      "CreditBalance": 39,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Satira",
+      "FamilyUsers": "Segar",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Scott Zhuo",
@@ -1018,8 +2270,59 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Scott Zuo",
       "FamilyUsers": "",
-      "CreditBalance": 117,
-      "Gender": "Male"
+      "CreditBalance": 104,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Shekhar",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Shirey",
+      "FamilyUsers": "Rick",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Shirley ACE",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Shirley",
@@ -1032,7 +2335,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Shirley(Eric)",
       "FamilyUsers": "Angus,Marus,Venus",
       "CreditBalance": 0,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Simon T",
@@ -1044,8 +2350,43 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Simon T",
       "FamilyUsers": "",
-      "CreditBalance": 130,
-      "Gender": "Male"
+      "CreditBalance": 117,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "F",
+      "GradePoints": 0,
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "Stanley",
+      "FamilyUsers": "Sara",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "",
+      "OldName": "Stella",
+      "FamilyUsers": "Jacky,Selina",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Steven Liu",
@@ -1057,8 +2398,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Steven Liu",
       "FamilyUsers": "",
-      "CreditBalance": 143,
-      "Gender": "Male"
+      "CreditBalance": 117,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Tammy",
@@ -1071,7 +2415,26 @@ export class TriggersComponent implements OnInit {
       "OldName": "Tammy",
       "FamilyUsers": "",
       "CreditBalance": 91,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Terry",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Thomas",
@@ -1083,8 +2446,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Thomas",
       "FamilyUsers": "Iris T",
-      "CreditBalance": 208,
-      "Gender": "Male"
+      "CreditBalance": 169,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Ting",
@@ -1097,7 +2463,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Ting",
       "FamilyUsers": "Rain",
       "CreditBalance": 0,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Tom",
@@ -1109,8 +2478,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Tom",
       "FamilyUsers": "Jeremy",
-      "CreditBalance": 91,
-      "Gender": "Male"
+      "CreditBalance": 65,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Tommy F",
@@ -1123,7 +2495,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Tommy",
       "FamilyUsers": "Yolanda F",
       "CreditBalance": 15,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Tony C",
@@ -1136,7 +2511,42 @@ export class TriggersComponent implements OnInit {
       "OldName": "Tony C",
       "FamilyUsers": "",
       "CreditBalance": 26,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Van",
+      "FamilyUsers": "Mel",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Veige",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Vincent",
@@ -1147,9 +2557,12 @@ export class TriggersComponent implements OnInit {
       "IsCreditUser": "TRUE",
       "requireChangePassword": "TRUE",
       "OldName": "Vincent",
-      "FamilyUsers": "EnochC",
-      "CreditBalance": 13,
-      "Gender": "Male"
+      "FamilyUsers": "Enoch C",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Visitor",
@@ -1162,7 +2575,90 @@ export class TriggersComponent implements OnInit {
       "OldName": "Visitor1",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "visitor2",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "visitor3",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "",
+      "OldName": "Vivi",
+      "FamilyUsers": "Charles Vivi",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Vivian",
+      "FamilyUsers": "Lly阿良,Mathew",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Warren",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Wei",
@@ -1175,7 +2671,42 @@ export class TriggersComponent implements OnInit {
       "OldName": "Wei",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "Wendy Yang",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "D",
+      "GradePoints": 0,
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "TRUE",
+      "OldName": "William",
+      "FamilyUsers": "Amanda,Xiayan",
+      "CreditBalance": 26,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Wilson Li",
@@ -1187,8 +2718,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Wilson",
       "FamilyUsers": "Annie",
-      "CreditBalance": 104,
-      "Gender": "Male"
+      "CreditBalance": 91,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Wing",
@@ -1199,9 +2733,12 @@ export class TriggersComponent implements OnInit {
       "IsCreditUser": "TRUE",
       "requireChangePassword": "TRUE",
       "OldName": "Wing",
-      "FamilyUsers": "",
-      "CreditBalance": 65,
-      "Gender": "Female"
+      "FamilyUsers": "Ashton",
+      "CreditBalance": 39,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Xiao",
@@ -1213,8 +2750,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "Xiao",
       "FamilyUsers": "Mindy,Qiandai,Villy",
-      "CreditBalance": 52,
-      "Gender": "Male"
+      "CreditBalance": 39,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Yang",
@@ -1227,7 +2767,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Yang",
       "FamilyUsers": "Claire",
       "CreditBalance": 20,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Zaka",
@@ -1240,7 +2783,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Zakka",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "何平He",
@@ -1251,9 +2797,12 @@ export class TriggersComponent implements OnInit {
       "IsCreditUser": "TRUE",
       "requireChangePassword": "TRUE",
       "OldName": "何平",
-      "FamilyUsers": "BrandonHe",
+      "FamilyUsers": "Brandon He",
       "CreditBalance": 104,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "佳音Jia",
@@ -1265,8 +2814,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "佳音jia",
       "FamilyUsers": "",
-      "CreditBalance": 91,
-      "Gender": "Female"
+      "CreditBalance": 78,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "凯Kai",
@@ -1278,8 +2830,27 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "凯Kai",
       "FamilyUsers": "",
-      "CreditBalance": 104,
-      "Gender": "Male"
+      "CreditBalance": 91,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "南十字星nan",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "双鱼王yao",
@@ -1292,7 +2863,74 @@ export class TriggersComponent implements OnInit {
       "OldName": "双鱼王yao",
       "FamilyUsers": "",
       "CreditBalance": 26,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "啊Jun",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "娟娟",
+      "FamilyUsers": "Roy",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "日月星Shanow",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "星星xin",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "杜和成du",
@@ -1304,8 +2942,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "杜和成",
       "FamilyUsers": "",
-      "CreditBalance": 13,
-      "Gender": "Male"
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "Lin Du",
@@ -1318,7 +2959,58 @@ export class TriggersComponent implements OnInit {
       "OldName": "杜林du",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "梅mei",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "TRUE",
+      "requireChangePassword": "",
+      "OldName": "正泰Dylan",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "王冰Bing",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "美丽Mannie",
@@ -1329,9 +3021,12 @@ export class TriggersComponent implements OnInit {
       "IsCreditUser": "TRUE",
       "requireChangePassword": "TRUE",
       "OldName": "美丽Mannie",
-      "FamilyUsers": "Chris,Eric",
+      "FamilyUsers": "Chris R,Eric R",
       "CreditBalance": 0,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "贝林Bei",
@@ -1343,8 +3038,11 @@ export class TriggersComponent implements OnInit {
       "requireChangePassword": "TRUE",
       "OldName": "贝林",
       "FamilyUsers": "",
-      "CreditBalance": 13,
-      "Gender": "Female"
+      "CreditBalance": 0,
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "远方Yuan",
@@ -1357,7 +3055,26 @@ export class TriggersComponent implements OnInit {
       "OldName": "远方",
       "FamilyUsers": "张扬zhang",
       "CreditBalance": 78,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "",
+      "": ""
+    },
+    {
+      "NewName": "",
+      "Mobile": "",
+      "Email": "",
+      "Grade": "",
+      "GradePoints": "",
+      "IsCreditUser": "",
+      "requireChangePassword": "",
+      "OldName": "钞元yuan",
+      "FamilyUsers": "",
+      "CreditBalance": 0,
+      "Gender": "Male",
+      "Required": "FALSE",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "阿布Bu",
@@ -1370,7 +3087,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "阿布bu",
       "FamilyUsers": "",
       "CreditBalance": 39,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "",
+      "": ""
     },
     {
       "NewName": "System",
@@ -1383,7 +3103,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Male"
+      "Gender": "Male",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Katy kakaka",
@@ -1396,7 +3119,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Crystal香香",
@@ -1409,7 +3135,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "Crystal香香",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "Yes",
+      "": ""
     },
     {
       "NewName": "Credit Reserve",
@@ -1422,7 +3151,10 @@ export class TriggersComponent implements OnInit {
       "OldName": "",
       "FamilyUsers": "",
       "CreditBalance": 0,
-      "Gender": "Female"
+      "Gender": "Female",
+      "Required": "",
+      "Overrides": "记得disable",
+      "": ""
     }
   ]
 
@@ -1443,7 +3175,7 @@ export class TriggersComponent implements OnInit {
   email() {
 
     this.userJson.forEach(u=>{
-      if (this.vipList.includes(u.NewName)) {
+      //if (this.vipList.includes(u.NewName)) {
         var hashkey = this.helperService.encryptData(u.Email);
         const encoded = encodeURIComponent(hashkey);
 
@@ -1452,7 +3184,7 @@ export class TriggersComponent implements OnInit {
         }).catch(e=>{
           console.log(`email error ${u.Email}`,e);
         });
-      }
+      //}
     })
   }
 
