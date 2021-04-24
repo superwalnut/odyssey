@@ -18,11 +18,8 @@ import { AccountService } from '../../../services/account.service';
 import { GroupTransactionService } from "../../../services/group-transaction.service";
 import { GroupService } from "../../../services/group.service";
 import { Group } from '../../../models/group';
-
 import { EventLoggerService } from "../../../services/event-logger.service";
 import { EventLogger } from '../../../models/event-logger';
-
-
 import { LocalBookingUser } from '../../../models/custom-models';
 import { GlobalConstants } from '../../../common/global-constants';
 import { MatSelectChange} from "@angular/material/select";
@@ -84,7 +81,6 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     this.getBookingDetail();
     this.getGroupDetail();
     this.getBookingPersonAndGroupAdjustment();
-
 
     this.filteredUsers = this.myControl.valueChanges
       .pipe(
@@ -358,7 +354,11 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   reconciled() {
     if (confirm('This action cannot be undone and I confirm this booking is reconciled and to be closed forever!')) {
       this.isLoading = true;
-      this.groupTransactionService.bookingReconciliation(this.group, this.booking, this.allLocalBookingUsers, this.loggedInAccount)
+
+      var incomeBreakdownNote = `Credit:${this.bookingTotalCredit} Cash:${this.bookingTotalCash} Bank:${this.bookingTotalBank}`;
+
+      //console.log(incomeBreakdownNote);
+      this.groupTransactionService.bookingReconciliation(this.group, this.booking, this.allLocalBookingUsers, this.loggedInAccount, incomeBreakdownNote)
       .then(() => {
         let log = {
           eventCategory: GlobalConstants.eventBookingReconciliated,

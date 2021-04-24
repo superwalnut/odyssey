@@ -129,7 +129,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
     );
   }
 
-  public bookingReconciliation(group:Group, booking: Booking, lbus:LocalBookingUser[], operator:Account) {
+  public bookingReconciliation(group:Group, booking: Booking, lbus:LocalBookingUser[], operator:Account, incomeBreakdownNote:string) {
     var batch = this.firestore.firestore.batch();
     var total = 0;
     lbus.forEach(lbu =>{
@@ -186,7 +186,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
       paymentMethod: GlobalConstants.paymentBookingIncome,
       groupDocId: group.docId,
       referenceId: booking.docId, //nullable
-      notes: group.groupName + ': income',
+      notes: group.groupName + ' ' + incomeBreakdownNote,
       createdBy: operator.docId,
       createdByDisplayName: operator.name,
       created: Timestamp.now(),
