@@ -60,6 +60,7 @@
                   <th scope="col">Paid</th>
                   <th scope="col">On</th>
                   <th scope="col" *ngIf="!booking?.reconciled"></th>
+
                 </tr>
               </thead>
               <tbody>
@@ -84,6 +85,7 @@
                     <button mat-icon-button color="accent" title="add notes" (click)="addNoteClicked(p)">
                       <mat-icon>edit</mat-icon>
                     </button> 
+                  </td>
                 </tr>
                 <!-- <tr>
                   <th scope="row">Total {{total | currency}}</th>
