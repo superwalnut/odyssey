@@ -2,7 +2,7 @@
 export class GlobalConstants {
 
     public static hbCoinIcon:string = "monetization_on";
-    public static cashIcon:string = "attach_money"
+    public static cashIcon:string = "payments"
     public static bankIcon:string = "atm"
 
 

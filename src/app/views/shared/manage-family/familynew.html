@@ -1,6 +1,6 @@
 
 <form [formGroup]="familyNewForm" (ngSubmit)="onSubmit()">
-    <h1>Add new family member</h1>
+    <h1>Family member</h1>
 
     <div >
         <mat-form-field>
@@ -30,11 +30,9 @@
         </mat-select>
       </mat-form-field>
     </div>
-    
+    <button mat-raised-button color="primary" [disabled]="submitted">Save</button>
 
-    <p>
-        <button mat-raised-button (click)="onNoClick()">Close</button>
-        <button mat-raised-button color="primary">Create</button>
-    </p>
-    
   </form>
+
+    <button mat-raised-button (click)="onNoClick()">Close</button>
+

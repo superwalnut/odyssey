@@ -116,9 +116,8 @@ export class FamilyNewDialog {
     familyNewForm: FormGroup;
     hasError: boolean;
     errorMessage: string;
-    user: User;
     isLoading: boolean;
-
+    submitted = false;
 
   ngOnInit() {
     this.familyNewForm = this.fb.group({
@@ -126,6 +125,17 @@ export class FamilyNewDialog {
       gender:['', Validators.required],
       agegroup:['', Validators.required]
     });
+
+    if (this.data.memberUser) {
+      this.familyNewForm.patchValue(
+        {
+          name: this.data.memberUser.name,
+          gender: this.data.memberUser.gender,
+          agegroup: this.data.memberUser.isChild? "Child" : "Adult",
+        }
+      );  
+    }
+    
   }
 
   onNoClick(): void {
@@ -133,8 +143,51 @@ export class FamilyNewDialog {
   }
 
   onSubmit() {
-    console.log('submit')
-  }
+    if (this.submitted) { return false; }
+
+    this.submitted = true;
+    var foundName = false;
+    this.accountService.isNameExist(this.familyNewForm.value.name).subscribe(results=>{
+      if (!this.data.memberUser) {
+        //if new user
+        foundName = results.length > 0;
+      } else {
+        //update user
+        foundName = results.filter(x=>x.docId != this.data.memberUser.docId).length > 0;
+      }
+
+      if (foundName) {
+        this.familyNewForm.controls.name.setErrors({'incorrect': true});
+        return false;
+      }
+
+      var user = {
+        name: this.familyNewForm.value.name,
+        gender: this.familyNewForm.value.gender,
+        isChild: this.familyNewForm.value.agegroup,
+        parentUserDocId: this.data.parentUser.docId,
+        parentUserDisplayName: this.data.parentUser.name,
+        disabled: false,
+        requireChangePassword: false,
+      } as User;
+
+      if (!this.data.memberUser) {
+        
+        console.log('submit new', user)
+        this.accountService.createUser(user).then(x=>{
+          this.dialogRef.close();
+        })
+
+      } else {
+        console.log('submit updating')
+        this.accountService.updateUser(this.data.memberUser.docId, user).then(x => {
+          this.dialogRef.close();
+        });
+      }
+  });
+}
+
+
 
   get f() { return this.familyNewForm.controls; }
 }
