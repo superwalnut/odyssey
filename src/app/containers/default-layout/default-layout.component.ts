@@ -87,6 +87,11 @@ export class DefaultLayoutComponent {
           },
         ],
       },
+      {
+        name: "FAQs",
+        url: "/termsconditions",
+        icon: "cil-info",
+      },
 
     ];
 
