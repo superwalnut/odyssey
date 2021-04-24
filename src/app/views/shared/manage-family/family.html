@@ -9,13 +9,7 @@
     <div class="modal-body">
         <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage }}</div>
 
-
-        <app-manage-profile [userDocId]="user?.docId" [isAdmin]="false"></app-manage-profile>
-
-
-
-
-        <!-- <mat-form-field>
+        <mat-form-field>
             <mat-label>Name</mat-label>
             <input matInput placeholder="John Smith" autocomplete="off" required [(ngModel)]="user.name" />
         </mat-form-field>
@@ -30,7 +24,7 @@
                 <mat-radio-button [value]="true">Kid</mat-radio-button>
                 <mat-radio-button [value]="false">Adult</mat-radio-button>
             </mat-radio-group>
-        </p> -->
+        </p>
 
     </div>
     <div class="modal-footer">

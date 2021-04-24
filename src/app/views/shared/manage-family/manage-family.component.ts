@@ -8,6 +8,7 @@ import { AccountService } from '../../../services/account.service';
 import { User } from '../../../models/user';
 import { EventLoggerService } from '../../../services/event-logger.service';
 import { EventLogger } from '../../../models/event-logger';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-manage-family',
@@ -147,7 +148,7 @@ export class FamilyNewDialog {
 
     this.submitted = true;
     var foundName = false;
-    this.accountService.isNameExist(this.familyNewForm.value.name).subscribe(results=>{
+    this.accountService.isNameExist(this.familyNewForm.value.name).pipe(take(1)).subscribe(results=>{
       if (!this.data.memberUser) {
         //if new user
         foundName = results.length > 0;
