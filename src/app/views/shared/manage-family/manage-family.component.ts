@@ -61,6 +61,9 @@ export class ManageFamilyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    console.log('userDocId', this.userDocId);
+    
     this.accountService.getUserByDocId(this.userDocId).subscribe(x => {
       this.user = x;
       this.isFamilyUser = x.parentUserDocId != null;
@@ -144,7 +147,6 @@ export class FamilyNewDialog {
   }
 
   onSubmit() {
-    if (this.submitted) { return false; }
 
     this.submitted = true;
     var foundName = false;
@@ -173,15 +175,18 @@ export class FamilyNewDialog {
       } as User;
 
       if (!this.data.memberUser) {
-        
         console.log('submit new', user)
         this.accountService.createUser(user).then(x=>{
+          this.submitted = false;
           this.dialogRef.close();
         })
 
       } else {
         console.log('submit updating')
+        if (!this.submitted) return false;
+
         this.accountService.updateUser(this.data.memberUser.docId, user).then(x => {
+          this.submitted = false;
           this.dialogRef.close();
         });
       }

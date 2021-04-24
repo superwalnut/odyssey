@@ -183,7 +183,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
     var ref = this.firestore.collection('groupTransactions').doc().ref;
     var trans = {
       amount: total,
-      paymentMethod: GlobalConstants.paymentCredit,
+      paymentMethod: GlobalConstants.paymentBookingIncome,
       groupDocId: group.docId,
       referenceId: booking.docId, //nullable
       notes: group.groupName + ': income',

@@ -41,6 +41,8 @@ export class GlobalConstants {
     public static paymentBank: string = "Bank";
     public static paymentAdjust: string = "Adjust"; //used by admin only, when make adjustment to group income
     public static paymentGroupAdjust: string = "Group adjust";
+    public static paymentBookingIncome: string = "Booking income";
+
 
 
     //Auto Booking
