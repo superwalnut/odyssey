@@ -3175,7 +3175,7 @@ export class TriggersComponent implements OnInit {
   email() {
 
     this.userJson.forEach(u=>{
-      //if (this.vipList.includes(u.NewName)) {
+      if (this.vipList.includes(u.NewName)) {
         var hashkey = this.helperService.encryptData(u.Email);
         const encoded = encodeURIComponent(hashkey);
 
@@ -3184,7 +3184,7 @@ export class TriggersComponent implements OnInit {
         }).catch(e=>{
           console.log(`email error ${u.Email}`,e);
         });
-      //}
+      }
     })
   }
 
