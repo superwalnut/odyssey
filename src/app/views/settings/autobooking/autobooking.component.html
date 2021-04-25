@@ -43,14 +43,15 @@
                 <td>{{ s.user.name }}</td>
                 <td>{{ s.expireOn.toDate() | date: 'dd/MM/yyyy' }}</td>
                 <td>
-                  <span class="material-icons" title="{{ s.isPaused ? 'paused' : 'active' }}">{{ s.isPaused ? 'pause' : 'play_arrow' }}</span>
+                  <!-- <span class="material-icons" title="{{ s.isPaused ? 'paused' : 'active' }}">{{ s.isPaused ? 'pause' : 'play_arrow' }}</span> -->
+                  {{ s.isPaused ? 'Paused' : 'Active' }}
+
                 </td>
+
                 <td>
-                  <button mat-button (click)="statusClicked(s)">{{ s.isPaused ? 'Resume' : 'Pause' }}</button>
+                  
+                  <button mat-raised-button color="primary"  (click)="statusClicked(s)">{{ s.isPaused ? 'Resume' : 'Pause' }}</button>
                   <!-- <button mat-button (click)="deleteClicked(s)" color="warn">Delete</button> -->
-
-
-
                 </td>
 
               </tr>
