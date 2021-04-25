@@ -187,7 +187,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
         creditBalance: this.creditBalance,
         isCommittee: this.isCommittee,
         isSeatsLeft: this.isSeatsLeft,
-        userLevelPoints: this.user.gradePoints,
+        userLevelPoints: this.user.gradePoints ?? 0,
       }
     });
 
