@@ -23,6 +23,7 @@ import { TriggersComponent } from "./triggers/triggers.component";
 
 import { groupCollapsed } from "console";
 import { RptUserCreditsComponent } from "./reports/rpt-user-credits/rpt-user-credits.component";
+import { RptCsvComponent } from "./reports/rpt-csv/rpt-csv.component";
 
 const routes: Routes = [
   {
@@ -180,6 +181,13 @@ const routes: Routes = [
         component: RptUserCreditsComponent,
         data: {
           title: "User Credits",
+        }
+      },
+      {
+        path:'downloadcsv',
+        component: RptCsvComponent,
+        data:{
+          title: "Download CSV",
         }
       },
       {

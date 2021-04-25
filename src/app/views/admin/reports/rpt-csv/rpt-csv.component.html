@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="card">
+          <div class="card-body p-4">
+
+                <h1>Download CSV</h1>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    Download all user credit transactions
+                                </div>
+                                <div class="card-body">
+                                    <button mat-raised-button *ngIf="userCredits"  color="primary" (click)="downloadUserCredits()">User Credits</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    Download all users
+                                </div>
+                                <div class="card-body">
+                                    <button mat-raised-button *ngIf="userCredits"  color="primary" (click)="downloadAllUsers()">Users</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    Download all auto booking schedules
+                                </div>
+                                <div class="card-body">
+                                    <button mat-raised-button *ngIf="userCredits"  color="primary" (click)="downloadAllBookingSchedule()">Auto Bookings</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</div>
+  

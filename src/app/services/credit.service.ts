@@ -120,4 +120,12 @@ export class CreditService extends FirestoreBaseService<Credit>{
 
       }));
   }
+
+  public getAllCredits() {
+    return this.getAll().pipe(map(x=>{
+      return x.map(o=> {
+        return o;
+      });
+    }));
+  }
 }

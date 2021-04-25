@@ -174,6 +174,11 @@ export class DefaultLayoutComponent {
               name:"User Credits",
               url: "/admin/rptcredits",
               icon: "cil-paperclip",
+            },
+            {
+              name:"Download CSV",
+              url:"/admin/downloadcsv",
+              icon: "cil-paperclip",
             }
           ],
         },
