@@ -166,6 +166,8 @@ export class BookingSchedulerDialog {
     // }
     let committee = this.data.group.committees.find(x => x.docId == this.data.loggedInUser.docId);
     this.isCommittee = committee != null;
+    if (this.isCommittee) { this.totalCost = 0 } // committee free 
+
   }
 
   getAllActiveBookingSchedules() {
@@ -263,6 +265,8 @@ export class BookingSchedulerDialog {
     // let price = this.selectedDuration.price;
     // if (this.isCommittee) { price = 0 } // committee free 
     //let users = this.mapUserSelectionToUser(this.userSelectList.filter(x => x.selected));
+    if (this.isCommittee) { this.totalCost = 0 } // committee free 
+
 
     this.bookingScheduleService.createBookingSchedule(user, this.dayRange.end, this.data.loggedInUser, this.data.group, this.totalCost)
       .then(() => {
