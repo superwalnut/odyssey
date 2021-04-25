@@ -26,10 +26,11 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
       const data = x.map(c=>{
         return {
           'amount': c.amount,
-          'date': c.created.toDate(),
+          'date': c.created?.toDate()??'',
           'note': c.note,
           'userName': c.userDisplayName,
           'userId': c.userDocId,
+          'category': c.category,
         };
       });
       super.downloadFile(data, 'user-credit-transactions');
