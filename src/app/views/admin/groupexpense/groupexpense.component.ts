@@ -29,6 +29,7 @@ import Timestamp = firebase.firestore.Timestamp;
 })
 export class GroupexpenseComponent implements OnInit {
   form: FormGroup;
+  group:Group;
   submitted: boolean = false;
   loggedInUser: Account;
   groupDocId: string;
@@ -60,6 +61,7 @@ export class GroupexpenseComponent implements OnInit {
 
     if (this.groupDocId) {
       this.isEditMode = true;
+      this.getGroupDetail(this.groupDocId);
     }
 
     this.form = this.fb.group({
@@ -72,6 +74,13 @@ export class GroupexpenseComponent implements OnInit {
     });
 
     //this.getExpenseByGroupDocId(this.groupDocId);
+  }
+
+  getGroupDetail(groupDocId:string) {
+    this.groupService.getGroup(groupDocId).subscribe(g=>{
+      this.group = g;
+    })
+
   }
 
   onSubmit() {
