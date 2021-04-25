@@ -14,6 +14,7 @@ import { GlobalConstants } from '../common/global-constants';
 
 import { FirestoreBaseService } from './firestore-base.service';
 import Timestamp = firebase.firestore.Timestamp;
+import { UserBalance } from '../models/user-balance';
 
 @Injectable({
   providedIn: 'root'
@@ -64,21 +65,25 @@ export class CreditService extends FirestoreBaseService<Credit>{
         const amounts = actions.map(x => (x.payload.doc.data() as Credit).amount);
         const total = amounts.reduce((a, b) => a + b, 0);
 
-        console.log(total);
+        console.log('balance',total);
         return total;
       })
     );
+  }
 
-    // return this.firestore.collection('credits', q=>q.where('userDocId', '==', userDocId)).snapshotChanges().pipe(map(actions=>{
-    //   var sum = 0;
-    //   actions.forEach(x=> {
-    //     if(x){
-    //       const credit = x.payload.doc.data() as Credit;
-    //       sum += credit.amount;
-    //     }
-    //   });
-    //   return sum;
-    // }));
+  public getUserBalance(userDocId: string, userName:string): Observable<UserBalance> {
+    return this.firestore.collection('credits', q => q.where('userDocId', '==', userDocId)).snapshotChanges().pipe(
+      map(actions => {
+        const amounts = actions.map(x => (x.payload.doc.data() as Credit).amount);
+        const total = amounts.reduce((a, b) => a + b, 0);
+        
+        return { 
+          userDocId: userDocId,
+          userName: userName,
+          balance: total,
+        } as UserBalance;
+      })
+    );
   }
 
   // public getUserAndBalance(userDocId: string) {

@@ -1,0 +1,97 @@
+import { Component, AfterViewInit, OnInit,Inject, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+
+import { MatTableDataSource } from "@angular/material/table";
+import { map, take, takeUntil } from 'rxjs/operators';
+import { BookingSchedule } from '../../../../models/booking-schedule';
+import { AccountService } from '../../../../services/account.service';
+import { CreditService } from '../../../../services/credit.service';
+import { UserBalance } from '../../../../models/user-balance';
+import { BaseComponent } from '../../../base-component';
+import { User } from '../../../../models/user';
+import { CreditBalanceService } from '../../../../services/credit-balance.service';
+import firebase from 'firebase/app';
+import Timestamp = firebase.firestore.Timestamp;
+import { combineLatest, Observable } from 'rxjs';
+
+@Component({
+  selector: 'app-rpt-user-credits',
+  templateUrl: './rpt-user-credits.component.html',
+  styleUrls: ['./rpt-user-credits.component.scss']
+})
+export class RptUserCreditsComponent extends BaseComponent implements OnInit, AfterViewInit {
+  displayedColumns: string[] = [
+    "userName",
+    "userDocId",
+    "balance",
+    "Action"
+  ];
+  dataSource = new MatTableDataSource<UserBalance>();
+  @ViewChild(MatSort) sort: MatSort;
+  users:User[];
+  userBalances:UserBalance[];
+  lastUpdated:Timestamp;
+
+  constructor(private accountService:AccountService, private creditService:CreditService, private creditBalanceService:CreditBalanceService) { 
+    super();
+  }
+
+  ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    this.accountService.getAllUsers().pipe(takeUntil(this.ngUnsubscribe)).subscribe(x=>{
+      this.users = x.filter(o=>o.parentUserDocId == undefined || o.parentUserDocId == null || o.parentUserDocId == '');
+
+      this.creditBalanceService.getLatestStatement().pipe(takeUntil(this.ngUnsubscribe)).subscribe(b=>{
+        if(b){
+          this.dataSource = new MatTableDataSource(b.userBalances);
+          this.dataSource.sort = this.sort;
+          this.lastUpdated = b.lastUpdated;
+          this.userBalances = b.userBalances;
+        }
+      });
+    })
+  }
+
+  onCreateClick() {
+    console.log('generate report');
+    var subscriptionArray:Observable<UserBalance>[] = [];
+
+    this.users.forEach((user,i)=>{
+      const sub = this.creditService.getUserBalance(user.docId, user.name);
+      subscriptionArray[i] = sub;
+    });
+
+    combineLatest(subscriptionArray).pipe(take(1)).subscribe(balances => {
+      console.log('balances', balances);
+      this.creditBalanceService.createCredit(balances).then(x=>{
+        console.log('generated statement');
+      });
+    });
+  }
+
+  downloadFile() {
+    const data = this.userBalances; 
+    const replacer = (key, value) => (value === null ? '' : value); // specify how you want to handle null values here
+    const header = Object.keys(data[0]);
+    const csv = data.map((row) =>
+      header
+        .map((fieldName) => JSON.stringify(row[fieldName], replacer))
+        .join(',')
+    );
+    csv.unshift(header.join(','));
+    const csvArray = csv.join('\r\n');
+  
+    const a = document.createElement('a');
+    const blob = new Blob([csvArray], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+  
+    a.href = url;
+    a.download = 'myFile.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
+  }
+
+}

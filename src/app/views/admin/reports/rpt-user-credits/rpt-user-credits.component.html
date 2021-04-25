@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="card">
+          <div class="card-body p-4">
+
+        <h1>User credits <span *ngIf="users" class="badge badge-success">found {{users.length}} users</span></h1>
+        
+        <div *ngIf="lastUpdated">
+            Last Updated: {{lastUpdated.toDate() | date : 'short'}}
+        </div>
+        <button mat-raised-button  color="primary" (click)="onCreateClick()">Generate Report</button>
+        <button mat-raised-button *ngIf="userBalances"  color="primary" (click)="downloadFile()">DownloadCsv</button>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+            <ng-container matColumnDef="userName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>User</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.userName }}
+              </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="userDocId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>UserID</th>
+                <td mat-cell *matCellDef="let element">
+                  <small class="gray-text">{{element.userDocId}}</small>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="balance">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Balance</th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.balance | currency}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+                <td mat-cell *matCellDef="let element"> 
+                    <button mat-button routerLink="/admin/userdetails/{{element.userDocId}}">Details</button>
+                </td>
+              </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+
+        </div>
+    </div>
+</div>
+
+    </div>
+  </div>
+  

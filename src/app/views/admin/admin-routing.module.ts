@@ -22,6 +22,7 @@ import { RptBookingpersonComponent } from "./reports/rpt-bookingperson/rpt-booki
 import { TriggersComponent } from "./triggers/triggers.component";
 
 import { groupCollapsed } from "console";
+import { RptUserCreditsComponent } from "./reports/rpt-user-credits/rpt-user-credits.component";
 
 const routes: Routes = [
   {
@@ -174,8 +175,13 @@ const routes: Routes = [
           title: "Event viewer",
         },
       },
-
-
+      {
+        path: "rptcredits",
+        component: RptUserCreditsComponent,
+        data: {
+          title: "User Credits",
+        }
+      },
       {
         path: "triggers",
         component: TriggersComponent,

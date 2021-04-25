@@ -170,6 +170,11 @@ export class DefaultLayoutComponent {
               url: "/admin/rpteventview",
               icon: "cil-paperclip",
             },
+            {
+              name:"User Credits",
+              url: "/admin/rptcredits",
+              icon: "cil-paperclip",
+            }
           ],
         },
       ];
