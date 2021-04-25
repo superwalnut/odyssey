@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
   totalUserCount: number;
   isGod:boolean;
 
-  displayedColumns: string[] = ['name', 'iscredituser', 'families', 'grade', 'created', 'docId' ];
+  displayedColumns: string[] = ['name', 'iscredituser', 'families', 'grade', 'requireChangePassword', 'created', 'docId' ];
   dataSource: MatTableDataSource<UserFamily>;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -46,6 +46,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
           families: x.filter(y => y.parentUserDocId == m.docId).map(z => z.name),
           created: m.created,
           grade: m.grade + m.gradePoints,
+          requireChangePassword: m.requireChangePassword,
         } as UserFamily;
       });
 

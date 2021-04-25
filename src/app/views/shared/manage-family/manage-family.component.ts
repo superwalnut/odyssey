@@ -167,7 +167,7 @@ export class FamilyNewDialog {
       var user = {
         name: this.familyNewForm.value.name,
         gender: this.familyNewForm.value.gender,
-        isChild: this.familyNewForm.value.agegroup,
+        isChild: this.familyNewForm.value.agegroup=="Adult" ? false:true,
         parentUserDocId: this.data.parentUser.docId,
         parentUserDisplayName: this.data.parentUser.name,
         disabled: false,
@@ -183,7 +183,7 @@ export class FamilyNewDialog {
 
       } else {
         console.log('submit updating')
-        if (!this.submitted) return false;
+        console.log('user collect', user);
 
         this.accountService.updateUser(this.data.memberUser.docId, user).then(x => {
           this.submitted = false;
