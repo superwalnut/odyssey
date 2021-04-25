@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs/operators';
 import { Credit } from '../../../../models/credit';
 import { AccountService } from '../../../../services/account.service';
 import { BookingScheduleService } from '../../../../services/booking-schedule.service';
@@ -21,7 +22,7 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
   }
 
   downloadUserCredits() {
-    this.creditService.getAllCredits().subscribe(x=>{
+    this.creditService.getAllCredits().pipe(take(1)).subscribe(x=>{
       const data = x.map(c=>{
         return {
           'amount': c.amount,
@@ -36,7 +37,7 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
   }
 
   downloadAllUsers() {
-    this.userService.getAllUsers().subscribe(x=>{
+    this.userService.getAllUsers().pipe(take(1)).subscribe(x=>{
       const data = x.map(c=>{
         return {
           'userId': c.docId,
@@ -61,7 +62,7 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
   }
 
   downloadAllBookingSchedule() {
-    this.bookignScheduleService.getAllBookingSchedules().subscribe(x=>{
+    this.bookignScheduleService.getAllBookingSchedules().pipe(take(1)).subscribe(x=>{
       const data = x.map(c=>{
         return {
           'userId': c.user.docId,
