@@ -74,7 +74,13 @@
                   </td>
                   <td scope="row"><mat-icon>{{getPaymentClass(p.paymentMethod)}}</mat-icon> <i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
                   <td scope="row">{{ p.amount | currency}}</td>
-                  <td scope="row" ><mat-icon>{{ p.isPaid ? 'check' : 'close'}}</mat-icon></td>
+                  <td scope="row">
+                    <button mat-icon-button color="accent" title="add notes" (click)="addNoteClicked(p)" *ngIf="isGod">
+                      <mat-icon>{{ p.isPaid ? 'check' : 'close'}}</mat-icon>
+                    </button> 
+
+                    <!-- <mat-icon (click)="addNoteClicked(p)">{{ p.isPaid ? 'check' : 'close'}}</mat-icon> -->
+                  </td>
 
                   <td scope="row">{{p.createdOn.toDate() | date: "dd/MM/yyyy hh:MM"}}</td>
                   <td *ngIf="!booking?.reconciled">
@@ -82,9 +88,9 @@
                       <mat-icon>remove</mat-icon>
                     </button> 
 
-                    <button mat-icon-button color="accent" title="add notes" (click)="addNoteClicked(p)">
+                    <!-- <button mat-icon-button color="accent" title="add notes" (click)="addNoteClicked(p)">
                       <mat-icon>edit</mat-icon>
-                    </button> 
+                    </button>  -->
                   </td>
                 </tr>
                 <!-- <tr>
