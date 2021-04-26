@@ -168,7 +168,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
 
   public getCurrentWeekByUserDocId(userDocId: string) {
     var dateRange = this.helperService.findDateRangeOfCurrentWeek(new Date());
-    console.log(dateRange)
+    console.log('date range', dateRange)
     return this.firestore.collection('bookingPersons', q => q.where('parentUserId', '==', userDocId)).snapshotChanges().pipe(
       map(actions => {
         var items = actions.map(p => {

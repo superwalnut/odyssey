@@ -90,6 +90,11 @@ export class HelperService {
     var last = first + 6; // last day is the first day + 6   
     var firstday = new Date(curr.setDate(first));
     var lastday = new Date(curr.setDate(firstday.getDate() + 6));
+
+    //return d1.toDate().setHours(0,0,0,0) == d2.toDate().setHours(0,0,0,0);
+    firstday.setHours(0,0,0,0);
+    lastday.setHours(23,59,59,0);
+
     console.log("findDateRangeOfCurrentWeek", { firstday, lastday })
     return { firstday, lastday };
   }
