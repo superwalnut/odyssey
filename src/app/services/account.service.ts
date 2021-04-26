@@ -84,6 +84,13 @@ export class AccountService extends FirestoreBaseService<User>{
   }
 
   createUser(user: User) {
+    user.disabled = false;
+    user.isMember = false;
+    user.isCreditUser = false;
+    user.requireChangePassword = false;
+    user.gradePoints = 0;
+    user.grade = "E";
+
     user.created = this.getTodayTimestamp();
     user.updated = this.getTodayTimestamp();
     return this.create(user);

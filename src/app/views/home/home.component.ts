@@ -32,7 +32,6 @@ export class HomeComponent extends BaseComponent implements OnInit {
   hasBooking:boolean;
 
   myBookings:MyBooking[]=[];
-
   domain:string=environment.domain;
 
   constructor(private bookingService:BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private groupService: GroupService, private helperService: HelperService) { super() }
@@ -48,7 +47,6 @@ export class HomeComponent extends BaseComponent implements OnInit {
     if (this.isLoggedIn) {
       this.getMyCurrentWeekBookings();
     }
-
   }
 
   getMyCurrentWeekBookings() {
