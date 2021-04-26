@@ -12,30 +12,16 @@
               <mat-label>Search user</mat-label>
               <input matInput (keyup)="applyFilter($event)" placeholder="Search by name" #input>
             </mat-form-field>
-            <!-- <button mat-raised-button color="primary" (click)="onNewUserClicked()">New user</button> -->
           </p>
 
           <table mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort>
             <!-- Name Column -->
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                <td mat-cell *matCellDef="let element"> 
+                <td mat-cell *matCellDef="let element" [ngClass]="{'unpaid-bg':element.requireChangePassword}"> 
                   {{element.user.name}} 
-                  <!-- <span *ngIf="element.user.mobile">
-                    <i class="material-icons phone">phone_iphone</i><a href="tel:{{element.user.mobile}}">{{element.user.mobile}}</a> 
-                  </span>
-                  <br>
-                  {{element.user.email}}  -->
                 </td>
             </ng-container>
-
-            <!-- Date Column
-            <ng-container matColumnDef="created">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Joined </th>
-              <td mat-cell *matCellDef="let element">
-                {{element.created?.toDate() | date : 'dd/MM/yyyy'}}
-              </td>
-            </ng-container> -->
 
             <!-- Balance -->
             <ng-container matColumnDef="iscredituser">
@@ -60,34 +46,24 @@
               </td>
             </ng-container>
 
-            <ng-container matColumnDef="requireChangePassword">
+            <!-- <ng-container matColumnDef="requireChangePassword">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>LoggedIn</th>
               <td mat-cell *matCellDef="let element"> 
                 {{element.requireChangePassword}} 
               </td>
-            </ng-container>
-
+            </ng-container> -->
 
             <ng-container matColumnDef="created">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Created on </th>
-              <td mat-cell *matCellDef="let element"> 
+              <td mat-cell *matCellDef="let element" class="timestamp"> 
                 {{element.created.toDate() | date: 'dd/MM/yyyy HH:mm'}} 
-                <!-- <span *ngIf="element.user.mobile">
-                  <i class="material-icons phone">phone_iphone</i><a href="tel:{{element.user.mobile}}">{{element.user.mobile}}</a> 
-                </span>
-                <br>
-                {{element.user.email}}  -->
               </td>
           </ng-container>
-
 
             <!-- Date Column -->
             <ng-container matColumnDef="docId">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
               <td mat-cell *matCellDef="let element"> 
-                <!-- <a class="btn btn-sm btn-secondary" routerLink="/admin/userdetails/{{element.user.docId}}">View Details</a>
-                <a class="btn btn-sm btn-info" routerLink="/admin/usercredits/{{element.user.docId}}">Credit</a> -->
-
                 <button mat-button routerLink="/admin/userdetails/{{element.user.docId}}">Details</button>
                 <button mat-button routerLink="/admin/usercredits/{{element.user.docId}}">Credit</button>
               </td>
@@ -101,6 +77,8 @@
                 <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
             </tr>
         </table>
+
+        <span class="unpaid-bg">Users who never logged in</span>
 
       </div>
       </div>

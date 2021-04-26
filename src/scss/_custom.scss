@@ -27,6 +27,9 @@ body div.app {
   font-weight: 600;
 }
 
+.timestamp {
+  font-size: 10px;
+}
 .container,
 .container-fluid {
   .row {
@@ -357,6 +360,15 @@ ul.hpbooking {
     padding: 0;
     h1 {
       padding: 10px;
+    }
+  }
+
+  table.mat-table {
+    width: 100%!important;
+    margin:0;
+
+    th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+      padding-left:8px;
     }
   }
 }
