@@ -33,6 +33,7 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
           'category': c.category,
         };
       });
+      console.log('downloadcredits', data);
       super.downloadFile(data, 'user-credit-transactions');
     });
   }
@@ -58,6 +59,7 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
           'parentUserName': c.parentUserDisplayName,
         };
       });
+      console.log('downloadusers', data);
       super.downloadFile(data, 'user-lists');
     });
   }
@@ -75,6 +77,7 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
           'isPaused': c.isPaused,
         };
       });
+      console.log('downloadautobooking', data);
       super.downloadFile(data, 'booking-schedules');
     });
   }

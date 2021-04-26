@@ -64,7 +64,7 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
 
 
   getAllBookingSchedules() {
-    return this.firestore.collection('bookingSchedules').snapshotChanges().pipe(
+    return this.firestore.collection('bookingSchedules', q=>q.orderBy("createdOn", "desc")).snapshotChanges().pipe(
       map(actions => {
         var items = actions.map(p => {
           var data = p.payload.doc.data() as BookingSchedule;
