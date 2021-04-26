@@ -240,7 +240,7 @@ export class BookingSchedulerDialog {
     console.log('discount', GlobalConstants.autoBookingDiscount);
 
     if (this.isCommittee) { this.totalCost = 0 } // committee free 
-    let endDate = this.helperService.addDays(week * 7);
+    let endDate = this.helperService.addDays(week * 7 + 1);
     let today = this.helperService.convertToTimestamp(new Date());
     this.dayRange.start = today;
     this.dayRange.end = this.helperService.convertToTimestamp(endDate);
