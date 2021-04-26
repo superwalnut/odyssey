@@ -117,15 +117,19 @@ export class CreditService extends FirestoreBaseService<Credit>{
         } else {
           return null;
         }
-
       }));
   }
 
   public getAllCredits() {
-    return this.getAll().pipe(map(x=>{
-      return x.map(o=> {
-        return o;
-      });
-    }));
+    return this.firestore.collection('credits', q => q.orderBy('created', 'desc')).snapshotChanges().pipe(
+      map(actions => {
+          return actions.map(x => {
+            var credit = x.payload.doc.data() as Credit;
+            return {
+              ...credit,
+              docId: x.payload.doc.id
+            } as Credit;
+          });
+      }));
   }
 }
