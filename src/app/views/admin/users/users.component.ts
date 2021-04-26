@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
   totalUserCount: number;
   isGod:boolean;
 
-  displayedColumns: string[] = ['name', 'iscredituser', 'families', 'grade', 'requireChangePassword', 'created', 'docId' ];
+  displayedColumns: string[] = ['name', 'iscredituser', 'families', 'grade', 'created', 'docId' ];
   dataSource: MatTableDataSource<UserFamily>;
   @ViewChild(MatSort) sort: MatSort;
 
