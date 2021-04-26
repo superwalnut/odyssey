@@ -1,6 +1,38 @@
 
+<h2 mat-dialog-title>{{ data.group?.groupName}} {{ data.group?.eventStartTime}} | Withdraw</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage }}</div>
+
+  <div *ngIf="isWithdrawAllowed"> 
+    <p class="handwriting">{{ getGoodbyeline() }}</p>
+  </div>
+
+  <div *ngIf="!isWithdrawAllowed"> 
+    <h2>Withdraw is not allowed</h2>
+    <p>Withdraw is only allowed {{bookingWithdrawHours}} hours before the session start.</p>
+    <p>However, you can mark your seat [Up for sale], you won't get charged if someone take your spot.</p>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <!-- <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+
+  <button mat-raised-button (click)="onNoClick()">Close</button>
+  <button mat-raised-button color="warn" *ngIf="isWithdrawAllowed && !isLoading" (click)="withdrawClicked()">Withdraw</button>
+  <button mat-raised-button color="primary" *ngIf="!isWithdrawAllowed && !isLoading" (click)="markForSaleClicked()">Up for sale</button>
+  <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+
+</mat-dialog-actions>
+
+
+
+
+
+
+
 <!-- Modal -->
-<div class="modal-content">
+<!-- <div class="modal-content">
     <div class="modal-header">
       <h2 class="modal-title">{{ data.group?.groupName}} {{ data.group?.eventStartTime}} | Withdraw</h2>
       <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
@@ -10,7 +42,6 @@
       <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage }}</div>
 
       <div *ngIf="isWithdrawAllowed"> 
-        <!-- <p>Refund: {{data.inputBookingPerson.amount | currency}}</p> -->
         <p class="handwriting">{{ getGoodbyeline() }}</p>
 
       </div>
@@ -33,5 +64,5 @@
   
     </div>
   </div>
-  
+   -->
   
