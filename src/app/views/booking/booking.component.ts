@@ -53,17 +53,19 @@ export class BookingComponent extends BaseComponent implements OnInit {
   seatsLeft: number;
   seatsBooked: number;
   isSeatsLeft: boolean;
+  rand: number;
 
 
   constructor(private groupService: GroupService, private dialogRef: MatDialog, private eventLogService: EventLoggerService,
     private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private creditService: CreditService,
-    private accountService: AccountService, private activatedRoute: ActivatedRoute, public dialog: MatDialog) { super() }
+    private accountService: AccountService, private activatedRoute: ActivatedRoute, private helpService:HelperService, public dialog: MatDialog) { super() }
 
   ngOnInit(): void {
     this.bookingDocId = this.activatedRoute.snapshot.params.id;
     this.groupDocId = this.activatedRoute.snapshot.params.groupId;
     console.log('url params: ', this.bookingDocId, this.groupDocId)
     this.loggedInAccount = this.accountService.getLoginAccount();
+    this.rand = this.helpService.getRandomIntInclusive(0, 14);
 
     let getUser = this.accountService.getUserByDocId(this.loggedInAccount.docId);
     let getBalance = this.creditService.getBalance(this.loggedInAccount.docId);
@@ -114,6 +116,11 @@ export class BookingComponent extends BaseComponent implements OnInit {
     });
   }
 
+
+  getBadmintonLine() {
+    return GlobalConstants.badmintonLines[this.rand];
+
+  }
 
   getFamilyFlag(lbu:LocalBookingUser) {
     if (lbu.userDocId != lbu.parentUserId) {
@@ -593,12 +600,6 @@ export class WithdrawDialog {
       // isPaid:true,
     } as BookingPerson;
     return bp;
-  }
-
-  getGoodbyeline() {
-    
-    return GlobalConstants.goodByeLines[this.rand];
-
   }
 
 

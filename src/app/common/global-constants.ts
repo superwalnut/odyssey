@@ -105,9 +105,29 @@ export class GlobalConstants {
         "Life is a journey, not a destination.",
         "To part is the lot of all mankind. The world is a scene of constant leave-taking, and the hands that grasp in cordial greeting today, are doomed ere long to unite for the the last time, when the quivering lips pronounce the word – Farewell.",
         "Goodbyes are not forever, Goodbyes are not the end. They simply mean I’ll miss you, Until we meet again.",
+    ];
 
+    
+    
+    
+    public static badmintonLines = [
+        { line:"Badminton is not only about winning. What is important to me is about playing hard, doing my best and putting up a good show for the spectators.", people:"Lin Dan"},
+        { line:"There will be many obstacles in the pursuit of your dreams. I had long hours of training, balancing studies and badminton.", people:"Sindhu"},
+        { line:"I love winning more than I love playing badminton. Winning is everything", people:"Saina Nehwal"},
+        { line:"In badminton, they use a lot from the wrist. But I use a lot from the shoulder", people:"Li Na"},
+        { line:"There's sketch, improv, writing, acting, music, and badminton. Those are the seven forms of comedy.", people:"T.J. Miller"},
+        { line:"Discipline is the bridge between your badminton goals and badminton success.", people:""},
+        { line:"Keep calm and play badminton.", people:""},
+        { line:"There is no passion to be found playing small – in settling for a life that is less than the one you are capable of living.", people:""},
+        { line:"Champions keep playing until they get it right.", people:""},
+        { line:"It’s not the hours you put in….it’s what you put in those hours.", people:""},
+        { line:"You only live once but you get to serve twice.", people:""},
+        { line:"Your dream will always defeat reality if you give it chance.", people:""},
+        { line:"My philosophy is to not be scared of anyone. If I play well, great; if I don't, I learn from the match and move on.", people:"Saina Nehwal"},
+        { line:"Ability is what you’re capable of doing. Motivation determines what you do. Attitude determines how well you do it.", people:""},
 
-    ]
+    ];
+
 
 
 

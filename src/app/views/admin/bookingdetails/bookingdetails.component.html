@@ -17,6 +17,10 @@
                 <mat-icon>{{ booking?.isLocked ? 'lock': 'lock_open'}}</mat-icon>
               </button>
 
+              <button mat-icon-button color="primary" (click)="toggleVisibility()" title="take offline">
+                <mat-icon>{{ booking?.isOffline ? 'visibility_off': 'visibility'}}</mat-icon>
+              </button>
+
               <button mat-icon-button color="primary" title="change seats" (click)="changeSeatClicked()" autocomplete="off">
                 <mat-icon>chair</mat-icon>
               </button>
@@ -26,9 +30,6 @@
               </button>
               {{ booking?.levelRestrictionOverwrite}}
 
-              <button mat-icon-button color="primary">
-                <mat-icon>print</mat-icon>
-              </button>
             </h3>
 
             <section title="Add new booking" *ngIf="!booking?.reconciled">

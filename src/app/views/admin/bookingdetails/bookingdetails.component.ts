@@ -263,6 +263,12 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     this.bookingService.updateBooking(this.bookingDocId, this.booking);
   }
 
+  toggleVisibility() {
+    this.booking.isOffline = !this.booking.isOffline;
+    this.bookingService.updateBooking(this.bookingDocId, this.booking);
+  }
+
+
   changeSeatClicked() {
     if (this.booking.reconciled) { return false; }
 

@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div class="row light">
+    <div class="row light" *ngIf="!booking?.isOffline">
       <div class="col-sm">
         <section> 
           <ul class="simple-horizontal-list">
@@ -65,9 +65,38 @@
         </section>
       </div>
       
+    </div>
+
+    <div class="row light" *ngIf="booking?.isOffline">
+
+      <div class="col-sm">
+        <section> 
+          <div class="p-3 mb-2 bg-warning text-dark">This session is offline.</div>
+
+
+          <div class="handwriting align-middle" style="margin:50px; font-size: 60px;">
+            {{getBadmintonLine().line }}
+          </div>
+         
+          
+
+          <div class="handwriting" style="margin:50px; font-size: 28px;">
+            {{getBadmintonLine().people }}
+          </div>
+          
+
+
+
+          
+
+        </section>
+
       </div>
+
+      
     </div>
   </div>
+</div>
 
 
 <footer class="app-footer">
