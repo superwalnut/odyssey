@@ -25,6 +25,8 @@
                 <mat-label>Note</mat-label>
                 <input matInput placeholder="notes" formControlName="note" required autocomplete="off"/>
               </mat-form-field>
+
+              <mat-checkbox class="example-margin" formControlName="sendEmail" >Send email to user</mat-checkbox>
               
               <button mat-raised-button color="primary" [disabled]="isLoading">Confirm deposit</button>
             </form>

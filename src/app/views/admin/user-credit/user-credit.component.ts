@@ -45,6 +45,7 @@ export class UserCreditComponent implements OnInit {
       amount: ['', [Validators.required]],
       category: ['', [Validators.required]],
       note: ["", Validators.required],
+      sendEmail: [],
     });
 
     this.categories = [
@@ -100,8 +101,14 @@ export class UserCreditComponent implements OnInit {
       createdByDisplayName: this.loggedInUser.name,
     } as Credit;
 
+    const isSendingEmail = this.form.value.sendEmail;
+
     this.creditService.createCredit(credit).then(x => {
-      this.mailService.sendTopupSucceed(this.user.email, this.user.name, credit.amount);
+
+      if(isSendingEmail){
+        this.mailService.sendTopupSucceed(this.user.email, this.user.name, credit.amount);
+      }
+      
       if (!this.user.isCreditUser && credit.amount >= 100) {
         this.user.isCreditUser = true;
         this.accountService.updateUser(this.userDocId, this.user);

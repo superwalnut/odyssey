@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-      name: ['', [Validators.required, Validators.maxLength(20), Validators.pattern('^[a-zA-Z0-9_ ]+$')]],
+      name: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(/^[^*|\":<>[\]{}`\\()';@&$]+$/)]],
       mobile: ['', Validators.required],
     },{
       validator: this.MustMatch('password', 'confirmPassword')
@@ -53,6 +53,8 @@ export class RegisterComponent implements OnInit {
       password: this.registerForm.value.password,
       mobile: this.registerForm.value.mobile,
       isChild:false,
+      isMember:false,
+      disabled:false,
       requireChangePassword:false,
     } as User;
 
