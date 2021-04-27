@@ -65,7 +65,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
     this.groupDocId = this.activatedRoute.snapshot.params.groupId;
     console.log('url params: ', this.bookingDocId, this.groupDocId)
     this.loggedInAccount = this.accountService.getLoginAccount();
-    this.rand = this.helpService.getRandomIntInclusive(0, 14);
+    this.rand = this.helpService.getRandomIntInclusive(0, 13);
 
     let getUser = this.accountService.getUserByDocId(this.loggedInAccount.docId);
     let getBalance = this.creditService.getBalance(this.loggedInAccount.docId);
@@ -115,7 +115,6 @@ export class BookingComponent extends BaseComponent implements OnInit {
       this.booking = booking;
     });
   }
-
 
   getBadmintonLine() {
     return GlobalConstants.badmintonLines[this.rand];
@@ -581,6 +580,13 @@ export class WithdrawDialog {
         console.log(err);
       });
     }
+  }
+
+
+
+  getGoodbyeline() {
+    return GlobalConstants.goodByeLines[this.rand];
+
   }
 
   mapToBookingPerson(lbu: LocalBookingUser): BookingPerson {
