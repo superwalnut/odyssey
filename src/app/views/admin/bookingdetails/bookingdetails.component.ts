@@ -330,6 +330,9 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
 
 
   addNoteClicked(bp: LocalBookingUser) {
+
+    if (this.booking.reconciled) {return false; }
+    
     const dialogRef = this.dialog.open(NoteDialog, {
       width: '650px',
       data: {
