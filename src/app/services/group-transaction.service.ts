@@ -154,6 +154,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
         userDisplayName: lbu.name,
         note: group.groupName+': '+ lbu.name,
         createdBy: operator.docId,
+        referenceId: lbu.docId, //only the negative, need to set referenceID
         createdByDisplayName: operator.name,
         created: Timestamp.now(),
       } as Credit;

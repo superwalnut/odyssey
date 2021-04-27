@@ -11,4 +11,5 @@ export class Credit {
     createdBy:string;
     createdByDisplayName:string;
     category:string;
+    referenceId:string; //requested by Josh
 }

@@ -117,23 +117,9 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
   createBookingSchedule(users: User[], expireDate: Timestamp, loggedInUser: Account, group: Group, fee: number) {
     var batch = this.firestore.firestore.batch();
 
-    //1. deduct user's credit
-    var ref = this.firestore.collection('credits').doc().ref;
-
-    var credit = {
-      amount: -fee,
-      category: GlobalConstants.creditCategoryBadminton,
-      userDocId: loggedInUser.docId,
-      userDisplayName: loggedInUser.name,
-      createdBy: loggedInUser.docId,
-      createdByDisplayName: loggedInUser.name,
-      created: Timestamp.now(),
-      note: 'auto booking',
-    } as Credit;
-    batch.set(ref, credit);
 
     //2. add to group transaction
-    var ref = this.firestore.collection('groupTransactions').doc().ref;
+    var refTransaction = this.firestore.collection('groupTransactions').doc().ref;
     var trans = {
       amount: fee,
       paymentMethod: GlobalConstants.paymentCredit,
@@ -145,7 +131,25 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
       created: Timestamp.now(),
     } as GroupTransaction;
     console.log('createBookingSchedule service groupTransaction: ', trans);
-    batch.set(ref, trans);
+    batch.set(refTransaction, trans);
+    
+
+    //1. deduct user's credit
+    var ref = this.firestore.collection('credits').doc().ref;
+
+    var credit = {
+      amount: -fee,
+      category: GlobalConstants.creditCategoryBadminton,
+      userDocId: loggedInUser.docId,
+      userDisplayName: loggedInUser.name,
+      createdBy: loggedInUser.docId,
+      createdByDisplayName: loggedInUser.name,
+      referenceId: refTransaction.id,
+      created: Timestamp.now(),
+      note: 'auto booking',
+    } as Credit;
+    batch.set(ref, credit);
+
 
     //3. add to booking-schedule table.
     users.forEach(u => {

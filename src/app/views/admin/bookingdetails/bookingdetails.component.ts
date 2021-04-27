@@ -363,7 +363,8 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
 
       var incomeBreakdownNote = `Credit:${this.bookingTotalCredit} Cash:${this.bookingTotalCash} Bank:${this.bookingTotalBank}`;
 
-      //console.log(incomeBreakdownNote);
+      console.log('allLocalBookingUsers', this.allLocalBookingUsers);
+      console.log(incomeBreakdownNote);
       this.groupTransactionService.bookingReconciliation(this.group, this.booking, this.allLocalBookingUsers, this.loggedInAccount, incomeBreakdownNote)
       .then(() => {
         let log = {
