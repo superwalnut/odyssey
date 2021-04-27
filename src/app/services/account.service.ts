@@ -58,7 +58,7 @@ export class AccountService extends FirestoreBaseService<User>{
   }
 
   authenticate(mobile: string, password: string): Observable<User> {
-    return this.firestore.collection('users', q => q.where("mobile", "==", mobile).where("password", "==", password).limit(1)).snapshotChanges().pipe(
+    return this.firestore.collection('users', q => q.where("mobile", "==", mobile.trim()).where("password", "==", password.trim()).limit(1)).snapshotChanges().pipe(
       map(actions => {
         if (actions && actions.length > 0) {
           var acc = actions[0].payload.doc.data() as User;
@@ -135,7 +135,7 @@ export class AccountService extends FirestoreBaseService<User>{
   }
 
   isEmailExist(email: string) {
-    return this.firestore.collection('users', q => q.where('email', '==', email)).snapshotChanges().pipe(
+    return this.firestore.collection('users', q => q.where('email', '==', email.trim())).snapshotChanges().pipe(
       map(actions => {
         return actions.map(x => {
           var acc = x.payload.doc.data() as User;
@@ -148,7 +148,7 @@ export class AccountService extends FirestoreBaseService<User>{
   }
 
   isMobileExist(mobile: string) {
-    return this.firestore.collection('users', q => q.where('mobile', '==', mobile)).snapshotChanges().pipe(
+    return this.firestore.collection('users', q => q.where('mobile', '==', mobile.trim())).snapshotChanges().pipe(
       map(actions => {
         return actions.map(x => {
           var acc = x.payload.doc.data() as User;

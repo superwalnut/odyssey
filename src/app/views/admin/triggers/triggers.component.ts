@@ -3167,9 +3167,9 @@ export class TriggersComponent implements OnInit {
   }
 
   importMainAccount() {
-    var userArray = this.readUserJsonFile();
-    console.log(userArray);
-    this.accountService.ImportMainAccounts(userArray);
+    // var userArray = this.readUserJsonFile();
+    // console.log(userArray);
+    // this.accountService.ImportMainAccounts(userArray);
   }
 
   email() {
