@@ -125,6 +125,13 @@ export class GlobalConstants {
         { line:"Your dream will always defeat reality if you give it chance.", people:""},
         { line:"My philosophy is to not be scared of anyone. If I play well, great; if I don't, I learn from the match and move on.", people:"Saina Nehwal"},
         { line:"Ability is what you’re capable of doing. Motivation determines what you do. Attitude determines how well you do it.", people:""},
+        { line:"Skills win you Medals..But Attitude wins Hearts", people:""},
+        { line:"The greatest asset is a strong mind. If I know someone is training harder than I am I have no execuses", people:"P.V. Sindhu"},
+        { line:"To train hard is the best way to become the best of yourself.", people:"Chen Long"},
+
+
+
+        
 
     ];
 
