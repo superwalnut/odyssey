@@ -54,6 +54,7 @@ export class RegisterComponent implements OnInit {
       mobile: this.registerForm.value.mobile,
       isChild:false,
       isMember:false,
+      isCreditUser:false,
       disabled:false,
       requireChangePassword:false,
     } as User;

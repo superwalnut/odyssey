@@ -133,9 +133,6 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
         });
       } else {
         // update user
-        user.isMember = user.isMember ?? false;
-        user.isCreditUser = user.isCreditUser ?? false;
-        user.disabled = user.disabled ?? false;
         this.accountService.updateUser(this.user.docId, user).then(x => {
 
           // if user updated its name, update family's parent display name
