@@ -14,6 +14,7 @@ export class BookingPerson {
     parentUserDisplayName:string;
     isForSale:boolean; //user can mark the spot for sale once passed withdraw window.
     amount: number;
+    avatarUrl: string;
     isPaid: boolean; //this usually apply to cash only
     createdOn: Timestamp;
     updatedOn: Timestamp;

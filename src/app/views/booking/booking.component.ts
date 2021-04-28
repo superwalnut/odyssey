@@ -131,11 +131,11 @@ export class BookingComponent extends BaseComponent implements OnInit {
   getFamilyMembers(acc: Account) {
     this.accountService.getFamilyUsers(acc.docId).subscribe(users => {
       console.log('family: ', users);
-      var my = { userDocId: acc.docId, name: acc.name, isFamily: true } as LocalBookingUser;
+      var my = { userDocId: acc.docId, name: acc.name, isFamily: true, avatarUrl: this.user.avatarUrl} as LocalBookingUser;
       this.familyBookingUsers.push(my);
       if (users) {
         users.forEach(u => {
-          var fu = { userDocId: u.docId, name: u.name, isFamily: true } as LocalBookingUser;
+          var fu = { userDocId: u.docId, name: u.name, isFamily: true, avatarUrl:u.avatarUrl } as LocalBookingUser;
           this.familyBookingUsers.push(fu);
         });
       }
@@ -228,6 +228,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
       userId: this.loggedInAccount.docId,
       userDisplayName: this.loggedInAccount.name,
       amount: fee,
+      avatarUrl: this.user.avatarUrl,
       parentUserId: this.loggedInAccount.docId,
       parentUserDisplayName: this.loggedInAccount.name,
       paymentMethod: this.isCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
@@ -433,6 +434,7 @@ export class BookingDialog {
         userId: u.userDocId,
         userDisplayName: u.name,
         amount: u.amount,
+        avatarUrl: u.avatarUrl,
         parentUserId: this.data.loggedInUser.docId,
         parentUserDisplayName: this.data.loggedInUser.name,
         paymentMethod: this.data.isCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,

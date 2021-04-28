@@ -11,6 +11,16 @@ body div.app {
   }
 }
 
+.avatar {
+  width:30px;
+  height: 30px;
+}
+
+.avatar-large {
+  width:80px;
+  height: 80px;
+}
+
 .app app-resetpassword {
   display: flex;
   flex-direction: column;

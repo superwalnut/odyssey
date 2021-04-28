@@ -1,12 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ViewChild, ElementRef  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../../models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../services/account.service';
 import { BaseComponent } from '../../base-component';
-import { combineLatest } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { combineLatest ,Observable, Subject} from 'rxjs';
+import { take,takeUntil } from 'rxjs/operators';
+import { StorageService } from '../../../services/storage.service';
+import { GlobalConstants } from '../../../common/global-constants';
+import { asLiteral } from '@angular/compiler/src/render3/view/util';
+
 @Component({
   selector: 'app-manage-profile',
   templateUrl: './manage-profile.component.html',
@@ -15,13 +19,19 @@ import { take } from 'rxjs/operators';
 export class ManageProfileComponent extends BaseComponent implements OnInit {
   @Input() userDocId:string;
   @Input() isAdmin:boolean;
+  destroy$: Subject<null> = new Subject();
+  @ViewChild("fileInput", {static: false}) fileInput: ElementRef;
 
   profileForm: FormGroup;
   submitted = false;
   user: User = new User();
   isMainAccount:boolean;
+  files = [];  
+  imageFile;
+  isGod:boolean;
+
   
-  constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router) { super(); }
+  constructor(private fb: FormBuilder, private accountService: AccountService, private storageService:StorageService, private snackBar: MatSnackBar, private router: Router) { super(); }
 
   ngOnInit() {
     this.profileForm = this.fb.group({
@@ -34,6 +44,7 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       isCreditUser:[''],
       disabled:[''],
     });
+    this.isGod = this.accountService.isGod();
 
     this.accountService.getUserByDocId(this.userDocId).subscribe(x => {
       this.user = x;
@@ -151,4 +162,51 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       }
     });
   }
+
+
+  //Image Avatar upload
+  onUploadClick() {  
+    const fileInput = this.fileInput.nativeElement;
+    fileInput .onchange = () => {  
+        this.imageFile = { data: fileInput.files[0], inProgress: false, progress: 0};
+        this.upload();  
+    };  
+    fileInput.click();  
+  }
+
+  private upload() {  
+    this.fileInput.nativeElement.value = '';  
+
+    if (!this.validateFile(this.imageFile.data)) {
+      alert("Image illegal")
+      return false;
+    }
+
+    this.storageService.uploadFileAndGetMetadata("avatar", this.imageFile.data, this.user.docId).downloadUrl$.pipe(takeUntil(this.destroy$)).subscribe(result=>{
+      console.log(result)
+
+      this.user.avatarUrl = result;
+      this.accountService.updateUser(this.user.docId, this.user);
+    })
+  }
+
+  validateFile(file:File) {
+    var size = file.size;
+    var fileType = file.type;
+    console.log('size in KB xxx', size/1024)
+
+    if (size/1024 > GlobalConstants.imageMaxSizeInKb) {
+      alert("Image size must be under " + GlobalConstants.imageMaxSizeInKb + " KB " + size/1024);
+      return false;
+    }
+
+    var allowedType = GlobalConstants.imageFileTypes.includes(fileType);
+    if (!allowedType) {
+      alert("Image type must be JPEG, GIF or PNG ");
+      return false;
+    }
+    return true;
+  }
+
+
 }

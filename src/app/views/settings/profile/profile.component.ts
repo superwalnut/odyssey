@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../../models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,15 +12,22 @@ import { Account } from '../../../models/account';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+
   account: Account;
+  isGod:boolean;
 
-  constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router) {
-
-  }
+  constructor(private fb: FormBuilder, private accountService: AccountService, private snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit() {
     this.account = this.accountService.getLoginAccount();
+    this.isGod = this.accountService.isGod();
 
     console.log('account', this.account);
+
   }
+
+
+
+  
+
 }

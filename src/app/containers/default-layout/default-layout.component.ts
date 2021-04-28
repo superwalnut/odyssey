@@ -14,6 +14,7 @@ export class DefaultLayoutComponent {
   isGod: boolean;
   isAdmin: boolean;
   name: string;
+  avatarUrl:string;
 
   domain:string=environment.domain;
 
@@ -23,6 +24,18 @@ export class DefaultLayoutComponent {
     var acc = this.accountService.getLoginAccount();
     this.name = acc.name;
     this.navItems = this.initNav(this.isAdmin);
+
+
+    this.accountService.getUserByDocId(acc.docId).subscribe(user=>{
+
+      if (user.avatarUrl) {
+        this.avatarUrl = user.avatarUrl;
+      }
+      else {
+        this.avatarUrl = "assets/img/avatars/avatardefault.jpg";
+      }
+
+    });
   }
 
   toggleMinimize(e) {

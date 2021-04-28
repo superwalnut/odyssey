@@ -3,7 +3,24 @@
     <h1>Update Profile <span class="badge badge-success" *ngIf="isMainAccount"> {{ user.isCreditUser ? 'HBCoin User' : 'Cash User'}}</span></h1>
 
 
-    <p class="text-muted">Profile</p>
+
+    <div *ngIf="isGod">
+      <p>Upload your Wechat or Whatsapp avatar.</p>
+      <button mat-button color="primary" (click)="onUploadClick()">  
+        <mat-icon>file_upload</mat-icon> Upload avatar
+      </button>  
+      <p>Max size: 50Kb<br/>
+        Dimension: 300x300PX<br/>
+        
+        </p>
+      <input type="file" #fileInput id="fileUpload" name="fileUpload" accept="image/*" style="display:none;" />
+
+      <p>
+        <img src="{{user.avatarUrl}}" class="avatar-large">
+      </p>
+    </div>
+
+
     <div class="input-group mb-3">
       <mat-form-field>
         <mat-label>Display name</mat-label>

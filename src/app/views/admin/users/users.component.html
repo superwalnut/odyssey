@@ -19,7 +19,8 @@
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
                 <td mat-cell *matCellDef="let element" [ngClass]="{'unpaid-bg':element.user.requireChangePassword}"> 
-                  {{element.user.name}} 
+                  <img src="{{element.user.avatarUrl}}" class="avatar" *ngIf="element.user.avatarUrl"> 
+                   {{element.user.name}} 
                 </td>
             </ng-container>
 
