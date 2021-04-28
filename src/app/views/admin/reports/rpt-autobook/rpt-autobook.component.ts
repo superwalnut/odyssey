@@ -38,6 +38,13 @@ export class RptAutobookComponent implements OnInit, AfterViewInit {
     })
   }
 
+  deleteSchedule(schedule:BookingSchedule) {
+    if (confirm("Autobooking is paid service, are you sure to delete?")) {
+      this.bookingScheduleService.deleteSchedule(schedule.docId);
+    }
+  }
+
+
   editSchedule(schedule:BookingSchedule) {
     console.log(schedule);
     const dialogRef = this.dialog.open(ScheduleDialog, {

@@ -163,7 +163,7 @@ export class BookingsComponent implements OnInit {
       var bookingPerson = {
         groupDocId: groupDocId,
         bookingDocId: bookingDocId,
-        bookingDesc: this.group.groupDesc,
+        bookingDesc: this.group.groupName,
         userId: u.docId,
         userDisplayName: u.name,
         parentUserId: u.parentUserDocId ? u.parentUserDocId : u.docId,
