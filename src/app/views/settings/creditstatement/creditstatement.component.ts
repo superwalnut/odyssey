@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { createNoSubstitutionTemplateLiteral } from 'typescript';
 import { AccountService } from '../../../services/account.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class CreditstatementComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountService.getLoginUser().subscribe(x=>{
+      console.log(x);
       this.userDocId = x.docId;
       this.isCreditUser = x.isCreditUser;
     });
