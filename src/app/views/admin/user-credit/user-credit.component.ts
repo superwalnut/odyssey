@@ -110,8 +110,8 @@ export class UserCreditComponent implements OnInit {
       }
       
       if (!this.user.isCreditUser && credit.amount >= 100) {
-        this.user.isCreditUser = true;
-        this.accountService.updateUser(this.userDocId, this.user);
+        const update = { isCreditUser: true } as User;
+        this.accountService.updateUser(this.userDocId, update);
       }
       this.isLoading = false;
     });

@@ -182,8 +182,9 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
     this.storageService.uploadFileAndGetMetadata("avatar", this.imageFile.data, this.user.docId).downloadUrl$.pipe(takeUntil(this.destroy$)).subscribe(result=>{
       console.log(result)
 
-      this.user.avatarUrl = result;
-      this.accountService.updateUser(this.user.docId, this.user);
+      //this.user.avatarUrl = result;
+      const updated = { avatarUrl: result } as User;
+      this.accountService.updateUser(this.user.docId, updated);
     })
   }
 
