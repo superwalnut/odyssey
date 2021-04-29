@@ -11,13 +11,14 @@ import { BookingSchedule } from "../../../models/booking-schedule";
 import { EventLoggerService } from '../../../services/event-logger.service';
 import { EventLogger } from '../../../models/event-logger';
 import { Account } from "../../../models/account";
+import { BaseComponent } from '../../base-component';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit, AfterViewInit {
+export class UsersComponent extends BaseComponent implements OnInit, AfterViewInit {
   loggedInAccount: Account;
   totalUserCount: number;
   isGod:boolean;
@@ -25,8 +26,11 @@ export class UsersComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['name', 'iscredituser', 'families', 'grade', 'created', 'docId' ];
   dataSource: MatTableDataSource<UserFamily>;
   @ViewChild(MatSort) sort: MatSort;
+  users:User[];
 
-  constructor(private accountService: AccountService, private dialogRef: MatDialog, public dialog: MatDialog) { }
+  constructor(private accountService: AccountService, private dialogRef: MatDialog, public dialog: MatDialog) { 
+    super();
+  }
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
@@ -36,6 +40,8 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.accountService.getAllUsers().subscribe((x) => {
+      this.users = x;
+      console.log('users',x.filter(o=>(o.isCreditUser == undefined || o.isMember == undefined || o.disabled == undefined) && o.isChild == false));
       this.totalUserCount = x.length;
       const userFamilies = x.filter(u => u.parentUserDocId == null).map(m => {
         return {
@@ -74,6 +80,29 @@ export class UsersComponent implements OnInit, AfterViewInit {
     });
   }
 
+  downloadAllUsers() {
+      const data = this.users.map(c=>{
+        return {
+          'userId': c.docId,
+          'name': c.name,
+          'email': c.email,
+          'mobile': c.mobile,
+          'gender': c.gender,
+          'isMember': c.isMember,
+          'disabled': c.disabled,
+          'isCreditUser':c.isCreditUser,
+          'created': c.created.toDate(),
+          'updated': c.updated.toDate(),
+          'grade': c.grade,
+          'gradePoints': c.gradePoints,
+          'isChild': c.isChild,
+          'parentUserDocId': c.parentUserDocId,
+          'parentUserName': c.parentUserDisplayName,
+        };
+      });
+      console.log('downloadusers', data);
+      super.downloadFile(data, 'user-lists');
+  }
 
 }
 

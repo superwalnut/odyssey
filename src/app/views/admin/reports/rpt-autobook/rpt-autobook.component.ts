@@ -7,13 +7,14 @@ import { BookingScheduleService } from '../../../../services/booking-schedule.se
 import { BookingSchedule } from '../../../../models/booking-schedule';
 import { EventLoggerService } from '../../../../services/event-logger.service';
 import { EventLogger } from '../../../../models/event-logger';
+import { BaseComponent } from '../../../base-component';
 
 @Component({
   selector: 'app-rpt-autobook',
   templateUrl: './rpt-autobook.component.html',
   styleUrls: ['./rpt-autobook.component.scss']
 })
-export class RptAutobookComponent implements OnInit, AfterViewInit {
+export class RptAutobookComponent extends BaseComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = [
     "groupName",
@@ -25,14 +26,17 @@ export class RptAutobookComponent implements OnInit, AfterViewInit {
   ];
   dataSource = new MatTableDataSource<BookingSchedule>();
   @ViewChild(MatSort) sort: MatSort;
+  autoBookings:BookingSchedule[];
 
-
-  constructor(private bookingScheduleService:BookingScheduleService, public dialog: MatDialog) { }
+  constructor(private bookingScheduleService:BookingScheduleService, public dialog: MatDialog) {
+    super();
+  }
 
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
     this.bookingScheduleService.getAllBookingSchedules().subscribe(x=>{
+      this.autoBookings = x;
       this.dataSource = new MatTableDataSource(x);
       this.dataSource.sort = this.sort;
     })
@@ -61,6 +65,21 @@ export class RptAutobookComponent implements OnInit, AfterViewInit {
     });
   }
 
+  downloadAllBookingSchedule() {
+      const data = this.autoBookings.map(c=>{
+        return {
+          'userId': c.user.docId,
+          'userName': c.user.name,
+          'createdOn': c.createdOn.toDate(),
+          'expireOn' : c.expireOn.toDate(),
+          'groupDocId': c.groupDocId,
+          'groupName': c.groupName,
+          'isPaused': c.isPaused,
+        };
+      });
+      console.log('downloadautobooking', data);
+      super.downloadFile(data, 'booking-schedules');
+  }
 }
 
 

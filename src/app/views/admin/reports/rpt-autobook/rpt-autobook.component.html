@@ -54,6 +54,9 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
 
+          <div class="mt-4">
+            <button mat-raised-button (click)="downloadAllBookingSchedule()">Download Autobookings</button>
+          </div>
         </div>
     </div>
 </div>

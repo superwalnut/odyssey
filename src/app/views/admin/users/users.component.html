@@ -71,9 +71,11 @@
                 <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
             </tr>
         </table>
-
         <span class="unpaid-bg">Users who never logged in</span>
 
+        <div class="mt-4">
+          <button mat-raised-button (click)="downloadAllUsers()">Download Users Csv</button>
+        </div>
       </div>
       </div>
     </div>

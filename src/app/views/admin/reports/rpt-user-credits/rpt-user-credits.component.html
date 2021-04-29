@@ -10,7 +10,6 @@
             Last Updated: {{lastUpdated.toDate() | date : 'short'}}
         </div>
         <button mat-raised-button  color="primary" (click)="onCreateClick()">Generate Report</button>
-        <button mat-raised-button *ngIf="userBalances"  color="primary" (click)="downloadFile()">DownloadCsv</button>
 
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
             <ng-container matColumnDef="userName">
@@ -45,6 +44,9 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
 
+          <div class="mt-4">
+            <button mat-raised-button *ngIf="userBalances" (click)="downloadFile()">Download User Balance</button>
+          </div>
         </div>
     </div>
 </div>

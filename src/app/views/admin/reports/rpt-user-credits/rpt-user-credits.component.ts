@@ -13,6 +13,7 @@ import { CreditBalanceService } from '../../../../services/credit-balance.servic
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { combineLatest, Observable } from 'rxjs';
+import { Credit } from '../../../../models/credit';
 
 @Component({
   selector: 'app-rpt-user-credits',
