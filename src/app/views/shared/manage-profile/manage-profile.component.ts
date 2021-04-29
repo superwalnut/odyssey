@@ -79,27 +79,33 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
     }
 
     console.log('profile', this.profileForm);
-
-    var user = {
-      name: this.profileForm.value.name,
-      email: this.profileForm.value.email,
-      mobile: this.profileForm.value.mobile,
-      gender: this.profileForm.value.gender??'',
-      isChild: this.profileForm.value.agegroup == 'Child'?true:false,
-      
-    } as User;
+    var user = {} as User;
 
     if(this.isAdmin){
-      user.isMember = this.profileForm.value.isMember ;
-      //isMember: this.profileForm.value.isMember,
-      user.isCreditUser = this.profileForm.value.isCreditUser;
-      user.disabled = this.profileForm.value.disabled;
+      user = {
+        name: this.profileForm.value.name,
+        email: this.profileForm.value.email,
+        mobile: this.profileForm.value.mobile,
+        gender: this.profileForm.value.gender??'',
+        isChild: this.profileForm.value.agegroup == 'Child'?true:false,
+        isMember: this.profileForm.value.isMember,
+        isCreditUser: this.profileForm.value.isCreditUser,
+        disabled: this.profileForm.value.disabled
+      } as User;
+    } else {
+      user = {
+        name: this.profileForm.value.name,
+        email: this.profileForm.value.email,
+        mobile: this.profileForm.value.mobile,
+        gender: this.profileForm.value.gender??'',
+        isChild: this.profileForm.value.agegroup == 'Child'?true:false,
+        
+      } as User;
     }
 
     user.name = user.name.trim();
     console.log(user);
     //return false;
-
 
     const emailCheck$ = this.accountService.isEmailExist(user.email);
     const nameCheck$ = this.accountService.isNameExist(user.name);

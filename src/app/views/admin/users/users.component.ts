@@ -41,7 +41,6 @@ export class UsersComponent extends BaseComponent implements OnInit, AfterViewIn
   ngAfterViewInit(): void {
     this.accountService.getAllUsers().subscribe((x) => {
       this.users = x;
-      console.log('users',x.filter(o=>(o.isCreditUser == undefined || o.isMember == undefined || o.disabled == undefined) && o.isChild == false));
       this.totalUserCount = x.length;
       const userFamilies = x.filter(u => u.parentUserDocId == null).map(m => {
         return {
