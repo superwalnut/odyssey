@@ -40,9 +40,9 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
       mobile: ['', Validators.required],
       gender:[''],
       agegroup:[''],
-      isMember:[''],
-      isCreditUser:[''],
-      disabled:[''],
+      isMember:[false],
+      isCreditUser:[false],
+      disabled:[false],
     });
     this.isGod = this.accountService.isGod();
 
@@ -58,9 +58,9 @@ export class ManageProfileComponent extends BaseComponent implements OnInit {
           mobile: this.user.mobile,
           gender: this.user.gender,
           agegroup: this.user.isChild? "Child" : "Adult",
-          isMember: this.user.isMember,
-          isCreditUser: this.user.isCreditUser,
-          disabled:this.user.disabled,
+          isMember: this.user.isMember??false,
+          isCreditUser: this.user.isCreditUser??false,
+          disabled:this.user.disabled??false,
         }
       );
     });
