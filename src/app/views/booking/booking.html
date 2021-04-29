@@ -2,11 +2,11 @@
 <!-- Modal -->
 <div class="modal-content">
   <div class="modal-header">
-    <h2 class="modal-title" id="exampleModalLongTitle">
+    <h3 class="modal-title" id="exampleModalLongTitle">
       {{ data.group?.groupName}} {{ data.group?.eventStartTime}} | 
       Balance: <span class="badge badge-warning">{{ data.creditBalance | currency}}</span>
       <span class="badge badge-warning">{{data.isCreditUser ? "HBCoin":"Cash"}}</span>
-    </h2>
+    </h3>
     <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
   </div>
 

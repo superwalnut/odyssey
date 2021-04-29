@@ -82,6 +82,7 @@ export class GlobalConstants {
         'image/apng', 'image/gif', 'image/jpeg', 'image/png'
     ];
     public static imageMaxSizeInKb = 50;
+    public static imageDefaultAvatar = "/assets/img/avatars/avatar.jpg";
 
 
     //Good bye lines

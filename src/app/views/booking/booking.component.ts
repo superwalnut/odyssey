@@ -228,7 +228,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
       userId: this.loggedInAccount.docId,
       userDisplayName: this.loggedInAccount.name,
       amount: fee,
-      avatarUrl: this.user.avatarUrl,
+      avatarUrl: this.user.avatarUrl ?? GlobalConstants.imageDefaultAvatar,
       parentUserId: this.loggedInAccount.docId,
       parentUserDisplayName: this.loggedInAccount.name,
       paymentMethod: this.isCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
@@ -365,11 +365,12 @@ export class BookingDialog {
 
 
     if (finalBookingPersonsToAdd.length > 0) {
+      console.log(finalBookingPersonsToAdd);
       this.bookingPersonService.createBookingPersonBatch(finalBookingPersonsToAdd, this.data.booking)
         .then(() => this.dialogRef.close())
         .catch((err) => {
           this.hasError = true;
-          //errorMessage = err.toString();
+          this.errorMessage = err.message;
           console.log(err);
         });
     }
@@ -434,7 +435,7 @@ export class BookingDialog {
         userId: u.userDocId,
         userDisplayName: u.name,
         amount: u.amount,
-        avatarUrl: u.avatarUrl,
+        avatarUrl: u.avatarUrl ?? GlobalConstants.imageDefaultAvatar,
         parentUserId: this.data.loggedInUser.docId,
         parentUserDisplayName: this.data.loggedInUser.name,
         paymentMethod: this.data.isCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
