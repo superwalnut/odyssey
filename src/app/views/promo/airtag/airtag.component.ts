@@ -17,10 +17,14 @@ export class AirtagComponent implements OnInit {
   user:Account;
   promos:PromoAirtag[];
 
+  isLoggedIn:boolean;
+
   constructor(private fb: FormBuilder, private promoAirtagService:PromoAirtagService, private accountService:AccountService) { }
 
   ngOnInit(): void {
     this.user = this.accountService.getLoginAccount();
+    
+    this.isLoggedIn = this.user.name != null;
 
     this.form = this.fb.group({
       songTitle: ['', [Validators.required, Validators.maxLength(30)]],

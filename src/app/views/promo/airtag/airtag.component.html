@@ -19,12 +19,15 @@
                     <li>Keep it creative and fun!</li>
                     
                 </ul>
+
+                <button mat-raised-button color="primary" routerLink="/login" *ngIf="!isLoggedIn">Login to Submit</button>
+
               
             </div>
 
 
             
-            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="isLoggedIn">
                 <mat-form-field>
                     <mat-label>Song title</mat-label>
                     <input matInput placeholder="Max length 30 characters" formControlName="songTitle" maxlength="30" autocomplete="off"/>
@@ -40,7 +43,7 @@
 
 
 
-      <div class="row light">
+      <div class="row light"  *ngIf="isLoggedIn">
         <div class="col">
 
             <table class="table table-sm">
