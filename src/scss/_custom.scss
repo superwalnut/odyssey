@@ -362,7 +362,13 @@ ul.hpbooking {
     }
   }
 
-
+  .row {
+    .col section,
+    .col-sm section {
+      padding: 0;
+    }
+  }
+  
   .col {
     padding-left: 0;
     padding-right: 0;
