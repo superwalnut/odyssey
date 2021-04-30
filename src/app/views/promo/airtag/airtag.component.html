@@ -1,0 +1,106 @@
+<app-public-header></app-public-header>
+
+
+<div class="app footer-fixed">
+    <div class="container">
+      <div class="row light">
+        <div class="col">
+
+            <img src="./assets/img/banners/PromoAirtag.jpg" class="responsive"/>      
+            <div class="jumbotron">
+                <h1 class="display-4">Write a line, Win Airtag!</h1>
+                <p class="lead">Submit song's title and a line of lyrics, if your submission get picked into the final song, you get a chance to win Airtags!</p>
+                <hr class="my-4">
+                <ul>
+                    <li>HBC is creating a club song! and we are all part of it!</li>
+                    <li>A song about badminton, sports or positive lifestyles in general</li>
+                    <li>No limit on how long or short your lyrics is.</li>
+                    <li>Multiple submissions are allowed.</li>
+                    <li>Keep it creative and fun!</li>
+                    
+                </ul>
+              
+            </div>
+
+
+            
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <mat-form-field>
+                    <mat-label>Song title</mat-label>
+                    <input matInput placeholder="Max length 30 characters" formControlName="songTitle" maxlength="30" autocomplete="off"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Lyrics</mat-label>
+                    <textarea matInput placeholder="Max length 500 characters" formControlName="songLine" maxlength="800" autocomplete="off"></textarea>
+                </mat-form-field>
+                <button mat-raised-button color="primary">Submit</button>
+            </form>
+        </div>
+      </div>
+
+
+
+      <div class="row light">
+        <div class="col">
+
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Lyrics</th>
+                        <th scope="col">User</th>
+                        <th scope="col">On</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let u of promos">
+                    <td>{{ u.songTitle }}</td>
+                    <td>{{ u.songLine }}</td>
+                    <td>{{ u.createdByDisplayName }}</td>
+                    <td>{{ u.createdOn.toDate() | date: 'MM/dd/yyyy HH:mm'}}</td>
+                    <th>
+                
+                    <button mat-icon-button color="warn" (click)="remove(u)" *ngIf="u.createdBy == user.docId">
+                        <mat-icon>remove_circle</mat-icon>
+                    </button>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+  
+
+
+  
+     
+  
+
+  
+
+    </div>
+  </div>
+
+  
+
+
+
+
+
+<footer class="app-footer">
+    <div>
+        <a href="{{domain}}">HBC</a>
+        <span>&copy; 2021.</span>
+    </div>
+    <div class="ml-auto">
+
+        <a routerLink="/termsconditions">FAQs</a>
+    </div>
+</footer>
+
+
+

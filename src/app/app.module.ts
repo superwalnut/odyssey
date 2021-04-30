@@ -71,6 +71,7 @@ import { SharedModule } from "./views/shared/shared.module";
 import { GroupsComponent } from './views/groups/groups.component';
 import { HttpClientModule } from "@angular/common/http";
 import { CreateNewPasswordComponent } from "./views/create-new-password/create-new-password.component";
+import { AirtagComponent } from './views/promo/airtag/airtag.component';
 
 @NgModule({
   imports: [
@@ -116,6 +117,7 @@ import { CreateNewPasswordComponent } from "./views/create-new-password/create-n
     BookingDialog,
     WithdrawDialog,
     CreateNewPasswordComponent,
+    AirtagComponent,
   ],
   providers: [
     {

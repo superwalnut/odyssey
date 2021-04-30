@@ -16,6 +16,8 @@ import { TermsComponent } from "./views/terms/terms.component";
 import { LogoutComponent } from "./views/logout/logout.component";
 import { ResetpasswordComponent } from "./views/resetpassword/resetpassword.component";
 import { CreateNewPasswordComponent } from "./views/create-new-password/create-new-password.component";
+import { AirtagComponent } from "./views/promo/airtag/airtag.component";
+
 export const routes: Routes = [
   {
     path: "",
@@ -46,6 +48,13 @@ export const routes: Routes = [
     component: TermsComponent,
     data: {
       title: "Terms & Conditions",
+    },
+  },
+  {
+    path: "promo/airtag",
+    component: AirtagComponent,
+    data: {
+      title: "Airtag promotion",
     },
   },
   {
