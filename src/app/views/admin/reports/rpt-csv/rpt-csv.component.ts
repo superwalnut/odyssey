@@ -75,8 +75,20 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
       this.groupTransactionService.getByGroupId(this.selectedGroupIdForGroupTransaction).pipe(takeUntil(this.ngUnsubscribe)).subscribe(x=>{
         const report = x.map(g=>{
           return {
-            ...g,
-            formattedCreateDate : this.pipe.transform(g.created.toDate(), 'short'),
+            docId: g.docId,
+            groupDocId: g.groupDocId,
+            referenceId: g.referenceId,
+            notes: g.notes,
+            amount: g.amount,
+            paymentMethod: g.paymentMethod,
+            startDate: g.startDate?this.pipe.transform(g.startDate.toDate(), 'short'):'',
+            endDate: g.endDate?this.pipe.transform(g.endDate.toDate(), 'short'):'',
+            created : this.pipe.transform(g.created.toDate(), 'short'),
+            createdBy: g.createdBy,
+            createdByName: g.createdByDisplayName,
+            updated: g.updated?this.pipe.transform(g.updated.toDate(), 'short'):'',
+            updatedBy: g.updatedBy,
+            updatedByName: g.updatedByDisplayName,
           };
         });
         this.snackBar.open(`you have successfully download the group transactions.`, null, {
@@ -95,8 +107,22 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
       this.bookingPersonService.getByGroupId(this.selectedGroupIdForBookingPerson).pipe(takeUntil(this.ngUnsubscribe)).subscribe(x=>{
         const report = x.map(g=>{
           return {
-            ...g,
-            formattedCreateDate : this.pipe.transform(g.createdOn.toDate(), 'short'),
+            docId: g.docId,
+            bookingDocId: g.bookingDocId,
+            groupDocId: g.groupDocId,
+            bookingDesc: g.bookingDesc,
+            userId: g.userId,
+            username: g.userDisplayName,
+            notes: g.notes,
+            paymentMethod: g.paymentMethod,
+            parentUserId: g.parentUserId,
+            parentUsername: g.parentUserDisplayName,
+            isForSale: g.isForSale,
+            amount: g.amount,
+            avatarUrl: g.avatarUrl,
+            isPaid: g.isPaid,
+            createdDate : this.pipe.transform(g.createdOn.toDate(), 'short'),
+            updatedDate: g.updatedOn?this.pipe.transform(g.updatedOn.toDate(), 'short'):'',
           };
         });
         this.snackBar.open(`you have successfully download the booking persons.`, null, {
