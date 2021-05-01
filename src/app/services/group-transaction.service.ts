@@ -210,10 +210,19 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
 
   //TODO: get transaction by date range
   public getByDateRange(groupDocId: string, startDate: Timestamp, endDate: Timestamp) {
-
+    return this.firestore.collection('groupTransactions', q => q.where('groupDocId', '==', groupDocId).where('created', '>=', startDate).where("created", "<", endDate)).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(x => (x.payload.doc.data() as GroupTransaction));
+      })
+    );
   }
 
-
-
+  public getByGroupId(groupDocId:string) {
+    return this.firestore.collection('groupTransactions', q => q.where('groupDocId', '==', groupDocId)).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(x => (x.payload.doc.data() as GroupTransaction));
+      })
+    );
+  }
 
 }
