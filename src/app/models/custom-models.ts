@@ -28,6 +28,7 @@ export class LocalBookingUser {
 export class UserSelection {
   docId: string;
   name: string;
+  avatarUrl: string;
   selected: boolean;
   parentUserDocId: string;
   parentUserDisplayName: string;

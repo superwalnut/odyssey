@@ -114,6 +114,7 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
       width: '650px',
       data: {
         loggedInUser: this.loggedInAccount,
+        user: this.user,
         group: this.selectedGroup,
         family: this.familyMembers,
         mySchedules: this.mySchedules,
@@ -183,13 +184,13 @@ export class BookingSchedulerDialog {
     //console.log('has found: ', found);
     let found = this.myActiveSchedules.find(x=>x.user.docId == this.data.loggedInUser.docId);
     if (!found) {
-      this.userSelectList.push({ docId: this.data.loggedInUser.docId, name: this.data.loggedInUser.name, selected: false, parentUserDocId: this.data.loggedInUser.docId, parentUserDisplayName: this.data.loggedInUser.name } as UserSelection);
+      this.userSelectList.push({ docId: this.data.loggedInUser.docId, name: this.data.loggedInUser.name, avatarUrl: this.data.user.avatarUrl, selected: false, parentUserDocId: this.data.loggedInUser.docId, parentUserDisplayName: this.data.loggedInUser.name } as UserSelection);
     }
 
     this.data.family.forEach(f => {
       let found = this.myActiveSchedules.find(x=>x.user.docId == f.docId);
       if (!found) {
-        let u = { docId: f.docId, name: f.name, selected: false, parentUserDocId: f.parentUserDocId, parentUserDisplayName: f.parentUserDisplayName, } as UserSelection;
+        let u = { docId: f.docId, name: f.name, avatarUrl: this.data.user.avatarUrl, selected: false, parentUserDocId: f.parentUserDocId, parentUserDisplayName: f.parentUserDisplayName, } as UserSelection;
         this.userSelectList.push(u);
       }
     })
@@ -201,6 +202,7 @@ export class BookingSchedulerDialog {
     let users = userSelectList.map(s=> ({
       docId: s.docId,
       name: s.name,
+      avatarUrl: this.data.user.avatarUrl,
       parentUserDocId: s.parentUserDocId,
       parentUserDisplayName: s.parentUserDisplayName
     }) as User);
@@ -286,6 +288,7 @@ export class BookingSchedulerDialog {
 
 export interface BookingSchedulerDialogData {
   loggedInUser: Account,
+  user: User,
   group: Group,
   family: User[],
   mySchedules: BookingSchedule[],

@@ -165,6 +165,7 @@ export class BookingsComponent implements OnInit {
         bookingDocId: bookingDocId,
         bookingDesc: this.group.groupName,
         userId: u.docId,
+        avatarUrl: u.avatarUrl,
         userDisplayName: u.name,
         parentUserId: u.parentUserDocId ? u.parentUserDocId : u.docId,
         parentUserDisplayName: u.parentUserDisplayName ? u.parentUserDisplayName : u.name,
