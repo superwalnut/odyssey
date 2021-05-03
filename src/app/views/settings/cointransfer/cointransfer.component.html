@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="card">
+            <div class="card-body p-4">      
+                <h2>HBCoin Transfer</h2>  
+
+                Transfer Coins between HBCoin main account users (not family members)
+
+                <h3>Your Balance <span class="badge badge-light">{{ balance | currency }}</span> 
+                    <span class="badge badge-warning">HBCoin</span></h3>
+                  
+                <div *ngIf="!confirmClicked">
+                    <form [formGroup]="form">
+                        <div class="p-3 mb-2 bg-danger text-white" *ngIf="!recipientValid">You must select a valid recipient</div>
+                        <p>
+                            <mat-form-field>
+                                <mat-label>Search recipient name</mat-label>
+                                <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" >
+                                <mat-autocomplete #auto="matAutocomplete" >
+                                <mat-option *ngFor="let user of filteredUsers | async" [value]="user">{{user}}</mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </p>
+    
+                        <mat-form-field>
+                            <mat-label>HBCoins</mat-label>
+                            <input matInput placeholder="Amount between 0 and 100" type="number" formControlName="amount" min="0" max="100" required autocomplete="off"/>
+                        </mat-form-field>
+                        <div *ngIf="f.amount.invalid && (f.amount.dirty || f.amount.touched)" class="invalid-feedback">
+                            <div *ngIf="f.amount.errors">Amount must be greater than 0 and less than 100</div>
+                        </div>
+    
+                        <p>
+                            <mat-form-field>
+                                <mat-label>Notes</mat-label>
+                                <input matInput placeholder="Notes for this transfer" type="text" formControlName="notes" maxlength="100" required autocomplete="off"/>
+                            </mat-form-field>
+                        </p>
+    
+                        <button mat-raised-button color="primary" (click)="confirm(myControl)" [disabled]="form.invalid">Confirm</button>
+                    </form>
+                </div>
+                
+
+                <div *ngIf="confirmClicked"> 
+
+                    <div class="p-3 mb-2 bg-success text-white" *ngIf="transferClicked && transferSuccess">
+                        Transfer successful.
+                        <button mat-raised-button routerLink="/settings/creditstatement">View statement</button>
+                    </div>
+                    <div class="p-3 mb-2 bg-danger text-white" *ngIf="transferClicked && !transferSuccess">
+                        Transfer failed.
+                    </div>
+
+
+                    <table class="table borderless">
+                        <tr>
+                            <th style="width: 80px;">From</th>
+                            <td>{{ fromCredit?.userDisplayName}}</td>
+                        </tr>
+                        <tr>
+                            <th>To</th>
+                            <td>{{ toCredit?.userDisplayName }}</td>
+                        </tr>
+                        <tr>
+                            <th>Amount</th>
+                            <td>{{ fromCredit?.amount}} HBCoins</td>
+                        </tr>
+                        <tr>
+                            <th>Notes</th>
+                            <td>{{ fromCredit?.note}}</td>
+                        </tr>
+                    </table>
+                
+
+                    <div *ngIf="!transferSuccess">
+                        <button mat-raised-button (click)="transferCancel()">Cancel</button>
+                        <button mat-raised-button color="primary" (click)="transfer()" *ngIf="!isLoading">Transfer</button>
+                        <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+                    </div>
+                  
+
+                   
+                </div>
+
+                
+
+            </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+</div>

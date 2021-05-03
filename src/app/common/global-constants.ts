@@ -23,6 +23,7 @@ export class GlobalConstants {
     public static creditCategoryPromo = 'Promo';
     public static creditCategoryCashout = 'Cashout';
     public static creditCategoryAdjustment = 'Adjustment';
+    public static creditCategoryUserTransfer = 'User Transfer';
     public static creditCategoryOther = 'Other';
 
 
@@ -75,6 +76,8 @@ export class GlobalConstants {
     public static eventFamilyMember: string = "family member change";
     public static eventWebActivity: string = "login/web activity"; //for user is browsing the website
     public static eventDividend: string = "grouop devidend";
+    public static eventCreditTransfer: string = "credit user transfer";
+
 
 
     //image upload

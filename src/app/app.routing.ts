@@ -18,6 +18,7 @@ import { ResetpasswordComponent } from "./views/resetpassword/resetpassword.comp
 import { CreateNewPasswordComponent } from "./views/create-new-password/create-new-password.component";
 import { AirtagComponent } from "./views/promo/airtag/airtag.component";
 
+
 export const routes: Routes = [
   {
     path: "",

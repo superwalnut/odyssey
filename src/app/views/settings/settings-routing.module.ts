@@ -6,6 +6,7 @@ import { ProfileComponent } from "./profile/profile.component";
 import { AutobookingComponent } from "./autobooking/autobooking.component";
 import { CreditstatementComponent } from "./creditstatement/creditstatement.component";
 import { AttendancehistoryComponent } from "./attendancehistory/attendancehistory.component";
+import { CointransferComponent } from "./cointransfer/cointransfer.component";
 
 const routes: Routes = [
   {
@@ -61,6 +62,12 @@ const routes: Routes = [
           title: "Statement",
         },
       },
+      {
+        path: "transfer",
+        component: CointransferComponent,
+        
+      },
+
     ],
   },
 ];

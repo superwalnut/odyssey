@@ -13,6 +13,7 @@ import { CreditstatementComponent } from "./creditstatement/creditstatement.comp
 import { AppMaterialModule } from "../../app-material.module";
 import { AttendancehistoryComponent } from "./attendancehistory/attendancehistory.component";
 import { SharedModule } from "../shared/shared.module";
+import { CointransferComponent } from './cointransfer/cointransfer.component';
 
 AppMaterialModule;
 @NgModule({
@@ -34,7 +35,8 @@ AppMaterialModule;
     AutobookingComponent,
     CreditstatementComponent,
     AttendancehistoryComponent,
-    BookingSchedulerDialog
+    BookingSchedulerDialog,
+    CointransferComponent
   ],
 })
 export class SettingsModule { }

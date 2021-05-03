@@ -15,6 +15,7 @@ import { GlobalConstants } from '../common/global-constants';
 import { FirestoreBaseService } from './firestore-base.service';
 import Timestamp = firebase.firestore.Timestamp;
 import { UserBalance } from '../models/user-balance';
+import { formatCurrency } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,43 @@ export class CreditService extends FirestoreBaseService<Credit>{
     batch.set(ref, log);
 
     return batch.commit();
+  }
+
+  public userCreditTransfer(from: Credit, to:Credit) {
+    console.log('transfer from: ', from);
+    console.log('transfer to: ', to);
+    if (!from.userDocId || !to.userDocId) return Promise.reject('no user is provided');
+    var batch = this.firestore.firestore.batch();
+
+    var refFrom = this.firestore.collection('credits').doc().ref;
+    from.created = Timestamp.now();
+    from.amount = -from.amount;
+    from.note = "Transfer to " + to.userDisplayName + ": " + from.note;
+    batch.set(refFrom, from);
+
+    var refTo = this.firestore.collection('credits').doc().ref;
+    to.created = Timestamp.now();
+    to.amount = to.amount;
+    to.note = "Transfer from " + from.userDisplayName + ": " + to.note;
+
+    batch.set(refTo, to);
+
+    var ref = this.firestore.collection('eventLogs').doc().ref;
+    var log = {
+      eventCategory: GlobalConstants.eventCreditTransfer,
+      notes: from.userDisplayName + ' to ' + to.userDisplayName + ':' + to.amount,
+      createdOn: Timestamp.now(),
+      createdBy: from.userDocId,
+      createdByDisplayName: from.userDisplayName,
+    } as EventLogger;
+    batch.set(ref, log);
+
+    return batch.commit();
+
+
+
+
+
   }
   //  public createCredit(credit:Credit, previousBalance:number, createdBy:string, createdByDisplayName:string) {
   //   if(credit.userDocId){
