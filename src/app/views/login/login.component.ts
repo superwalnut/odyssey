@@ -82,6 +82,14 @@ export class LoginComponent implements OnInit {
             returnUrl = '/dashboard';
           this.router.navigateByUrl(returnUrl);
         }
+
+        var log = {
+          eventCategory: GlobalConstants.eventWebActivity,
+          notes: x.name + ' login success',
+        } as EventLogger
+        this.eventLogService.createLog(log, x.docId, x.name);
+
+
       } else {
         this.loginSuccess = false;
         this.snackBar.open(`Failed to login, your username/password is incorrect.`, null, {
@@ -91,10 +99,6 @@ export class LoginComponent implements OnInit {
       }
     });
 
-    var log = {
-      eventCategory: GlobalConstants.eventWebActivity,
-      notes: this.loginForm.value.phone + ' login ' + this.loginSuccess ? 'success':'failed'
-    } as EventLogger
-    this.eventLogService.createLog(log, '', this.loginForm.value.phone);
+    
   }
 }
