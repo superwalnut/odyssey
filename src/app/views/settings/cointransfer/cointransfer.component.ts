@@ -34,12 +34,18 @@ export class CointransferComponent extends BaseComponent implements OnInit {
   transferClicked:boolean;
   transferSuccess:boolean;
   balance:number;
+  user:User;
 
 
   constructor(private fb: FormBuilder, private router: Router, private accountService:AccountService, private creditService:CreditService) { super() }
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
+    this.accountService.getLoginUser().subscribe(result=>{
+      this.user = result;
+      console.log(this.user)
+    })
+
     this.getMyCreditBalance();
 
     this.filteredUsers = this.myControl.valueChanges
@@ -81,6 +87,11 @@ export class CointransferComponent extends BaseComponent implements OnInit {
   }
 
   confirm(mycontrol) {
+
+    if (!this.user.isCreditUser) {
+      alert("you are not an HBCoin User!");
+      return false;
+    }
 
     if (mycontrol.value == null) {
       this.recipientValid = false;
@@ -146,8 +157,12 @@ export class CointransferComponent extends BaseComponent implements OnInit {
     console.log(this.fromCredit);
     console.log(this.toCredit);
 
+    if (!this.user.isCreditUser) {
+      alert("you are not an HBCoin User!");
+      return false;
+    }
+
     if (!this.transferValidation()) {
-      alert("asfd");
       return false;
     }
     this.isLoading = true;

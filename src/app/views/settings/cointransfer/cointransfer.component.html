@@ -7,10 +7,13 @@
 
                 Transfer Coins between HBCoin main account users (not family members)
 
-                <h3>Your Balance <span class="badge badge-light">{{ balance | currency }}</span> 
-                    <span class="badge badge-warning">HBCoin</span></h3>
+                <h3>Your Balance <span class="badge badge-light">{{ balance | currency }}</span> <span class="badge badge-warning">HBCoin</span></h3>
+                <div class="p-3 mb-2 bg-danger text-white" *ngIf="!user?.isCreditUser">This service is only available to HBCoin users</div>
+
+
+                
                   
-                <div *ngIf="!confirmClicked">
+                <div *ngIf="!confirmClicked && user?.isCreditUser">
                     <form [formGroup]="form">
                         <div class="p-3 mb-2 bg-danger text-white" *ngIf="!recipientValid">You must select a valid recipient</div>
                         <p>
@@ -43,7 +46,7 @@
                 </div>
                 
 
-                <div *ngIf="confirmClicked"> 
+                <div *ngIf="confirmClicked  && user?.isCreditUser"> 
 
                     <div class="p-3 mb-2 bg-success text-white" *ngIf="transferClicked && transferSuccess">
                         Transfer successful.

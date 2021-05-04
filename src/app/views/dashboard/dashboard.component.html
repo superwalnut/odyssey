@@ -85,8 +85,8 @@
         </ul> -->
         <div class="card-body">
           <a routerLink="/settings/creditstatement" class="card-link">STATEMENT</a>
-          <a routerLink="/settings/creditstatement" class="card-link">TOP UP</a>
-          <a routerLink="/settings/transfer" class="card-link">TRANSFER</a>
+          <a routerLink="/settings/creditstatement" class="card-link" *ngIf="user?.isCreditUser">TOP UP</a>
+          <a routerLink="/settings/transfer" class="card-link" *ngIf="user?.isCreditUser">TRANSFER</a>
         </div>
       </div>
     </div>
