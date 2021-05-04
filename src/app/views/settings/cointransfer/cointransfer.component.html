@@ -48,11 +48,11 @@
                     <div class="p-3 mb-2 bg-success text-white" *ngIf="transferClicked && transferSuccess">
                         Transfer successful.
                         <button mat-raised-button routerLink="/settings/creditstatement">View statement</button>
+                        <button mat-raised-button (click)="newTransferClick()">Make another transfer</button>
                     </div>
                     <div class="p-3 mb-2 bg-danger text-white" *ngIf="transferClicked && !transferSuccess">
                         Transfer failed.
                     </div>
-
 
                     <table class="table borderless">
                         <tr>
@@ -73,19 +73,13 @@
                         </tr>
                     </table>
                 
-
                     <div *ngIf="!transferSuccess">
                         <button mat-raised-button (click)="transferCancel()">Cancel</button>
                         <button mat-raised-button color="primary" (click)="transfer()" *ngIf="!isLoading">Transfer</button>
                         <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
                     </div>
-                  
-
                    
                 </div>
-
-                
-
             </div>
         </div>
 

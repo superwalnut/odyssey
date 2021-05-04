@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { Observable } from 'rxjs';
 import { filter, map, mergeMap, startWith, take } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { BaseComponent } from '../../base-component';
 import { AccountService } from '../../../services/account.service';
@@ -35,7 +36,7 @@ export class CointransferComponent extends BaseComponent implements OnInit {
   balance:number;
 
 
-  constructor(private fb: FormBuilder, private accountService:AccountService, private creditService:CreditService) { super() }
+  constructor(private fb: FormBuilder, private router: Router, private accountService:AccountService, private creditService:CreditService) { super() }
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
@@ -103,8 +104,6 @@ export class CointransferComponent extends BaseComponent implements OnInit {
       return false;
     }
 
-
-
     if (selectedUser.parentUserDocId) {
       //error, this account is not a main account
       alert("This is a family member account, you must select a main account to transfer");
@@ -117,9 +116,6 @@ export class CointransferComponent extends BaseComponent implements OnInit {
     }
 
     this.confirmClicked = true;
-
-
-
     console.log(selectedUser)
     this.toCredit = {
       userDisplayName: selectedUser.name,
@@ -140,6 +136,10 @@ export class CointransferComponent extends BaseComponent implements OnInit {
 
   transferCancel() {
     this.confirmClicked = false;
+  }
+
+  newTransferClick() {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=> this.router.navigate(['/settings/transfer']));
   }
 
   transfer() {
@@ -164,8 +164,6 @@ export class CointransferComponent extends BaseComponent implements OnInit {
       
       this.isLoading = false;
     })
-
-
   }
 
   transferValidation() {

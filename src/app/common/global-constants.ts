@@ -76,7 +76,7 @@ export class GlobalConstants {
     public static eventFamilyMember: string = "family member change";
     public static eventWebActivity: string = "login/web activity"; //for user is browsing the website
     public static eventDividend: string = "grouop devidend";
-    public static eventCreditTransfer: string = "credit user transfer";
+    public static eventCreditTransfer: string = "HBCoin transfer";
 
 
 
