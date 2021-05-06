@@ -86,11 +86,10 @@ export class BookingComponent extends BaseComponent implements OnInit {
   }
 
   logToEvent(acc:Account) {
-    
     if (acc.name == "Luc" || acc.name == "Josh Zhang") {
       return false;
     }
-    
+   
     var log = {
       eventCategory: GlobalConstants.eventWebActivity,
       notes: 'Viewing bookings',

@@ -24,7 +24,7 @@ export class EventLoggerService extends FirestoreBaseService<EventLogger>{
   }
 
   getAllEventLogs() {
-    return this.firestore.collection('eventLogs', q => q.orderBy('createdOn', 'desc')).snapshotChanges().pipe(
+    return this.firestore.collection('eventLogs', q => q.orderBy('createdOn', 'desc').limit(1600)).snapshotChanges().pipe(
       map(actions => {
         var items = actions.map(p => {
           var data = p.payload.doc.data() as EventLogger;
