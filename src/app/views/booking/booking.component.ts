@@ -21,7 +21,6 @@ import { BaseComponent } from '../base-component';
 import { Booking } from '../../models/booking';
 import { LocalBookingUser } from '../../models/custom-models';
 import { map, mergeMap } from 'rxjs/operators';
-import { features } from 'node:process';
 import { EventLoggerService } from '../../services/event-logger.service';
 import { EventLogger } from '../../models/event-logger';
 import { User } from '../../models/user';
