@@ -75,7 +75,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
       this.user = result[0];
       this.isCreditUser = result[0].isCreditUser;
       this.creditBalance = result[1];
-      this.logToEvent(result[0]);
+      
     })
 
     this.getGroupDetail(this.groupDocId);
@@ -83,15 +83,19 @@ export class BookingComponent extends BaseComponent implements OnInit {
     this.getCurrentBookingPersons(this.bookingDocId);
     this.getFriendsList(this.loggedInAccount);
     this.getFamilyMembers(this.loggedInAccount);
-    
+    this.logToEvent(this.loggedInAccount);
   }
 
-  logToEvent(user:User) {
+  logToEvent(acc:Account) {
+    if (acc.name == "Luc" || acc.name == "Josh Zhang") {
+      return false;
+    }
+    
     var log = {
       eventCategory: GlobalConstants.eventWebActivity,
       notes: 'Viewing bookings',
     } as EventLogger
-    this.eventLogService.createLog(log, user.docId, user.name);
+    this.eventLogService.createLog(log, acc.docId, acc.name);
   }
 
   getGroupDetail(groupDocId: string) {
