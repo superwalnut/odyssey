@@ -38,7 +38,8 @@
                 
                 <td>
                   <img src="{{p.avatarUrl}}" class="avatar" *ngIf="p.avatarUrl">
-                  {{p.name}} <span class="text-success small">{{ getFamilyFlag(p)}}</span>
+                  {{p.name}} 
+                  <!-- <span class="text-success small">{{ getFamilyFlag(p)}}</span> -->
                 </td>
                 <td><span class="material-icons" style="font-size: 18px;" title="{{getPaymentText(p.paymentMethod)}}">{{getPaymentClass(p.paymentMethod)}}</span></td>
 
