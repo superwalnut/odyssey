@@ -59,7 +59,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   groupTransactions: GroupTransaction[];
   groupTransactionsAdjusted: GroupTransaction[];
   userPaymentMethod:string;
-  paymentMethods: string[] = [GlobalConstants.paymentCredit, GlobalConstants.paymentCash, GlobalConstants.paymentBank];
+  //paymentMethods: string[] = [GlobalConstants.paymentCredit, GlobalConstants.paymentCash, GlobalConstants.paymentBank];
 
   isGod:boolean;
   //new for booking
@@ -70,6 +70,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   bookingTotalAdjusted = 0;
   reconciliationInProgress:boolean;
   isLoading:boolean;
+  isFriend:boolean;
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialog, private snackBar: MatSnackBar, public dialog: MatDialog, private groupService: GroupService, private groupTransactionService: GroupTransactionService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute,private eventLogService: EventLoggerService) { super() }
 
@@ -167,8 +168,11 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   }
 
   createBooking(selectedUserControl) {
-    console.log(this.selectedPaymentMethod);
-    if (this.selectedPaymentMethod == null) { return false; }
+
+    console.log("is friend", this.isFriend);
+
+    //console.log(this.selectedPaymentMethod);
+    //if (this.selectedPaymentMethod == null) { return false; }
     if (selectedUserControl.value == null) { return false; }
     var user = this.allUsersObject.filter(x => { return x.name === selectedUserControl.value });
     console.log(user);
@@ -179,12 +183,15 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
       bookingDesc: this.booking.weekDay,
       userId: user[0].docId,
       userDisplayName: user[0].name,
-      paymentMethod: this.selectedPaymentMethod, //Credit | Cash | Bank Transfer`
+      //paymentMethod: this.selectedPaymentMethod, //Credit | Cash | Bank Transfer`
+      paymentMethod: user[0].isCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
       parentUserId: user[0].parentUserDocId ? user[0].parentUserDocId : user[0].docId,
       parentUserDisplayName: user[0].parentUserDisplayName ? user[0].parentUserDisplayName : user[0].name,
       isForSale: false,
-      amount: this.getPaymentAmount(user[0].docId, this.selectedPaymentMethod),
-      isPaid: this.selectedPaymentMethod == GlobalConstants.paymentCredit ? true : false,
+      amount: this.getPaymentAmount(user[0].docId, user[0].isCreditUser, this.isFriend),
+      //isPaid: this.selectedPaymentMethod == GlobalConstants.paymentCredit ? true : false,
+      isPaid: user[0].isCreditUser,
+      notes: this.isFriend ? "Friend" : "",
       createdOn: Timestamp.now(),
     } as BookingPerson;
 
@@ -221,24 +228,19 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     }
   }
 
-  getPaymentAmount(userDocId: string, paymentMethod: string): number {
+  getPaymentAmount(userDocId: string, isCreditUser:boolean, isFriend:boolean): number {
     let committees = this.group.committees;
-
-    console.log('committees: ', committees);
-
-    console.log('committees input docId: ', userDocId);
-
-
     let found = committees.find(c => c.docId == userDocId);
     console.log('committees found: ', found);
 
-    if (found) { return 0; } // committee is free of charge
+    if (found) { 
+      return isFriend ? GlobalConstants.rateCash : 0; 
+    } // committee is free of charge
 
-    if (paymentMethod == GlobalConstants.paymentCredit) {
-      return GlobalConstants.rateCredit;
+    if (isCreditUser) {
+      return isFriend ? GlobalConstants.rateCash : GlobalConstants.rateCredit;
     }
     return GlobalConstants.rateCash;
-
   }
 
   getBookingDetail() {

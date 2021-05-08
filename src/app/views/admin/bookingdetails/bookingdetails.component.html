@@ -42,12 +42,15 @@
                   </mat-autocomplete>
                 </mat-form-field>
                 {{userPaymentMethod}}
-                <mat-form-field appearance="fill">
+
+                <mat-checkbox [(ngModel)]="isFriend"  [ngModelOptions]="{standalone: true}">Friend</mat-checkbox>
+
+                <!-- <mat-form-field appearance="fill">
                   <mat-label>Payment method</mat-label>
                   <mat-select (selectionChange)="selectedValue($event)">
                     <mat-option *ngFor="let method of paymentMethods" [value]="method">{{method}}</mat-option>
                   </mat-select>
-                </mat-form-field>
+                </mat-form-field> -->
                 <button mat-raised-button color="primary" (click)="createBooking(myControl)">Add</button>
               </form>
             </section>
