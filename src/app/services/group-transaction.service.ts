@@ -152,7 +152,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
         category:GlobalConstants.creditCategoryBadminton,
         userDocId: lbu.parentUserId,
         userDisplayName: lbu.name,
-        note: group.groupName+': '+ lbu.name + ' ' + lbu.note,
+        note: group.groupName+': '+ lbu.name + ' ' + lbu.note ?? '',
         createdBy: operator.docId,
         referenceId: lbu.docId, //only the negative, need to set referenceID
         createdByDisplayName: operator.name,
@@ -171,7 +171,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
           category:GlobalConstants.creditCategoryBadminton,
           userDocId: lbu.parentUserId,
           userDisplayName: lbu.name,
-          note: group.groupName+': '+ lbu.name + ' ' + lbu.note +': Cash on hand',
+          note: group.groupName+': '+ lbu.name + ' ' + lbu.note ?? '' +': Cash on hand',
           createdBy: operator.docId,
           createdByDisplayName: operator.name,
           created: Timestamp.now(),
