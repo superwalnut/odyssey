@@ -340,6 +340,27 @@ export class BookingSchedulerExtendDialog {
   }
 
 
+  onWeekChange(week:number){
+    console.log(week);
+    // let unitPrice = GlobalConstants.autoBookingWeekUnitPrice;
+    
+
+    // this.totalCost = week * unitPrice - GlobalConstants.autoBookingDiscount;
+    // console.log('unit price', unitPrice);
+
+    // console.log('actual cost', week*unitPrice);
+    // console.log('discount', GlobalConstants.autoBookingDiscount);
+
+    // if (this.isCommittee) { this.totalCost = 0 } // committee free 
+    // let endDate = this.helperService.addDays(week * 7 + 1);
+    // let today = this.helperService.convertToTimestamp(new Date());
+    // this.dayRange.start = today;
+    // this.dayRange.end = this.helperService.convertToTimestamp(endDate);
+    // console.log(this.dayRange);
+
+
+  } 
+
   onNoClick(): void {
     this.dialogRef.close();
   }
