@@ -105,9 +105,25 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     }
   }
 
+  extendClicked(schedule: BookingSchedule) {
+    const dialogRef = this.dialog.open(BookingSchedulerExtendDialog, {
+      width: '650px',
+      data: {
+        loggedInUser: this.loggedInAccount,
+        user: this.user,
+        group: this.selectedGroup,
+        family: this.familyMembers,
+        mySchedules: this.mySchedules,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The extend dialog was closed');
+    });
+  }
+
 
   onSelectClicked() {
-
     if (!this.selectedGroup) return false;
 
     const dialogRef = this.dialog.open(BookingSchedulerDialog, {
@@ -285,6 +301,56 @@ export class BookingSchedulerDialog {
       })
   }
 }
+
+
+
+
+@Component({
+  selector: 'booking-scheduler-extend',
+  templateUrl: 'extend.html',
+})
+export class BookingSchedulerExtendDialog {
+  constructor(
+    public dialogRef: MatDialogRef<BookingSchedulerDialog>, private eventLogService: EventLoggerService,
+    @Inject(MAT_DIALOG_DATA) public data: BookingSchedulerDialogData, private helperService: HelperService, private bookingScheduleService: BookingScheduleService, private accountService: AccountService) { }
+
+  hasError: boolean;
+  errorMessage: string;
+  selectedDuration: Duration;
+  //durations = GlobalConstants.autoBookingRates;
+  isLoading = false;
+  isCommittee: boolean;
+  //hasActiveAutoBooking = false;
+  userSelectList: UserSelection[] = [];
+  isMaxAutoBookingLimitReached: boolean;
+
+  myActiveSchedules: BookingSchedule[];
+  numberWeeks: number = 12;
+  selectedUser:User;
+  totalCost: number;
+
+  dayRange = { start: Timestamp.now(), end: Timestamp.now() };
+  
+  ngOnInit() {
+    console.log(this.data.group.seatsAutoBooking);
+    let committee = this.data.group.committees.find(x => x.docId == this.data.loggedInUser.docId);
+    this.isCommittee = committee != null;
+    if (this.isCommittee) { this.totalCost = 0 } // committee free 
+
+  }
+
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  
+  onCreateClick() {   
+    
+  }
+}
+
+
 
 export interface BookingSchedulerDialogData {
   loggedInUser: Account,

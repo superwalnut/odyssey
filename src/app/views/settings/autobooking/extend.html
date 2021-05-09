@@ -1,0 +1,30 @@
+
+<!-- Modal -->
+<div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title">Auto booking extend</h1>
+      <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
+    </div>
+  
+    <div class="modal-body">
+  
+     
+        <div>
+            <mat-form-field>
+            <mat-label>Weeks</mat-label>
+            <input matInput placeholder="4-26 weeks" type="number" [(ngModel)]="numberWeeks" (input)="onWeekChange($event.target.value)" min="4" max="52" required autocomplete="off" />
+            </mat-form-field>
+
+            <p>{{totalCost | currency}} Valid till: <b>{{dayRange.end.toDate() | date:'dd/MM/yyyy'}}</b></p>
+            
+        </div>
+        
+    </div>
+    <div class="modal-footer">
+        <button mat-raised-button (click)="onNoClick()">Close</button>
+        <button mat-raised-button  color="primary" (click)="onCreateClick()"  *ngIf="!isLoading && !isMaxAutoBookingLimitReached">Create</button>
+        <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+    </div>
+  </div>
+  
+  

@@ -69,8 +69,8 @@ export class BookingComponent extends BaseComponent implements OnInit {
     let getUser = this.accountService.getUserByDocId(this.loggedInAccount.docId);
     let getBalance = this.creditService.getBalance(this.loggedInAccount.docId);
     combineLatest([getUser, getBalance]).subscribe(result => {
-      console.log('forkjoin 1: ', result[0]);
-      console.log('forkJoin 2: ', result[1]);
+      console.log('forkjoin user: ', result[0]);
+      console.log('forkJoin balance: ', result[1]);
       this.user = result[0];
       this.isCreditUser = result[0].isCreditUser;
       this.creditBalance = result[1];

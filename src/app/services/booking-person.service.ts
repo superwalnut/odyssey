@@ -214,7 +214,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
             amount: u.amount,
             note: u.notes,
             isPaid: u.isPaid,
-            avatarUrl: u.avatarUrl ?? GlobalConstants.imageDefaultAvatar,
+            avatarUrl: (u.avatarUrl === undefined || u.avatarUrl == '') ? GlobalConstants.imageDefaultAvatar : u.avatarUrl,
             paymentMethod: u.paymentMethod,
             isMyBooking: u.userId == myUserDocId || u.parentUserId == myUserDocId,
             isFamily: u.parentUserId == myUserDocId || u.userId == myUserDocId,

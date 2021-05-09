@@ -49,9 +49,10 @@
                 </td>
 
                 <td>
-                  
                   <button mat-raised-button color="primary"  (click)="statusClicked(s)">{{ s.isPaused ? 'Resume' : 'Pause' }}</button>
                   <!-- <button mat-button (click)="deleteClicked(s)" color="warn">Delete</button> -->
+                  <button mat-raised-button (click)="extendClicked(s)" color="primary">Extend</button>
+
                 </td>
 
               </tr>

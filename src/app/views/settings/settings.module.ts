@@ -8,7 +8,7 @@ import { FamilyComponent } from "./family/family.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { PasswordComponent } from "./password/password.component";
 import { CommonModule } from "@angular/common";
-import { AutobookingComponent, BookingSchedulerDialog } from "./autobooking/autobooking.component";
+import { AutobookingComponent, BookingSchedulerDialog, BookingSchedulerExtendDialog} from "./autobooking/autobooking.component";
 import { CreditstatementComponent } from "./creditstatement/creditstatement.component";
 import { AppMaterialModule } from "../../app-material.module";
 import { AttendancehistoryComponent } from "./attendancehistory/attendancehistory.component";
@@ -36,6 +36,7 @@ AppMaterialModule;
     CreditstatementComponent,
     AttendancehistoryComponent,
     BookingSchedulerDialog,
+    BookingSchedulerExtendDialog,
     CointransferComponent
   ],
 })
