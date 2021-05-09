@@ -71,6 +71,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   reconciliationInProgress:boolean;
   isLoading:boolean;
   isFriend:boolean;
+  isParentCreditUser:boolean;
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialog, private snackBar: MatSnackBar, public dialog: MatDialog, private groupService: GroupService, private groupTransactionService: GroupTransactionService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute,private eventLogService: EventLoggerService) { super() }
 
@@ -164,6 +165,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     }
     if (found) {
       this.userPaymentMethod = found.isCreditUser ? 'HBCoin' : 'Cash';
+      this.isParentCreditUser = found.isCreditUser;
     }
   }
 
@@ -177,6 +179,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     var user = this.allUsersObject.filter(x => { return x.name === selectedUserControl.value });
     console.log(user);
 
+    
     let bp = {
       bookingDocId: this.bookingDocId,
       groupDocId: this.booking.groupDocId,
@@ -184,13 +187,14 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
       userId: user[0].docId,
       userDisplayName: user[0].name,
       //paymentMethod: this.selectedPaymentMethod, //Credit | Cash | Bank Transfer`
-      paymentMethod: user[0].isCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
+      paymentMethod: this.isParentCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
       parentUserId: user[0].parentUserDocId ? user[0].parentUserDocId : user[0].docId,
       parentUserDisplayName: user[0].parentUserDisplayName ? user[0].parentUserDisplayName : user[0].name,
       isForSale: false,
-      amount: this.getPaymentAmount(user[0].docId, user[0].isCreditUser, this.isFriend),
+      amount: this.getPaymentAmount(user[0].docId, this.isParentCreditUser, this.isFriend),
       //isPaid: this.selectedPaymentMethod == GlobalConstants.paymentCredit ? true : false,
-      isPaid: user[0].isCreditUser,
+      //isPaid: user[0].isCreditUser, // bug here family member won't have isCreditUserValue;
+      isPaid: this.isParentCreditUser,
       notes: this.isFriend ? "Friend" : "",
       createdOn: Timestamp.now(),
     } as BookingPerson;
