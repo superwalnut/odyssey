@@ -73,7 +73,8 @@
                     <a routerLink="/admin/userdetails/{{p.userDocId}}">{{p.name}}</a>  
                     <span class="text-success small">{{ p.parentUserDisplayName }}</span>
                     <mat-icon title="for sale">{{ p.isForSale ? 'social_distance':''}}</mat-icon> 
-                    <mat-icon *ngIf="p.note" title="{{p.note}}">sticky_note_2</mat-icon>
+                    <!-- <mat-icon *ngIf="p.note" title="{{p.note}}">sticky_note_2</mat-icon> -->
+                    {{p.note}}
                   </td>
                   <td scope="row"><mat-icon>{{getPaymentClass(p.paymentMethod)}}</mat-icon> <i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
                   <td scope="row">{{ p.amount | currency}}</td>
