@@ -44,14 +44,12 @@
                 <td>{{ s.expireOn.toDate() | date: 'dd/MM/yyyy' }}</td>
                 <td>
                   <!-- <span class="material-icons" title="{{ s.isPaused ? 'paused' : 'active' }}">{{ s.isPaused ? 'pause' : 'play_arrow' }}</span> -->
-                  {{ s.isPaused ? 'Paused' : 'Active' }}
-
+                  {{ getExpiryStatus(s)}}
                 </td>
-
                 <td>
                   <button mat-raised-button color="primary"  (click)="statusClicked(s)">{{ s.isPaused ? 'Resume' : 'Pause' }}</button>
                   <!-- <button mat-button (click)="deleteClicked(s)" color="warn">Delete</button> -->
-                  <!-- <button mat-raised-button (click)="extendClicked(s)" color="primary">Extend</button> -->
+                  <button mat-raised-button (click)="extendClicked(s)" color="primary" *ngIf="expireSoon(s)">Extend</button>
 
                 </td>
 

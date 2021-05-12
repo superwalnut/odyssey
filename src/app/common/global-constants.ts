@@ -72,6 +72,7 @@ export class GlobalConstants {
     public static eventPasswordChange: string = "password change";
     public static eventProfileChange: string = "profile change";
     public static eventAutoBooking: string = "auto booking schedule";
+    public static eventAutoBookingExtend: string = "auto booking extend";
     public static eventAutoBookingCancel: string = "auto booking schedule cancel";
     public static eventFamilyMember: string = "family member change";
     public static eventWebActivity: string = "login/web activity"; //for user is browsing the website

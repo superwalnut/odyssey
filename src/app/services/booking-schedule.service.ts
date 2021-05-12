@@ -114,6 +114,60 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
   // }
 
 
+  extendBookingSchedule(bookingScheduleDocId:string, group:Group, expireDate: Timestamp, loggedInUser: Account, fee: number) {
+    var batch = this.firestore.firestore.batch();
+
+    //2. add to group transaction
+    var refTransaction = this.firestore.collection('groupTransactions').doc().ref;
+    var trans = {
+      amount: fee,
+      paymentMethod: GlobalConstants.paymentCredit,
+      groupDocId: group.docId,
+      referenceId: loggedInUser.docId, //nullable
+      notes: 'auto booking extend',
+      createdBy: loggedInUser.docId,
+      createdByDisplayName: loggedInUser.name,
+      created: Timestamp.now(),
+    } as GroupTransaction;
+    console.log('createBookingSchedule service groupTransaction: ', trans);
+    batch.set(refTransaction, trans);
+
+    //1. deduct user's credit
+    var ref = this.firestore.collection('credits').doc().ref;
+
+    var credit = {
+      amount: -fee,
+      category: GlobalConstants.creditCategoryBadminton,
+      userDocId: loggedInUser.docId,
+      userDisplayName: loggedInUser.name,
+      createdBy: loggedInUser.docId,
+      createdByDisplayName: loggedInUser.name,
+      referenceId: refTransaction.id,
+      created: Timestamp.now(),
+      note: 'auto booking extend',
+    } as Credit;
+    batch.set(ref, credit);
+
+
+    //3. add to booking-schedule table.
+    var ref = this.firestore.collection('bookingSchedules').doc(bookingScheduleDocId).ref;
+      var schedule = {
+        expireOn: expireDate,
+        updatedOn: Timestamp.now(),
+        updatedBy: loggedInUser.name,
+        // userDocId: u.docId,
+        // userDisplayName: u.name,
+        // parentDocId: u.parentUserDocId,
+        // parentDisplayName: u.parentUserDisplayName,
+      } as BookingSchedule;
+      console.log('booking schedule model: ', schedule);
+      batch.update(ref, schedule);
+
+    return batch.commit();
+
+
+  }
+
   createBookingSchedule(users: User[], expireDate: Timestamp, loggedInUser: Account, group: Group, fee: number) {
     var batch = this.firestore.firestore.batch();
 

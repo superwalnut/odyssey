@@ -25,6 +25,8 @@ import { BookingSchedule } from "../../../models/booking-schedule";
 import { EventLoggerService } from '../../../services/event-logger.service';
 import { EventLogger } from '../../../models/event-logger';
 import { BookingsComponent } from "../../admin/bookings/bookings.component";
+import { takeUntil } from "rxjs/operators";
+import { combineLatest } from "rxjs";
 
 @Component({
   selector: "app-autobooking",
@@ -91,6 +93,27 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
 
     })
   }
+
+  getExpiryStatus(schedule:BookingSchedule) {
+    var expireOn = schedule.expireOn;
+    if (expireOn < Timestamp.now()) {
+      return 'Expired';
+    } 
+    
+    //{{ s.isPaused ? 'Paused' : 'Active' }}
+    if (schedule.isPaused) {
+      return 'Paused';
+    }
+    return 'Active';
+  }
+
+  expireSoon(schedule:BookingSchedule) {
+
+    var diff = this.helperService.findTimeDifference(schedule.expireOn); //return in SECONDS
+    if (diff < 60*60*24*14) {
+      return true;
+    }
+  }
   statusClicked(schedule: BookingSchedule) {
     let status = schedule.isPaused ? 'resume' : 'pause'
     if (confirm('Conform to ' + status + ' your auto booking?')) {
@@ -111,9 +134,7 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
       data: {
         loggedInUser: this.loggedInAccount,
         user: this.user,
-        group: this.selectedGroup,
-        family: this.familyMembers,
-        mySchedules: this.mySchedules,
+        mySchedule: schedule,
       }
     });
 
@@ -303,16 +324,14 @@ export class BookingSchedulerDialog {
 }
 
 
-
-
 @Component({
   selector: 'booking-scheduler-extend',
   templateUrl: 'extend.html',
 })
-export class BookingSchedulerExtendDialog {
+export class BookingSchedulerExtendDialog extends BaseComponent implements OnInit  {
   constructor(
-    public dialogRef: MatDialogRef<BookingSchedulerDialog>, private eventLogService: EventLoggerService,
-    @Inject(MAT_DIALOG_DATA) public data: BookingSchedulerDialogData, private helperService: HelperService, private bookingScheduleService: BookingScheduleService, private accountService: AccountService) { }
+    public dialogRef: MatDialogRef<BookingSchedulerDialog>, private groupService:GroupService, private eventLogService: EventLoggerService,
+    @Inject(MAT_DIALOG_DATA) public data: BookingSchedulerExtendDialogData, private helperService: HelperService, private bookingScheduleService: BookingScheduleService, private accountService: AccountService) { super()}
 
   hasError: boolean;
   errorMessage: string;
@@ -323,6 +342,7 @@ export class BookingSchedulerExtendDialog {
   //hasActiveAutoBooking = false;
   userSelectList: UserSelection[] = [];
   isMaxAutoBookingLimitReached: boolean;
+  group:Group;
 
   myActiveSchedules: BookingSchedule[];
   numberWeeks: number = 12;
@@ -332,33 +352,42 @@ export class BookingSchedulerExtendDialog {
   dayRange = { start: Timestamp.now(), end: Timestamp.now() };
   
   ngOnInit() {
-    console.log(this.data.group.seatsAutoBooking);
-    let committee = this.data.group.committees.find(x => x.docId == this.data.loggedInUser.docId);
-    this.isCommittee = committee != null;
-    if (this.isCommittee) { this.totalCost = 0 } // committee free 
+    this.getGroupDetails(this.data.mySchedule.groupDocId);
+    this.onWeekChange(this.numberWeeks);
+    console.log(this.data);
+    
 
   }
 
+  getGroupDetails(groupDocId:string) {
+    let group = this.groupService.getGroup(groupDocId).pipe(takeUntil(this.ngUnsubscribe));
+    let activeBookingSchedules = this.bookingScheduleService.getActiveBookingSchedules(groupDocId).pipe(takeUntil(this.ngUnsubscribe));
+    combineLatest([group, activeBookingSchedules]).subscribe(result=>{
+      console.log('forkjoin group: ', result[0]);
+      console.log('forkJoin activeBookingSchedules: ', result[1]);
+      this.group = result[0];
+      this.isMaxAutoBookingLimitReached = result[1].length >= result[0].seatsAutoBooking;
+      let committee = this.group.committees.find(x => x.docId == this.data.loggedInUser.docId);
+      this.isCommittee = committee != null;
+      if (this.isCommittee) { this.totalCost = 0 } // committee free 
+
+    })
+  }
 
   onWeekChange(week:number){
     console.log(week);
-    // let unitPrice = GlobalConstants.autoBookingWeekUnitPrice;
-    
+    let unitPrice = GlobalConstants.autoBookingWeekUnitPrice;
+    this.totalCost = week * unitPrice - GlobalConstants.autoBookingDiscount;
+    console.log('unit price', unitPrice);
 
-    // this.totalCost = week * unitPrice - GlobalConstants.autoBookingDiscount;
-    // console.log('unit price', unitPrice);
+    console.log('actual cost', week*unitPrice);
 
-    // console.log('actual cost', week*unitPrice);
-    // console.log('discount', GlobalConstants.autoBookingDiscount);
-
-    // if (this.isCommittee) { this.totalCost = 0 } // committee free 
-    // let endDate = this.helperService.addDays(week * 7 + 1);
-    // let today = this.helperService.convertToTimestamp(new Date());
-    // this.dayRange.start = today;
-    // this.dayRange.end = this.helperService.convertToTimestamp(endDate);
-    // console.log(this.dayRange);
-
-
+    if (this.isCommittee) { this.totalCost = 0 } // committee free 
+    let endDate = this.helperService.addDays(week * 7);
+    let today = this.helperService.convertToTimestamp(new Date());
+    this.dayRange.start = today;
+    this.dayRange.end = this.helperService.convertToTimestamp(endDate);
+    console.log(this.dayRange);
   } 
 
   onNoClick(): void {
@@ -366,9 +395,31 @@ export class BookingSchedulerExtendDialog {
   }
 
   
-  onCreateClick() {   
-    
-  }
+  onConfirmClick() {   
+    if (this.numberWeeks < 4 || this.numberWeeks > 26) {
+      this.hasError = true;
+      return false;
+    }
+
+    this.isLoading = true;
+    if (this.isCommittee) { this.totalCost = 0 } // committee free 
+
+
+    this.bookingScheduleService.extendBookingSchedule(this.data.mySchedule.docId, this.group, this.dayRange.end, this.data.loggedInUser, this.totalCost)
+      .then(() => {
+        let log = {
+          eventCategory: GlobalConstants.eventAutoBookingExtend,
+          notes: this.totalCost + ' ' + this.data.loggedInUser.name
+        } as EventLogger;
+        this.eventLogService.createLog(log, this.data.loggedInUser.docId, this.data.loggedInUser.name);
+        this.isLoading = false;
+        this.dialogRef.close();
+      })
+      .catch((err) => {
+        this.isLoading = false;
+        alert(err);
+      })
+    }
 }
 
 
@@ -379,6 +430,12 @@ export interface BookingSchedulerDialogData {
   group: Group,
   family: User[],
   mySchedules: BookingSchedule[],
+}
+
+export interface BookingSchedulerExtendDialogData {
+  loggedInUser: Account,
+  user: User,
+  mySchedule: BookingSchedule;
 }
 
 export interface Duration {

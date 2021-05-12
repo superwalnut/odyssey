@@ -8,11 +8,18 @@
   
     <div class="modal-body">
   
-     
+        <div *ngIf="isMaxAutoBookingLimitReached">
+            <div class="p-3 mb-2 bg-warning  text-dark">Auto booking for this session is all full</div>
+        </div>
+        <div class="p-3 mb-2 bg-danger text-white" *ngIf="hasError">
+            Errors: 
+            Please specify minium 4 weeks, maxium 26 weeks for Autobooking extend</div>
+        <div>
+
         <div>
             <mat-form-field>
             <mat-label>Weeks</mat-label>
-            <input matInput placeholder="4-26 weeks" type="number" [(ngModel)]="numberWeeks" (input)="onWeekChange($event.target.value)" min="4" max="52" required autocomplete="off" />
+            <input matInput placeholder="4-26 weeks" type="number" [(ngModel)]="numberWeeks" (input)="onWeekChange($event.target.value)" min="4" max="26" required autocomplete="off" />
             </mat-form-field>
 
             <p>{{totalCost | currency}} Valid till: <b>{{dayRange.end.toDate() | date:'dd/MM/yyyy'}}</b></p>
@@ -22,7 +29,7 @@
     </div>
     <div class="modal-footer">
         <button mat-raised-button (click)="onNoClick()">Close</button>
-        <button mat-raised-button  color="primary" (click)="onCreateClick()"  *ngIf="!isLoading && !isMaxAutoBookingLimitReached">Create</button>
+        <button mat-raised-button  color="primary" (click)="onConfirmClick()"  *ngIf="!isLoading && !isMaxAutoBookingLimitReached">Confirm</button>
         <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
     </div>
   </div>
