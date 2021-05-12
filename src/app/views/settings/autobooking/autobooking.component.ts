@@ -110,7 +110,7 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
   expireSoon(schedule:BookingSchedule) {
 
     var diff = this.helperService.findTimeDifference(schedule.expireOn); //return in SECONDS
-    if (diff < 60*60*24*14) {
+    if (diff < 60*60*24*21) {
       return true;
     }
   }
