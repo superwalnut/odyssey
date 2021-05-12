@@ -379,7 +379,7 @@ export class BookingSchedulerExtendDialog extends BaseComponent implements OnIni
     console.log('unit price', unitPrice);
     console.log('actual cost', week*unitPrice);
 
-    //if (this.isCommittee) { this.totalCost = 0 } // committee free 
+    if (this.isCommittee) { this.totalCost = 0 } // committee free 
 
     let currentExpireDate = this.data.mySchedule.expireOn;
     let diff = this.helperService.findTimeDifference(currentExpireDate, Timestamp.now());
@@ -406,7 +406,7 @@ export class BookingSchedulerExtendDialog extends BaseComponent implements OnIni
     }
 
     this.isLoading = true;
-    //if (this.isCommittee) { this.totalCost = 0 } // committee free 
+    if (this.isCommittee) { this.totalCost = 0 } // committee free 
 
     this.bookingScheduleService.extendBookingSchedule(this.data.mySchedule.docId, this.group, this.dayRange.end, this.data.loggedInUser, this.totalCost)
       .then(() => {
