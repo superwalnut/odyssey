@@ -340,12 +340,12 @@ export class BookingSchedulerExtendDialog extends BaseComponent implements OnIni
   isLoading = false;
   isCommittee: boolean;
   //hasActiveAutoBooking = false;
-  userSelectList: UserSelection[] = [];
+  //userSelectList: UserSelection[] = [];
   isMaxAutoBookingLimitReached: boolean;
   group:Group;
 
-  myActiveSchedules: BookingSchedule[];
-  numberWeeks: number = 12;
+  //myActiveSchedules: BookingSchedule[];
+  numberWeeks: number;
   selectedUser:User;
   totalCost: number;
 
@@ -353,10 +353,8 @@ export class BookingSchedulerExtendDialog extends BaseComponent implements OnIni
   
   ngOnInit() {
     this.getGroupDetails(this.data.mySchedule.groupDocId);
-    this.onWeekChange(this.numberWeeks);
+    //this.onWeekChange(this.numberWeeks);
     console.log(this.data);
-    
-
   }
 
   getGroupDetails(groupDocId:string) {
@@ -379,12 +377,18 @@ export class BookingSchedulerExtendDialog extends BaseComponent implements OnIni
     let unitPrice = GlobalConstants.autoBookingWeekUnitPrice;
     this.totalCost = week * unitPrice - GlobalConstants.autoBookingDiscount;
     console.log('unit price', unitPrice);
-
     console.log('actual cost', week*unitPrice);
 
-    if (this.isCommittee) { this.totalCost = 0 } // committee free 
-    let endDate = this.helperService.addDays(week * 7);
+    //if (this.isCommittee) { this.totalCost = 0 } // committee free 
+
+    let currentExpireDate = this.data.mySchedule.expireOn;
+    let diff = this.helperService.findTimeDifference(currentExpireDate, Timestamp.now());
     let today = this.helperService.convertToTimestamp(new Date());
+    console.log('diff: ', diff)
+    if (diff > 0) {
+      today = currentExpireDate;
+    }
+    let endDate = this.helperService.addDays(week * 7, this.helperService.convertToDate(today));
     this.dayRange.start = today;
     this.dayRange.end = this.helperService.convertToTimestamp(endDate);
     console.log(this.dayRange);
@@ -396,14 +400,13 @@ export class BookingSchedulerExtendDialog extends BaseComponent implements OnIni
 
   
   onConfirmClick() {   
-    if (this.numberWeeks < 4 || this.numberWeeks > 26) {
+    if (!this.numberWeeks || this.numberWeeks < 4 || this.numberWeeks > 26) {
       this.hasError = true;
       return false;
     }
 
     this.isLoading = true;
-    if (this.isCommittee) { this.totalCost = 0 } // committee free 
-
+    //if (this.isCommittee) { this.totalCost = 0 } // committee free 
 
     this.bookingScheduleService.extendBookingSchedule(this.data.mySchedule.docId, this.group, this.dayRange.end, this.data.loggedInUser, this.totalCost)
       .then(() => {

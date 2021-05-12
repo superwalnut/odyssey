@@ -51,7 +51,7 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
   }
 
   getActiveBookingSchedules(groupDocId: string) {
-    return this.firestore.collection('bookingSchedules', q => q.where('groupDocId', '==', groupDocId).where('expireOn', '>=', Timestamp.now())).snapshotChanges().pipe(
+    return this.firestore.collection('bookingSchedules', q => q.where('groupDocId', '==', groupDocId).where('isPaused', '==', false).where('expireOn', '>=', Timestamp.now())).snapshotChanges().pipe(
       map(actions => {
         var items = actions.map(p => {
           var data = p.payload.doc.data() as BookingSchedule;

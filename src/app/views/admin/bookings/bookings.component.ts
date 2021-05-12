@@ -99,26 +99,16 @@ export class BookingsComponent implements OnInit {
       console.log('booking persons ready for insert: ', autoBookingPersons);
 
       //return false;
-
       if (autoBookingPersons.length > 0) {
         this.bookingPersonService.createBookingPersonBatch(autoBookingPersons, booking);
       }
-
     });
   }
 
   getAutoBookingUsers(groupDocId: string) { 
-    this.bookingScheduleService.getBookingSchedulesByGroupDocId(groupDocId).subscribe(schedule => {
+    this.bookingScheduleService.getActiveBookingSchedules(groupDocId).subscribe(schedule => {
       this.autoBookingUsers = schedule.map(s=>s.user);
-      console.log(this.autoBookingUsers);
-
-      // if (userIds.length > 0) {
-      //   this.accountService.getUsersByUserDocIds(userIds).subscribe(result => {
-      //     this.autoBookingUsers = result;
-      //     console.log('auto booking users: ', result);
-      //   })
-      // }
-
+      console.log('autobooking users', this.autoBookingUsers);
     })
   }
 
@@ -133,15 +123,6 @@ export class BookingsComponent implements OnInit {
       // });
     })
   }
-
-  // getMyGroups() {
-  //   this.myGroups = [];
-
-  //   this.groupService.getGroupsByUserDocId(this.myDocId).subscribe(x => {
-  //     console.log('my groups', x);
-  //     this.myGroups = x;
-  //   });
-  // }
 
   getBookingsByGroupDocId(groupDocId: string) {
     this.bookingService.getByGroupDocId(groupDocId).subscribe(bookings => {

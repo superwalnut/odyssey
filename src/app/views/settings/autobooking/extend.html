@@ -22,7 +22,7 @@
             <input matInput placeholder="4-26 weeks" type="number" [(ngModel)]="numberWeeks" (input)="onWeekChange($event.target.value)" min="4" max="26" required autocomplete="off" />
             </mat-form-field>
 
-            <p>{{totalCost | currency}} Valid till: <b>{{dayRange.end.toDate() | date:'dd/MM/yyyy'}}</b></p>
+            <p>{{totalCost | currency}},  <b>{{dayRange.start.toDate() | date:'dd/MM/yyyy'}} - {{dayRange.end.toDate() | date:'dd/MM/yyyy'}}</b></p>
             
         </div>
         
