@@ -239,7 +239,7 @@ export class BookingSchedulerDialog {
     let users = userSelectList.map(s=> ({
       docId: s.docId,
       name: s.name,
-      avatarUrl: this.data.user.avatarUrl,
+      avatarUrl: this.data.user.avatarUrl ?? '',
       parentUserDocId: s.parentUserDocId,
       parentUserDisplayName: s.parentUserDisplayName
     }) as User);
