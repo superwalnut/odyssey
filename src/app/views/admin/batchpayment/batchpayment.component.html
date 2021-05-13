@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="card">
+          <div class="card-body p-4">
+            <h1>Batch Payment</h1>
+            <div class="p-3 mb-2 bg-light text-dark">All batch payment credits are deducted from [Credit Reserve] account. It is useful when admin allocate reward credits to competition winners.</div>
+            <div class="p-3 mb-2 bg-danger text-white" *ngIf="hasError">Form has error</div>
+
+
+            <form [formGroup]="form" (ngSubmit)="onAddBatch(recipientControl)" >
+                <p>
+                    From: <b>Credit Reserve</b>
+                </p>
+                <p>
+                    To: 
+                    <mat-form-field>
+                        <mat-label>Search recipient name</mat-label>
+                        <input type="text" matInput [formControl]="recipientControl" [matAutocomplete]="auto" >
+                        <mat-autocomplete #auto="matAutocomplete" >
+                        <mat-option *ngFor="let user of filteredUsers | async" [value]="user">{{user}}</mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </p>
+                
+
+
+                <mat-form-field appearance="fill">
+                  <mat-label>Category</mat-label>
+                  <mat-select formControlName="category" required>
+                    <mat-option *ngFor="let category of categories" [value]="category">
+                      {{ category }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Amount</mat-label>
+                  <input matInput placeholder="amount" type="number" formControlName="amount" required autocomplete="off"/>
+                </mat-form-field>
+                
+                <mat-form-field>
+                  <mat-label>Note</mat-label>
+                  <input matInput placeholder="notes" formControlName="note" required autocomplete="off"/>
+                </mat-form-field>
+  
+                <p><mat-checkbox class="example-margin" formControlName="sendEmail" >Send email to user</mat-checkbox></p>
+                
+                <button mat-raised-button>Add to batch</button>
+            </form>
+
+
+
+            <div *ngIf="creditBatch.length > 0">
+                <table class="table table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Note</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of creditBatch">
+                            <td>{{ c.userDisplayName }}</td>
+                            <td>{{ c.category}}</td>
+                            <td>{{ c.note}}</td>
+                            <td class="{{ c.amount>0 ? 'text-success': 'text-danger'}}">{{ c.amount | currency}}</td>
+                            <td>
+                                <button mat-icon-button color="warn" title="withdraw" (click)="remove(c)">
+                                    <mat-icon>remove_circle</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                
+                    </tbody>
+                </table>
+                Total: {{totalAmount|currency}}
+                <button mat-raised-button color="primary" (click)="processBatch()" *ngIf="!isLoading">Process batch</button>
+                <mat-spinner diameter="20" color="accent" *ngIf="isLoading"></mat-spinner>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

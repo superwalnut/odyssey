@@ -28,6 +28,7 @@ import { RptEventviewerComponent } from './reports/rpt-eventviewer/rpt-eventview
 import { RptAutobookComponent , ScheduleDialog} from './reports/rpt-autobook/rpt-autobook.component';
 import { RptUserCreditsComponent } from './reports/rpt-user-credits/rpt-user-credits.component';
 import { RptCsvComponent } from './reports/rpt-csv/rpt-csv.component';
+import { BatchpaymentComponent } from './batchpayment/batchpayment.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { RptCsvComponent } from './reports/rpt-csv/rpt-csv.component';
     GradeDialog,
     RptUserCreditsComponent,
     RptCsvComponent,
+    BatchpaymentComponent,
   ],
 })
 export class AdminModule { }

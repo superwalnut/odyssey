@@ -20,6 +20,7 @@ import { RptAutobookComponent } from "./reports/rpt-autobook/rpt-autobook.compon
 import { RptBookingpersonComponent } from "./reports/rpt-bookingperson/rpt-bookingperson.component";
 
 import { TriggersComponent } from "./triggers/triggers.component";
+import { BatchpaymentComponent } from "./batchpayment/batchpayment.component";
 
 import { groupCollapsed } from "console";
 import { RptUserCreditsComponent } from "./reports/rpt-user-credits/rpt-user-credits.component";
@@ -195,6 +196,13 @@ const routes: Routes = [
         component: TriggersComponent,
         data: {
           title: "triggers",
+        },
+      },
+      {
+        path: "batchpay",
+        component: BatchpaymentComponent,
+        data: {
+          title: "Batch pay",
         },
       },
 
