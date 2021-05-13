@@ -16,6 +16,7 @@ import { FirestoreBaseService } from './firestore-base.service';
 import Timestamp = firebase.firestore.Timestamp;
 import { UserBalance } from '../models/user-balance';
 import { formatCurrency } from '@angular/common';
+import { Account } from '../models/account';
 
 @Injectable({
   providedIn: 'root'
@@ -78,11 +79,6 @@ export class CreditService extends FirestoreBaseService<Credit>{
     batch.set(ref, log);
 
     return batch.commit();
-
-
-
-
-
   }
   //  public createCredit(credit:Credit, previousBalance:number, createdBy:string, createdByDisplayName:string) {
   //   if(credit.userDocId){
@@ -96,6 +92,49 @@ export class CreditService extends FirestoreBaseService<Credit>{
 
   //   return Promise.reject('no user is provided');
   //  }
+
+  public creditTransferBatch(fromAccount: User, recipients:Credit[], operator:Account) {
+    console.log('transfer from: ', fromAccount);
+    console.log('transfer to: ', recipients);
+    if (!fromAccount.docId) return Promise.reject('from account is invalid');
+    if (!recipients || recipients.length == 0) return Promise.reject('no recipients');
+
+    var batch = this.firestore.firestore.batch();
+
+    var from = {
+      userDocId: fromAccount.docId,
+      userDisplayName: fromAccount.name,
+      created: Timestamp.now(),
+      createdBy: operator.docId,
+      createdByDisplayName: operator.name,
+    } as Credit;
+
+    recipients.forEach(recipient=>{
+
+      from.amount = -recipient.amount;
+      from.category = recipient.category;
+      from.note = recipient.note + ' ' + recipient.userDisplayName;
+      var refFrom = this.firestore.collection('credits').doc().ref;
+      batch.set(refFrom, from);
+
+      var refTo = this.firestore.collection('credits').doc().ref;
+      recipient.created = Timestamp.now();  
+      recipient.createdBy = operator.docId;
+      recipient.createdByDisplayName = operator.name;
+      batch.set(refTo, recipient);
+
+      var refLog = this.firestore.collection('eventLogs').doc().ref;
+      var log = {
+        eventCategory: GlobalConstants.eventCreditTransfer,
+        notes: from.userDisplayName + ' to ' + recipient.userDisplayName + ': $' + recipient.amount,
+        createdOn: Timestamp.now(),
+        createdBy: operator.docId,
+        createdByDisplayName: operator.name,
+      } as EventLogger;
+      batch.set(refLog, log);
+    });
+    return batch.commit();
+  }
 
   public getBalance(userDocId: string): Observable<number> {
     return this.firestore.collection('credits', q => q.where('userDocId', '==', userDocId)).snapshotChanges().pipe(

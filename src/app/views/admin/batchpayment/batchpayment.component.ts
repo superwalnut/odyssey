@@ -9,6 +9,7 @@ import { User } from "../../../models/user";
 import { AccountService } from "../../../services/account.service";
 import { CreditService } from "../../../services/credit.service";
 import { Account } from "../../../models/account";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-batchpayment',
@@ -39,7 +40,7 @@ export class BatchpaymentComponent implements OnInit {
     GlobalConstants.creditCategoryOther
   ];
 
-  constructor(private accountService: AccountService, private fb: FormBuilder,private mailService: MailgunService,private creditService: CreditService,) { }
+  constructor(private accountService: AccountService, private fb: FormBuilder,private snackBar: MatSnackBar, private mailService: MailgunService,private creditService: CreditService,) { }
 
   ngOnInit(): void {
     this.loggedInUser = this.accountService.getLoginAccount();
@@ -103,15 +104,12 @@ export class BatchpaymentComponent implements OnInit {
 
   }
 
-
   calcTotal() {
     this.totalAmount = 0;
     this.creditBatch.forEach(item=>{
       this.totalAmount += item.amount;
     })
   }
-
-
 
   processBatch() {
     var fromAccount = this.allUsersObject.find(x=>x.name.toLowerCase() == "Credit Reserve".toLowerCase());
@@ -125,8 +123,29 @@ export class BatchpaymentComponent implements OnInit {
     console.log(this.creditBatch);
 
     this.isLoading = true;
-    
+    this.creditService.creditTransferBatch(fromAccount, this.creditBatch, this.loggedInUser)
+    .then(() => {
+      if (sendEmail) {
+        this.sendBatchEmails();
+      }
+      this.snackBar.open(`Batch credit transfer successful.`, null, {
+        duration: 5000,
+        verticalPosition: "top",
+      });
+      this.isLoading = false;
+    })
+    .catch((err) => { alert(err); this.isLoading = false; })
+  }
 
+  sendBatchEmails(){
+    this.creditBatch.forEach(item=>{
+      var found = this.allUsersObject.find(x=>x.docId == item.userDocId);
+      if (found) {
+        this.mailService.sendTopupSucceed(found.email, item.userDisplayName, item.amount);
+        console.log(found);
+      }
+    });
+    
   }
 
   private _filter(value: string): string[] {

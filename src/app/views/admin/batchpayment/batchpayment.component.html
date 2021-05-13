@@ -4,7 +4,7 @@
         <div class="card">
           <div class="card-body p-4">
             <h1>Batch Payment</h1>
-            <div class="p-3 mb-2 bg-light text-dark">All batch payment credits are deducted from [Credit Reserve] account. It is useful when admin allocate reward credits to competition winners.</div>
+            <div class="p-3 mb-2 bg-light text-dark">All batch payment credits are deducted from [Credit Reserve] account. Designed for admin to allocate reward credits to competition winners.</div>
             <div class="p-3 mb-2 bg-danger text-white" *ngIf="hasError">Form has error</div>
 
 
@@ -45,7 +45,7 @@
   
                 <p><mat-checkbox class="example-margin" formControlName="sendEmail" >Send email to user</mat-checkbox></p>
                 
-                <button mat-raised-button>Add to batch</button>
+                <button mat-raised-button *ngIf="!isLoading">Add to batch</button>
             </form>
 
 
@@ -67,13 +67,8 @@
                             <td>{{ c.category}}</td>
                             <td>{{ c.note}}</td>
                             <td class="{{ c.amount>0 ? 'text-success': 'text-danger'}}">{{ c.amount | currency}}</td>
-                            <td>
-                                <button mat-icon-button color="warn" title="withdraw" (click)="remove(c)">
-                                    <mat-icon>remove_circle</mat-icon>
-                                </button>
-                            </td>
-                        </tr>
-                
+                            <td><button mat-icon-button color="warn" title="withdraw" (click)="remove(c)"><mat-icon>remove_circle</mat-icon></button></td>
+                        </tr>               
                     </tbody>
                 </table>
                 Total: {{totalAmount|currency}}
