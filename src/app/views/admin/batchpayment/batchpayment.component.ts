@@ -90,7 +90,6 @@ export class BatchpaymentComponent implements OnInit {
     this.calcTotal();
   }
 
-  
   remove(credit:Credit) {
 
     this.creditBatch.forEach((item,index)=>{
@@ -112,6 +111,10 @@ export class BatchpaymentComponent implements OnInit {
   }
 
   processBatch() {
+    if (!confirm('Transfer HBCoins from [Credit Reserve] to listed users?')) {
+      return false;
+    }
+
     var fromAccount = this.allUsersObject.find(x=>x.name.toLowerCase() == "Credit Reserve".toLowerCase());
     if (fromAccount == null) {
       alert("from account cannot be found!");
@@ -128,6 +131,8 @@ export class BatchpaymentComponent implements OnInit {
       if (sendEmail) {
         this.sendBatchEmails();
       }
+      //this.resetForm();
+
       this.snackBar.open(`Batch credit transfer successful.`, null, {
         duration: 5000,
         verticalPosition: "top",
@@ -148,6 +153,11 @@ export class BatchpaymentComponent implements OnInit {
     
   }
 
+  resetForm() {
+    this.form.reset();
+    this.recipientControl.reset();
+    this.creditBatch = [];
+  }
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     console.log(filterValue);
