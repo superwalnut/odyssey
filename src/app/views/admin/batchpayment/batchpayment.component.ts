@@ -29,14 +29,14 @@ export class BatchpaymentComponent implements OnInit {
   totalAmount: number = 0;
 
   categories = [
-    GlobalConstants.creditCategoryBadminton,
-    GlobalConstants.creditCategoryDividend,
-    GlobalConstants.creditCategoryTopup,
-    GlobalConstants.creditCategoryRefund,
+    //GlobalConstants.creditCategoryBadminton,
+    //GlobalConstants.creditCategoryDividend,
+    //GlobalConstants.creditCategoryTopup,
+    //GlobalConstants.creditCategoryRefund,
     GlobalConstants.creditCategoryReward,
     GlobalConstants.creditCategoryPromo,
-    GlobalConstants.creditCategoryCashout,
-    GlobalConstants.creditCategoryAdjustment,
+    //GlobalConstants.creditCategoryCashout,
+    //GlobalConstants.creditCategoryAdjustment,
     GlobalConstants.creditCategoryOther
   ];
 
