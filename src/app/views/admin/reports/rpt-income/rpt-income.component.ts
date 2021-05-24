@@ -36,6 +36,7 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
   committeeUsers: User[];
   hasReconciledBookings: boolean;
   unReconciledBookings: Booking[];
+  profitAccountUser: User;
 
   //selectedMode = "income";
 
@@ -88,9 +89,25 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
     this.getCommittees();
     this.getGroupTransactionReport();
     this.getUnlockedBookings();
+    this.getProfitAccount();
   }
 
+  getProfitAccount() {
+    var groupName = this.selectedGroup.groupName.toLocaleLowerCase();
+    var profiltAccountEmail = "";
+    if (groupName.includes("tuesday")) {
+      profiltAccountEmail = "profit_tues@gmail.com";
+    } else if (groupName.includes("friday")) {
+      profiltAccountEmail = "profit_fri@gmail.com";
+    }else if (groupName.includes("saturday")) {
+      profiltAccountEmail = "profit_sat@gmail.com";
+    }
+    this.accountService.getUserByEmail(profiltAccountEmail).subscribe(result=>{
+      this.profitAccountUser = result;
+      console.log('profit account user: ', this.profitAccountUser);
+    })
 
+  }
   getCommittees() {
     this.committeeUsers = this.selectedGroup.committees;
 
@@ -119,6 +136,7 @@ export class RptIncomeComponent extends BaseComponent implements OnInit {
         groupBalance: this.groupBalance,
         group: this.selectedGroup,
         committees: this.committeeUsers,
+        profitAccount: this.profitAccountUser,
         unReconciledBookings: this.unReconciledBookings,
       }
     });
@@ -145,20 +163,30 @@ export class DividendDialog {
   isLoading: boolean;
   unitDividend: number;
   hasUnReconciledBookings: boolean;
+  netProfit:number=0;
+  committeeCount:number;
+
   //unlockedBookings:Booking[];
 
 
   ngOnInit() {
     console.log('unReconciledBookings', this.data.unReconciledBookings);
+    this.committeeCount = this.data.committees.length;
     if (this.data.unReconciledBookings === undefined || this.data.unReconciledBookings.length == 0) {
       this.hasUnReconciledBookings = false;
-      this.unitDividend = this.data.groupBalance / this.data.committees.length;
+      this.unitDividend = (this.data.groupBalance - this.netProfit) / this.data.committees.length;
     } else {
       this.hasUnReconciledBookings = true;
       this.unitDividend = 0;
     }
   }
 
+
+  onNetProfitChange($event) {
+    console.log($event);
+    this.unitDividend = (this.data.groupBalance - this.netProfit) / this.data.committees.length;
+
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -166,7 +194,7 @@ export class DividendDialog {
   confirmClicked() {
     this.isLoading = true;
     let committees = this.addParentIdToCommittee(this.data.committees);
-    this.groupTransactionService.allocateDividend(this.data.group.docId, this.data.group.groupName, this.data.groupBalance, committees, this.data.loggedInUser.docId, this.data.loggedInUser.name)
+    this.groupTransactionService.allocateDividend(this.data.group.docId, this.data.group.groupName, this.data.groupBalance, this.netProfit, this.data.profitAccount, committees, this.data.loggedInUser.docId, this.data.loggedInUser.name)
       .then(() => this.dialogRef.close())
       .catch((err) => {
         this.hasError = true;
@@ -194,6 +222,7 @@ export interface DividendDialogData {
   groupBalance: number;
   group: Group;
   committees: User[];
+  profitAccount:User;
   unReconciledBookings: Booking[];
 
 }

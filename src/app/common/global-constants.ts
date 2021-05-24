@@ -17,6 +17,7 @@ export class GlobalConstants {
     //Credit Category
     public static creditCategoryBadminton = 'Badminton';
     public static creditCategoryDividend = 'Dividend';
+    public static creditCategoryProfitHolding = 'Profit holding';
     public static creditCategoryTopup = 'Topup';
     public static creditCategoryRefund = 'Refund';
     public static creditCategoryReward = 'Reward';

@@ -64,7 +64,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
       }));
   }
 
-  public allocateDividend(groupDocId:string, groupName:string, netProfit:number, committees:User[], operatorUserId:string, operatorUserDisplayName:string) {
+  public allocateDividend(groupDocId:string, groupName:string, groupBalance:number, netProfit:number, profitHoldingAccount:User, committees:User[], operatorUserId:string, operatorUserDisplayName:string) {
     var batch = this.firestore.firestore.batch();
 
     //deduct from gorup net profit.
@@ -72,7 +72,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
 
     var groupTrans = {
       groupDocId: groupDocId,
-      amount: -netProfit, 
+      amount: -groupBalance, 
       notes: 'dividend to committee',
       paymentMethod: 'Dividend',
       created: Timestamp.now(),
@@ -81,8 +81,22 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
     } as GroupTransaction;
     batch.set(ref, groupTrans);
 
+    var refProfitHolding = this.firestore.collection('credits').doc().ref;
+    var profitHolding = {
+      amount: netProfit,
+      category: GlobalConstants.creditCategoryProfitHolding,
+      userDocId: profitHoldingAccount.docId,
+      userDisplayName: profitHoldingAccount.name,
+      note: 'Net profit from ' + groupName,
+      createdBy: operatorUserId,
+      createdByDisplayName: operatorUserDisplayName,
+      created: Timestamp.now(),
+    } as Credit;
+    batch.set(refProfitHolding, profitHolding);
+    console.log('profit holding', profitHolding)
+
     //insert credit to each committee
-    var unitDividend = netProfit / committees.length;
+    var unitDividend = (groupBalance - netProfit) / committees.length;
     committees.forEach(c=>{
       var ref = this.firestore.collection('credits').doc().ref;
       var credit = {
@@ -96,20 +110,13 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
         created: Timestamp.now(),
       } as Credit;
       batch.set(ref, credit);
-      console.log('divident committee', credit)
-
-      //update user.balance
-
-      if (!c.parentUserDocId || c.docId == c.parentUserDocId) {
-        //if this is the main account holder
-        
-      }
+      console.log('divident committee', credit)      
     });
 
     var ref = this.firestore.collection('eventLogs').doc().ref;
     var log = {
       eventCategory: GlobalConstants.eventDividend,
-      notes: groupName + ' ' + netProfit + ', ' + committees.length + ' committees',
+      notes: groupName + ' ' + unitDividend + ', ' + committees.length + ' committees',
       createdOn: Timestamp.now(),
       createdBy: operatorUserId,
       createdByDisplayName: operatorUserDisplayName,

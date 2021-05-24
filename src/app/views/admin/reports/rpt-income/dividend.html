@@ -41,12 +41,25 @@
       <div *ngIf="!hasUnReconciledBookings">
         <div class="alert alert-danger" role="alert" *ngIf="hasError">Error occurred</div>
 
-        <h2>By clicking Confirm button, group net profit will be evenly distributed among it's committees</h2>
-        <p>Group: {{ data.group.groupName}}</p>
+        <!-- <h3>By clicking Confirm button, group net profit will be evenly distributed among it's committees</h3> -->
+        <p>Group: {{ data.group.groupName}} (Gross: {{ data.groupBalance | currency}})</p>
   
-        Net profit: {{ data.groupBalance | currency}}
+        <p>
+          <b>Step 1: 利润部分转到 [{{data.profitAccount.name}}]</b>
+        </p>
+        <p>
+          <mat-form-field>
+            <mat-label>Net profit</mat-label>
+            <input matInput placeholder="Net profit amount" [(ngModel)]="netProfit" (change)="onNetProfitChange()" type="number" required />
+          </mat-form-field>
+        </p>
+
+        <p>
+          <b>Step 2: 剩余部分立即均分到Committee头上</b>
+        </p>
+        Remaining: {{ data.groupBalance-netProfit | currency}} 
         <ul class="simple-horizontal-list" *ngIf="data.committees">
-          <li>Committees: </li>
+          <li>Committees ({{committeeCount}}): </li>
           <li *ngFor="let u of data.committees">{{ u.name }}, </li>
         </ul>
   
