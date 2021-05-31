@@ -23,7 +23,7 @@ import { Credit } from '../../../../models/credit';
 export class RptUserCreditsComponent extends BaseComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
     "userName",
-    "userDocId",
+    //"userDocId",
     "balance",
     "Action"
   ];
@@ -43,6 +43,7 @@ export class RptUserCreditsComponent extends BaseComponent implements OnInit, Af
   ngAfterViewInit(): void {
     this.accountService.getAllUsers().pipe(takeUntil(this.ngUnsubscribe)).subscribe(x=>{
       this.users = x.filter(o=>o.parentUserDocId == undefined || o.parentUserDocId == null || o.parentUserDocId == '');
+      this.users = this.users.filter(o=> o.isCreditUser);
 
       this.creditBalanceService.getLatestStatement().pipe(takeUntil(this.ngUnsubscribe)).subscribe(b=>{
         if(b){
