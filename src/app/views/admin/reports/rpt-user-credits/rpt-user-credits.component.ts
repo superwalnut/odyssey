@@ -78,6 +78,10 @@ export class RptUserCreditsComponent extends BaseComponent implements OnInit, Af
   }
 
   onEmailNotifiy() {
+    if (!confirm('Sending email notification to all HBCoin users whose balance is lower than $20?')) {
+      return false;
+    }
+
     const lowUsers = this.userBalances.filter(x=>x.balance <= 20);
     console.log(lowUsers);
 
@@ -86,13 +90,13 @@ export class RptUserCreditsComponent extends BaseComponent implements OnInit, Af
       if (found) {
         this.mailGunService.sendCreditReminder(found.email, lu.userName, lu.balance)
         .then(() => {
-          this.sentUserList.push(lu.userName);
+          this.sentUserList.push(lu.userName + ' $' + lu.balance);
         })
         .catch((err) => { alert(err) })
       }
     })
   }
-  
+
   downloadFile() {
     const data = this.userBalances; 
     super.downloadFile(data, 'user-credit-report');
