@@ -10,6 +10,8 @@ import { UserBalance } from '../../../../models/user-balance';
 import { BaseComponent } from '../../../base-component';
 import { User } from '../../../../models/user';
 import { CreditBalanceService } from '../../../../services/credit-balance.service';
+import { MailgunService } from '../../../../services/mailgun.service';
+
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { combineLatest, Observable } from 'rxjs';
@@ -32,8 +34,9 @@ export class RptUserCreditsComponent extends BaseComponent implements OnInit, Af
   users:User[];
   userBalances:UserBalance[];
   lastUpdated:Timestamp;
+  sentUserList:string[]=[];
 
-  constructor(private accountService:AccountService, private creditService:CreditService, private creditBalanceService:CreditBalanceService) { 
+  constructor(private accountService:AccountService, private creditService:CreditService, private creditBalanceService:CreditBalanceService, private mailGunService:MailgunService) { 
     super();
   }
 
@@ -56,6 +59,7 @@ export class RptUserCreditsComponent extends BaseComponent implements OnInit, Af
     })
   }
 
+  
   onCreateClick() {
     console.log('generate report');
     var subscriptionArray:Observable<UserBalance>[] = [];
@@ -73,6 +77,22 @@ export class RptUserCreditsComponent extends BaseComponent implements OnInit, Af
     });
   }
 
+  onEmailNotifiy() {
+    const lowUsers = this.userBalances.filter(x=>x.balance <= 20);
+    console.log(lowUsers);
+
+    lowUsers.forEach(lu=> {
+      var found = this.users.find(u=> u.docId == lu.userDocId);
+      if (found) {
+        this.mailGunService.sendCreditReminder(found.email, lu.userName, lu.balance)
+        .then(() => {
+          this.sentUserList.push(lu.userName);
+        })
+        .catch((err) => { alert(err) })
+      }
+    })
+  }
+  
   downloadFile() {
     const data = this.userBalances; 
     super.downloadFile(data, 'user-credit-report');

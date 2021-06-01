@@ -10,7 +10,11 @@
             Last Updated: {{lastUpdated.toDate() | date : 'short'}}
         </div>
         <button mat-raised-button  color="primary" (click)="onCreateClick()">Generate Report</button>
+        <button mat-raised-button  color="accent" (click)="onEmailNotifiy()">Low balance Email notification</button>
 
+        <ul>
+          <li *ngFor="let user of sentUserList">{{ user }} sent</li>
+        </ul>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
             <ng-container matColumnDef="userName">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>User</th>
