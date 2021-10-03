@@ -43,7 +43,7 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
   hasCredit: boolean;
   myCreditBalance: number;
   miniumCreditRequired = GlobalConstants.autoBookingMiniumCreditRequired
-  isCreditUser:boolean;
+  isCreditUser: boolean;
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialog, public dialog: MatDialog, private creditService: CreditService,
     private bookingScheduleService: BookingScheduleService, private helperService: HelperService, private groupService: GroupService, private accountService: AccountService) { super() }
@@ -80,10 +80,10 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
   }
 
   getUserDetails() {
-    this.accountService.getLoginUser().subscribe(u=>{
+    this.accountService.getLoginUser().subscribe(u => {
       this.user = u;
       this.isCreditUser = u.isCreditUser;
-      console.log('user... ',u)
+      console.log('user... ', u)
     });
   }
 
@@ -94,12 +94,12 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     })
   }
 
-  getExpiryStatus(schedule:BookingSchedule) {
+  getExpiryStatus(schedule: BookingSchedule) {
     var expireOn = schedule.expireOn;
     if (expireOn < Timestamp.now()) {
       return 'Expired';
-    } 
-    
+    }
+
     //{{ s.isPaused ? 'Paused' : 'Active' }}
     if (schedule.isPaused) {
       return 'Paused';
@@ -107,10 +107,10 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     return 'Active';
   }
 
-  expireSoon(schedule:BookingSchedule) {
+  expireSoon(schedule: BookingSchedule) {
 
     var diff = this.helperService.findTimeDifference(schedule.expireOn); //return in SECONDS
-    if (diff < 60*60*24*28) {
+    if (diff < 60 * 60 * 24 * 28) {
       return true;
     }
   }
@@ -185,11 +185,11 @@ export class BookingSchedulerDialog {
 
   myActiveSchedules: BookingSchedule[];
   numberWeeks: number = 12;
-  selectedUser:User;
+  selectedUser: User;
   totalCost: number;
 
   dayRange = { start: Timestamp.now(), end: Timestamp.now() };
-  
+
   ngOnInit() {
     console.log(this.data.group.seatsAutoBooking);
     this.onWeekChange(this.numberWeeks);
@@ -219,13 +219,13 @@ export class BookingSchedulerDialog {
     console.log('my active schedules ', this.myActiveSchedules);
 
     //console.log('has found: ', found);
-    let found = this.myActiveSchedules.find(x=>x.user.docId == this.data.loggedInUser.docId);
+    let found = this.myActiveSchedules.find(x => x.user.docId == this.data.loggedInUser.docId);
     if (!found) {
       this.userSelectList.push({ docId: this.data.loggedInUser.docId, name: this.data.loggedInUser.name, avatarUrl: this.data.user.avatarUrl, selected: false, parentUserDocId: this.data.loggedInUser.docId, parentUserDisplayName: this.data.loggedInUser.name } as UserSelection);
     }
 
     this.data.family.forEach(f => {
-      let found = this.myActiveSchedules.find(x=>x.user.docId == f.docId);
+      let found = this.myActiveSchedules.find(x => x.user.docId == f.docId);
       if (!found) {
         let u = { docId: f.docId, name: f.name, avatarUrl: this.data.user.avatarUrl, selected: false, parentUserDocId: f.parentUserDocId, parentUserDisplayName: f.parentUserDisplayName, } as UserSelection;
         this.userSelectList.push(u);
@@ -235,8 +235,8 @@ export class BookingSchedulerDialog {
     console.log('user list: ', this.userSelectList)
   }
 
-  mapUserSelectionToUser(userSelectList: UserSelection[]) : User[]{
-    let users = userSelectList.map(s=> ({
+  mapUserSelectionToUser(userSelectList: UserSelection[]): User[] {
+    let users = userSelectList.map(s => ({
       docId: s.docId,
       name: s.name,
       avatarUrl: this.data.user.avatarUrl ?? '',
@@ -267,15 +267,16 @@ export class BookingSchedulerDialog {
     this.dialogRef.close();
   }
 
-  onWeekChange(week:number){
+  onWeekChange(week: number) {
     console.log(week);
     let unitPrice = GlobalConstants.autoBookingWeekUnitPrice;
-    
+
 
     this.totalCost = week * unitPrice - GlobalConstants.autoBookingDiscount;
+    if (this.totalCost < 0) this.totalCost = 0; // bug fix: cost can't be negative
     console.log('unit price', unitPrice);
 
-    console.log('actual cost', week*unitPrice);
+    console.log('actual cost', week * unitPrice);
     console.log('discount', GlobalConstants.autoBookingDiscount);
 
     if (this.isCommittee) { this.totalCost = 0 } // committee free 
@@ -286,8 +287,8 @@ export class BookingSchedulerDialog {
     console.log(this.dayRange);
 
 
-  } 
-  onCreateClick() {   
+  }
+  onCreateClick() {
     console.log(this.numberWeeks);
     console.log(this.selectedUser);
 
@@ -328,10 +329,10 @@ export class BookingSchedulerDialog {
   selector: 'booking-scheduler-extend',
   templateUrl: 'extend.html',
 })
-export class BookingSchedulerExtendDialog extends BaseComponent implements OnInit  {
+export class BookingSchedulerExtendDialog extends BaseComponent implements OnInit {
   constructor(
-    public dialogRef: MatDialogRef<BookingSchedulerDialog>, private groupService:GroupService, private eventLogService: EventLoggerService,
-    @Inject(MAT_DIALOG_DATA) public data: BookingSchedulerExtendDialogData, private helperService: HelperService, private bookingScheduleService: BookingScheduleService, private accountService: AccountService) { super()}
+    public dialogRef: MatDialogRef<BookingSchedulerDialog>, private groupService: GroupService, private eventLogService: EventLoggerService,
+    @Inject(MAT_DIALOG_DATA) public data: BookingSchedulerExtendDialogData, private helperService: HelperService, private bookingScheduleService: BookingScheduleService, private accountService: AccountService) { super() }
 
   hasError: boolean;
   errorMessage: string;
@@ -342,25 +343,25 @@ export class BookingSchedulerExtendDialog extends BaseComponent implements OnIni
   //hasActiveAutoBooking = false;
   //userSelectList: UserSelection[] = [];
   isMaxAutoBookingLimitReached: boolean;
-  group:Group;
+  group: Group;
 
   //myActiveSchedules: BookingSchedule[];
   numberWeeks: number;
-  selectedUser:User;
+  selectedUser: User;
   totalCost: number;
 
   dayRange = { start: Timestamp.now(), end: Timestamp.now() };
-  
+
   ngOnInit() {
     this.getGroupDetails(this.data.mySchedule.groupDocId);
     //this.onWeekChange(this.numberWeeks);
     console.log(this.data);
   }
 
-  getGroupDetails(groupDocId:string) {
+  getGroupDetails(groupDocId: string) {
     let group = this.groupService.getGroup(groupDocId).pipe(takeUntil(this.ngUnsubscribe));
     let activeBookingSchedules = this.bookingScheduleService.getActiveBookingSchedules(groupDocId).pipe(takeUntil(this.ngUnsubscribe));
-    combineLatest([group, activeBookingSchedules]).subscribe(result=>{
+    combineLatest([group, activeBookingSchedules]).subscribe(result => {
       console.log('forkjoin group: ', result[0]);
       console.log('forkJoin activeBookingSchedules: ', result[1]);
       this.group = result[0];
@@ -372,12 +373,13 @@ export class BookingSchedulerExtendDialog extends BaseComponent implements OnIni
     })
   }
 
-  onWeekChange(week:number){
+  onWeekChange(week: number) {
     console.log(week);
     let unitPrice = GlobalConstants.autoBookingWeekUnitPrice;
     this.totalCost = week * unitPrice - GlobalConstants.autoBookingDiscount;
+    if (this.totalCost < 0) this.totalCost = 0; //bug fix: cost can't be negative
     console.log('unit price', unitPrice);
-    console.log('actual cost', week*unitPrice);
+    console.log('actual cost', week * unitPrice);
 
     if (this.isCommittee) { this.totalCost = 0 } // committee free 
 
@@ -392,14 +394,14 @@ export class BookingSchedulerExtendDialog extends BaseComponent implements OnIni
     this.dayRange.start = today;
     this.dayRange.end = this.helperService.convertToTimestamp(endDate);
     console.log(this.dayRange);
-  } 
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  
-  onConfirmClick() {   
+
+  onConfirmClick() {
     if (!this.numberWeeks || this.numberWeeks < 4 || this.numberWeeks > 26) {
       this.hasError = true;
       return false;
@@ -422,7 +424,7 @@ export class BookingSchedulerExtendDialog extends BaseComponent implements OnIni
         this.isLoading = false;
         alert(err);
       })
-    }
+  }
 }
 
 

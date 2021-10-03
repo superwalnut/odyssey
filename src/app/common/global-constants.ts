@@ -1,9 +1,9 @@
 // Adding all global constants here
 export class GlobalConstants {
 
-    public static hbCoinIcon:string = "monetization_on";
-    public static cashIcon:string = "payments"
-    public static bankIcon:string = "atm"
+    public static hbCoinIcon: string = "monetization_on";
+    public static cashIcon: string = "payments"
+    public static bankIcon: string = "atm"
 
 
     //Common
@@ -54,7 +54,7 @@ export class GlobalConstants {
     // ]
     public static autoBookingWeekUnitPrice = 0.5; //$0.5 per week per head
     public static autoBookingMiniumCreditRequired = 50;
-    public static autoBookingDiscount = 0;
+    public static autoBookingDiscount = 6;
 
 
 
@@ -120,31 +120,31 @@ export class GlobalConstants {
         "Goodbyes are not forever, Goodbyes are not the end. They simply mean I’ll miss you, Until we meet again.",
     ];
 
-    
-    
-    
+
+
+
     public static badmintonLines = [
-        { line:"Badminton is not only about winning. What is important to me is about playing hard, doing my best and putting up a good show for the spectators.", people:"Lin Dan"},
-        { line:"There will be many obstacles in the pursuit of your dreams. I had long hours of training, balancing studies and badminton.", people:"Sindhu"},
-        { line:"I love winning more than I love playing badminton. Winning is everything", people:"Saina Nehwal"},
-        { line:"In badminton, they use a lot from the wrist. But I use a lot from the shoulder", people:"Li Na"},
-        { line:"There's sketch, improv, writing, acting, music, and badminton. Those are the seven forms of comedy.", people:"T.J. Miller"},
-        { line:"Discipline is the bridge between your badminton goals and badminton success.", people:""},
-        { line:"Keep calm and play badminton.", people:""},
-        { line:"There is no passion to be found playing small – in settling for a life that is less than the one you are capable of living.", people:""},
-        { line:"Champions keep playing until they get it right.", people:""},
-        { line:"It’s not the hours you put in….it’s what you put in those hours.", people:""},
-        { line:"You only live once but you get to serve twice.", people:""},
-        { line:"Your dream will always defeat reality if you give it chance.", people:""},
-        { line:"My philosophy is to not be scared of anyone. If I play well, great; if I don't, I learn from the match and move on.", people:"Saina Nehwal"},
-        { line:"Ability is what you’re capable of doing. Motivation determines what you do. Attitude determines how well you do it.", people:""},
-        { line:"Skills win you Medals..But Attitude wins Hearts", people:""},
-        { line:"The greatest asset is a strong mind. If I know someone is training harder than I am I have no execuses", people:"P.V. Sindhu"},
-        { line:"To train hard is the best way to become the best of yourself.", people:"Chen Long"},
+        { line: "Badminton is not only about winning. What is important to me is about playing hard, doing my best and putting up a good show for the spectators.", people: "Lin Dan" },
+        { line: "There will be many obstacles in the pursuit of your dreams. I had long hours of training, balancing studies and badminton.", people: "Sindhu" },
+        { line: "I love winning more than I love playing badminton. Winning is everything", people: "Saina Nehwal" },
+        { line: "In badminton, they use a lot from the wrist. But I use a lot from the shoulder", people: "Li Na" },
+        { line: "There's sketch, improv, writing, acting, music, and badminton. Those are the seven forms of comedy.", people: "T.J. Miller" },
+        { line: "Discipline is the bridge between your badminton goals and badminton success.", people: "" },
+        { line: "Keep calm and play badminton.", people: "" },
+        { line: "There is no passion to be found playing small – in settling for a life that is less than the one you are capable of living.", people: "" },
+        { line: "Champions keep playing until they get it right.", people: "" },
+        { line: "It’s not the hours you put in….it’s what you put in those hours.", people: "" },
+        { line: "You only live once but you get to serve twice.", people: "" },
+        { line: "Your dream will always defeat reality if you give it chance.", people: "" },
+        { line: "My philosophy is to not be scared of anyone. If I play well, great; if I don't, I learn from the match and move on.", people: "Saina Nehwal" },
+        { line: "Ability is what you’re capable of doing. Motivation determines what you do. Attitude determines how well you do it.", people: "" },
+        { line: "Skills win you Medals..But Attitude wins Hearts", people: "" },
+        { line: "The greatest asset is a strong mind. If I know someone is training harder than I am I have no execuses", people: "P.V. Sindhu" },
+        { line: "To train hard is the best way to become the best of yourself.", people: "Chen Long" },
 
 
 
-        
+
 
     ];
 
