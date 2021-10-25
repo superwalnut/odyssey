@@ -129,3 +129,6 @@ Specify your site in firebase.json
 When you're ready, deploy your web app
 firebase deploy --only hosting:hbclub
 visit: https://hbclub-919aa.web.app/
+
+## New Angular, NPM version, run this 
+npm install --legacy-peer-deps
