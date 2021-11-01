@@ -1,4 +1,6 @@
 // Here you can add other styles
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap');
+
 $nav-bar-color: #39034b;
 $nav-padding: 15px;
 body div.app {
@@ -172,6 +174,24 @@ ul.simple-horizontal-list {
   line-height: 3rem;
   margin-top:30px!important;
 }
+
+.hero2 {
+  //background-color: $nav-bar-color;
+  background: rgb(57,3,75);
+  background: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
+
+  min-height: 300px;
+  text-align: center;
+
+  h1 {
+    font: 800 50px 'Roboto', sans-serif!important;
+    color: white;
+    margin: 80px 0 60px 0;
+    //font-family: 'Roboto', sans-serif!important;
+  }
+
+}
+
 nav {
   background-color: $nav-bar-color;
   padding: $nav-padding;
