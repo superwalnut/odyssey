@@ -54,7 +54,7 @@ export class GlobalConstants {
     // ]
     public static autoBookingWeekUnitPrice = 0.5; //$0.5 per week per head
     public static autoBookingMiniumCreditRequired = 50;
-    public static autoBookingDiscount = 6;
+    public static autoBookingDiscount = 0;
 
 
 
