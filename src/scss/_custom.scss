@@ -329,13 +329,18 @@ ul.hpbooking {
              glow 2500ms linear infinite 2000ms;
 }
 
+.gradient-bg-animation {
+  background: linear-gradient(-45deg, #39034b, #39034b, #751795, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
 
 @keyframes reveal {
   80%{
     letter-spacing: 8px;
   }
   100% {
-    background-size: 300% 300%;
+    background-size: 200% 200%;
   }
 }
 @keyframes glow {
@@ -344,6 +349,17 @@ ul.hpbooking {
   }
 }
 
+@keyframes gradient {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
 
 //Media queries
 
