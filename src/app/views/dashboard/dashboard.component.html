@@ -1,5 +1,19 @@
 <!-- //Shared by both Admin and Users, show hide based on roles -->
 
+ <div class="card">
+  <div class="card-body">
+    <h1>Welcome, {{ user.name }} <span class="badge badge-success"> {{ user.isCreditUser ? 'HBCoin User' : 'Cash User'}}</span></h1>
+
+    <p class="card-text"> 
+      Mobile: {{ user.mobile }}<br>  
+      Email: {{ user.email }}
+    </p>
+    <a routerLink="/settings/profile" class="card-link">Edit</a>
+    <a routerLink="/settings/password" class="card-link">Reset Password</a>
+    <a routerLink="/settings/family" class="card-link">Family Members</a>
+  </div>
+</div>
+
 
 <div class="container-xl" *ngIf="isGod">
   <div class="row">

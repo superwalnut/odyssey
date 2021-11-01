@@ -48,6 +48,7 @@ export class DashboardComponent implements OnInit {
     this.accountService.getUserByDocId(this.loggedInUser.docId).subscribe(u=>{
       this.user = u;
       this.creditImageSrc = u.isCreditUser ? "./assets/img/banners/HBCoin.png" : "./assets/img/banners/HBCredit.jpg";
+      console.log(this.user);
     })
   }
 
