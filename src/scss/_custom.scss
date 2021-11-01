@@ -177,16 +177,17 @@ ul.simple-horizontal-list {
 
 .hero2 {
   //background-color: $nav-bar-color;
-  background: rgb(57,3,75);
-  background: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
 
-  min-height: 300px;
-  text-align: center;
-
+    margin-top:-15px; // to compensate container gap
+    background: rgb(57,3,75);
+    background: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
+  
+    min-height: 320px;
+    text-align: center;
   h1 {
     font: 800 45px 'Roboto', sans-serif!important;
     color: white;
-    margin: 80px 0 60px 0;
+    padding: 60px 0 30px 0;
     //font-family: 'Roboto', sans-serif!important;
   }
 
@@ -316,10 +317,10 @@ ul.hpbooking {
 //Media queries
 
 @media only screen and (max-width: 768px) {
-  .container-fluid {
-    padding: 0!important;
-    margin: 0!important;
-  }
+  // .container-fluid {
+  //   padding: 0!important;
+  //   margin: 0!important;
+  // }
   .container{
     padding: 5px!important;
   }
