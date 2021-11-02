@@ -24,7 +24,10 @@
           </li>
       
           <li *ngIf="isLoggedIn">
-            <a routerLink="/logout">{{ name }} logout</a>
+            <a routerLink="/settings/profile">{{ name }}</a>
+          </li>
+          <li *ngIf="isLoggedIn">
+            <a routerLink="/logout">Logout</a>
           </li>
         </ul>
       </nav>
