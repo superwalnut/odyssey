@@ -57,7 +57,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
   constructor(private groupService: GroupService, private dialogRef: MatDialog, private eventLogService: EventLoggerService,
     private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private creditService: CreditService,
-    private accountService: AccountService, private activatedRoute: ActivatedRoute, private helpService:HelperService, public dialog: MatDialog) { super() }
+    private accountService: AccountService, private activatedRoute: ActivatedRoute, private helpService: HelperService, public dialog: MatDialog) { super() }
 
   ngOnInit(): void {
     this.bookingDocId = this.activatedRoute.snapshot.params.id;
@@ -74,7 +74,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
       this.user = result[0];
       this.isCreditUser = result[0].isCreditUser;
       this.creditBalance = result[1];
-      
+
     })
 
     this.getGroupDetail(this.groupDocId);
@@ -85,11 +85,11 @@ export class BookingComponent extends BaseComponent implements OnInit {
     this.logToEvent(this.loggedInAccount);
   }
 
-  logToEvent(acc:Account) {
+  logToEvent(acc: Account) {
     if (acc.name == "Luc" || acc.name == "Josh Zhang") {
       return false;
     }
-   
+
     var log = {
       eventCategory: GlobalConstants.eventWebActivity,
       notes: 'Viewing bookings',
@@ -134,7 +134,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
   }
 
-  getFamilyFlag(lbu:LocalBookingUser) {
+  getFamilyFlag(lbu: LocalBookingUser) {
     if (lbu.userDocId != lbu.parentUserId) {
       return lbu.parentUserDisplayName;
     }
@@ -144,11 +144,11 @@ export class BookingComponent extends BaseComponent implements OnInit {
   getFamilyMembers(acc: Account) {
     this.accountService.getFamilyUsers(acc.docId).subscribe(users => {
       console.log('family: ', users);
-      var my = { userDocId: acc.docId, name: acc.name, isFamily: true, avatarUrl: this.user.avatarUrl} as LocalBookingUser;
+      var my = { userDocId: acc.docId, name: acc.name, isFamily: true, avatarUrl: this.user.avatarUrl } as LocalBookingUser;
       this.familyBookingUsers.push(my);
       if (users) {
         users.forEach(u => {
-          var fu = { userDocId: u.docId, name: u.name, isFamily: true, avatarUrl:u.avatarUrl } as LocalBookingUser;
+          var fu = { userDocId: u.docId, name: u.name, isFamily: true, avatarUrl: u.avatarUrl } as LocalBookingUser;
           this.familyBookingUsers.push(fu);
         });
       }
@@ -220,7 +220,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
     if (!confirm('Confirm to take this spot?')) {
       return false;
     }
-    
+
     let found = this.allLocalBookingUsers.find(x => x.userDocId == this.loggedInAccount.docId && !x.isForSale);
     console.log('has found: ', found);
     if (found) {
@@ -245,7 +245,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
       parentUserId: this.loggedInAccount.docId,
       parentUserDisplayName: this.loggedInAccount.name,
       paymentMethod: this.isCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
-      isPaid: this.isCreditUser ? true: false,
+      isPaid: this.isCreditUser ? true : false,
       createdOn: Timestamp.now(),
     } as BookingPerson;
     console.log('has found readed end!!!: ');
@@ -256,7 +256,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   withdrawClicked(lbu: LocalBookingUser) {
     lbu.isLoading = true;
     const dialogRef = this.dialog.open(WithdrawDialog, {
-      width: '650px',
+      width: '680px',
       data: {
         loggedInUser: this.loggedInAccount,
         booking: this.booking,
@@ -306,7 +306,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
 export class BookingDialog {
   constructor(
     public dialogRef: MatDialogRef<BookingDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: BookingDialogData, private mailgunService:MailgunService, private bookingPersonService: BookingPersonService, private accountService: AccountService) { }
+    @Inject(MAT_DIALOG_DATA) public data: BookingDialogData, private mailgunService: MailgunService, private bookingPersonService: BookingPersonService, private accountService: AccountService) { }
 
   hasError: boolean;
   errorMessage: string;
@@ -327,13 +327,13 @@ export class BookingDialog {
     this.meetBasePoints = this.data.userLevelPoints >= this.data.booking.levelRestrictionOverwrite;
 
     console.log('dialog', this.data);
-    
-    
+
+
     this.bookingPersonService.getByBookingDocId(this.data.bookingDocId).subscribe(allBookings => {
       this.allBookings = allBookings; //get a live connection to all booking persons.
     })
 
-    if (this.lowCredit) { this.lowbalanceEmailNotification();}
+    if (this.lowCredit) { this.lowbalanceEmailNotification(); }
 
   }
   onNoClick(): void {
@@ -581,20 +581,20 @@ export class WithdrawDialog {
     this.isLoading = true;
     if (confirm("Confirm to put your spot up for sale?")) {
       this.bookingPersonService.markForSale(this.data.inputBookingPerson.docId, this.mapToBookingPerson(this.data.inputBookingPerson))
-      .then(() => {
-        let log = {
-          eventCategory: GlobalConstants.eventBookingForSale,
-          notes: this.data.inputBookingPerson.name
-        } as EventLogger;
-        this.eventLogService.createLog(log, this.data.inputBookingPerson.userDocId, this.data.inputBookingPerson.parentUserDisplayName);
-        this.dialogRef.close()
-      })
-      .catch((err) => {
-        this.hasError = true;
-        this.isLoading = false;
-        //errorMessage = err.toString();
-        console.log(err);
-      });
+        .then(() => {
+          let log = {
+            eventCategory: GlobalConstants.eventBookingForSale,
+            notes: this.data.inputBookingPerson.name
+          } as EventLogger;
+          this.eventLogService.createLog(log, this.data.inputBookingPerson.userDocId, this.data.inputBookingPerson.parentUserDisplayName);
+          this.dialogRef.close()
+        })
+        .catch((err) => {
+          this.hasError = true;
+          this.isLoading = false;
+          //errorMessage = err.toString();
+          console.log(err);
+        });
     }
   }
 
