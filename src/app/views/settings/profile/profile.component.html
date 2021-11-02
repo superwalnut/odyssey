@@ -1,6 +1,24 @@
+
+
+
+
 <div class="container">
+
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <a routerLink="/settings/password" class="card-link">Change Password</a>
+          <a routerLink="/settings/family" class="card-link">Manage Family Members</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
     <div class="row">
       <div class="col-md-10 mx-auto">
+
         <div class="card">
           <div class="card-body p-4">
             <app-manage-profile [userDocId]="account.docId" [isAdmin]="false"></app-manage-profile>
