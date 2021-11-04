@@ -1,8 +1,23 @@
 // Here you can add other styles
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap');
+@import "xmaslights";
 
-$nav-bar-color: #39034b;
+//variables
+$nav-bar-color: #39034b; //#CC231E; 
 $nav-padding: 15px;
+//homepage hero banner gradient colors
+
+//xmas hero banner color
+// $hero-color1: #CC231E;
+// $hero-color2: #CC231E;
+// $hero-color3: #F5624D;
+// $hero-color4: #34A65F;
+
+$hero-color1: #39034b;
+$hero-color2: #39034b;
+$hero-color3: #751795;
+$hero-color4: #23d5ab;
+
 body div.app {
   background-color: #e1e1e1;
 }
@@ -332,7 +347,7 @@ ul.hpbooking {
 }
 
 .gradient-bg-animation {
-  background: linear-gradient(-45deg, #39034b, #39034b, #751795, #23d5ab);
+  background: linear-gradient(-45deg, $hero-color1, $hero-color2, $hero-color3, $hero-color4);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
 }
