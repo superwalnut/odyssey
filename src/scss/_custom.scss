@@ -3,20 +3,20 @@
 @import "xmaslights";
 
 //variables
-$nav-bar-color: #39034b; //#CC231E; 
+$nav-bar-color: #CC231E; //#39034b; 
 $nav-padding: 15px;
 //homepage hero banner gradient colors
 
 //xmas hero banner color
-// $hero-color1: #CC231E;
-// $hero-color2: #CC231E;
-// $hero-color3: #F5624D;
-// $hero-color4: #34A65F;
+$hero-color1: #CC231E;
+$hero-color2: #CC231E;
+$hero-color3: #F5624D;
+$hero-color4: #34A65F;
 
-$hero-color1: #39034b;
-$hero-color2: #39034b;
-$hero-color3: #751795;
-$hero-color4: #23d5ab;
+// $hero-color1: #39034b;
+// $hero-color2: #39034b;
+// $hero-color3: #751795;
+// $hero-color4: #23d5ab;
 
 body div.app {
   background-color: #e1e1e1;
@@ -132,7 +132,9 @@ ul.simple-horizontal-list {
 .homepage-intro {
   min-height: 430px;
   padding:30px 20px;
-  background-image: url(../assets/img/banners/jumpsmashbg.jpg);
+  // background-image: url(../assets/img/banners/jumpsmashbg.jpg);
+background-image: url(../assets/img/banners/christmasBanner.png);
+
   background-size: cover;
   background-repeat: no-repeat;
   color:white;
