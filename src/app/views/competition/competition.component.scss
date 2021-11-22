@@ -5,3 +5,26 @@ table {
   th.mat-sort-header-sorted {
     color: black;
   }
+
+  .scheduleHero {
+
+    min-height: 300px;
+    //padding:30px 20px;
+    background: url(/assets/img/banners/schedulebanner.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color:white;
+    line-height: 300px;
+    text-align: center;
+
+    h1{
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+        font-size: 60px;
+    }
+  }
+
+  .pagebottom {
+      min-height: 100px;
+  }

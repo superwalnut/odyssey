@@ -4,7 +4,14 @@
     <div class="row">
       <div class="col">
 
-        <h1>2021 EOY Competition Schedule</h1>
+        <div class="scheduleHero">
+          <h1>2021 EOY Competition Schedule</h1>
+        </div>
+
+        
+
+
+        
 
         <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
     
@@ -41,6 +48,12 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+
+
+        <div class="pagebottom">
+          <span class="badge badge-primary">Time</span> is only a rough estimate
+        </div>
+        
 
       </div>
     </div>
