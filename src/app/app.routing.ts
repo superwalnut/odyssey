@@ -17,6 +17,7 @@ import { LogoutComponent } from "./views/logout/logout.component";
 import { ResetpasswordComponent } from "./views/resetpassword/resetpassword.component";
 import { CreateNewPasswordComponent } from "./views/create-new-password/create-new-password.component";
 import { AirtagComponent } from "./views/promo/airtag/airtag.component";
+import { CompetitionComponent } from "./views/competition/competition.component";
 
 
 export const routes: Routes = [
@@ -56,6 +57,14 @@ export const routes: Routes = [
     component: AirtagComponent,
     data: {
       title: "Airtag promotion",
+    },
+  },
+  {
+    path: "competition",
+    component: CompetitionComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: "Competition",
     },
   },
   {

@@ -72,6 +72,7 @@ import { GroupsComponent } from './views/groups/groups.component';
 import { HttpClientModule } from "@angular/common/http";
 import { CreateNewPasswordComponent } from "./views/create-new-password/create-new-password.component";
 import { AirtagComponent } from './views/promo/airtag/airtag.component';
+import { CompetitionComponent } from './views/competition/competition.component';
 
 @NgModule({
   imports: [
@@ -118,6 +119,7 @@ import { AirtagComponent } from './views/promo/airtag/airtag.component';
     WithdrawDialog,
     CreateNewPasswordComponent,
     AirtagComponent,
+    CompetitionComponent,
   ],
   providers: [
     {
