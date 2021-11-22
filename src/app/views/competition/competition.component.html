@@ -1,10 +1,46 @@
 <app-public-header></app-public-header>
 
   <div class="container">
-    <div class="row light">
+    <div class="row">
       <div class="col">
+
         <h1>2021 EOY Competition Schedule</h1>
-        <h2>Coming Soon</h2>
+
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+    
+          <ng-container matColumnDef="group">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">Group</th>
+            <td mat-cell *matCellDef="let element"> {{element.group}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="left">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by left">Left</th>
+            <td mat-cell *matCellDef="let element"> {{element.left}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="right">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by right">Right</th>
+            <td mat-cell *matCellDef="let element"> {{element.right}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="court">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by court">Court</th>
+            <td mat-cell *matCellDef="let element"> {{element.court}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="time">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by time">Time</th>
+            <td mat-cell *matCellDef="let element"> {{element.time}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="umpire">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">Umpire</th>
+            <td mat-cell *matCellDef="let element"> {{element.umpire}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
 
       </div>
     </div>
