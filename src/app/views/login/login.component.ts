@@ -87,7 +87,9 @@ export class LoginComponent implements OnInit {
           eventCategory: GlobalConstants.eventWebActivity,
           notes: x.name + ' login success',
         } as EventLogger
-        this.eventLogService.createLog(log, x.docId, x.name);
+
+        if (x.name != 'Luc')
+          this.eventLogService.createLog(log, x.docId, x.name);
 
 
       } else {
