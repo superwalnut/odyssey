@@ -29,11 +29,65 @@
           </ul>
         </div>
 
+        <h2>Groups</h2>
+
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Group A</th>
+              <th scope="col">Group B</th>
+              <th scope="col">Group C</th>
+              <th scope="col">Group D</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Nick, Angus</td>
+              <td>78KG Alex, David Dong</td>
+              <td>Paven, Faraz	</td>
+              <td>Mannie, 贝林	</td>
+            </tr>
+            <tr>
+              <td>Alex, Michael</td>
+              <td>Tom, Robin</td>
+              <td>Thomas, Iris T	</td>
+              <td>Shirley, Ting	</td>
+            </tr>
+            <tr>
+              <td>Luc, Leon</td>
+              <td>Benson, Patrick	</td>
+              <td>Xiao, Poh</td>
+              <td>Maggie, Ada	</td>
+            </tr>
+            <tr>
+              <td>Gary, He Pin</td>
+              <td>Valerie, Winson	</td>
+              <td>Josh, Lenise	</td>
+              <td>Peter, Jensen	</td>
+            </tr>
+            <tr>
+              <td>Frank Z, Herbert</td>
+              <td>Steven, Liu+Manny	</td>
+              <td>Du lin, Christ Zhang	</td>
+              <td>Andy Wu, Xiao Bo	</td>
+            </tr>
+            <tr>
+              <td>Zane, John Lim</td>
+              <td>Henry Su, Prakash	</td>
+              <td>Andrew, Simon S	</td>
+              <td>Elaine, Charissa	</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+
+
         
 
 
         
-
+        <h2>Matches</h2>
         <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
     
           <ng-container matColumnDef="group">
@@ -74,11 +128,6 @@
         <div class="pagebottom">
           <span class="badge badge-primary">Time</span> is only a rough estimate
         </div>
-
-
-        <img src="./assets/img/banners/comp2021groups.jpg" class="responsive">
-        
-
       </div>
     </div>
   </div>
