@@ -22,11 +22,15 @@
               <span [ngClass]="{ 'text-danger': creditBalance<0  }">{{creditBalance | currency}}</span>  <a routerLink="/settings/creditstatement">Top up</a></li>
             </ul>
 
-          <div class="alert  alert-warning">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <mat-icon>settings</mat-icon> 
-            Setup <a routerLink="/settings/schedule">AutoBooking</a> , let the robot does the weekly booking for you!
-          </div>
+            <div class="alert  alert-warning">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+  
+              <ul style="list-style: none; margin:0; padding: 0;">
+                <li><mat-icon>settings</mat-icon> Setup <a routerLink="/settings/schedule">AutoBooking</a> , let the robot does the weekly booking for you!</li>
+                <li *ngIf="!user?.isCreditUser"><mat-icon>paid</mat-icon> Go cashless! Become an <a routerLink="/termsconditions">HBCoin</a>  user to enjoy cheaper rates and many more benefits! <a routerLink="/settings/creditstatement">Yes, I'm in!</a></li>
+              </ul>
+            </div>
+  
 
           <!-- <table class="table table-hover table-dark booking table-sm"> -->
             <table class="table table-hover booking-table-red booking table-sm">
