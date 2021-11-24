@@ -14,8 +14,8 @@
     <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage | json }}</div>
     <!-- <h3 *ngIf="data.isCreditUser">Credit Balance: <span class="badge badge-warning">{{ data.creditBalance | currency}}</span></h3> -->
 
-    <div class="p-3 mb-2 bg-warning text-dark" *ngIf="lowCredit && hasCredit && !data.isCommittee">Your balance is low, pelase topup ASAP, or you won't be able to make bookings.</div>
-    <div class="p-3 mb-2 bg-danger text-white" *ngIf="!hasCredit && !data.isCommittee">You don't have any credit left, please top up your credit now!</div>
+    <div class="p-3 mb-2 bg-warning text-dark" *ngIf="lowCredit && hasCredit && !data.isCommittee">Your balance is low, pelase <a routerLink="/settings/creditstatement" target="_blank">top up</a> ASAP, or you won't be able to make bookings.</div>
+    <div class="p-3 mb-2 bg-danger text-white" *ngIf="!hasCredit && !data.isCommittee">You don't have any credit left, please <a routerLink="/settings/creditstatement" target="_blank">top up</a> your credit now!</div>
 
     
     <div *ngIf="data.isSeatsLeft && meetBasePoints">
