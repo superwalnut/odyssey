@@ -288,7 +288,7 @@ const ELEMENT_DATA: ScheduleElement[] = [
   {
     "group": "C",
     "left": "Josh, Lenise",
-    "handicap": 5,
+    "handicap": null,
     "right": "Du lin, Christ Zhang",
     "court": 1,
     "time": "21:10",
