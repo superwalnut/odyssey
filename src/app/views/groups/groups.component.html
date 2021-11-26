@@ -16,10 +16,9 @@
 
       </div>
     </div>
-    <div class="row light">
-      <div class="col">
-        
-        <mat-card *ngFor="let b of bookings" class="card-sm booking"> 
+    <!-- <div class="row light">
+      <div class="col" *ngFor="let b of bookings" >
+        <mat-card class="card-sm booking"> 
           <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}">
           <mat-card-header>
             <mat-card-title>{{ getGroupName(b.groupDocId)}} </mat-card-title>
@@ -34,6 +33,21 @@
         </mat-card> 
         
       </div>      
+    </div> -->
+
+    <div class="row light">
+      <div class="col-sm-4" *ngFor="let b of bookings" >
+        <div class="card">
+          <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}"><img class="card-img-top" src="assets/img/banners/badminton.jpg"></a>
+          <div class="card-body">
+            <h5 class="card-title">{{ getGroupName(b.groupDocId)}}</h5>
+            <p class="card-text">{{ getGroupDesc(b.groupDocId)}} <span class="material-icons">chair</span> {{seatsLimit}}</p>
+            <p class="card-text">{{ b.eventStartDateTime.toDate() | date: 'dd/MM/yyyy HH:mm'}}</p>
+            <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}" class="btn btn-primary btn-large btn-block">Book</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
