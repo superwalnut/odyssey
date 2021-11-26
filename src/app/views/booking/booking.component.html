@@ -16,12 +16,11 @@
       <div class="col-sm">
         <section> 
           <ul class="simple-horizontal-list">
+            <li><span class="material-icons" title="{{ booking?.isLocked ? 'Booking Locked': 'Booking is open'}}">{{ booking?.isLocked ? 'lock':'lock_open'}}</span> {{ booking?.isLocked ? 'Locked':'Open'}}</li>
+            <li><span class="material-icons">chair</span> {{seatsBooked}}/{{booking?.seatsOverwrite}}</li>
             <li>
-              <span class="material-icons" title="{{ booking?.isLocked ? 'Booking Locked': 'Booking is open'}}">{{ booking?.isLocked ? 'lock':'lock_open'}}</span>
-              Seats: {{seatsBooked}} / {{booking?.seatsOverwrite}}
-            </li>
-            
-            <li><span class="badge badge-success"> {{ user?.isCreditUser ? 'HBCoin' : 'Cash'}}</span> 
+              <!-- <span class="badge badge-success"> {{ user?.isCreditUser ? 'HBCoin' : 'Cash'}}</span>  -->
+              <span class="material-icons">{{ user?.isCreditUser ? 'monetization_on' : 'payments'}} </span>
               <a routerLink="/settings/creditstatement" title="top up"><span [ngClass]="{ 'text-danger': creditBalance<0  }">{{creditBalance | currency}}</span></a></li>
             </ul>
 
@@ -82,6 +81,7 @@
                   
                   
                 </td>
+                
               </tr>
             </tbody>
           </table>
