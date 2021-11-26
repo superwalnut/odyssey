@@ -16,10 +16,13 @@
       <div class="col-sm">
         <section> 
           <ul class="simple-horizontal-list">
-            <li><span class="material-icons" title="{{ booking?.isLocked ? 'Booking Locked': 'Booking is open'}}">{{ booking?.isLocked ? 'lock':'lock_open'}}</span></li>
-            <li>Seats: {{seatsBooked}} / {{booking?.seatsOverwrite}}</li>
+            <li>
+              <span class="material-icons" title="{{ booking?.isLocked ? 'Booking Locked': 'Booking is open'}}">{{ booking?.isLocked ? 'lock':'lock_open'}}</span>
+              Seats: {{seatsBooked}} / {{booking?.seatsOverwrite}}
+            </li>
+            
             <li><span class="badge badge-success"> {{ user?.isCreditUser ? 'HBCoin' : 'Cash'}}</span> 
-              <span [ngClass]="{ 'text-danger': creditBalance<0  }">{{creditBalance | currency}}</span>  <a routerLink="/settings/creditstatement">Top up</a></li>
+              <a routerLink="/settings/creditstatement" title="top up"><span [ngClass]="{ 'text-danger': creditBalance<0  }">{{creditBalance | currency}}</span></a></li>
             </ul>
 
             <div class="alert  alert-warning">
