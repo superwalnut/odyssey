@@ -3,7 +3,10 @@ import { Group } from "../../models/group";
 import { GroupService } from "../../services/group.service";
 import { BookingsService } from "../../services/bookings.service";
 import { HelperService } from "../../common/helper.service";
-
+import { BookingScheduleService } from "../../services/booking-schedule.service";
+import { BookingSchedule } from "../../models/booking-schedule";
+import { AccountService } from "../../services/account.service";
+import { Account } from "../../models/account";
 import { BaseComponent } from '../base-component';
 import { concatMap, shareReplay, switchMap, take } from 'rxjs/operators';
 import { textSpanIntersectsWithTextSpan } from 'typescript';
@@ -25,15 +28,20 @@ export class GroupsComponent extends BaseComponent implements OnInit {
   groupBookings: GroupBooking[] = [];
   weekStart: Timestamp;
   weekEnd: Timestamp;
+  mySchedules: BookingSchedule[];
+  loggedInAccount: Account;
 
 
-  constructor(private groupService: GroupService, private bookingService: BookingsService, private helperService: HelperService) { super() }
+  constructor(private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService, private bookingScheduleService: BookingScheduleService, private helperService: HelperService) { super() }
 
   ngOnInit(): void {
+    this.loggedInAccount = this.accountService.getLoginAccount();
+
     let dateRange = this.helperService.findDateRangeOfCurrentWeek(new Date());
     this.weekStart = this.helperService.convertToTimestamp(dateRange.firstday);
     this.weekEnd = this.helperService.convertToTimestamp(dateRange.lastday);
     this.getGroupsAndCurrentBookings();
+    this.getMySchedules();
     console.log('bookings.....', this.bookings);
   }
 
@@ -57,6 +65,27 @@ export class GroupsComponent extends BaseComponent implements OnInit {
       this.bookings = result[1];
     })
   }
+
+  getMySchedules() {
+    this.bookingScheduleService.getMyBookingSchedules(this.loggedInAccount.docId).subscribe(schedules => {
+      this.mySchedules = schedules;
+      console.log('autobooking', this.mySchedules);
+    })
+  }
+
+  getExpiryStatus(schedule: BookingSchedule) {
+    var expireOn = schedule.expireOn;
+    if (expireOn < Timestamp.now()) {
+      return 'Expired';
+    }
+
+    //{{ s.isPaused ? 'Paused' : 'Active' }}
+    if (schedule.isPaused) {
+      return 'Paused';
+    }
+    return 'Active';
+  }
+
 }
 
 

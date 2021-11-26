@@ -49,6 +49,56 @@
       </div>
 
     </div>
+
+    <div class="row light">
+      <div class="col">
+
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                My AutoBookings
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+                Let the robot does the weekly booking for you!
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            
+            <ul class="simple-horizontal-list">
+              <li><button type="button" routerLink="/settings/schedule" class="btn btn-primary">Manage AutoBooking</button></li>
+              <li><a routerLink="/termsconditions">AutoBooking Policy</a></li>
+            </ul>
+
+            <table class="table table-sm" *ngIf="mySchedules.length > 0">
+              <thead>
+                <tr>
+                  <th scope="col">Session</th>
+                  <th scope="col">User</th>
+                  <th scope="col">Expire on</th>
+                  <th scope="col">Status</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let s of mySchedules">
+                  <td>{{ s.groupName }}</td>
+                  <td>{{ s.user.name }}</td>
+                  <td>{{ s.expireOn.toDate() | date: 'dd/MM/yyyy' }}</td>
+                  <td>
+                    {{ getExpiryStatus(s)}}
+                  </td>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <p></p>
+
+      </div>
+    </div>
+
   </div>
 </div>
 

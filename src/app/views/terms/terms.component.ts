@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalConstants } from '../../common/global-constants';
 
 @Component({
   selector: 'app-terms',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./terms.component.scss']
 })
 export class TermsComponent implements OnInit {
+
+  autoBookngMiniumCreditRequired = GlobalConstants.autoBookingMiniumCreditRequired
+
 
   constructor() { }
 

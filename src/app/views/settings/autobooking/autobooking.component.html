@@ -4,7 +4,10 @@
       <div class="card">
         <div class="card-body p-4">
           <h1>Auto Booking <span class="badge badge-warning">paid service</span></h1>
-          <p>Jump the queue by automating your weekly booking for a small fee</p>
+          <p>Jump the queue by automating your weekly booking for a small fee. 
+          <a routerLink="/termsconditions">AutoBooking Policy FAQ</a>
+
+          </p>
           <div class="p-3 mb-2 bg-warning text-dark"  *ngIf="!hasCredit">
             <p>Your current balance: {{myCreditBalance | currency}}</p>
             You don't have enought credit to use this service: mimium HBCoins required: {{ miniumCreditRequired | currency}}
