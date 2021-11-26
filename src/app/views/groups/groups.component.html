@@ -40,9 +40,8 @@
         <div class="card">
           <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}"><img class="card-img-top" src="assets/img/banners/badminton2.jpg"></a>
           <div class="card-body">
-            <h5 class="card-title">{{ getGroupName(b.groupDocId)}}</h5>
+            <h5 class="card-title">{{ getGroupName(b.groupDocId)}} {{ b.eventStartDateTime.toDate() | date: 'dd/MM/yyyy'}}</h5>
             <p class="card-text">{{ getGroupDesc(b.groupDocId)}} <span class="material-icons">chair</span> {{seatsLimit}}</p>
-            <p class="card-text">{{ b.eventStartDateTime.toDate() | date: 'dd/MM/yyyy HH:mm'}}</p>
             <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}" class="btn btn-primary btn-large btn-block">Book</a>
           </div>
         </div>
@@ -50,7 +49,7 @@
 
     </div>
 
-    <div class="row light">
+    <div class="row light" *ngIf="isLoggedIn">
       <div class="col">
 
         <mat-accordion>
@@ -70,7 +69,7 @@
               <li><a routerLink="/termsconditions">AutoBooking Policy</a></li>
             </ul>
 
-            <table class="table table-borderless" *ngIf="mySchedules.length > 0">
+            <table class="table table-borderless" *ngIf="mySchedules?.length > 0">
               <thead>
                 <tr>
                   <th scope="col">Session</th>

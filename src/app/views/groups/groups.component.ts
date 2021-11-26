@@ -30,18 +30,22 @@ export class GroupsComponent extends BaseComponent implements OnInit {
   weekEnd: Timestamp;
   mySchedules: BookingSchedule[];
   loggedInAccount: Account;
+  isLoggedIn: boolean;
 
 
   constructor(private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService, private bookingScheduleService: BookingScheduleService, private helperService: HelperService) { super() }
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
+    this.isLoggedIn = this.loggedInAccount && this.loggedInAccount.docId ? true : false;
 
     let dateRange = this.helperService.findDateRangeOfCurrentWeek(new Date());
     this.weekStart = this.helperService.convertToTimestamp(dateRange.firstday);
     this.weekEnd = this.helperService.convertToTimestamp(dateRange.lastday);
     this.getGroupsAndCurrentBookings();
-    this.getMySchedules();
+    if (this.isLoggedIn) {
+      this.getMySchedules();
+    }
     console.log('bookings.....', this.bookings);
   }
 
