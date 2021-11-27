@@ -28,10 +28,10 @@
     
                         <mat-form-field>
                             <mat-label>HBCoins</mat-label>
-                            <input matInput placeholder="Amount between 0 and 100" type="number" formControlName="amount" min="0" max="100" required autocomplete="off"/>
+                            <input matInput placeholder="Amount between 0 and 100" type="number" formControlName="amount" min="0" max="500" required autocomplete="off"/>
                         </mat-form-field>
                         <div *ngIf="f.amount.invalid && (f.amount.dirty || f.amount.touched)" class="invalid-feedback">
-                            <div *ngIf="f.amount.errors">Amount must be greater than 0 and less than 100</div>
+                            <div *ngIf="f.amount.errors">Amount must be greater than 0 and less than 500</div>
                         </div>
     
                         <p>

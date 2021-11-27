@@ -106,7 +106,7 @@ export class CointransferComponent extends BaseComponent implements OnInit {
     }
 
     if (this.form.value.amount <= 0) {
-      alert("Amount must be greater than 0 and less than 100");
+      alert("Amount must be greater than 0 and less than 500");
       return false;
     }
 
