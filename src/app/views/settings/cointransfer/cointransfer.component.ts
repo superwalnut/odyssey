@@ -63,7 +63,7 @@ export class CointransferComponent extends BaseComponent implements OnInit {
 
     this.form = this.fb.group({
       //recipient: ['', Validators.required],
-      amount: ['', [Validators.required, Validators.min(0.01), Validators.max(100)]],
+      amount: ['', [Validators.required, Validators.min(0.01), Validators.max(500)]],
       notes: ["", Validators.required],
     });
 
