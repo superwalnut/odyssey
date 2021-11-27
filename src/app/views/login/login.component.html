@@ -1,5 +1,73 @@
 
+<div class="container-fluid">
+  <div class="row no-gutters" style="height: 1000px;">
+    <div class="col-6 d-none d-md-block">
+      <div class="login-left-panel">
+        <img src="./assets/img/banners/iphone.png" alt="">
 
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6  right-panel ripple-background">
+      <div class='circle xxlarge shade1'></div>
+      <div class='circle xlarge shade2'></div>
+      <div class='circle large shade3'></div>
+      <div class='circle mediun shade4'></div>
+      <div class='circle small shade5'></div>
+      <div class="loginbox ">
+        
+
+
+        <a routerLink=""><img src="./assets/img/banners/HBClogo.jpg" style="width: 50px; margin-bottom: 20px"/></a>
+        <div *ngIf="showRegisterMsg" class="alert alert-success">
+          Thank you for you registration, please login to your account.
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <h1>Login</h1>
+
+          <div>
+            <mat-form-field>
+              <mat-label>Mobile</mat-label>
+              <input matInput placeholder="Mobile number" formControlName="phone" appearance="fill">
+            </mat-form-field>
+            <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+              <div *ngIf="f.phone.errors.required">Mobile is required</div>
+            </div>
+          </div>
+
+          <div>
+            <mat-form-field class="example-full-width">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" placeholder="Password" formControlName="password" appearance="fill">
+            </mat-form-field>
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+              <div *ngIf="f.password.errors.minlength">Password is too short</div>
+            </div>
+          </div>
+
+          <a routerLink="/resetpassword">Forgotten password?</a>
+
+        
+          <div class="loginbutton">
+            <!-- <button type="submit" class="btn btn-primary">Login</button> -->
+            <button type="submit" mat-raised-button color="primary">Login</button>
+            <!-- <button type="submit" class="btn btn-primary btn-lg btn-block">Login level button</button> -->
+            <button mat-stroked-button routerLink="/register">Sign Up</button>
+
+
+          </div>
+          
+          
+        </form>
+        
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 
 <div class="app-body">
   <main class="main d-flex align-items-center">
     <div class="container">
@@ -118,4 +186,4 @@
       </div>
     </div>
   </main>
-</div>
+</div> -->

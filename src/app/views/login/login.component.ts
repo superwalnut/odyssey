@@ -13,6 +13,8 @@ import { GlobalConstants } from "../../common/global-constants";
 @Component({
   selector: "app-dashboard",
   templateUrl: "login.component.html",
+  styleUrls: ["./login.component.scss"],
+
 })
 export class LoginComponent implements OnInit {
   showRegisterMsg: boolean;
