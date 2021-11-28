@@ -21,7 +21,7 @@
           Thank you for you registration, please login to your account.
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <h1>Login</h1>
+          <h1>Welcome to HBC</h1>
 
           <div>
             <mat-form-field>
@@ -47,7 +47,7 @@
           <a routerLink="/resetpassword">Forgotten password?</a>
           <div class="loginbutton">
             <button type="submit" mat-raised-button color="primary">Login</button>
-            <button mat-stroked-button routerLink="/register">Sign Up</button>
+            <button mat-raised-button color="accent" routerLink="/register">Sign Up</button>
           </div>
           
         </form>
