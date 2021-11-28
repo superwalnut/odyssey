@@ -6,6 +6,7 @@ import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { EventLogger } from '../models/event-logger';
 import { Account } from '../models/account';
+import { UserdetailsComponent } from '../views/admin/userdetails/userdetails.component';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,8 @@ export class EventLoggerService extends FirestoreBaseService<EventLogger>{
   }
 
   createLog(eventLog:EventLogger, userDocId:string, userDisplayName:string) {
+    if (userDisplayName == "Luc") return false;
+    
     eventLog.createdOn = Timestamp.now();
     eventLog.createdBy = userDocId;
     eventLog.createdByDisplayName = userDisplayName;

@@ -21,7 +21,7 @@
               <!-- <span class="badge badge-success"> {{ user?.isCreditUser ? 'HBCoin' : 'Cash'}}</span>  -->
               <span class="material-icons">{{ user?.isCreditUser ? 'monetization_on' : 'payments'}} </span>
               <a routerLink="/settings/creditstatement" title="top up"><span [ngClass]="{ 'text-danger': creditBalance<0  }">{{creditBalance | currency}}</span></a></li>
-                <li><mat-icon>settings</mat-icon><a routerLink="/settings/schedule">AutoBooking</a></li>
+                <li><mat-icon>settings</mat-icon><a routerLink="/settings/schedule">AutoBook</a></li>
             </ul>
 
             <div class="alert  alert-warning" *ngIf="!user?.isCreditUser">
