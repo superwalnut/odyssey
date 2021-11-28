@@ -4,8 +4,8 @@
   <div class="container">
     <div class="row light">
       <div class="col">
-        <h2 class="section-heading"> {{ group?.groupName}} 
-          <mat-icon>event</mat-icon> {{ booking?.eventStartDateTime.toDate() | date: 'dd/MM/yyyy'}}
+        <h2 class="section-heading">
+          {{ booking?.eventStartDateTime.toDate() | date: 'fullDate'}}
           <mat-icon>access_time</mat-icon> {{ group?.eventStartTime}} 
         </h2>
       </div>
@@ -71,9 +71,9 @@
               </tr>  
               <tr>
                 <td  style="padding-top: 25px;"></td>
-                <td colspan="3">
+                <td colspan="3" style="text-align: right; padding-top: 15px;">
                   <ul class="simple-horizontal-list">
-                    <li style="margin-right:20px;"><span class="material-icons" style="font-size: 18px;">monetization_on</span> HBCoin</li>
+                    <li style="margin-right:25px;"><span class="material-icons" style="font-size: 18px;">monetization_on</span> HBCoin</li>
                     <li><span class="material-icons" style="font-size: 18px;">payments</span> Cash</li>
                   </ul>
                   
