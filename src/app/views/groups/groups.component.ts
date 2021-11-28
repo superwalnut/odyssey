@@ -43,6 +43,7 @@ export class GroupsComponent extends BaseComponent implements OnInit {
     this.weekStart = this.helperService.convertToTimestamp(dateRange.firstday);
     this.weekEnd = this.helperService.convertToTimestamp(dateRange.lastday);
     this.getGroupsAndCurrentBookings();
+    //this.getGroupName()
     if (this.isLoggedIn) {
       this.getMySchedules();
     }
@@ -57,6 +58,7 @@ export class GroupsComponent extends BaseComponent implements OnInit {
 
   getGroupDesc(groupDocId: string) {
     var g = this.groups.find(x => x.docId == groupDocId);
+    this.seatsLimit = g.seats;
     return g.groupDesc;
   }
   getGroupsAndCurrentBookings() {
