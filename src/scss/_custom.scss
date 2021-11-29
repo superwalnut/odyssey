@@ -4,7 +4,7 @@
 
 //variables
 $nav-bar-color: #CC231E; //#39034b; 
-$nav-padding: 15px;
+$nav-padding: 20px;
 //homepage hero banner gradient colors
 
 //xmas hero banner color
@@ -222,7 +222,7 @@ nav {
     float: left;
     margin: -$nav-padding auto;
     img {
-      width: 50px;
+      width: 55px;
     }
   }
   ul {
@@ -232,6 +232,7 @@ nav {
     li {
       display: inline;
       padding: 25px;
+      margin-left:30px;
       //padding-left: 0;
       a {
         color: whitesmoke;
@@ -427,6 +428,7 @@ ul.hpbooking {
         display: inline-block;
         padding: 20px;
         padding-left: 0;
+        padding-right: 23px;
       }
     }
   }
