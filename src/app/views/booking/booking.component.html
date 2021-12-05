@@ -45,6 +45,10 @@
                   <button type="button" class="btn btn-primary" (click)="bookClicked()" *ngIf="isSeatsLeft">Book</button>
                   <button mat-raised-button color="warn" *ngIf="!isSeatsLeft">Full</button>
                 </th>
+                <th scope="col" *ngIf="booking?.isLocked">
+                  <button mat-raised-button color="accent">Locked</button>
+                </th>
+
               </tr>
             </thead>
             <tbody>
