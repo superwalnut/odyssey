@@ -81,7 +81,7 @@ const ELEMENT_DATA: ScheduleElement[] = [
   {
     "group": "C",
     "left": "Thomas, Iris",
-    "handicap": null,
+    "handicap": 5,
     "right": "Du lin, Christ Zhang",
     "court": 2,
     "time": "20:30",
@@ -117,7 +117,7 @@ const ELEMENT_DATA: ScheduleElement[] = [
   {
     "group": "D",
     "left": "Maggie, Ada",
-    "handicap": null,
+    "handicap": 5,
     "right": "Peter W, Jensen",
     "court": 6,
     "time": "20:30",
@@ -216,7 +216,7 @@ const ELEMENT_DATA: ScheduleElement[] = [
   {
     "group": "D",
     "left": "Elaine, Charissa",
-    "handicap": null,
+    "handicap": 5,
     "right": "Peter W, Jensen",
     "court": 5,
     "time": "20:50",
@@ -432,7 +432,7 @@ const ELEMENT_DATA: ScheduleElement[] = [
   {
     "group": "D",
     "left": "Mannie, Bei Lin",
-    "handicap": null,
+    "handicap": 5,
     "right": "Peter W, Jensen",
     "court": 5,
     "time": "21:30",
@@ -531,7 +531,7 @@ const ELEMENT_DATA: ScheduleElement[] = [
   {
     "group": "D",
     "left": "Shirley, Ting",
-    "handicap": null,
+    "handicap": 5,
     "right": "Peter W, Jensen",
     "court": 4,
     "time": "21:50",
