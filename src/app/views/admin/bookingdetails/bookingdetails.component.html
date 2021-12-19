@@ -59,7 +59,7 @@
               <thead>
                 <tr>
                   <th scope="col">User</th>
-                  <th scope="col">Payment</th>
+                  <!-- <th scope="col">Payment</th> -->
                   <th scope="col">Amount</th>
                   <th scope="col">Paid</th>
                   <th scope="col">On</th>
@@ -70,13 +70,15 @@
               <tbody>
                 <tr *ngFor="let p of allLocalBookingUsers; let i=index"  [ngClass]="{'unpaid-bg':!p.isPaid}">
                   <td scope="row">{{ i+1 }} 
+                    <mat-icon>{{getPaymentClass(p.paymentMethod)}}</mat-icon> <i class="{{getPaymentClass(p.paymentMethod)}}"></i> 
                     <a routerLink="/admin/userdetails/{{p.userDocId}}">{{p.name}}</a>  
                     <span class="text-success small">{{ p.parentUserDisplayName }}</span>
                     <mat-icon title="for sale">{{ p.isForSale ? 'social_distance':''}}</mat-icon> 
                     <!-- <mat-icon *ngIf="p.note" title="{{p.note}}">sticky_note_2</mat-icon> -->
-                    {{p.note}}
+                    {{p.note}} 
+                    
                   </td>
-                  <td scope="row"><mat-icon>{{getPaymentClass(p.paymentMethod)}}</mat-icon> <i class="{{getPaymentClass(p.paymentMethod)}}"></i></td>
+                  <!-- <td scope="row"><mat-icon>{{getPaymentClass(p.paymentMethod)}}</mat-icon> <i class="{{getPaymentClass(p.paymentMethod)}}"></i></td> -->
                   <td scope="row">{{ p.amount | currency}}</td>
                   <td scope="row">
                     <button mat-icon-button color="accent" title="add notes" (click)="addNoteClicked(p)">
@@ -86,10 +88,10 @@
                     <!-- <mat-icon (click)="addNoteClicked(p)">{{ p.isPaid ? 'check' : 'close'}}</mat-icon> -->
                   </td>
 
-                  <td scope="row">{{p.createdOn.toDate() | date: "dd/MM/yyyy hh:MM"}}</td>
+                  <td scope="row">{{p.createdOn.toDate() | date: "MMM d hh:MM"}}</td>
                   <td *ngIf="!booking?.reconciled">
                     <button mat-icon-button color="accent" title="withdraw" (click)="withdrawBooking(p)" *ngIf="isGod">
-                      <mat-icon>remove</mat-icon>
+                      <mat-icon>delete_forever</mat-icon>
                     </button> 
 
                     <!-- <button mat-icon-button color="accent" title="add notes" (click)="addNoteClicked(p)">
