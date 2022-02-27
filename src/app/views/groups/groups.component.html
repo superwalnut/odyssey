@@ -4,18 +4,28 @@
   <div class="container">
     <div class="row light">
       <div class="col">
-
         <h1 class="section-heading">{{weekStart.toDate() | date:'MMM dd'}} - {{weekEnd.toDate() | date:'MMM dd, yyyy'}} Badminton Sessions</h1>
-        <div class="alert alert-warning">
-          <b>COVID-19 Safty Requirement</b>
-          <ul class="simple-horizontal-list">
-            <li>- 16yrs+ MUST be fully vaccinated and must provide proof of vaccination status to be granted access</li>
-            <li>- Masks Must be worn at all times, except while playing.</li>
-          </ul>
-        </div>
-
       </div>
     </div>
+
+    <div class="row light" *ngIf="bookings.length==0">
+      <div class="col-sm">
+        <div class="bookingoffline">
+          <h2>OFFLINE</h2>
+          <h3>Have faith in your heart, the booking shall be online soon!</h3>
+        </div>
+        
+      </div>
+      <div class="col-sm">
+        <div class="bookingofflineimg">
+          <img src="assets/img/banners/legobadminton.jpg" alt="lego badminton">
+        </div>
+          
+      </div>
+      
+    </div>
+    
+
     <!-- <div class="row light">
       <div class="col" *ngFor="let b of bookings" >
         <mat-card class="card-sm booking"> 
