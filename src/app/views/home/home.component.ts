@@ -15,6 +15,7 @@ import { environment } from "../../../environments/environment";
 import { cibLinuxFoundation } from "@coreui/icons";
 import { BookingsService } from '../../services/bookings.service';
 import { combineLatest } from "rxjs";
+import { GlobalConstants } from "../../common/global-constants";
 
 
 @Component({
@@ -30,7 +31,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
   myCurrentWeekBookings: BookingPerson[];
   weekStart: Timestamp;
   hasBooking:boolean;
-
+  quotes:string;
   myBookings:MyBooking[]=[];
   domain:string=environment.domain;
 
@@ -44,9 +45,10 @@ export class HomeComponent extends BaseComponent implements OnInit {
     let dateRange = this.helperService.findDateRangeOfCurrentWeek(new Date());
     this.weekStart = this.helperService.convertToTimestamp(dateRange.firstday);
 
-    if (this.isLoggedIn) {
-      this.getMyCurrentWeekBookings();
-    }
+    this.quotes = this.getQuotes().line;
+    // if (this.isLoggedIn) {
+    //   this.getMyCurrentWeekBookings();
+    // }
   }
 
   getMyCurrentWeekBookings() {
@@ -90,6 +92,11 @@ export class HomeComponent extends BaseComponent implements OnInit {
     })
 
     console.log(this.myBookings)
+  }
+
+  getQuotes() {
+    var rand = this.helperService.getRandomIntInclusive(0,22);
+    return GlobalConstants.homepageQuotes[rand];
   }
 }
 

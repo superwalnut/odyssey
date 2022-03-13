@@ -374,7 +374,7 @@ ul.hpbooking {
   color: transparent;
   //font-size: 10vw;
   //font-family: "Source Sans Pro", sans-serif;
-  animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+  animation: reveal 4000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
 }
 
 .gradient-bg-animation {
@@ -385,7 +385,7 @@ ul.hpbooking {
 
 @keyframes reveal {
   80%{
-    letter-spacing: 3px;
+    letter-spacing: 1px;
   }
   100% {
     background-size: 200% 200%;
