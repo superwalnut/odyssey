@@ -17,6 +17,7 @@ $hero-color1: #39034b;
 $hero-color2: #39034b;
 $hero-color3: #751795;
 $hero-color4: #23d5ab;
+$title-font: 'Anton', sans-serif;
 
 body div.app {
   background-color: #e1e1e1;
@@ -28,9 +29,6 @@ body div.app {
   }
 }
 
-.page-title{
-  font-family: 'Poppins', sans-serif;
-}
 .avatar {
   width:38px;
   height: 38px;
@@ -239,15 +237,15 @@ nav {
     li {
       display: inline;
       padding: 25px;
-      margin-left:30px;
+      margin-left:32px;
       //padding-left: 0;
       a {
         color: whitesmoke;
-        font-size: 15px;
-        font-weight: 500;
+        //font: 400 20px $title-font!important;
+        font-size: 16px;
+        font-weight: 600;
         &:hover {
           color: white;
-          font-weight: 600;
           text-decoration: none;
         }
       }
@@ -264,7 +262,7 @@ nav {
 
 .handwriting {
  // font-family: 'Kaushan Script', cursive;
-  font: 700 52px 'Bebas Neue', cursive;
+  font: 700 52px $title-font;
   line-height: 140%;
 }
 
@@ -355,13 +353,14 @@ ul.hpbooking {
 
 .section-heading {
   margin: 15px 0 15px 0!important;
-  font: 700 30px 'Poppins', sans-serif!important;
+  font: 700 30px $title-font!important;
   text-transform: uppercase;
 }
 
 .marginleft15 {
   margin-left: 15px!important;
 }
+
 
 .rainbow {
   background: 50% 50% / 50% 50% no-repeat
@@ -410,11 +409,11 @@ ul.hpbooking {
   padding: 15px;
   text-align: center;
   h2 {
-    font: 700 50px 'Poppins', sans-serif!important;
+    font: 700 50px $title-font!important;
     margin: 50px 0;
   }
   h3 {
-    font: 700 30px 'Poppins', sans-serif!important;
+    font: 700 30px $title-font!important;
     line-height: 40px;
   }
 }
