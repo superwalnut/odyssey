@@ -5,8 +5,8 @@
     <div class="row light">
       <div class="col">
         <h2 class="section-heading">
-          {{ booking?.eventStartDateTime.toDate() | date: 'fullDate'}}
-          <mat-icon>access_time</mat-icon> {{ group?.eventStartTime}} 
+          {{ booking?.eventStartDateTime.toDate() | date: 'fullDate'}}, 
+          {{ group?.eventStartTime}} 
         </h2>
       </div>
     </div>
@@ -90,16 +90,15 @@
     </div>
 
     <div class="row light" *ngIf="booking?.isOffline">
-
       <div class="col-sm">
         <section> 
           <div class="p-3 mb-2 bg-warning text-dark">This session is offline.</div>
 
-          <div class="handwriting align-middle" style="margin:50px 0; line-height:150%; font-size: 30px;">
+          <div class="handwriting align-middle">
             {{getBadmintonLine().line }}
           </div>
 
-          <div class="handwriting" style="margin:50px 0; font-size: 23px;">
+          <div class="handwriting-signature">
             {{getBadmintonLine().people }}
           </div>
         </section>

@@ -28,6 +28,9 @@ body div.app {
   }
 }
 
+.page-title{
+  font-family: 'Poppins', sans-serif;
+}
 .avatar {
   width:38px;
   height: 38px;
@@ -260,8 +263,14 @@ nav {
 }
 
 .handwriting {
-  font-family: 'Kaushan Script', cursive;
-  font-size: 25px;
+ // font-family: 'Kaushan Script', cursive;
+  font: 700 52px 'Bebas Neue', cursive;
+  line-height: 140%;
+}
+
+.handwriting-signature{
+  margin:50px 0 100px 0;
+  font: 600 32px 'Kaushan Script', cursive;
   line-height: 110%;
 }
 ul.hpbooking {
@@ -345,7 +354,9 @@ ul.hpbooking {
 }
 
 .section-heading {
-  margin: 15px!important;
+  margin: 15px 0 15px 0!important;
+  font: 700 30px 'Poppins', sans-serif!important;
+  text-transform: uppercase;
 }
 
 
@@ -396,11 +407,11 @@ ul.hpbooking {
   padding: 15px;
   text-align: center;
   h2 {
-    font-size: 50px;
+    font: 700 50px 'Poppins', sans-serif!important;
     margin: 50px 0;
   }
   h3 {
-    font-size: 26px;
+    font: 700 30px 'Poppins', sans-serif!important;
     line-height: 40px;
   }
 }

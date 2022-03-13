@@ -64,7 +64,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
     this.groupDocId = this.activatedRoute.snapshot.params.groupId;
     console.log('url params: ', this.bookingDocId, this.groupDocId)
     this.loggedInAccount = this.accountService.getLoginAccount();
-    this.rand = this.helpService.getRandomIntInclusive(0, 16);
+    this.rand = this.helpService.getRandomIntInclusive(0, 29);
 
     let getUser = this.accountService.getUserByDocId(this.loggedInAccount.docId);
     let getBalance = this.creditService.getBalance(this.loggedInAccount.docId);
