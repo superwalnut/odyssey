@@ -161,7 +161,6 @@ export class GlobalConstants {
         { line: "Life is a game, Badminton is serious!", people: "Luc" },
         { line: "Discipline is the bridge between your badminton goals and badminton success.", people: "" },
         { line: "Keep calm and play badminton.", people: "" },
-        { line: "There is no passion to be found playing small – in settling for a life that is less than the one you are capable of living.", people: "" },
         { line: "Champions keep playing until they get it right.", people: "" },
         { line: "It’s not the hours you put in….it’s what you put in those hours.", people: "" },
         { line: "Your dream will always defeat reality if you give it chance.", people: "" },
