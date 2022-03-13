@@ -219,7 +219,11 @@ ul.simple-horizontal-list {
   }
 
 }
-
+.group-card {
+  .card-title {
+    font-weight: 500;
+  }
+}
 nav {
   background-color: $nav-bar-color;
   padding: $nav-padding;
@@ -507,6 +511,10 @@ ul.hpbooking {
   .hero2 {
     min-height: 320px;
     padding: 10px 0 70px 0;
+  }
+
+  .group-card {
+    margin: 15px;
   }
 
   .card-sm {
