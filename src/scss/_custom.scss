@@ -412,8 +412,19 @@ ul.hpbooking {
   }
   
 }
-//Media queries
 
+.horverEffects
+{
+    &:hover{
+      //animation-name:onHoverAnimation;
+      transform: translateY(-5px) ;
+      box-shadow: 0px 2px 25px rgb(0 0 0 / 60%);
+      transition: all ease-in-out 0.3s;
+    }
+}
+
+
+//Media queries
 @media only screen and (max-width: 768px) {
 //fix the issue on mobile
   .app-header{
@@ -426,6 +437,7 @@ ul.hpbooking {
   main .container-fluid {
     padding: 0!important;
     margin: 0!important;
+
   }
   .container{
     padding: 5px!important;
