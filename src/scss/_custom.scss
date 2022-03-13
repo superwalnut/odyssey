@@ -415,6 +415,14 @@ ul.hpbooking {
 //Media queries
 
 @media only screen and (max-width: 768px) {
+//fix the issue on mobile
+  .app-header{
+  position: relative !important;
+}
+.app-body {
+  margin-top: 0!important;
+}
+
   main .container-fluid {
     padding: 0!important;
     margin: 0!important;
