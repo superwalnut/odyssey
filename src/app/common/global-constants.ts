@@ -158,7 +158,7 @@ export class GlobalConstants {
 
 
     public static homepageQuotes = [
-        { line: "Life is a game, Badminton is serious!", people: "Lin Dan" },
+        { line: "Life is a game, Badminton is serious!", people: "Luc" },
         { line: "Discipline is the bridge between your badminton goals and badminton success.", people: "" },
         { line: "Keep calm and play badminton.", people: "" },
         { line: "There is no passion to be found playing small – in settling for a life that is less than the one you are capable of living.", people: "" },
@@ -171,13 +171,10 @@ export class GlobalConstants {
         { line: "The only way to prove that you’re a good sport is to lose.", people: "Ernie Banks"},
         { line: "Age is no barrier. It’s a limitation you put on your mind.", people: "Jackie Joyner-Kersee"},
         { line: "Only he who can see the invisible can do the impossible.", people: "Frank L. Gaines"},
-        { line: "Number one is just to gain a passion for running. To love the morning, to love the trail, to love the pace on the track. And if some kid gets really good at it, that’s cool too.", people: "Pat Tyson"},
-        { line: "Most people give up just when they’re about to achieve success. They quit on the one yard line. They give up at the last minute of the game one foot from a winning touchdown.", people: "Ross Perot"},
         { line: "You have to do something in your life that is honorable and not cowardly if you are to live in peace with yourself.", people: "Larry Brown"},
         { line: "There may be people that have more talent than you, but there's no excuse for anyone to work harder than you do.", people: "Derek Jeter"},
         { line: "An athlete cannot run with money in his pockets. He must run with hope in his heart and dreams in his head.", people: "Emil Zatopek"},
         { line: "When you've got something to prove, there's nothing greater than a challenge.", people: "Terry Bradshaw"},
-        { line: "Never give up, never give in, and when the upper hand is ours, may we have the ability to handle the win with the dignity that we absorbed the loss.", people: "Doug Williams"},
         { line: "You were born to be a player. You were meant to be here. This moment is yours.", people: "Herb Brooks"},
         { line: "Everything negative - pressure, challenges - are all an opportunity for me to rise", people: "Kobe Bryant"},
         { line: "The moment you give up, is the moment you let someone else win.", people: "Kobe Bryant"},
