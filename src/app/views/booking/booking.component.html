@@ -4,15 +4,17 @@
   <div class="container">
     <div class="row light">
       <div class="col">
-        <h2 class="section-heading marginleft15">
-          {{ booking?.eventStartDateTime.toDate() | date: 'fullDate'}}, 
+        <h2 class="section-heading marginleft15 text-center">
+          {{ booking?.eventStartDateTime.toDate() | date: 'EEEE, MMMM d'}}, 
           {{ group?.eventStartTime}} 
         </h2>
       </div>
     </div>
 
-    <div class="row light" *ngIf="!booking?.isOffline">
+ <div class="row light" *ngIf="!booking?.isOffline">
+
       <div class="col-sm">
+        
         <section> 
           <ul class="simple-horizontal-list">
             <li><span class="material-icons" title="{{ booking?.isLocked ? 'Booking Locked': 'Booking is open'}}">{{ booking?.isLocked ? 'lock':'lock_open'}}</span> {{ booking?.isLocked ? 'Locked':'Open'}}</li>

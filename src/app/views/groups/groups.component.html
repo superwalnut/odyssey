@@ -4,11 +4,12 @@
   <div class="container">
     <div class="row light">
       <div class="col">
-        <h1 class="section-heading marginleft15">{{weekStart.toDate() | date:'MMM dd'}} - {{weekEnd.toDate() | date:'MMM dd, yyyy'}}</h1>
+        <h1 class="section-heading marginleft15  text-center">{{weekStart.toDate() | date:'MMM dd'}} - {{weekEnd.toDate() | date:'MMM dd, yyyy'}}</h1>
       </div>
     </div>
 
     <div class="row light" *ngIf="bookings.length==0">
+      
       <div class="col-sm">
         <div class="bookingoffline">
           <h2>OFFLINE</h2>
