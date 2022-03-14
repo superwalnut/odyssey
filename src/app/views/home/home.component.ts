@@ -34,7 +34,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
   quotes:string;
   myBookings:MyBooking[]=[];
   domain:string=environment.domain;
-
+  
   constructor(private bookingService:BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private groupService: GroupService, private helperService: HelperService) { super() }
 
   ngOnInit(): void {
@@ -100,6 +100,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   changeQuote() {
     this.quotes = this.getRandomQuote().line;
+
 
   }
 
