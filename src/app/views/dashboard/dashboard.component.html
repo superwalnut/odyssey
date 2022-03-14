@@ -2,11 +2,17 @@
 
  <div class="card">
   <div class="card-body">
-    <h1 class="section-heading">Welcome, {{ user.name }} <span class="badge badge-success"> {{ user.isCreditUser ? 'HBCoin User' : 'Cash User'}}</span></h1>
-
+    <!-- <h1 class="section-heading">Welcome, {{ user.name }} <span class="badge badge-success"> {{ user.isCreditUser ? 'HBCoin User' : 'Cash User'}}</span></h1> -->
+    <div class="section-head">
+      <h1 class="section-heading">Welcome, {{ user.name }}</h1>
+      <img
+        src="{{ user.isCreditUser ? './assets/img/banners/HBCoinIcon.png' : './assets/img/banners/cashicon.png'}}" 
+        title="{{ user.isCreditUser ? 'HBCoin User' : 'Cash User'}}">
+    </div>
+    
     <p class="card-text"> 
       Mobile: {{ user.mobile }}<br>  
-      Email: {{ user.email }}
+      Email: {{ user.email }}<br>
     </p>
     <a routerLink="/settings/profile" class="card-link">Edit</a>
     <a routerLink="/settings/password" class="card-link">Reset Password</a>

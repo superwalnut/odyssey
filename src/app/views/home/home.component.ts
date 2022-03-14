@@ -95,7 +95,17 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
 
   getQuotes() {
-    var rand = this.helperService.getRandomIntInclusive(0,30);
+    return this.getRandomQuote();
+  }
+
+  changeQuote() {
+    this.quotes = this.getRandomQuote().line;
+
+  }
+
+  getRandomQuote() {
+    var len = GlobalConstants.homepageQuotes.length;
+    var rand = this.helperService.getRandomIntInclusive(0,len-1);
     return GlobalConstants.homepageQuotes[rand];
   }
 }
