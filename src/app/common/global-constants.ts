@@ -158,6 +158,12 @@ export class GlobalConstants {
 
 
     public static homepageQuotes = [
+        { line: "一万年太久，只争朝夕!", people:""},
+        { line: "问苍茫大地，谁主沉浮!", people:""},
+        { line: "鼓足干劲，力争上游，多快好省地建设社会主义", people:""},
+        { line: "有理想、有道德、有文化、有纪律", people:""},
+        { line: "好好锻炼， 天天想上！", people:""},
+        { line: "天生一个仙人洞，无限风光在险峰", people:""},
         { line: "即使是最小的事情，也要倾注你的心、你的思想和你的灵魂。这就是成功的秘密", people: ""},
         { line: "踢踢腿、弯弯腰，病魔吓了逃；打打拳，练练操，寿星见了笑", people: ""},
         { line: "腐蚀人性最可怕的东西是惰性，而体育是惰性的天敌", people: ""},
