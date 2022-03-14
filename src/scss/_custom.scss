@@ -202,6 +202,7 @@ ul.simple-horizontal-list {
   //background-color: $nav-bar-color;
 
     margin-top:-1px; // to compensate container gap
+
     background: rgb(57,3,75);
     background: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
   
@@ -212,13 +213,15 @@ ul.simple-horizontal-list {
       padding: 8px 40px;
       font-size: 18px;
     }
-  h1 {
-    //font: 800 45px 'Roboto', sans-serif!important;
-    font: 700 45px $roboto-font!important;
-    color: white;
-    padding: 60px 0 30px 0;
-    //font-family: 'Roboto', sans-serif!important;
-  }
+    h1 {
+      //font: 800 45px 'Roboto', sans-serif!important;
+      font: 700 45px $roboto-font!important;
+      margin-left: 45px;
+      margin-right: 45px;
+      color: white;
+      padding: 60px 0 30px 0;
+      //font-family: 'Roboto', sans-serif!important;
+    }
 
 }
 .group-card {
