@@ -158,6 +158,18 @@ export class GlobalConstants {
 
 
     public static homepageQuotes = [
+        { line: "即使是最小的事情，也要倾注你的心、你的思想和你的灵魂。这就是成功的秘密", people: ""},
+        { line: "踢踢腿、弯弯腰，病魔吓了逃；打打拳，练练操，寿星见了笑", people: ""},
+        { line: "腐蚀人性最可怕的东西是惰性，而体育是惰性的天敌", people: ""},
+        { line: "生命在于矛盾，在于运动，一旦矛盾消除，运动停止，生命也就结束了", people: ""},
+        { line: "一滴水只有放进大海里才永远不会干涸，一个人只有当他把自己和集体事业融合在一起的时候才能最有力量", people: ""},
+        { line: "莫等闭，白了少年头，空悲切", people: ""},
+        { line: "绳锯木断，水滴石穿", people: ""},
+        { line: "老当益壮，宁知白首之心；穷且益坚，不坠青云之志", people: ""},
+        { line: "千磨万击还坚劲，任尔东西南北风", people: ""},
+        { line: "青，取之于蓝而青于蓝；冰，水为之而寒于水", people: ""},
+        { line: "你见过凌晨四点的洛杉矶吗？我见过，那是我每天开始训练的时间", people: ""},
+        { line: "Have you seen Los Angeles at 4am? I see it often because that's when I start training", people: ""},
         { line: "Life is a game, Badminton is serious!", people: "Luc" },
         { line: "Discipline is the bridge between your badminton goals and badminton success.", people: "" },
         { line: "Keep calm and play badminton.", people: "" },
@@ -177,6 +189,9 @@ export class GlobalConstants {
         { line: "You were born to be a player. You were meant to be here. This moment is yours.", people: "Herb Brooks"},
         { line: "Everything negative - pressure, challenges - are all an opportunity for me to rise", people: "Kobe Bryant"},
         { line: "The moment you give up, is the moment you let someone else win.", people: "Kobe Bryant"},
+        
+
+        
     ];
 
 

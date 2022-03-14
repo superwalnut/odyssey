@@ -19,6 +19,7 @@ $hero-color3: #751795;
 $hero-color4: #23d5ab;
 $title-font: 'Anton', sans-serif;
 $roboto-font:'Roboto', sans-serif;
+$racingSansOne-font: 'Racing Sans One', cursive;
 
 body div.app {
   background-color: #e1e1e1;
@@ -215,7 +216,7 @@ ul.simple-horizontal-list {
     }
     h1 {
       //font: 800 45px 'Roboto', sans-serif!important;
-      font: 700 45px $roboto-font!important;
+      font: 700 45px $racingSansOne-font!important;
       margin-left: 45px;
       margin-right: 45px;
       color: white;
@@ -518,7 +519,7 @@ ul.hpbooking {
     padding: 10px 0 70px 0;
     h1 {
       padding-top: 10px;
-      font: 600 30px $roboto-font!important;
+      font: 600 35px $roboto-font!important;
       line-height: 150%!important;
     }
   }
