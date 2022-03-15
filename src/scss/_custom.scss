@@ -165,11 +165,11 @@ ul.simple-horizontal-list {
 
 .section-head {
   position: relative;
+ 
   img {
     position:absolute;
-    left:190px; 
-    top:7px; 
-    width: 30px;
+    top:4px;
+    right:0;
     &:hover{
       -webkit-animation:spin 0.2s linear infinite;
       -moz-animation:spin 0.2s linear infinite;

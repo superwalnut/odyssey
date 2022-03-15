@@ -6,7 +6,7 @@
     <div class="section-head">
       <h1 class="section-heading">Welcome, {{ user.name }}</h1>
       <img
-        src="{{ user.isCreditUser ? './assets/img/banners/HBCoinIcon.png' : './assets/img/banners/cashicon.png'}}" 
+        src="{{ user.isCreditUser ? './assets/img/banners/HBCoinBadge.png' : './assets/img/banners/CashBadge.png'}}" 
         title="{{ user.isCreditUser ? 'HBCoin User' : 'Cash User'}}">
     </div>
     
@@ -17,38 +17,6 @@
     <a routerLink="/settings/profile" class="card-link">Edit</a>
     <a routerLink="/settings/password" class="card-link">Reset Password</a>
     <a routerLink="/settings/family" class="card-link">Family Members</a>
-  </div>
-</div>
-
-
-<div class="container-xl" *ngIf="isGod">
-  <div class="row">
-    <div class="col-sm">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">God Only</h4>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <a routerLink="/admin/batchpay" class="card-link">Batch payment</a>
-          </li>
-          <li class="list-group-item">
-            <a routerLink="/admin/triggers" class="card-link">Triggers</a>
-          </li>
-        
-        </ul>
-
-        
-      </div>
-    </div>
-
-    <div class="col-sm">
-      
-    </div>
-
-    <div class="col-sm">
-      
-    </div>
   </div>
 </div>
 

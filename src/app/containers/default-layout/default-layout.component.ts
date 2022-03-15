@@ -120,6 +120,16 @@ export class DefaultLayoutComponent {
           url: "/admin/groups",
           icon: "cil-layers",
         },
+        {
+          name: "Batch Payment",
+          url: "/admin/batchpay",
+          icon: "cil-layers",
+        },
+        {
+          name: "Triggers",
+          url: "/admin/triggers",
+          icon: "cil-layers",
+        }
       ];
       godNavs.forEach((x) => {
         items.push(x);
