@@ -69,11 +69,12 @@ $nav-padding: 20px;
 // $hero-color4: #34A65F;
 
 
-$title-font: 'Anton', sans-serif;
-$roboto-font:'Roboto', sans-serif;
-$racingSansOne-font: 'Racing Sans One', cursive;
-$handwriting-font: 'Freehand', cursive;
-$news-font: 'Abril Fatface', cursive;
+$font-title: 'Anton', sans-serif;
+$font-roboto:'Roboto', sans-serif;
+$font-racingSansOne: 'Racing Sans One', cursive;
+$font-handwriting: 'Freehand', cursive;
+$font-news: 'Abril Fatface', cursive;
+$font-bebas: 'Bebas Neue', cursive;
 
 body div.app {
   background-color: #e1e1e1;
@@ -110,7 +111,7 @@ body div.app {
   width: 40px;
 }
 .card-body .card-number {
-  font: 500 40px $title-font;
+  font: 500 40px $font-title;
 }
 
 .timestamp {
@@ -203,12 +204,13 @@ ul.simple-horizontal-list {
     background-color: $homepage-intro-shade-color;
 
     h2{
-      font: 600 40px $roboto-font;
+      font: 600 43px $font-bebas;
+      letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 20px;
     }
     h3{
-      font: 400 18px $roboto-font;
+      font: 400 18px $font-roboto;
     }
 
     
@@ -314,12 +316,14 @@ ul.simple-horizontal-list {
     }
     h1 {
       //font: 800 45px 'Roboto', sans-serif!important;
-      font: 700 40px $racingSansOne-font!important;
+      font: 700 40px $font-news!important;
+      letter-spacing: 2px!important;
       margin-left: 45px;
       margin-right: 45px;
       color: white;
       padding: 60px 0 30px 0;
       //font-family: 'Roboto', sans-serif!important;
+
     }
 
     .quote-button {
@@ -391,13 +395,13 @@ nav {
 }
 .handwriting {
  // font-family: 'Kaushan Script', cursive;
-  font: 500 40px  $news-font;
+  font: 500 40px  $font-news;
   line-height: 150%;
 }
 
 .handwriting-signature{
   margin:50px 0;
-  font: 300 26px $handwriting-font;
+  font: 300 26px $font-handwriting;
   line-height: 110%;
 }
 ul.hpbooking {
@@ -487,7 +491,8 @@ ul.hpbooking {
 
 .section-heading {
   margin: 15px 0 35px 0!important;
-  font: 700 30px $title-font!important;
+  font: 700 30px $font-title!important;
+  letter-spacing: 1px!important;
   text-transform: uppercase;
 }
 
@@ -543,11 +548,11 @@ ul.hpbooking {
   padding: 15px;
   text-align: center;
   h2 {
-    font: 700 50px $title-font!important;
+    font: 700 50px $font-title!important;
     margin: 50px 0;
   }
   h3 {
-    font: 700 30px $title-font!important;
+    font: 700 30px $font-title!important;
     line-height: 40px;
   }
 }
@@ -617,14 +622,14 @@ $profile-bg-img-height: 180px;
     text-align: center;
 
     .profile-name {
-      font: 700 45px $racingSansOne-font;
+      font: 700 45px $font-racingSansOne;
       margin-bottom: 10px;
     }
     .profile-contact{
       color:#545454;
       padding:0 0 10px 0;
       font-size: 16px;
-      font-family: $roboto-font!important;
+      font-family: $font-roboto!important;
       span{
         margin-right: 15px;
       }
@@ -654,7 +659,7 @@ $profile-bg-img-height: 180px;
           color:white;
         }
         .link-text{
-          font: 400 28px $title-font;
+          font: 400 28px $font-title;
         }
         .link-label{
           box-sizing: border-box;
@@ -751,7 +756,7 @@ $box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72)
       padding: 20px;
       width: 100%;
       h2{
-        font: 500 37px $roboto-font;
+        font: 500 37px $font-title;
       }
     }
   }
@@ -774,7 +779,8 @@ $box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72)
     padding: 10px 0 70px 0;
     h1 {
       padding-top: 10px;
-      font: 600 35px $roboto-font!important;
+      font: 600 35px $font-news!important;
+      letter-spacing: 1px!important;
       line-height: 150%!important;
     }
   }
