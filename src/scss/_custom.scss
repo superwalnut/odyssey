@@ -3,8 +3,40 @@
 @import "xmaslights";
 
 //variables
+
+/* 
+//Default HBC Theme
+$nav-bar-color:#39034b
+$booking-tbl-hightlight-color: #262626
+
+$hero-color1: #39034b;
+$hero-color2: #39034b;
+$hero-color3: #751795;
+$hero-color4: #23d5ab;
+$homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
+$homepage-hero-bg-img: '';
+$homepage-intro-bg: url(../assets/img/banners/jumpsmashbg.jpg);
+$homepage-intro-color:#fff;
+$homepage-hero-bg-img: url(../assets/img/banners/eastereggs.jpg)!important;
+
+*/
+
+//Easter Pink Theme
+$nav-bar-color:#dd358a; //easter pink
+$booking-tbl-hightlight-color: #df4e97;
+
+$hero-color1: #dd358a;
+$hero-color2: #f21d89;
+$hero-color3: #8df043;
+$hero-color4: #FEFFA2;
+$homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
+$homepage-hero-bg-img: '';
+
+$homepage-intro-bg: url(../assets/img/banners/easterBG.jpg); //1138 x 450
+$homepage-intro-color:#000;
+
 //$nav-bar-color:#39034b; //#CC231E
-$nav-bar-color:#c64a61; //easter pink
+
 $nav-padding: 20px;
 //homepage hero banner gradient colors
 
@@ -14,10 +46,7 @@ $nav-padding: 20px;
 // $hero-color3: #F5624D;
 // $hero-color4: #34A65F;
 
-$hero-color1: #39034b;
-$hero-color2: #39034b;
-$hero-color3: #751795;
-$hero-color4: #23d5ab;
+
 $title-font: 'Anton', sans-serif;
 $roboto-font:'Roboto', sans-serif;
 $racingSansOne-font: 'Racing Sans One', cursive;
@@ -137,12 +166,12 @@ ul.simple-horizontal-list {
 .homepage-intro {
   min-height: 430px;
   padding:30px 20px;
-   background-image: url(../assets/img/banners/jumpsmashbg.jpg);
+  background-image: $homepage-intro-bg;
 //background-image: url(../assets/img/banners/christmasBanner.jpg);
 
   background-size: cover;
   background-repeat: no-repeat;
-  color:white;
+  color:$homepage-intro-color;
 
   .socialicons {
     margin-top:50px;
@@ -230,9 +259,10 @@ ul.simple-horizontal-list {
 .hero2 {
     //background-color: $nav-bar-color;
     margin-top:-1px; // to compensate container gap
-    background: rgb(57,3,75);
-    background: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
-    background-image: url(../assets/img/banners/eastereggs.jpg)!important;
+    //background: rgb(57,3,75);
+    //background: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
+    background: $homepage-hero-gradient;
+    background-image: $homepage-hero-bg-img;
 
     min-height: 500px;
     text-align: center;
@@ -362,7 +392,7 @@ ul.hpbooking {
 }
 .mybooking {
   //background-color: #262626;
-  background-color: #bc6172;
+  background-color: $booking-tbl-hightlight-color;
 }
 
 .unpaid-bg{
@@ -402,7 +432,7 @@ ul.hpbooking {
 
 .table-pink {
   color:white;
-  background-color: #c0455c;
+  background-color: $nav-bar-color;
 }
 .group-header-image {
   background-image: url(../assets/img/banners/shuttle-sm.jpg);
