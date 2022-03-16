@@ -50,7 +50,7 @@
       <div class="col-sm-4" *ngFor="let b of bookings" >
         <!-- <div [ngClass]="{'card offline':b.isOffline, 'card':!b.isOffline}"> -->
           <div class="card horverEffects group-card" [ngClass]="{'offline':b.isOffline}">
-          <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}"><img class="card-img-top" src="assets/img/banners/badminton2.jpg"></a>
+          <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}"><img class="card-img-top" src="assets/img/banners/eastbooking.jpg"></a>
           <div class="card-body">
             <!-- <h5 class="card-title">{{ getGroupName(b.groupDocId)}} {{ b.eventStartDateTime.toDate() | date: 'fullDate'}}</h5> -->
             <h5 class="card-title">{{ b.eventStartDateTime.toDate() | date: 'fullDate'}}</h5>

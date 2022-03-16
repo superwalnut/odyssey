@@ -3,7 +3,8 @@
 @import "xmaslights";
 
 //variables
-$nav-bar-color:#39034b; //#CC231E
+//$nav-bar-color:#39034b; //#CC231E
+$nav-bar-color:#c64a61; //easter pink
 $nav-padding: 20px;
 //homepage hero banner gradient colors
 
@@ -398,6 +399,10 @@ ul.hpbooking {
   }
 }
 
+.table-pink {
+  color:white;
+  background-color: #c0455c;
+}
 .group-header-image {
   background-image: url(../assets/img/banners/shuttle-sm.jpg);
   background-size: cover;
