@@ -84,7 +84,7 @@ export class DefaultLayoutComponent {
       },
 
       {
-        name: "Account Settings",
+        name: "Account",
         url: "",
         icon: "cil-cog",
         children: [
@@ -99,7 +99,7 @@ export class DefaultLayoutComponent {
             icon: "icon-lock",
           },
           {
-            name: "Family Members",
+            name: "Family",
             url: "/settings/family",
             icon: "icon-people",
           },
