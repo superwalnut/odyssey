@@ -40,6 +40,8 @@
             <div class="profile-link">
               <span class="link-text">{{ myCreditBalance | currency }}</span>
               <span class="link-label">Balance</span>
+             
+
             </div>
             <div class="profile-link">
               <span class="link-text">{{ myAttendanceCount }}</span>
@@ -104,56 +106,67 @@
 
 <!-- <div class="container-xl" *ngIf="isUser"> -->
   <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div class="card horverEffects">
+          <img class="card-img-top " src="{{creditImageSrc}}" alt="Account balance"/>
+          <div class="card-body ">
+            <h4 class="card-title">BALANCE</h4>
+            <p class="card-number">{{ myCreditBalance | currency }}</p>
+          </div>
+          <!-- <ul class="list-group list-group-flush">
+            <li class="list-group-item">LAST RENEWED: 12/01/2021</li>
+            <li class="list-group-item">LAST DEDUCTED: 10/02/2021</li>
+          </ul> -->
+          <div class="card-body">
+            <a routerLink="/settings/creditstatement" class="card-link">STATEMENT</a>
+            <a routerLink="/settings/creditstatement" class="card-link" *ngIf="user?.isCreditUser">TOP UP</a>
+            <a routerLink="/settings/transfer" class="card-link" *ngIf="user?.isCreditUser">TRANSFER</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="card horverEffects">
+          <img class="card-img-top" src="./assets/img/banners/badmintoncourt.jpg" alt="my attendance"/>
+
+          <div class="card-body">
+            <h4 class="card-title">ATTENDANCE POINTS</h4>
+            <p class="card-number">{{myAttendanceCount}}</p>
+          </div>
+          <div class="card-body">
+            <a routerLink="/settings/attendancehistory" class="card-link">VIEW HISTORY</a>
+            <a routerLink="/groups" class="card-link">MAKE A BOOKING</a>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="card horverEffects">
+          <img class="card-img-top" src="./assets/img/banners/autobooking.jpg" alt="auto booking"/>
+
+          <div class="card-body">
+            <h4 class="card-title">SCHEDULE <span class="badge badge-warning">paid service</span></h4>
+            <p class="card-text">Automate your booking schedule so you don't miss a session!</p>
+          </div>
+
+          <div class="card-body">
+            <a routerLink="/settings/schedule" class="card-link">AUTO BOOKING</a>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="container" *ngIf="isGod">
+
   <div class="row">
     <div class="col-sm">
-      <div class="card horverEffects">
-        <img class="card-img-top " src="{{creditImageSrc}}" alt="Account balance"/>
-        <div class="card-body ">
-          <h4 class="card-title">BALANCE</h4>
-          <p class="card-number">{{ myCreditBalance | currency }}</p>
-        </div>
-        <!-- <ul class="list-group list-group-flush">
-          <li class="list-group-item">LAST RENEWED: 12/01/2021</li>
-          <li class="list-group-item">LAST DEDUCTED: 10/02/2021</li>
-        </ul> -->
-        <div class="card-body">
-          <a routerLink="/settings/creditstatement" class="card-link">STATEMENT</a>
-          <a routerLink="/settings/creditstatement" class="card-link" *ngIf="user?.isCreditUser">TOP UP</a>
-          <a routerLink="/settings/transfer" class="card-link" *ngIf="user?.isCreditUser">TRANSFER</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm">
-      <div class="card horverEffects">
-        <img class="card-img-top" src="./assets/img/banners/badmintoncourt.jpg" alt="my attendance"/>
-
-        <div class="card-body">
-          <h4 class="card-title">ATTENDANCE POINTS</h4>
-          <p class="card-number">{{myAttendanceCount}}</p>
-        </div>
-        <div class="card-body">
-          <a routerLink="/settings/attendancehistory" class="card-link">VIEW HISTORY</a>
-          <a routerLink="/groups" class="card-link">MAKE A BOOKING</a>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm">
-      <div class="card horverEffects">
-        <img class="card-img-top" src="./assets/img/banners/autobooking.jpg" alt="auto booking"/>
-
-        <div class="card-body">
-          <h4 class="card-title">SCHEDULE <span class="badge badge-warning">paid service</span></h4>
-          <p class="card-text">Automate your booking schedule so you don't miss a session!</p>
-        </div>
-
-        <div class="card-body">
-          <a routerLink="/settings/schedule" class="card-link">AUTO BOOKING</a>
-        </div>
       
-      </div>
+      
     </div>
   </div>
 </div>

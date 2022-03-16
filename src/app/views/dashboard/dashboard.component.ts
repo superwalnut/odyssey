@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   myAttendanceCount:number;
   creditImageSrc:string;
   avatarUrl:string;
+  isBalanceMasked: boolean = false;
 
   constructor(private accountService: AccountService, private creditService:CreditService, private bookingPersonService:BookingPersonService) {
     this.isGod = this.accountService.isGod();
