@@ -521,7 +521,7 @@ $button-color2: #1f551b;
     border-radius: 10px 10px 0px 0px;
     .profile-avatar {
       position: absolute;
-      top: 100px;
+      top: 90px;
       width:130px;
       img {
         position: absolute;
@@ -534,7 +534,7 @@ $button-color2: #1f551b;
   }
 
   .profile-content{
-    padding-top: 70px;
+    padding-top: 40px;
     text-align: center;
 
     .profile-name {
@@ -551,7 +551,7 @@ $button-color2: #1f551b;
       }
     }
     .profile-bio {
-      min-height: 80px;
+      min-height: 70px;
     }
 
     .profile-links {
@@ -588,7 +588,7 @@ $button-color2: #1f551b;
       display: flex;
       flex-wrap: wrap;
       button {
-        padding: 20px;
+        padding: 15px;
         width: 100%;
         border-radius: 0px 0px 10px 10px;
         background: $button-color1;
