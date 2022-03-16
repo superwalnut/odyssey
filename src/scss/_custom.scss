@@ -56,8 +56,7 @@ body div.app {
   width: 40px;
 }
 .card-body .card-number {
-  font-size: 40px;
-  font-weight: 600;
+  font: 500 40px $title-font;
 }
 
 .timestamp {
@@ -574,7 +573,6 @@ $button-color2: #1f551b;
           background-color: #2f502f;
           color:white;
         }
-
         .link-text{
           font: 400 28px $title-font;
         }
