@@ -15,6 +15,8 @@ $hero-color3: #751795;
 $hero-color4: #23d5ab;
 $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
 $homepage-hero-bg-img: '';
+$homepage-intro-minheight: 430px;
+$homepage-intro-shade-color:rgba(0,0,0,0.5);
 $homepage-intro-bg: url(../assets/img/banners/jumpsmashbg.jpg);
 $homepage-intro-color:#fff;
 $homepage-hero-bg-img: url(../assets/img/banners/eastereggs.jpg)!important;
@@ -31,9 +33,11 @@ $hero-color3: #df5099;
 $hero-color4: #FEFFA2;
 $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
 $homepage-hero-bg-img: '';
-
+$homepage-intro-minheight: 430px;
+$homepage-intro-color:#fff;
+$homepage-intro-shade-color:rgba(0,0,0,0.6);
 $homepage-intro-bg: url(../assets/img/banners/easterBG.jpg); //1138 x 450
-$homepage-intro-color:#000;
+
 
 //$nav-bar-color:#39034b; //#CC231E
 
@@ -164,14 +168,31 @@ ul.simple-horizontal-list {
 
 //4b0063
 .homepage-intro {
-  min-height: 430px;
-  padding:30px 20px;
+  min-height: $homepage-intro-minheight;
+  //padding:30px 20px;
   background-image: $homepage-intro-bg;
-//background-image: url(../assets/img/banners/christmasBanner.jpg);
 
   background-size: cover;
   background-repeat: no-repeat;
   color:$homepage-intro-color;
+
+  .intro-shade {
+    padding: 40px;
+    width: 50%;
+    min-height: $homepage-intro-minheight;
+    background-color: $homepage-intro-shade-color;
+
+    h2{
+      font: 600 40px $roboto-font;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    h3{
+      font: 400 18px $roboto-font;
+    }
+
+    
+  }
 
   .socialicons {
     margin-top:50px;
@@ -180,14 +201,14 @@ ul.simple-horizontal-list {
       margin-right:30px;
     }
   }
-  h2{
-    font-size: 30px;
-  }
-
+  
   ul {
+    list-style: none;
+    padding: 0;
     li {
-      font-size: 20px;
-      line-height: 2rem;
+      font-size: 23px;
+      line-height: 2.3rem;
+      padding:0;
     }
   }
 }
@@ -273,7 +294,7 @@ ul.simple-horizontal-list {
     }
     h1 {
       //font: 800 45px 'Roboto', sans-serif!important;
-      font: 700 45px $racingSansOne-font!important;
+      font: 700 40px $racingSansOne-font!important;
       margin-left: 45px;
       margin-right: 45px;
       color: white;
@@ -700,6 +721,18 @@ $box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72)
       }
     }
   }
+
+  
+  .homepage-intro {
+    .intro-shade {
+      padding: 20px;
+      width: 100%;
+      h2{
+        font: 500 37px $roboto-font;
+      }
+    }
+  }
+
 
   .hero-section {
     min-height:200px;
