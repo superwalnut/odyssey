@@ -20,7 +20,7 @@ $homepage-intro-shade-color:rgba(0,0,0,0.5);
 $homepage-intro-bg: url(../assets/img/banners/jumpsmashbg.jpg);
 $homepage-intro-color:#fff;
 $homepage-hero-bg-img: url(../assets/img/banners/eastereggs.jpg)!important;
-
+$offline-quote-bg-color: #000;
 */
 
 //Easter Pink Theme
@@ -37,7 +37,7 @@ $homepage-intro-minheight: 430px;
 $homepage-intro-color:#fff;
 $homepage-intro-shade-color:rgba(0,0,0,0.6);
 $homepage-intro-bg: url(../assets/img/banners/easterBG.jpg); //1138 x 450
-
+$offline-quote-bg-color: $nav-bar-color;
 
 //$nav-bar-color:#39034b; //#CC231E
 
@@ -364,15 +364,20 @@ nav {
   display: inline-block;
 }
 
+.offline-quote {
+  background-color: $offline-quote-bg-color;
+  padding:20px;
+  color: white;
+}
 .handwriting {
  // font-family: 'Kaushan Script', cursive;
-  font: 500 38px $title-font;
-  line-height: 140%;
+  font: 500 40px  'Abril Fatface', cursive;
+  line-height: 150%;
 }
 
 .handwriting-signature{
-  margin:50px 0 100px 0;
-  font: 600 32px 'Kaushan Script', cursive;
+  margin:50px 0;
+  font: 300 26px 'Freehand', cursive;
   line-height: 110%;
 }
 ul.hpbooking {

@@ -94,15 +94,20 @@
     <div class="row light" *ngIf="booking?.isOffline">
       <div class="col-sm">
         <section> 
-          <div class="p-3 mb-2 bg-warning text-dark">This session is offline.</div>
+          <div class="p-3 mb-2 bg-secondary text-dark">This session is offline.</div>
 
-          <div class="handwriting align-middle">
-            {{getBadmintonLine().line }}
-          </div>
+          <div class="offline-quote">
 
-          <div class="handwriting-signature">
-            {{getBadmintonLine().people }}
+            <div class="handwriting">
+              {{getBadmintonLine().line }}
+            </div>
+  
+            <div class="handwriting-signature">
+              {{getBadmintonLine().people }}
+            </div>
+
           </div>
+          
         </section>
 
       </div>
