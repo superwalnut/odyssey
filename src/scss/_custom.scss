@@ -492,10 +492,130 @@ ul.hpbooking {
     }
 }
 
+$profile-card-width: 500px;
+$profile-bg-img-height:200px;
+$profile-card-bg-color:#fff;
+$button-color1: #33902b;
+$button-color2: #1f551b;
+.profile-card{
+  width:$profile-card-width;
+  position: relative;
+  margin: 0 auto 0 auto;
+  border-radius: 10px;
+  background: $profile-card-bg-color;
+  box-shadow: $box-shadow;
+  margin-bottom: 24px;
+
+  .profile-bg {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    min-height: $profile-bg-img-height;
+    //background-image: url("https://eumeps-powerparts.eu/thumbs/home/header-environment-400x200.jpg");
+    background-image: url("../assets/img/banners/profilecardBG.jpg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% auto;
+
+    border-radius: 10px 10px 0px 0px;
+    .profile-avatar {
+      position: absolute;
+      top: 130px;
+      width:160px;
+      img {
+        position: absolute;
+        
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        box-shadow: $box-shadow;
+      }
+    }
+  }
+
+  .profile-content{
+    padding-top: 90px;
+    text-align: center;
+
+    .profile-name {
+      font: 700 45px $racingSansOne-font;
+      margin-bottom: 10px;
+    }
+    .profile-contact{
+      color:#545454;
+      padding:0 0 10px 0;
+      span{
+        margin-right: 15px;
+      }
+    }
+    .profile-bio {
+      min-height: 80px;
+    }
+
+    .profile-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f7f7f7;
+  
+      .profile-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 50%;
+        padding: 15px 20px;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+        font-size: 18px;
+        transition: 0.2s;
+        &:hover {
+          background-color: #ccc;;
+        }
+
+        .link-text{
+          font: 400 28px $title-font;
+        }
+        .link-label{
+          box-sizing: border-box;
+        }
+      }
+    }
+
+    .profile-action {
+      display: flex;
+      flex-wrap: wrap;
+      button {
+        padding: 20px;
+        width: 100%;
+        border-radius: 0px 0px 10px 10px;
+        background: $button-color1;
+        color: #fff;
+        font-size: 18px;
+        border: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover {
+          background: $button-color2;
+        }
+      }
+    }
+
+  }
+ 
+}
+
+$box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72), 0 1px 5px 0 rgba(0, 0, 0, 0.8);
 
 //Media queries
 @media only screen and (max-width: 768px) {
-//fix the issue on mobile
+
+  .profile-card{
+    width:380px;
+  }
+
   .app-header{
   position: relative !important;
 }

@@ -21,12 +21,18 @@ export class DashboardComponent implements OnInit {
   myCreditBalance:number;
   myAttendanceCount:number;
   creditImageSrc:string;
+  avatarUrl:string;
 
   constructor(private accountService: AccountService, private creditService:CreditService, private bookingPersonService:BookingPersonService) {
     this.isGod = this.accountService.isGod();
     this.isAdmin = this.accountService.isAdmin();
     this.isUser = !this.isGod && !this.isAdmin;
+    var acc = this.accountService.getLoginAccount();
+
+    this.getUserAvatar(acc);
+
     this.loggedInUser = this.accountService.getLoginAccount();
+    this.avatarUrl = "assets/img/avatars/avatardefault.jpg";
 
     console.log("isuser: ", this.isUser);
     console.log("isgod: ", this.isGod);
@@ -36,6 +42,16 @@ export class DashboardComponent implements OnInit {
     this.getUserDetails();
     this.getCreditBalance();
     this.getAttendanceCount();
+  }
+
+  getUserAvatar(acc:Account) {
+    this.accountService.getUserByDocId(acc.docId).subscribe(user=>{
+      if (user.avatarUrl) {
+        this.avatarUrl = user.avatarUrl;
+      }
+    
+    });
+  
   }
 
   getCreditBalance() {
