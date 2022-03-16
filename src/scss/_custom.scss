@@ -493,10 +493,11 @@ ul.hpbooking {
 }
 
 $profile-card-width: 500px;
-$profile-bg-img-height:200px;
+$profile-bg-img-height: 180px;
 $profile-card-bg-color:#fff;
 $button-color1: #33902b;
 $button-color2: #1f551b;
+
 .profile-card{
   width:$profile-card-width;
   position: relative;
@@ -520,13 +521,12 @@ $button-color2: #1f551b;
     border-radius: 10px 10px 0px 0px;
     .profile-avatar {
       position: absolute;
-      top: 130px;
-      width:160px;
+      top: 100px;
+      width:130px;
       img {
         position: absolute;
-        
-        width: 160px;
-        height: 160px;
+        width: 130px;
+        height: 130px;
         border-radius: 50%;
         box-shadow: $box-shadow;
       }
@@ -534,7 +534,7 @@ $button-color2: #1f551b;
   }
 
   .profile-content{
-    padding-top: 90px;
+    padding-top: 70px;
     text-align: center;
 
     .profile-name {
@@ -544,6 +544,8 @@ $button-color2: #1f551b;
     .profile-contact{
       color:#545454;
       padding:0 0 10px 0;
+      font-size: 16px;
+      font-family: $roboto-font!important;
       span{
         margin-right: 15px;
       }
@@ -563,14 +565,14 @@ $button-color2: #1f551b;
         justify-content: center;
         align-items: center;
         flex-basis: 50%;
-        padding: 15px 20px;
+        padding: 10px 20px;
         flex-direction: column;
         text-decoration: none;
         color: inherit;
-        font-size: 18px;
         transition: 0.2s;
         &:hover {
-          background-color: #ccc;;
+          background-color: #2f502f;
+          color:white;
         }
 
         .link-text{
