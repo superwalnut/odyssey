@@ -21,6 +21,15 @@ $homepage-intro-bg: url(../assets/img/banners/jumpsmashbg.jpg);
 $homepage-intro-color:#fff;
 $homepage-hero-bg-img: url(../assets/img/banners/eastereggs.jpg)!important;
 $offline-quote-bg-color: #000;
+
+//dashboard profile card
+$profile-bg-img-url: url("../assets/img/banners/profilecardBG.jpg");
+$profile-card-bg-color:#fff;
+$profile-button-color: #33902b;
+$profile-button-highlight-color: #1f551b;
+$profile-link-bg-color: #ebfbeb;
+$profile-link-bg-hover-color: #2f502f;
+
 */
 
 //Easter Pink Theme
@@ -39,6 +48,15 @@ $homepage-intro-shade-color:rgba(0,0,0,0.6);
 $homepage-intro-bg: url(../assets/img/banners/easterBG.jpg); //1138 x 450
 $offline-quote-bg-color: $nav-bar-color;
 
+//dashboard profile card
+$profile-bg-img-url: url("../assets/img/banners/profilecardBG.jpg");
+$profile-card-bg-color:#fff;
+$profile-button-color: #33902b;
+$profile-button-highlight-color: #1f551b;
+$profile-link-bg-color: #ebfbeb;
+$profile-link-bg-hover-color: #2f502f;
+
+
 //$nav-bar-color:#39034b; //#CC231E
 
 $nav-padding: 20px;
@@ -54,6 +72,8 @@ $nav-padding: 20px;
 $title-font: 'Anton', sans-serif;
 $roboto-font:'Roboto', sans-serif;
 $racingSansOne-font: 'Racing Sans One', cursive;
+$handwriting-font: 'Freehand', cursive;
+$news-font: 'Abril Fatface', cursive;
 
 body div.app {
   background-color: #e1e1e1;
@@ -371,13 +391,13 @@ nav {
 }
 .handwriting {
  // font-family: 'Kaushan Script', cursive;
-  font: 500 40px  'Abril Fatface', cursive;
+  font: 500 40px  $news-font;
   line-height: 150%;
 }
 
 .handwriting-signature{
   margin:50px 0;
-  font: 300 26px 'Freehand', cursive;
+  font: 300 26px $handwriting-font;
   line-height: 110%;
 }
 ul.hpbooking {
@@ -555,9 +575,7 @@ ul.hpbooking {
 
 $profile-card-width: 500px;
 $profile-bg-img-height: 180px;
-$profile-card-bg-color:#fff;
-$button-color1: #33902b;
-$button-color2: #1f551b;
+
 
 .profile-card{
   width:$profile-card-width;
@@ -573,8 +591,8 @@ $button-color2: #1f551b;
     position: relative;
     justify-content: center;
     min-height: $profile-bg-img-height;
-    //background-image: url("https://eumeps-powerparts.eu/thumbs/home/header-environment-400x200.jpg");
-    background-image: url("../assets/img/banners/profilecardBG.jpg");
+    //background-image: url("../assets/img/banners/profilecardBG.jpg");
+    background-image: $profile-bg-img-url;
     background-repeat: no-repeat;
     background-position: center top;
     background-size: 100% auto;
@@ -619,7 +637,7 @@ $button-color2: #1f551b;
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #ebfbeb;
+      background-color: $profile-link-bg-color;
   
       .profile-link {
         display: flex;
@@ -632,7 +650,7 @@ $button-color2: #1f551b;
         color: inherit;
         transition: 0.2s;
         &:hover {
-          background-color: #2f502f;
+          background-color: $profile-link-bg-hover-color;
           color:white;
         }
         .link-text{
@@ -651,7 +669,7 @@ $button-color2: #1f551b;
         padding: 15px;
         width: 100%;
         border-radius: 0px 0px 10px 10px;
-        background: $button-color1;
+        background: $profile-button-color;
         color: #fff;
         font-size: 18px;
         border: none;
@@ -660,7 +678,7 @@ $button-color2: #1f551b;
         cursor: pointer;
         transition: 0.2s;
         &:hover {
-          background: $button-color2;
+          background: $profile-button-highlight-color;
         }
       }
     }
