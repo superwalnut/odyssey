@@ -32,6 +32,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
   weekStart: Timestamp;
   hasBooking:boolean;
   quotes:string;
+  isChineseQuote:boolean;
   myBookings:MyBooking[]=[];
   domain:string=environment.domain;
   
@@ -100,14 +101,24 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   changeQuote() {
     this.quotes = this.getRandomQuote().line;
-
-
   }
+
+  
 
   getRandomQuote() {
     var len = GlobalConstants.homepageQuotes.length;
     var rand = this.helperService.getRandomIntInclusive(0,len-1);
-    return GlobalConstants.homepageQuotes[rand];
+    var quote = GlobalConstants.homepageQuotes[rand];
+    this.getClassBasedOnLanguage(quote.line);
+    return quote;
+  }
+
+  getClassBasedOnLanguage(lang:string) {
+    this.isChineseQuote = false;
+    if (lang.match(/[\u3400-\u9FBF]/)) {
+      this.isChineseQuote = true;
+    }
+    
   }
 }
 
