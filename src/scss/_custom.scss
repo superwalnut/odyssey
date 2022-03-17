@@ -4,10 +4,10 @@
 
 //variables
 
-/* 
+/*
 //Default HBC Theme
-$nav-bar-color:#39034b
-$booking-tbl-hightlight-color: #262626
+$nav-bar-color:#39034b;
+$booking-tbl-hightlight-color: #262626;
 
 $hero-color1: #39034b;
 $hero-color2: #39034b;
@@ -33,9 +33,10 @@ $profile-link-bg-hover-color: #2f502f;
 //footer
 $footer-bg-color: #222222;
 $footer-text-color: #ccc;
-$footer-real-bg-color: black;
+$footer-real-bg-color: #161616;
 $footer-real-text-color: #ccc;
 */
+
 
 //Easter Pink Theme
 $nav-bar-color:#dd358a; //easter pink
@@ -68,8 +69,14 @@ $footer-text-color: #ededed;
 $footer-real-bg-color: $nav-bar-color;
 $footer-real-text-color: #ededed;
 
-//$nav-bar-color:#39034b; //#CC231E
 
+/* End of Theme Skin */
+
+
+
+
+
+//$nav-bar-color:#39034b; //#CC231E
 $nav-padding: 20px;
 //homepage hero banner gradient colors
 
@@ -78,8 +85,6 @@ $nav-padding: 20px;
 // $hero-color2: #CC231E;
 // $hero-color3: #F5624D;
 // $hero-color4: #34A65F;
-
-
 $font-title: 'Anton', sans-serif;
 $font-roboto:'Roboto', sans-serif;
 $font-racingSansOne: 'Racing Sans One', cursive;
@@ -213,17 +218,17 @@ table.mat-table{
       padding:5px 0 5px 0;
       a {
         color:$footer-text-color;
+        text-decoration: none;
+        &:hover {
+          color: white;
+        }
       }
     }
-    
   }
 
-  
   .social-icons {
     margin-top:20px;
-    font-size: 26px;
-    //letter-spacing: 13px;
-    
+    font-size: 22px;
     a {
       color:white;
       text-decoration: none;
@@ -232,24 +237,23 @@ table.mat-table{
         margin-right:25px;
         &.facebook:hover{
           color:#3b5998 ;
-          text-shadow: 0 0 30px #fff, 0 0 55px #49FF18, 2px 2px 2px rgb(90, 8, 223,0);
+          text-shadow: 0 0 30px #fff, 0 0 55px #f2f7e2, 2px 2px 2px rgb(90, 8, 223,0);
         }
         &.youtube:hover{
           color:red;
-          text-shadow: 0 0 30px #fff, 0 0 55px #49FF18, 2px 2px 2px rgba(206, 17, 48, 0);
+          text-shadow: 0 0 30px #fff, 0 0 55px #f2f7e2, 2px 2px 2px rgba(206, 17, 48, 0);
         }
         &.gmail:hover{
           color:red;
-          text-shadow: 0 0 30px #fff, 0 0 55px #49FF18, 2px 2px 2px rgb(90, 8, 223,0);
+          text-shadow: 0 0 30px #fff, 0 0 55px #f2f7e2, 2px 2px 2px rgb(90, 8, 223,0);
         }
         &.map:hover{
           color:#1EA362;
-          text-shadow: 0 0 30px #fff, 0 0 55px #49FF18, 2px 2px 2px rgb(90, 8, 223,0);
+          text-shadow: 0 0 30px #fff, 0 0 55px #f2f7e2, 2px 2px 2px rgb(90, 8, 223,0);
         }
       }
     }
   }   
-  
  
 }
 
