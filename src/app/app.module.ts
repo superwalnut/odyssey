@@ -73,6 +73,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { CreateNewPasswordComponent } from "./views/create-new-password/create-new-password.component";
 import { AirtagComponent } from './views/promo/airtag/airtag.component';
 import { CompetitionComponent } from './views/competition/competition.component';
+import { FooterComponent } from './views/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -120,6 +121,7 @@ import { CompetitionComponent } from './views/competition/competition.component'
     CreateNewPasswordComponent,
     AirtagComponent,
     CompetitionComponent,
+    FooterComponent,
   ],
   providers: [
     {

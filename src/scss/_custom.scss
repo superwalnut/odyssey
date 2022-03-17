@@ -31,8 +31,8 @@ $profile-link-bg-color: #ebfbeb;
 $profile-link-bg-hover-color: #2f502f;
 
 //footer
-$footer-bg-color: black;
-$footer-text-color: white;
+$footer-bg-color: #222222;
+$footer-text-color: #ccc;
 $footer-real-bg-color: black;
 $footer-real-text-color: #ccc;
 */
@@ -63,10 +63,10 @@ $profile-link-bg-hover-color: #2f502f;
 
 
 //footer
-$footer-bg-color: #292929;
-$footer-text-color: #ccc;
-$footer-real-bg-color: black;
-$footer-real-text-color: #ccc;
+$footer-bg-color: $hero-color3;
+$footer-text-color: #ededed;
+$footer-real-bg-color: $nav-bar-color;
+$footer-real-text-color: #ededed;
 
 //$nav-bar-color:#39034b; //#CC231E
 
