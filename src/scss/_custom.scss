@@ -187,11 +187,23 @@ table.mat-table{
     color: white;
     letter-spacing: 2px;
     text-shadow: 1px 1px #636363;
+    margin-bottom: 0;
+    a {
+      color:white;
+      text-decoration: none;
+    }
+  }
+  .slogan {
+    font: 200 20px $font-handwriting;
+    letter-spacing: 1px;
+    color: #f4f1f1;
+    margin-bottom: 30px;
   }
   p.header{
-    font: 400 21px $font-bebas;
+    font: 400 22px $font-bebas;
     letter-spacing: 2px;
     color:white;
+    text-decoration: underline;
   }
 
   ul {
