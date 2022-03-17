@@ -30,6 +30,11 @@ $profile-button-highlight-color: #1f551b;
 $profile-link-bg-color: #ebfbeb;
 $profile-link-bg-hover-color: #2f502f;
 
+//footer
+$footer-bg-color: black;
+$footer-text-color: white;
+$footer-real-bg-color: black;
+$footer-real-text-color: #ccc;
 */
 
 //Easter Pink Theme
@@ -56,6 +61,12 @@ $profile-button-highlight-color: #1f551b;
 $profile-link-bg-color: #ebfbeb;
 $profile-link-bg-hover-color: #2f502f;
 
+
+//footer
+$footer-bg-color: #292929;
+$footer-text-color: #ccc;
+$footer-real-bg-color: black;
+$footer-real-text-color: #ccc;
 
 //$nav-bar-color:#39034b; //#CC231E
 
@@ -163,9 +174,44 @@ table.mat-table{
   width:90%;
   margin:10px;
 }
+
+.app-footer {
+  background-color: $footer-bg-color;
+  color: $footer-text-color;
+  .row{
+    padding:50px 0;
+  }
+  h2 {
+    font: 600 36px $font-bebas;
+    color: white;
+    letter-spacing: 3px;
+  }
+  p.header{
+    font: 400 20px $font-bebas;
+    letter-spacing: 2px;
+    color:white;
+  }
+
+  ul {
+    padding: 0;
+    list-style-type: none;
+    li {
+      padding:5px 0 5px 0;
+      a {
+        color:$footer-text-color;
+      }
+    }
+    
+  }
+}
+
 footer {
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
+  background-color: $footer-real-bg-color;
+  color: $footer-real-text-color;
+  text-align: center;
+  vertical-align: middle;
+  padding: 20px;
+  font-size: 13px;
 }
 
 mat-icon[md-list-icon]{
