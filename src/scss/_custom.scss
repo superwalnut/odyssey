@@ -252,8 +252,8 @@ ul.simple-horizontal-list {
     background-color: $homepage-intro-shade-color;
 
     h2{
-      font: 600 43px $font-bebas;
-      letter-spacing: 2px;
+      font: 600 39px $font-bebas;
+      letter-spacing: 1px;
       text-transform: uppercase;
       margin-bottom: 20px;
     }
@@ -827,7 +827,7 @@ $box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72)
     padding: 10px 0 70px 0;
     h1 {
       padding-top: 10px;
-      font: 600 38px $font-news!important;
+      font: 500 40px $font-news!important;
       letter-spacing: 0!important;
       line-height: 130%!important;
     }
