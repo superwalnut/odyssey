@@ -405,6 +405,29 @@ nav {
   background-color: $offline-quote-bg-color;
   padding:20px;
   color: white;
+  blockquote:before {
+    content: open-quote;
+    display: inline;
+    height: 0;
+    line-height: 0;
+    left: -10px;
+    position: relative;
+    top: 30px;
+    color: white;
+    font-size: 3em;
+  }
+  blockquote:after {
+    content: close-quote;
+    display: inline;
+    height: 0;
+    line-height: 0;
+    left: 10px;
+    position: relative;
+    top: 46px;
+    color: white;
+    font-size: 3em;
+  }
+
 }
 .handwriting {
  // font-family: 'Kaushan Script', cursive;
