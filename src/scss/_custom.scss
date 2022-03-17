@@ -1,97 +1,6 @@
-// Here you can add other styles
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap');
-@import "xmaslights";
+@import 'skin.scss';
 
-//variables
-
-/*
-//Default HBC Theme
-$nav-bar-color:#39034b;
-$booking-tbl-hightlight-color: #262626;
-
-$hero-color1: #39034b;
-$hero-color2: #39034b;
-$hero-color3: #751795;
-$hero-color4: #23d5ab;
-$homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
-$homepage-hero-bg-img: '';
-$homepage-intro-minheight: 430px;
-$homepage-intro-shade-color:rgba(0,0,0,0.5);
-$homepage-intro-bg: url(../assets/img/banners/jumpsmashbg.jpg);
-$homepage-intro-color:#fff;
-$homepage-hero-bg-img: url(../assets/img/banners/eastereggs.jpg)!important;
-$offline-quote-bg-color: #000;
-
-//dashboard profile card
-$profile-bg-img-url: url("../assets/img/banners/profilecardBG.jpg");
-$profile-card-bg-color:#fff;
-$profile-button-color: #33902b;
-$profile-button-highlight-color: #1f551b;
-$profile-link-bg-color: #ebfbeb;
-$profile-link-bg-hover-color: #2f502f;
-
-//footer
-$footer-bg-color: #222222;
-$footer-text-color: #ccc;
-$footer-real-bg-color: #161616;
-$footer-real-text-color: #ccc;
-*/
-
-
-//Easter Pink Theme
-$nav-bar-color:#dd358a; //easter pink
-$booking-tbl-hightlight-color: #ca096b;
-
-$hero-color1: #2a8bd2;
-$hero-color2: #dd358a;
-$hero-color3: #df5099;
-$hero-color4: #FEFFA2;
-$homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
-$homepage-hero-bg-img: '';
-$homepage-intro-minheight: 430px;
-$homepage-intro-color:#fff;
-$homepage-intro-shade-color:rgba(0,0,0,0.6);
-$homepage-intro-bg: url(../assets/img/banners/easterBG.jpg); //1138 x 450
-$offline-quote-bg-color: $nav-bar-color;
-
-//dashboard profile card
-$profile-bg-img-url: url("../assets/img/banners/profilecardBG.jpg");
-$profile-card-bg-color:#fff;
-$profile-button-color: #33902b;
-$profile-button-highlight-color: #1f551b;
-$profile-link-bg-color: #ebfbeb;
-$profile-link-bg-hover-color: #2f502f;
-
-
-//footer
-$footer-bg-color: #dd4593;
-$footer-text-color: #ededed;
-$footer-real-bg-color: $nav-bar-color;
-$footer-real-text-color: #ededed;
-
-
-/* End of Theme Skin */
-
-
-
-
-
-//$nav-bar-color:#39034b; //#CC231E
 $nav-padding: 20px;
-//homepage hero banner gradient colors
-
-//xmas hero banner color
-// $hero-color1: #CC231E;
-// $hero-color2: #CC231E;
-// $hero-color3: #F5624D;
-// $hero-color4: #34A65F;
-$font-title: 'Anton', sans-serif;
-$font-roboto:'Roboto', sans-serif;
-$font-racingSansOne: 'Racing Sans One', cursive;
-$font-handwriting: 'Freehand', cursive;
-$font-news: 'Abril Fatface', cursive;
-$font-bebas: 'Bebas Neue', cursive;
-$font-chiense-noto: 'Noto Serif SC', serif;
 
 body div.app {
   background-color: #e1e1e1;
@@ -312,8 +221,6 @@ ul.simple-horizontal-list {
     h3{
       font: 400 18px $font-roboto;
     }
-
-    
   }
 
   .socialicons {
@@ -569,7 +476,6 @@ ul.hpbooking {
 
 .card-sm {
   max-width: 20rem;
-  
   &.booking{
     a {
       text-decoration: none;
@@ -580,9 +486,7 @@ ul.hpbooking {
     margin-bottom: 25px;
     &:hover{
       box-shadow: 0 0 11px rgba(33,33,33,.2); 
-
     }
-
   }
 }
 
@@ -605,7 +509,6 @@ ul.hpbooking {
 .marginleft15 {
   margin-left: 15px!important;
 }
-
 
 .rainbow {
   background: 50% 50% / 50% 50% no-repeat
@@ -668,15 +571,12 @@ ul.hpbooking {
   img {
     width: 100%;
   }
-  
 }
 
 .horverEffects
 {
     box-shadow: 0px 5px 8px rgb(0 0 0 / 10%);
-
     &:hover{
-      //animation-name:onHoverAnimation;
       transform: translateY(-8px) ;
       box-shadow: 0px 20px 15px rgb(0 0 0 / 60%);
       transition: all ease-in-out 0.3s;
@@ -686,7 +586,6 @@ ul.hpbooking {
 
 $profile-card-width: 500px;
 $profile-bg-img-height: 180px;
-
 
 .profile-card{
   width:$profile-card-width;
@@ -803,7 +702,7 @@ $box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72)
 //Media queries
 @media only screen and (max-width: 768px) {
 
-  .profile-card{
+.profile-card {
     width:370px;
   }
 
@@ -866,7 +765,6 @@ $box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72)
       }
     }
   }
-
 
   .hero-section {
     min-height:200px;
@@ -934,7 +832,6 @@ $box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72)
   table.mat-table {
     width: 100%!important;
     margin:0;
-
     th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
       padding-left:8px;
     }
