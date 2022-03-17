@@ -63,7 +63,7 @@ $profile-link-bg-hover-color: #2f502f;
 
 
 //footer
-$footer-bg-color: $hero-color3;
+$footer-bg-color: #dd4593;
 $footer-text-color: #ededed;
 $footer-real-bg-color: $nav-bar-color;
 $footer-real-text-color: #ededed;
@@ -178,16 +178,17 @@ table.mat-table{
 .app-footer {
   background-color: $footer-bg-color;
   color: $footer-text-color;
+  font-size: 15px;
   .row{
     padding:50px 0;
   }
   h2 {
-    font: 600 36px $font-bebas;
+    font: 600 38px $font-bebas;
     color: white;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
   }
   p.header{
-    font: 400 20px $font-bebas;
+    font: 400 21px $font-bebas;
     letter-spacing: 2px;
     color:white;
   }
