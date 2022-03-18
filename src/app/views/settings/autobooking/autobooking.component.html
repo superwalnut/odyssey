@@ -37,36 +37,37 @@
 
             <h2>My Auto Booking History</h2>
 
-            <table class="table table-sm">
-              <thead>
-                <tr>
-                  <th scope="col">Session</th>
-                  <th scope="col">User</th>
-                  <th scope="col">Expire on</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let s of mySchedules">
-                  <td>{{ s.groupName }}</td>
-                  <td>{{ s.user.name }}</td>
-                  <td>{{ s.expireOn.toDate() | date: 'dd/MM/yyyy' }}</td>
-                  <td>
-                    <!-- <span class="material-icons" title="{{ s.isPaused ? 'paused' : 'active' }}">{{ s.isPaused ? 'pause' : 'play_arrow' }}</span> -->
-                    {{ getExpiryStatus(s)}}
-                  </td>
-                  <td>
-                    <button mat-raised-button color="primary"  (click)="statusClicked(s)">{{ s.isPaused ? 'Resume' : 'Pause' }}</button>
-                    <!-- <button mat-button (click)="deleteClicked(s)" color="warn">Delete</button> -->
-                    <button mat-raised-button (click)="extendClicked(s)" color="primary" *ngIf="expireSoon(s)">Extend</button>
-  
-                  </td>
-  
-                </tr>
-              </tbody>
-            </table>
-
+            <div class="table-scrollable">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Session</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Expire on</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of mySchedules" [ngClass]="{ 'bg-light': !isActive(s) }">
+                    <td>{{ s.groupName }}</td>
+                    <td>{{ s.user.name }}</td>
+                    <td>{{ s.expireOn.toDate() | date: 'dd/MM/yyyy' }}</td>
+                    <td>
+                      <!-- <span class="material-icons" title="{{ s.isPaused ? 'paused' : 'active' }}">{{ s.isPaused ? 'pause' : 'play_arrow' }}</span> -->
+                      {{ getExpiryStatus(s)}}
+                    </td>
+                    <td>
+                      <button mat-raised-button color="primary" *ngIf="isActive(s)" (click)="statusClicked(s)">{{ s.isPaused ? 'Resume' : 'Pause' }}</button>
+                      <!-- <button mat-button (click)="deleteClicked(s)" color="warn">Delete</button> -->
+                      <button mat-raised-button color="accent" (click)="extendClicked(s)" *ngIf="expireSoon(s)">Extend</button>
+    
+                    </td>
+    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
           
 

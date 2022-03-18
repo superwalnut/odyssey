@@ -107,6 +107,14 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     return 'Active';
   }
 
+  isActive(schedule: BookingSchedule) {
+    if (schedule.expireOn > Timestamp.now()) {
+      return true;
+    }
+
+
+  }
+
   expireSoon(schedule: BookingSchedule) {
 
     var diff = this.helperService.findTimeDifference(schedule.expireOn); //return in SECONDS
