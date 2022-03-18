@@ -480,7 +480,9 @@ ul.hpbooking {
   //background-color: #262626;
   background-color: $booking-tbl-hightlight-color;
 }
-
+.table-scrollable {
+  overflow-x:auto;
+}
 .unpaid-bg{
   background-color: #fcd7e8;
 }
