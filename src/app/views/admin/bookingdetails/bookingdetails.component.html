@@ -54,8 +54,8 @@
                 <button mat-raised-button color="primary" (click)="createBooking(myControl)">Add</button>
               </form>
             </section>
-
-            <table class="table table-sm">
+            <div style="overflow-x:auto;">
+            <table class="table table-sm table-responsive">
               <thead>
                 <tr>
                   <th scope="col">User</th>
@@ -111,8 +111,10 @@
 
               </tbody>
             </table>
+            </div>
 
             <h3>Booking adjustment</h3>
+            
             <table class="table table-sm">
               <thead>
                 <tr>
@@ -131,6 +133,7 @@
                 </tr>
               </tbody>
             </table>
+          
 
             <form [formGroup]="adjustForm" (ngSubmit)="onSubmit()" *ngIf="!booking?.reconciled">
               <mat-form-field>
