@@ -330,8 +330,9 @@ ul.simple-horizontal-list {
       padding: 60px 0 30px 0;
       //font-family: 'Roboto', sans-serif!important;
       &.homepage-quote {
-        font: 700 40px $font-news!important;
-        letter-spacing: 2px!important;
+        //font: 700 40px $font-news!important;
+        font: 700 47px $font-bebas!important;
+        letter-spacing: 3px!important;
       }
       &.homepage-quote-chinese {
         font: 900 40px $font-chiense-noto!important;
@@ -788,6 +789,10 @@ $box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72)
       h2{
         font: 500 37px $font-title;
       }
+      p a {
+        color: white !important;;
+        font-weight: 500;
+      }
     }
   }
 
@@ -801,6 +806,7 @@ $box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72)
     .right{
       width:100%;
     }
+    
   }
 
   .hero2 {
@@ -812,6 +818,7 @@ $box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72)
       letter-spacing: 0!important;
       line-height: 130%!important;
     }
+    
   }
 
   .group-card {
