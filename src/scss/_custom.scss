@@ -1,5 +1,5 @@
 @import 'skin.scss';
-@import 'mobile.scss';
+
 
 $nav-padding: 20px;
 
@@ -651,6 +651,26 @@ $profile-bg-img-height: 180px;
     }
   }
 
+  .profile-bank-details {
+    width: 300px;
+    margin: 0 auto;
+    h3 {
+      font: 200 16px $font-anton;
+      margin: 18px 0 15px 0;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+      li {
+        padding: 0;
+      }
+    }
+  }
+
   .profile-content{
     padding-top: 40px;
     text-align: center;
@@ -672,30 +692,7 @@ $profile-bg-img-height: 180px;
       min-height: 70px;
     }
 
-    .profile-bio button:hover > .profile-bank-details {
-      
-    }
-
-
-    .profile-bank-details {
-      width: 300px;
-      margin: 0 auto;
-      h3 {
-        font: 200 16px $font-anton;
-        margin: 18px 0 15px 0;
-        &:hover {
-          cursor: pointer;
-        }
-      }
-      ul {
-        list-style: none;
-        padding: 0;
-        text-align: center;
-        li {
-          padding: 0;
-        }
-      }
-    }
+    
 
     .profile-links {
       display: flex;
@@ -752,3 +749,5 @@ $profile-bg-img-height: 180px;
 }
 
 $box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72), 0 1px 5px 0 rgba(0, 0, 0, 0.8);
+
+@import 'mobile.scss';
