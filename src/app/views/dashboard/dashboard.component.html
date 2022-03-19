@@ -33,8 +33,6 @@
           </div>
           <div class="profile-bio">
             <img src="{{ user.isCreditUser ? './assets/img/banners/HBCoinBadge.png' : './assets/img/banners/CashBadge.png'}}" title="{{ user.isCreditUser ? 'HBCoin User' : 'Cash User'}}"/>
-
-
             <div class="profile-bank-details" >
               <h3 (click)="showDetail=!showDetail">Top up</h3>
               <div class="detail-list" *ngIf="showDetail">
