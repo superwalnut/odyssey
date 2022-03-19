@@ -31,17 +31,28 @@
               {{ user.email }}
             </span>
           </div>
-  
           <div class="profile-bio">
             <img src="{{ user.isCreditUser ? './assets/img/banners/HBCoinBadge.png' : './assets/img/banners/CashBadge.png'}}" title="{{ user.isCreditUser ? 'HBCoin User' : 'Cash User'}}"/>
+
+
+            <div class="profile-bank-details" >
+              <h3 (click)="showDetail=!showDetail">Top up</h3>
+              <div class="detail-list" *ngIf="showDetail">
+                <ul>
+                  <li><b>PayID:</b> 82741485323 (Type: ABN)</li>
+                  <li><b>Account Name:</b> HBC</li>
+                  <li><b>BSB:</b> 032111 <b>Account:</b> 335387</li>
+                </ul>
+            </div>
+              
+            </div>
           </div>
 
           <div class="profile-links">
             <div class="profile-link">
               <span class="link-text">{{ myCreditBalance | currency }}</span>
               <span class="link-label">Balance</span>
-             
-
+              
             </div>
             <div class="profile-link">
               <span class="link-text">{{ myAttendanceCount }}</span>
@@ -62,48 +73,6 @@
   </div>
 </div>
  
-
-
- 
-
-<!-- <div class="container-xl" *ngIf="isGod || isAdmin">
-  <div class="row">
-    <div class="col-sm">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Management</h4>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <a routerLink="/admin/users" class="card-link">Users</a>
-          </li>
-          <li class="list-group-item">
-            <a routerLink="/admin/groups" class="card-link">Groups</a>
-          </li>
-          <li class="list-group-item">
-            <a routerLink="" class="card-link">Public Site</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="col-sm">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Reports</h4>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><a routerLink="/admin/rptincome">Finance</a></li>
-          <li class="list-group-item"><a routerLink="/admin/rptunpaid">Unpaid users</a></li>
-          <li class="list-group-item"><a routerLink="/admin/rptattend">Attendance</a></li>
-        </ul>
-    
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
 <!-- <div class="container-xl" *ngIf="isUser"> -->
   <div class="container">
     <div class="row">

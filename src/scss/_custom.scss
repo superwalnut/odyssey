@@ -1,4 +1,5 @@
 @import 'skin.scss';
+@import 'mobile.scss';
 
 $nav-padding: 20px;
 
@@ -671,6 +672,31 @@ $profile-bg-img-height: 180px;
       min-height: 70px;
     }
 
+    .profile-bio button:hover > .profile-bank-details {
+      
+    }
+
+
+    .profile-bank-details {
+      width: 300px;
+      margin: 0 auto;
+      h3 {
+        font: 200 16px $font-anton;
+        margin: 18px 0 15px 0;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        text-align: center;
+        li {
+          padding: 0;
+        }
+      }
+    }
+
     .profile-links {
       display: flex;
       align-items: center;
@@ -726,148 +752,3 @@ $profile-bg-img-height: 180px;
 }
 
 $box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72), 0 1px 5px 0 rgba(0, 0, 0, 0.8);
-
-//Media queries
-@media only screen and (max-width: 768px) {
-
-.profile-card {
-    width:370px;
-  }
-
-  .app-header{
-  position: relative !important;
-}
-.app-body {
-  margin-top: 0!important;
-}
-
-  main .container-fluid {
-    padding: 0!important;
-    margin: 0!important;
-
-  }
-  .container{
-    padding: 5px!important;
-  }
-  .card-body{
-    padding: 15px 8px !important;;
-  }
-  h1 {
-    margin: 15px!important;
-  }
-
-  nav {
-    text-align: center;
-    .nav-logo {
-      float: none;
-      margin: auto;
-      display: inline-block;
-      text-align: center;
-      img {
-        width: 60px;
-      }
-    }
-    ul {
-      //border: solid 1px black;
-      margin: 10px;
-      width: 100%;
-      padding: 0;
-      li {
-        margin: 0;
-
-        display: inline-block;
-        padding: 20px;
-        padding-left: 0;
-        padding-right: 20px;
-      }
-    }
-  }
-
-  
-  .homepage-intro {
-    .intro-shade {
-      padding: 20px;
-      width: 100%;
-      h2{
-        font: 500 37px $font-title;
-      }
-      p a {
-        color: white !important;;
-        font-weight: 500;
-      }
-    }
-  }
-
-  .hero-section {
-    min-height:200px;
-    padding: 10px 20px;
-
-    .left{
-      display: none;
-    }
-    .right{
-      width:100%;
-    }
-    
-  }
-
-  .hero2 {
-    min-height: 300px;
-    padding: 10px 0 60px 0;
-    h1 {
-      padding-top: 10px;
-      font: 700 46px $font-bebas!important;
-      letter-spacing: 1px!important;
-      line-height: 130%!important;
-    }
-    
-  }
-
-  .group-card {
-    margin: 15px;
-  }
-
-  .card-sm {
-    max-width: 100%;
-    
-    &.booking{
-      a {
-        text-decoration: none;
-        color:black;
-      }
-      //float: left;
-      margin: 16px;
-      &:hover{
-        box-shadow: 0 0 11px rgba(33,33,33,.2); 
-  
-      }
-  
-    }
-  }
-
-  .row {
-    .col section,
-    .col-sm section {
-      padding: 0;
-    }
-  }
-  
-  .col {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .card-body.nopadding {
-    padding: 0;
-    h1 {
-      padding: 10px;
-    }
-  }
-
-  table.mat-table {
-    width: 100%!important;
-    margin:0;
-    th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
-      padding-left:8px;
-    }
-  }
-}

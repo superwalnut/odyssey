@@ -1,14 +1,15 @@
 @import "xmaslights";
 @import url('https://fonts.googleapis.com/css2?family=Material+Icons&family=Roboto:ital,wght@1,900&family=Noto+Serif+SC:wght@900&family=Freehand&family=Abril+Fatface&family=Anton&family=Bebas+Neue&family=Poppins:wght@400;500&family=Racing+Sans+One&display=swap');
 
-$font-title: 'Anton', sans-serif;
+
+$font-anton: 'Anton', sans-serif;
 $font-roboto:'Roboto', sans-serif;
 $font-racingSansOne: 'Racing Sans One', cursive; //bold italic font
 $font-handwriting: 'Freehand', cursive;
 $font-news: 'Abril Fatface', cursive;//Time new roman like font - brodayway like
 $font-bebas: 'Bebas Neue', cursive;
 $font-chiense-noto: 'Noto Serif SC', serif; //chinese font
- 
+$font-title: $font-anton; 
 /*
 //Default HBC Theme
     $nav-bar-color:#39034b;
@@ -75,4 +76,10 @@ $font-chiense-noto: 'Noto Serif SC', serif; //chinese font
     $footer-real-text-color: #ededed;
 //Easter Pink Theme
 
+/****** Default Overwrites ********/
 
+// Angular Material Overwrites
+
+.mat-dialog-container {
+    padding: 5px!important;
+}
