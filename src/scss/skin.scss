@@ -12,8 +12,10 @@ $font-chiense-noto: 'Noto Serif SC', serif; //chinese font
 $font-title: $font-anton; 
 /*
 //Default HBC Theme
-    $nav-bar-color:#39034b;
-    $booking-tbl-hightlight-color: #262626;
+    $default-color: #39034b;;//easter pink
+    $default-highlight-color: #2b0239;
+    $nav-bar-color:$default-color; 
+    $booking-tbl-hightlight-color: $default-highlight-color;
 
     $hero-color1: #39034b;
     $hero-color2: #39034b;
@@ -31,10 +33,11 @@ $font-title: $font-anton;
     //dashboard profile card
     $profile-bg-img-url: url("../assets/img/banners/profilecardBG.jpg");
     $profile-card-bg-color:#fff;
+    $profile-card-text-color: #000;
     $profile-button-color: #33902b;
     $profile-button-highlight-color: #1f551b;
     $profile-link-bg-color: #ebfbeb;
-    $profile-link-bg-hover-color: #2f502f;
+    $profile-link-bg-hover-color: #71b771;
 
     //footer
     $footer-bg-color: #222222;
@@ -46,8 +49,11 @@ $font-title: $font-anton;
 
 
 //Easter Pink Theme
-    $nav-bar-color:#dd358a; //easter pink
-    $booking-tbl-hightlight-color: #ca096b;
+    $default-color: #dd358a;//easter pink
+    $default-highlight-color: #c52274;
+    $nav-bar-color:$default-color; 
+    
+    $booking-tbl-hightlight-color: $default-highlight-color;
 
     $hero-color1: #2a8bd2;
     $hero-color2: #dd358a;
@@ -62,12 +68,13 @@ $font-title: $font-anton;
     $offline-quote-bg-color: $nav-bar-color;
 
     //dashboard profile card
-    $profile-bg-img-url: url("../assets/img/banners/profilecardBG.jpg");
-    $profile-card-bg-color:#fff;
-    $profile-button-color: #33902b;
-    $profile-button-highlight-color: #1f551b;
-    $profile-link-bg-color: #ebfbeb;
-    $profile-link-bg-hover-color: #2f502f;
+    $profile-bg-img-url: url("../assets/img/banners/profilecard-easter-bg.jpg");
+    $profile-card-bg-color:#f16bae;
+    $profile-card-text-color: #fff;
+    $profile-button-color: $default-color;
+    $profile-button-highlight-color: $default-highlight-color;
+    $profile-link-bg-color: #fb48a3;
+    $profile-link-bg-hover-color: $default-highlight-color;
 
     //footer
     $footer-bg-color: #dd4593;

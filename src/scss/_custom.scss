@@ -617,6 +617,7 @@ $profile-card-width: 500px;
 $profile-bg-img-height: 180px;
 
 .profile-card{
+  color: $profile-card-text-color;
   width:$profile-card-width;
   position: relative;
   margin: 0 auto 0 auto;
@@ -635,8 +636,8 @@ $profile-bg-img-height: 180px;
     background-repeat: no-repeat;
     background-position: center top;
     background-size: 100% auto;
-
     border-radius: 10px 10px 0px 0px;
+
     .profile-avatar {
       position: absolute;
       top: 90px;
@@ -647,6 +648,9 @@ $profile-bg-img-height: 180px;
         height: 130px;
         border-radius: 50%;
         box-shadow: $box-shadow;
+        &:hover {
+          box-shadow: $box-shadow;
+        }
       }
     }
   }
@@ -667,6 +671,8 @@ $profile-bg-img-height: 180px;
       text-align: center;
       li {
         padding: 0;
+        font-size: 15px;
+        color: $profile-card-text-color;
       }
     }
   }
@@ -680,7 +686,7 @@ $profile-bg-img-height: 180px;
       margin-bottom: 10px;
     }
     .profile-contact{
-      color:#545454;
+      color: $profile-card-text-color;
       padding:0 0 10px 0;
       font-size: 16px;
       font-family: $font-roboto!important;
@@ -702,6 +708,7 @@ $profile-bg-img-height: 180px;
   
       .profile-link {
         display: flex;
+        cursor: pointer;
         justify-content: center;
         align-items: center;
         flex-basis: 50%;

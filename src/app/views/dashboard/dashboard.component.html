@@ -7,7 +7,8 @@
         <div class="profile-bg">
           <div class="profile-avatar">
             <!-- <img src="https://usercontent2.hubstatic.com/11352039.jpg"> -->
-            <img src="{{avatarUrl}}" alt=""/>
+            <a routerLink="/settings/profile">
+            <img src="{{avatarUrl}}" alt=""/></a>
           </div>
         </div>
         
@@ -47,12 +48,11 @@
           </div>
 
           <div class="profile-links">
-            <div class="profile-link">
+            <div class="profile-link" routerLink="/settings/creditstatement">
               <span class="link-text">{{ myCreditBalance | currency }}</span>
               <span class="link-label">Balance</span>
-              
             </div>
-            <div class="profile-link">
+            <div class="profile-link" routerLink="/settings/attendancehistory">
               <span class="link-text">{{ myAttendanceCount }}</span>
               <span class="link-label">Points</span>
             </div>
