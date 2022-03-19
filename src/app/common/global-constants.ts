@@ -188,16 +188,37 @@ export class GlobalConstants {
         { line: "The only way to prove that you’re a good sport is to lose.", people: "Ernie Banks"},
         { line: "Age is no barrier. It’s a limitation you put on your mind.", people: "Jackie Joyner-Kersee"},
         { line: "Only he who can see the invisible can do the impossible.", people: "Frank L. Gaines"},
-        { line: "You have to do something in your life that is honorable and not cowardly if you are to live in peace with yourself.", people: "Larry Brown"},
         { line: "There may be people that have more talent than you, but there's no excuse for anyone to work harder than you do.", people: "Derek Jeter"},
         { line: "An athlete cannot run with money in his pockets. He must run with hope in his heart and dreams in his head.", people: "Emil Zatopek"},
         { line: "When you've got something to prove, there's nothing greater than a challenge.", people: "Terry Bradshaw"},
         { line: "You were born to be a player. You were meant to be here. This moment is yours.", people: "Herb Brooks"},
         { line: "Everything negative - pressure, challenges - are all an opportunity for me to rise", people: "Kobe Bryant"},
         { line: "The moment you give up, is the moment you let someone else win.", people: "Kobe Bryant"},
-        
+    ];
+    public static lifeQuotes = [
+        { line: "Get busy living or get busy dying", people: "Stephen King"},
+        { line: "You only live once, but if you do it right, once is enough", people: "Mae West"},
+        { line: "Live once, play more", people: "Luc"},
+        { line: "Many of life’s failures are people who did not realize how close they were to success when they gave up", people: "Thomas A. Edison"},
+        { line: "If you want to live a happy life, tie it to a goal, not to people or things", people: "Babe Ruth"},
+        { line: "Money and success don’t change people; they merely amplify what is already there", people: "Will Smith"},
+        { line: "Your time is limited, so don’t waste it living someone else’s life. Don't be trapped by dogma", people: "Steve Jobs"},
+        { line: "Not how long, but how well you have lived is the main thing", people: "Seneca"},
+        { line: "In order to write about life first you must live it.", people: "Ernest Hemingway"},
+        { line: "The way I see it, if you want the rainbow, you gotta put up with the rain", people: "Dolly Parton"},
+        { line: "Don’t settle for what life gives you; make life better and build something", people: "Ashton Kutcher"},
+        { line: "I like criticism. It makes you strong", people: "LeBron James"},
+        { line: "My mama always said, life is like a box of chocolates. You never know what you’re gonna get", people: "Forrest Gump"},
+        { line: "A smile is the best makeup any girl can wear", people: "Marilyn Monroe"},
+        { line: "Beauty begins the moment you decide to be yourself", people: "Coco Chanel"},
+        { line: "If you wish to make an apple pie from scratch, you must first invent the universe", people: "Carl Sagan"},
+        { line: "We are like butterflies who flutter for a day and think it is forever", people: "Carl Sagan"},
+        { line: "There’s as many atoms in a single molecule of your DNA as there are stars in the typical galaxy. We are, each of us, a little universe", people: "Neil deGrasse Tyson"},
+        { line: "Atoms are mainly empty space. Matter is composed chiefly of nothing", people: "Carl Sagan"},
+        { line: "The beauty of a living thing is not the atoms that go into it, but the way those atoms are put together", people: "Carl Sagan"},
+        { line: "The cosmos is within us. We are made of star stuff", people: "Carl Sagan"}
 
-        
+
     ];
 
 
