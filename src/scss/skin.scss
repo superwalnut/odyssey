@@ -10,16 +10,20 @@ $font-news: 'Abril Fatface', cursive;//Time new roman like font - brodayway like
 $font-bebas: 'Bebas Neue', cursive;
 $font-chiense-noto: 'Noto Serif SC', serif; //chinese font
 $font-title: $font-anton; 
+
 /*
 //Default HBC Theme
-    $global-page-bg-color: white;
     $default-color: #39034b;;//easter pink
+    $global-page-bg-color: white;
     $default-highlight-color: #2b0239;
     $nav-bar-color:$default-color; 
 	$nav-bar-text-color:white;
-    
+    $nav-bar-link-hover-color: white;
+    $row-bg-color: white;
+    $section-header-text-color: black;
+    $simple-horizontal-list-text-color: black;
 
-    $hero-color1: #39034b;
+    $hero-color1: $default-color;
     $hero-color2: #39034b;
     $hero-color3: #751795;
     $hero-color4: #23d5ab;
@@ -30,6 +34,7 @@ $font-title: $font-anton;
     $homepage-intro-shade-color:rgba(0,0,0,0.5);
     $homepage-intro-bg: url(../assets/img/banners/jumpsmashbg.jpg);
     $homepage-intro-color:#fff;
+    $homepage-intro-shade-link-color: white;
     $homepage-hero-bg-img: ''!important;
     $offline-quote-bg-color: #000;
 
@@ -42,12 +47,27 @@ $font-title: $font-anton;
     $profile-link-bg-color: #e5e5e5;
     $profile-link-bg-hover-color: #54056e;
 
+    //Card
+    $card-background-color: white;
+    $card-text-color: black;
+    $card-table-text-color: black;
+    $card-mat-label-color: black;
+    $card-text-muted: #9d9c9c;
+    $card-link-text-color: $default-color;
+
+    //Admin
+    $admin-table-row-inactive: #ccc;
+
 	//booking tables
     $table-bg-color:$default-color;
     $table-text-color: white;
     $table-hover-text-color:white;
     $booking-tbl-hightlight-color: $default-highlight-color;
 	
+    //Modal dialog
+    $modal-content-background-color: #fff;
+    $modal-content-h3-color: black;
+
     //footer
     $footer-bg-color: $default-color;
     $footer-text-color: white;
@@ -60,22 +80,28 @@ $font-title: $font-anton;
 
 
 //Easter Pink Theme
-    $global-page-bg-color: white;
+    $default-color: #dd358a;//easter pink
+    $global-page-bg-color: $default-color;
     $default-color: #dd358a;//easter pink
     $default-highlight-color: #c52274;
     $nav-bar-color:$default-color; 
     $nav-bar-text-color: white;
+    $nav-bar-link-hover-color: white;
+    $row-bg-color: $default-color;
+    $section-header-text-color: white;
+    $simple-horizontal-list-text-color: white;
 
-    $hero-color1: #2a8bd2;
+    $hero-color1: $default-color;
     $hero-color2: #dd358a;
     $hero-color3: #df5099;
-    $hero-color4: #FEFFA2;
+    $hero-color4: #f92658;
 	$homepage-hero-text-color: white;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-hero-bg-img: '';
     $homepage-intro-minheight: 430px;
     $homepage-intro-color:#fff;
     $homepage-intro-shade-color:rgba(0,0,0,0.6);
+    $homepage-intro-shade-link-color: white;
     $homepage-intro-bg: url(../assets/img/banners/easterBG.jpg); //1138 x 450
     $offline-quote-bg-color: $nav-bar-color;
 
@@ -88,12 +114,27 @@ $font-title: $font-anton;
     $profile-link-bg-color: #fb48a3;
     $profile-link-bg-hover-color: $default-highlight-color;
 
+    //Card
+    $card-background-color: $default-color;
+    $card-text-color: white;
+    $card-link-text-color: white;
+    $card-table-text-color: white;
+    $card-mat-label-color: black;
+    $card-text-muted: #fec1e0;
+
+    //Modal dialog
+    $modal-content-background-color: #ee66ab;
+    $modal-content-h3-color: white;
+
 	//booking tables
     $table-bg-color:$default-color;
     $table-text-color: white;
     $table-hover-text-color:white;
     $booking-tbl-hightlight-color: $default-highlight-color;
 	
+    //Admin
+    $admin-table-row-inactive: #d81678;
+
     //footer
     $footer-bg-color: #dd4593;
     $footer-text-color: #ededed;
@@ -105,16 +146,20 @@ $font-title: $font-anton;
 
 
 /*
-//Black & White Theme
+//Light Mode Theme
     $global-page-bg-color: white;
     $default-color: #fff;//easter pink
     $default-highlight-color: #ccc;
     $nav-bar-color:$default-color; 
     $nav-bar-text-color: black;
-    
+    $nav-bar-link-hover-color: #313131;
+    $row-bg-color: $default-color;
+    $section-header-text-color: black;
+    $simple-horizontal-list-text-color: black;
+
     $hero-color1: #fff;
     $hero-color2: #fff;
-    $hero-color3: #8a8989;
+    $hero-color3: #b7b6b6;
     $hero-color4: #a1a0a0;
     $homepage-hero-text-color: black;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
@@ -123,6 +168,7 @@ $font-title: $font-anton;
     $homepage-intro-shade-color:rgba(255,255,255,0.95);
     $homepage-intro-bg: url(../assets/img/banners/jumpsmash-bw-bg.jpg);
     $homepage-intro-color:#000;
+    $homepage-intro-shade-link-color: black;
     //$homepage-hero-bg-img: url(../assets/img/banners/eastereggs.jpg)!important;
     $offline-quote-bg-color: #000;
 
@@ -135,12 +181,27 @@ $font-title: $font-anton;
     $profile-link-bg-color: #dcdcdc;
     $profile-link-bg-hover-color: #b0afaf;
 
+    //Card
+    $card-background-color: $default-color;
+    $card-text-color: black;
+    $card-table-text-color: black;
+    $card-mat-label-color: black;
+    $card-text-muted: black;
+    $card-link-text-color: black;
+
     //booking tables
     $table-bg-color:#fff;
     $table-text-color: black;
     $table-hover-text-color:black;
     $booking-tbl-hightlight-color: #f6f6f6;
 
+    //Modal dialog
+    $modal-content-background-color: $default-color;
+    $modal-content-h3-color: black;
+
+    //Admin
+    $admin-table-row-inactive: #ccc;
+    
     //footer
     $footer-bg-color: #fff;
     $footer-text-color: black;
@@ -148,8 +209,80 @@ $font-title: $font-anton;
     $footer-logo-color: black;
     $footer-real-bg-color: #efefef;
     $footer-real-text-color: black;
-//Black & White Theme END
+//Light Mode Theme END
 */
+
+
+
+/*
+//Dark Mode Theme
+    $global-page-bg-color: #161616;
+    $default-color: #161616;
+    $default-highlight-color: #ccc;
+    $nav-bar-color:$default-color; 
+    $nav-bar-text-color: white;
+    $nav-bar-link-hover-color: white;
+    $row-bg-color: $default-color;
+    $section-header-text-color: white;
+    $simple-horizontal-list-text-color: white;
+
+    $hero-color1: #161616;
+    $hero-color2: #161616;
+    $hero-color3: #363535;
+    $hero-color4: #444343;
+    $homepage-hero-text-color: white;
+    $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
+    $homepage-hero-bg-img: '';
+    $homepage-intro-minheight: 430px;
+    $homepage-intro-shade-color:rgba(255,255,255,0);
+    $homepage-intro-bg: url(../assets/img/banners/jumpsmash-bw-bg.jpg);
+    $homepage-intro-color:#fff;
+    $homepage-intro-shade-link-color: black; 
+    //$homepage-hero-bg-img: url(../assets/img/banners/eastereggs.jpg)!important;
+    $offline-quote-bg-color: #000;
+
+    //dashboard profile card
+    $profile-bg-img-url: url("../assets/img/banners/profilecard-bw-BG.jpg");
+    $profile-card-bg-color:#fff;
+    $profile-card-text-color: #000;
+    $profile-button-color: black;
+    $profile-button-highlight-color: #2a2a2a;
+    $profile-link-bg-color: #dcdcdc;
+    $profile-link-bg-hover-color: #0d0d0d;
+
+    //Card
+    $card-background-color: $default-color;
+    $card-text-color: white;
+    $card-table-text-color: white;
+    $card-mat-label-color: white;
+    $card-text-muted: #b4b4b4;
+    $card-link-text-color: white;
+
+    //booking tables
+    $table-bg-color: $default-color;
+    $table-text-color: white;
+    $table-hover-text-color:#ccc;
+    $booking-tbl-hightlight-color: #1e1e1e;
+
+    //Modal dialog
+    $modal-content-background-color: $default-color;
+    $modal-content-h3-color: white;
+
+    //Admin
+    $admin-table-row-inactive: #202020;
+    
+    //footer
+    $footer-bg-color: $default-color;
+    $footer-text-color: white;
+    $footer-link-hover-color: #dbd7d7;
+    $footer-logo-color: white;
+    $footer-real-bg-color: #0d0d0d;
+    $footer-real-text-color: white;
+//Dark Mode Theme END
+*/
+
+
+
 
 /****** Default Overwrites ********/
 
@@ -167,4 +300,41 @@ body div.app {
 
 .table-hover tbody tr:hover {
     color: $table-hover-text-color!important;
+}
+.card {
+    background-color: $card-background-color;
+    color: $card-text-color;
+    mat-label {
+        color: $card-mat-label-color;
+    }
+    table {
+        color: $card-table-text-color;
+    }
+    a {
+        color: $card-link-text-color;
+        font-weight: 500;
+    }
+    .text-muted {
+        color: $card-text-muted !important;
+    }
+}
+
+.mat-card {
+    background-color: $default-color;
+    color:white;
+}
+
+.mat-dialog-container {
+    background-color: $modal-content-background-color;
+    color: $modal-content-h3-color;
+    .modal-content {
+        background-color: $modal-content-background-color;
+        .modal-title {
+            font: 400 18px $font-anton;
+            color: $modal-content-h3-color;
+        }
+        h3 {
+            color: $modal-content-h3-color;
+        }
+    }
 }

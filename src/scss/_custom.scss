@@ -48,7 +48,7 @@ body div.app {
 .container-fluid {
   .row {
     &.light {
-      background-color: white;
+      background-color: $row-bg-color;
     }
   }
 }
@@ -185,6 +185,7 @@ mat-icon[md-list-icon]{
 ul.simple-horizontal-list {
   margin: 0!important;
   padding: 0!important;
+  color: $simple-horizontal-list-text-color;
   > li {
     display: inline-block;
     padding-right:5px;
@@ -211,7 +212,7 @@ ul.simple-horizontal-list {
     padding: 40px;
     width: 50%;
     min-height: $homepage-intro-minheight;
-    background-color: $homepage-intro-shade-color;
+    background-color: $homepage-intro-shade-color; 
 
     h2{
       font: 600 39px $font-bebas;
@@ -387,7 +388,7 @@ nav {
         font-size: 16px;
         font-weight: 600;
         &:hover {
-          color: white;
+          color: $nav-bar-link-hover-color;
           text-decoration: none;
         }
       }
@@ -465,7 +466,7 @@ ul.hpbooking {
 }
 
 .table-row-inactive {
-  background-color: #ccc;
+  background-color: $admin-table-row-inactive;
 }
 .video-responsive{
   overflow:hidden;
@@ -533,6 +534,7 @@ ul.hpbooking {
   font: 700 30px $font-title!important;
   letter-spacing: 1px!important;
   text-transform: uppercase;
+  color: $section-header-text-color;
 }
 
 .marginleft15 {
