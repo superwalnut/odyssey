@@ -30,23 +30,20 @@
     
       nav {
         text-align: center;
-        .nav-logo {
+        padding: 10px;
+        .logo {
           float: none;
           margin: auto;
           display: inline-block;
           text-align: center;
-          img {
-            width: 60px;
-          }
         }
         ul {
           //border: solid 1px black;
-          margin: 10px;
+          margin: 2px;
           width: 100%;
           padding: 0;
           li {
             margin: 0;
-    
             display: inline-block;
             padding: 20px;
             padding-left: 0;
