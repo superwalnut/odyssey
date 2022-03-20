@@ -21,7 +21,7 @@
     <div *ngIf="data.isSeatsLeft && meetBasePoints">
       <h3>You & Your Family </h3>
   
-      <ul class="simple-horizontal-list">
+      <ul class="simple-horizontal-list dark-text">
         <li *ngFor="let user of data.familyBookingUsers">{{ user.name }} <mat-slide-toggle [(ngModel)]="user.selected" (change)="onSelectionChange()"></mat-slide-toggle> &nbsp; &nbsp; &nbsp; </li>
       </ul>
       <!-- <table class="table table-sm table-borderless">
@@ -35,7 +35,7 @@
       <!-- <mat-icon>help_outline</mat-icon> -->
       <!-- <p>Reserve sports for your friends if they don't have account in the system</p> -->
 
-      <ul class="simple-horizontal-list">
+      <ul class="simple-horizontal-list dark-text">
         <li *ngFor="let user of data.friendBookingUsers">{{ user.name}} <mat-slide-toggle [(ngModel)]="user.selected" (change)="onSelectionChange()"></mat-slide-toggle> &nbsp; &nbsp; &nbsp; </li>
       </ul>
       <!-- <table class="table table-sm table-borderless">

@@ -192,6 +192,10 @@ ul.simple-horizontal-list {
   }
 }
 
+.dark-text {
+  color:black !important;
+}
+
 .modal-body h3 {
   font-weight: 600!important;
   margin: 10px 0!important;
@@ -532,6 +536,13 @@ ul.hpbooking {
 .table-custom {
   color: $table-text-color;
   background-color: $table-bg-color;
+  font: 200 16px $font-roboto;
+  tbody tr td {
+    vertical-align: middle;
+    &:nth-child(1) {
+      font:300 18px $font-bebas;
+    }
+  } 
 }
 .group-header-image {
   background-image: url(../assets/img/banners/shuttle-sm.jpg);
