@@ -366,13 +366,22 @@ ul.simple-horizontal-list {
 nav {
   background-color: $nav-bar-color;
   padding: $nav-padding;
-  .nav-logo {
+  .logo {
     float: left;
     margin: -$nav-padding auto;
-    img {
-      width: 55px;
-    }
+    background: $nav-bar-logo no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    width: 55px;
+    height: 55px;
   }
+  // .nav-logo {
+  //   float: left;
+  //   margin: -$nav-padding auto;
+  //   img {
+  //     width: 55px;
+  //   }
+  // }
   ul {
     //border: solid 1px black;
     margin: auto 20px;
