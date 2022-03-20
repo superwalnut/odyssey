@@ -105,20 +105,20 @@ table.mat-table{
     text-shadow: 1px 1px #636363;
     margin-bottom: 0;
     a {
-      color:white;
+      color:$footer-logo-color;
       text-decoration: none;
     }
   }
   .slogan {
     font: 200 22px $font-handwriting;
     letter-spacing: 1px;
-    color: #f4f1f1;
+    color: $footer-logo-color;
     margin-bottom: 30px;
   }
   p.header{
     font: 400 22px $font-bebas;
     letter-spacing: 2px;
-    color:white;
+    color:$footer-logo-color;
   }
 
   ul {
@@ -130,7 +130,7 @@ table.mat-table{
         color:$footer-text-color;
         text-decoration: none;
         &:hover {
-          color: white;
+          color: $footer-link-hover-color;
         }
       }
     }
@@ -140,7 +140,7 @@ table.mat-table{
     margin-top:20px;
     font-size: 22px;
     a {
-      color:white;
+      color:$footer-text-color;
       text-decoration: none;
       border:0;
       i{
@@ -327,7 +327,7 @@ ul.simple-horizontal-list {
       
       margin-left: 45px;
       margin-right: 45px;
-      color: white;
+      color: $homepage-hero-text-color;
       padding: 60px 0 30px 0;
       //font-family: 'Roboto', sans-serif!important;
       &.homepage-quote {
@@ -382,7 +382,7 @@ nav {
       margin-left:22px;
       //padding-left: 0;
       a {
-        color: whitesmoke;
+        color: $nav-bar-text-color;
         //font: 400 20px $title-font!important;
         font-size: 16px;
         font-weight: 600;
@@ -519,9 +519,9 @@ ul.hpbooking {
   }
 }
 
-.table-pink {
-  color:white;
-  background-color: $nav-bar-color;
+.table-custom {
+  color: $table-text-color;
+  background-color: $table-bg-color;
 }
 .group-header-image {
   background-image: url(../assets/img/banners/shuttle-sm.jpg);

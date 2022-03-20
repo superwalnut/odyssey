@@ -12,53 +12,65 @@ $font-chiense-noto: 'Noto Serif SC', serif; //chinese font
 $font-title: $font-anton; 
 /*
 //Default HBC Theme
+    $global-page-bg-color: white;
     $default-color: #39034b;;//easter pink
     $default-highlight-color: #2b0239;
     $nav-bar-color:$default-color; 
-    $booking-tbl-hightlight-color: $default-highlight-color;
+	$nav-bar-text-color:white;
+    
 
     $hero-color1: #39034b;
     $hero-color2: #39034b;
     $hero-color3: #751795;
     $hero-color4: #23d5ab;
+	$homepage-hero-text-color: white;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-hero-bg-img: '';
     $homepage-intro-minheight: 430px;
     $homepage-intro-shade-color:rgba(0,0,0,0.5);
     $homepage-intro-bg: url(../assets/img/banners/jumpsmashbg.jpg);
     $homepage-intro-color:#fff;
-    $homepage-hero-bg-img: url(../assets/img/banners/eastereggs.jpg)!important;
+    $homepage-hero-bg-img: ''!important;
     $offline-quote-bg-color: #000;
 
     //dashboard profile card
-    $profile-bg-img-url: url("../assets/img/banners/profilecardBG.jpg");
+    $profile-bg-img-url: url("../assets/img/banners/profilecard-purple-BG.jpg");
     $profile-card-bg-color:#fff;
     $profile-card-text-color: #000;
-    $profile-button-color: #33902b;
-    $profile-button-highlight-color: #1f551b;
-    $profile-link-bg-color: #ebfbeb;
-    $profile-link-bg-hover-color: #71b771;
+    $profile-button-color: $default-color;
+    $profile-button-highlight-color: #250231;
+    $profile-link-bg-color: #e5e5e5;
+    $profile-link-bg-hover-color: #54056e;
 
+	//booking tables
+    $table-bg-color:$default-color;
+    $table-text-color: white;
+    $table-hover-text-color:white;
+    $booking-tbl-hightlight-color: $default-highlight-color;
+	
     //footer
-    $footer-bg-color: #222222;
-    $footer-text-color: #ccc;
-    $footer-real-bg-color: #161616;
+    $footer-bg-color: $default-color;
+    $footer-text-color: white;
+	$footer-link-hover-color: #414141;
+	$footer-logo-color: white;
+    $footer-real-bg-color: #250231;
     $footer-real-text-color: #ccc;
 //End of Default HBC Theme
 */
 
 
 //Easter Pink Theme
+    $global-page-bg-color: white;
     $default-color: #dd358a;//easter pink
     $default-highlight-color: #c52274;
     $nav-bar-color:$default-color; 
-    
-    $booking-tbl-hightlight-color: $default-highlight-color;
+    $nav-bar-text-color: white;
 
     $hero-color1: #2a8bd2;
     $hero-color2: #dd358a;
     $hero-color3: #df5099;
     $hero-color4: #FEFFA2;
+	$homepage-hero-text-color: white;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-hero-bg-img: '';
     $homepage-intro-minheight: 430px;
@@ -76,17 +88,83 @@ $font-title: $font-anton;
     $profile-link-bg-color: #fb48a3;
     $profile-link-bg-hover-color: $default-highlight-color;
 
+	//booking tables
+    $table-bg-color:$default-color;
+    $table-text-color: white;
+    $table-hover-text-color:white;
+    $booking-tbl-hightlight-color: $default-highlight-color;
+	
     //footer
     $footer-bg-color: #dd4593;
     $footer-text-color: #ededed;
+	$footer-link-hover-color: #e7e7e7;
+    $footer-logo-color: white;
     $footer-real-bg-color: $nav-bar-color;
     $footer-real-text-color: #ededed;
 //Easter Pink Theme
 
+
+/*
+//Black & White Theme
+    $global-page-bg-color: white;
+    $default-color: #fff;//easter pink
+    $default-highlight-color: #ccc;
+    $nav-bar-color:$default-color; 
+    $nav-bar-text-color: black;
+    
+    $hero-color1: #fff;
+    $hero-color2: #fff;
+    $hero-color3: #8a8989;
+    $hero-color4: #a1a0a0;
+    $homepage-hero-text-color: black;
+    $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
+    $homepage-hero-bg-img: '';
+    $homepage-intro-minheight: 430px;
+    $homepage-intro-shade-color:rgba(255,255,255,0.95);
+    $homepage-intro-bg: url(../assets/img/banners/jumpsmash-bw-bg.jpg);
+    $homepage-intro-color:#000;
+    //$homepage-hero-bg-img: url(../assets/img/banners/eastereggs.jpg)!important;
+    $offline-quote-bg-color: #000;
+
+    //dashboard profile card
+    $profile-bg-img-url: url("../assets/img/banners/profilecard-bw-BG.jpg");
+    $profile-card-bg-color:#fff;
+    $profile-card-text-color: #000;
+    $profile-button-color: black;
+    $profile-button-highlight-color: #2a2a2a;
+    $profile-link-bg-color: #dcdcdc;
+    $profile-link-bg-hover-color: #b0afaf;
+
+    //booking tables
+    $table-bg-color:#fff;
+    $table-text-color: black;
+    $table-hover-text-color:black;
+    $booking-tbl-hightlight-color: #f6f6f6;
+
+    //footer
+    $footer-bg-color: #fff;
+    $footer-text-color: black;
+    $footer-link-hover-color: #414141;
+    $footer-logo-color: black;
+    $footer-real-bg-color: #efefef;
+    $footer-real-text-color: black;
+//Black & White Theme END
+*/
+
 /****** Default Overwrites ********/
 
 // Angular Material Overwrites
+body {
+    background-color: $global-page-bg-color!important;
+}
+body div.app {
+    background-color: $global-page-bg-color!important;
 
+}
 .mat-dialog-container {
     padding: 5px!important;
+}
+
+.table-hover tbody tr:hover {
+    color: $table-hover-text-color!important;
 }
