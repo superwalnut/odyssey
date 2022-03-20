@@ -99,7 +99,6 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     if (expireOn < Timestamp.now()) {
       return 'Expired';
     }
-
     //{{ s.isPaused ? 'Paused' : 'Active' }}
     if (schedule.isPaused) {
       return 'Paused';
@@ -111,14 +110,11 @@ export class AutobookingComponent extends BaseComponent implements OnInit {
     if (schedule.expireOn > Timestamp.now()) {
       return true;
     }
-
-
   }
 
   expireSoon(schedule: BookingSchedule) {
-
     var diff = this.helperService.findTimeDifference(schedule.expireOn); //return in SECONDS
-    if (diff < 60 * 60 * 24 * 28) {
+    if (diff < 60 * 60 * 24 * 1) {
       return true;
     }
   }
