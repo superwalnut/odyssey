@@ -739,8 +739,6 @@ $profile-bg-img-height: 180px;
       min-height: 70px;
     }
 
-    
-
     .profile-links {
       display: flex;
       align-items: center;
@@ -758,12 +756,13 @@ $profile-bg-img-height: 180px;
         text-decoration: none;
         color: inherit;
         transition: 0.2s;
+        color: $profile-link-text-color;
         &:hover {
           background-color: $profile-link-bg-hover-color;
-          color:white;
         }
         .link-text{
           font: 400 28px $font-title;
+          
         }
         .link-label{
           box-sizing: border-box;

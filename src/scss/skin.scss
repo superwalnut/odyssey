@@ -46,6 +46,7 @@ $font-title: $font-anton;
     $profile-button-color: $default-color;
     $profile-button-highlight-color: #250231;
     $profile-link-bg-color: #e5e5e5;
+    $profile-link-text-color: white;
     $profile-link-bg-hover-color: #54056e;
 
     //Card
@@ -85,6 +86,7 @@ $font-title: $font-anton;
 //Easter Pink Theme
     $default-color: #dd358a;//easter pink
     $global-page-bg-color: white;
+    $global-link-color: #0367fa;
     $default-color: #dd358a;//easter pink
     $default-highlight-color: #c52274;
     $nav-bar-color:$default-color; 
@@ -111,17 +113,18 @@ $font-title: $font-anton;
 
     //dashboard profile card
     $profile-bg-img-url: url("../assets/img/banners/profilecard-easter-bg.jpg");
-    $profile-card-bg-color:#f16bae;
+    $profile-card-bg-color:#ffffff;
     $profile-card-text-color: black;
     $profile-button-color: $default-color;
     $profile-button-highlight-color: $default-highlight-color;
     $profile-link-bg-color: #fe59ad;
+    $profile-link-text-color: white;
     $profile-link-bg-hover-color: $default-highlight-color;
 
     //Card
     $card-background-color: white;
     $card-text-color: black;
-    $card-link-text-color: black;
+    $card-link-text-color: $global-link-color;
     $card-table-text-color: black;
     $card-mat-label-color: rgb(14, 13, 13);
     $card-text-muted: #656363;
@@ -186,6 +189,7 @@ $font-title: $font-anton;
     $profile-button-color: #1e1e1e;
     $profile-button-highlight-color: #2a2a2a;
     $profile-link-bg-color: #f6f4f4;
+    $profile-link-text-color: white;
     $profile-link-bg-hover-color: #979797;
 
     //Card
@@ -258,6 +262,7 @@ $font-title: $font-anton;
     $profile-button-color: black;
     $profile-button-highlight-color: #2a2a2a;
     $profile-link-bg-color: #dcdcdc;
+    $profile-link-text-color: white;
     $profile-link-bg-hover-color: #0d0d0d;
 
     //Card
