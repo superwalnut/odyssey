@@ -34,6 +34,7 @@ $font-title: $font-anton;
     $homepage-intro-minheight: 430px;
     $homepage-intro-shade-color:rgba(0,0,0,0.1);
     $homepage-intro-bg: url(../assets/img/banners/jumpsmashbg.jpg);
+    $homepage-hero-bg-offset: -640px;
     $homepage-intro-color:#fff;
     $homepage-intro-shade-link-color: white;
     $homepage-hero-bg-img: ''!important;
@@ -109,6 +110,7 @@ $font-title: $font-anton;
     $homepage-intro-shade-color:rgba(0,0,0,0.6);
     $homepage-intro-shade-link-color: white;
     $homepage-intro-bg: url(../assets/img/banners/easterBG.jpg); //1138 x 450
+    $homepage-hero-bg-offset: -150px;
     $offline-quote-bg-color: $nav-bar-color;
 
     //dashboard profile card
@@ -177,6 +179,7 @@ $font-title: $font-anton;
     $homepage-intro-minheight: 430px;
     $homepage-intro-shade-color:rgba(255,255,255,0.98);
     $homepage-intro-bg: url(../assets/img/banners/jumpsmash-bw-bg.jpg);
+    $homepage-hero-bg-offset: -550px;
     $homepage-intro-color:#000;
     $homepage-intro-shade-link-color: black;
     //$homepage-hero-bg-img: url(../assets/img/banners/eastereggs.jpg)!important;
@@ -189,8 +192,8 @@ $font-title: $font-anton;
     $profile-button-color: #1e1e1e;
     $profile-button-highlight-color: #2a2a2a;
     $profile-link-bg-color: #f6f4f4;
-    $profile-link-text-color: white;
-    $profile-link-bg-hover-color: #979797;
+    $profile-link-text-color: black;
+    $profile-link-bg-hover-color: #a6a5a5;
 
     //Card
     $card-background-color: $default-color;
@@ -249,7 +252,8 @@ $font-title: $font-anton;
     $homepage-hero-bg-img: '';
     $homepage-intro-minheight: 430px;
     $homepage-intro-shade-color:rgba(255,255,255,0);
-    $homepage-intro-bg: url(../assets/img/banners/jumpsmash-bw-bg.jpg);
+    $homepage-intro-bg: url(../assets/img/banners/hero-banner-deathstar.jpg);
+    $homepage-hero-bg-offset: -550px;
     $homepage-intro-color:#fff;
     $homepage-intro-shade-link-color: black; 
     //$homepage-hero-bg-img: url(../assets/img/banners/eastereggs.jpg)!important;
@@ -257,11 +261,11 @@ $font-title: $font-anton;
 
     //dashboard profile card
     $profile-bg-img-url: url("../assets/img/banners/profilecard-darthvader.jpg");
-    $profile-card-bg-color:#fff;
-    $profile-card-text-color: #000;
+    $profile-card-bg-color:$default-color;
+    $profile-card-text-color: #fff;
     $profile-button-color: black;
     $profile-button-highlight-color: #2a2a2a;
-    $profile-link-bg-color: #dcdcdc;
+    $profile-link-bg-color: #191919;
     $profile-link-text-color: white;
     $profile-link-bg-hover-color: #0d0d0d;
 
