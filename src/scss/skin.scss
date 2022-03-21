@@ -243,10 +243,10 @@ $font-title: $font-anton;
     $section-header-text-color: white;
     $simple-horizontal-list-text-color: white;
 
-    $hero-color1: #161616;
-    $hero-color2: #161616;
+    $hero-color1: $default-color;
+    $hero-color2: $default-color;
     $hero-color3: #363535;
-    $hero-color4: #444343;
+    $hero-color4: #000;
     $homepage-hero-text-color: white;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-hero-bg-img: '';
