@@ -49,20 +49,21 @@
     <div class="row light">
       <div class="col-sm-4" *ngFor="let b of bookings" >
         <!-- <div [ngClass]="{'card offline':b.isOffline, 'card':!b.isOffline}"> -->
-          <div class="card horverEffects group-card" [ngClass]="{'offline':b.isOffline}">
-          <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}"><img class="card-img-top" src="assets/img/banners/eastbooking.jpg"></a>
-          <div class="card-body">
-            <!-- <h5 class="card-title">{{ getGroupName(b.groupDocId)}} {{ b.eventStartDateTime.toDate() | date: 'fullDate'}}</h5> -->
-            <h5 class="card-title">{{ b.eventStartDateTime.toDate() | date: 'fullDate'}}</h5>
-            <p class="card-text text-muted">{{ getGroupDesc(b.groupDocId)}} <span class="material-icons">chair</span> {{seatsLimit}}</p>
-            <!-- <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}" class="btn btn-primary btn-large btn-block">Book</a> -->
-            <div class="booknow">
-              {{b.isOffline ? 'Offline':''}}
-              <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}" *ngIf="!b.isOffline">
-                Book now <span class="material-icons">east</span>
-              </a>
+          <div class="card horverEffects group-card" [ngClass]="{'offline':b.isOffline}" routerLink="/booking/{{b.docId}}/{{b.groupDocId}}">
+            <!-- <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}"><img class="card-img-top" src="assets/img/banners/eastbooking.jpg"></a> -->
+            <div class="session-card-img"></div>
+            <div class="card-body">
+              <!-- <h5 class="card-title">{{ getGroupName(b.groupDocId)}} {{ b.eventStartDateTime.toDate() | date: 'fullDate'}}</h5> -->
+              <h5 class="card-title">{{ b.eventStartDateTime.toDate() | date: 'fullDate'}}</h5>
+              <p class="card-text text-muted">{{ getGroupDesc(b.groupDocId)}} <span class="material-icons">chair</span> {{seatsLimit}}</p>
+              <!-- <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}" class="btn btn-primary btn-large btn-block">Book</a> -->
+              <div class="booknow">
+                {{b.isOffline ? 'Offline':''}}
+                <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}" *ngIf="!b.isOffline">
+                  Book now <span class="material-icons">east</span>
+                </a>
+              </div>
             </div>
-          </div>
         </div>
       </div>
 

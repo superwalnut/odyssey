@@ -167,7 +167,15 @@ table.mat-table{
  
 }
 
-
+.session-card-img {
+  width: 100%;
+  height: 200px;
+  cursor: pointer;
+  background-image: $session-card-bg-img;
+  
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 footer {
   background-color: $footer-real-bg-color;
