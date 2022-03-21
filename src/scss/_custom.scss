@@ -545,10 +545,16 @@ ul.hpbooking {
   color: $table-text-color;
   background-color: $table-bg-color;
   font: 500 16px $font-roboto;
+  thead tr th {
+    &:nth-child(1) {
+      text-align: center;
+    }
+  }
   tbody tr td {
     vertical-align: middle;
     &:nth-child(1) {
       font:300 18px $font-bebas;
+      text-align: center;
     }
   } 
 }

@@ -164,13 +164,13 @@ $font-title: $font-anton;
 
     $hero-color1: #fff;
     $hero-color2: #fff;
-    $hero-color3: #b7b6b6;
-    $hero-color4: #a1a0a0;
+    $hero-color3: #e8e7e7;
+    $hero-color4: #e4e3e3;
     $homepage-hero-text-color: black;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-hero-bg-img: '';
     $homepage-intro-minheight: 430px;
-    $homepage-intro-shade-color:rgba(255,255,255,0.95);
+    $homepage-intro-shade-color:rgba(255,255,255,0.98);
     $homepage-intro-bg: url(../assets/img/banners/jumpsmash-bw-bg.jpg);
     $homepage-intro-color:#000;
     $homepage-intro-shade-link-color: black;
@@ -178,13 +178,13 @@ $font-title: $font-anton;
     $offline-quote-bg-color: #000;
 
     //dashboard profile card
-    $profile-bg-img-url: url("../assets/img/banners/profilecard-bw-BG.jpg");
+    $profile-bg-img-url: url("../assets/img/banners/profilecard-light.jpg");
     $profile-card-bg-color:#fff;
     $profile-card-text-color: #000;
-    $profile-button-color: black;
+    $profile-button-color: #1e1e1e;
     $profile-button-highlight-color: #2a2a2a;
-    $profile-link-bg-color: #dcdcdc;
-    $profile-link-bg-hover-color: #b0afaf;
+    $profile-link-bg-color: #f6f4f4;
+    $profile-link-bg-hover-color: #979797;
 
     //Card
     $card-background-color: $default-color;
@@ -199,7 +199,7 @@ $font-title: $font-anton;
     $table-bg-color:#fff;
     $table-text-color: black;
     $table-hover-text-color:black;
-    $booking-tbl-hightlight-color: #f6f6f6;
+    $booking-tbl-hightlight-color: #fafafa;
 
     //Modal dialog
     $modal-content-background-color: $default-color;
@@ -249,7 +249,7 @@ $font-title: $font-anton;
     $offline-quote-bg-color: #000;
 
     //dashboard profile card
-    $profile-bg-img-url: url("../assets/img/banners/profilecard-bw-BG.jpg");
+    $profile-bg-img-url: url("../assets/img/banners/profilecard-darthvader.jpg");
     $profile-card-bg-color:#fff;
     $profile-card-text-color: #000;
     $profile-button-color: black;
