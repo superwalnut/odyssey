@@ -547,6 +547,9 @@ ul.hpbooking {
   background-color: $table-bg-color;
   font: 500 16px $font-roboto;
   box-shadow: $box-shadow;
+  tbody tr:hover {
+    background-color: $table-hover-bg-color !important;
+  }
   thead tr th {
     &:nth-child(1) {
       text-align: center;
