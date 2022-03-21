@@ -1,0 +1,22 @@
+$dev-font: 'Courier New', monospace;
+
+.dev {
+    font: 400 20px $dev-font;
+
+    h1 {
+        font: 800 36px $dev-font;
+        margin: 24px auto;
+        
+    }
+
+    pre {
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+        font-size: 14px;
+        background-color: #e8e7e7;
+        text-align: left;
+      }
+    
+
+}

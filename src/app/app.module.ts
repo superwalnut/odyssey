@@ -74,6 +74,7 @@ import { CreateNewPasswordComponent } from "./views/create-new-password/create-n
 import { AirtagComponent } from './views/promo/airtag/airtag.component';
 import { CompetitionComponent } from './views/competition/competition.component';
 import { FooterComponent } from './views/footer/footer.component';
+import { DevComponent } from './views/dev/dev.component';
 
 @NgModule({
   imports: [
@@ -122,6 +123,7 @@ import { FooterComponent } from './views/footer/footer.component';
     AirtagComponent,
     CompetitionComponent,
     FooterComponent,
+    DevComponent,
   ],
   providers: [
     {

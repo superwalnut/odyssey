@@ -18,6 +18,7 @@ import { ResetpasswordComponent } from "./views/resetpassword/resetpassword.comp
 import { CreateNewPasswordComponent } from "./views/create-new-password/create-new-password.component";
 import { AirtagComponent } from "./views/promo/airtag/airtag.component";
 import { CompetitionComponent } from "./views/competition/competition.component";
+import { DevComponent } from "./views/dev/dev.component";
 
 
 export const routes: Routes = [
@@ -28,6 +29,7 @@ export const routes: Routes = [
       title: "Home",
     },
   },
+  
   {
     path: "groups",
     component: GroupsComponent,
@@ -111,7 +113,17 @@ export const routes: Routes = [
     data: {
       title: "Create a new password",
     },
+    
   },
+
+  {
+    path: "dev",
+    component: DevComponent,
+    data: {
+      title: "{dev}",
+    },
+  },
+  
 
   /// HBC admin
   {
