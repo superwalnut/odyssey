@@ -34,8 +34,7 @@ export class DashboardComponent implements OnInit {
     this.getUserAvatar(acc);
 
     this.loggedInUser = this.accountService.getLoginAccount();
-    this.avatarUrl = "assets/img/avatars/avatardefault.jpg";
-
+    //this.avatarUrl = "assets/img/avatars/avatardefault.jpg";
     console.log("isuser: ", this.isUser);
     console.log("isgod: ", this.isGod);
   }
@@ -51,9 +50,10 @@ export class DashboardComponent implements OnInit {
       if (user.avatarUrl) {
         this.avatarUrl = user.avatarUrl;
       }
-    
+      else {
+        this.avatarUrl = "assets/img/avatars/avatardefault.jpg";
+      }
     });
-  
   }
 
   getCreditBalance() {
