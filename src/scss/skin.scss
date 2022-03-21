@@ -83,16 +83,16 @@ $font-title: $font-anton;
 
 //Easter Pink Theme
     $default-color: #dd358a;//easter pink
-    $global-page-bg-color: $default-color;
+    $global-page-bg-color: white;
     $default-color: #dd358a;//easter pink
     $default-highlight-color: #c52274;
     $nav-bar-color:$default-color; 
     $nav-bar-logo: url(../assets/img/banners/HBCLogoWhite.png);
     $nav-bar-text-color: white;
     $nav-bar-link-hover-color: white;
-    $row-bg-color: $default-color;
-    $section-header-text-color: white;
-    $simple-horizontal-list-text-color: white;
+    $row-bg-color: white;
+    $section-header-text-color: black;
+    $simple-horizontal-list-text-color: black;
 
     $hero-color1: $default-color;
     $hero-color2: #dd358a;
@@ -111,19 +111,19 @@ $font-title: $font-anton;
     //dashboard profile card
     $profile-bg-img-url: url("../assets/img/banners/profilecard-easter-bg.jpg");
     $profile-card-bg-color:#f16bae;
-    $profile-card-text-color: #fff;
+    $profile-card-text-color: black;
     $profile-button-color: $default-color;
     $profile-button-highlight-color: $default-highlight-color;
-    $profile-link-bg-color: #fb48a3;
+    $profile-link-bg-color: #fe59ad;
     $profile-link-bg-hover-color: $default-highlight-color;
 
     //Card
-    $card-background-color: $default-color;
-    $card-text-color: white;
-    $card-link-text-color: white;
-    $card-table-text-color: white;
+    $card-background-color: white;
+    $card-text-color: black;
+    $card-link-text-color: black;
+    $card-table-text-color: black;
     $card-mat-label-color: rgb(14, 13, 13);
-    $card-text-muted: #fec1e0;
+    $card-text-muted: #656363;
     $session-card-bg-img:url("../assets/img/banners/session-card-easter.jpg");
 
     //Modal dialog
@@ -131,13 +131,13 @@ $font-title: $font-anton;
     $modal-content-h3-color: black;
 
 	//booking tables
-    $table-bg-color: $default-color;
-    $table-text-color: white;
+    $table-bg-color: white;
+    $table-text-color: black;
     $table-hover-text-color:white;
-    $booking-tbl-hightlight-color: $default-highlight-color;
+    $booking-tbl-hightlight-color: #fafafa;
 	
     //Admin
-    $admin-table-row-inactive: #d81678;
+    $admin-table-row-inactive: #fafafa;
 
     //footer
     $footer-bg-color: #dd4593;
