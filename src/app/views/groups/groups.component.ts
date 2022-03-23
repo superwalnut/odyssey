@@ -28,7 +28,7 @@ export class GroupsComponent extends BaseComponent implements OnInit {
   groupBookings: GroupBooking[] = [];
   weekStart: Timestamp;
   weekEnd: Timestamp;
-  mySchedules: BookingSchedule[];
+  //mySchedules: BookingSchedule[];
   loggedInAccount: Account;
   isLoggedIn: boolean;
 
@@ -44,9 +44,9 @@ export class GroupsComponent extends BaseComponent implements OnInit {
     this.weekEnd = this.helperService.convertToTimestamp(dateRange.lastday);
     this.getGroupsAndCurrentBookings();
     //this.getGroupName()
-    if (this.isLoggedIn) {
-      this.getMySchedules();
-    }
+    // if (this.isLoggedIn) {
+    //   this.getMySchedules();
+    // }
     console.log('bookings.....', this.bookings);
   }
 
@@ -74,8 +74,8 @@ export class GroupsComponent extends BaseComponent implements OnInit {
 
   getMySchedules() {
     this.bookingScheduleService.getMyBookingSchedules(this.loggedInAccount.docId).subscribe(schedules => {
-      this.mySchedules = schedules;
-      console.log('autobooking', this.mySchedules);
+      //this.mySchedules = schedules;
+      
     })
   }
 

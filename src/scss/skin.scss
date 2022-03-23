@@ -29,6 +29,8 @@ $font-title: $font-anton;
     $hero-color3: #751795;
     $hero-color4: #23d5ab;
 	$homepage-hero-text-color: white;
+    $homepage-booking-button-bg-color: #213cb3;
+    $homepage-booking-button-text-color: white;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-hero-bg-img: '';
     $homepage-intro-minheight: 430px;
@@ -47,8 +49,8 @@ $font-title: $font-anton;
     $profile-button-color: $default-color;
     $profile-button-highlight-color: #250231;
     $profile-link-bg-color: #e5e5e5;
-    $profile-link-text-color: white;
-    $profile-link-bg-hover-color: #54056e;
+    $profile-link-text-color: black;
+    $profile-link-bg-hover-color: #a364b7;
 
     //Card
     $card-background-color: white;
@@ -63,16 +65,16 @@ $font-title: $font-anton;
     $admin-table-row-inactive: #ccc;
 
 	//booking tables
-    $table-bg-color:$default-color;
-    $table-text-color: white;
-    $table-hover-text-color:white;
-    $table-hover-bg-color: $default-color;
-    $booking-tbl-hightlight-color: $default-highlight-color;
+    $table-bg-color: #fff;
+    $table-text-color: black;
+    $table-hover-text-color:black;
+    $table-hover-bg-color: #f5f4f4;
+    $booking-tbl-hightlight-color: #f9f8f8;
 	
     //Modal dialog
     $modal-content-background-color: #fff;
     $modal-content-h3-color: black;
-
+    $modal-content-text-color: black;
     //footer
     $footer-bg-color: $default-color;
     $footer-text-color: white;
@@ -103,6 +105,8 @@ $font-title: $font-anton;
     $hero-color3: #df5099;
     $hero-color4: #f92658;
 	$homepage-hero-text-color: white;
+    $homepage-booking-button-bg-color: #ff4081;
+    $homepage-booking-button-text-color: white;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-hero-bg-img: '';
     $homepage-intro-minheight: 430px;
@@ -135,6 +139,7 @@ $font-title: $font-anton;
     //Modal dialog
     $modal-content-background-color: white;
     $modal-content-h3-color: black;
+    $modal-content-text-color: black;
 
 	//booking tables
     $table-bg-color: white;
@@ -174,6 +179,8 @@ $font-title: $font-anton;
     $hero-color3: #e8e7e7;
     $hero-color4: #e4e3e3;
     $homepage-hero-text-color: black;
+    $homepage-booking-button-bg-color: #222222;
+    $homepage-booking-button-text-color: white;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-hero-bg-img: '';
     $homepage-intro-minheight: 430px;
@@ -214,6 +221,7 @@ $font-title: $font-anton;
     //Modal dialog
     $modal-content-background-color: $default-color;
     $modal-content-h3-color: black;
+    $modal-content-text-color: black;
 
     //Admin
     $admin-table-row-inactive: #ccc;
@@ -232,7 +240,7 @@ $font-title: $font-anton;
 
 /*
 //Dark Mode Theme
-    $global-page-bg-color: #161616;
+    $global-page-bg-color: #1b1b1b;
     $default-color: #161616;
     $default-highlight-color: #ccc;
     $nav-bar-color:$default-color; 
@@ -248,6 +256,8 @@ $font-title: $font-anton;
     $hero-color3: #363535;
     $hero-color4: #000;
     $homepage-hero-text-color: white;
+    $homepage-booking-button-bg-color: #0f0f0f;
+    $homepage-booking-button-text-color: white;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-hero-bg-img: '';
     $homepage-intro-minheight: 430px;
@@ -288,6 +298,7 @@ $font-title: $font-anton;
     //Modal dialog
     $modal-content-background-color: $default-color;
     $modal-content-h3-color: white;
+    $modal-content-text-color: white;
 
     //Admin
     $admin-table-row-inactive: #202020;

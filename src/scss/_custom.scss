@@ -201,15 +201,27 @@ ul.simple-horizontal-list {
 }
 
 .dark-text {
-  color:black !important;
+  color: $modal-content-text-color !important;
 }
 
-.modal-body h3 {
-  font-weight: 600!important;
-  margin: 10px 0!important;
+.modal-body {
+  h3 {
+    font-weight: 600!important;
+    margin: 10px 0!important;
+  }
+  .modal-body-buttons {
+    text-align: right;
+    button{
+      margin-left: 10px;
+    }
+  }
 }
 
 
+.homepage-booking-button {
+  background-color: $homepage-booking-button-bg-color !important;
+  color: $homepage-booking-button-text-color !important;
+}
 //4b0063
 .homepage-intro {
   min-height: $homepage-intro-minheight;
@@ -376,6 +388,18 @@ ul.simple-horizontal-list {
   .card-title {
     font-weight: 500;
   }
+}
+.logo-center {
+    
+    margin: 0 auto 26px auto;
+    background: $nav-bar-logo no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    width: 65px;
+    height: 65px;
+}
+.external-page {
+  background-color: $default-color;
 }
 nav {
   background-color: $nav-bar-color;

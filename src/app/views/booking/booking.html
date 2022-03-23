@@ -54,11 +54,10 @@
       <p>We are sorry that this is a graded session, unfortunately you haven't met the level requirement.</p>
     </div>
 
-    <div  *ngIf="hasCredit || data.isCommittee">
+    <div  *ngIf="hasCredit || data.isCommittee" class="modal-body-buttons">
       <button mat-raised-button (click)="onNoClick()">Close</button>
       <button mat-raised-button color="primary" (click)="onConfirmClick()" *ngIf="!isLoading && data.isSeatsLeft && meetBasePoints">Confirm</button>
       <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
-  
     </div>
 
 
