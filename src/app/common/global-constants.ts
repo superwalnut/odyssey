@@ -87,7 +87,7 @@ export class GlobalConstants {
         'image/apng', 'image/gif', 'image/jpeg', 'image/png'
     ];
     public static imageMaxSizeInKb = 50;
-    public static imageDefaultAvatar = "/assets/img/avatars/avatar.jpg";
+    public static imageDefaultAvatar = "/assets/img/avatars/avatar-mario.jpg";
 
 
     //Good bye lines
@@ -101,13 +101,10 @@ export class GlobalConstants {
         "Don’t cry because it’s over, smile because it happened",
         "Man’s feelings are always purest and most glowing in the hour of meeting and of farewell.",
         "Great is the art of beginning, but greater is the art of ending.",
-        "Don’t be dismayed at goodbyes. A farewell is necessary before you can meet again. And meeting again, after moments or lifetimes, is certain for those who are friends.",
-        "Why can’t we get all the people together in the world that we really like and then just stay together? I guess that wouldn’t work. Someone would leave. Someone always leaves. Then we would have to say good-bye. I hate good-byes. I know what I need. I need more hellos.",
         "It’s time to say goodbye, but I think goodbyes are sad and I’d much rather say hello. Hello to a new adventure.",
         "Never say goodbye because goodbye means going away and going away means forgetting.",
         "We’ll meet again, Don’t know where,don’t know when, But I know we’ll meet again, some sunny day.",
         "Only in the agony of parting do we look into the depths of love.",
-        "What is that feeling when you’re driving away from people and they recede on the plain till you see their specks dispersing? – it’s the too-huge world vaulting us, and it’s good-bye. But we lean forward to the next crazy venture beneath the skies.",
         "Remember me and smile, for it’s better to forget than to remember me and cry.",
         "So long as the memory of certain beloved friends lives in my heart, I shall say that life is good",
         "Yesterday brought the beginning, tomorrow brings the end, though somewhere in the middle we became the best of friends.",
@@ -116,7 +113,6 @@ export class GlobalConstants {
         "They must often change, who would be constant in happiness or wisdom.",
         "The pain of parting is nothing to the joy of meeting again.",
         "Life is a journey, not a destination.",
-        "To part is the lot of all mankind. The world is a scene of constant leave-taking, and the hands that grasp in cordial greeting today, are doomed ere long to unite for the the last time, when the quivering lips pronounce the word – Farewell.",
         "Goodbyes are not forever, Goodbyes are not the end. They simply mean I’ll miss you, Until we meet again.",
     ];
 

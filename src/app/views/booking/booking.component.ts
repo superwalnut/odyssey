@@ -528,7 +528,7 @@ export class WithdrawDialog {
     public dialogRef: MatDialogRef<WithdrawDialog>,
     @Inject(MAT_DIALOG_DATA) public data: WithdrawDialogData, private eventLogService: EventLoggerService, private bookingPersonService: BookingPersonService, private helperService: HelperService, private accountService: AccountService) { }
 
-  rand = this.helperService.getRandomIntInclusive(0, 25);
+  rand = this.helperService.getRandomIntInclusive(0, 21);
   hasError: boolean;
   errorMessage: string;
   timeLeft: number;

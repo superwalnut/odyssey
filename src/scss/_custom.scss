@@ -484,6 +484,13 @@ nav {
   line-height: 150%;
 }
 
+.handwriting-mid {
+  // font-family: 'Kaushan Script', cursive;
+   font: 500 30px  $font-news;
+   line-height: 120%;
+ }
+
+
 .handwriting-signature{
   margin:50px 0;
   font: 300 26px $font-handwriting;
@@ -576,17 +583,43 @@ ul.hpbooking {
     background-color: $table-hover-bg-color !important;
   }
   thead tr th {
+    vertical-align: middle;
     &:nth-child(1) {
       text-align: center;
     }
+    &:nth-child(4) {
+      text-align: right;
+    }
+    button {
+      background-color: $default-color;
+      color: $nav-bar-text-color;
+      width: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      border-color: $default-color;
+      box-shadow: $box-shadow;
+      &:hover {
+        transition: all 1s ease-in-out;
+        transform: scale(1.2);
+      }
+    }
   }
+
   tbody tr td {
     vertical-align: middle;
     &:nth-child(1) {
       font:300 18px $font-bebas;
       text-align: center;
     }
+    &:nth-child(4) {
+      text-align: right;
+    }
+    button {
+      margin-right: 30px;
+      
+    }
   } 
+  
 }
 .group-header-image {
   background-image: url(../assets/img/banners/shuttle-sm.jpg);
@@ -674,7 +707,7 @@ ul.hpbooking {
     &:hover{
       transform: translateY(-8px) ;
       box-shadow: 0px 20px 15px rgb(0 0 0 / 60%);
-      transition: all ease-in-out 0.3s;
+      transition: all ease-in-out 0.8s;
       transition-delay: .1s;
     }
 }
@@ -707,11 +740,11 @@ $profile-bg-img-height: 180px;
     .profile-avatar {
       position: absolute;
       top: 90px;
-      width:130px;
+      width:140px;
       img {
         position: absolute;
-        width: 130px;
-        height: 130px;
+        width: 140px;
+        height: 140px;
         border-radius: 50%;
         box-shadow: $box-shadow;
         &:hover {

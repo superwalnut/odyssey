@@ -52,7 +52,7 @@
                   <img src="{{p.avatarUrl}}" class="avatar" *ngIf="p.avatarUrl">
                   {{p.name}} 
                 </td>
-                <td><span class="material-icons" style="font-size: 18px;" title="{{getPaymentText(p.paymentMethod)}}">{{getPaymentClass(p.paymentMethod)}}</span></td>
+                <td><span class="material-icons" style="font-size: 22px;" title="{{getPaymentText(p.paymentMethod)}}">{{getPaymentClass(p.paymentMethod)}}</span></td>
 
                 <td *ngIf="!booking?.isLocked">
                   <!-- <button mat-icon-button color="warn" (click)="deleteBooking(p)" *ngIf="p.isMyBooking"> -->

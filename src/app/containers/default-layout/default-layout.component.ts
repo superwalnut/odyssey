@@ -32,7 +32,7 @@ export class DefaultLayoutComponent {
         this.avatarUrl = user.avatarUrl;
       }
       else {
-        this.avatarUrl = "assets/img/avatars/avatardefault.jpg";
+        this.avatarUrl = "assets/img/avatars/avatardefault-mario.jpg";
       }
 
     });

@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
     this.getUserAvatar(acc);
 
     this.loggedInUser = this.accountService.getLoginAccount();
-    this.avatarUrl = "assets/img/avatars/avatardefault.jpg";
+    this.avatarUrl = "assets/img/avatars/avatardefault-mario.jpg";
     console.log("isuser: ", this.isUser);
     console.log("isgod: ", this.isGod);
   }
