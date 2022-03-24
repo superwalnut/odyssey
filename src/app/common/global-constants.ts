@@ -213,9 +213,25 @@ export class GlobalConstants {
         { line: "Atoms are mainly empty space. Matter is composed chiefly of nothing", people: "Carl Sagan"},
         { line: "The beauty of a living thing is not the atoms that go into it, but the way those atoms are put together", people: "Carl Sagan"},
         { line: "The cosmos is within us. We are made of star stuff", people: "Carl Sagan"}
-
-
     ];
+
+    public static starwarsQuotes = [
+        { line: "Try not. Do or do not. There is no try", people: "Yoda"},
+        { line: "Your eyes can deceive you; don’t trust them", people: "Obi-Wan"},
+        { line: "Luminous beings we are, not this crude matter", people: "Yoda"},
+        { line: "Who’s the more foolish: the fool or the fool who follows him?", people: "Yoda"},
+        { line: "Your focus determines your reality", people: "Qui-Gon Jinn"},
+        { line: "No longer certain that one ever does win a war, I am", people: "Yoda"},
+        { line: "In a dark place we find ourselves and a little more knowledge lights our way", people: "Yoda"},
+        { line: "Sometimes we must let go of our pride and do what is requested of us", people: "Anakin Skywalker"},
+        { line: "We’ll always be with you. No one’s ever really gone. A thousand generations live in you now", people: "Luke Skywalker"},
+        { line: "The ability to speak does not make you intelligent", people: "Qui-Gon Jinn"},
+        { line: "Difficult to see; always in motion is the future", people: "Yoda"},
+        { line: "I like firsts. Good or bad, they’re always memorable", people: "Ahsoka Tano"},
+        { line: "Once you start down the dark path, forever will it dominate your destiny", people: "Yoda"},
+        { line: "May the Force be with you", people: "Obi-Wan"},
+        { line: "A long time ago in a galaxy far, far away....", people: ""}
+    ]
 
 
 

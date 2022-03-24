@@ -1,7 +1,6 @@
 @import "xmaslights";
 @import url('https://fonts.googleapis.com/css2?family=Material+Icons&family=Roboto:ital,wght@1,900&family=Noto+Serif+SC:wght@900&family=Freehand&family=Abril+Fatface&family=Anton&family=Bebas+Neue&family=Poppins:wght@400;500&family=Racing+Sans+One&display=swap');
 
-
 $font-anton: 'Anton', sans-serif;
 $font-roboto:'Roboto', sans-serif;
 $font-racingSansOne: 'Racing Sans One', cursive; //bold italic font
@@ -149,7 +148,6 @@ $font-title: $font-anton;
 	$table-booking-button-bg-color: $default-color;
     $table-booking-button-text-color: white;
     
-
     //Admin
     $admin-table-row-inactive: #fafafa;
 
@@ -184,14 +182,13 @@ $font-title: $font-anton;
     $homepage-booking-button-bg-color: #222222;
     $homepage-booking-button-text-color: white;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
-    $homepage-hero-bg-img: '';
     $homepage-intro-minheight: 430px;
     $homepage-intro-shade-color:rgba(255,255,255,0.45);
     $homepage-intro-bg: url(../assets/img/banners/hero-banner-horse.jpg);
     $homepage-hero-bg-offset: -550px;
     $homepage-intro-color:#000;
     $homepage-intro-shade-link-color: black;
-    //$homepage-hero-bg-img: url(../assets/img/banners/eastereggs.jpg)!important;
+    $homepage-hero-bg-img: url(../assets/img/banners/hero-bg-shanshui.jpg)!important;
     $offline-quote-bg-color: #000;
 
     //dashboard profile card
@@ -219,6 +216,9 @@ $font-title: $font-anton;
     $table-hover-text-color:black;
     $table-hover-bg-color: $default-color;
     $booking-tbl-hightlight-color: #fafafa;
+    $table-booking-button-bg-color: #565656;
+    $table-booking-button-text-color: white;
+
 
     //Modal dialog
     $modal-content-background-color: $default-color;
@@ -242,9 +242,9 @@ $font-title: $font-anton;
 /*
 //Dark Mode Theme
     $global-page-bg-color: #1b1b1b;
-    $default-color: #161616;
+    $default-color: #101010;
     $default-highlight-color: #ccc;
-    $nav-bar-color:$default-color; 
+    $nav-bar-color: $default-color; 
     $nav-bar-text-color: white;
     $nav-bar-logo: url(../assets/img/banners/HBCLogoWhite.png);
     $nav-bar-link-hover-color: white;
@@ -266,8 +266,8 @@ $font-title: $font-anton;
     $homepage-intro-bg: url(../assets/img/banners/hero-banner-deathstar.jpg);
     $homepage-hero-bg-offset: -550px;
     $homepage-intro-color:#fff;
-    $homepage-intro-shade-link-color: black; 
-    //$homepage-hero-bg-img: url(../assets/img/banners/eastereggs.jpg)!important;
+    $homepage-intro-shade-link-color: white; 
+    $homepage-hero-bg-img: url(../assets/img/banners/hero-bg-stormtrooper.jpg)!important;
     $offline-quote-bg-color: #000;
 
     //dashboard profile card
@@ -287,7 +287,7 @@ $font-title: $font-anton;
     $card-mat-label-color: white;
     $card-text-muted: #b4b4b4;
     $card-link-text-color: white;
-    $session-card-bg-img:url("../assets/img/banners/session-card-black.jpg");
+    $session-card-bg-img:url("../assets/img/banners/session-card-starship.jpg");
 
     //booking tables
     $table-bg-color: $default-color;
@@ -299,9 +299,9 @@ $font-title: $font-anton;
     $table-booking-button-text-color: white;
 
     //Modal dialog
-    $modal-content-background-color: $default-color;
-    $modal-content-h3-color: white;
-    $modal-content-text-color: white;
+    $modal-content-background-color: #fff;
+    $modal-content-h3-color: black;
+    $modal-content-text-color: black;
 
     //Admin
     $admin-table-row-inactive: #202020;
