@@ -340,9 +340,9 @@ $font-title: $font-anton;
     $homepage-booking-button-text-color: black;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-intro-minheight: 430px;
-    $homepage-intro-shade-color:rgba(255,255,255,0);
+    $homepage-intro-shade-color:rgba(0,0,0,0.3);
     $homepage-intro-bg: url(../assets/img/banners/hero-banner-bumblebeecar.jpg);
-    $homepage-hero-bg-offset: -550px;
+    $homepage-hero-bg-offset: -150px;
     $homepage-intro-color:#fff;
     $homepage-intro-shade-link-color: white; 
     $homepage-hero-bg-img: url(../assets/img/banners/hero-bg-bumblebee.jpg)!important;
@@ -365,7 +365,7 @@ $font-title: $font-anton;
     $card-mat-label-color: black;
     $card-text-muted: #b4b4b4;
     $card-link-text-color: black;
-    $session-card-bg-img:url("../assets/img/banners/session-card-transformer-logo.jpg");
+    $session-card-bg-img:url("../assets/img/banners/session-card-eye.jpg");
 
     //booking tables
     $table-bg-color: #fff;

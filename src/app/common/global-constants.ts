@@ -116,9 +116,6 @@ export class GlobalConstants {
         "Goodbyes are not forever, Goodbyes are not the end. They simply mean I’ll miss you, Until we meet again.",
     ];
 
-
-
-
     public static badmintonLines = [
         { line: "Badminton is not only about winning. What is important to me is about playing hard, doing my best and putting up a good show for the spectators.", people: "Lin Dan" },
         { line: "There will be many obstacles in the pursuit of your dreams. I had long hours of training, balancing studies and badminton.", people: "Sindhu" },
@@ -231,7 +228,21 @@ export class GlobalConstants {
         { line: "Once you start down the dark path, forever will it dominate your destiny", people: "Yoda"},
         { line: "May the Force be with you", people: "Obi-Wan"},
         { line: "A long time ago in a galaxy far, far away....", people: ""}
-    ]
+    ];
+
+    public static transformerQuotes = [
+        { line: "We Can't Stand By And Watch The Destruction Of This Beautiful Planet", people: ""},
+        { line: "Freedom Is The Right Of All Sentient Beings", people: ""},
+        { line: "Fate Rarely Calls Upon Us At A Moment Of Our Choosing", people: ""},
+        { line: "We’ve Witnessed Your Human Capacity For War. You Would Absolutely Bring More Harm Than Good", people: ""},
+        { line: "I Will Never Stop Fighting For Our Freedom", people: ""},
+        { line: "Remember This: You May Lose Your Faith In Us, But Never In Yourselves", people: ""},
+        { line: "There's A Thin Line Between Being A Hero, And Being A Memory", people: ""},
+        { line: "We Can Be Heroes In Our Own Lives, Every One Of Us. If We Only Have The Courage To Try", people: ""},
+        { line: "One Shall Stand, One Shall Fall!", people: ""},
+        { line: "Autobots, Transform And Roll Out!", people: ""},
+    ];
+
 
 
 
