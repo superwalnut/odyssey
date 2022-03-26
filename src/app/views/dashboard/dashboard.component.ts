@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   
   constructor(private accountService: AccountService, private creditService:CreditService, private bookingPersonService:BookingPersonService) {
     this.isGod = this.accountService.isGod();
+    console.log('am i god? ', this.isGod);
     this.isAdmin = this.accountService.isAdmin();
     this.isUser = !this.isGod && !this.isAdmin;
     var acc = this.accountService.getLoginAccount();

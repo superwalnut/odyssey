@@ -1,6 +1,17 @@
 <!-- //Shared by both Admin and Users, show hide based on roles -->
 
 <div class="container">
+
+  <!-- <div class="row">
+    <div class="col-sm"  *ngIf="isGod">
+      <ul class="simple-horizontal-list">
+        <li>God Tools:</li>
+        <li><a routerLink="/admin/groups">Groups</a></li>
+        <li><a routerLink="/admin/users">Users</a></li>
+        <li><a routerLink="/admin/rpteventview">Event viewer</a></li>
+      </ul>
+    </div>
+  </div> -->
   <div class="row">
     <div class="col-sm">
       <div class="profile-card">
@@ -127,13 +138,3 @@
     </div>
 </div>
 
-
-<div class="container" *ngIf="isGod">
-
-  <div class="row">
-    <div class="col-sm">
-      
-      
-    </div>
-  </div>
-</div>

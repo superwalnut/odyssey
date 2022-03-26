@@ -92,6 +92,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   checkBalance() {
     this.hasEnoughtBalance = true;
     if (this.isCreditUser) {
+      console.log("current balance: ", this.creditBalance);  
       if (this.creditBalance < GlobalConstants.rateCredit) 
         this.hasEnoughtBalance = false;
     } else { //cash user
