@@ -7,7 +7,12 @@
     </div>
   
     <div class="modal-body">
-        <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage }}</div>
+      <div class="alert  alert-warning" *ngIf="hasError">
+        <div class="alert-icon"><span class="material-icons">dangerous</span></div>
+        <div class="alert-body">Error: {{ errorMessage }}</div>
+      </div> 
+
+        <!-- <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage }}</div> -->
 
         <mat-form-field>
             <mat-label>Name</mat-label>

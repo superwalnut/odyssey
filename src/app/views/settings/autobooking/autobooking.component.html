@@ -8,20 +8,36 @@
           <a routerLink="/termsconditions">AutoBooking Policy FAQ</a>
 
           </p>
-          <div class="alert alert-danger"  *ngIf="!hasCredit">
-            
+
+          <div class="alert  alert-danger" *ngIf="!hasCredit">
+            <div class="alert-icon"><span class="material-icons">dangerous</span></div>
+            <div class="alert-body">
+              <p>Your current balance: {{myCreditBalance | currency}}</p>
+              You don't have enought credit to setup Auto Booking: Mimium HBCoins required: {{ miniumCreditRequired | currency}}
+              <a routerLink="/settings/creditstatement">Top up your balance</a>
+            </div>
+          </div> 
+
+          <!-- <div class="alert alert-danger"  *ngIf="!hasCredit">
             <p>Your current balance: {{myCreditBalance | currency}}</p>
             You don't have enought credit to setup Auto Booking: Mimium HBCoins required: {{ miniumCreditRequired | currency}}
-
             <a routerLink="/settings/creditstatement">Top up your balance</a>
+          </div> -->
 
-          </div>
-          <div class="alert alert-danger"  *ngIf="!isCreditUser">
+          <div class="alert  alert-danger" >
+            <div class="alert-icon"><span class="material-icons">dangerous</span></div>
+            <div class="alert-body">
+              <p>Auto Booking is only available for HBCoins holders.</p>
+              <p>Go cashless! Become an <a routerLink="/termsconditions">HBCoin</a> user - Read FAQ > HBCoin policy</p>
+            </div>
+          </div> 
+
+          <!-- <div class="alert alert-danger"  *ngIf="!isCreditUser">
             <p>You don't have any HBCoins</p>
             Auto Booking is only available for HBCoins holders.
             <p>* How do I get HBCoin? A one-time top-up of more than AU$100, you will get the equivalent HBCoin. Top-up methods include the platform online payment soon to be opened, and direct bank transfer. (Be sure to take a screenshot and notify the group administrator after the bank transfer is confirmed to ensure correct account balance)
             </p>
-          </div>
+          </div> -->
 
           <div *ngIf="hasCredit && isCreditUser">
             <mat-form-field appearance="fill">

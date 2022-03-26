@@ -53,6 +53,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   seatsBooked: number;
   isSeatsLeft: boolean;
   rand: number;
+  hasEnoughtBalance: boolean;
 
 
   constructor(private groupService: GroupService, private dialogRef: MatDialog, private eventLogService: EventLoggerService,
@@ -76,9 +77,10 @@ export class BookingComponent extends BaseComponent implements OnInit {
       this.user = result[0];
       this.isCreditUser = result[0].isCreditUser;
       this.creditBalance = result[1];
-
+      this.checkBalance();
     })
 
+    
     this.getGroupDetail(this.groupDocId);
     this.getCurrentBooking(this.bookingDocId);
     this.getCurrentBookingPersons(this.bookingDocId);
@@ -87,6 +89,18 @@ export class BookingComponent extends BaseComponent implements OnInit {
     this.logToEvent(this.loggedInAccount);
   }
 
+  checkBalance() {
+    this.hasEnoughtBalance = true;
+    if (this.isCreditUser) {
+      if (this.creditBalance < GlobalConstants.rateCredit) 
+        this.hasEnoughtBalance = false;
+    } else { //cash user
+      if (this.creditBalance < 0)
+        this.hasEnoughtBalance = false;
+    }
+
+    console.log("has enought blance: ", this.hasEnoughtBalance);
+  }
   logToEvent(acc: Account) {
     if (acc.name == "Luc" || acc.name == "Josh Zhang") {
       return false;

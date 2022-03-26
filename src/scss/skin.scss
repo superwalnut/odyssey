@@ -448,3 +448,69 @@ body div.app {
         }
     }
 }
+
+//Bootstrap overwrites
+
+
+.alert {
+    width: 100%;
+    padding: 0!important;
+    border-radius: 0;
+    //border-style: solid;
+    background-color: white;
+    color: black;
+    border-width: 1px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    box-shadow: $box-shadow;
+    display: flex;
+    flex-direction: row;
+    .alert-icon {
+        flex: 0 0 80px;
+        text-align: center;
+        padding: 10px;
+        span {
+            font-size: 3em;
+        }
+    }
+    .alert-body {
+        flex: auto;
+        padding: 20px;
+    }
+  }
+
+  
+  .alert.alert-info {
+    border-color: #dc871a;
+    .alert-icon {
+        background-color: #dc871a;
+        color:white;
+    }
+  }
+  
+  .alert.alert-warning {
+    border-color: #dc871a;
+    .alert-icon {
+        background-color: #dc871a;
+        color:white;
+    }
+
+  }
+  
+  .alert.alert-danger {
+    border-color: rgba(220, 53, 69, 1);
+    
+    .alert-icon {
+        background-color: red;
+        color:white;
+    }
+  }
+  
+  .alert.alert-success {
+    background-color: rgba(227, 253, 235, 1);
+    border-color: rgba(38, 179, 3, 1);
+    color: rgba(60, 118, 61, 1);
+    
+  }
+  
+  

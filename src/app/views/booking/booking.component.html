@@ -22,14 +22,29 @@
               <span class="material-icons">{{ user?.isCreditUser ? 'monetization_on' : 'payments'}} </span>
               <a routerLink="/settings/creditstatement" title="top up"><span [ngClass]="{ 'text-danger': creditBalance<0  }">{{creditBalance | currency}}</span></a></li>
                 <li><mat-icon>settings</mat-icon><a routerLink="/settings/schedule">AutoBook</a></li>
-            </ul>
+          </ul>
 
-            <div class="alert  alert-warning" *ngIf="!user?.isCreditUser">
-              <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <ul style="list-style: none; margin:0; padding: 0;">
-                <li *ngIf="!user?.isCreditUser"><mat-icon>paid</mat-icon> Go cashless! Become an <a routerLink="/termsconditions">HBCoin</a>  user to enjoy cheaper rates and many more benefits! <a routerLink="/settings/creditstatement">Yes, I'm in!</a></li>
-              </ul>
-            </div> 
+          <!-- <div class="alert  alert-warning" *ngIf="!user?.isCreditUser">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <ul style="list-style: none; margin:0; padding: 0;">
+              <li *ngIf="!user?.isCreditUser"><mat-icon>paid</mat-icon> Go cashless! Become an <a routerLink="/termsconditions">HBCoin</a>  user to enjoy cheaper rates and many more benefits! <a routerLink="/settings/creditstatement">Yes, I'm in!</a></li>
+            </ul>
+          </div>  -->
+          
+          <div class="alert  alert-warning" *ngIf="!user?.isCreditUser">
+            <div class="alert-icon"><span class="material-icons">warning</span></div>
+            <div class="alert-body" *ngIf="!user?.isCreditUser">
+              <mat-icon>paid</mat-icon> Go cashless! Become an <a routerLink="/termsconditions">HBCoin</a>  user to enjoy cheaper rates and many more benefits! <a routerLink="/settings/creditstatement">Yes, I'm in!</a>
+            </div>
+          </div> 
+
+          <div class="alert  alert-danger" *ngIf="!hasEnoughtBalance">
+            <div class="alert-icon"><span class="material-icons">dangerous</span></div>
+            <div class="alert-body">
+              You don't have enough balance to make bookings. Please <a routerLink="/settings/creditstatement">Top up</a> now!
+            </div>
+          </div> 
+
 
           <table class="table table-hover table-custom booking table-sm">
             <thead>
@@ -38,7 +53,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Payment</th>
                 <th scope="col" >
-                  <button type="button" class="btn btn-primary" (click)="bookClicked()" *ngIf="isSeatsLeft && !booking?.isLocked">Book</button>
+                  <button type="button" class="btn btn-primary" (click)="bookClicked()" *ngIf="isSeatsLeft && !booking?.isLocked && hasEnoughtBalance">Book</button>
                   <button mat-raised-button color="warn" *ngIf="!isSeatsLeft && !booking?.isLocked">Full</button>
                   <button mat-raised-button color="accent" *ngIf="booking?.isLocked">Locked</button>
                 </th>
@@ -75,10 +90,7 @@
                     <li style="margin-right:25px;"><span class="material-icons" style="font-size: 18px;">monetization_on</span> HBCoin</li>
                     <li><span class="material-icons" style="font-size: 18px;">payments</span> Cash</li>
                   </ul>
-                  
-                  
                 </td>
-                
               </tr>
             </tbody>
           </table>
@@ -89,7 +101,13 @@
     <div class="row light" *ngIf="booking?.isOffline">
       <div class="col-sm">
         <section> 
-          <div class="p-3 mb-2 bg-secondary text-dark">This session is offline.</div>
+          <div class="alert  alert-info">
+            <div class="alert-icon"><span class="material-icons">info</span></div>
+            <div class="alert-body">
+              This badminton session is offline.
+            </div>
+          </div> 
+          <!-- <div class="p-3 mb-2 bg-secondary text-dark">This session is offline.</div> -->
           <div class="offline-quote">
             <blockquote class="handwriting">
               {{getBadmintonLine().line }}

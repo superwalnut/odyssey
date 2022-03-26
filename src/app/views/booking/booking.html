@@ -14,8 +14,33 @@
     <div class="alert alert-danger" role="alert" *ngIf="hasError">Error: {{ errorMessage | json }}</div>
     <!-- <h3 *ngIf="data.isCreditUser">Credit Balance: <span class="badge badge-warning">{{ data.creditBalance | currency}}</span></h3> -->
 
-    <div class="p-3 mb-2 bg-warning text-dark" *ngIf="lowCredit && hasCredit && !data.isCommittee">Your balance is low, pelase <a routerLink="/settings/creditstatement" target="_blank">top up</a> ASAP, or you won't be able to make bookings.</div>
-    <div class="p-3 mb-2 bg-danger text-white" *ngIf="!hasCredit && !data.isCommittee">You don't have any credit left, please <a routerLink="/settings/creditstatement" target="_blank">top up</a> your credit now!</div>
+    <div class="alert  alert-warning" *ngIf="data.isCreditUser && lowCredit && hasCredit && !data.isCommittee">
+      <div class="alert-icon"><span class="material-icons">warning</span></div>
+      <div class="alert-body">Your balance is low, pelase <a routerLink="/settings/creditstatement" target="_blank">top up</a> ASAP, or you won't be able to make bookings.</div>
+    </div> 
+
+    <!-- <div class="p-3 mb-2 bg-warning text-dark" *ngIf="data.isCreditUser && lowCredit && hasCredit && !data.isCommittee">
+      Your balance is low, pelase <a routerLink="/settings/creditstatement" target="_blank">top up</a> ASAP, or you won't be able to make bookings.</div> -->
+      <div class="alert  alert-danger" *ngIf="data.isCreditUser && !hasCredit && !data.isCommittee">
+        <div class="alert-icon"><span class="material-icons">dangerous</span></div>
+        <div class="alert-body">
+          You don't have any credit left, please <a routerLink="/settings/creditstatement" target="_blank">top up</a> your credit now!
+        </div>
+      </div> 
+
+      
+    <!-- <div class="p-3 mb-2 bg-danger text-white" *ngIf="data.isCreditUser && !hasCredit && !data.isCommittee">You don't have any credit left, please <a routerLink="/settings/creditstatement" target="_blank">top up</a> your credit now!</div> -->
+
+    
+    <div class="alert  alert-danger" *ngIf="!data.isCreditUser && !hasCredit">
+      <div class="alert-icon"><span class="material-icons">dangerous</span></div>
+      <div class="alert-body">
+        You have {{ data.creditBalance | currency }} in arrears, please <a routerLink="/settings/creditstatement" target="_blank">clear your debt</a> before booking!
+      </div>
+    </div> 
+
+    <!-- <div class="p-3 mb-2 bg-danger text-white" *ngIf="!data.isCreditUser && !hasCredit">
+      You have {{ data.creditBalance | currency }} in arrears, please <a routerLink="/settings/creditstatement" target="_blank">clear your debt</a> before booking!</div> -->
 
     
     <div *ngIf="data.isSeatsLeft && meetBasePoints">
