@@ -75,6 +75,7 @@ import { AirtagComponent } from './views/promo/airtag/airtag.component';
 import { CompetitionComponent } from './views/competition/competition.component';
 import { FooterComponent } from './views/footer/footer.component';
 import { DevComponent } from './views/dev/dev.component';
+import { OfflineComponent } from './views/offline/offline.component';
 
 @NgModule({
   imports: [
@@ -124,6 +125,7 @@ import { DevComponent } from './views/dev/dev.component';
     CompetitionComponent,
     FooterComponent,
     DevComponent,
+    OfflineComponent,
   ],
   providers: [
     {

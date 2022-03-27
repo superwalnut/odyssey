@@ -19,6 +19,7 @@ import { CreateNewPasswordComponent } from "./views/create-new-password/create-n
 import { AirtagComponent } from "./views/promo/airtag/airtag.component";
 import { CompetitionComponent } from "./views/competition/competition.component";
 import { DevComponent } from "./views/dev/dev.component";
+import { OfflineComponent } from "./views/offline/offline.component";
 
 
 export const routes: Routes = [
@@ -121,6 +122,14 @@ export const routes: Routes = [
     component: DevComponent,
     data: {
       title: "{dev}",
+    },
+  },
+  
+  {
+    path: "offline",
+    component: OfflineComponent,
+    data: {
+      title: "Offline",
     },
   },
   

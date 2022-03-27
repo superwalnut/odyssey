@@ -145,5 +145,42 @@
           padding-left:8px;
         }
       }
+
+
+      /* offline page */
+.offline-bg {
+  .heading {
+    margin: 100px auto 60px auto;
+    h1{
+      font: 600 80px $font-bebas!important;
+      letter-spacing: 2px!important;
     }
+    h2 {
+      font: 600 80px $font-bebas!important;
+      letter-spacing: 2px!important;
+      margin-top:-40px;
+    }
+  }
+
+  hr {
+    width: 80%;
+  }
+
+
+  .message {
+    margin-top: 30px;
+    font: 100 40px $font-bebas!important;
+    letter-spacing: 1px!important;
+    .sm {
+      padding: 20px;
+      font: 100 22px $font-bebas;
+    }
+  }
+  
+  
+}
+/* offline page ended */
+
+
+}
     

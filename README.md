@@ -117,7 +117,7 @@ As of now I am exploring the possibility of working on CoreUI full-time - if you
 
 ## Add new component
 
-ng g c views/[name] --module:app.module
+ng g c views/[name] --module=app.module
 
 ## Firebase deployment
 firebase login

@@ -866,6 +866,59 @@ $profile-bg-img-height: 180px;
  
 }
 
+/* offline page */
+.offline-bg {
+  background: $offline-bg-image no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+
+  .logo{
+    width: 70px;
+    height: 70px;
+    margin: 30px auto 0 auto;
+    cursor: pointer;
+    background: $offline-logo no-repeat;
+    background-size: contain;
+  }
+  .heading {
+    margin: 170px auto 70px auto;
+    h1{
+      font: 600 120px $font-bebas!important;
+      letter-spacing: 5px!important;  
+      text-transform: uppercase;
+      color: $offline-h1-color;
+    }
+    h2 {
+      font: 600 120px $font-bebas!important;
+      letter-spacing: 5px!important;
+      margin-top:-60px;
+      color:$offline-h2-color;
+    }
+  }
+
+  hr {
+    border:2px dashed $offline-separator-color;
+    width: 60%;
+  }
+
+  .message {
+    font: 300 35px $font-bebas!important;
+    letter-spacing: 2px!important;
+    margin-top: 40px;
+    color: $offline-message-color;
+
+    .sm {
+      padding: 20px;
+      background-color: rgba(0, 0, 0, .6);
+      font: 100 25px $font-bebas;
+    }
+  }
+}
+/* offline page ended */
+
 $box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.74), 0 3px 1px -2px rgba(0, 0, 0, 0.72), 0 1px 5px 0 rgba(0, 0, 0, 0.8);
 
 @import 'mobile.scss';

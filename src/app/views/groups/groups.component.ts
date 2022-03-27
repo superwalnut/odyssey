@@ -14,6 +14,7 @@ import { combineLatest } from 'rxjs';
 import { Booking } from '../../models/booking';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-groups',
@@ -33,7 +34,7 @@ export class GroupsComponent extends BaseComponent implements OnInit {
   isLoggedIn: boolean;
 
 
-  constructor(private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService, private bookingScheduleService: BookingScheduleService, private helperService: HelperService) { super() }
+  constructor(private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService, private bookingScheduleService: BookingScheduleService, private router: Router, private helperService: HelperService) { super() }
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
@@ -47,7 +48,7 @@ export class GroupsComponent extends BaseComponent implements OnInit {
     // if (this.isLoggedIn) {
     //   this.getMySchedules();
     // }
-    console.log('bookings.....', this.bookings);
+    console.log('bookings.....', this.bookings[0]);
   }
 
   getGroupName(groupDocId: string) {
@@ -69,6 +70,12 @@ export class GroupsComponent extends BaseComponent implements OnInit {
       console.log('forkJoin 2: ', result[1]);
       this.groups = result[0];
       this.bookings = result[1];
+
+      if (this.bookings.length == 0) {
+        console.log('bookings if offline');
+        this.router.navigateByUrl('offline');
+      }
+      
     })
   }
 
