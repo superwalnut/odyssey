@@ -73,4 +73,7 @@ export class DashboardComponent implements OnInit {
       this.myAttendanceCount = x.length;
     })
   }
+  clickDisable(e) {
+    return false;
+  }
 }
