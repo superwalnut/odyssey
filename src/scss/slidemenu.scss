@@ -1,5 +1,3 @@
-
-
 @mixin shadow {
     background: -moz-linear-gradient(left,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%);
     background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0)));
@@ -20,7 +18,7 @@
   $highlightSpeed: .3s;
   
   .drawer {
-    position: absolute;
+    position: fixed;
     z-index: 10;
     top: 330px;
     right: 0;
