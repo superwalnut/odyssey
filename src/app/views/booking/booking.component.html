@@ -2,7 +2,7 @@
 
 <div class="app">
   <div class="container">
-    <div class="row light">
+    <div class="row light" *ngIf="!booking?.isOffline">
       <div class="col">
         <h2 class="section-heading text-center">
           {{ booking?.eventStartDateTime.toDate() | date: 'EEEE, MMMM d'}}, 
@@ -11,7 +11,7 @@
       </div>
     </div>
 
- <div class="row light" *ngIf="!booking?.isOffline">
+    <div class="row light" *ngIf="!booking?.isOffline">
       <div class="col-sm">
         <section> 
           <ul class="simple-horizontal-list">
@@ -98,16 +98,31 @@
       </div>
     </div>
 
-    <div class="row light" *ngIf="booking?.isOffline">
+
+    <video autoplay muted loop *ngIf="booking?.isOffline">
+      <source src="/assets/img/banners/LindanCom.mp4" type="video/mp4">
+    </video>
+    
+    <div class="row light session-offline" *ngIf="booking?.isOffline">
       <div class="col-sm">
-        <section> 
+        
+        <div class="logo">
+          <a routerLink="/"><img src="/assets/img/banners/HBCLogoWhite.png" alt=""></a>
+        </div>
+        
+        <div class="heading">
+          <h1>Session</h1>
+          <h2>Offline</h2>
+        </div>
+
+        <!-- <section> 
           <div class="alert  alert-info">
             <div class="alert-icon"><span class="material-icons">info</span></div>
             <div class="alert-body">
               This badminton session is offline.
             </div>
           </div> 
-          <!-- <div class="p-3 mb-2 bg-secondary text-dark">This session is offline.</div> -->
+
           <div class="offline-quote">
             <blockquote class="handwriting">
               {{getBadmintonLine().line }}
@@ -116,10 +131,13 @@
               {{getBadmintonLine().people }}
             </div>
           </div>
-        </section>
+        </section> -->
       </div>
     </div>
   </div>
 </div>
+
+
+
 
 <app-public-footer></app-public-footer>
