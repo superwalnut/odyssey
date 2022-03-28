@@ -8,7 +8,7 @@ import { BookingPersonService } from "../../services/booking-person.service";
 import { MailgunService } from "../../services/mailgun.service";
 
 import { BookingsService } from "../../services/bookings.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { GlobalConstants } from '../../common/global-constants';
 import { AccountService } from '../../services/account.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -58,7 +58,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
 
   constructor(private groupService: GroupService, private dialogRef: MatDialog, private eventLogService: EventLoggerService,
     private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private creditService: CreditService,
-    private accountService: AccountService, private activatedRoute: ActivatedRoute, private helpService: HelperService, public dialog: MatDialog) { super() }
+    private accountService: AccountService, private router: Router, private activatedRoute: ActivatedRoute, private helpService: HelperService, public dialog: MatDialog) { super() }
 
   ngOnInit(): void {
     this.bookingDocId = this.activatedRoute.snapshot.params.id;
@@ -143,6 +143,13 @@ export class BookingComponent extends BaseComponent implements OnInit {
   getCurrentBooking(bookingDocId: string) {
     this.bookingService.get(bookingDocId).subscribe(booking => {
       this.booking = booking;
+
+      if (booking.isOffline) {
+        this.router.navigateByUrl('offline');
+
+      }
+      console.log('is booking offline...', this.booking.isOffline);
+
     });
   }
 
