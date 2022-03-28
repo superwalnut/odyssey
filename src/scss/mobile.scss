@@ -147,26 +147,24 @@
       }
 
 
-      /* offline page */
+/* offline page */
 .offline-bg {
   .heading {
     margin: 100px auto 40px auto;
     h1{
-      font: 600 70px $font-bebas!important;
+      font: 700 80px $font-bebas!important;
       letter-spacing: 1px!important;
     }
     h2 {
-      font: 600 70px $font-bebas!important;
+      font: 700 80px $font-bebas!important;
       letter-spacing: 1px!important;
       margin-top:-40px;
     }
   }
 
   hr {
-    width: 80%;
+    width: 40%;
   }
-
-
   .message {
     margin-top: 40px;
     font: 100 40px $font-bebas!important;
@@ -176,8 +174,6 @@
       font: 100 22px $font-bebas;
     }
   }
-  
-  
 }
 /* offline page ended */
 

@@ -44,10 +44,6 @@ export class GroupsComponent extends BaseComponent implements OnInit {
     this.weekStart = this.helperService.convertToTimestamp(dateRange.firstday);
     this.weekEnd = this.helperService.convertToTimestamp(dateRange.lastday);
     this.getGroupsAndCurrentBookings();
-    //this.getGroupName()
-    // if (this.isLoggedIn) {
-    //   this.getMySchedules();
-    // }
     console.log('bookings.....', this.bookings[0]);
   }
 
@@ -79,25 +75,25 @@ export class GroupsComponent extends BaseComponent implements OnInit {
     })
   }
 
-  getMySchedules() {
-    this.bookingScheduleService.getMyBookingSchedules(this.loggedInAccount.docId).subscribe(schedules => {
-      //this.mySchedules = schedules;
+  // getMySchedules() {
+  //   this.bookingScheduleService.getMyBookingSchedules(this.loggedInAccount.docId).subscribe(schedules => {
+  //     //this.mySchedules = schedules;
       
-    })
-  }
+  //   })
+  // }
 
-  getExpiryStatus(schedule: BookingSchedule) {
-    var expireOn = schedule.expireOn;
-    if (expireOn < Timestamp.now()) {
-      return 'Expired';
-    }
+  // getExpiryStatus(schedule: BookingSchedule) {
+  //   var expireOn = schedule.expireOn;
+  //   if (expireOn < Timestamp.now()) {
+  //     return 'Expired';
+  //   }
 
-    //{{ s.isPaused ? 'Paused' : 'Active' }}
-    if (schedule.isPaused) {
-      return 'Paused';
-    }
-    return 'Active';
-  }
+  //   //{{ s.isPaused ? 'Paused' : 'Active' }}
+  //   if (schedule.isPaused) {
+  //     return 'Paused';
+  //   }
+  //   return 'Active';
+  // }
 
 }
 

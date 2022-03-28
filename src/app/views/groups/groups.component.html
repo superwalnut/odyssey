@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <div class="row light" *ngIf="bookings.length==0">
+    <!-- <div class="row light" *ngIf="bookings.length==0">
       
       <div class="col-sm">
         <div class="bookingoffline">
@@ -25,7 +25,7 @@
       </div>
       
     </div>
-    
+     -->
 
     <!-- <div class="row light">
       <div class="col" *ngFor="let b of bookings" >
@@ -48,15 +48,11 @@
 
     <div class="row light">
       <div class="col-sm-4" *ngFor="let b of bookings" >
-        <!-- <div [ngClass]="{'card offline':b.isOffline, 'card':!b.isOffline}"> -->
           <div class="card horverEffects group-card" [ngClass]="{'offline':b.isOffline}" routerLink="/booking/{{b.docId}}/{{b.groupDocId}}">
-            <!-- <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}"><img class="card-img-top" src="assets/img/banners/eastbooking.jpg"></a> -->
             <div class="session-card-img"></div>
             <div class="card-body">
-              <!-- <h5 class="card-title">{{ getGroupName(b.groupDocId)}} {{ b.eventStartDateTime.toDate() | date: 'fullDate'}}</h5> -->
               <h5 class="card-title">{{ b.eventStartDateTime.toDate() | date: 'fullDate'}}</h5>
               <p class="card-text text-muted">{{ getGroupDesc(b.groupDocId)}} <span class="material-icons">chair</span> {{seatsLimit}}</p>
-              <!-- <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}" class="btn btn-primary btn-large btn-block">Book</a> -->
               <div class="booknow">
                 {{b.isOffline ? 'Offline':''}}
                 <a routerLink="/booking/{{b.docId}}/{{b.groupDocId}}" *ngIf="!b.isOffline">
@@ -66,57 +62,7 @@
             </div>
         </div>
       </div>
-
     </div>
-
-
-    <!-- <div class="row light" *ngIf="isLoggedIn">
-      <div class="col">
-
-        <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                <b>AutoBookings</b>
-              </mat-panel-title>
-              <mat-panel-description>
-                Automate your bookings!
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            
-            <ul class="simple-horizontal-list">
-              <li><button type="button" routerLink="/settings/schedule" class="btn btn-primary">Manage AutoBooking</button></li>
-              <li><a routerLink="/termsconditions">AutoBooking Policy</a></li>
-            </ul>
-
-            <table class="table table-borderless" *ngIf="mySchedules?.length > 0">
-              <thead>
-                <tr>
-                  <th scope="col">Session</th>
-                  <th scope="col">User</th>
-                  <th scope="col">Expire on</th>
-                  <th scope="col">Status</th>
-                  
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let s of mySchedules">
-                  <td>{{ s.groupName }}</td>
-                  <td>{{ s.user.name }}</td>
-                  <td>{{ s.expireOn.toDate() | date: 'dd/MM/yyyy' }}</td>
-                  <td>
-                    {{ getExpiryStatus(s)}}
-                  </td>
-                  
-                </tr>
-              </tbody>
-            </table>
-          </mat-expansion-panel>
-        </mat-accordion>
-        <p style="height: 25px;"></p>
-
-      </div>
-    </div> -->
 
   </div>
 </div>
