@@ -874,12 +874,23 @@ $profile-bg-img-height: 180px;
 
 /* offline page */
 .offline-bg {
-  background: $offline-bg-image no-repeat center center fixed; 
+  //background: $offline-bg-image no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  //background-size: cover;
   text-align: center;
+
+  
+  video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    //z-index: -1;
+  }
 
   .logo{
     width: 70px;
