@@ -901,16 +901,16 @@ $profile-bg-img-height: 180px;
     background-size: contain;
   }
   .heading {
-    margin: 170px auto 70px auto;
+    margin: 140px auto 50px auto;
     h1{
       font: 700 120px $font-bebas!important;
-      letter-spacing: 5px!important;  
+      letter-spacing: 2px!important;  
       text-transform: uppercase;
       color: $offline-h1-color;
     }
     h2 {
       font: 700 120px $font-bebas!important;
-      letter-spacing: 5px!important;
+      letter-spacing: 2px!important;
       margin-top:-60px;
       color:$offline-h2-color;
     }
@@ -918,13 +918,13 @@ $profile-bg-img-height: 180px;
 
   hr {
     border:2px dashed $offline-separator-color;
-    width: 60%;
+    width: 40%;
   }
 
   .message {
     font: 300 35px $font-bebas!important;
     letter-spacing: 2px!important;
-    margin-top: 40px;
+    margin-top: 1px;
     color: $offline-message-color;
 
     .sm {
