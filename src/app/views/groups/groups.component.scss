@@ -1,7 +1,7 @@
 .card {
     &.offline {
         opacity:.65;
-        background: #cccccc;
+        background: #bebdbd;
         z-index:5; /* Make sure this value is higher than the .form class  */
 
     }
