@@ -94,8 +94,7 @@
               <button mat-mini-fab color="primary" (click)="addCommittee(myControl)" *ngIf="isGod">
                 <mat-icon>add</mat-icon>
               </button>
-                        
-                <mat-list>
+                <!-- <mat-list>
                   <mat-list-item *ngFor="let item of selectedUsers">
                     <span matLine>{{item.name}}</span>
 
@@ -104,7 +103,28 @@
                     </button>
 
                   </mat-list-item>
-                </mat-list>
+                </mat-list> -->
+
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of selectedUsers">
+                      <td>{{item.name}}</td>
+                      <td> 
+                        <button mat-mini-fab color="warn" (click)="removeCommittee(item)" *ngIf="isGod">
+                          <mat-icon>remove</mat-icon>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
             <p>
               <button mat-raised-button routerLink="/admin/groups">Cancel</button>
               <button mat-raised-button color="primary" [disabled]="groupForm.invalid" *ngIf="isGod">Save</button>
