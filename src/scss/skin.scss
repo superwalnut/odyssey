@@ -196,11 +196,11 @@ $session-offline-indicator-bg-color: #ff0000;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-intro-minheight: 430px;
     $homepage-intro-shade-color:rgba(255,255,255,0.45);
-    $homepage-intro-bg: url(../assets/img/banners/hero-banner-horse.jpg);
+    $homepage-intro-bg: url(../assets/img/banners/hero-banner-birds.jpg);
     $homepage-hero-bg-offset: -550px;
     $homepage-intro-color:#000;
     $homepage-intro-shade-link-color: black;
-    $homepage-hero-bg-img: url(../assets/img/banners/hero-bg-shanshui.jpg)!important;
+    $homepage-hero-bg-img: url(../assets/img/banners/hero-bg-shanshui2.jpg)!important;
     $offline-quote-bg-color: #000;
 
     //dashboard profile card
@@ -220,7 +220,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $card-mat-label-color: black;
     $card-text-muted: black;
     $card-link-text-color: black;
-    $session-card-bg-img:url("../assets/img/banners/session-card-bw.jpg");
+    $session-card-bg-img: url("../assets/img/banners/session-card-bw-dragon.jpg");
 
     //booking tables
     $table-bg-color:#fff;
@@ -230,7 +230,6 @@ $session-offline-indicator-bg-color: #ff0000;
     $booking-tbl-hightlight-color: #fafafa;
     $table-booking-button-bg-color: #565656;
     $table-booking-button-text-color: white;
-
 
     //Modal dialog
     $modal-content-background-color: $default-color;
