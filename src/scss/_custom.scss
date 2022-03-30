@@ -390,7 +390,10 @@ ul.simple-horizontal-list {
 }
 .group-card {
   .card-title {
-    font-weight: 500;
+    font: 500 21px $font-roboto!important;
+  }
+  .card-text {
+    font: 100 15px $font-roboto!important;
   }
 }
 
