@@ -243,6 +243,29 @@ export class GlobalConstants {
     ];
 
 
+    public static chinesePoemQuotes = [
+        { line: "好雨知时节，当春乃发生", people: ""},
+        { line: "朝辞白帝彩云间，千里江陵一日还", people: ""},
+        { line: "远上寒山石径斜，白云深处有人家", people: ""},
+        { line: "月黑见渔灯，孤光一点萤", people: ""},
+        { line: "千山鸟飞绝，万径人踪灭", people: ""},
+        { line: "青山依旧在，几度夕阳红", people: ""},
+        { line: "曾经沧海难为水，除却巫山不是云", people: ""},
+        { line: "东风夜放花千树，更吹落，星如雨", people: ""},
+        { line: "醉后不知天在水，满船清梦压星河", people: ""},
+        { line: "once upon a midnight dreary, While I pondered, weak and weary", people: ""},
+        { line: "It was many and many a year ago, In a kingdom by the sea", people: ""},
+        { line: "No man is an island, Entire of itself", people: ""},
+        { line: "Because I could not stop for Death, He kindly stopped for me", people: ""},
+        { line: "I wandered lonely as a cloud that floats on high o'er vales and hills", people: ""},
+        { line: "Hope is the thing with feathers that perches in the soul", people: ""},
+        { line: "The sea is calm tonight, the tide is full, the moon lies fair", people: ""},
+        
+       
+    ];
+
+
+
 
 
 
