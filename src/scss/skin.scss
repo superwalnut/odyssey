@@ -19,6 +19,8 @@ $offline-h1-color: #e80b36;
 $offline-h2-color: white;
 $offline-separator-color: $offline-h1-color;
 $offline-message-color: white;
+$session-online-indicator-bg-color: #04e845;
+$session-offline-indicator-bg-color: #ff0000;
 
 /*
 //Default HBC Theme
@@ -143,6 +145,8 @@ $offline-message-color: white;
     $card-mat-label-color: rgb(14, 13, 13);
     $card-text-muted: #656363;
     $session-card-bg-img:url("../assets/img/banners/session-card-easter.jpg");
+
+
 
     //Modal dialog
     $modal-content-background-color: white;

@@ -75,6 +75,15 @@ export class GroupsComponent extends BaseComponent implements OnInit {
     })
   }
 
+  sessionClicked(b: Booking) {
+    if (b.isOffline) {
+      this.router.navigateByUrl('/offline');
+    }
+    else {
+      this.router.navigateByUrl('/booking/' + b.docId + '/' + b.groupDocId);
+    }
+  }
+
   // getMySchedules() {
   //   this.bookingScheduleService.getMyBookingSchedules(this.loggedInAccount.docId).subscribe(schedules => {
   //     //this.mySchedules = schedules;
