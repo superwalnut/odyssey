@@ -73,11 +73,25 @@
       <div class="booking-sum">Amount: ${{ totalAmount }} {{ data.isCreditUser ? "HBCoin" : "Cash"}}</div>
     </div>
 
-    <div class="p-3 mb-2 bg-warning text-dark" *ngIf="!data.isSeatsLeft"><p>All seats are booked, pelase check back later should some seats freed up.</p></div>
+    <div class="alert  alert-warning" *ngIf="!data.isSeatsLeft">
+      <div class="alert-icon"><span class="material-icons">warning</span></div>
+      <div class="alert-body">
+        We are sorry that this is a graded session, unfortunately you haven't met the level requirement.
+      </div>
+    </div> 
 
-    <div class="p-3 mb-2 bg-warning text-dark" *ngIf="!meetBasePoints">
+    <!-- <div class="p-3 mb-2 bg-warning text-dark" *ngIf="!data.isSeatsLeft"><p>All seats are booked, pelase check back later should some seats freed up.</p></div> -->
+
+    <div class="alert  alert-danger" *ngIf="!meetBasePoints">
+      <div class="alert-icon"><span class="material-icons">dangerous</span></div>
+      <div class="alert-body">
+        We are sorry that this is a graded session, unfortunately you haven't met the level requirement.
+      </div>
+    </div> 
+
+    <!-- <div class="p-3 mb-2 bg-warning text-dark" *ngIf="!meetBasePoints">
       <p>We are sorry that this is a graded session, unfortunately you haven't met the level requirement.</p>
-    </div>
+    </div> -->
 
     <div  *ngIf="hasCredit || data.isCommittee" class="modal-body-buttons">
       <button mat-raised-button (click)="onNoClick()">Close</button>

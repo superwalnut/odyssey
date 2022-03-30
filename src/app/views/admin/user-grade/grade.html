@@ -7,27 +7,23 @@
     </div>
   
     <form [formGroup]="gradeForm" (ngSubmit)="onSubmit()">
-
-    <div class="modal-body">
-
-      <h3>Grade Points reference table</h3>
-      <p>Scale 0 - 10, the higher the better skills</p>
-        <ul>
-        <li>O - 10 ERIC</li>
-        <li>A - 8 ZAKA</li>
-        <li>B - 6 MATT</li>
-        <li>C - 6 LUC</li>
-        <li>D - 4 GARY</li>
-        <li>E - 2 Du</li>
-        <li>F - 0 JACK</li>
-        </ul>
-
-            
+        <div class="modal-body">
+            <h3>Grade Points reference table</h3>
+            <p>Scale 0 - 10, the higher the better skills</p>
+            <ul>
+                <li>O - 10 ERIC</li>
+                <li>A - 8 ZAKA</li>
+                <li>B - 6 MATT</li>
+                <li>C - 6 LUC</li>
+                <li>D - 4 GARY</li>
+                <li>E - 2 Du</li>
+                <li>F - 0 JACK</li>
+            </ul>
+                
             <mat-form-field appearance="fill">
                 <mat-label>Grade</mat-label>
                 <mat-select  formControlName="grade">
                     <mat-option *ngFor="let gradeName of gradeNames" [value]="gradeName">{{gradeName}}</mat-option>
-               
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
@@ -39,10 +35,8 @@
                 <button mat-raised-button color="primary" [disabled]="gradeForm.invalid">Confirm</button>  
             </div>
 
-            </div>
-
-        </form>
-
-  </div>
+        </div>
+    </form>
+</div>
   
   

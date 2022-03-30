@@ -75,10 +75,13 @@ export class BookingComponent extends BaseComponent implements OnInit {
       console.log('forkjoin user: ', result[0]);
       console.log('forkJoin balance: ', result[1]);
       this.user = result[0];
+      console.log("🚀 ~ file: booking.component.ts ~ line 78 ~ BookingComponent ~ combineLatest ~ user", this.user)
       this.isCreditUser = result[0].isCreditUser;
       this.creditBalance = result[1];
       this.checkBalance();
     })
+
+    
 
     
     this.getGroupDetail(this.groupDocId);
@@ -351,8 +354,6 @@ export class BookingDialog {
     this.meetBasePoints = this.data.userLevelPoints >= this.data.booking.levelRestrictionOverwrite;
 
     console.log('dialog', this.data);
-
-
     this.bookingPersonService.getByBookingDocId(this.data.bookingDocId).subscribe(allBookings => {
       this.allBookings = allBookings; //get a live connection to all booking persons.
     })
@@ -365,7 +366,6 @@ export class BookingDialog {
   }
 
   lowbalanceEmailNotification() {
-
     console.log(this.data.loggedInUser.email);
     this.mailgunService.sendCreditReminder(this.data.loggedInUser.email, this.data.loggedInUser.name, this.data.creditBalance);
   }
