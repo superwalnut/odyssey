@@ -397,17 +397,17 @@ ul.simple-horizontal-list {
 .online-indicator {
   position: absolute;
   display: inline-block;
-  top: 10px;
-  right: 10px;
-  width: 20px;
-  height: 20px;
+  top: 15px;
+  right: 15px;
+  width: 25px;
+  height: 25px;
   background-color: $session-online-indicator-bg-color;
   border-radius: 50%;
   
   .blink {
     display: block;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     background-color: $session-online-indicator-bg-color;
     opacity: 0.9;
     border-radius: 50%;
