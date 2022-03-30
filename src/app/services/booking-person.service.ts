@@ -48,7 +48,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     // console.log('createBookingPerson service credit: ', credit);
     // batch.set(ref, credit);
 
-    //for cash user booking, we don't add to Group transaction, untile we received the cash. then we mark them as paid, and add to grouoptransaction
+    //for cash user booking, we don't add to Group transaction, untile we received the cash. then we mark them as paid, and add to grouptransaction
     // if (bp.paymentMethod == GlobalConstants.paymentCredit) {
     //   var ref = this.firestore.collection('groupTransactions').doc().ref;
     //   var trans = {
@@ -90,7 +90,7 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
       // console.log('createBookingPersonBatch service: ', credit);
       // batch.set(ref, credit);
 
-      // //for cash user booking, we don't add to Group transaction, untile we received the cash. then we mark them as paid, and add to grouoptransaction
+      // //for cash user booking, we don't add to Group transaction, untile we received the cash. then we mark them as paid, and add to grouptransaction
       // if (bp.paymentMethod == GlobalConstants.paymentCredit) {
       //   var ref = this.firestore.collection('groupTransactions').doc().ref;
       //   var trans = {

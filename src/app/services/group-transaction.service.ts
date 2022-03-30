@@ -64,7 +64,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
       }));
   }
 
-  public allocateDividend(groupDocId:string, groupName:string, groupBalance:number, netProfit:number, profitHoldingAccount:User, committees:User[], operatorUserId:string, operatorUserDisplayName:string) {
+  public allocateDividend(groupDocId:string, groupName:string, groupBalance:number, netProfit:number, dividendNotes:string, profitHoldingAccount:User, committees:User[], operatorUserId:string, operatorUserDisplayName:string) {
     var batch = this.firestore.firestore.batch();
 
     //deduct from gorup net profit.
@@ -73,7 +73,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
     var groupTrans = {
       groupDocId: groupDocId,
       amount: -groupBalance, 
-      notes: 'dividend to committee',
+      notes: 'Distribute to committees ' + dividendNotes,
       paymentMethod: 'Dividend',
       created: Timestamp.now(),
       createdBy: operatorUserId,
@@ -104,7 +104,9 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
         category: GlobalConstants.creditCategoryDividend,
         userDocId: c.parentUserDocId,
         userDisplayName: c.parentUserDisplayName,
-        note: c.name + ' Dividend from ' + groupName,
+        //Ie. ‘Saturday distribution #shuttle’ instead of ‘Luc Dividend from Saturday Badminton Social’
+        //note: c.name + ' Dividend from ' + groupName,
+        note: groupName + ' distribution ' + dividendNotes,
         createdBy: operatorUserId,
         createdByDisplayName: operatorUserDisplayName,
         created: Timestamp.now(),
@@ -116,7 +118,7 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
     var ref = this.firestore.collection('eventLogs').doc().ref;
     var log = {
       eventCategory: GlobalConstants.eventDividend,
-      notes: groupName + ' ' + unitDividend + ', ' + committees.length + ' committees',
+      notes: groupName + ' ' + unitDividend + ', ' + committees.length + ' committees ' + dividendNotes,
       createdOn: Timestamp.now(),
       createdBy: operatorUserId,
       createdByDisplayName: operatorUserDisplayName,

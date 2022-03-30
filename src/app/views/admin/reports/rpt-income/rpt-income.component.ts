@@ -163,7 +163,8 @@ export class DividendDialog {
   isLoading: boolean;
   unitDividend: number;
   hasUnReconciledBookings: boolean;
-  netProfit:number=0;
+  netProfit:number=0; 
+  dividendNotes: string;
   committeeCount:number;
 
   //unlockedBookings:Booking[];
@@ -192,9 +193,17 @@ export class DividendDialog {
   }
 
   confirmClicked() {
+    if (!this.dividendNotes || this.dividendNotes.trim() === '' ) {
+      alert("Please enter notes");
+      return false;
+    }
+    
     this.isLoading = true;
     let committees = this.addParentIdToCommittee(this.data.committees);
-    this.groupTransactionService.allocateDividend(this.data.group.docId, this.data.group.groupName, this.data.groupBalance, this.netProfit, this.data.profitAccount, committees, this.data.loggedInUser.docId, this.data.loggedInUser.name)
+    this.groupTransactionService.allocateDividend(this.data.group.docId, this.data.group.eventStartDay, 
+      this.data.groupBalance, this.netProfit, '#'+this.dividendNotes.trim(), 
+      this.data.profitAccount, committees, this.data.loggedInUser.docId, 
+      this.data.loggedInUser.name)
       .then(() => this.dialogRef.close())
       .catch((err) => {
         this.hasError = true;

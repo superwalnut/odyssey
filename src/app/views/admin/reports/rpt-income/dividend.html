@@ -1,80 +1,76 @@
-
 <!-- Modal -->
 <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title">Dividend</h5>
-      <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
+  <div class="modal-header">
+    <h5 class="modal-title">Dividend</h5>
+    <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
+  </div>
+
+  <div class="modal-body">
+    <div *ngIf="hasUnReconciledBookings">
+      <div class="p-3 mb-2 bg-warning text-dark">You can only allocate dividend when all bookings are reconciled</div>
+
+
+      <h3></h3>
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Reconciled</th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of data.hasUnReconciledBookings">
+            <td>{{ s.weekDay }}</td>
+            <td>{{ s.eventStartDateTime.toDate() | date: 'dd/MM/yyyy' }}</td>
+            <td><a routerLink="/admin/bookingdetails/{{s.docId}}" target="_blank">{{ s.reconciled }}</a></td>
+
+
+          </tr>
+        </tbody>
+      </table>
+
+
     </div>
-  
-    <div class="modal-body">
-      
 
-      <div *ngIf="hasUnReconciledBookings">
-        <div class="p-3 mb-2 bg-warning text-dark">You can only allocate dividend when all bookings are reconciled</div>
+    <div *ngIf="!hasUnReconciledBookings">
+      <div class="alert alert-danger" role="alert" *ngIf="hasError">Error occurred</div>
+      <p>Group: {{ data.group.groupName}} (Gross: {{ data.groupBalance | currency}})</p>
+      <p><b>Step 1: 利润部分转到 [{{data.profitAccount.name}}]</b></p>
+      <p>
+        <mat-form-field>
+          <mat-label>Net profit</mat-label>
+          <input matInput placeholder="Net profit amount" [(ngModel)]="netProfit" (change)="onNetProfitChange()"
+            type="number" required />
+        </mat-form-field>
+      </p>
 
+      <p>
+        <b>Step 2: 剩余部分立即均分到Committee头上</b>
+      </p>
+      Remaining: {{ data.groupBalance-netProfit | currency}}
+      <ul class="simple-horizontal-list" *ngIf="data.committees">
+        <li>Committees ({{committeeCount}}): </li>
+        <li *ngFor="let u of data.committees">{{ u.name }}, </li>
+      </ul>
 
-        <h3></h3>
-        <table class="table table-sm">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Date</th>
-              <th scope="col">Reconciled</th>
-              
-         
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let s of data.hasUnReconciledBookings">
-              <td>{{ s.weekDay }}</td>
-              <td>{{ s.eventStartDateTime.toDate() | date: 'dd/MM/yyyy' }}</td>
-              <td><a routerLink="/admin/bookingdetails/{{s.docId}}" target="_blank">{{ s.reconciled }}</a></td>
-              
-             
-            </tr>
-          </tbody>
-        </table>
+      <h3>Each committee gets: {{unitDividend | currency}}</h3>
 
-
-      </div>
-
-      <div *ngIf="!hasUnReconciledBookings">
-        <div class="alert alert-danger" role="alert" *ngIf="hasError">Error occurred</div>
-
-        <!-- <h3>By clicking Confirm button, group net profit will be evenly distributed among it's committees</h3> -->
-        <p>Group: {{ data.group.groupName}} (Gross: {{ data.groupBalance | currency}})</p>
-  
-        <p>
-          <b>Step 1: 利润部分转到 [{{data.profitAccount.name}}]</b>
-        </p>
-        <p>
-          <mat-form-field>
-            <mat-label>Net profit</mat-label>
-            <input matInput placeholder="Net profit amount" [(ngModel)]="netProfit" (change)="onNetProfitChange()" type="number" required />
-          </mat-form-field>
-        </p>
-
-        <p>
-          <b>Step 2: 剩余部分立即均分到Committee头上</b>
-        </p>
-        Remaining: {{ data.groupBalance-netProfit | currency}} 
-        <ul class="simple-horizontal-list" *ngIf="data.committees">
-          <li>Committees ({{committeeCount}}): </li>
-          <li *ngFor="let u of data.committees">{{ u.name }}, </li>
-        </ul>
-  
-        <h3>Each committee gets: {{unitDividend | currency}}</h3>  
-      </div>
-
-     
-     
-    </div>
-    <div class="modal-footer">
-      <button mat-raised-button (click)="onNoClick()">Close</button>
-      <button mat-raised-button color="warn" *ngIf="!isLoading && !hasUnReconciledBookings" (click)="confirmClicked()">Confirm</button>
-      <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
-  
+      <mat-form-field appearance="fill">
+        <mat-label>Notes (max 20 chars)</mat-label>
+        <textarea matInput placeholder="shuttle, court...etc" [(ngModel)]="dividendNotes" maxlength="20"
+          autocomplete="off"></textarea>
+      </mat-form-field>
     </div>
   </div>
-  
-  
+
+  <div class="modal-footer">
+    <button mat-raised-button (click)="onNoClick()">Close</button>
+    <button mat-raised-button color="warn" *ngIf="!isLoading && !hasUnReconciledBookings"
+      (click)="confirmClicked()">Confirm</button>
+    <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+
+  </div>
+</div>
