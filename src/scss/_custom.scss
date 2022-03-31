@@ -302,34 +302,34 @@ ul.simple-horizontal-list {
     transform: rotate(360deg);
   }
 }
-.hero-section {
-  min-height: 300px;
-  padding: 30px 20px;
-  background-image: url(../assets/img/banners/abstract-blue-bg.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
+// .hero-section {
+//   min-height: 300px;
+//   padding: 30px 20px;
+//   background-image: url(../assets/img/banners/abstract-blue-bg.jpg);
+//   background-size: cover;
+//   background-repeat: no-repeat;
+//   display: flex;
 
-  .left {
-    width: 55%;
-  }
-  .right {
-    width: 45%;
-  }
+//   .left {
+//     width: 55%;
+//   }
+//   .right {
+//     width: 45%;
+//   }
 
-  ul {
-    list-style-type: none;
-    padding: 0 !important;
-    li {
-    }
-  }
+//   ul {
+//     list-style-type: none;
+//     padding: 0 !important;
+//     li {
+//     }
+//   }
 
-  h3 {
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
-}
+//   h3 {
+//     font-weight: 600;
+//     font-size: 14px;
+//     margin-bottom: 5px;
+//   }
+// }
 .hero {
   font-family: "Dela Gothic One", cursive !important;
   font-size: 38px !important;
@@ -675,7 +675,7 @@ ul.hpbooking {
   }
 }
 .group-header-image {
-  background-image: url(../assets/img/banners/shuttle-sm.jpg);
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fshuttle-sm.jpg?alt=media&token=3a15078d-9d44-4a48-9fe9-a62478010c04);
   background-size: cover;
 }
 
@@ -781,7 +781,7 @@ $profile-bg-img-height: 180px;
     position: relative;
     justify-content: center;
     min-height: $profile-bg-img-height;
-    //background-image: url("../assets/img/banners/profilecardBG.jpg");
+    //background-image: url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2FprofilecardBG.jpg?alt=media&token=1298e7f3-2aad-4755-a4ec-b6e9f6f45342");
     background-image: $profile-bg-img-url;
     background-repeat: no-repeat;
     background-position: center top;

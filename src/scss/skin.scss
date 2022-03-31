@@ -9,8 +9,8 @@ $font-news: 'Abril Fatface', cursive;//Time new roman like font - brodayway like
 $font-bebas: 'Bebas Neue', cursive;
 $font-chiense-noto: 'Noto Serif SC', serif; //chinese font
 $font-title: $font-anton; 
-$hbc-logo-white: url(../assets/img/banners/HBCLogoWhite.png);
-$hbc-logo-black: url(../assets/img/banners/HBCLogoBlack.png);
+$hbc-logo-white: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Flogo%2FHBCLogoWhite.png?alt=media&token=7b2b9bcb-aab3-4833-80bd-e9d72c9b11d0);
+$hbc-logo-black: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Flogo%2FHBCLogoBlack.png?alt=media&token=7a6a4c61-c009-4daa-b28e-dcaff3641b9a);
 
 //Offline page 
 $offline-bg-image: url(../assets/img/banners/offlinebg2.jpg) ;
@@ -29,7 +29,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $default-highlight-color: #2b0239;
     $nav-bar-color:$default-color; 
 	$nav-bar-text-color:white;
-    $nav-bar-logo: url(../assets/img/banners/HBCLogoWhite.png);
+    $nav-bar-logo: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Flogo%2FHBCLogoWhite.png?alt=media&token=7b2b9bcb-aab3-4833-80bd-e9d72c9b11d0);
     $nav-bar-link-hover-color: white;
     $row-bg-color: white;
     $section-header-text-color: black;
@@ -46,7 +46,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $homepage-hero-bg-img: '';
     $homepage-intro-minheight: 430px;
     $homepage-intro-shade-color:rgba(0,0,0,0.1);
-    $homepage-intro-bg: url(../assets/img/banners/jumpsmashbg.jpg);
+    $homepage-intro-bg: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2Fjumpsmashbg.jpg?alt=media&token=e85baed5-26af-4304-8774-c957d6092e7d);
     $homepage-hero-bg-offset: -640px;
     $homepage-intro-color:#fff;
     $homepage-intro-shade-link-color: white;
@@ -54,7 +54,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $offline-quote-bg-color: #000;
 
     //dashboard profile card
-    $profile-bg-img-url: url("../assets/img/banners/profilecard-purple-BG.jpg");
+    $profile-bg-img-url: url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fprofilecard-purple-BG.jpg?alt=media&token=793581f6-e6ec-4de3-99ef-247431b1913e");
     $profile-card-bg-color:#fff;
     $profile-card-text-color: #000;
     $profile-button-color: $default-color;
@@ -70,7 +70,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $card-mat-label-color: black;
     $card-text-muted: #9d9c9c;
     $card-link-text-color: $default-color;
-    $session-card-bg-img:url("../assets/img/banners/session-card-default.jpg");
+    $session-card-bg-img:url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fsession-card-default.jpg?alt=media&token=7c52e8b7-0699-4a79-8781-551df3adcc09");
 
     //Admin
     $admin-table-row-inactive: #ccc;
@@ -103,7 +103,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $global-link-color: #20b0e3;
     $default-highlight-color: #c52274;
     $nav-bar-color:$default-color; 
-    $nav-bar-logo: url(../assets/img/banners/HBCLogoWhite.png);
+    $nav-bar-logo: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Flogo%2FHBCLogoWhite.png?alt=media&token=7b2b9bcb-aab3-4833-80bd-e9d72c9b11d0);
     $nav-bar-text-color: white;
     $nav-bar-link-hover-color: white;
     $row-bg-color: white;
@@ -123,12 +123,12 @@ $session-offline-indicator-bg-color: #ff0000;
     $homepage-intro-color:#fff;
     $homepage-intro-shade-color:rgba(0,0,0,0.6);
     $homepage-intro-shade-link-color: white;
-    $homepage-intro-bg: url(../assets/img/banners/easterBG.jpg); //1138 x 450
+    $homepage-intro-bg: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2FeasterBG.jpg?alt=media&token=c2018d68-5eb6-4f73-ab22-0a2c0773f65a); //1138 x 450
     $homepage-hero-bg-offset: -150px;
     $offline-quote-bg-color: $nav-bar-color;
 
     //dashboard profile card
-    $profile-bg-img-url: url("../assets/img/banners/profilecard-easter-bg.jpg");
+    $profile-bg-img-url: url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fprofilecard-easter-bg.jpg?alt=media&token=3e9c94fd-28bf-415f-9ad6-c65a5e4380ec");
     $profile-card-bg-color:#ffffff;
     $profile-card-text-color: black;
     $profile-button-color: $default-color;
@@ -144,7 +144,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $card-table-text-color: black;
     $card-mat-label-color: rgb(14, 13, 13);
     $card-text-muted: #656363;
-    $session-card-bg-img:url("../assets/img/banners/session-card-easter.jpg");
+    $session-card-bg-img:url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fsession-card-easter.jpg?alt=media&token=de0e3ef5-3a81-45f0-8c21-8fc76b67074d");
 
     //Modal dialog
     $modal-content-background-color: white;
@@ -179,7 +179,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $default-color: #fff;//easter pink
     $default-highlight-color: #ccc;
     $nav-bar-color:$default-color; 
-    $nav-bar-logo: url(../assets/img/banners/HBCLogoBlack.png);
+    $nav-bar-logo: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Flogo%2FHBCLogoBlack.png?alt=media&token=7a6a4c61-c009-4daa-b28e-dcaff3641b9a);
     $nav-bar-text-color: black;
     $nav-bar-link-hover-color: #313131;
     $row-bg-color: $default-color;
@@ -196,15 +196,15 @@ $session-offline-indicator-bg-color: #ff0000;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-intro-minheight: 430px;
     $homepage-intro-shade-color:rgba(255,255,255,0.45);
-    $homepage-intro-bg: url(../assets/img/banners/hero-banner-birds.jpg);
+    $homepage-intro-bg: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2Fhero-banner-birds.jpg?alt=media&token=be6f0e1c-06e9-46d5-810d-fd01ee9948aa);
     $homepage-hero-bg-offset: -550px;
     $homepage-intro-color:#000;
     $homepage-intro-shade-link-color: black;
-    $homepage-hero-bg-img: url(../assets/img/banners/hero-bg-shanshui2.jpg)!important;
+    $homepage-hero-bg-img: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2Fhero-bg-shanshui2.jpg?alt=media&token=924c8985-910a-4b36-88a3-962acdedae91)!important;
     $offline-quote-bg-color: #000;
 
     //dashboard profile card
-    $profile-bg-img-url: url("../assets/img/banners/profilecard-light.jpg");
+    $profile-bg-img-url: url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fprofilecard-light.jpg?alt=media&token=2e35db9e-bfdc-40b0-b3c9-c9aecb1ba391");
     $profile-card-bg-color:#fff;
     $profile-card-text-color: #000;
     $profile-button-color: #1e1e1e;
@@ -220,7 +220,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $card-mat-label-color: black;
     $card-text-muted: black;
     $card-link-text-color: black;
-    $session-card-bg-img: url("../assets/img/banners/session-card-bw-dragon.jpg");
+    $session-card-bg-img: url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fsession-card-bw-dragon.jpg?alt=media&token=6b772d59-f8c4-46c8-9daa-5b7c8f10e647");
 
     //booking tables
     $table-bg-color:#fff;
@@ -257,7 +257,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $default-highlight-color: #ccc;
     $nav-bar-color: $default-color; 
     $nav-bar-text-color: white;
-    $nav-bar-logo: url(../assets/img/banners/HBCLogoWhite.png);
+    $nav-bar-logo: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Flogo%2FHBCLogoWhite.png?alt=media&token=7b2b9bcb-aab3-4833-80bd-e9d72c9b11d0);
     $nav-bar-link-hover-color: white;
     $row-bg-color: $default-color;
     $section-header-text-color: white;
@@ -274,15 +274,15 @@ $session-offline-indicator-bg-color: #ff0000;
     $homepage-hero-bg-img: '';
     $homepage-intro-minheight: 430px;
     $homepage-intro-shade-color:rgba(255,255,255,0);
-    $homepage-intro-bg: url(../assets/img/banners/hero-banner-deathstar.jpg);
+    $homepage-intro-bg: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2Fhero-banner-deathstar.jpg?alt=media&token=412c6796-5a8a-468a-af8b-22df659a95c7);
     $homepage-hero-bg-offset: -550px;
     $homepage-intro-color:#fff;
     $homepage-intro-shade-link-color: white; 
-    $homepage-hero-bg-img: url(../assets/img/banners/hero-bg-stormtrooper.jpg)!important;
+    $homepage-hero-bg-img: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2Fhero-bg-stormtrooper.jpg?alt=media&token=a0d26f48-8e3a-4975-88b8-7830cda93d94)!important;
     $offline-quote-bg-color: #000;
 
     //dashboard profile card
-    $profile-bg-img-url: url("../assets/img/banners/profilecard-darthvader.jpg");
+    $profile-bg-img-url: url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fprofilecard-darthvader.jpg?alt=media&token=beb6a11b-cd37-4298-9954-80a039176946");
     $profile-card-bg-color:$default-color;
     $profile-card-text-color: #fff;
     $profile-button-color: black;
@@ -298,7 +298,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $card-mat-label-color: white;
     $card-text-muted: #b4b4b4;
     $card-link-text-color: white;
-    $session-card-bg-img:url("../assets/img/banners/session-card-starship.jpg");
+    $session-card-bg-img:url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fsession-card-starship.jpg?alt=media&token=59bb1ea2-ad7a-42be-8818-22f5f7685d57");
 
     //booking tables
     $table-bg-color: $default-color;
@@ -336,7 +336,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $default-highlight-color: #ccc;
     $nav-bar-color: $default-color; 
     $nav-bar-text-color: black;
-    $nav-bar-logo: url(../assets/img/banners/HBCLogoBlack.png);
+    $nav-bar-logo: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Flogo%2FHBCLogoBlack.png?alt=media&token=7a6a4c61-c009-4daa-b28e-dcaff3641b9a);
     $nav-bar-link-hover-color: white;
     $row-bg-color: #fff;
     $section-header-text-color: black;
@@ -352,15 +352,15 @@ $session-offline-indicator-bg-color: #ff0000;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-intro-minheight: 430px;
     $homepage-intro-shade-color:rgba(0,0,0,0.3);
-    $homepage-intro-bg: url(../assets/img/banners/hero-banner-bumblebeecar.jpg);
+    $homepage-intro-bg: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2Fhero-banner-bumblebeecar.jpg?alt=media&token=7c6dda6e-67ff-4f6f-ab6c-494392d31022);
     $homepage-hero-bg-offset: -150px;
     $homepage-intro-color:#fff;
     $homepage-intro-shade-link-color: white; 
-    $homepage-hero-bg-img: url(../assets/img/banners/hero-bg-bumblebee.jpg)!important;
+    $homepage-hero-bg-img: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2Fhero-bg-bumblebee.jpg?alt=media&token=884ca78e-60ee-436b-a458-bcee806995fb)!important;
     $offline-quote-bg-color: #000;
 
     //dashboard profile card
-    $profile-bg-img-url: url("../assets/img/banners/profilecard-transformers.jpg");
+    $profile-bg-img-url: url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fprofilecard-transformers.jpg?alt=media&token=6e2da389-a726-4ec8-99af-843261c3ddd5");
     $profile-card-bg-color:$default-color;
     $profile-card-text-color: #000;
     $profile-button-color: #bd8406;
@@ -376,7 +376,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $card-mat-label-color: black;
     $card-text-muted: #b4b4b4;
     $card-link-text-color: black;
-    $session-card-bg-img:url("../assets/img/banners/session-card-eye.jpg");
+    $session-card-bg-img:url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fsession-card-eye.jpg?alt=media&token=c5a60e46-5d76-4f20-81ec-c6724089d991");
 
     //booking tables
     $table-bg-color: #fff;

@@ -87,7 +87,7 @@ export class GlobalConstants {
         'image/apng', 'image/gif', 'image/jpeg', 'image/png'
     ];
     public static imageMaxSizeInKb = 50;
-    public static imageDefaultAvatar = "/assets/img/avatars/avatar-mario.jpg";
+    public static imageDefaultAvatar = "https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Favatars%2Favatar-mario.jpg?alt=media&token=42b4efea-6160-4757-85db-e376c0b7e24f";
 
 
     //Good bye lines

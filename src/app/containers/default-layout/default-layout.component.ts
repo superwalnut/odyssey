@@ -32,7 +32,7 @@ export class DefaultLayoutComponent {
         this.avatarUrl = user.avatarUrl;
       }
       else {
-        this.avatarUrl = "assets/img/avatars/avatardefault-mario.jpg";
+        this.avatarUrl = "https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Favatars%2Favatardefault-mario.jpg?alt=media&token=aea37ebe-b77f-427d-98bb-1671ef44797c";
       }
 
     });
