@@ -25,6 +25,7 @@ import { EventLoggerService } from '../../services/event-logger.service';
 import { EventLogger } from '../../models/event-logger';
 import { User } from '../../models/user';
 import { combineLatest } from 'rxjs';
+import { group } from 'console';
 
 
 @Component({
@@ -175,7 +176,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
       this.familyBookingUsers.push(my);
       if (users) {
         users.forEach(u => {
-          var fu = { userDocId: u.docId, name: u.name, isFamily: true, avatarUrl: u.avatarUrl } as LocalBookingUser;
+          var fu = { userDocId: u.docId, name: u.name, isFamily: true, avatarUrl: u.avatarUrl, isChild: u.isChild } as LocalBookingUser;
           this.familyBookingUsers.push(fu);
         });
       }
@@ -333,7 +334,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
 export class BookingDialog {
   constructor(
     public dialogRef: MatDialogRef<BookingDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: BookingDialogData, private mailgunService: MailgunService, private bookingPersonService: BookingPersonService, private accountService: AccountService) { }
+    @Inject(MAT_DIALOG_DATA) public data: BookingDialogData, private mailgunService: MailgunService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private helpService: HelperService) { }
 
   hasError: boolean;
   errorMessage: string;
@@ -348,6 +349,8 @@ export class BookingDialog {
   meetBasePoints: boolean;
 
   ngOnInit() {
+
+    console.log(this.data.group);
 
     this.hasCredit = this.data.creditBalance >= 0;
     this.lowCredit = this.data.creditBalance <= 20;
@@ -384,16 +387,26 @@ export class BookingDialog {
     console.log("delete ssss ", result.toDelete);
 
     //2. calculate price for added recored;
+    let i = 0;
     result.toAdd.forEach(u => {
-      if (u.isFamily) { //Family
-        u.amount = this.data.isCreditUser ? GlobalConstants.rateCredit : GlobalConstants.rateCash;
-        if (this.isCommitteeCheck(u.userDocId)) {
-          u.amount = 0; //if committee reset it to 0;
-        }
-      } else { //Friends
-        u.amount = GlobalConstants.rateCash;
-      }
+      var price = this.helpService.findRates(this.data.isCreditUser, this.data.isCommittee, !u.isFamily, this.data.group, i);
+      console.log("🚀 ~ file: booking.component.ts ~ line 393 ~ BookingDialog ~ onConfirmClick ~ price", price)
+
+      u.amount = price;
+      // if (u.isFamily) { //Family
+      //   u.amount = price;
+      //   // u.amount = this.data.isCreditUser ? GlobalConstants.rateCredit : GlobalConstants.rateCash;
+      //   // if (this.isCommitteeCheck(u.userDocId)) {
+      //   //   u.amount = 0; //if committee reset it to 0;
+      //   // }
+      // } else { //Friends
+      //   u.amount = GlobalConstants.rateCash;
+      // }
+      i++;
+
     });
+
+    console.log("🚀 ~ file: booking.component.ts ~ line 392 ~ BookingDialog ~ onConfirmClick ~ price", result.toAdd);
 
     var finalBookingPersonsToAdd = this.mapToBookingPersons(result.toAdd);
     var finalBookingPersonsToDelete = this.mapToBookingPersons(result.toDelete);
@@ -496,19 +509,11 @@ export class BookingDialog {
     console.log('calculateTotal: ', this.data.familyBookingUsers);
     let i = 0; let amount = 0;
     selectedfamilyBookingUsers.forEach(u => {
-
-      if (i == 0) {
-        u.amount = GlobalConstants.rateCredit;
-      }
-      else {
-        u.amount = GlobalConstants.rateFamily;
-      }
-
+      u.amount = this.helpService.findRates(this.data.isCreditUser, this.isCommitteeCheck(u.userDocId), !u.isFamily, this.data.group, i);
       if (!this.data.isCreditUser) u.amount = GlobalConstants.rateCash;
-
-      if (this.isCommitteeCheck(u.userDocId)) {
-        u.amount = 0; //if committee reset it to 0;
-      }
+      // if (this.isCommitteeCheck(u.userDocId)) {
+      //   u.amount = 0; //if committee reset it to 0;
+      // }
       amount += u.amount;
       i++;
     });

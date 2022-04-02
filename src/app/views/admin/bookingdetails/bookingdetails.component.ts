@@ -22,6 +22,8 @@ import { EventLoggerService } from "../../../services/event-logger.service";
 import { EventLogger } from '../../../models/event-logger';
 import { LocalBookingUser } from '../../../models/custom-models';
 import { GlobalConstants } from '../../../common/global-constants';
+import { HelperService } from "../../../common/helper.service";
+
 import { MatSelectChange} from "@angular/material/select";
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import { combineLatest, forkJoin, of } from 'rxjs';
@@ -73,7 +75,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   isFriend:boolean;
   isParentCreditUser:boolean;
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialog, private snackBar: MatSnackBar, public dialog: MatDialog, private groupService: GroupService, private groupTransactionService: GroupTransactionService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute,private eventLogService: EventLoggerService) { super() }
+  constructor(private fb: FormBuilder, private dialogRef: MatDialog, private snackBar: MatSnackBar, public dialog: MatDialog, private groupService: GroupService, private groupTransactionService: GroupTransactionService, private bookingService: BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private creditService: CreditService, private activatedRoute: ActivatedRoute,private eventLogService: EventLoggerService, private helpService: HelperService) { super() }
 
   ngOnInit(): void {
     this.bookingDocId = this.activatedRoute.snapshot.params.id;
@@ -234,18 +236,25 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   }
 
   getPaymentAmount(userDocId: string, isCreditUser:boolean, isFriend:boolean): number {
+    let amount = 0;
     let committees = this.group.committees;
-    let found = committees.find(c => c.docId == userDocId);
-    console.log('committees found: ', found);
+    let comitteeUser = committees.find(c => c.docId == userDocId);
+    console.log('committees found: ', comitteeUser);
 
-    if (found) { 
+    let price = this.helpService.findRates(isCreditUser, comitteeUser != null, isFriend, this.group, 0);
+    
+    if (comitteeUser) { 
       return isFriend ? GlobalConstants.rateCash : 0; 
     } // committee is free of charge
 
-    if (isCreditUser) {
-      return isFriend ? GlobalConstants.rateCash : GlobalConstants.rateCredit;
-    }
-    return GlobalConstants.rateCash;
+    // if (isCreditUser) {
+    //   amount = isFriend ? GlobalConstants.rateCash : GlobalConstants.rateCredit;
+    // } else {
+    //   amount = GlobalConstants.rateCash;
+    // }
+    amount = price;
+
+    return amount;
   }
 
   getBookingDetail() {

@@ -18,6 +18,7 @@ export class LocalBookingUser {
   isMyBooking: boolean;
   isFamily: boolean;
   isForSale: boolean;
+  isChild: boolean;
   note: string;
   avatarUrl: string;
   isPaid: boolean;

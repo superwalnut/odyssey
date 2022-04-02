@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import * as CryptoJS from 'crypto-js';
+import { Group } from '../models/group';
+import { GlobalConstants } from '../common/global-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -175,5 +177,20 @@ export class HelperService {
     } catch (e) {
       console.log(e);
     }
+  }
+
+  //only used by saturday happy hour - HBCoin holder family has special price (only apply to more than 1 member)
+  findRates(isCreditUser:boolean, isCommittee:boolean, isFriend:boolean, group: Group, familyCount:number) {
+    if (isFriend || !isCreditUser) return GlobalConstants.rateCash;
+    if (isCommittee) return 0;
+
+    //family count is ignored for now, same price apply to all HBCoin family members
+    var amount = 0;
+    var isSaturday = group.eventStartDay.toLowerCase().includes('sat');
+
+    //HBCoin users
+    amount = isSaturday ? GlobalConstants.rateHappyHour : GlobalConstants.rateCredit;
+    return amount;
+
   }
 }
