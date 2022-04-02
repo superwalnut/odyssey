@@ -338,6 +338,7 @@ ul.simple-horizontal-list {
 }
 
 .hero2 {
+  display: flex;
   background-color: black;
   margin-top: -1px; // to compensate container gap
   //background: rgb(57,3,75);
@@ -350,7 +351,7 @@ ul.simple-horizontal-list {
 
   min-height: 500px;
   text-align: center;
-  padding: 90px 0 70px 0;
+  //padding: 90px 0 70px 0;
   button {
     padding: 8px 40px;
     font-size: 18px;
