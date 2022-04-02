@@ -185,7 +185,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
       groupDocId: this.booking.groupDocId,
       bookingDesc: this.booking.weekDay,
       userId: user[0].docId,
-      userDisplayName: user[0].name,
+      userDisplayName: this.isFriend ? 'Friend ('+ user[0].name + ')' : user[0].name,
       avatarUrl: user[0].avatarUrl ? user[0].avatarUrl : GlobalConstants.imageDefaultAvatar,
       //paymentMethod: this.selectedPaymentMethod, //Credit | Cash | Bank Transfer`
       paymentMethod: this.isParentCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
