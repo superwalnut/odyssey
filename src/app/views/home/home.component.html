@@ -6,13 +6,13 @@
   <div class="container-fluid">
     <div class="row light">
       <div class="col">
-        <div class="hero2 gradient-bg-animation">
-          <!-- <h1 class="rainbow homepage-quote">{{ quotes }}</h1> -->
-          <h1 [ngClass]="{'rainbow homepage-quote-chinese':isChineseQuote, 'rainbow homepage-quote':!isChineseQuote}">{{ quotes }}</h1>
-          <button mat-raised-button color="accent" class=" homepage-booking-button" routerLink="/groups">Book badminton sessions</button>
+        <!-- <div class="hero2 gradient-bg-animation"> -->
+        <div class="hero2" routerLink="/groups" style="cursor: pointer;">
+          <!-- <h1 [ngClass]="{'rainbow homepage-quote-chinese':isChineseQuote, 'rainbow homepage-quote':!isChineseQuote}">{{ quotes }}</h1> -->
+          <!-- <button mat-raised-button color="accent" class=" homepage-booking-button" routerLink="/groups">Book badminton sessions</button>
           <div class="quote-button">
             <mat-icon (click)="changeQuote()">autorenew</mat-icon>
-          </div>
+          </div> -->
         </div>
 
       </div>
@@ -33,7 +33,7 @@
               </ul>
   
               <!-- <p><button mat-raised-button color="accent" routerLink="/groups">Book badminton sessions</button></p> -->
-              <p>$15 pay by <a routerLink="/termsconditions" target="_blank">HBCoin</a> or $17 pay by cash</p>
+              <p>$15 pay by <a routerLink="/termsconditions" target="_blank">HBCoin</a> or $18 pay by cash</p>
   
               <div class="socialicons">
               
