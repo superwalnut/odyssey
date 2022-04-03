@@ -15,9 +15,13 @@
   <div class="row">
     <div class="col-sm">
       <div class="profile-card">
+        <div class="badges">
+          <img src="{{ user.isCreditUser ? 'https://ik.imagekit.io/hbc666/hbc/misc/HBCoinBadge_S1zXPjjIa.png' : 'https://ik.imagekit.io/hbc666/hbc/misc/CashBadge_pGy17fceE.png'}}" title="{{ user.isCreditUser ? 'HBCoin User' : 'Cash User'}}"/>
+        </div>
+        
+
         <div class="profile-bg">
           <div class="profile-avatar">
-            <!-- <img src="https://usercontent2.hubstatic.com/11352039.jpg"> -->
             <a routerLink="/settings/profile">
             <img src="{{avatarUrl}}" alt=""/></a>
           </div>
@@ -44,8 +48,8 @@
             </span>
           </div>
           <div class="profile-bio">
-            <img src="{{ user.isCreditUser ? 'https://ik.imagekit.io/hbc666/hbc/misc/HBCoinBadge_S1zXPjjIa.png' : 'https://ik.imagekit.io/hbc666/hbc/misc/CashBadge_pGy17fceE.png'}}" title="{{ user.isCreditUser ? 'HBCoin User' : 'Cash User'}}"/>
-            <div class="profile-bank-details" >
+            <button routerLink="/groups" class="rgb">BOOK NOW</button>
+              <div class="profile-bank-details" >
               <h3 (click)="showDetail=!showDetail">Top up</h3>
               <div class="detail-list" *ngIf="showDetail">
                 <ul>

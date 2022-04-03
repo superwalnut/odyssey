@@ -777,6 +777,14 @@ $profile-bg-img-height: 180px;
   box-shadow: $box-shadow;
   margin-bottom: 24px;
 
+  .badges {
+    position: absolute;
+    top:-13px;
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+  }
+
   .profile-bg {
     display: flex;
     position: relative;
@@ -847,6 +855,7 @@ $profile-bg-img-height: 180px;
     }
     .profile-bio {
       min-height: 70px;
+      
     }
 
     .profile-links {
