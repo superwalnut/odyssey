@@ -26,7 +26,17 @@ export class GroupService extends FirestoreBaseService<Group> {
   }
 
   public getGroups() {
-    return super.getAll();
+    //return super.getAll();
+    return this.firestore.collection('groups', q => q.orderBy('sortOrder', 'asc')).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(x => {
+          var group = x.payload.doc.data() as Group;
+          return {
+            ...group,
+            docId: x.payload.doc.id
+          } as Group;
+        });
+      }));
   }
 
   public getGroupByStatus(isClosed: boolean) {
