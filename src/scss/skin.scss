@@ -9,8 +9,8 @@ $font-news: 'Abril Fatface', cursive;//Time new roman like font - brodayway like
 $font-bebas: 'Bebas Neue', cursive;
 $font-chiense-noto: 'Noto Serif SC', serif; //chinese font
 $font-title: $font-anton; 
-$hbc-logo-white: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Flogo%2FHBCLogoWhite.png?alt=media&token=7b2b9bcb-aab3-4833-80bd-e9d72c9b11d0);
-$hbc-logo-black: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Flogo%2FHBCLogoBlack.png?alt=media&token=7a6a4c61-c009-4daa-b28e-dcaff3641b9a);
+$hbc-logo-white: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoWhite_bO0tIZDW0.png);
+$hbc-logo-black: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoBlack_Bp_C59cGd.png);
 
 //Offline page 
 $offline-bg-image: url(../assets/img/banners/offlinebg2.jpg) ;
@@ -103,7 +103,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $global-link-color: #20b0e3;
     $default-highlight-color: #c52274;
     $nav-bar-color:$default-color; 
-    $nav-bar-logo: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Flogo%2FHBCLogoWhite.png?alt=media&token=7b2b9bcb-aab3-4833-80bd-e9d72c9b11d0);
+    $nav-bar-logo: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoWhite_bO0tIZDW0.png);
     $nav-bar-text-color: white;
     $nav-bar-link-hover-color: white;
     $row-bg-color: white;
@@ -133,7 +133,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $offline-quote-bg-color: $nav-bar-color;
 
     //dashboard profile card
-    $profile-bg-img-url: url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fprofilecard-easter-bg.jpg?alt=media&token=3e9c94fd-28bf-415f-9ad6-c65a5e4380ec");
+    $profile-bg-img-url: url("https://ik.imagekit.io/hbc666/hbc/banner/profilecard-easter-bg_ntKMZ8FPk.jpg");
     $profile-card-bg-color:#ffffff;
     $profile-card-text-color: black;
     $profile-button-color: $default-color;
@@ -149,7 +149,7 @@ $session-offline-indicator-bg-color: #ff0000;
     $card-table-text-color: black;
     $card-mat-label-color: rgb(14, 13, 13);
     $card-text-muted: #656363;
-    $session-card-bg-img:url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fsession-card-easter.jpg?alt=media&token=de0e3ef5-3a81-45f0-8c21-8fc76b67074d");
+    $session-card-bg-img:url("https://ik.imagekit.io/hbc666/hbc/banner/session-card-easter_cdEM-CWPr.jpg");
 
     //Modal dialog
     $modal-content-background-color: white;

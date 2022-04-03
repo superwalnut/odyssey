@@ -64,8 +64,8 @@ export class DashboardComponent implements OnInit {
     this.accountService.getUserByDocId(this.loggedInUser.docId).subscribe(u=>{
       this.user = u;
       this.creditImageSrc = u.isCreditUser ? 
-        "https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2FHBCoin.png?alt=media&token=e2802b0a-8c0a-428c-9ef0-63120b8cd5fd" : 
-        "https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2FHBCredit.jpg?alt=media&token=aa17776b-9649-41ec-9f36-f54d69a6f2fd";
+        "https://ik.imagekit.io/hbc666/hbc/banner/HBCoin_rbZzh3XHyd.png" : 
+        "https://ik.imagekit.io/hbc666/hbc/banner/HBCredit_qj2_LA3Pr.jpg";
       console.log(this.user);
     })
   }
