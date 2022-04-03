@@ -215,6 +215,66 @@ ul.simple-horizontal-list {
   }
 }
 
+.hero-announcement {
+  display: flex;
+  background-color: black;
+}
+
+
+.hero {
+  //display: flex;
+  background-color: black;
+  margin-top: -1px; // to compensate container gap
+  //background: rgb(57,3,75);
+  //background: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
+  //background: $homepage-hero-gradient;
+  background-image: $homepage-hero-bg-img;
+  background-repeat: no-repeat;
+  //background-position: center top;
+  background-size: cover;
+
+  min-height: 500px;
+  text-align: center;
+  padding: 90px 0 70px 0;
+  button {
+    padding: 8px 40px;
+    font-size: 18px;
+  }
+  h1 {
+    //font: 800 45px 'Roboto', sans-serif!important;
+
+    margin-left: 45px;
+    margin-right: 45px;
+    color: $homepage-hero-text-color;
+    padding: 60px 0 30px 0;
+    //font-family: 'Roboto', sans-serif!important;
+    &.homepage-quote {
+      font: 700 47px $font-bebas !important;
+      letter-spacing: 1px !important;
+    }
+    &.homepage-quote-chinese {
+      font: 900 40px $font-chiense-noto !important;
+    }
+  }
+
+  .quote-button {
+    text-align: center;
+    color: #424141;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 20px;
+    &:hover {
+      color: wheat;
+      cursor: pointer;
+    }
+  }
+}
+
+
 .homepage-booking-button {
   background-color: $homepage-booking-button-bg-color !important;
   color: $homepage-booking-button-text-color !important;
@@ -330,65 +390,13 @@ ul.simple-horizontal-list {
 //     margin-bottom: 5px;
 //   }
 // }
-.hero {
-  font-family: "Dela Gothic One", cursive !important;
-  font-size: 38px !important;
-  line-height: 3rem;
-  margin-top: 30px !important;
-}
+// .hero {
+//   font-family: "Dela Gothic One", cursive !important;
+//   font-size: 38px !important;
+//   line-height: 3rem;
+//   margin-top: 30px !important;
+// }
 
-.hero2 {
-  display: flex;
-  background-color: black;
-  margin-top: -1px; // to compensate container gap
-  //background: rgb(57,3,75);
-  //background: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
-  //background: $homepage-hero-gradient;
-  background-image: $homepage-hero-bg-img;
-  background-repeat: no-repeat;
-  //background-position: center top;
-  background-size: cover;
-
-  min-height: 500px;
-  text-align: center;
-  //padding: 90px 0 70px 0;
-  button {
-    padding: 8px 40px;
-    font-size: 18px;
-  }
-  h1 {
-    //font: 800 45px 'Roboto', sans-serif!important;
-
-    margin-left: 45px;
-    margin-right: 45px;
-    color: $homepage-hero-text-color;
-    padding: 60px 0 30px 0;
-    //font-family: 'Roboto', sans-serif!important;
-    &.homepage-quote {
-      font: 700 47px $font-bebas !important;
-      letter-spacing: 1px !important;
-    }
-    &.homepage-quote-chinese {
-      font: 900 40px $font-chiense-noto !important;
-    }
-  }
-
-  .quote-button {
-    text-align: center;
-    color: #424141;
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    bottom: 20px;
-    &:hover {
-      color: wheat;
-      cursor: pointer;
-    }
-  }
-}
 .group-card {
   cursor: pointer;
   .card-title {

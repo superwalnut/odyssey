@@ -2,20 +2,24 @@
 <app-public-header></app-public-header>
 
 <div class="app footer-fixed">
-
   <div class="container-fluid">
-    <div class="row light">
+    <div class="row" *ngIf="enableHeroAnnouncement">
       <div class="col">
-        <!-- <div class="hero2 gradient-bg-animation"> -->
-        <div class="hero2" routerLink="/groups" style="cursor: pointer;">
-          <!-- <h1 [ngClass]="{'rainbow homepage-quote-chinese':isChineseQuote, 'rainbow homepage-quote':!isChineseQuote}">{{ quotes }}</h1> -->
-          <!-- <button mat-raised-button color="accent" class=" homepage-booking-button" routerLink="/groups">Book badminton sessions</button>
+        <div class="hero-announcement" routerLink="/groups" style="cursor: pointer;">
+          <img src="https://ik.imagekit.io/hbc666/hbc/hero/SatHappyHour_mh10XGaSI.jpg" alt="" style="width:100%;object-fit: cover;">
+        </div>
+      </div>
+    </div>
+
+    <div class="row light" *ngIf="!enableHeroAnnouncement">
+      <div class="col">
+        <div class="hero gradient-bg-animation">
+          <h1 [ngClass]="{'rainbow homepage-quote-chinese':isChineseQuote, 'rainbow homepage-quote':!isChineseQuote}">{{ quotes }}</h1>
+          <button mat-raised-button color="accent" class=" homepage-booking-button" routerLink="/groups">Book badminton sessions</button>
           <div class="quote-button">
             <mat-icon (click)="changeQuote()">autorenew</mat-icon>
-          </div> -->
-          <img src="https://ik.imagekit.io/hbc666/hbc/hero/SatHappyHour_mh10XGaSI.jpg" alt="" style="width:100%;object-fit: cover;">
+          </div>
         </div> 
-
       </div>
     </div>
 
@@ -65,8 +69,6 @@
         </div>
       </div>
     </div>
-
-   
   </div>
 </div>
 

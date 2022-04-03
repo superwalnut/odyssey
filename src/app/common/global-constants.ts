@@ -1,6 +1,8 @@
 // Adding all global constants here
 export class GlobalConstants {
 
+    public static enableHeroAnouncement = true;
+
     public static hbCoinIcon: string = "monetization_on";
     public static cashIcon: string = "payments"
     public static bankIcon: string = "atm"

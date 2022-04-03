@@ -52,12 +52,23 @@
         }
       }
     
-      // .hero2 {
-      //   background-position-y: 50px;
-      //   background-position-x: -40px;
-      //   background-size: 900px 400px;
-      // }
-      
+      .hero-announcement {
+        min-height: 300px;
+      }
+
+      .hero {
+        min-height: 300px;
+        padding: 10px 0 60px 0;
+        background-image: $homepage-hero-bg-img-mobile;
+        h1 {
+          padding-top: 10px;
+          font: 700 46px $font-bebas!important;
+          letter-spacing: 1px!important;
+          line-height: 130%!important;
+        }
+        
+      }
+
       .homepage-intro {
         background-position-x: $homepage-hero-bg-offset;
         .intro-shade {
@@ -86,18 +97,7 @@
         
       }
     
-      .hero2 {
-        min-height: 300px;
-        //padding: 10px 0 60px 0;
-        background-image: $homepage-hero-bg-img-mobile;
-        h1 {
-          padding-top: 10px;
-          font: 700 46px $font-bebas!important;
-          letter-spacing: 1px!important;
-          line-height: 130%!important;
-        }
-        
-      }
+      
     
       .group-card {
         margin: 15px;
