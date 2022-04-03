@@ -712,7 +712,8 @@ ul.hpbooking {
 
 .gradient-bg-animation {
   background: linear-gradient(-45deg, $hero-color1, $hero-color2, $hero-color3, $hero-color4);
-  background-size: 400% 400%;
+  //background-size: 400% 400%;
+  background-size: $homepage-hero-bg-size-percent;
   animation: gradient 15s ease infinite;
 }
 

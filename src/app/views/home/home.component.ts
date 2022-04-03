@@ -35,8 +35,8 @@ export class HomeComponent extends BaseComponent implements OnInit {
   isChineseQuote:boolean;
   myBookings:MyBooking[]=[];
   domain:string=environment.domain;
-  enableHeroAnnouncement = GlobalConstants.enableHeroAnouncement;
-  
+  //enableAnnouncement = GlobalConstants.enableHeroAnouncement;
+  showQuotesAndButton = GlobalConstants.showHeroQuotesAndButton;
   constructor(private bookingService:BookingsService, private bookingPersonService: BookingPersonService, private accountService: AccountService, private groupService: GroupService, private helperService: HelperService) { super() }
 
   ngOnInit(): void {

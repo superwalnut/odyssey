@@ -11,6 +11,7 @@ $font-chiense-noto: 'Noto Serif SC', serif; //chinese font
 $font-title: $font-anton; 
 $hbc-logo-white: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoWhite_bO0tIZDW0.png);
 $hbc-logo-black: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoBlack_Bp_C59cGd.png);
+$homepage-hero-bg-size-percent: 110% 110%;
 
 //Offline page 
 $offline-bg-image: url(../assets/img/banners/offlinebg2.jpg) ;
@@ -127,6 +128,7 @@ button.rgb {
     $homepage-booking-button-bg-color: #213cb3;
     $homepage-booking-button-text-color: white;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
+    $homepage-hero-bg-size-percent: 400% 400%;
     $homepage-hero-bg-img: '';
     $homepage-intro-minheight: 430px;
     $homepage-intro-shade-color:rgba(0,0,0,0.1);
@@ -202,10 +204,12 @@ button.rgb {
     $homepage-booking-button-bg-color: #b2ed42;
     $homepage-booking-button-text-color: Black;
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
+    //$homepage-hero-bg-size-percent: 400% 400%;
     // $homepage-hero-bg-img: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2FSatHappyHour.jpg?alt=media&token=fc254f48-fa01-4aa2-be23-df2ebb59ec74);
     // $homepage-hero-bg-img-mobile: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2FSatHappyHour-mobile.jpg?alt=media&token=06af1f15-a6e3-4cb5-8809-f286e7fc1f8d);
-    $homepage-hero-bg-img: '';
-    $homepage-hero-bg-img-mobile: '';
+    $homepage-hero-bg-img: url(https://ik.imagekit.io/hbc666/hbc/hero/SatHappyHour_mh10XGaSI.jpg)!important;
+    $homepage-hero-bg-img-mobile: url(https://ik.imagekit.io/hbc666/hbc/hero/SatHappyHour-mobile_wUw7J7970.jpg)!important;
+    $homepage-hero-bg-size-percent: 100% 100%;
     $homepage-intro-minheight: 430px;
     $homepage-intro-color:#fff;
     $homepage-intro-shade-color:rgba(0,0,0,0.6);
@@ -366,6 +370,7 @@ button.rgb {
     $homepage-intro-minheight: 430px;
     $homepage-intro-shade-color:rgba(255,255,255,0);
     $homepage-intro-bg: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2Fhero-banner-deathstar.jpg?alt=media&token=412c6796-5a8a-468a-af8b-22df659a95c7);
+    
     $homepage-hero-bg-offset: -550px;
     $homepage-intro-color:#fff;
     $homepage-intro-shade-link-color: white; 
