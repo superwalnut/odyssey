@@ -585,7 +585,18 @@ body div.app {
     }
     .alert-body {
         flex: auto;
-        padding: 20px;
+        padding: 10px;
+        font-size: 14px;
+
+        ul {
+            margin:0;
+            margin-left:10px;
+            padding: 10px ;
+            li {
+                margin: 0;
+                padding: 0;
+            }
+        }
     }
   }
 
