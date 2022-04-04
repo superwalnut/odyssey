@@ -38,6 +38,12 @@ export class BookingsService extends FirestoreBaseService<Booking>{
     return super.getByDocId(bookingDocId);
   }
 
+  //for reporting only
+  public getAll() {
+    return super.getAll();
+  }
+
+
   public getUnReconciledBooking(groupDocId: string) {
     return this.firestore.collection('bookings', q => q.where('groupDocId', '==', groupDocId).where('reconciled', '==', false).orderBy('eventStartDateTime', 'desc')).snapshotChanges().pipe(
       map(actions => {

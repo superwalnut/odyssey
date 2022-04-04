@@ -1,49 +1,57 @@
 <div class="container">
-    <div class="row" >
-      <div class="col-md-12 mx-auto">
-          <h1 *ngIf="!isGod">God only</h1>
-        <div class="card" *ngIf="isGod">
-          <div class="card-body p-4">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <h1 *ngIf="!isGod">God only</h1>
+            <h1 class="section-heading">Download CSV</h1>
 
-                <h1>Download CSV</h1>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header">
-                                    User credit - Whole table
-                                </div>
-                                <div class="card-body">
-                                    <button mat-raised-button color="primary" (click)="downloadUserCredits()">Download</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header">
-                                    Group transactions - Whole table
-                                </div>
-                                <div class="card-body">
-                                    <button mat-raised-button color="primary" (click)="downloadGroupTransactions()">Download</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header">
-                                    Booking person - Whole table
-                                </div>
-                                <div class="card-body">
-                                    <button mat-raised-button color="primary" (click)="downloadBookingPersons()">Download</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p>
+                <b>groups.docId</b><br>
+
+                DhmtWcbjRiA4cgCVUUEZ = Friday<br>
+                NEhr4Fv15b7dJKemr5QW = Tuesday<br>
+                socRbQLebrkSS16RIGcR = Saturday<br>
+            </p>
+            <table class="table table-sm" *ngIf="isGod">
+                <thead>
+                <tr>
+                    <th scope="col">Table</th>
+                    <th>Desc</th>
+                    <th scope="col">Download</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">bookingPersons</td>
+                        <td></td>
+                        <td scope="row">
+                            <button mat-raised-button (click)="downloadBookingPersons()">Download</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">bookings</td>
+                        <td>bookingPersons.bookingDocId = bookings.docId</td>
+                        <td scope="row">
+                            <button mat-raised-button (click)="downloadBookings()">Download</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row">credits</td>
+                        <td></td>
+                        <td>
+                            <button mat-raised-button (click)="downloadUserCredits()">Download</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>groupTransactions</td>
+                        <td></td>
+                        <td>
+                            <button mat-raised-button (click)="downloadGroupTransactions()">Download</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
-
     </div>
 </div>
   

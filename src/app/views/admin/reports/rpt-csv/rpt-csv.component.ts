@@ -6,6 +6,7 @@ import { Credit } from '../../../../models/credit';
 import { Group } from '../../../../models/group';
 import { AccountService } from '../../../../services/account.service';
 import { BookingPersonService } from '../../../../services/booking-person.service';
+import { BookingsService } from '../../../../services/bookings.service';
 import { BookingScheduleService } from '../../../../services/booking-schedule.service';
 import { CreditService } from '../../../../services/credit.service';
 import { GroupTransactionService } from '../../../../services/group-transaction.service';
@@ -33,6 +34,7 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
     private snackBar:MatSnackBar, 
     private groupTransactionService:GroupTransactionService,
     private groupService:GroupService,
+    private bookingsService: BookingsService,
     private bookingPersonService:BookingPersonService) { 
     super();
   }
@@ -115,7 +117,7 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
             parentUsername: g.parentUserDisplayName,
             isForSale: g.isForSale,
             amount: g.amount,
-            avatarUrl: g.avatarUrl,
+            //avatarUrl: g.avatarUrl,
             isPaid: g.isPaid,
             createdDate : this.pipe.transform(g.createdOn.toDate(), 'short'),
             updatedDate: g.updatedOn?this.pipe.transform(g.updatedOn.toDate(), 'short'):'',
@@ -126,6 +128,21 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
         console.log("🚀 ~ file: rpt-csv.component.ts ~ line 134 ~ RptCsvComponent ~ this.bookingPersonService.getByGroupId ~ report", report)
       });
   }
+  
+  downloadBookings() {
+    this.bookingsService.getAll().subscribe(x=> {
+      const report = x.map(g=>{
+        return {
+          docId: g.docId,
+          eventStartDateTime: g.eventStartDateTime?this.pipe.transform(g.eventStartDateTime.toDate(), 'short'):'',
+          groupDocId: g.groupDocId,
+          weekDay: g.weekDay,
+        };
+      });
+      super.downloadFile(report, 'bookings');
+    });
+  }
+
 
   selectGroupForGroupTransaction(val:string) {
     this.selectedGroupIdForGroupTransaction = val;
