@@ -19,6 +19,7 @@ import { BaseComponent } from '../../../base-component';
 })
 export class RptCsvComponent extends BaseComponent implements OnInit {
 
+  isGod: boolean;
   groups:Group[];
   selectedGroupIdForGroupTransaction:string;
   selectedGroupIdForBookingPerson:string;
@@ -28,6 +29,7 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
     private creditService:CreditService, 
     private userService:AccountService, 
     private bookignScheduleService:BookingScheduleService, 
+    private accountService: AccountService,
     private snackBar:MatSnackBar, 
     private groupTransactionService:GroupTransactionService,
     private groupService:GroupService,
@@ -36,10 +38,11 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    this.groupService.getGroups().pipe(takeUntil(this.ngUnsubscribe)).subscribe(g=>{
-      this.groups = g;
-    });
+    this.isGod = this.accountService.isGod();
+ 
+    // this.groupService.getGroups().pipe(takeUntil(this.ngUnsubscribe)).subscribe(g=>{
+    //   this.groups = g;
+    // });
   }
 
   downloadUserCredits() {
@@ -69,35 +72,29 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
   }
 
   downloadGroupTransactions() {
-    if(this.selectedGroupIdForGroupTransaction) {
-      var groupName = this.groups.find(x=>x.docId == this.selectedGroupIdForGroupTransaction).groupName;
+    //var groupName = this.groups.find(x=>x.docId == this.selectedGroupIdForGroupTransaction).groupName;
 
-      this.groupTransactionService.getByGroupId(this.selectedGroupIdForGroupTransaction).pipe(takeUntil(this.ngUnsubscribe)).subscribe(x=>{
-        const report = x.map(g=>{
-          return {
-            docId: g.docId,
-            groupDocId: g.groupDocId,
-            referenceId: g.referenceId,
-            notes: g.notes,
-            amount: g.amount,
-            paymentMethod: g.paymentMethod,
-            startDate: g.startDate?this.pipe.transform(g.startDate.toDate(), 'short'):'',
-            endDate: g.endDate?this.pipe.transform(g.endDate.toDate(), 'short'):'',
-            created : this.pipe.transform(g.created.toDate(), 'short'),
-            createdBy: g.createdBy,
-            createdByName: g.createdByDisplayName,
-            updated: g.updated?this.pipe.transform(g.updated.toDate(), 'short'):'',
-            updatedBy: g.updatedBy,
-            updatedByName: g.updatedByDisplayName,
-          };
-        });
-        this.snackBar.open(`you have successfully download the group transactions.`, null, {
-          duration: 5000,
-          verticalPosition: 'top'
-        });
-        super.downloadFile(report, `group-${groupName}-transactions`);
+    this.groupTransactionService.getAll().subscribe(x=>{
+      const report = x.map(g=>{
+        return {
+          docId: g.docId,
+          groupDocId: g.groupDocId,
+          referenceId: g.referenceId,
+          notes: g.notes,
+          amount: g.amount,
+          paymentMethod: g.paymentMethod,
+          startDate: g.startDate?this.pipe.transform(g.startDate.toDate(), 'short'):'',
+          endDate: g.endDate?this.pipe.transform(g.endDate.toDate(), 'short'):'',
+          created : this.pipe.transform(g.created.toDate(), 'short'),
+          createdBy: g.createdBy,
+          createdByName: g.createdByDisplayName,
+          updated: g.updated?this.pipe.transform(g.updated.toDate(), 'short'):'',
+          updatedBy: g.updatedBy,
+          updatedByName: g.updatedByDisplayName,
+        };
       });
-    }
+      super.downloadFile(report, `groupTransactions`);
+    });
   }
 
   downloadBookingPersons() {

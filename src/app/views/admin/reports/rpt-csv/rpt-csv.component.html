@@ -1,7 +1,8 @@
 <div class="container">
-    <div class="row">
+    <div class="row" >
       <div class="col-md-12 mx-auto">
-        <div class="card">
+          <h1 *ngIf="!isGod">God only</h1>
+        <div class="card" *ngIf="isGod">
           <div class="card-body p-4">
 
                 <h1>Download CSV</h1>
@@ -10,38 +11,30 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                    Download all user credit transactions
+                                    User credit - Whole table
                                 </div>
                                 <div class="card-body">
-                                    <button mat-raised-button color="primary" (click)="downloadUserCredits()">User Credits</button>
+                                    <button mat-raised-button color="primary" (click)="downloadUserCredits()">Download</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                    Download group transactions
+                                    Group transactions - Whole table
                                 </div>
                                 <div class="card-body">
-                                    <mat-form-field appearance="fill">
-                                        <mat-label>Group</mat-label>
-                                        <mat-select (selectionChange)="selectGroupForGroupTransaction($event.value)">
-                                          <mat-option *ngFor="let group of groups" [value]="group.docId">
-                                            {{group.groupName}}
-                                          </mat-option>
-                                        </mat-select>
-                                      </mat-form-field>
-                                    <button mat-raised-button color="primary" (click)="downloadGroupTransactions()">Group Transactions</button>
+                                    <button mat-raised-button color="primary" (click)="downloadGroupTransactions()">Download</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                    Download booking person
+                                    Booking person - Whole table
                                 </div>
                                 <div class="card-body">
-                                    <button mat-raised-button color="primary" (click)="downloadBookingPersons()">Booking Persons</button>
+                                    <button mat-raised-button color="primary" (click)="downloadBookingPersons()">Download</button>
                                 </div>
                             </div>
                         </div>

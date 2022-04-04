@@ -189,6 +189,7 @@ const routes: Routes = [
         component: RptCsvComponent,
         data:{
           title: "Download CSV",
+          roles: ["God"],
         }
       },
       {

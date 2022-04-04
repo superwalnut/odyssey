@@ -32,6 +32,17 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
     return this.create(groupTransaction);
   }
 
+  //get all for reporting purpose
+  public getAll() {
+    return this.firestore.collection('groupTransactions').snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(x => {
+          var trans = x.payload.doc.data() as GroupTransaction;
+          return { ...trans, docId: x.payload.doc.id } as GroupTransaction;
+        });
+      }));
+  }
+
   //get transaction by group Id
   public getByGroupDocId(groupDocId: string) {
     return this.firestore.collection('groupTransactions', q => q.where('groupDocId', '==', groupDocId).orderBy('created', 'desc')).snapshotChanges().pipe(
