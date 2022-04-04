@@ -101,10 +101,9 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
   }
 
   downloadBookingPersons() {
-    if(this.selectedGroupIdForBookingPerson){
-      var groupName = this.groups.find(x=>x.docId == this.selectedGroupIdForBookingPerson).groupName;
+      //var groupName = this.groups.find(x=>x.docId == this.selectedGroupIdForBookingPerson).groupName;
 
-      this.bookingPersonService.getByGroupId(this.selectedGroupIdForBookingPerson).pipe(takeUntil(this.ngUnsubscribe)).subscribe(x=>{
+      this.bookingPersonService.getAllBookingPersonsNoLimit().pipe(takeUntil(this.ngUnsubscribe)).subscribe(x=>{
         const report = x.map(g=>{
           return {
             docId: g.docId,
@@ -125,13 +124,10 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
             updatedDate: g.updatedOn?this.pipe.transform(g.updatedOn.toDate(), 'short'):'',
           };
         });
-        this.snackBar.open(`you have successfully download the booking persons.`, null, {
-          duration: 5000,
-          verticalPosition: 'top'
-        });
-        super.downloadFile(report, `group-${groupName}-transactions`);
+        
+        super.downloadFile(report, `allBookingPersons`);
+        console.log("🚀 ~ file: rpt-csv.component.ts ~ line 134 ~ RptCsvComponent ~ this.bookingPersonService.getByGroupId ~ report", report)
       });
-    }
   }
 
   selectGroupForGroupTransaction(val:string) {

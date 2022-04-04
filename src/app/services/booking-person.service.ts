@@ -112,6 +112,20 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     await batch.commit();
   }
 
+  public getAllBookingPersonsNoLimit() {
+    return this.firestore.collection('bookingPersons', q => q.orderBy('createdOn', 'desc')).snapshotChanges().pipe(
+      map(actions => {
+        var items = actions.map(p => {
+          var data = p.payload.doc.data() as BookingPerson;
+          return { ...data, docId: p.payload.doc.id } as BookingPerson;
+        });
+        return items;
+      }), take(1)
+    )
+  }
+
+
+
   public getAllBookingPersons() {
     return this.firestore.collection('bookingPersons', q => q.orderBy('createdOn', 'desc').limit(1600)).snapshotChanges().pipe(
       map(actions => {

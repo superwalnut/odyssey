@@ -41,14 +41,6 @@
                                     Download booking person
                                 </div>
                                 <div class="card-body">
-                                    <mat-form-field appearance="fill">
-                                        <mat-label>Group</mat-label>
-                                        <mat-select (selectionChange)="selectedGroupForBookingPerson($event.value)">
-                                          <mat-option *ngFor="let group of groups" [value]="group.docId">
-                                            {{group.groupName}}
-                                          </mat-option>
-                                        </mat-select>
-                                      </mat-form-field>
                                     <button mat-raised-button color="primary" (click)="downloadBookingPersons()">Booking Persons</button>
                                 </div>
                             </div>
