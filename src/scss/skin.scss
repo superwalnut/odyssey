@@ -1,20 +1,20 @@
 @import "xmaslights";
-@import url('https://fonts.googleapis.com/css2?family=Material+Icons&family=Roboto:ital,wght@1,900&family=Noto+Serif+SC:wght@900&family=Freehand&family=Abril+Fatface&family=Anton&family=Bebas+Neue&family=Poppins:wght@400;500&family=Racing+Sans+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Material+Icons&family=Roboto:ital,wght@1,900&family=Noto+Serif+SC:wght@900&family=Freehand&family=Abril+Fatface&family=Anton&family=Bebas+Neue&family=Poppins:wght@400;500&family=Racing+Sans+One&display=swap");
 
-$font-anton: 'Anton', sans-serif;
-$font-roboto:'Roboto', sans-serif;
-$font-racingSansOne: 'Racing Sans One', cursive; //bold italic font
-$font-handwriting: 'Freehand', cursive;
-$font-news: 'Abril Fatface', cursive;//Time new roman like font - brodayway like
-$font-bebas: 'Bebas Neue', cursive;
-$font-chiense-noto: 'Noto Serif SC', serif; //chinese font
-$font-title: $font-anton; 
+$font-anton: "Anton", sans-serif;
+$font-roboto: "Roboto", sans-serif;
+$font-racingSansOne: "Racing Sans One", cursive; //bold italic font
+$font-handwriting: "Freehand", cursive;
+$font-news: "Abril Fatface", cursive; //Time new roman like font - brodayway like
+$font-bebas: "Bebas Neue", cursive;
+$font-chiense-noto: "Noto Serif SC", serif; //chinese font
+$font-title: $font-anton;
 $hbc-logo-white: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoWhite_bO0tIZDW0.png);
 $hbc-logo-black: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoBlack_Bp_C59cGd.png);
 $homepage-hero-bg-size-percent: 110% 110%;
 
-//Offline page 
-$offline-bg-image: url(../assets/img/banners/offlinebg2.jpg) ;
+//Offline page
+$offline-bg-image: url(../assets/img/banners/offlinebg2.jpg);
 $offline-logo: $hbc-logo-white;
 $offline-h1-color: #e80b36;
 $offline-h2-color: white;
@@ -29,17 +29,17 @@ button.rgb {
     --border-width: 4px;
     appearance: none;
     position: relative;
-    padding: .6em 2em; 
+    padding: 0.6em 2em;
     border: 0;
     //background-color: #fff;
     background: linear-gradient(-45deg, #488cfb, #ff9f0e, #f94444, #e440bb);
     background-size: 800% 400%;
     border-radius: 17px;
-    transition: all .5s ease-in-out;
-    animation: gradient 10s infinite cubic-bezier(.62, .28, .23, .99) both;
+    transition: all 0.5s ease-in-out;
+    animation: gradient 10s infinite cubic-bezier(0.62, 0.28, 0.23, 0.99) both;
     font: 500 17px $font-anton;
     letter-spacing: 1.5px;
-    
+
     color: white;
     z-index: 2;
 
@@ -54,15 +54,7 @@ button.rgb {
         height: 100%;
         padding: var(--border-width);
         border-radius: var(--border-radius);
-        background-image: conic-gradient(
-           #488cfb,
-           #29dbbc,
-           #ddf505,
-           #ff9f0e,
-           #e440bb,
-           #655adc,
-           #488cfb
-         );
+        background-image: conic-gradient(#488cfb, #29dbbc, #ddf505, #ff9f0e, #e440bb, #655adc, #488cfb);
         -webkit-mask-image: var(--m-i), var(--m-i);
         mask-image: var(--m-i), var(--m-i);
         -webkit-mask-origin: var(--m-o);
@@ -73,7 +65,7 @@ button.rgb {
         filter: hue-rotate(0);
         animation: rotate-hue linear 500ms infinite;
         animation-play-state: paused;
-       }
+    }
 
     &:hover::after {
         animation-play-state: running;
@@ -82,30 +74,29 @@ button.rgb {
         box-sizing: border-box;
     }
     &:active {
-    --border-width: 5px;
+        --border-width: 5px;
     }
 
     @keyframes rotate-hue {
         to {
-         filter: hue-rotate(1turn);
+            filter: hue-rotate(1turn);
         }
     }
     @keyframes gradient {
         0% {
             background-position: 0% 50%;
         }
-        
+
         50% {
             background-position: 100% 50%;
         }
-        
+
         100% {
             background-position: 0% 50%;
         }
     }
 }
 //RGB Hue button end //
-
 
 /*
 //Default HBC Theme
@@ -182,97 +173,100 @@ button.rgb {
 //End of Default HBC Theme
 */
 
-
 //Easter Pink Theme
-    $default-color: #dd358a;//easter pink
-    $global-page-bg-color: white;
-    $global-link-color: #20b0e3;
-    $default-highlight-color: #c52274;
-    $nav-bar-color:$default-color; 
-    $nav-bar-logo: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoWhite_bO0tIZDW0.png);
-    $nav-bar-text-color: white;
-    $nav-bar-link-hover-color: white;
-    $row-bg-color: white;
-    $section-header-text-color: black;
-    $simple-horizontal-list-text-color: black;
+$default-color: #dd358a; //easter pink
+$global-page-bg-color: white;
+$global-link-color: #20b0e3;
+$default-highlight-color: #c52274;
+$nav-bar-color: $default-color;
+$nav-bar-logo: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoWhite_bO0tIZDW0.png);
+$nav-bar-text-color: white;
+$nav-bar-link-hover-color: white;
+$row-bg-color: white;
+$section-header-text-color: black;
+$simple-horizontal-list-text-color: black;
 
-    $hero-color1: $default-color;
-    $hero-color2: #dd358a;
-    $hero-color3: #df5099;
-    $hero-color4: #f92658;
-	$homepage-hero-text-color: white;
-    $homepage-booking-button-bg-color: #b2ed42;
-    $homepage-booking-button-text-color: Black;
-    $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
-    //$homepage-hero-bg-size-percent: 400% 400%;
-    // $homepage-hero-bg-img: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2FSatHappyHour.jpg?alt=media&token=fc254f48-fa01-4aa2-be23-df2ebb59ec74);
-    // $homepage-hero-bg-img-mobile: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2FSatHappyHour-mobile.jpg?alt=media&token=06af1f15-a6e3-4cb5-8809-f286e7fc1f8d);
-    $homepage-hero-bg-img: url(https://ik.imagekit.io/hbc666/hbc/hero/SatHappyHour_mh10XGaSI.jpg)!important;
-    $homepage-hero-bg-img-mobile: url(https://ik.imagekit.io/hbc666/hbc/hero/SatHappyHour-mobile_wUw7J7970.jpg)!important;
-    $homepage-hero-bg-size-percent: 100% 100%;
-    $homepage-intro-minheight: 430px;
-    $homepage-intro-color:#fff;
-    $homepage-intro-shade-color:rgba(0,0,0,0.6);
-    $homepage-intro-shade-link-color: white;
-    $homepage-intro-bg: url(https://ik.imagekit.io/hbc666/hbc/hero/easterBG_4e7oLeN8a.jpg); //1138 x de0e3ef5-3a81-45f0-8c21-8fc76b67074d
-    //$homepage-intro-bg: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2FSatHappyHour.jpg?alt=media&token=a91fc4bc-3ce8-4017-927d-eb6e575937fa); //1138 x de0e3ef5-3a81-45f0-8c21-8fc76b67074d
-    
-    $homepage-hero-bg-offset: -150px;
-    $offline-quote-bg-color: $nav-bar-color;
+$hero-color1: $default-color;
+$hero-color2: #dd358a;
+$hero-color3: #df5099;
+$hero-color4: #f92658;
+$homepage-hero-text-color: white;
+$homepage-booking-button-bg-color: #b2ed42;
+$homepage-booking-button-text-color: Black;
+$homepage-hero-gradient: linear-gradient(
+    180deg,
+    rgba(57, 3, 75, 1) 0%,
+    rgba(68, 3, 89, 1) 35%,
+    rgba(98, 3, 130, 1) 100%
+);
+//$homepage-hero-bg-size-percent: 400% 400%;
+// $homepage-hero-bg-img: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2FSatHappyHour.jpg?alt=media&token=fc254f48-fa01-4aa2-be23-df2ebb59ec74);
+// $homepage-hero-bg-img-mobile: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2FSatHappyHour-mobile.jpg?alt=media&token=06af1f15-a6e3-4cb5-8809-f286e7fc1f8d);
+$homepage-hero-bg-img: url(https://ik.imagekit.io/hbc666/hbc/hero/SatHappyHour_mh10XGaSI.jpg) !important;
+$homepage-hero-bg-img-mobile: url(https://ik.imagekit.io/hbc666/hbc/hero/SatHappyHour-mobile_wUw7J7970.jpg) !important;
+$homepage-hero-bg-size-percent: 100% 100%;
+$homepage-intro-minheight: 430px;
+$homepage-intro-color: #fff;
+$homepage-intro-shade-color: rgba(0, 0, 0, 0.6);
+$homepage-intro-shade-link-color: white;
+$homepage-intro-bg: url(https://ik.imagekit.io/hbc666/hbc/hero/easterBG_4e7oLeN8a.jpg); //1138 x de0e3ef5-3a81-45f0-8c21-8fc76b67074d
+//$homepage-intro-bg: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2FSatHappyHour.jpg?alt=media&token=a91fc4bc-3ce8-4017-927d-eb6e575937fa); //1138 x de0e3ef5-3a81-45f0-8c21-8fc76b67074d
 
-    //dashboard profile card
-    $profile-bg-img-url: url("https://ik.imagekit.io/hbc666/hbc/banner/profilecard-easter-bg_ntKMZ8FPk.jpg");
-    $profile-card-bg-color:#ffffff;
-    $profile-card-text-color: black;
-    $profile-button-color: $default-color;
-    $profile-button-highlight-color: $default-highlight-color;
-    $profile-link-bg-color: #fe59ad;
-    $profile-link-text-color: white;
-    $profile-link-bg-hover-color: $default-highlight-color;
+$homepage-hero-bg-offset: -150px;
+$offline-quote-bg-color: $nav-bar-color;
 
-    //Card
-    $card-background-color: white;
-    $card-text-color: black;
-    $card-link-text-color: $global-link-color;
-    $card-table-text-color: black;
-    $card-mat-label-color: rgb(14, 13, 13);
-    $card-text-muted: #656363;
-    $session-card-bg-img:url("https://ik.imagekit.io/hbc666/hbc/banner/session-card-easter_cdEM-CWPr.jpg");
+//dashboard profile card
+$profile-bg-img-url: url("https://ik.imagekit.io/hbc666/hbc/banner/profilecard-easter-bg_ntKMZ8FPk.jpg");
+$profile-card-bg-color: #ffffff;
+$profile-card-text-color: black;
+$profile-button-color: $default-color;
+$profile-button-highlight-color: $default-highlight-color;
+$profile-link-bg-color: #fe59ad;
+$profile-link-text-color: white;
+$profile-link-bg-hover-color: $default-highlight-color;
 
-    //Modal dialog
-    $modal-content-background-color: white;
-    $modal-content-h3-color: black;
-    $modal-content-text-color: black;
+//Card
+$card-background-color: white;
+$card-text-color: black;
+$card-link-text-color: $global-link-color;
+$card-table-text-color: black;
+$card-mat-label-color: rgb(14, 13, 13);
+$card-text-muted: #656363;
+$session-card-bg-img: url("https://ik.imagekit.io/hbc666/hbc/banner/session-card-easter_cdEM-CWPr.jpg");
 
-	//booking tables
-    $table-bg-color: white;
-    $table-text-color: black;
-    $table-hover-text-color:white;
-    $table-hover-bg-color: #f661ad;
-    $booking-tbl-hightlight-color: #f9f9f9;
-	$table-booking-button-bg-color: $default-color;
-    $table-booking-button-text-color: white;
-    
-    //Admin
-    $admin-table-row-inactive: #fafafa;
+//Modal dialog
+$modal-content-background-color: white;
+$modal-content-h3-color: black;
+$modal-content-text-color: black;
 
-    //footer
-    $footer-bg-color: #dd4593;
-    $footer-text-color: #fafafa;
-	$footer-link-hover-color: white;
-    $footer-logo-color: white;
-    $footer-real-bg-color: $nav-bar-color;
-    $footer-real-text-color: #ededed;
+//booking tables
+$table-bg-color: white;
+$table-text-color: black;
+$table-hover-text-color: white;
+$table-hover-bg-color: #f661ad;
+$booking-tbl-hightlight-color: #f9f9f9;
+$table-booking-button-bg-color: $default-color;
+$table-booking-button-text-color: white;
+
+//Admin
+$admin-table-row-inactive: #fafafa;
+
+//footer
+$footer-bg-color: #dd4593;
+$footer-text-color: #fafafa;
+$footer-link-hover-color: white;
+$footer-logo-color: white;
+$footer-real-bg-color: $nav-bar-color;
+$footer-real-text-color: #ededed;
 //Easter Pink Theme
+ 
 
-
-/*
-//Light Mode Theme
+/* //Light Mode Theme
     $global-page-bg-color: white;
     $default-color: #fff;//easter pink
     $default-highlight-color: #ccc;
     $nav-bar-color:$default-color; 
-    $nav-bar-logo: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Flogo%2FHBCLogoBlack.png?alt=media&token=7a6a4c61-c009-4daa-b28e-dcaff3641b9a);
+    $nav-bar-logo: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoBlack_Bp_C59cGd.png);
     $nav-bar-text-color: black;
     $nav-bar-link-hover-color: #313131;
     $row-bg-color: $default-color;
@@ -289,16 +283,16 @@ button.rgb {
     $homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
     $homepage-intro-minheight: 430px;
     $homepage-intro-shade-color:rgba(255,255,255,0.45);
-    $homepage-intro-bg: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2Fhero-banner-birds.jpg?alt=media&token=be6f0e1c-06e9-46d5-810d-fd01ee9948aa);
+    $homepage-intro-bg: url(https://ik.imagekit.io/hbc666/hbc/hero/hero-banner-birds_nUAtRIX1C.jpg);
     $homepage-hero-bg-offset: -550px;
     $homepage-intro-color:#000;
     $homepage-intro-shade-link-color: black;
-    $homepage-hero-bg-img: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2Fhero-bg-shanshui2.jpg?alt=media&token=924c8985-910a-4b36-88a3-962acdedae91)!important;
+    $homepage-hero-bg-img: url(https://ik.imagekit.io/hbc666/hbc/hero/hero-bg-shanshui2_gFuUAFybfe.jpg)!important;
     $homepage-hero-bg-img-mobile:'';
     $offline-quote-bg-color: #000;
 
     //dashboard profile card
-    $profile-bg-img-url: url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fprofilecard-light.jpg?alt=media&token=2e35db9e-bfdc-40b0-b3c9-c9aecb1ba391");
+    $profile-bg-img-url: url("https://ik.imagekit.io/hbc666/hbc/banner/profilecard-light_8huL192dT.jpg");
     $profile-card-bg-color:#fff;
     $profile-card-text-color: #000;
     $profile-button-color: #1e1e1e;
@@ -314,7 +308,7 @@ button.rgb {
     $card-mat-label-color: black;
     $card-text-muted: black;
     $card-link-text-color: black;
-    $session-card-bg-img: url("https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fsession-card-bw-dragon.jpg?alt=media&token=6b772d59-f8c4-46c8-9daa-5b7c8f10e647");
+    $session-card-bg-img: url("https://ik.imagekit.io/hbc666/hbc/banner/session-card-bamboo_l8PDbz0Nv.jpg");
 
     //booking tables
     $table-bg-color:#fff;
@@ -341,8 +335,7 @@ button.rgb {
     $footer-real-bg-color: #efefef;
     $footer-real-text-color: black;
 //Light Mode Theme END
-*/
-
+ */
 
 /*
 //Dark Mode Theme
@@ -422,7 +415,6 @@ button.rgb {
     $footer-real-text-color: white;
 //Dark Mode Theme END
 */
-
 
 /*
 //The Bumblebee Transformers Color Scheme palette has 5 colors which are Sandstorm (#F2D638), Meat Brown (#E9B033), Rich Black [FOGRA39] (#010600), Philippine Gray (#8E8F95) and Spiro Disco Ball (#1EC4F2).
@@ -506,18 +498,17 @@ button.rgb {
 
 // Angular Material Overwrites
 body {
-    background-color: $global-page-bg-color!important;
+    background-color: $global-page-bg-color !important;
 }
 body div.app {
-    background-color: $global-page-bg-color!important;
-
+    background-color: $global-page-bg-color !important;
 }
 .mat-dialog-container {
-    padding: 5px!important;
+    padding: 5px !important;
 }
 
 .table-hover tbody tr:hover {
-    color: $table-hover-text-color!important;
+    color: $table-hover-text-color !important;
 }
 .card {
     background-color: $card-background-color;
@@ -539,7 +530,7 @@ body div.app {
 
 .mat-card {
     background-color: $card-background-color;
-    color:$card-text-color;
+    color: $card-text-color;
 }
 
 .mat-dialog-container {
@@ -564,7 +555,7 @@ body div.app {
 }
 .alert {
     width: 100%;
-    padding: 0!important;
+    padding: 0 !important;
     border-radius: 0;
     //border-style: solid;
     background-color: white;
@@ -589,49 +580,44 @@ body div.app {
         font-size: 14px;
 
         ul {
-            margin:0;
-            margin-left:10px;
-            padding: 10px ;
+            margin: 0;
+            margin-left: 10px;
+            padding: 10px;
             li {
                 margin: 0;
                 padding: 0;
             }
         }
     }
-  }
+}
 
-  
-  .alert.alert-info {
+.alert.alert-info {
     border-color: #dc871a;
     .alert-icon {
         background-color: #dc871a;
-        color:white;
+        color: white;
     }
-  }
-  
-  .alert.alert-warning {
+}
+
+.alert.alert-warning {
     border-color: #dc871a;
     .alert-icon {
         background-color: #dc871a;
-        color:white;
+        color: white;
     }
+}
 
-  }
-  
-  .alert.alert-danger {
+.alert.alert-danger {
     border-color: rgba(220, 53, 69, 1);
-    
+
     .alert-icon {
         background-color: red;
-        color:white;
+        color: white;
     }
-  }
-  
-  .alert.alert-success {
+}
+
+.alert.alert-success {
     background-color: rgba(227, 253, 235, 1);
     border-color: rgba(38, 179, 3, 1);
     color: rgba(60, 118, 61, 1);
-    
-  }
-  
-  
+}

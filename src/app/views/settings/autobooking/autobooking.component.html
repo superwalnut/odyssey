@@ -24,7 +24,7 @@
             <a routerLink="/settings/creditstatement">Top up your balance</a>
           </div> -->
 
-          <div class="alert  alert-danger" >
+          <div class="alert  alert-danger" *ngIf="!isCreditUser">
             <div class="alert-icon"><span class="material-icons">dangerous</span></div>
             <div class="alert-body">
               <p>Auto Booking is only available for HBCoins holders.</p>
