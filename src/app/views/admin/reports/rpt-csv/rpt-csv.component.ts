@@ -143,6 +143,32 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
     });
   }
 
+  downloadUsers() {
+    this.accountService.getAllUsers().subscribe(x=>{
+      const report = x.map(g=>{
+        return {
+          userId: g.docId,
+          name: g.name,
+          email: g.email,
+          mobile: g.mobile,
+          gender: g.gender,
+          isMember: g.isMember,
+          disabled: g.disabled,
+          isCreditUser: g.isCreditUser,
+          created: g.created.toDate(),
+          updated: g.updated.toDate(),
+          grade: g.grade,
+          gradePoints: g.gradePoints,
+          isChild: g.isChild,
+          parentUserDocId: g.parentUserDocId,
+          parentUserName: g.parentUserDisplayName,
+        };
+      });
+      super.downloadFile(report, 'users');
+    });
+
+  }
+
 
   selectGroupForGroupTransaction(val:string) {
     this.selectedGroupIdForGroupTransaction = val;
@@ -151,6 +177,8 @@ export class RptCsvComponent extends BaseComponent implements OnInit {
   selectedGroupForBookingPerson(val:string) {
     this.selectedGroupIdForBookingPerson = val;
   }
+
+
 
 
 }

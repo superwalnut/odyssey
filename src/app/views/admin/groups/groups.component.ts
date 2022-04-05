@@ -20,7 +20,7 @@ export class GroupsComponent implements OnInit {
     //"endDate",
     "groupName",
     "committees",
-    "isClosed",
+    //"isClosed",
     "Action",
   ];
   dataSource = new MatTableDataSource<Group>();

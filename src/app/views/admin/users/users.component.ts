@@ -79,29 +79,29 @@ export class UsersComponent extends BaseComponent implements OnInit, AfterViewIn
     });
   }
 
-  downloadAllUsers() {
-    const data = this.users.map(c => {
-      return {
-        'userId': c.docId,
-        'name': c.name,
-        'email': c.email,
-        'mobile': c.mobile,
-        'gender': c.gender,
-        'isMember': c.isMember,
-        'disabled': c.disabled,
-        'isCreditUser': c.isCreditUser,
-        'created': c.created.toDate(),
-        'updated': c.updated.toDate(),
-        'grade': c.grade,
-        'gradePoints': c.gradePoints,
-        'isChild': c.isChild,
-        'parentUserDocId': c.parentUserDocId,
-        'parentUserName': c.parentUserDisplayName,
-      };
-    });
-    console.log('downloadusers', data);
-    super.downloadFile(data, 'user-lists');
-  }
+  // downloadAllUsers() {
+  //   const data = this.users.map(c => {
+  //     return {
+  //       'userId': c.docId,
+  //       'name': c.name,
+  //       'email': c.email,
+  //       'mobile': c.mobile,
+  //       'gender': c.gender,
+  //       'isMember': c.isMember,
+  //       'disabled': c.disabled,
+  //       'isCreditUser': c.isCreditUser,
+  //       'created': c.created.toDate(),
+  //       'updated': c.updated.toDate(),
+  //       'grade': c.grade,
+  //       'gradePoints': c.gradePoints,
+  //       'isChild': c.isChild,
+  //       'parentUserDocId': c.parentUserDocId,
+  //       'parentUserName': c.parentUserDisplayName,
+  //     };
+  //   });
+  //   console.log('downloadusers', data);
+  //   super.downloadFile(data, 'user-lists');
+  // }
 
 }
 

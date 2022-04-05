@@ -35,7 +35,7 @@ export class BookingsComponent implements OnInit {
   displayedColumns: string[] = [
     "date",
     "isLocked",
-    "Action",
+    //"Action",
   ];
   dataSource = new MatTableDataSource<Booking>();
   futureBookingDates: Date[];
