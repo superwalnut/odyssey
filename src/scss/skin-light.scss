@@ -1,0 +1,76 @@
+
+//Light Mode Theme
+$global-page-bg-color: white;
+$default-color: #fff;//easter pink
+$default-highlight-color: #ccc;
+$nav-bar-color:$default-color; 
+$nav-bar-logo: $hbc-logo-black;
+$nav-bar-text-color: black;
+$nav-bar-link-hover-color: #313131;
+$row-bg-color: $default-color;
+$section-header-text-color: black;
+$simple-horizontal-list-text-color: black;
+
+$hero-color1: #fff;
+$hero-color2: #fff;
+$hero-color3: #e8e7e7;
+$hero-color4: #e4e3e3;
+$homepage-hero-text-color: black;
+$homepage-booking-button-bg-color: #222222;
+$homepage-booking-button-text-color: white;
+$homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
+$homepage-intro-minheight: 430px;
+$homepage-intro-shade-color:rgba(255,255,255,0.45);
+$homepage-intro-bg: url(https://ik.imagekit.io/hbc666/hbc/hero/hero-banner-birds_nUAtRIX1C.jpg);
+$homepage-hero-bg-offset: -550px;
+$homepage-intro-color:#000;
+$homepage-intro-shade-link-color: black;
+$homepage-hero-bg-img: url(https://ik.imagekit.io/hbc666/hbc/hero/hero-bg-shanshui2_gFuUAFybfe.jpg)!important;
+$homepage-hero-bg-img-mobile:'';
+$homepage-hero-bg-size-percent: 110% 110%;
+$offline-quote-bg-color: #000;
+
+//dashboard profile card
+$profile-bg-img-url: url("https://ik.imagekit.io/hbc666/hbc/banner/profilecard-light_8huL192dT.jpg");
+$profile-card-bg-color:#fff;
+$profile-card-text-color: #000;
+$profile-button-color: #1e1e1e;
+$profile-button-highlight-color: #2a2a2a;
+$profile-link-bg-color: #f6f4f4;
+$profile-link-text-color: black;
+$profile-link-bg-hover-color: #a6a5a5;
+
+//Card
+$card-background-color: $default-color;
+$card-text-color: black;
+$card-table-text-color: black;
+$card-mat-label-color: black;
+$card-text-muted: black;
+$card-link-text-color: black;
+$session-card-bg-img: url("https://ik.imagekit.io/hbc666/hbc/banner/session-card-bamboo_l8PDbz0Nv.jpg");
+
+//booking tables
+$table-bg-color:#fff;
+$table-text-color: black;
+$table-hover-text-color:black;
+$table-hover-bg-color: $default-color;
+$booking-tbl-hightlight-color: #fafafa;
+$table-booking-button-bg-color: #565656;
+$table-booking-button-text-color: white;
+
+//Modal dialog
+$modal-content-background-color: $default-color;
+$modal-content-h3-color: black;
+$modal-content-text-color: black;
+
+//Admin
+$admin-table-row-inactive: #ccc;
+
+//footer
+$footer-bg-color: #fff;
+$footer-text-color: black;
+$footer-link-hover-color: #414141;
+$footer-logo-color: black;
+$footer-real-bg-color: #efefef;
+$footer-real-text-color: black;
+//Light Mode Theme END

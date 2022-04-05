@@ -1,0 +1,87 @@
+
+//Easter Pink Theme
+$default-color: #dd358a; //easter pink
+$global-page-bg-color: white;
+$global-link-color: #20b0e3;
+$default-highlight-color: #c52274;
+$nav-bar-color: $default-color;
+$nav-bar-logo: $hbc-logo-white;
+$nav-bar-text-color: white;
+$nav-bar-link-hover-color: white;
+$row-bg-color: white;
+$section-header-text-color: black;
+$simple-horizontal-list-text-color: black;
+
+$hero-color1: $default-color;
+$hero-color2: #dd358a;
+$hero-color3: #df5099;
+$hero-color4: #f92658;
+$homepage-hero-text-color: white;
+$homepage-booking-button-bg-color: #b2ed42;
+$homepage-booking-button-text-color: Black;
+$homepage-hero-gradient: linear-gradient(
+    180deg,
+    rgba(57, 3, 75, 1) 0%,
+    rgba(68, 3, 89, 1) 35%,
+    rgba(98, 3, 130, 1) 100%
+);
+//$homepage-hero-bg-size-percent: 400% 400%;
+// $homepage-hero-bg-img: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2FSatHappyHour.jpg?alt=media&token=fc254f48-fa01-4aa2-be23-df2ebb59ec74);
+// $homepage-hero-bg-img-mobile: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2FSatHappyHour-mobile.jpg?alt=media&token=06af1f15-a6e3-4cb5-8809-f286e7fc1f8d);
+$homepage-hero-bg-img: url(https://ik.imagekit.io/hbc666/hbc/hero/SatHappyHour_mh10XGaSI.jpg) !important;
+$homepage-hero-bg-img-mobile: url(https://ik.imagekit.io/hbc666/hbc/hero/SatHappyHour-mobile_wUw7J7970.jpg) !important;
+$homepage-hero-bg-size-percent: 100% 100%;
+$homepage-intro-minheight: 430px;
+$homepage-intro-color: #fff;
+$homepage-intro-shade-color: rgba(0, 0, 0, 0.6);
+$homepage-intro-shade-link-color: white;
+$homepage-intro-bg: url(https://ik.imagekit.io/hbc666/hbc/hero/easterBG_4e7oLeN8a.jpg); //1138 x de0e3ef5-3a81-45f0-8c21-8fc76b67074d
+//$homepage-intro-bg: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fhero%2FSatHappyHour.jpg?alt=media&token=a91fc4bc-3ce8-4017-927d-eb6e575937fa); //1138 x de0e3ef5-3a81-45f0-8c21-8fc76b67074d
+
+$homepage-hero-bg-offset: -150px;
+$offline-quote-bg-color: $nav-bar-color;
+
+//dashboard profile card
+$profile-bg-img-url: url("https://ik.imagekit.io/hbc666/hbc/banner/profilecard-easter-bg_ntKMZ8FPk.jpg");
+$profile-card-bg-color: #ffffff;
+$profile-card-text-color: black;
+$profile-button-color: $default-color;
+$profile-button-highlight-color: $default-highlight-color;
+$profile-link-bg-color: #fe59ad;
+$profile-link-text-color: white;
+$profile-link-bg-hover-color: $default-highlight-color;
+
+//Card
+$card-background-color: white;
+$card-text-color: black;
+$card-link-text-color: $global-link-color;
+$card-table-text-color: black;
+$card-mat-label-color: rgb(14, 13, 13);
+$card-text-muted: #656363;
+$session-card-bg-img: url("https://ik.imagekit.io/hbc666/hbc/banner/session-card-easter_cdEM-CWPr.jpg");
+
+//Modal dialog
+$modal-content-background-color: white;
+$modal-content-h3-color: black;
+$modal-content-text-color: black;
+
+//booking tables
+$table-bg-color: white;
+$table-text-color: black;
+$table-hover-text-color: white;
+$table-hover-bg-color: #f661ad;
+$booking-tbl-hightlight-color: #f9f9f9;
+$table-booking-button-bg-color: $default-color;
+$table-booking-button-text-color: white;
+
+//Admin
+$admin-table-row-inactive: #fafafa;
+
+//footer
+$footer-bg-color: #dd4593;
+$footer-text-color: #fafafa;
+$footer-link-hover-color: white;
+$footer-logo-color: white;
+$footer-real-bg-color: $nav-bar-color;
+$footer-real-text-color: #ededed;
+//Easter Pink Theme

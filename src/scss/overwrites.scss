@@ -1,0 +1,128 @@
+
+/****** Default Overwrites ********/
+
+// Angular Material Overwrites
+body {
+    background-color: $global-page-bg-color !important;
+}
+body div.app {
+    background-color: $global-page-bg-color !important;
+}
+.mat-dialog-container {
+    padding: 5px !important;
+}
+
+.table-hover tbody tr:hover {
+    color: $table-hover-text-color !important;
+}
+.card {
+    background-color: $card-background-color;
+    color: $card-text-color;
+    mat-label {
+        color: $card-mat-label-color;
+    }
+    table {
+        color: $card-table-text-color;
+    }
+    a {
+        color: $card-link-text-color;
+        font-weight: 500;
+    }
+    .text-muted {
+        color: $card-text-muted !important;
+    }
+}
+
+.mat-card {
+    background-color: $card-background-color;
+    color: $card-text-color;
+}
+
+.mat-dialog-container {
+    background-color: $modal-content-background-color;
+    color: $modal-content-h3-color;
+    .modal-content {
+        background-color: $modal-content-background-color;
+        .modal-title {
+            font: 400 18px $font-anton;
+            color: $modal-content-h3-color;
+        }
+        h3 {
+            color: $modal-content-h3-color;
+        }
+    }
+}
+
+//Bootstrap overwrites
+
+.container-fluid {
+    padding: 0;
+}
+.alert {
+    width: 100%;
+    padding: 0 !important;
+    border-radius: 0;
+    //border-style: solid;
+    background-color: white;
+    color: black;
+    border-width: 1px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    box-shadow: $box-shadow;
+    display: flex;
+    flex-direction: row;
+    .alert-icon {
+        flex: 0 0 80px;
+        text-align: center;
+        padding: 10px;
+        span {
+            font-size: 3em;
+        }
+    }
+    .alert-body {
+        flex: auto;
+        padding: 10px;
+        font-size: 14px;
+
+        ul {
+            margin: 0;
+            margin-left: 10px;
+            padding: 10px;
+            li {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+}
+
+.alert.alert-info {
+    border-color: #dc871a;
+    .alert-icon {
+        background-color: #dc871a;
+        color: white;
+    }
+}
+
+.alert.alert-warning {
+    border-color: #dc871a;
+    .alert-icon {
+        background-color: #dc871a;
+        color: white;
+    }
+}
+
+.alert.alert-danger {
+    border-color: rgba(220, 53, 69, 1);
+
+    .alert-icon {
+        background-color: red;
+        color: white;
+    }
+}
+
+.alert.alert-success {
+    background-color: rgba(227, 253, 235, 1);
+    border-color: rgba(38, 179, 3, 1);
+    color: rgba(60, 118, 61, 1);
+}
