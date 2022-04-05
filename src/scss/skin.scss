@@ -9,8 +9,8 @@ $font-news: "Abril Fatface", cursive; //Time new roman like font - brodayway lik
 $font-bebas: "Bebas Neue", cursive;
 $font-chiense-noto: "Noto Serif SC", serif; //chinese font
 $font-title: $font-anton;
-$hbc-logo-white: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoWhite_bO0tIZDW0.png);
-$hbc-logo-black: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoBlack_Bp_C59cGd.png);
+$hbc-logo-white: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoWhite_VVpFE_2zp.png);
+$hbc-logo-black: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoBlack_uZo6VtUAN.png);
 $homepage-hero-bg-size-percent: 110% 110%;
 
 //Offline page
@@ -179,7 +179,7 @@ $global-page-bg-color: white;
 $global-link-color: #20b0e3;
 $default-highlight-color: #c52274;
 $nav-bar-color: $default-color;
-$nav-bar-logo: url(https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoWhite_bO0tIZDW0.png);
+$nav-bar-logo: $hbc-logo-white;
 $nav-bar-text-color: white;
 $nav-bar-link-hover-color: white;
 $row-bg-color: white;
