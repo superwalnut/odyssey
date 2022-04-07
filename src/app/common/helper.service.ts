@@ -181,7 +181,7 @@ export class HelperService {
 
   //only used by saturday happy hour - HBCoin holder family has special price (only apply to more than 1 member)
   findRates(isCreditUser:boolean, isCommittee:boolean, isFriend:boolean, group: Group, familyCount:number) {
-    if (isFriend || !isCreditUser) return GlobalConstants.rateCash;
+    if (isFriend || !isCreditUser) return GlobalConstants.rateCash; //friend or cash user, return cash rate straight away
     if (isCommittee) return 0;
 
     //family count is ignored for now, same price apply to all HBCoin family members

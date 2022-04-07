@@ -221,7 +221,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
       return false;
     }
     const dialogRef = this.dialog.open(BookingDialog, {
-      width: '650px',
+      width: '100%',
       data: {
         loggedInUser: this.loggedInAccount,
         bookingDocId: this.bookingDocId,

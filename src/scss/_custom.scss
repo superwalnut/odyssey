@@ -215,6 +215,42 @@ ul.simple-horizontal-list {
   }
 }
 
+
+.modal-content {
+  border: none;
+}
+
+.booking-modal {
+  
+  .modal-header {
+    padding: 0.2rem 1rem;
+    h3 {
+      
+    }
+  }
+  .modal-body {
+    padding: 10px;
+    h3 {
+      font: 400 20px $font-bebas;
+      margin-top: 15px;
+
+    }
+
+    ul.simple-horizontal-list {
+      li {
+        margin: 8px 0;
+        font-size: 16px;
+      }
+    }
+
+    .booking-sum {
+      font: 300 20px $font-bebas;
+    }
+    .modal-body-buttons{
+    }
+  }
+}
+
 .hero-announcement {
   display: flex;
   //background-color: black;
@@ -532,13 +568,13 @@ nav {
 }
 .handwriting {
   // font-family: 'Kaushan Script', cursive;
-  font: 500 40px $font-news;
+  font: 600 40px $font-news;
   line-height: 150%;
 }
 
 .handwriting-mid {
   // font-family: 'Kaushan Script', cursive;
-  font: 500 30px $font-news;
+  font: 500 30px $font-bebas;
   line-height: 120%;
 }
 

@@ -180,7 +180,6 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     if (selectedUserControl.value == null) { return false; }
     var user = this.allUsersObject.filter(x => { return x.name === selectedUserControl.value });
     console.log(user);
-
     
     let bp = {
       bookingDocId: this.bookingDocId,
@@ -193,7 +192,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
       paymentMethod: this.isParentCreditUser ? GlobalConstants.paymentCredit : GlobalConstants.paymentCash,
       parentUserId: user[0].parentUserDocId ? user[0].parentUserDocId : user[0].docId,
       parentUserDisplayName: user[0].parentUserDisplayName ? user[0].parentUserDisplayName : user[0].name,
-      isForSale: false,
+      isForSale: false, 
       amount: this.getPaymentAmount(user[0].docId, this.isParentCreditUser, this.isFriend),
       //isPaid: this.selectedPaymentMethod == GlobalConstants.paymentCredit ? true : false,
       //isPaid: user[0].isCreditUser, // bug here family member won't have isCreditUserValue;
@@ -243,9 +242,9 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
 
     let price = this.helpService.findRates(isCreditUser, comitteeUser != null, isFriend, this.group, 0);
     
-    if (comitteeUser) { 
-      return isFriend ? GlobalConstants.rateCash : 0; 
-    } // committee is free of charge
+    // if (comitteeUser) { 
+    //   return isFriend ? GlobalConstants.rateCash : 0; 
+    // } // committee is free of charge
 
     // if (isCreditUser) {
     //   amount = isFriend ? GlobalConstants.rateCash : GlobalConstants.rateCredit;
@@ -277,11 +276,13 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     if (this.booking.reconciled) { return false; }
     this.booking.isLocked = !this.booking.isLocked;
     this.bookingService.updateBooking(this.bookingDocId, this.booking);
+    return false;
   }
 
   toggleVisibility() {
     this.booking.isOffline = !this.booking.isOffline;
     this.bookingService.updateBooking(this.bookingDocId, this.booking);
+    return false;
   }
 
 
