@@ -7,6 +7,8 @@
         <h2 class="section-heading text-center">
           {{ booking?.eventStartDateTime.toDate() | date: 'EEEE, MMMM d'}}, 
           {{ group?.eventStartTime}} 
+
+          
         </h2>
       </div>
     </div>
@@ -47,14 +49,13 @@
               <mat-icon>paid</mat-icon> Go cashless! Become an <a routerLink="/termsconditions">HBCoin</a>  user to enjoy cheaper rates and many more benefits! <a routerLink="/settings/creditstatement">Yes, I'm in!</a>
             </div>
           </div> 
-
+          
           <div class="alert  alert-danger" *ngIf="!hasEnoughtBalance">
             <div class="alert-icon"><span class="material-icons">dangerous</span></div>
             <div class="alert-body">
               You don't have enough balance to make bookings. Please <a routerLink="/settings/creditstatement">Top up</a> now!
             </div>
           </div> 
-
 
           <table class="table table-hover table-custom booking table-sm">
             <thead>
