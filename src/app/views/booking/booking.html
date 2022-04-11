@@ -1,6 +1,6 @@
 
 <!-- Modal -->
-<div class="modal-content">
+<div class="modal-content booking-modal">
   <div class="modal-header">
     <h3 class="modal-title" id="exampleModalLongTitle">
       {{ data.group?.eventStartDay}} 
@@ -44,7 +44,7 @@
 
     
     <div *ngIf="data.isSeatsLeft && meetBasePoints">
-      <h3>You & Your Family </h3>
+      <h3>Your Family </h3>
   
       <ul class="simple-horizontal-list dark-text">
         <li *ngFor="let user of data.familyBookingUsers">{{ user.name }} <mat-slide-toggle [(ngModel)]="user.selected" (change)="onSelectionChange()"></mat-slide-toggle> &nbsp; &nbsp; &nbsp; </li>

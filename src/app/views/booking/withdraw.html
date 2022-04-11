@@ -1,21 +1,29 @@
-
-<h2 mat-dialog-title>{{ data.group?.groupName}} {{ data.group?.eventStartTime}} | Withdraw</h2>
+<h2 mat-dialog-title>{{ data.group?.eventStartDay}} | Withdraw</h2>
 <mat-dialog-content class="mat-typography">
   <div class="alert  alert-danger" *ngIf="hasError">
     <div class="alert-icon"><span class="material-icons">dangerous</span></div>
     <div class="alert-body">Error: {{ errorMessage }}</div>
-  </div> 
+  </div>
 
   <!-- <div class="alert alert-danger" role="alert" *ngIf="hasError"></div> -->
 
-  <div *ngIf="isWithdrawAllowed"> 
+  <div *ngIf="isWithdrawAllowed">
     <p class="handwriting-mid">{{ getGoodbyeline() }}</p>
   </div>
 
-  <div *ngIf="!isWithdrawAllowed"> 
-    <h2>Withdraw is not allowed</h2>
-    <p>Withdraw is only allowed {{bookingWithdrawHours}} hours before the session start.</p>
-    <p>However, you can mark your seat [Up for sale], you won't get charged if someone take your spot.</p>
+  <div *ngIf="!isWithdrawAllowed">
+
+    <div class="alert alert-danger">
+      <div class="alert-icon"><span class="material-icons">dangerous</span></div>
+      <div class="alert-body">
+        <h3>Withdraw is not allowed</h3>
+        <p>Withdraw is only allowed <b>{{bookingWithdrawHours}}</b> hours before the session starts.</p>
+        <p>However, you can mark your seat [<b>Up for sale</b>], you won't get charged if someone take your spot.</p>
+      </div>
+    </div>
+
+
+
   </div>
 
 </mat-dialog-content>
@@ -24,8 +32,10 @@
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
 
   <button mat-raised-button (click)="onNoClick()">Close</button>
-  <button mat-raised-button color="warn" *ngIf="isWithdrawAllowed && !isLoading" (click)="withdrawClicked()">Withdraw</button>
-  <button mat-raised-button color="primary" *ngIf="!isWithdrawAllowed && !isLoading" (click)="markForSaleClicked()">Up for sale</button>
+  <button mat-raised-button color="warn" *ngIf="isWithdrawAllowed && !isLoading"
+    (click)="withdrawClicked()">Withdraw</button>
+  <button mat-raised-button color="primary" *ngIf="!isWithdrawAllowed && !isLoading" (click)="markForSaleClicked()">Up
+    for sale</button>
   <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
 
 </mat-dialog-actions>
@@ -70,4 +80,3 @@
     </div>
   </div>
    -->
-  

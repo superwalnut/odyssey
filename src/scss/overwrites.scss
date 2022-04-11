@@ -8,9 +8,9 @@ body {
 body div.app {
     background-color: $global-page-bg-color !important;
 }
-.mat-dialog-container {
-    padding: 5px !important;
-}
+// .mat-dialog-container {
+    
+// }
 
 .table-hover tbody tr:hover {
     color: $table-hover-text-color !important;
@@ -39,12 +39,13 @@ body div.app {
 }
 
 .mat-dialog-container {
+    // padding: 15px !important;
     background-color: $modal-content-background-color;
     color: $modal-content-h3-color;
     .modal-content {
         background-color: $modal-content-background-color;
         .modal-title {
-            font: 400 18px $font-anton;
+            font: 400 19px $font-anton;
             color: $modal-content-h3-color;
         }
         h3 {
