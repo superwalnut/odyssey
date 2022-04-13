@@ -215,17 +215,14 @@ ul.simple-horizontal-list {
   }
 }
 
-
 .modal-content {
   border: none;
 }
 
 .booking-modal {
-  
   .modal-header {
     padding: 0.2rem 1rem;
     h3 {
-      
     }
   }
   .modal-body {
@@ -233,7 +230,6 @@ ul.simple-horizontal-list {
     h3 {
       font: 400 20px $font-bebas;
       margin-top: 15px;
-
     }
 
     ul.simple-horizontal-list {
@@ -246,7 +242,7 @@ ul.simple-horizontal-list {
     .booking-sum {
       font: 300 20px $font-bebas;
     }
-    .modal-body-buttons{
+    .modal-body-buttons {
     }
   }
 }
@@ -255,7 +251,6 @@ ul.simple-horizontal-list {
   display: flex;
   //background-color: black;
 }
-
 
 .hero {
   //display: flex;
@@ -309,7 +304,6 @@ ul.simple-horizontal-list {
     }
   }
 }
-
 
 .homepage-booking-button {
   background-color: $homepage-booking-button-bg-color !important;
@@ -436,10 +430,10 @@ ul.simple-horizontal-list {
 .group-card {
   cursor: pointer;
   .card-title {
-    font: 500 21px $font-roboto!important;
+    font: 500 21px $font-roboto !important;
   }
   .card-text {
-    font: 100 15px $font-roboto!important;
+    font: 100 15px $font-roboto !important;
   }
 }
 
@@ -452,7 +446,7 @@ ul.simple-horizontal-list {
   height: 25px;
   background-color: $session-online-indicator-bg-color;
   border-radius: 50%;
-  
+
   .blink {
     display: block;
     width: 25px;
@@ -579,7 +573,7 @@ nav {
 }
 
 .handwriting-signature {
-  margin: 50px 0; 
+  margin: 50px 0;
   font: 300 26px $font-handwriting;
   line-height: 110%;
 }
@@ -824,7 +818,7 @@ $profile-bg-img-height: 180px;
 
   .badges {
     position: absolute;
-    top:-13px;
+    top: -13px;
     width: 100%;
     z-index: 1;
     text-align: center;
@@ -900,7 +894,6 @@ $profile-bg-img-height: 180px;
     }
     .profile-bio {
       min-height: 70px;
-      
     }
 
     .profile-links {
@@ -956,6 +949,9 @@ $profile-bg-img-height: 180px;
   }
 }
 
+div.app.offline-bg {
+  background-color: black!important;
+}
 /* offline page */
 .offline-bg {
   //background: $offline-bg-image no-repeat center center fixed;
@@ -964,6 +960,7 @@ $profile-bg-img-height: 180px;
   // -o-background-size: cover;
   //background-size: cover;
   text-align: center;
+  background-color: black;
 
   video {
     width: 100vw;
