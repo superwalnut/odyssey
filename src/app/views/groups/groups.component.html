@@ -4,8 +4,9 @@
   <div class="container">
     <div class="row light">
       <div class="col">
-        <h1 class="section-heading text-center">{{weekStart.toDate() | date:'MMM dd'}} - {{weekEnd.toDate() | date:'MMM dd, yyyy'}}</h1>
-          <div class="alert  alert-info">
+        <h1 class="section-heading text-center">{{weekStart.toDate() | date:'MMM dd'}} - {{weekEnd.toDate() | date:'MMM
+          dd, yyyy'}}</h1>
+        <!-- <div class="alert  alert-info">
             <div class="alert-icon"><span class="material-icons">info</span></div>
             <div class="alert-body">
               <ul>
@@ -13,7 +14,7 @@
                 <li>Cash rate is now adjusted to $18</li> 
               </ul>
             </div>
-          </div> 
+          </div>  -->
 
       </div>
     </div>
@@ -34,9 +35,9 @@
                 <mat-icon>east</mat-icon>
               </button>
               </div> -->
-              <div [ngClass]="b.isOffline ? 'online-indicator offline': 'online-indicator'">
-                <span class="blink"></span>
-              </div>
+            <div [ngClass]="b.isOffline ? 'online-indicator offline': 'online-indicator'">
+              <span class="blink"></span>
+            </div>
           </div>
         </div>
       </div>

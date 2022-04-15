@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row light" >
       <div class="col"> 
-        <div class="hero gradient-bg-animation"  routerLink="/groups">
+        <div class="hero gradient-bg-animation">
           <div *ngIf="showQuotesAndButton">
             <h1 [ngClass]="{'rainbow homepage-quote-chinese':isChineseQuote, 'rainbow homepage-quote':!isChineseQuote}">{{ quotes }}</h1>
             <button mat-raised-button color="accent" class=" homepage-booking-button" routerLink="/groups">Book badminton sessions</button>
