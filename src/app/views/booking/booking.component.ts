@@ -261,7 +261,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
       return false;
     }
     const dialogRef = this.dialog.open(BookingDialog, {
-      width: '100%',
+      width: "100%",
       data: {
         loggedInUser: this.loggedInAccount,
         bookingDocId: this.bookingDocId,
@@ -455,7 +455,8 @@ export class BookingDialog {
     result.toAdd.forEach((u) => {
       var price = this.helpService.findRates(
         this.data.isCreditUser,
-        this.data.isCommittee,
+        this.isCommitteeCheck(u.userDocId),
+        // this.data.isCommittee,
         !u.isFamily,
         this.data.group,
         i
