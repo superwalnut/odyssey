@@ -64,7 +64,6 @@ export class BookingComponent extends BaseComponent implements OnInit {
   myWaitingList: WaitingList;
   waitingListButtonText: string;
 
-
   constructor(
     private groupService: GroupService,
     private dialogRef: MatDialog,
@@ -299,7 +298,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
         eventStartDay: this.booking.weekDay,
         userDocId: this.user.docId,
         userDisplayName: this.user.name,
-        avatarUrl: this.user.avatarUrl,
+        avatarUrl: this.user.avatarUrl ?? GlobalConstants.imageDefaultAvatar,
         createdOn: Timestamp.now(),
       } as WaitingList;
 
@@ -316,8 +315,11 @@ export class BookingComponent extends BaseComponent implements OnInit {
       .subscribe((result) => {
         console.log(result);
         this.waitingLists = result;
-        this.myWaitingList = this.waitingLists.find((x) => x.userDocId == this.user.docId);
-        this.waitingListButtonText = this.myWaitingList === undefined ? "+1"  : "-1";
+        this.myWaitingList = this.waitingLists.find(
+          (x) => x.userDocId == this.user.docId
+        );
+        this.waitingListButtonText =
+          this.myWaitingList === undefined ? "+1" : "-1";
       });
   }
 

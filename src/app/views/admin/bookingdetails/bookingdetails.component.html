@@ -1,186 +1,203 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-12 mx-auto">
-        <div class="card">
-          <div class="card-body p-4 {{ booking?.reconciled ? 'locked-bg':''}}">
-            <div class="p-3 mb-2 bg-success text-white" *ngIf="booking?.reconciled"><h3>Reconciliated & Closed by {{ booking?.reconcilationBy}}</h3></div>
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4 {{ booking?.reconciled ? 'locked-bg':''}}">
+          <div class="p-3 mb-2 bg-success text-white" *ngIf="booking?.reconciled">
+            <h3>Reconciliated & Closed by {{ booking?.reconcilationBy}}</h3>
+          </div>
 
 
-            <h2>{{booking?.weekDay}} {{booking?.eventStartDateTime.toDate() |  date: "EE dd/MM/yyyy"}}</h2>
-            <p>Booking ID: {{ booking?.docId}}</p>
-            <ul class="simple-horizontal-list">
-              <li>Committees: </li>
-              <li *ngFor="let c of group?.committees">{{ c.name}}, </li>
-            </ul>
-            <h3>
-              <button mat-icon-button color="primary" (click)="toggleLockStatus()" title="lock/unlock this booking">
-                <mat-icon>{{ booking?.isLocked ? 'lock': 'lock_open'}}</mat-icon>
-              </button>
+          <h2>{{booking?.weekDay}} {{booking?.eventStartDateTime.toDate() | date: "EE dd/MM/yyyy"}}</h2>
+          <p>Booking ID: {{ booking?.docId}}</p>
 
-              <button mat-icon-button color="primary" (click)="toggleVisibility()" title="take offline">
-                <mat-icon>{{ booking?.isOffline ? 'visibility_off': 'visibility'}}</mat-icon>
-              </button>
+          <ul class="simple-horizontal-list">
+            <li>Waiting List: </li>
+            <li *ngFor="let w of waitingLists">
+              {{ w.userDisplayName }}, 
+            </li>
+          </ul>
 
-              <button mat-icon-button color="primary" title="change seats" (click)="changeSeatClicked()" autocomplete="off">
-                <mat-icon>chair</mat-icon>
-              </button>
-              {{ booking?.seatsOverwrite}}
-              <button mat-icon-button color="primary" title="skill level points" (click)="changeLvlPointsClicked()" autocomplete="off">
-                <mat-icon>military_tech</mat-icon>
-              </button>
-              {{ booking?.levelRestrictionOverwrite}}
+          <ul class="simple-horizontal-list">
+            <li>Committees: </li>
+            <li *ngFor="let c of group?.committees">{{ c.name}}, </li>
+          </ul>
+          <h3>
+            <button mat-icon-button color="primary" (click)="toggleLockStatus()" title="lock/unlock this booking">
+              <mat-icon>{{ booking?.isLocked ? 'lock': 'lock_open'}}</mat-icon>
+            </button>
 
-            </h3>
+            <button mat-icon-button color="primary" (click)="toggleVisibility()" title="take offline">
+              <mat-icon>{{ booking?.isOffline ? 'visibility_off': 'visibility'}}</mat-icon>
+            </button>
 
-            <section title="Add new booking" *ngIf="!booking?.reconciled">
-              <form>
-                <mat-form-field>
-                  <mat-label>Search player name</mat-label>
-                  <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" >
-                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="userListSelected($event)">
-                    <mat-option *ngFor="let user of filteredUsers | async" [value]="user">{{user}}</mat-option>
-                  </mat-autocomplete>
-                </mat-form-field>
-                {{userPaymentMethod}}
+            <button mat-icon-button color="primary" title="change seats" (click)="changeSeatClicked()"
+              autocomplete="off">
+              <mat-icon>chair</mat-icon>
+            </button>
+            {{ booking?.seatsOverwrite}}
+            <button mat-icon-button color="primary" title="skill level points" (click)="changeLvlPointsClicked()"
+              autocomplete="off">
+              <mat-icon>military_tech</mat-icon>
+            </button>
+            {{ booking?.levelRestrictionOverwrite}}
 
-                <mat-checkbox [(ngModel)]="isFriend"  [ngModelOptions]="{standalone: true}">Friend</mat-checkbox>
+          </h3>
 
-                <!-- <mat-form-field appearance="fill">
+          <section title="Add new booking" *ngIf="!booking?.reconciled">
+            <form>
+              <mat-form-field>
+                <mat-label>Search player name</mat-label>
+                <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="userListSelected($event)">
+                  <mat-option *ngFor="let user of filteredUsers | async" [value]="user">{{user}}</mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              {{userPaymentMethod}}
+
+              <mat-checkbox [(ngModel)]="isFriend" [ngModelOptions]="{standalone: true}">Friend</mat-checkbox>
+
+              <!-- <mat-form-field appearance="fill">
                   <mat-label>Payment method</mat-label>
                   <mat-select (selectionChange)="selectedValue($event)">
                     <mat-option *ngFor="let method of paymentMethods" [value]="method">{{method}}</mat-option>
                   </mat-select>
                 </mat-form-field> -->
-                <button mat-raised-button color="primary" (click)="createBooking(myControl)">Add</button>
-              </form>
-            </section>
-            <div class="table-scrollable">
-              <table class="table table-sm table-responsive">
-                <thead>
-                  <tr>
-                    <th scope="col">User</th>
-                    <!-- <th scope="col">Payment</th> -->
-                    <th scope="col">Amount</th>
-                    <th scope="col">Paid</th>
-                    <th scope="col">On</th>
-                    <th scope="col" *ngIf="!booking?.reconciled"></th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let p of allLocalBookingUsers; let i=index"  [ngClass]="{'unpaid-bg':!p.isPaid}">
-                    <td scope="row">{{ i+1 }} 
-                      <mat-icon>{{getPaymentClass(p.paymentMethod)}}</mat-icon> <i class="{{getPaymentClass(p.paymentMethod)}}"></i> 
-                      <a routerLink="/admin/userdetails/{{p.userDocId}}">{{p.name}}</a>  
-                      <span class="text-success small">{{ p.parentUserDisplayName }}</span>
-                      <mat-icon title="for sale">{{ p.isForSale ? 'social_distance':''}}</mat-icon> 
-                      <!-- <mat-icon *ngIf="p.note" title="{{p.note}}">sticky_note_2</mat-icon> -->
-                      {{p.note}} 
-                      
-                    </td>
-                    <!-- <td scope="row"><mat-icon>{{getPaymentClass(p.paymentMethod)}}</mat-icon> <i class="{{getPaymentClass(p.paymentMethod)}}"></i></td> -->
-                    <td scope="row">{{ p.amount | currency}}</td>
-                    <td scope="row">
-                      <button mat-icon-button color="accent" title="add notes" (click)="addNoteClicked(p)">
-                        <mat-icon>{{ p.isPaid ? 'check' : 'close'}}</mat-icon>
-                      </button> 
-
-                      <!-- <mat-icon (click)="addNoteClicked(p)">{{ p.isPaid ? 'check' : 'close'}}</mat-icon> -->
-                    </td>
-
-                    <td scope="row">{{p.createdOn.toDate() | date: "MMM d hh:MM"}}</td>
-                    <td *ngIf="!booking?.reconciled">
-                      <button mat-icon-button color="accent" title="withdraw" (click)="withdrawBooking(p)" *ngIf="isGod">
-                        <mat-icon>delete_forever</mat-icon>
-                      </button> 
-
-                      <!-- <button mat-icon-button color="accent" title="add notes" (click)="addNoteClicked(p)">
-                        <mat-icon>edit</mat-icon>
-                      </button>  -->
-                    </td>
-                  </tr>
-                  <!-- <tr>
-                    <th scope="row">Total {{total | currency}}</th>
-                    <td colspan="5">Credit: {{totalCredit | currency}} Cash: {{totalCash | currency}} Bank: {{totalBank | currency}} Adjusted: {{totalAdjust | currency}}</td>
-                  </tr> -->
-                  <tr>
-                    <th scope="row">Total {{bookingTotal | currency}}</th>
-                    <td colspan="5">Credit: {{bookingTotalCredit | currency}} Cash: {{bookingTotalCash | currency}} Bank: {{bookingTotalBank | currency}} Adjusted: {{bookingTotalAdjusted | currency}}</td>
-                  </tr>
-
-
-                </tbody>
-              </table>
-            </div>
-
-            <h3>Booking adjustment</h3>
-            
-            <table class="table table-sm">
+              <button mat-raised-button color="primary" (click)="createBooking(myControl)">Add</button>
+            </form>
+          </section>
+          <div class="table-scrollable">
+            <table class="table table-sm table-responsive">
               <thead>
                 <tr>
+                  <th scope="col">User</th>
+                  <!-- <th scope="col">Payment</th> -->
                   <th scope="col">Amount</th>
-                  <th scope="col">Note</th>
-                  <th scope="col">By</th>
+                  <th scope="col">Paid</th>
                   <th scope="col">On</th>
+                  <th scope="col" *ngIf="!booking?.reconciled"></th>
+
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let t of groupTransactionsAdjusted">
-                  <td>{{ t.amount | currency}}</td>
-                  <td>{{ t.notes}}</td>
-                  <td>{{ t.createdByDisplayName }}</td>
-                  <td>{{ t.created.toDate() | date: 'dd/MM/yyyy HH:mm'}}</td>
+                <tr *ngFor="let p of allLocalBookingUsers; let i=index" [ngClass]="{'unpaid-bg':!p.isPaid}">
+                  <td scope="row">{{ i+1 }}
+                    <mat-icon>{{getPaymentClass(p.paymentMethod)}}</mat-icon> <i
+                      class="{{getPaymentClass(p.paymentMethod)}}"></i>
+                    <a routerLink="/admin/userdetails/{{p.userDocId}}">{{p.name}}</a>
+                    <span class="text-success small">{{ p.parentUserDisplayName }}</span>
+                    <mat-icon title="for sale">{{ p.isForSale ? 'social_distance':''}}</mat-icon>
+                    <!-- <mat-icon *ngIf="p.note" title="{{p.note}}">sticky_note_2</mat-icon> -->
+                    {{p.note}}
+
+                  </td>
+                  <!-- <td scope="row"><mat-icon>{{getPaymentClass(p.paymentMethod)}}</mat-icon> <i class="{{getPaymentClass(p.paymentMethod)}}"></i></td> -->
+                  <td scope="row">{{ p.amount | currency}}</td>
+                  <td scope="row">
+                    <button mat-icon-button color="accent" title="add notes" (click)="addNoteClicked(p)">
+                      <mat-icon>{{ p.isPaid ? 'check' : 'close'}}</mat-icon>
+                    </button>
+
+                    <!-- <mat-icon (click)="addNoteClicked(p)">{{ p.isPaid ? 'check' : 'close'}}</mat-icon> -->
+                  </td>
+
+                  <td scope="row">{{p.createdOn.toDate() | date: "MMM d hh:MM"}}</td>
+                  <td *ngIf="!booking?.reconciled">
+                    <button mat-icon-button color="accent" title="withdraw" (click)="withdrawBooking(p)" *ngIf="isGod">
+                      <mat-icon>delete_forever</mat-icon>
+                    </button>
+
+                    <!-- <button mat-icon-button color="accent" title="add notes" (click)="addNoteClicked(p)">
+                        <mat-icon>edit</mat-icon>
+                      </button>  -->
+                  </td>
                 </tr>
+                <!-- <tr>
+                    <th scope="row">Total {{total | currency}}</th>
+                    <td colspan="5">Credit: {{totalCredit | currency}} Cash: {{totalCash | currency}} Bank: {{totalBank | currency}} Adjusted: {{totalAdjust | currency}}</td>
+                  </tr> -->
+                <tr>
+                  <th scope="row">Total {{bookingTotal | currency}}</th>
+                  <td colspan="5">Credit: {{bookingTotalCredit | currency}} Cash: {{bookingTotalCash | currency}} Bank:
+                    {{bookingTotalBank | currency}} Adjusted: {{bookingTotalAdjusted | currency}}</td>
+                </tr>
+
+
               </tbody>
             </table>
-          
+          </div>
 
-            <form [formGroup]="adjustForm" (ngSubmit)="onSubmit()" *ngIf="!booking?.reconciled">
-              <mat-form-field>
-                <mat-label>Adjusted amount</mat-label>
-                <input matInput placeholder="amount" formControlName="adjustAmount" type="number" required autocomplete="off"/>
-              </mat-form-field>
-        
-              <mat-form-field>
-                <mat-label>Description</mat-label>
-                <input matInput placeholder="description" formControlName="adjustDesc" required autocomplete="off"/>
-              </mat-form-field>
-              <button mat-raised-button color="primary" [disabled]="adjustForm.invalid">Save</button>
-            </form>
+          <h3>Booking adjustment</h3>
+
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th scope="col">Amount</th>
+                <th scope="col">Note</th>
+                <th scope="col">By</th>
+                <th scope="col">On</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let t of groupTransactionsAdjusted">
+                <td>{{ t.amount | currency}}</td>
+                <td>{{ t.notes}}</td>
+                <td>{{ t.createdByDisplayName }}</td>
+                <td>{{ t.created.toDate() | date: 'dd/MM/yyyy HH:mm'}}</td>
+              </tr>
+            </tbody>
+          </table>
 
 
-            <div class="p-3 mb-2 bg-primary text-white" *ngIf="!booking?.reconciled && isGod">
-              <h3>最后一步 Reconciliation</h3>
-              <p>
-                管理员在核对好所有人员及费用包括现金用户的款目，调节adjustment，一切无误后请点击 【收钱&关账】按钮。
-                按下后系统会扣用户的credit 并存入Group的收入Pool里。该操作无法撤销！  
-              </p>
+          <form [formGroup]="adjustForm" (ngSubmit)="onSubmit()" *ngIf="!booking?.reconciled">
+            <mat-form-field>
+              <mat-label>Adjusted amount</mat-label>
+              <input matInput placeholder="amount" formControlName="adjustAmount" type="number" required
+                autocomplete="off" />
+            </mat-form-field>
 
-              <p>为确保数据正确，系统只允许一人进行账目核对，按下[Start reconciliation]后他人不能在同一时刻核对账目</p>
+            <mat-form-field>
+              <mat-label>Description</mat-label>
+              <input matInput placeholder="description" formControlName="adjustDesc" required autocomplete="off" />
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="adjustForm.invalid">Save</button>
+          </form>
 
-              
-              <p *ngIf="booking?.reconcilationBy">
-                {{booking?.reconcilationBy}} {{booking.isReconciliationInProgress ? 'is reconciliating.' : 'cancelled reconciliation.'}} 
-              </p>
-              
-              <button mat-raised-button color="primary" (click)="startReconciliationClicked()" *ngIf="!reconciliationInProgress">Start reconciliation</button>
-              <button mat-raised-button color="primary" (click)="cancelReconciliationClicked()" *ngIf="reconciliationInProgress">Cancel reconciliation</button>
 
-              <div *ngIf="reconciliationInProgress">
-                <p>I confirm this booking is reconciled and to be closed!</p>
-                <button mat-raised-button color="accent" (click)="reconciled()" *ngIf="!isLoading">收钱&关账</button>
-                <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+          <div class="p-3 mb-2 bg-primary text-white" *ngIf="!booking?.reconciled && isGod">
+            <h3>最后一步 Reconciliation</h3>
+            <p>
+              管理员在核对好所有人员及费用包括现金用户的款目，调节adjustment，一切无误后请点击 【收钱&关账】按钮。
+              按下后系统会扣用户的credit 并存入Group的收入Pool里。该操作无法撤销！
+            </p>
 
-              </div>
-             
+            <p>为确保数据正确，系统只允许一人进行账目核对，按下[Start reconciliation]后他人不能在同一时刻核对账目</p>
+
+
+            <p *ngIf="booking?.reconcilationBy">
+              {{booking?.reconcilationBy}} {{booking.isReconciliationInProgress ? 'is reconciliating.' : 'cancelled
+              reconciliation.'}}
+            </p>
+
+            <button mat-raised-button color="primary" (click)="startReconciliationClicked()"
+              *ngIf="!reconciliationInProgress">Start reconciliation</button>
+            <button mat-raised-button color="primary" (click)="cancelReconciliationClicked()"
+              *ngIf="reconciliationInProgress">Cancel reconciliation</button>
+
+            <div *ngIf="reconciliationInProgress">
+              <p>I confirm this booking is reconciled and to be closed!</p>
+              <button mat-raised-button color="accent" (click)="reconciled()" *ngIf="!isLoading">收钱&关账</button>
+              <mat-spinner diameter="30" *ngIf="isLoading"></mat-spinner>
+
             </div>
 
           </div>
+
         </div>
-    
       </div>
+
     </div>
-    
-    
+  </div>
+
+
 </div>
-    
