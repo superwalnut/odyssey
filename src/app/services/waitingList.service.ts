@@ -28,28 +28,28 @@ export class WaitingListService extends FirestoreBaseService<WaitingList> {
     return super.delete(waitingListDocId);
   }
 
-//   public get(userDocId: string, bookingDocId: string) {
-//     return this.firestore
-//       .collection("waitingLists", (q) =>
-//         q.where("bookingDocId", "==", bookingDocId && "userDocId", "==", userDocId).orderBy("createdOn", "desc")
-//       )
-//       .snapshotChanges()
-//       .pipe(
-//         map((actions) => {
-//           var items = actions.map((p) => {
-//             var data = p.payload.doc.data() as WaitingList;
-//             console.log("getByBookingDocId()", data);
-//             return { ...data, docId: p.payload.doc.id } as WaitingList;
-//           });
-//           return items;
-//         })
-//       );
-//   }
+  //   public get(userDocId: string, bookingDocId: string) {
+  //     return this.firestore
+  //       .collection("waitingLists", (q) =>
+  //         q.where("bookingDocId", "==", bookingDocId && "userDocId", "==", userDocId).orderBy("createdOn", "desc")
+  //       )
+  //       .snapshotChanges()
+  //       .pipe(
+  //         map((actions) => {
+  //           var items = actions.map((p) => {
+  //             var data = p.payload.doc.data() as WaitingList;
+  //             console.log("getByBookingDocId()", data);
+  //             return { ...data, docId: p.payload.doc.id } as WaitingList;
+  //           });
+  //           return items;
+  //         })
+  //       );
+  //   }
 
   public getByBookingDocId(bookingDocId: string) {
     return this.firestore
       .collection("waitingLists", (q) =>
-        q.where("bookingDocId", "==", bookingDocId).orderBy("createdOn", "desc")
+        q.where("bookingDocId", "==", bookingDocId).orderBy("createdOn", "asc")
       )
       .snapshotChanges()
       .pipe(
