@@ -726,6 +726,40 @@ ul.hpbooking {
   color: $section-header-text-color;
 }
 
+.waiting-list-wrapper{
+  display: flex;
+  justify-content: flex-end;
+  button {
+    
+  }
+}
+.waiting-list {
+  display: flex;
+  // flex-direction: row-reverse;
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
+
+  > li {
+    margin-right: -1.5em;
+  }
+  img.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: solid 3px white;
+    position: relative;
+    left: -5px;
+    margin-left: -25px;
+    z-index: 1;
+  }
+  // .avatar {
+  //   // direction: rtl; /* This is to get the stack with left on top */
+  //   text-align: left; /* Now need to explitly align left */
+  //   padding-left: 25px; /* Same value as the negative margin */
+  // }
+}
+
 .marginleft15 {
   margin-left: 15px !important;
 }
@@ -950,7 +984,7 @@ $profile-bg-img-height: 180px;
 }
 
 div.app.offline-bg {
-  background-color: black!important;
+  background-color: black !important;
 }
 /* offline page */
 .offline-bg {

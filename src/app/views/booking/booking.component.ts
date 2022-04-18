@@ -11,6 +11,7 @@ import { BookingsService } from "../../services/bookings.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GlobalConstants } from "../../common/global-constants";
 import { AccountService } from "../../services/account.service";
+import { WaitingListService } from "../../services/waitingList.service";
 import {
   MatDialog,
   MatDialogRef,
@@ -30,6 +31,7 @@ import { EventLogger } from "../../models/event-logger";
 import { User } from "../../models/user";
 import { combineLatest } from "rxjs";
 import { group } from "console";
+import { WaitingList } from "../../models/waiiting-list";
 
 @Component({
   selector: "app-booking",
@@ -58,12 +60,17 @@ export class BookingComponent extends BaseComponent implements OnInit {
   isSeatsLeft: boolean;
   rand: number;
   hasEnoughtBalance: boolean;
+  waitingLists: WaitingList[];
+  myWaitingList: WaitingList;
+  waitingListButtonText: string;
+
 
   constructor(
     private groupService: GroupService,
     private dialogRef: MatDialog,
     private eventLogService: EventLoggerService,
     private bookingService: BookingsService,
+    private waitingListService: WaitingListService,
     private bookingPersonService: BookingPersonService,
     private creditService: CreditService,
     private accountService: AccountService,
@@ -107,6 +114,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
     this.getFriendsList(this.loggedInAccount);
     this.getFamilyMembers(this.loggedInAccount);
     this.logToEvent(this.loggedInAccount);
+    this.getWaitingLists(this.bookingDocId);
   }
 
   checkBalance() {
@@ -281,6 +289,36 @@ export class BookingComponent extends BaseComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
     });
+  }
+
+  waitingListClicked() {
+    if (this.myWaitingList === undefined) {
+      //to create
+      let waitingList = {
+        bookingDocId: this.booking.docId,
+        eventStartDay: this.booking.weekDay,
+        userDocId: this.user.docId,
+        userDisplayName: this.user.name,
+        avatarUrl: this.user.avatarUrl,
+        createdOn: Timestamp.now(),
+      } as WaitingList;
+
+      this.waitingListService.createWaitingList(waitingList);
+    } else {
+      //to delete
+      this.waitingListService.deleteWaitingList(this.myWaitingList.docId);
+    }
+  }
+
+  getWaitingLists(bookingDocId: string) {
+    this.waitingListService
+      .getByBookingDocId(bookingDocId)
+      .subscribe((result) => {
+        console.log(result);
+        this.waitingLists = result;
+        this.myWaitingList = this.waitingLists.find((x) => x.userDocId == this.user.docId);
+        this.waitingListButtonText = this.myWaitingList === undefined ? "+1"  : "-1";
+      });
   }
 
   forSaleClicked(seller: LocalBookingUser) {

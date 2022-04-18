@@ -11,6 +11,24 @@
       </div>
     </div>
 
+
+    <div class="row light" *ngIf="!isSeatsLeft && !booking?.isLocked">
+      <div class="col-sm">
+        <section class="waiting-list-wrapper">
+
+          <ul class="waiting-list">
+            <li *ngFor="let w of waitingLists">
+              <img src="{{w.avatarUrl}}" class="avatar" alt="" title="{{ w.userDisplayName }}">
+            </li>
+          </ul>
+          <button mat-raised-button color="warn" (click)="waitingListClicked()">Waiting
+            {{waitingListButtonText}}</button>
+        </section>
+
+      </div>
+    </div>
+
+
     <div class="row light" *ngIf="!booking?.isOffline">
       <div class="col-sm">
         <!-- <div class="alert  alert-info">
@@ -61,6 +79,8 @@
                 up</a> now!
             </div>
           </div>
+
+
 
           <table class="table table-hover table-custom booking table-sm">
             <thead>
@@ -116,8 +136,15 @@
             </tbody>
           </table>
         </section>
+
+
       </div>
     </div>
+
+
+
+
+
 
 
     <video autoplay muted playsinline loop *ngIf="booking?.isOffline">
