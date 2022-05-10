@@ -87,6 +87,9 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
   isParentCreditUser: boolean;
   waitingLists: WaitingList[];
 
+  //May 10 2020, all income goest to HBC user account
+  hbcUserAccount: User;
+
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialog,
@@ -116,6 +119,7 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     this.getGroupDetail();
     this.getBookingPersonAndGroupAdjustment();
     this.getWaitingLists(this.bookingDocId);
+    this.getHBCUserAccount();
 
     this.filteredUsers = this.myControl.valueChanges.pipe(
       startWith(""),
@@ -137,6 +141,12 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     });
   }
 
+  getHBCUserAccount() {
+    this.accountService.getUserByEmail("hbc@hbc.com").subscribe((result) => {
+      this.hbcUserAccount = result;
+      console.log("hbc user: ", this.hbcUserAccount);
+    });
+  }
   getWaitingLists(bookingDocId: string) {
     this.waitingListService
       .getByBookingDocId(bookingDocId)
@@ -413,30 +423,32 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    var groupTransaction = {
-      amount: this.adjustForm.value.adjustAmount,
-      notes: this.adjustForm.value.adjustDesc,
-      paymentMethod: GlobalConstants.paymentAdjust,
-      groupDocId: this.booking.groupDocId,
-      bookingDocId: this.bookingDocId,
-      createdBy: this.loggedInAccount.docId,
-      createdByDisplayName: this.loggedInAccount.name,
-      created: Timestamp.now(),
-    } as GroupTransaction;
-    console.log("grouptransaction adjustment: ", groupTransaction);
-    this.groupTransactionService
-      .createGroupTransaction(groupTransaction)
-      .then(() => {
-        this.snackBar.open(`Adjustment has been created.`, null, {
-          duration: 5000,
-          verticalPosition: "top",
-        });
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  }
+
+  //10 May 2022 group adjustment removed, do it directly in HBC user's account
+  // onSubmit() {
+  //   var groupTransaction = {
+  //     amount: this.adjustForm.value.adjustAmount,
+  //     notes: this.adjustForm.value.adjustDesc,
+  //     paymentMethod: GlobalConstants.paymentAdjust,
+  //     groupDocId: this.booking.groupDocId,
+  //     bookingDocId: this.bookingDocId,
+  //     createdBy: this.loggedInAccount.docId,
+  //     createdByDisplayName: this.loggedInAccount.name,
+  //     created: Timestamp.now(),
+  //   } as GroupTransaction;
+  //   console.log("grouptransaction adjustment: ", groupTransaction);
+  //   this.groupTransactionService
+  //     .createGroupTransaction(groupTransaction)
+  //     .then(() => {
+  //       this.snackBar.open(`Adjustment has been created.`, null, {
+  //         duration: 5000,
+  //         verticalPosition: "top",
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       alert(err);
+  //     });
+  // }
 
   get f() {
     return this.adjustForm.controls;
@@ -497,7 +509,8 @@ export class BookingdetailsComponent extends BaseComponent implements OnInit {
           this.booking,
           this.allLocalBookingUsers,
           this.loggedInAccount,
-          incomeBreakdownNote
+          incomeBreakdownNote,
+          this.hbcUserAccount
         )
         .then(() => {
           let log = {

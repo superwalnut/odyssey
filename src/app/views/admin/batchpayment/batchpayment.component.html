@@ -7,7 +7,7 @@
           <div class="alert  alert-info">
             <div class="alert-icon"><span class="material-icons">info</span></div>
             <div class="alert-body">
-              All batch payment credits are deducted from <b>[Credit Reserve]</b> account. Designed for admin to
+              All batch payment credits are deducted from <b>[HBC]</b> account. Designed for admin to
               allocate reward credits to competition winners.
             </div>
           </div>
@@ -16,7 +16,7 @@
 
           <form [formGroup]="form" (ngSubmit)="onAddBatch(recipientControl)">
             <p>
-              From: <b>Credit Reserve</b>
+              From: <b><a routerLink="/admin/userdetails/{{hbcUserAccount.docId}}">HBC</a></b>
             </p>
             <p>
               To:

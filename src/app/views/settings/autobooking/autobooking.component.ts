@@ -191,6 +191,7 @@ export class BookingSchedulerDialog {
   numberWeeks: number = 12;
   selectedUser: User;
   totalCost: number;
+  hbcUserAccount: User;
 
   dayRange = { start: Timestamp.now(), end: Timestamp.now() };
 
@@ -212,12 +213,21 @@ export class BookingSchedulerDialog {
 
   }
 
+  getHBCUserAccount() {
+    this.accountService.getUserByEmail("hbc@hbc.com").subscribe((result) => {
+      this.hbcUserAccount = result;
+      console.log("hbc user: ", this.hbcUserAccount);
+    });
+  }
+
   getAllActiveBookingSchedules() {
     this.bookingScheduleService.getActiveBookingSchedules(this.data.group.docId).subscribe(schedules => {
       console.log('getAllActiveBookingSchedules', schedules);
       this.isMaxAutoBookingLimitReached = schedules.length >= this.data.group.seatsAutoBooking;
     })
   }
+
+  
 
   buildUserSelectionList() {
     console.log('my active schedules ', this.myActiveSchedules);
@@ -312,7 +322,7 @@ export class BookingSchedulerDialog {
     if (this.isCommittee) { this.totalCost = 0 } // committee free 
 
 
-    this.bookingScheduleService.createBookingSchedule(user, this.dayRange.end, this.data.loggedInUser, this.data.group, this.totalCost)
+    this.bookingScheduleService.createBookingSchedule(user, this.dayRange.end, this.data.loggedInUser, this.data.group, this.totalCost, this.hbcUserAccount)
       .then(() => {
         let log = {
           eventCategory: GlobalConstants.eventAutoBooking,
@@ -353,6 +363,7 @@ export class BookingSchedulerExtendDialog extends BaseComponent implements OnIni
   numberWeeks: number;
   selectedUser: User;
   totalCost: number;
+  hbcUserAccount: User;
 
   dayRange = { start: Timestamp.now(), end: Timestamp.now() };
 
@@ -375,6 +386,13 @@ export class BookingSchedulerExtendDialog extends BaseComponent implements OnIni
       if (this.isCommittee) { this.totalCost = 0 } // committee free 
 
     })
+  }
+
+  getHBCUserAccount() {
+    this.accountService.getUserByEmail("hbc@hbc.com").subscribe((result) => {
+      this.hbcUserAccount = result;
+      console.log("hbc user: ", this.hbcUserAccount);
+    });
   }
 
   onWeekChange(week: number) {
@@ -414,7 +432,7 @@ export class BookingSchedulerExtendDialog extends BaseComponent implements OnIni
     this.isLoading = true;
     if (this.isCommittee) { this.totalCost = 0 } // committee free 
 
-    this.bookingScheduleService.extendBookingSchedule(this.data.mySchedule.docId, this.group, this.dayRange.end, this.data.loggedInUser, this.totalCost)
+    this.bookingScheduleService.extendBookingSchedule(this.data.mySchedule.docId, this.group, this.dayRange.end, this.data.loggedInUser, this.totalCost, this.hbcUserAccount)
       .then(() => {
         let log = {
           eventCategory: GlobalConstants.eventAutoBookingExtend,

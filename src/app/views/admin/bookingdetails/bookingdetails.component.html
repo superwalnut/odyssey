@@ -127,7 +127,7 @@
             </table>
           </div>
 
-          <h3>Booking adjustment</h3>
+          <!-- <h3>Booking adjustment</h3>
 
           <table class="table table-sm">
             <thead>
@@ -146,10 +146,10 @@
                 <td>{{ t.created.toDate() | date: 'dd/MM/yyyy HH:mm'}}</td>
               </tr>
             </tbody>
-          </table>
+          </table> -->
 
 
-          <form [formGroup]="adjustForm" (ngSubmit)="onSubmit()" *ngIf="!booking?.reconciled">
+          <!-- <form [formGroup]="adjustForm" (ngSubmit)="onSubmit()" *ngIf="!booking?.reconciled">
             <mat-form-field>
               <mat-label>Adjusted amount</mat-label>
               <input matInput placeholder="amount" formControlName="adjustAmount" type="number" required
@@ -161,7 +161,7 @@
               <input matInput placeholder="description" formControlName="adjustDesc" required autocomplete="off" />
             </mat-form-field>
             <button mat-raised-button color="primary" [disabled]="adjustForm.invalid">Save</button>
-          </form>
+          </form> -->
 
 
           <div class="p-3 mb-2 bg-primary text-white" *ngIf="!booking?.reconciled && isGod">

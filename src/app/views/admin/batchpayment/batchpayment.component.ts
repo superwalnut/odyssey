@@ -27,12 +27,14 @@ export class BatchpaymentComponent implements OnInit {
   recipientControl = new FormControl();
   hasError:boolean;
   totalAmount: number = 0;
+  hbcUserAccount: User;
 
   categories = [
     //GlobalConstants.creditCategoryBadminton,
     //GlobalConstants.creditCategoryDividend,
     //GlobalConstants.creditCategoryTopup,
     //GlobalConstants.creditCategoryRefund,
+    GlobalConstants.creditCategoryDividend,
     GlobalConstants.creditCategoryReward,
     GlobalConstants.creditCategoryPromo,
     //GlobalConstants.creditCategoryCashout,
@@ -55,6 +57,9 @@ export class BatchpaymentComponent implements OnInit {
       x.forEach(u => {
         if (u && u.parentUserDocId == null && u.isCreditUser) { this.allUsers.push(u.name); }
       })
+
+      this.hbcUserAccount = this.allUsersObject.find(x=>x.name.toLowerCase() == "HBC".toLowerCase());
+
     });
 
     this.form = this.fb.group({
@@ -115,18 +120,18 @@ export class BatchpaymentComponent implements OnInit {
       return false;
     }
 
-    var fromAccount = this.allUsersObject.find(x=>x.name.toLowerCase() == "Credit Reserve".toLowerCase());
-    if (fromAccount == null) {
+    // var fromAccount = this.allUsersObject.find(x=>x.name.toLowerCase() == "HBC".toLowerCase());
+    if (this.hbcUserAccount == null) {
       alert("from account cannot be found!");
       return false;
     }
     var sendEmail = this.form.value.sendEmail;
 
-    console.log(fromAccount)
+    console.log(this.hbcUserAccount)
     console.log(this.creditBatch);
 
     this.isLoading = true;
-    this.creditService.creditTransferBatch(fromAccount, this.creditBatch, this.loggedInUser)
+    this.creditService.creditTransferBatch(this.hbcUserAccount, this.creditBatch, this.loggedInUser)
     .then(() => {
       if (sendEmail) {
         this.sendBatchEmails();

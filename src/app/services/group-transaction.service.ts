@@ -203,7 +203,8 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
     booking: Booking,
     lbus: LocalBookingUser[],
     operator: Account,
-    incomeBreakdownNote: string
+    incomeBreakdownNote: string,
+    hbcUserAccount: User
   ) {
     var batch = this.firestore.firestore.batch();
     var total = 0;
@@ -267,19 +268,39 @@ export class GroupTransactionService extends FirestoreBaseService<GroupTransacti
     });
 
     //add total to groupTransactions
-    var ref = this.firestore.collection("groupTransactions").doc().ref;
-    var trans = {
+    // var ref = this.firestore.collection("groupTransactions").doc().ref;
+    // var trans = {
+    //   amount: total,
+    //   paymentMethod: GlobalConstants.paymentBookingIncome,
+    //   groupDocId: group.docId,
+    //   referenceId: booking.docId, //nullable
+    //   notes: group.groupName + " " + incomeBreakdownNote,
+    //   createdBy: operator.docId,
+    //   createdByDisplayName: operator.name,
+    //   created: Timestamp.now(),
+    // } as GroupTransaction;
+    // console.log("bookingReconciliation", trans);
+    // batch.set(ref, trans);
+
+    //10 May 2022, Ditched Group transaction table, use HBC user account for all income and expenses
+    var hbcRef = this.firestore.collection("credits").doc().ref;
+    var hbcCredit = {
       amount: total,
-      paymentMethod: GlobalConstants.paymentBookingIncome,
-      groupDocId: group.docId,
-      referenceId: booking.docId, //nullable
-      notes: group.groupName + " " + incomeBreakdownNote,
+      category: GlobalConstants.creditCategoryBadminton,
+      userDocId: hbcUserAccount.docId,
+      userDisplayName: hbcUserAccount.name,
+      note:
+        group.groupName +
+        ": " +
+        incomeBreakdownNote +
+        " " +
+        booking.eventStartDateTime.toDate().toLocaleDateString("en-AU"),
       createdBy: operator.docId,
+      referenceId: booking.weekDay, //only the negative, need to set referenceID
       createdByDisplayName: operator.name,
       created: Timestamp.now(),
-    } as GroupTransaction;
-    console.log("bookingReconciliation", trans);
-    batch.set(ref, trans);
+    } as Credit;
+    batch.set(hbcRef, hbcCredit);
 
     // mark this booking as reconciled
     var ref = this.firestore.collection("bookings").doc(booking.docId).ref;
