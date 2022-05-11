@@ -30,7 +30,9 @@ export class BatchpaymentComponent implements OnInit {
   hbcUserAccount: User;
 
   categories = [
-    //GlobalConstants.creditCategoryBadminton,
+    GlobalConstants.creditCategoryBadminton,
+    GlobalConstants.creditCategoryCourt,
+    GlobalConstants.creditCategoryShuttle,
     //GlobalConstants.creditCategoryDividend,
     //GlobalConstants.creditCategoryTopup,
     //GlobalConstants.creditCategoryRefund,

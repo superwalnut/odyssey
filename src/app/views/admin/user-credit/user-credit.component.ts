@@ -19,12 +19,12 @@ export class UserCreditComponent implements OnInit {
   userDocId: string;
   user: User;
   balance: number = 0;
-  categories:string[]=[];
+  categories: string[] = [];
   form: FormGroup;
   submitted = false;
   loggedInUser: Account;
   credits: Credit[];
-  isLoading:boolean;
+  isLoading: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -32,8 +32,8 @@ export class UserCreditComponent implements OnInit {
     private creditService: CreditService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private mailService: MailgunService,
-  ) { }
+    private mailService: MailgunService
+  ) {}
 
   // convenience getter for easy access to form fields
   get f() {
@@ -42,14 +42,16 @@ export class UserCreditComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      amount: ['', [Validators.required]],
-      category: ['', [Validators.required]],
+      amount: ["", [Validators.required]],
+      category: ["", [Validators.required]],
       note: ["", Validators.required],
       sendEmail: [],
     });
 
     this.categories = [
       GlobalConstants.creditCategoryBadminton,
+      GlobalConstants.creditCategoryCourt,
+      GlobalConstants.creditCategoryShuttle,
       GlobalConstants.creditCategoryDividend,
       GlobalConstants.creditCategoryTopup,
       GlobalConstants.creditCategoryRefund,
@@ -57,7 +59,7 @@ export class UserCreditComponent implements OnInit {
       GlobalConstants.creditCategoryPromo,
       GlobalConstants.creditCategoryCashout,
       GlobalConstants.creditCategoryAdjustment,
-      GlobalConstants.creditCategoryOther
+      GlobalConstants.creditCategoryOther,
     ];
 
     this.loggedInUser = this.accountService.getLoginAccount();
@@ -79,15 +81,17 @@ export class UserCreditComponent implements OnInit {
   }
 
   getUserCreditHistory() {
-    this.creditService.getByUser(this.userDocId).subscribe(result => {
+    this.creditService.getByUser(this.userDocId).subscribe((result) => {
       this.credits = result;
-      console.log(result)
-    })
+      console.log(result);
+    });
   }
   onSubmit() {
     this.submitted = true;
     this.isLoading = true;
-    if (this.form.invalid) {  return;  }
+    if (this.form.invalid) {
+      return;
+    }
 
     console.log("register", this.form);
 
@@ -103,12 +107,15 @@ export class UserCreditComponent implements OnInit {
 
     const isSendingEmail = this.form.value.sendEmail;
 
-    this.creditService.createCredit(credit).then(x => {
-
-      if(isSendingEmail){
-        this.mailService.sendTopupSucceed(this.user.email, this.user.name, credit.amount);
+    this.creditService.createCredit(credit).then((x) => {
+      if (isSendingEmail) {
+        this.mailService.sendTopupSucceed(
+          this.user.email,
+          this.user.name,
+          credit.amount
+        );
       }
-      
+
       if (!this.user.isCreditUser && credit.amount >= 100) {
         const update = { isCreditUser: true } as User;
         this.accountService.updateUser(this.userDocId, update);
