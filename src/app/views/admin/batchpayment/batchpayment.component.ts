@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
-import { Observable } from 'rxjs';
-import { filter, map, mergeMap, startWith, take } from 'rxjs/operators'
+import { Component, OnInit } from "@angular/core";
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+} from "@angular/forms";
+import { Observable } from "rxjs";
+import { filter, map, mergeMap, startWith, take } from "rxjs/operators";
 import { GlobalConstants } from "../../../common/global-constants";
 import { MailgunService } from "../../../services/mailgun.service";
 import { Credit } from "../../../models/credit";
@@ -12,9 +17,9 @@ import { Account } from "../../../models/account";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
-  selector: 'app-batchpayment',
-  templateUrl: './batchpayment.component.html',
-  styleUrls: ['./batchpayment.component.scss']
+  selector: "app-batchpayment",
+  templateUrl: "./batchpayment.component.html",
+  styleUrls: ["./batchpayment.component.scss"],
 })
 export class BatchpaymentComponent implements OnInit {
   filteredUsers: Observable<string[]>;
@@ -22,10 +27,10 @@ export class BatchpaymentComponent implements OnInit {
   allUsersObject: User[];
   form: FormGroup;
   loggedInUser: Account;
-  isLoading:boolean;
-  creditBatch: Credit[]=[];
+  isLoading: boolean;
+  creditBatch: Credit[] = [];
   recipientControl = new FormControl();
-  hasError:boolean;
+  hasError: boolean;
   totalAmount: number = 0;
   hbcUserAccount: User;
 
@@ -41,42 +46,54 @@ export class BatchpaymentComponent implements OnInit {
     GlobalConstants.creditCategoryPromo,
     //GlobalConstants.creditCategoryCashout,
     //GlobalConstants.creditCategoryAdjustment,
-    GlobalConstants.creditCategoryOther
+    GlobalConstants.creditCategoryOther,
   ];
 
-  constructor(private accountService: AccountService, private fb: FormBuilder,private snackBar: MatSnackBar, private mailService: MailgunService,private creditService: CreditService,) { }
+  constructor(
+    private accountService: AccountService,
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+    private mailService: MailgunService,
+    private creditService: CreditService
+  ) {}
 
   ngOnInit(): void {
     this.loggedInUser = this.accountService.getLoginAccount();
-    this.filteredUsers = this.recipientControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
+    this.filteredUsers = this.recipientControl.valueChanges.pipe(
+      startWith(""),
+      map((value) => this._filter(value))
+    );
 
     this.accountService.getAllUsers().subscribe((x) => {
       this.allUsersObject = x;
-      x.forEach(u => {
-        if (u && u.parentUserDocId == null && u.isCreditUser) { this.allUsers.push(u.name); }
-      })
+      x.forEach((u) => {
+        if (u && u.parentUserDocId == null && u.isCreditUser) {
+          this.allUsers.push(u.name);
+        }
+      });
 
-      this.hbcUserAccount = this.allUsersObject.find(x=>x.name.toLowerCase() == "HBC".toLowerCase());
-
+      this.hbcUserAccount = this.allUsersObject.find(
+        (x) => x.name.toLowerCase() == "HBC".toLowerCase()
+      );
     });
 
     this.form = this.fb.group({
-      category: ['Reward', [Validators.required]],
-      amount: ['', [Validators.required]],
+      category: ["Reward", [Validators.required]],
+      amount: ["", [Validators.required]],
       note: ["", Validators.required],
       sendEmail: [],
     });
   }
 
   onAddBatch(recipientControl) {
-    if (this.form.invalid) {  return;  }
-    var selectedUser = this.allUsersObject.find(x=>x.name.toLowerCase() == recipientControl.value.toLowerCase());
+    if (this.form.invalid) {
+      return;
+    }
+    var selectedUser = this.allUsersObject.find(
+      (x) => x.name.toLowerCase() == recipientControl.value.toLowerCase()
+    );
 
-    if (selectedUser == null) { 
+    if (selectedUser == null) {
       this.hasError = true;
       return false;
     }
@@ -97,28 +114,25 @@ export class BatchpaymentComponent implements OnInit {
     this.calcTotal();
   }
 
-  remove(credit:Credit) {
-
-    this.creditBatch.forEach((item,index)=>{
+  remove(credit: Credit) {
+    this.creditBatch.forEach((item, index) => {
       if (item == credit) {
-        console.log("found ")
+        console.log("found ");
         this.creditBatch.splice(index, 1);
-
       }
     });
     this.calcTotal();
-
   }
 
   calcTotal() {
     this.totalAmount = 0;
-    this.creditBatch.forEach(item=>{
+    this.creditBatch.forEach((item) => {
       this.totalAmount += item.amount;
-    })
+    });
   }
 
   processBatch() {
-    if (!confirm('Transfer HBCoins from [Credit Reserve] to listed users?')) {
+    if (!confirm("Transfer HBCoins from [HBC] to listed users?")) {
       return false;
     }
 
@@ -129,35 +143,46 @@ export class BatchpaymentComponent implements OnInit {
     }
     var sendEmail = this.form.value.sendEmail;
 
-    console.log(this.hbcUserAccount)
+    console.log(this.hbcUserAccount);
     console.log(this.creditBatch);
 
     this.isLoading = true;
-    this.creditService.creditTransferBatch(this.hbcUserAccount, this.creditBatch, this.loggedInUser)
-    .then(() => {
-      if (sendEmail) {
-        this.sendBatchEmails();
-      }
-      //this.resetForm();
+    this.creditService
+      .creditTransferBatch(
+        this.hbcUserAccount,
+        this.creditBatch,
+        this.loggedInUser
+      )
+      .then(() => {
+        if (sendEmail) {
+          this.sendBatchEmails();
+        }
+        //this.resetForm();
 
-      this.snackBar.open(`Batch credit transfer successful.`, null, {
-        duration: 5000,
-        verticalPosition: "top",
+        this.snackBar.open(`Batch credit transfer successful.`, null, {
+          duration: 5000,
+          verticalPosition: "top",
+        });
+        this.isLoading = false;
+      })
+      .catch((err) => {
+        alert(err);
+        this.isLoading = false;
       });
-      this.isLoading = false;
-    })
-    .catch((err) => { alert(err); this.isLoading = false; })
   }
 
-  sendBatchEmails(){
-    this.creditBatch.forEach(item=>{
-      var found = this.allUsersObject.find(x=>x.docId == item.userDocId);
+  sendBatchEmails() {
+    this.creditBatch.forEach((item) => {
+      var found = this.allUsersObject.find((x) => x.docId == item.userDocId);
       if (found) {
-        this.mailService.sendTopupSucceed(found.email, item.userDisplayName, item.amount);
+        this.mailService.sendTopupSucceed(
+          found.email,
+          item.userDisplayName,
+          item.amount
+        );
         console.log(found);
       }
     });
-    
   }
 
   resetForm() {
@@ -168,11 +193,12 @@ export class BatchpaymentComponent implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     console.log(filterValue);
-    return this.allUsers.filter(option => option.toLowerCase().includes(filterValue));
+    return this.allUsers.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
   }
 
   get f() {
     return this.form.controls;
   }
-
 }
