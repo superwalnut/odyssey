@@ -236,6 +236,9 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
 
     //income to HBC User account instead of Group transaction 20 May 2022
     var hbcRef = this.firestore.collection("credits").doc().ref;
+
+    console.log("hbcUser", hbcUser);
+
     var hbcCredit = {
       amount: fee,
       category: GlobalConstants.paymentCredit,
@@ -248,6 +251,7 @@ export class BookingScheduleService extends FirestoreBaseService<BookingSchedule
       note: "auto booking extend:" + loggedInUser.name,
     } as Credit;
     batch.set(hbcRef, hbcCredit);
+    console.log("hbcredit", hbcCredit);
 
     //1. deduct user's credit
     var ref = this.firestore.collection("credits").doc().ref;
