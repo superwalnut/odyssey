@@ -107,9 +107,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
   
 
   getRandomQuote() {
-    var len = GlobalConstants.chinesePoemQuotes.length;
+    var len = GlobalConstants.starwarsQuotes.length;
     var rand = this.helperService.getRandomIntInclusive(0,len-1);
-    var quote = GlobalConstants.chinesePoemQuotes[rand];
+    var quote = GlobalConstants.starwarsQuotes[rand];
     this.getClassBasedOnLanguage(quote.line);
     return quote;
   }

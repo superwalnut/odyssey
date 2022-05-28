@@ -88,6 +88,15 @@ mat-form-field {
 table.mat-table {
   width: 90%;
   margin: 10px;
+  background-color: $mat-table-bg-color;
+  td.mat-cell,
+  td.mat-heaeer-cell,
+  td.mat-sort-header-content {
+    color: $mat-cell-color;
+    a {
+      color: $mat-cell-color;
+    }
+  }
 }
 
 .app-footer {
@@ -726,11 +735,10 @@ ul.hpbooking {
   color: $section-header-text-color;
 }
 
-.waiting-list-wrapper{
+.waiting-list-wrapper {
   display: flex;
   justify-content: flex-end;
   button {
-    
   }
 }
 .waiting-list {
