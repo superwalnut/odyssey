@@ -33,6 +33,27 @@ body div.app {
     }
 }
 
+.card-white {
+    background-color: white;
+    color: black;
+    mat-label {
+        color: black;
+    }
+    h1{
+        color:black;
+    }
+    table {
+        color: black;
+    }
+    a {
+        color: black;
+        font-weight: 500;
+    }
+    .text-muted {
+        color: $card-text-muted !important;
+    }
+}
+
 .mat-card {
     background-color: $card-background-color;
     color: $card-text-color;
