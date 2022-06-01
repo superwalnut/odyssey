@@ -212,7 +212,6 @@ const routes: Routes = [
         component: EnvCheckComponent,
         data:{
           title: "Env check",
-          roles: ["God"],
         }
       }
 
