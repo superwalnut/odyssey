@@ -1,9 +1,8 @@
-
 //Dark Mode Theme
 $global-page-bg-color: #1b1b1b;
 $default-color: #101010;
 $default-highlight-color: #ccc;
-$nav-bar-color: $default-color; 
+$nav-bar-color: $default-color;
 $nav-bar-text-color: white;
 $nav-bar-logo: $hbc-logo-white;
 $nav-bar-link-hover-color: white;
@@ -18,23 +17,28 @@ $hero-color4: #000;
 $homepage-hero-text-color: white;
 $homepage-booking-button-bg-color: #0f0f0f;
 $homepage-booking-button-text-color: white;
-$homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
-$homepage-hero-bg-img: '';
-$homepage-hero-bg-img-mobile:'';
+$homepage-hero-gradient: linear-gradient(
+    180deg,
+    rgba(57, 3, 75, 1) 0%,
+    rgba(68, 3, 89, 1) 35%,
+    rgba(98, 3, 130, 1) 100%
+);
+$homepage-hero-bg-img: "";
+$homepage-hero-bg-img-mobile: "";
 $homepage-intro-minheight: 430px;
-$homepage-intro-shade-color:rgba(255,255,255,0);
+$homepage-intro-shade-color: rgba(255, 255, 255, 0);
 $homepage-intro-bg: url(https://ik.imagekit.io/hbc666/hbc/hero/hero-banner-deathstar_OBR9Ni0TM.jpg);
 
 $homepage-hero-bg-offset: -550px;
-$homepage-intro-color:#fff;
-$homepage-intro-shade-link-color: white; 
-$homepage-hero-bg-img: url(https://ik.imagekit.io/hbc666/hbc/hero/hero-bg-stormtrooper_WD6a1jNSt8.jpg)!important;
+$homepage-intro-color: #fff;
+$homepage-intro-shade-link-color: white;
+$homepage-hero-bg-img: url(https://ik.imagekit.io/hbc666/hbc/hero/hero-bg-stormtrooper_WD6a1jNSt8.jpg) !important;
 $homepage-hero-bg-size-percent: 110% 110%;
 $offline-quote-bg-color: #000;
 
 //dashboard profile card
 $profile-bg-img-url: url("https://ik.imagekit.io/hbc666/hbc/banner/profilecard-darthvader_xYUC5FIL1.jpg");
-$profile-card-bg-color:$default-color;
+$profile-card-bg-color: $default-color;
 $profile-card-text-color: #fff;
 $profile-button-color: black;
 $profile-button-highlight-color: #2a2a2a;
@@ -49,12 +53,12 @@ $card-table-text-color: white;
 $card-mat-label-color: white;
 $card-text-muted: #b4b4b4;
 $card-link-text-color: white;
-$session-card-bg-img:url("https://ik.imagekit.io/hbc666/hbc/banner/session-card-starship_O3zYIHrgw.jpg");
+$session-card-bg-img: url("https://ik.imagekit.io/hbc666/hbc/banner/session-card-starship_O3zYIHrgw.jpg");
 
 //booking tables
 $table-bg-color: $default-color;
 $table-text-color: white;
-$table-hover-text-color:#ccc;
+$table-hover-text-color: #ccc;
 $table-hover-bg-color: $default-color;
 $booking-tbl-hightlight-color: #1e1e1e;
 $table-booking-button-bg-color: #565656;
@@ -68,6 +72,10 @@ $modal-content-text-color: black;
 //Admin
 $admin-table-row-inactive: #202020;
 
+//mat-table
+$mat-table-bg-color: white;
+$mat-cell-color: $default-color;
+
 //footer
 $footer-bg-color: $default-color;
 $footer-text-color: white;
@@ -75,4 +83,4 @@ $footer-link-hover-color: #dbd7d7;
 $footer-logo-color: white;
 $footer-real-bg-color: #0d0d0d;
 $footer-real-text-color: white;
-//Dark Mode Theme END 
+//Dark Mode Theme END

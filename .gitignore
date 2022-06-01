@@ -46,5 +46,6 @@ testem.log
 Thumbs.db
 .firebase
 functions/node_modules
+.vscode/settings.json
 src/environments/local.environment.ts
 .env

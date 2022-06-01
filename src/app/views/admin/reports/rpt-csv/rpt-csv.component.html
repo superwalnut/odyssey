@@ -1,73 +1,93 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 mx-auto">
-            <h1 *ngIf="!isGod">God only</h1>
-            <h1 class="section-heading">Download CSV</h1>
 
-            <p>
-                <b>groups.docId</b><br>
-                DhmtWcbjRiA4cgCVUUEZ = Friday<br>
-                NEhr4Fv15b7dJKemr5QW = Tuesday<br>
-                socRbQLebrkSS16RIGcR = Saturday<br>
-            </p>
-            <table class="table table-sm" *ngIf="isGod">
-                <thead>
-                    <tr>
-                        <th scope="col">Table</th>
-                        <th>Desc</th>
-                        <th scope="col">Download</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="row">bookingPersons</td>
-                        <td></td>
-                        <td scope="row">
-                            <button mat-icon-button color="primary" (click)="downloadBookingPersons()">
-                                <mat-icon>file_download</mat-icon>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">bookings</td>
-                        <td>bookingPersons.bookingDocId = bookings.docId</td>
-                        <td scope="row">
-                            <button mat-icon-button color="primary" (click)="downloadBookings()">
-                                <mat-icon>file_download</mat-icon>
-                            </button>
-                        </td>
-                    </tr>
+            <div class="card card-white">
+                <div class="card-body">
 
-                    <tr>
-                        <td scope="row">credits</td>
-                        <td></td>
-                        <td>
-                            <button mat-icon-button color="primary" (click)="downloadUserCredits()">
-                                <mat-icon>file_download</mat-icon>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>groupTransactions</td>
-                        <td></td>
-                        <td>
-                            <button mat-icon-button color="primary" (click)="downloadGroupTransactions()">
-                                <mat-icon>file_download</mat-icon>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>users</td>
-                        <td></td>
-                        <td>
-                            <button mat-icon-button color="primary" (click)="downloadUsers()">
-                                <mat-icon>file_download</mat-icon>
-                            </button>
-                        </td>
-                    </tr>
+                    <h1 *ngIf="!isGod">God only</h1>
+                    <h1 class="section-heading">Download CSV</h1>
 
-                </tbody>
-            </table>
+                    <p>
+                        <b>groups.docId</b><br>
+                        DhmtWcbjRiA4cgCVUUEZ = Friday<br>
+                        NEhr4Fv15b7dJKemr5QW = Tuesday<br>
+                        socRbQLebrkSS16RIGcR = Saturday<br>
+                    </p>
+                    <table class="table table-sm" *ngIf="isGod">
+                        <thead>
+                            <tr>
+                                <th scope="col">Table</th>
+                                <th>Desc</th>
+                                <th scope="col">Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">bookingPersons</td>
+                                <td></td>
+                                <td scope="row">
+                                    <button mat-icon-button color="primary" (click)="downloadBookingPersons()">
+                                        <mat-icon>file_download</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">bookings</td>
+                                <td>bookingPersons.bookingDocId = bookings.docId</td>
+                                <td scope="row">
+                                    <button mat-icon-button color="primary" (click)="downloadBookings()">
+                                        <mat-icon>file_download</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td scope="row">credits</td>
+                                <td></td>
+                                <td>
+                                    <button mat-icon-button color="primary" (click)="downloadUserCredits()">
+                                        <mat-icon>file_download</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>groupTransactions</td>
+                                <td></td>
+                                <td>
+                                    <button mat-icon-button color="primary" (click)="downloadGroupTransactions()">
+                                        <mat-icon>file_download</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>users</td>
+                                <td></td>
+                                <td>
+                                    <button mat-icon-button color="primary" (click)="downloadUsers()">
+                                        <mat-icon>file_download</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>eventLogs</td>
+                                <td></td>
+                                <td>
+                                    <button mat-icon-button color="primary" (click)="downloadEventLogs()">
+                                        <mat-icon>file_download</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+
         </div>
     </div>
 </div>
