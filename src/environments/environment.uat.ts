@@ -1,9 +1,9 @@
 export const environment = {
     env: 'uat',
     production: false,
-    mail_url: "https://us-central1-hbclub-919aa.cloudfunctions.net",
+    mail_url: "",
     firebase: {
-      apiKey: "AIzaSyARtsKbJSMmNK4gX-KVODBGc6JNociGU8M",
+      apiKey: "",
       authDomain: "hbc-uat-9f2ad.firebaseapp.com",
       projectId: "hbc-uat-9f2ad",
       storageBucket: "hbc-uat-9f2ad.appspot.com",
