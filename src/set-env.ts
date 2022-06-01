@@ -1,6 +1,6 @@
 import { writeFile } from 'fs';
 // Configure Angular `environment.ts` file path
-var targetPath = './src/environments/environment.ts';
+var targetPath = './src/environments/environment.uat.ts';
 
 // Load node modules
 const colors = require('colors');
