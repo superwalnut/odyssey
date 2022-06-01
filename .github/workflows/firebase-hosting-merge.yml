@@ -25,14 +25,14 @@ jobs:
           projectId: hbclub-919aa
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
-          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
-          PRODUCTION: ${{ secrets.PRODUCTION }}
-          MAIL_URL: ${{ secrets.MAIL_URL }}
-          DOMAIN: ${{ secrets.DOMAIN }}
-          API_KEY: ${{ secrets.API_KEY }}
-          AUTH_DOMAIN: ${{ secrets.AUTH_DOMAIN }}
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          STORAGE_BUCKET: ${{ secrets.STORAGE_BUCKET }}
-          MESSAGING_SENDER_ID: ${{ secrets.MESSAGING_SENDER_ID }}
-          APP_ID: ${{ secrets.APP_ID }}
-          MEASUREMENT_ID: ${{ secrets.MEASUREMENT_ID }}
+          FIREBASE_API_KEY: '${{ secrets.FIREBASE_API_KEY }}'
+          PRODUCTION: '${{ secrets.PRODUCTION }}'
+          MAIL_URL: '${{ secrets.MAIL_URL }}'
+          DOMAIN: '${{ secrets.DOMAIN }}'
+          API_KEY: '${{ secrets.API_KEY }}'
+          AUTH_DOMAIN: '${{ secrets.AUTH_DOMAIN }}'
+          PROJECT_ID: '${{ secrets.PROJECT_ID }}'
+          STORAGE_BUCKET: '${{ secrets.STORAGE_BUCKET }}'
+          MESSAGING_SENDER_ID: '${{ secrets.MESSAGING_SENDER_ID }}'
+          APP_ID: '${{ secrets.APP_ID }}'
+          MEASUREMENT_ID: '${{ secrets.MEASUREMENT_ID }}'
