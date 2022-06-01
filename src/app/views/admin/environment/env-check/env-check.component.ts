@@ -9,7 +9,7 @@ import { environment } from '../../../../../environments/environment';
 export class EnvCheckComponent implements OnInit {
   domain:string = environment.domain;
   mailUrl:string = environment.mail_url;
-  env:string = environment.production == "true"?"Production":"UAT";
+  isProduction  = environment.production;
   firebase:any = environment.firebase;
   constructor() { }
 
