@@ -17,7 +17,8 @@ jobs:
           node-version: '14'
       - run: npm install
       - run: npm install -g @angular/cli
-      - run: |
+      - name: create env file
+        run: |
         touch .env
         echo PRODUCTION=${{ secrets.PRODUCTION }} >> .env
         echo MAIL_URL=${{ secrets.MAIL_URL }} >> .env
