@@ -10,11 +10,6 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     environment: staging
-    env:
-      PRODUCTION: '${{ secrets.PRODUCTION }}'
-      MAIL_URL: '${{ secrets.MAIL_URL }}'
-      API_KEY: '${{ secrets.API_KEY }}'
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -22,6 +17,11 @@ jobs:
           node-version: '14'
       - run: npm install
       - run: npm install -g @angular/cli
+      - run: |
+        touch .env
+        echo PRODUCTION=${{ secrets.PRODUCTION }} >> .env
+        echo MAIL_URL=${{ secrets.MAIL_URL }} >> .env
+        echo API_KEY=${{ secrets.API_KEY }} >> .env
       - run: npm run config && ng build --configuration uat --output-path=public
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
