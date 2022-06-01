@@ -25,3 +25,5 @@ jobs:
           projectId: hbc-uat-9f2ad
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_UAT_API_KEY }}
+          

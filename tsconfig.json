@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "module": "es2020",
-    "target": "es5",
+    "module": "esnext",
+    "target": "esnext",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -17,5 +17,10 @@
       "esnext",
       "dom"
     ]
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
   }
 }

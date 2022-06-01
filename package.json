@@ -2,6 +2,7 @@
   "name": "@coreui/coreui-free-angular-admin-template",
   "version": "2.11.1",
   "description": "CoreUI Free Angular 11 Admin Template",
+  "type": "commonjs",
   "author": {
     "name": "Łukasz Holeczek",
     "url": "http://holeczek.pl",
@@ -19,11 +20,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "postinstall": "ngcc --properties es5 browser module main --first-only",
+    "postinstall": "npm run build",
+    "config": "ts-node src/set-env.ts",
     "start": "ng serve",
-    "build": "ng build --prod --progress --output-path=public",
-    "uatbuild": "ng build --progress --output-path=public",
-    "test": "ng test",
+    "build": "npm run config && ng build --prod --progress --output-path=public",
+    "uatbuild": "npm run config && ng build --progress --output-path=public",
+    "test": "npm run config && ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -63,7 +65,9 @@
     "ts-helpers": "^1.1.2",
     "tslib": "^2.0.0",
     "web-animations-js": "^2.3.2",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.10.3",
+    "colors": "^1.1.2",
+    "dotenv": "^5.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1101.1",

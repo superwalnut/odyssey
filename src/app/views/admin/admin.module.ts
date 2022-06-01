@@ -29,6 +29,7 @@ import { RptAutobookComponent , ScheduleDialog} from './reports/rpt-autobook/rpt
 import { RptUserCreditsComponent } from './reports/rpt-user-credits/rpt-user-credits.component';
 import { RptCsvComponent } from './reports/rpt-csv/rpt-csv.component';
 import { BatchpaymentComponent } from './batchpayment/batchpayment.component';
+import { EnvCheckComponent } from './environment/env-check/env-check.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { BatchpaymentComponent } from './batchpayment/batchpayment.component';
     RptUserCreditsComponent,
     RptCsvComponent,
     BatchpaymentComponent,
+    EnvCheckComponent,
   ],
 })
 export class AdminModule { }

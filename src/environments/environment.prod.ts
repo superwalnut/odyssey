@@ -1,4 +1,5 @@
 export const environment = {
+  env: 'prod',
   production: true,
   mail_url: "https://us-central1-hbclub-919aa.cloudfunctions.net",
   firebase: {

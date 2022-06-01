@@ -24,3 +24,5 @@ jobs:
           projectId: hbclub-919aa
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          

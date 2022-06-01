@@ -46,3 +46,5 @@ testem.log
 Thumbs.db
 .firebase
 functions/node_modules
+src/environments/local.environment.ts
+.env
