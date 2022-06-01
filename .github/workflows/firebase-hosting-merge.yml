@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '14'
       - run: npm install
-      - run: npm run build
+      - run: ng build --prod --progress --output-path=public
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'

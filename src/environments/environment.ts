@@ -1,14 +1,9 @@
+import {firebase} from './local.environment'
+
 export const environment = {
-  production: 'undefined',
-  mail_url: 'undefined',
-  domain: 'undefined',
-  firebase: {
-    apiKey: 'undefined',
-    authDomain: 'undefined',
-    projectId: 'undefined',
-    storageBucket: 'undefined',
-    messagingSenderId: 'undefined',
-    appId: 'undefined',
-    measurementId: 'undefined'
-  }
+  env: 'local',
+  production: 'false',
+  mail_url: 'http://localhost:5001/hbclub-919aa/us-central1',
+  domain: 'https://hbc-uat-9f2ad.web.app',
+  ...firebase
 };
