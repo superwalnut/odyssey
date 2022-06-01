@@ -21,6 +21,10 @@ const envConfigFile = `export const environment = {
   }
 };
 `;
+
+console.log('FIREBASE_SERVICE_ACCOUNT_HBC666_UAT', `${process.env.FIREBASE_SERVICE_ACCOUNT_HBC666_UAT}`);
+console.log('FIREBASE_SERVICE_ACCOUNT_HBC666', `${process.env.FIREBASE_SERVICE_ACCOUNT_HBC666}`);
+
 console.log(colors.magenta('The file `environment.ts` will be written with the following content: \n'));
 console.log(colors.grey(envConfigFile));
 

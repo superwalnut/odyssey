@@ -1,16 +1,14 @@
 export const environment = {
-    env: 'uat',
-    production: false,
-    mail_url: "",
-    firebase: {
-      apiKey: "",
-      authDomain: "",
-      projectId: "",
-      storageBucket: "",
-      messagingSenderId: "",
-      appId: "",
-      measurementId: ""
-    },
-    domain: "https://hbc-uat-9f2ad.web.app",
-  };
-  
+  production: 'undefined',
+  mail_url: 'undefined',
+  domain: '"www.abc.com"',
+  firebase: {
+    apiKey: 'undefined',
+    authDomain: 'undefined',
+    projectId: 'undefined',
+    storageBucket: 'undefined',
+    messagingSenderId: 'undefined',
+    appId: 'undefined',
+    measurementId: 'undefined'
+  }
+};
