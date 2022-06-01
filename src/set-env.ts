@@ -3,7 +3,6 @@ import { writeFile } from 'fs';
 var targetPath = './src/environments/environment.uat.ts';
 
 // Load node modules
-const colors = require('colors');
 require('dotenv').load();
 // `environment.ts` file structure
 const envConfigFile = `export const environment = {
@@ -25,8 +24,8 @@ const envConfigFile = `export const environment = {
 console.log('FIREBASE_SERVICE_ACCOUNT_HBC666_UAT', `${process.env.FIREBASE_SERVICE_ACCOUNT_HBC666_UAT}`);
 console.log('FIREBASE_SERVICE_ACCOUNT_HBC666', `${process.env.FIREBASE_SERVICE_ACCOUNT_HBC666}`);
 
-console.log(colors.magenta('The file `environment.ts` will be written with the following content: \n'));
-console.log(colors.grey(envConfigFile));
+console.log('The file `environment.ts` will be written with the following content: \n');
+console.log(envConfigFile);
 
 if(`${process.env.PRODUCTION}` == "true"){
   targetPath = './src/environments/environment.prod.ts';
@@ -36,6 +35,6 @@ writeFile(targetPath, envConfigFile, function (err) {
    if (err) {
        throw console.error(err);
    } else {
-       console.log(colors.magenta(`Angular environment.ts file generated correctly at ${targetPath} \n`));
+       console.log(`Angular environment.ts file generated correctly at ${targetPath} \n`);
    }
 });
