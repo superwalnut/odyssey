@@ -20,6 +20,7 @@ import { AirtagComponent } from "./views/promo/airtag/airtag.component";
 import { CompetitionComponent } from "./views/competition/competition.component";
 import { DevComponent } from "./views/dev/dev.component";
 import { OfflineComponent } from "./views/offline/offline.component";
+import { EnvCheckComponent } from "./views/env-check/env-check.component";
 
 
 export const routes: Routes = [
@@ -133,6 +134,13 @@ export const routes: Routes = [
     },
   },
   
+  {
+    path: 'env',
+    component: EnvCheckComponent,
+    data:{
+      title: "Env check",
+    }
+  },
 
   /// HBC admin
   {

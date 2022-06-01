@@ -25,7 +25,7 @@ import { BatchpaymentComponent } from "./batchpayment/batchpayment.component";
 import { groupCollapsed } from "console";
 import { RptUserCreditsComponent } from "./reports/rpt-user-credits/rpt-user-credits.component";
 import { RptCsvComponent } from "./reports/rpt-csv/rpt-csv.component";
-import { EnvCheckComponent } from "./environment/env-check/env-check.component";
+import { EnvCheckComponent } from "../env-check/env-check.component";
 
 const routes: Routes = [
   {
@@ -207,14 +207,6 @@ const routes: Routes = [
           title: "Batch pay",
         },
       },
-      {
-        path: 'env-check',
-        component: EnvCheckComponent,
-        data:{
-          title: "Env check",
-        }
-      }
-
     ],
   },
 ];
