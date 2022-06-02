@@ -11,12 +11,12 @@ const envConfigFile = `export const environment = {
   domain: "https://hbc666.club",
   firebase: {
     apiKey: '${process.env.API_KEY}',
-    authDomain: "hbclub-919aa.firebaseapp.com",
-    projectId: "hbclub-919aa",
-    storageBucket: "hbclub-919aa.appspot.com",
-    messagingSenderId: "662012824452",
-    appId: "1:662012824452:web:53cfe97159e39745a5abd1",
-    measurementId: "G-E3M8ZFWFZB",
+    authDomain: '${process.env.AUTH_DOMAIN}',
+    projectId: '${process.env.PROJECT_ID}',
+    storageBucket: '${process.env.STORAGE_BUCKET}',
+    messagingSenderId: '${process.env.MESSAGING_SENDER_ID}',
+    appId: '${process.env.APP_ID}',
+    measurementId: '${process.env.MEASUREMENT_ID}',
   }
 };
 `;
