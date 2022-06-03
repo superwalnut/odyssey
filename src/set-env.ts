@@ -1,7 +1,7 @@
 import { writeFile } from 'fs';
 
 // Configure Angular `environment.ts` file path
-var targetPath = './src/environments/environment.uat.ts';
+var targetPath = './src/environments/environment.ts';
 
 // Load node modules
 require('dotenv').load();
@@ -24,10 +24,6 @@ const envConfigFile = `export const environment = {
 
 console.log('The file `environment.ts` will be written with the following content: \n');
 console.log(envConfigFile);
-
-if(`${process.env.PRODUCTION}` == "true"){
-  targetPath = './src/environments/environment.prod.ts';
-}
 
 writeFile(targetPath, envConfigFile, function (err) {
    if (err) {

@@ -24,7 +24,6 @@
     "config": "ts-node src/set-env.ts",
     "start": "ng serve",
     "build": "npm run config && ng build --prod --progress --output-path=public",
-    "uatbuild": "npm run config && ng build --configuration uat --progress --output-path=public",
     "test": "npm run config && ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
