@@ -11,6 +11,6 @@ export const environment = {
       appId: "",
       measurementId: ""
     },
-    domain: "https://hbc-uat-9f2ad.web.app",
+    domain: "https://hbc666.club",
   };
   
