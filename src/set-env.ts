@@ -1,4 +1,5 @@
 import { writeFile } from 'fs';
+
 // Configure Angular `environment.ts` file path
 var targetPath = './src/environments/environment.uat.ts';
 
