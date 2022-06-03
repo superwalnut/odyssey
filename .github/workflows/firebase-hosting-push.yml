@@ -29,7 +29,8 @@ jobs:
           echo MESSAGING_SENDER_ID=${{ secrets.MESSAGING_SENDER_ID }} >> .env
           echo APP_ID=${{ secrets.APP_ID }} >> .env
           echo MEASUREMENT_ID=${{ secrets.MEASUREMENT_ID }} >> .env
-      - run: npm run config && ng build --configuration uat --output-path=public
+      - run: npm run config
+      - run: ng build --configuration uat --output-path=public
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
