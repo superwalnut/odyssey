@@ -1,7 +1,7 @@
 import { writeFile } from 'fs';
 
 // Configure Angular `environment.ts` file path
-var targetPath = './src/environments/environment.ts';
+var targetPath = './src/environments/environment.prod.ts';
 
 // Load node modules
 require('dotenv').load();
