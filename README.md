@@ -16,15 +16,15 @@ Before you begin, make sure your development environment includes `Node.js®` an
 
 ## Debug Locally
 
-- make sure you have the .env file contains all required secrets
+- make sure you have the .env file contains all required secrets. (https://github.com/superwalnut/hbc-secrets)
 
 - npm run start or ng serve
 
 ## Build & Deploy
 
-Try to avoid npm run build.
+Try to avoid run command: npm run config.
 
-When you run npm run build, it will run set-env.ts to override the environment.prod.ts file, that will populate all the secrets from your .env (environment variables).
+When you run npm run config, it will run set-env.ts to override the environment.prod.ts file, that will populate all the secrets from your .env (environment variables).
 
 If you did run that, no big deal. Just please ignore all the changes to environment.ts or environment.prod.ts files.
 

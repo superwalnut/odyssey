@@ -23,8 +23,8 @@
     "postinstall": "npm run build",
     "config": "ts-node src/set-env.ts",
     "start": "ng serve",
-    "build": "npm run config && ng build --prod --progress --output-path=public",
-    "test": "npm run config && ng test",
+    "build": "ng build --prod --progress --output-path=public",
+    "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
