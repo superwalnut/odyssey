@@ -28,6 +28,8 @@ both files are added to .gitignore
 
 - make sure you have the .env file contains all required secrets. (https://github.com/superwalnut/hbc-secrets)
 
+- also copy the local.environment.ts to environment folder for local debug (https://github.com/superwalnut/hbc-secrets)
+
 - npm run start or ng serve
 
 ## Build & Deploy
