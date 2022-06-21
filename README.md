@@ -14,6 +14,21 @@
 
 Before you begin, make sure your development environment includes `Node.js®` and an `npm` package manager.
 
+## Debug Locally
+
+- make sure you have the .env file contains all required secrets
+
+- npm run start or ng serve
+
+## Build & Deploy
+
+Try to avoid npm run build.
+
+When you run npm run build, it will run set-env.ts to override the environment.prod.ts file, that will populate all the secrets from your .env (environment variables).
+
+If you did run that, no big deal. Just please ignore all the changes to environment.ts or environment.prod.ts files.
+
+
 ## Getting Started
 
 ```bash
@@ -75,3 +90,5 @@ npm install --legacy-peer-deps
 
 Angular 11 requires `Node.js` version 10.13 or newer  
 Update guide - see: [https://update.angular.io](https://update.angular.io)
+
+
