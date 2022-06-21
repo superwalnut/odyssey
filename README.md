@@ -18,6 +18,8 @@ Before you begin, make sure your development environment includes `Node.js®` an
 
 - make sure you have the .env file contains all required secrets. (https://github.com/superwalnut/hbc-secrets)
 
+- also copy the local.environment.ts to environment folder for local debug (https://github.com/superwalnut/hbc-secrets)
+
 - npm run start or ng serve
 
 ## Build & Deploy
