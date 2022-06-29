@@ -1,0 +1,23 @@
+
+<h2>Balance <span class="badge {{ hasCredit ? 'badge-light': 'badge-danger'}} ">{{ balance | currency }}</span> <span class="badge badge-warning">{{isCreditUser ? 'HBCoin' : 'Cash'}}</span></h2>
+
+<div class="p-3 mb-2 bg-danger text-white" *ngIf="!hasCredit">Your balance is low, please top up ASAP!</div>
+
+
+<table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Description</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of credits">
+        <th scope="row">{{item.created.toDate() | date : 'dd/MM/yyyy HH:mm'}}</th>
+        <td>{{item.note}}</td>
+        <td class="{{ item.amount>=0 ? 'text-success': 'text-danger'}}">{{item.amount | currency}}</td>
+        <!-- <td>${{item.balance | number: '2.2'}}</td> -->
+      </tr>
+    </tbody>
+  </table>

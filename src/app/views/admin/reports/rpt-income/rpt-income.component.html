@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="card card-white">
+        <div class="card-body p-4">
+          <h1 class="section-heading">Group Finance Report</h1>
+          <mat-form-field appearance="fill">
+            <mat-label>Groups</mat-label>
+            <mat-select [(ngModel)]="selectedGroup">
+              <mat-option *ngFor="let g of groups" [value]="g">{{ g.groupName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- <mat-form-field appearance="fill">
+              <mat-label>Income/Expense</mat-label>
+              <mat-select [(ngModel)]="selectedMode">
+                <mat-option value="income">Income</mat-option>
+                <mat-option value="expense">Expense</mat-option>
+              </mat-select>
+            </mat-form-field> -->
+          <button mat-raised-button color="primary" (click)="viewClicked()">View</button>
+
+
+          <div>
+            <a routerLink="/admin/rptbookingperson/{{selectedGroup?.docId}}" *ngIf="selectedGroup?.docId">BookingPerson
+              Reports</a>
+            <h2>Income Balance <span class="badge badge-light ">{{ groupBalance | currency }}</span></h2>
+
+            <ul class="simple-horizontal-list" *ngIf="committeeUsers">
+              <li>Committees: </li>
+              <li *ngFor="let u of committeeUsers">{{ u.name }}, </li>
+              <li><button mat-raised-button color="accent" *ngIf="isGod"
+                  (click)="dividendClicked()">Distribute...</button></li>
+            </ul>
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Notes</th>
+                  <th scope="col">Payment method</th>
+                  <th scope="col">User</th>
+                  <th scope="col">Amount</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let t of transactions">
+                  <td scope="row">{{ t.created.toDate() | date:'dd/MM/yyyy HH:mm'}}</td>
+                  <td scope="row">{{ t.notes }}</td>
+                  <td scope="row">{{ t.paymentMethod }}</td>
+                  <td scope="row">{{ t.createdByDisplayName }}</td>
+
+                  <td scope="row" class="{{ t.amount>0 ? 'text-success': 'text-danger'}}">{{ t.amount | currency}} </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4">
+          <h1 class="section-heading">Auto Booking <span class="badge badge-warning">paid service</span></h1>
+          <p>Jump the queue by automating your weekly booking for a small fee. 
+          <a routerLink="/termsconditions">AutoBooking Policy FAQ</a>
+
+          </p>
+
+          <div class="alert  alert-danger" *ngIf="!hasCredit">
+            <div class="alert-icon"><span class="material-icons">dangerous</span></div>
+            <div class="alert-body">
+              <p>Your current balance: {{myCreditBalance | currency}}</p>
+              You don't have enought credit to setup Auto Booking: Mimium HBCoins required: {{ miniumCreditRequired | currency}}
+              <a routerLink="/settings/creditstatement">Top up your balance</a>
+            </div>
+          </div> 
+
+          <!-- <div class="alert alert-danger"  *ngIf="!hasCredit">
+            <p>Your current balance: {{myCreditBalance | currency}}</p>
+            You don't have enought credit to setup Auto Booking: Mimium HBCoins required: {{ miniumCreditRequired | currency}}
+            <a routerLink="/settings/creditstatement">Top up your balance</a>
+          </div> -->
+
+          <div class="alert  alert-danger" *ngIf="!isCreditUser">
+            <div class="alert-icon"><span class="material-icons">dangerous</span></div>
+            <div class="alert-body">
+              <p>Auto Booking is only available for HBCoins holders.</p>
+              <p>Go cashless! Become an <a routerLink="/termsconditions">HBCoin</a> user - Read FAQ > HBCoin policy</p>
+            </div>
+          </div> 
+
+          <!-- <div class="alert alert-danger"  *ngIf="!isCreditUser">
+            <p>You don't have any HBCoins</p>
+            Auto Booking is only available for HBCoins holders.
+            <p>* How do I get HBCoin? A one-time top-up of more than AU$100, you will get the equivalent HBCoin. Top-up methods include the platform online payment soon to be opened, and direct bank transfer. (Be sure to take a screenshot and notify the group administrator after the bank transfer is confirmed to ensure correct account balance)
+            </p>
+          </div> -->
+
+          <div *ngIf="hasCredit && isCreditUser">
+            <mat-form-field appearance="fill">
+              <mat-label>Social sessions</mat-label>
+              <mat-select [(ngModel)]="selectedGroup">
+                <mat-option *ngFor="let g of groups" [value]="g" >{{g.eventStartDay}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="onSelectClicked()">Select</button>
+          </div>
+
+
+          <div *ngIf="hasCredit">
+
+            <h2>My Auto Booking History</h2>
+
+            <div class="table-scrollable">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Session</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Expire on</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let s of mySchedules" [ngClass]="{ 'table-row-inactive': !isActive(s) }">
+                    <td>{{ s.groupName }}</td>
+                    <td>{{ s.user.name }}</td>
+                    <td>{{ s.expireOn.toDate() | date: 'dd/MM/yyyy' }}</td>
+                    <td>
+                      <!-- <span class="material-icons" title="{{ s.isPaused ? 'paused' : 'active' }}">{{ s.isPaused ? 'pause' : 'play_arrow' }}</span> -->
+                      {{ getExpiryStatus(s)}}
+                    </td>
+                    <td>
+                      <button mat-raised-button color="primary" *ngIf="isActive(s)" (click)="statusClicked(s)">{{ s.isPaused ? 'Resume' : 'Pause' }}</button>
+                      <!-- <button mat-button (click)="deleteClicked(s)" color="warn">Delete</button> -->
+                      <button mat-raised-button color="accent" (click)="extendClicked(s)" *ngIf="expireSoon(s)">Extend</button>
+    
+                    </td>
+    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+
+
+
+
+          <!-- <form [formGroup]="autoForm" (ngSubmit)="onSubmit()">
+
+            <mat-form-field appearance="fill">
+              <mat-label>Duration</mat-label>
+              <mat-select formControlName="duration">
+                <mat-option *ngFor="let d of durations" [value]="d">
+                  {{d.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Social sessions</mat-label>
+              <mat-select  multiple formControlName="sessions">
+                <mat-option *ngFor="let g of groups" [value]="g">{{g.eventStartDay}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" [disabled]="autoForm.invalid">CONFIRM</button>
+          </form>
+
+          <button (click)="createSchedulerClicked()">create</button> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row" *ngIf="isGod">
+    <div class="col-md-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4">
+          <h2>Create new booking</h2>
+          <mat-form-field appearance="fill">
+            <mat-label>Booking Dates</mat-label>
+            <mat-select [(ngModel)]="selectedFutureDate">
+              <mat-option *ngFor="let d of futureBookingDates" [value]="d">{{d | date:'EE dd/MM/yyyy'}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="createBookingClicked()">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="row">
+  <div class="col-md-12 mx-auto">
+    <div class="card">
+      <div class="card-body p-4">
+        <h2>{{group?.eventStartDay}} Bookings</h2>
+        <div>
+          
+          <ul class="simple-horizontal-list">
+            <li>Committees:</li>
+            <li *ngFor="let u of committees"><a routerLink="/admin/userdetails/{{u.docId}}">{{ u.name}}</a></li>
+          </ul>
+          <ul class="simple-horizontal-list">
+            <li>Auto booking users: </li>
+            <li *ngFor="let u of autoBookingUsers"><a routerLink="/admin/userdetails/{{u.docId}}">{{ u.name}}</a></li>
+          </ul>
+        </div>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let element">
+            <a routerLink="/admin/bookingdetails/{{ element.docId }}/{{ element.groupDocId}}">{{ element.eventStartDateTime.toDate() | date: "EE dd/MM/yyyy" }}</a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="isLocked">
+          <th mat-header-cell *matHeaderCellDef>Locked</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.isLocked ? 'Locked' : 'Open' }}
+          </td>
+        </ng-container>
+
+
+        <!-- <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button routerLink="/admin/bookingdetails/{{ element.docId }}/{{ element.groupDocId}}">View</button>
+          </td>
+        </ng-container> -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+

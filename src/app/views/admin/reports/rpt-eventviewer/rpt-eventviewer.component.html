@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4">
+          <h1 class="section-heading">Event Viewer</h1>
+          <div class="table-scrollable">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">User</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let log of logs">
+                  <td scope="row">{{ log.createdOn.toDate() | date:'dd/MM/yyyy hh:mm'}}</td>
+                  <td scope="row">{{ log.eventCategory }} </td>
+                  <td scope="row">{{ log.createdByDisplayName }}</td>
+                  <td scope="row">{{ log.notes }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

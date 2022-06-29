@@ -1,0 +1,137 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4">
+          <h1>Group Details</h1>
+      
+          <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
+            <p>
+              <mat-form-field>
+                <mat-label>Group Name</mat-label>
+                <input matInput placeholder="Tuesday badminton session" formControlName="groupName" required />
+              </mat-form-field>
+            </p>
+            <div *ngIf="f.groupName.invalid && (f.groupName.dirty || f.groupName.touched)" class="invalid-feedback">
+              <div *ngIf="f.groupName.errors.required">Group name is required.</div>
+            </div>
+
+            <p>
+              <mat-form-field>
+                <mat-label>Group Description</mat-label>
+                <input matInput placeholder="" formControlName="groupDesc" required/>
+              </mat-form-field>
+            </p>
+            <div *ngIf="f.groupDesc.invalid && (f.groupDesc.dirty || f.groupDesc.touched)" class="invalid-feedback">
+              <div *ngIf="f.groupDesc.errors.required">Group description is required.</div>
+            </div>
+            <p>
+              <mat-form-field>
+                <mat-label>Seats</mat-label>
+                <input matInput placeholder="headcount limit" formControlName="seats" type="number" required />
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <mat-label>Auto booking seats</mat-label>
+                <input matInput placeholder="auto booking limit" formControlName="seatsAutobooking" type="number" required />
+              </mat-form-field>
+            </p>
+
+            <div *ngIf="f.seats.invalid && (f.seats.dirty || f.seats.touched)" class="invalid-feedback">
+              <div *ngIf="f.seats.errors.required">Seats(max limit) is required.</div>
+            </div>
+            <p>
+              <mat-form-field>
+                <mat-label>Skill points requirement</mat-label>
+                <input matInput placeholder="Skill level points" formControlName="levelRestrictionPoints" type="number" required />
+              </mat-form-field>
+            </p>
+
+            <div *ngIf="f.levelRestrictionPoints.invalid && (f.levelRestrictionPoints.dirty || f.levelRestrictionPoints.touched)" class="invalid-feedback">
+              <div *ngIf="f.levelRestrictionPoints.errors.required">Skill level points is required.</div>
+            </div>
+
+            <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Event start date</mat-label>
+              <mat-select formControlName="eventStartDay" required>
+                <mat-option *ngFor="let day of weekdays" [value]="day">
+                  {{ day }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Event Start Time</mat-label>
+              <input matInput type="time" placeholder="8:00 PM" formControlName="eventStartTime" required/>
+            </mat-form-field>
+          </p>
+
+          <p>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Booking start date</mat-label>
+              <mat-select formControlName="bookingStartDay" required>
+                <mat-option *ngFor="let day of weekdays" [value]="day">
+                  {{ day}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+            <h2>Committees</h2>
+            <div *ngIf="committeeRequired">A group needs to have at least 1 committee member</div>
+              <mat-form-field>
+                <mat-label>Member name</mat-label>
+                <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let user of filteredUsers | async" [value]="user">{{user}}</mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+
+              <button mat-mini-fab color="primary" (click)="addCommittee(myControl)" *ngIf="isGod">
+                <mat-icon>add</mat-icon>
+              </button>
+                <!-- <mat-list>
+                  <mat-list-item *ngFor="let item of selectedUsers">
+                    <span matLine>{{item.name}}</span>
+
+                    <button mat-mini-fab color="warn" (click)="removeCommittee(item)" *ngIf="isGod">
+                      <mat-icon>remove</mat-icon>
+                    </button>
+
+                  </mat-list-item>
+                </mat-list> -->
+
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of selectedUsers">
+                      <td>{{item.name}}</td>
+                      <td> 
+                        <button mat-mini-fab color="warn" (click)="removeCommittee(item)" *ngIf="isGod">
+                          <mat-icon>remove</mat-icon>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+            <p>
+              <button mat-raised-button routerLink="/admin/groups">Cancel</button>
+              <button mat-raised-button color="primary" [disabled]="groupForm.invalid" *ngIf="isGod">Save</button>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

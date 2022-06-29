@@ -1,0 +1,88 @@
+<app-header
+  [navbarBrandRouterLink]="['/']"
+  [fixed]="true"
+  [navbarBrandFull]="{
+    src: 'https://ik.imagekit.io/hbc666/hbc/logo/HBCLogoBlack_jzmghov19.png',
+    width: 55,
+    height: 55,
+    alt: 'home'
+  }"
+  [navbarBrandMinimized]="{
+    src: 'https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Flogo%2FHBCLogo30x30.png?alt=media&token=7fe17e61-9682-48c6-8869-fce698ed190c',
+    width: 30,
+    height: 30,
+    alt: 'HBC Logo'
+  }"
+  [sidebarToggler]="'lg'"
+  [asideMenuToggler]="false"
+  [mobileAsideMenuToggler]="false"
+>
+  <ul class="nav navbar-nav ml-auto">
+    <!-- <li class="nav-item d-md-down-none">
+      <a class="nav-link" href="#"
+        ><i class="icon-bell"></i
+        ><span class="badge badge-pill badge-danger">5</span></a
+      >
+    </li> -->
+
+    <li class="nav-item dropdown" dropdown placement="bottom right">
+      <a
+        class="nav-link"
+        data-toggle="dropdown"
+        href="#"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+        dropdownToggle
+        (click)="(false)"
+      >
+        <img src="{{avatarUrl}}" class="img-avatar" alt="" />
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+        <div class="dropdown-header text-center"><strong>{{ name }}</strong></div>
+        <a class="dropdown-item" routerLink="/dashboard"><i class="fa fa-bell-o"></i> Dashboard</a>
+        <a class="dropdown-item" routerLink="/groups"><i class="fa fa-user"></i> Booking</a>
+        <!-- <div class="dropdown-header text-center"><strong>Settings</strong></div> -->
+        <a class="dropdown-item" routerLink="/settings/profile"><i class="fa fa-user"></i> Profile</a>
+        <a class="dropdown-item" routerLink="/settings/creditstatement"><i class="fa fa-wrench"></i> Statement</a>
+        <a class="dropdown-item" routerLink="/settings/transfer"><i class="fa fa-wrench"></i> Transfer</a>
+        <a class="dropdown-item" routerLink="/termsconditions"><i class="fa fa-wrench"></i> FAQs</a>
+        <a class="dropdown-item" routerLink="/logout"><i class="fa fa-lock"></i>  Logout</a>
+      </div>
+    </li>
+  </ul>
+</app-header>
+<div class="app-body">
+  <app-sidebar
+    #appSidebar
+    [fixed]="true"
+    [display]="'lg'"
+    [minimized]="sidebarMinimized"
+    (minimizedChange)="toggleMinimize($event)"
+  >
+    <app-sidebar-nav
+      [navItems]="navItems"
+      [perfectScrollbar]
+      [disabled]="appSidebar.minimized"
+    ></app-sidebar-nav>
+    <app-sidebar-minimizer></app-sidebar-minimizer>
+  </app-sidebar>
+  <!-- Main content -->
+  <main class="main">
+    <cui-breadcrumb>
+      <!-- Breadcrumb Menu-->
+    </cui-breadcrumb>
+
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
+
+
+<!-- <app-footer>
+  <span><a href="https://coreui.io">CoreUI</a> &copy; 2021 creativeLabs.</span>
+  <span class="ml-auto"
+    >Powered by <a href="https://coreui.io/angular">CoreUI for Angular</a></span
+  >
+</app-footer> -->

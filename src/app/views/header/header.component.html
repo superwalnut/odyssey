@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <nav>
+        <div class="logo" routerLink="/"></div>
+        <ul class="topnavlinks">
+          <li>
+            <a routerLink="/groups">SESSIONS</a>
+          </li>
+      
+          <li>
+            <a routerLink="/dashboard">DASHBOARD</a>
+          </li>
+      
+          <li>
+            <a routerLink="/termsconditions">FAQ</a>
+          </li>
+      
+          <li *ngIf="!isLoggedIn">
+            <a routerLink="/login">LOGIN</a>
+          </li>
+      
+          <li *ngIf="isLoggedIn">
+            <a routerLink="/settings/profile">{{ name }}</a>
+          </li>
+          <!-- <li *ngIf="isLoggedIn">
+            <a routerLink="/logout">Logout</a>
+          </li> -->
+        </ul>
+      </nav>
+
+      
+    </div>
+  </div>
+
+</div>

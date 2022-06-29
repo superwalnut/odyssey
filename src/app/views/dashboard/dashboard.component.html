@@ -1,0 +1,185 @@
+<!-- //Shared by both Admin and Users, show hide based on roles -->
+
+<div class="container">
+
+  <!-- <div class="row">
+    <div class="col-sm"  *ngIf="isGod">
+      <ul class="simple-horizontal-list">
+        <li>God Tools:</li>
+        <li><a routerLink="/admin/groups">Groups</a></li>
+        <li><a routerLink="/admin/users">Users</a></li>
+        <li><a routerLink="/admin/rpteventview">Event viewer</a></li>
+      </ul>
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col-sm">
+      <div class="profile-card">
+        <div class="badges">
+          <img
+            src="{{ user?.isCreditUser ? 'https://ik.imagekit.io/hbc666/hbc/misc/HBCoinBadge_S1zXPjjIa.png' : 'https://ik.imagekit.io/hbc666/hbc/misc/CashBadge_pGy17fceE.png'}}"
+            title="{{ user?.isCreditUser ? 'HBCoin User' : 'Cash User'}}" />
+        </div>
+
+
+        <div class="profile-bg">
+          <div class="profile-avatar">
+            <a routerLink="/settings/profile">
+              <img src="{{avatarUrl}}" alt="" /></a>
+          </div>
+        </div>
+
+        <div class="profile-content">
+          <div class="profile-name">
+            {{ user?.name }}
+          </div>
+          <div class="profile-contact">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-telephone-forward-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zm10.761.135a.5.5 0 0 1 .708 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 0 1-.708-.708L14.293 4H9.5a.5.5 0 0 1 0-1h4.793l-1.647-1.646a.5.5 0 0 1 0-.708z" />
+              </svg>
+              {{ user?.mobile }}
+            </span>
+
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-wallet-fill" viewBox="0 0 16 16">
+                <path
+                  d="M1.5 2A1.5 1.5 0 0 0 0 3.5v2h6a.5.5 0 0 1 .5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542.637 0 .987-.254 1.194-.542.226-.314.306-.705.306-.958a.5.5 0 0 1 .5-.5h6v-2A1.5 1.5 0 0 0 14.5 2h-13z" />
+                <path
+                  d="M16 6.5h-5.551a2.678 2.678 0 0 1-.443 1.042C9.613 8.088 8.963 8.5 8 8.5c-.963 0-1.613-.412-2.006-.958A2.679 2.679 0 0 1 5.551 6.5H0v6A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-6z" />
+              </svg>
+              {{ user?.email }}
+            </span>
+          </div>
+          <div class="profile-bio">
+            <button routerLink="/groups" class="rgb">BOOK NOW</button>
+            <div class="profile-bank-details">
+              <h3 (click)="showDetail=!showDetail">Top up</h3>
+              <div class="detail-list" *ngIf="showDetail">
+                <ul>
+                  <li><b>PayID:</b> 82741485323 (Type: ABN)</li>
+                  <li><b>Account Name:</b> HBC</li>
+                  <li><b>BSB:</b> 032111 <b>Account:</b> 335387</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="profile-links">
+            <div class="profile-link" routerLink="/settings/creditstatement">
+              <span class="link-text">{{ myCreditBalance | currency }}</span>
+              <span class="link-label">Balance</span>
+            </div>
+            <div class="profile-link" routerLink="/settings/attendancehistory">
+              <span class="link-text">{{ myAttendanceCount }}</span>
+              <span class="link-label">Points</span>
+            </div>
+          </div>
+          <div class="profile-action">
+            <button routerLink="/settings/profile">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pencil-square" viewBox="0 0 16 16" title="Edit" width="25" height="25">
+                <path
+                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container-xl" *ngIf="isUser"> -->
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card horverEffects">
+        <img class="card-img-top " src="{{creditImageSrc}}" alt="Account balance" />
+        <div class="card-body ">
+          <h4 class="card-title">BALANCE</h4>
+          <p class="card-number">{{ myCreditBalance | currency }}</p>
+        </div>
+        <!-- <ul class="list-group list-group-flush">
+            <li class="list-group-item">LAST RENEWED: 12/01/2021</li>
+            <li class="list-group-item">LAST DEDUCTED: 10/02/2021</li>
+          </ul> -->
+        <div class="card-body">
+          <a routerLink="/settings/creditstatement" class="card-link">STATEMENT</a>
+          <a routerLink="/settings/creditstatement" class="card-link" *ngIf="user?.isCreditUser">TOP UP</a>
+          <a routerLink="/settings/transfer" class="card-link" *ngIf="user?.isCreditUser">TRANSFER</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div class="card horverEffects">
+        <img class="card-img-top" src="https://ik.imagekit.io/hbc666/hbc/banner/badmintoncourt_FM_pFPFuM.jpg"
+          alt="my attendance" />
+
+        <div class="card-body">
+          <h4 class="card-title">ATTENDANCE POINTS</h4>
+          <p class="card-number">{{myAttendanceCount}}</p>
+        </div>
+        <div class="card-body">
+          <a routerLink="/settings/attendancehistory" class="card-link">VIEW HISTORY</a>
+          <a routerLink="/groups" class="card-link">MAKE A BOOKING</a>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div class="card horverEffects">
+        <img class="card-img-top" src="https://ik.imagekit.io/hbc666/hbc/banner/autobooking_9zOs4gXsG.jpg"
+          alt="auto booking" />
+
+        <div class="card-body">
+          <h4 class="card-title">SCHEDULE <span class="badge badge-warning">paid service</span></h4>
+          <p class="card-text">Automate your booking schedule so you don't miss a session!</p>
+        </div>
+
+        <div class="card-body">
+          <a routerLink="/settings/schedule" class="card-link">AUTO BOOKING</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ul class="drawer" *ngIf="isGod">
+  <li>
+    <a href="#" (click)="clickDisable($event)">
+      <i class="fa fa-cog"></i>
+      <span>IAMGOD</span>
+    </a>
+    <ul>
+      <li>
+        <a routerLink="/admin/groups">
+          <i class="fa fa-users"></i>
+          <span>Group</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/users">
+          <i class="fa fa-user"></i>
+          <span>User</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/admin/rpteventview">
+          <i class="fa fa-bar-chart"></i>
+          <span>Activity</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+
+</ul>

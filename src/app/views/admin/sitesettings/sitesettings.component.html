@@ -1,0 +1,292 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4">
+
+      <h1>Site Settings</h1>
+
+      <mat-tab-group>
+        <mat-tab label="Terms">
+          <h3>Keep a log of term start end date and cost</h3>
+          <form [formGroup]="termForm" (ngSubmit)="onTermSubmit()">
+                        <mat-form-field appearance="fill">
+              <mat-label>Enter term date range</mat-label>
+              <mat-date-range-input [rangePicker]="picker">
+                <input
+                  matStartDate
+                  placeholder="Start date"
+                  formControlName="startDate"
+                  required
+                />
+                <input
+                  matEndDate
+                  placeholder="End date"
+                  formControlName="endDate"
+                  required
+                />
+              </mat-date-range-input>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+
+              <mat-error
+                *ngIf="termForm.controls.startDate.hasError('matStartDateInvalid')"
+                >Invalid start date</mat-error
+              >
+              <mat-error
+                *ngIf="termForm.controls.endDate.hasError('matEndDateInvalid')"
+                >Invalid end date</mat-error
+              >
+            </mat-form-field>
+
+            <p>
+
+            
+              <mat-form-field >
+                <mat-label>Term Name</mat-label>
+                <input matInput placeholder="ie. 2021A"  formControlName="termName" required/>
+              </mat-form-field>
+            </p>
+              <div
+                *ngIf="tf.termName.invalid && (tf.termName.dirty || tf.termName.touched)"
+                class="invalid-feedback"
+              >
+                <div *ngIf="tf.termName.errors.required">Term name is required.</div>
+              </div>
+
+            <p>
+
+            
+            <mat-form-field >
+              <mat-label>Court hire Cost</mat-label>
+              <input matInput placeholder="$" type="number" formControlName="cost"
+              required/>
+            </mat-form-field>
+          </p>
+            <div
+              *ngIf="tf.cost.invalid && (tf.cost.dirty || tf.cost.touched)"
+              class="invalid-feedback"
+            >
+              <div *ngIf="tf.cost.errors.required">Cost is required.</div>
+            </div>
+
+            
+<p>
+
+
+            <mat-form-field >
+              <mat-label>VIP headcount</mat-label>
+              <input matInput placeholder="" type="number" formControlName="vip"
+              required/>
+            </mat-form-field>
+          </p>
+
+
+            <div
+              *ngIf="tf.vip.invalid && (tf.vip.dirty || tf.vip.touched)"
+              class="invalid-feedback"
+            >
+              <div *ngIf="tf.vip.errors.required">VIP headcount is required.</div>
+            </div>
+
+
+            <button mat-raised-button color="primary" [disabled]="termForm.invalid">Save</button>
+          </form>
+
+
+          <table mat-table [dataSource]="termDataSource" #sortTerm="matSort" matSort class="mat-elevation-z8">
+
+            <ng-container matColumnDef="startDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Start </th>
+              <td mat-cell *matCellDef="let element"> {{element.startDate.toDate() | date:'yyyy/MM/dd'}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="endDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> End </th>
+              <td mat-cell *matCellDef="let element"> {{element.endDate.toDate() | date:'yyyy/MM/dd'}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="termName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Term  </th>
+              <td mat-cell *matCellDef="let element"> {{element.termName}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="cost">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> cost </th>
+              <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="vip">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> VIP </th>
+              <td mat-cell *matCellDef="let element"> {{element.vip}} </td>
+            </ng-container>
+
+          
+            <tr mat-header-row *matHeaderRowDef="termDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: termDisplayedColumns;"></tr>
+          </table>
+
+
+        </mat-tab>
+        <mat-tab label="Shuttles">
+          <h3>Keep a log of shuttle purchase history</h3>
+          <form [formGroup]="shuttleForm" (ngSubmit)="onShuttleSubmit()">
+            <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Purchase date</mat-label>
+              <input
+                matInput
+                [matDatepicker]="shuttledate"
+                formControlName="purchaseDate"
+                required
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="shuttledate"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #shuttledate></mat-datepicker>
+            </mat-form-field>
+          </p>
+          <div
+              *ngIf="sf.purchaseDate.invalid && (sf.purchaseDate.dirty || sf.purchaseDate.touched)"
+              class="invalid-feedback"
+            >
+              <div *ngIf="sf.purchaseDate.errors.required">Purchase date is required.</div>
+            </div>
+
+
+<p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Cost (AU$)</mat-label>
+              <input
+                matInput
+                placeholder=""
+                type="number"
+                formControlName="cost"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+            <div
+              *ngIf="sf.cost.invalid && (sf.cost.dirty || sf.cost.touched)"
+              class="invalid-feedback"
+            >
+              <div *ngIf="sf.cost.errors.required">Cost is required.</div>
+            </div>
+<p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Tubes</mat-label>
+              <input
+                matInput
+                placeholder=""
+                type="number"
+                formControlName="quantity"
+                required
+              />
+            </mat-form-field>
+          </p>
+            <div
+              *ngIf="
+                sf.quantity.invalid &&
+                (sf.quantity.dirty || sf.quantity.touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="sf.quantity.errors.required">
+                Quantity is required.
+              </div>
+            </div>
+
+            <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Notes</mat-label>
+              <textarea
+                matInput
+                placeholder="Taobao, Yonnex, 冠军5号，RSL"
+                formControlName="notes"
+                required
+              ></textarea>
+            </mat-form-field>
+          </p>
+            <div
+              *ngIf="sf.notes.invalid && (sf.notes.dirty || sf.notes.touched)"
+              class="invalid-feedback"
+            >
+              <div *ngIf="sf.notes.errors.required">Notes is required.</div>
+            </div>
+
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="shuttleForm.invalid"
+            >
+              Save
+            </button>
+          </form>
+
+
+          <table mat-table [dataSource]="shuttleDataSource" #sortShuttle="matSort" matSort class="mat-elevation-z8">
+
+            <ng-container matColumnDef="purchaseDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.purchaseDate.toDate() | date:'yyyy/MM/dd'}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="cost">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost </th>
+              <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="quantity">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Tubes </th>
+              <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="notes">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Notes </th>
+              <td mat-cell *matCellDef="let element"> {{element.notes}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="shuttleDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: shuttleDisplayedColumns;"></tr>
+          </table>
+          
+        </mat-tab>
+        <mat-tab label="Bookings">
+          <h1>TOBE DELETED: I've moved the CONSTANTS to Global-Constants.ts</h1>
+          <p>
+            User can only make booking between the duration of specified open
+            and close, unless admin manually locked the booking session
+          </p>
+          <mat-form-field appearance="fill">
+            <mat-label>Opens at</mat-label>
+            <select matNativeControl>
+              <option value="volvo">Mon</option>
+              <option value="saab">TUE</option>
+              <option value="mercedes">WED</option>
+              <option value="audi">THU</option>
+              <option value="audi">FRI</option>
+              <option value="audi">SAT</option>
+              <option value="audi">SUN</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Time</mat-label>
+            <input matInput placeholder="11:59AM" type="time" value="11:59" />
+          </mat-form-field>
+          <button mat-raised-button color="primary">Save</button>
+
+          <p>to make it simple, Booking alway close on Sunday 11:59PM</p>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+  </div>
+  </div>
+  
+</div>

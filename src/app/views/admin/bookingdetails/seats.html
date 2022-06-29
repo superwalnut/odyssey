@@ -1,0 +1,23 @@
+
+<!-- Modal -->
+<div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title">Change Seats Limit</h1>
+      <button type="button" class="close" (click)="onNoClick()"><span aria-hidden="true">&times;</span></button>
+    </div>
+  
+    <div class="modal-body">
+
+        <mat-form-field>
+            <mat-label>Set seats limit</mat-label>
+            <input matInput placeholder="number of seats" type="number" [(ngModel)]="seatsNumber" required />
+        </mat-form-field>
+    </div>
+    <div class="modal-footer">
+      <button mat-raised-button (click)="onNoClick()">Close</button>
+      <button mat-raised-button color="primary" (click)="onConfirmClick()">Confirm</button>  
+
+    </div>
+  </div>
+  
+  

@@ -1,0 +1,64 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="card card-white">
+          <div class="card-body p-4">
+            <h1>{{user?.name}}<span class="badge badge-success"> {{ user?.isCreditUser ? 'HBCoin User' : 'Cash User'}}</span></h1>
+            <h2>Current Balance: ${{balance | number: '2.2'}}</h2>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-4">
+
+              <mat-form-field appearance="fill">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category" required>
+                  <mat-option *ngFor="let category of categories" [value]="category">
+                    {{ category }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Amount</mat-label>
+                <input matInput placeholder="amount" type="number" formControlName="amount" required autocomplete="off"/>
+              </mat-form-field>
+              
+              <mat-form-field>
+                <mat-label>Note</mat-label>
+                <input matInput placeholder="notes" formControlName="note" required autocomplete="off"/>
+              </mat-form-field>
+
+              <mat-checkbox class="example-margin" formControlName="sendEmail" >Send email to user</mat-checkbox>
+              
+              <button mat-raised-button color="primary" [disabled]="isLoading">Confirm deposit</button>
+            </form>
+
+            <h2>Credit History</h2>
+
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Note</th>
+                  <th scope="col">Amount</th>                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of credits">
+                  <td>{{ c.created.toDate() | date: 'dd/MM/yyyy HH:mm'}}</td>
+                  <td>{{ c.category}}</td>
+                  <td>{{ c.note}}</td>
+                  <td class="{{ c.amount>0 ? 'text-success': 'text-danger'}}">{{ c.amount | currency}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  

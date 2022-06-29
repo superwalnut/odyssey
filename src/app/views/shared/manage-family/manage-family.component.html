@@ -1,0 +1,35 @@
+<h1 class="section-heading">Family Members</h1>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Age group</th>
+      <th><button mat-raised-button color="primary" *ngIf="!isFamilyUser" (click)="addFamilyClicked()">Add</button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of loadedFamilies">
+      <td>{{ u.name }}</td>
+      <td>{{ u.gender }}</td>
+      <td>{{ u.isChild ? 'Kid' : 'Adult' }}</td>
+      <th>
+        <button mat-icon-button color="primary" (click)="updateFamilyMember(u)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="warn" (click)="removeFamilyMember(u)">
+          <mat-icon>remove_circle</mat-icon>
+        </button>
+      </th>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+  

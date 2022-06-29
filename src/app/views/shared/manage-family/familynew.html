@@ -1,0 +1,38 @@
+
+<form [formGroup]="familyNewForm" (ngSubmit)="onSubmit()">
+    <h1>Family member</h1>
+
+    <div >
+        <mat-form-field>
+            <mat-label>Display name</mat-label>
+            <input matInput placeholder="" formControlName="name"/>
+        </mat-form-field>
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Display name is required</div>
+            <div *ngIf="f.name.errors.maxlength">you can only have 20 characters</div>
+            <div *ngIf="f.name.errors.pattern">name is invalid, please only use alphabetic letters, numbers and underscore</div>
+            <div *ngIf="f.name.errors.incorrect">name is already exist</div>
+        </div>
+    </div>
+    
+    <div>
+      <mat-radio-group formControlName="gender">
+        <mat-radio-button value="Male">Male</mat-radio-button>
+        <mat-radio-button value="Female">Female</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Age Group</mat-label>
+        <mat-select matNativeControl required formControlName="agegroup">
+          <mat-option value="Adult">Adult</mat-option>
+          <mat-option value="Child">Child</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" [disabled]="submitted">Save</button>
+    <button mat-raised-button (click)="onNoClick()">Close</button>
+
+  </form>
+
+

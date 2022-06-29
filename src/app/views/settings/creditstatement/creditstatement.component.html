@@ -1,0 +1,34 @@
+<div class="container">
+<div class="row">
+  <div class="col-md-12 mx-auto">
+
+    <div class="p-3 mb-2 bg-warning text-dark" *ngIf="!isCreditUser">
+      You're a cash user, why not considering become a HBCoin user to enjoy cheaper fees, cashless payment and heaps other benefits?
+      <a routerLink="/termsconditions" target="_blank">more details</a>
+
+    </div>
+
+
+    <div class="card">
+      <div class="card-body p-4">
+        <h1 class="section-heading">Statement</h1>
+
+        <p><button mat-raised-button color="primary" routerLink="/settings/transfer" *ngIf="isCreditUser">Transfer HBCoins</button></p>        
+          <mat-card>
+            <b>Top up your account</b><br/>
+            Bank Details: 
+            PayID: 82741485323 (Type: ABN)<br/>
+            Account Name: HBC<br>
+            BSB: 032111 Account: 335387<br/>
+            * 转账时请注明你的微信用户名以便核对. 并截屏微信给群管理员
+            <p>Please indicate your WeChat/Whatsapp username when transferring money in order to check. And screenshot receipt to group administrators.</p>
+            <p>If you're a Pay as You Go (Cash user), why not topup $100 or above to become an <a routerLink="/termsconditions" target="_blank">HBCoin</a> user to enjoy cheaper rates and many other benefits!</p>
+          </mat-card>
+        <div *ngIf="userDocId">
+          <app-usercredit-list [userDocId]="userDocId" [isCreditUser]="isCreditUser"></app-usercredit-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

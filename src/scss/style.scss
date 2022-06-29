@@ -1,0 +1,16 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+
+.invalid-feedback {
+    display: block;
+}
+
+.cdk-overlay-container {
+    z-index: 9999;
+}

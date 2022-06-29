@@ -1,0 +1,95 @@
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <h1 class="section-heading">Profile <span class="badge badge-success" *ngIf="isMainAccount"> {{ user.isCreditUser ? 'HBCoin User' : 'Cash User'}}</span></h1>
+
+
+
+    <div>
+      <!-- <p>Upload your Wechat or Whatsapp avatar.</p> -->
+      <button mat-button color="primary" (click)="onUploadClick()">  
+        <mat-icon>file_upload</mat-icon> Upload avatar
+      </button>  
+      <p>Max size: 50Kb<br/>
+        Dimension: 300x300PX<br/>
+        
+        </p>
+      <input type="file" #fileInput id="fileUpload" name="fileUpload" accept="image/*" style="display:none;" />
+
+      <p>
+        <img src="{{user.avatarUrl}}" class="avatar-large">
+      </p>
+    </div>
+
+
+    <div class="input-group mb-3">
+      <mat-form-field>
+        <mat-label>Display name</mat-label>
+        <input matInput placeholder="" formControlName="name"/>
+      </mat-form-field>
+      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required">Display name is required</div>
+        <div *ngIf="f.name.errors.maxlength">you can only have 20 characters</div>
+        <div *ngIf="f.name.errors.pattern">name is invalid, please only use alphabetic letters, numbers and underscore</div>
+        <div *ngIf="f.name.errors.incorrect">name is already exist</div>
+    </div>
+
+    </div>
+    <div class="input-group mb-3">
+      <mat-form-field>
+        <mat-label>Phone</mat-label>
+        <input matInput placeholder="" formControlName="mobile"/>
+      </mat-form-field>
+      <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+        <div *ngIf="f.mobile.errors.required">mobile is required</div>
+        <div *ngIf="f.mobile.errors.incorrect">mobile is exist</div>
+    </div>
+    </div>
+    
+    <div class="input-group mb-3">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="" type="email" formControlName="email"/>
+      </mat-form-field>
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+        <div *ngIf="f.email.errors.incorrect">email is already exist</div>
+      </div>
+    </div>
+    <div class="input-group mb-3">
+      <mat-radio-group aria-label="Select gender" formControlName="gender">
+        <mat-radio-button value="Male">Male</mat-radio-button>
+        <mat-radio-button value="Female">Female</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="input-group mb-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Age Group</mat-label>
+        <mat-select matNativeControl required formControlName="agegroup">
+          <mat-option value="Adult">Adult</mat-option>
+          <mat-option value="Child">Child</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="input-group mb-3" *ngIf="isAdmin">
+      <mat-checkbox formControlName="isMember">Is Member</mat-checkbox><br/>
+    </div>
+    <div class="input-group mb-3" *ngIf="isAdmin">
+      <mat-checkbox formControlName="isCreditUser">HBCoin user</mat-checkbox> 
+      <p class="text-primary">* User become HBCoin user automatically when topup $100+, Don't tick off thick box unless Admin wants to make this user back to Cash user</p>
+    </div>
+    <div class="input-group mb-3" *ngIf="isAdmin">
+      <mat-checkbox formControlName="disabled">Block this account</mat-checkbox> 
+      <p class="text-primary">* User won't be able to login to the system once blocked</p>
+    </div>
+
+
+
+   
+
+
+    <p>
+      <button mat-raised-button color="primary">Update</button>
+    </p>
+    
+  </form>

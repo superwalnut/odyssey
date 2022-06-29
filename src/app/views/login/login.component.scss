@@ -1,0 +1,132 @@
+html, body {
+    height: 100%;
+}
+
+.container-fluid {
+    padding-right: 0!important;
+    padding-left: 0!important;
+}
+.row {
+    background-color: white;
+}
+
+.right-panel {
+    background-color: #67b2fd; //#3399ff;
+
+}
+.loginbox {
+    //border: solid 1px #ccc;
+    color:white;
+    a {
+        color:white;
+    }
+    max-width: 400px;
+    margin: auto;
+    margin-top:100px;
+    text-align: center;
+    h1 {
+        font-size: 1.8rem;
+        font-weight: 500;
+        margin-top: 24px;
+        margin-bottom: 34px;
+    }
+
+    .loginbutton {
+        button {
+            width: 300px;
+            margin-top:30px;
+        }
+    }
+}
+.login-left-panel {
+    background-color: #39034b;
+    color:white;
+    height: 100%;
+    padding: 20px;
+    img {
+        display: block;
+        width: 300px;
+        margin-left:  auto ;
+        margin-right: auto;
+        margin-top: 80px;
+    };
+}
+
+
+
+.circle{
+    position: absolute;
+    border-radius: 90%;
+    background: white;
+    animation: ripple 15s infinite;
+    box-shadow: 0px 0px 1px 0px #508fb9;
+  }
+  
+  .small{
+    width: 200px;
+    height: 200px;
+    left: -100px;
+    bottom: -100px;
+  }
+  
+  .medium{
+    width: 400px;
+    height: 400px;
+    left: -200px;
+    bottom: -200px;
+  }
+  
+  .large{
+    width: 600px;
+    height: 600px;
+    left: -300px;
+    bottom: -300px;
+  }
+  
+  .xlarge{
+    width: 800px;
+    height: 800px;
+    left: -400px;
+    bottom: -400px;
+  }
+  
+  .xxlarge{
+    width: 1000px;
+    height: 1000px;
+    left: -500px;
+    bottom: -500px;
+  }
+  
+  .shade1{
+    opacity: 0.2;
+  }
+  .shade2{
+    opacity: 0.5;
+  }
+  
+  .shade3{
+    opacity: 0.7;
+  }
+  
+  .shade4{
+    opacity: 0.8;
+  }
+  
+  .shade5{
+    opacity: 0.9;
+  }
+  
+  @keyframes ripple{
+    0%{
+      transform: scale(1.2);
+    }
+    
+    50%{
+      transform: scale(1.6);
+    }
+    
+    100%{
+      transform: scale(1.2);
+    }
+  }
+  

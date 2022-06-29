@@ -1,0 +1,71 @@
+
+<app-public-header></app-public-header>
+
+<div class="app footer-fixed">
+  <div class="container-fluid">
+    <div class="row light" >
+      <div class="col"> 
+        <div class="hero gradient-bg-animation">
+          <div *ngIf="showQuotesAndButton">
+            <h1 [ngClass]="{'rainbow homepage-quote-chinese':isChineseQuote, 'rainbow homepage-quote':!isChineseQuote}">{{ quotes }}</h1>
+            <button mat-raised-button color="accent" class=" homepage-booking-button" routerLink="/groups">Book badminton sessions</button>
+            <div class="quote-button">
+              <mat-icon (click)="changeQuote()">autorenew</mat-icon>
+            </div>
+
+          </div>
+          
+        </div> 
+      </div>
+    </div>
+
+    <div class="row light" *ngIf="show">
+      <div class="col">
+          <div class="homepage-intro">
+            <div class="intro-shade">
+              <!-- <h2>HBC <img src="https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fmisc%2Flove.png?alt=media&token=c4eaad60-fb4f-4cc7-9acb-7f105a049e77" width="28"> Badmintonworx Norwest 
+                <a href="https://g.page/badmintonworx-norwest?share" target="_blank"><img src="https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fmisc%2Fmapicon.png?alt=media&token=09843700-070b-4ee8-85ff-0e546c306528" width="30"/></a></h2> -->
+              <h2>For the love of badminton</h2>
+              <!-- <h3>3 badminton social sessions a week, 3 hours per session</h3> -->
+              <ul>
+                <li>TUE 8 - 11PM, BUILDING 2</li>
+                <li>FRI 8 - 11PM, BUILDING 1</li>
+                <li>SAT 5 - 8PM, BUILDING 1</li>
+              </ul>
+  
+              <!-- <p><button mat-raised-button color="accent" routerLink="/groups">Book badminton sessions</button></p> -->
+              <p>$15 pay by <a routerLink="/termsconditions" target="_blank">HBCoin</a> or $18 pay by cash</p>
+  
+              <div class="socialicons">
+              
+                  <a href="https://www.facebook.com/groups/hbchome" target="_blank"><i class="cib-facebook-f facebook"></i></a>
+                  <a href="https://www.youtube.com/channel/UCuMYy7h9al0UXcsTS6DG63A" target="_blank"><i class="cib-youtube youtube"></i></a>
+                  <a href="mailto:hbc666.club@gmail.com" target="_blank"><i class="cib-gmail gmail"></i></a>
+                  <a href="https://g.page/badmintonworx-norwest?share" target="_blank"><i class="cil-location-pin map"></i></a>
+              
+
+
+                <!-- <a href="https://www.facebook.com/groups/hbchome" target="_blank"><img src="https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fmisc%2Ff_logo_RGB-Blue_72.png?alt=media&token=fd240867-05de-472a-97d0-f40a29095a02"/></a>
+                <a href="https://www.youtube.com/channel/UCuMYy7h9al0UXcsTS6DG63A" target="_blank"><img src="https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fmisc%2Fyoutube_social_circle_red.png?alt=media&token=71801783-3c30-440e-9fe5-7f99782e7920"/></a>
+                <a href="mailto:hbc666.club@gmail.com" target="_blank"><img src="https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fmisc%2Fgmailicon.png?alt=media&token=9a0d3838-525e-4abc-85e8-1e617afbe091"/></a>
+                <a href="https://g.page/badmintonworx-norwest?share" target="_blank"><img src="./assets/img/banners/mapicon.png"/></a> -->
+              </div>
+  
+            </div>
+
+            
+          </div>
+      </div>
+    </div>
+
+    <div class="row light">
+      <div class="col">
+        <div class="video-responsive">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/p2UEYZ-ENKk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-public-footer></app-public-footer>
