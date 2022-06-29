@@ -62,20 +62,25 @@ import { environment } from "../environments/environment";
 import { HomeComponent } from "./views/home/home.component";
 import { MatMenuModule } from "@angular/material/menu";
 import { CarouselModule } from "ngx-bootstrap/carousel";
-import { BookingComponent, BookingDialog, WithdrawDialog } from "./views/booking/booking.component";
+import {
+  BookingComponent,
+  BookingDialog,
+  WithdrawDialog,
+} from "./views/booking/booking.component";
 import { HeaderComponent } from "./views/header/header.component";
 import { TermsComponent } from "./views/terms/terms.component";
 import { LogoutComponent } from "./views/logout/logout.component";
-import { ResetpasswordComponent } from './views/resetpassword/resetpassword.component';
+import { ResetpasswordComponent } from "./views/resetpassword/resetpassword.component";
 import { SharedModule } from "./views/shared/shared.module";
-import { GroupsComponent } from './views/groups/groups.component';
+import { GroupsComponent } from "./views/groups/groups.component";
 import { HttpClientModule } from "@angular/common/http";
 import { CreateNewPasswordComponent } from "./views/create-new-password/create-new-password.component";
-import { AirtagComponent } from './views/promo/airtag/airtag.component';
-import { CompetitionComponent } from './views/competition/competition.component';
-import { FooterComponent } from './views/footer/footer.component';
-import { DevComponent } from './views/dev/dev.component';
-import { OfflineComponent } from './views/offline/offline.component';
+import { AirtagComponent } from "./views/promo/airtag/airtag.component";
+import { CompetitionComponent } from "./views/competition/competition.component";
+import { FooterComponent } from "./views/footer/footer.component";
+import { DevComponent } from "./views/dev/dev.component";
+import { OfflineComponent } from "./views/offline/offline.component";
+import { LadderComponent } from "./views/ladder/ladder.component";
 
 @NgModule({
   imports: [
@@ -101,7 +106,7 @@ import { OfflineComponent } from './views/offline/offline.component';
     MatMenuModule,
     CarouselModule.forRoot(),
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   exports: [BrowserAnimationsModule],
   declarations: [
@@ -126,6 +131,7 @@ import { OfflineComponent } from './views/offline/offline.component';
     FooterComponent,
     DevComponent,
     OfflineComponent,
+    LadderComponent,
   ],
   providers: [
     {

@@ -21,7 +21,7 @@ import { CompetitionComponent } from "./views/competition/competition.component"
 import { DevComponent } from "./views/dev/dev.component";
 import { OfflineComponent } from "./views/offline/offline.component";
 import { EnvCheckComponent } from "./views/env-check/env-check.component";
-
+import { LadderComponent } from "./views/ladder/ladder.component";
 
 export const routes: Routes = [
   {
@@ -31,7 +31,7 @@ export const routes: Routes = [
       title: "Home",
     },
   },
-  
+
   {
     path: "groups",
     component: GroupsComponent,
@@ -47,6 +47,13 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: "booking",
+    },
+  },
+  {
+    path: "ladder",
+    component: LadderComponent,
+    data: {
+      title: "HBC Ladder",
     },
   },
   {
@@ -115,7 +122,6 @@ export const routes: Routes = [
     data: {
       title: "Create a new password",
     },
-    
   },
 
   {
@@ -125,7 +131,7 @@ export const routes: Routes = [
       title: "{dev}",
     },
   },
-  
+
   {
     path: "offline",
     component: OfflineComponent,
@@ -133,13 +139,13 @@ export const routes: Routes = [
       title: "Offline",
     },
   },
-  
+
   {
-    path: 'env',
+    path: "env",
     component: EnvCheckComponent,
-    data:{
+    data: {
       title: "Env check",
-    }
+    },
   },
 
   /// HBC admin
@@ -196,4 +202,4 @@ export const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" })],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -7,19 +7,19 @@
           <li>
             <a routerLink="/groups">SESSIONS</a>
           </li>
-      
+
           <li>
             <a routerLink="/dashboard">DASHBOARD</a>
           </li>
-      
+
           <li>
-            <a routerLink="/termsconditions">FAQ</a>
+            <a routerLink="/ladder">LADDER</a>
           </li>
-      
+
           <li *ngIf="!isLoggedIn">
             <a routerLink="/login">LOGIN</a>
           </li>
-      
+
           <li *ngIf="isLoggedIn">
             <a routerLink="/settings/profile">{{ name }}</a>
           </li>
@@ -29,7 +29,7 @@
         </ul>
       </nav>
 
-      
+
     </div>
   </div>
 
