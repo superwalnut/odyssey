@@ -2,7 +2,7 @@ name: HBC build pipeline
 'on':
   push:
     branches:
-      - developer
+      - main
 jobs:
   uat_build_deploy:
     runs-on: ubuntu-latest
