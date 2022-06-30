@@ -41,6 +41,13 @@ When you run npm run config, it will run set-env.ts to override the environment.
 
 If you did run that, no big deal. Just please ignore all the changes to environment.ts or environment.prod.ts files.
 
+
+## Build pipeline
+
+Need to create PR to merge to main.
+Once merged, it will deploy the main branch code to uat.
+For production deployment, it requires approval.
+
 ## Getting Started
 
 ```bash
@@ -102,3 +109,4 @@ npm install --legacy-peer-deps
 
 Angular 11 requires `Node.js` version 10.13 or newer  
 Update guide - see: [https://update.angular.io](https://update.angular.io)
+
