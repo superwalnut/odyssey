@@ -40,6 +40,7 @@ jobs:
   prod_build_deploy:
       runs-on: ubuntu-latest
       environment: prod
+      needs: [uat_build_deploy]
       steps:
         - uses: actions/checkout@v2
         - uses: actions/setup-node@v2
