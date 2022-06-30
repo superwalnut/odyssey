@@ -48,6 +48,22 @@ Need to create PR to merge to main.
 Once merged, it will deploy the main branch code to uat.
 For production deployment, it requires approval.
 
+#### Strategy 1
+
+- 1. Clone the repo [main]
+- 2. Create a feature branch to work on
+- 3. Push the feature branch
+- 4. Create a Pull Request to merge to main (trigger a UAT build)
+- 5. Logon to Github to approve and merge to main
+- 6. Feel free to delete the feature branch
+- 7. Go to the successful UAT build and click to request for approval for production build
+
+#### Strategy 2
+
+- 1. Fork it to your own Repo
+- 2. Create a local branch to work on or work directly in your main
+- 3. Create a Pull request to the original repo for PR approval
+
 ## Getting Started
 
 ```bash
