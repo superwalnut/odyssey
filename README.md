@@ -1,4 +1,5 @@
 # odyssey
+
 <p align="center">
   <a href="https://hbc666.club">
     <img src="https://ik.imagekit.io/hbc666/hbc/hero/Facebook_Banner_zgOUjnett.jpg" alt="hbc">
@@ -40,6 +41,28 @@ Try to avoid run command: npm run config.
 When you run npm run config, it will run set-env.ts to override the environment.prod.ts file, that will populate all the secrets from your .env (environment variables).
 
 If you did run that, no big deal. Just please ignore all the changes to environment.ts or environment.prod.ts files.
+
+## Build pipeline
+
+Need to create PR to merge to main.
+Once merged, it will deploy the main branch code to uat.
+For production deployment, it requires approval.
+
+#### Strategy 1
+
+- 1. Clone the repo [main]
+- 2. Create a feature branch to work on
+- 3. Push the feature branch
+- 4. Create a Pull Request to merge to main (trigger a UAT build)
+- 5. Logon to Github to approve and merge to main
+- 6. Feel free to delete the feature branch
+- 7. Go to the successful UAT build and click to request for approval for production build
+
+#### Strategy 2
+
+- 1. Fork it to your own Repo
+- 2. Create a local branch to work on or work directly in your main
+- 3. Create a Pull request to the original repo for PR approval
 
 ## Getting Started
 
@@ -102,3 +125,5 @@ npm install --legacy-peer-deps
 
 Angular 11 requires `Node.js` version 10.13 or newer  
 Update guide - see: [https://update.angular.io](https://update.angular.io)
+
+fork test
