@@ -76,6 +76,7 @@ import { CompetitionComponent } from './views/competition/competition.component'
 import { FooterComponent } from './views/footer/footer.component';
 import { DevComponent } from './views/dev/dev.component';
 import { OfflineComponent } from './views/offline/offline.component';
+import { HbcOpenCompetitionComponent } from './views/hbc-open-competition/hbc-open-competition.component';
 
 @NgModule({
   imports: [
@@ -126,6 +127,7 @@ import { OfflineComponent } from './views/offline/offline.component';
     FooterComponent,
     DevComponent,
     OfflineComponent,
+    HbcOpenCompetitionComponent,
   ],
   providers: [
     {
