@@ -21,6 +21,7 @@ import { CompetitionComponent } from "./views/competition/competition.component"
 import { DevComponent } from "./views/dev/dev.component";
 import { OfflineComponent } from "./views/offline/offline.component";
 import { EnvCheckComponent } from "./views/env-check/env-check.component";
+import { HbcOpenCompetitionComponent } from "./views/hbc-open-competition/hbc-open-competition.component";
 
 
 export const routes: Routes = [
@@ -69,6 +70,14 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: "Competition",
+    },
+  },
+  {
+    path: "hbc-open-2022",
+    component: HbcOpenCompetitionComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: "HBC Open 2022",
     },
   },
   {

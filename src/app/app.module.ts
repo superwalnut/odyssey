@@ -76,6 +76,8 @@ import { CompetitionComponent } from './views/competition/competition.component'
 import { FooterComponent } from './views/footer/footer.component';
 import { DevComponent } from './views/dev/dev.component';
 import { OfflineComponent } from './views/offline/offline.component';
+import { HbcOpenCompetitionComponent } from './views/hbc-open-competition/hbc-open-competition.component';
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 
 @NgModule({
   imports: [
@@ -98,6 +100,7 @@ import { OfflineComponent } from './views/offline/offline.component';
     ReactiveFormsModule,
     AppMaterialModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAnalyticsModule,
     MatMenuModule,
     CarouselModule.forRoot(),
     SharedModule,
@@ -126,6 +129,7 @@ import { OfflineComponent } from './views/offline/offline.component';
     FooterComponent,
     DevComponent,
     OfflineComponent,
+    HbcOpenCompetitionComponent,
   ],
   providers: [
     {
