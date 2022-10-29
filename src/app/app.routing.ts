@@ -73,9 +73,8 @@ export const routes: Routes = [
     },
   },
   {
-    path: "hbc-open-2022",
+    path: "hbc-open-2022/:competition",
     component: HbcOpenCompetitionComponent,
-    canActivate: [AuthGuard],
     data: {
       title: "HBC Open 2022",
     },

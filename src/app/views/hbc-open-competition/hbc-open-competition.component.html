@@ -1,10 +1,25 @@
 <app-public-header></app-public-header>
 
 <div class="container-fluid">
-    <div class="row light">
+    <div class="row">
       <div class="col">
+        <h1 *ngIf="competition == 'intermediate'">2022 HBC Open Intermediate</h1>
+        <h1 *ngIf="competition == 'novice'">2022 HBC Open Novice</h1>
       </div>
     </div>
+    <div class="row light" *ngIf="competition == 'intermediate'">
+      <div class="col">
+        <iframe src="https://challonge.com/c74b9lm3/module" width="100%" height="2000px" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
+      </div>
+    </div>
+    <div class="row light" *ngIf="competition == 'novice'">
+      <div class="col">
+        <iframe src="https://challonge.com/s9hzria4/module" width="100%" height="1000px" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
+      </div>
+    </div>
+
 </div>
+
+
 
 <app-public-footer></app-public-footer>
