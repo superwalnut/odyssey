@@ -1,7 +1,40 @@
 h1 {
     color:#fff;
-    background-color: #272A33;
     margin:0 auto;
     padding:20px 0 20px 0;
     text-align: center;
 }
+
+table {
+    width: 100%;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+
+  h2 {
+    margin-left: 10px;
+  }
+  .scheduleHero {
+
+    min-height: 300px;
+    //padding:30px 20px;
+    background: url(https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fschedulebanner.jpg?alt=media&token=1628edd0-f4df-4090-a316-584d5d3dda9e);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color:white;
+    line-height: 300px;
+    text-align: center;
+
+    h1{
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+        font-size: 60px;
+    }
+  }
+
+  .pagebottom {
+      min-height: 100px;
+  }

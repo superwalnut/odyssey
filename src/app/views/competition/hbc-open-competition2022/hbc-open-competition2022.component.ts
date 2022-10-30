@@ -7,10 +7,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./hbc-open-competition2022.component.scss']
 })
 export class HbcOpenCompetition2022Component implements OnInit {
-  competition:string = "intermediate";
   
   constructor(private activatedRoute: ActivatedRoute) { 
-    this.competition = this.activatedRoute.snapshot.params.competition;
   }
 
   ngOnInit(): void {
