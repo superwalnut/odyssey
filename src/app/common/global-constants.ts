@@ -460,9 +460,9 @@ export class GlobalConstants {
 
   public static transformerQuotes = [
     {
-      line: "Register for the HBC Open 2022 - Double Challenge",
-      people:""
-    }
+      line: "HBC Open 2022 - Double Challenge",
+      people: "",
+    },
     // {
     //   line: "We Can't Stand By And Watch The Destruction Of This Beautiful Planet",
     //   people: "",
