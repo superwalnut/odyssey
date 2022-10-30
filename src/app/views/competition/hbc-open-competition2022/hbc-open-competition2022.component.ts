@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-hbc-open-competition',
-  templateUrl: './hbc-open-competition.component.html',
-  styleUrls: ['./hbc-open-competition.component.scss']
+  selector: 'app-hbc-open-competition2022',
+  templateUrl: './hbc-open-competition2022.component.html',
+  styleUrls: ['./hbc-open-competition2022.component.scss']
 })
-export class HbcOpenCompetitionComponent implements OnInit {
+export class HbcOpenCompetition2022Component implements OnInit {
   competition:string = "intermediate";
   
   constructor(private activatedRoute: ActivatedRoute) { 

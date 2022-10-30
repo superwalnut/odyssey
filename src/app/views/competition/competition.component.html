@@ -5,173 +5,28 @@
       <div class="col">
 
         <div class="scheduleHero">
-          <h1>2021 EOY Competition Schedule</h1>
-          <h2>Dec 10, 2021 8PM</h2>
+          <h1>HBC Competitions</h1>
         </div>
 
-        <div>
-          <h2>Prize</h2>
-
-          <ul>
-            <li>Gold Team: 100 HBCoin</li>
-            <li>Silver Team: 60 HBCoin</li>
-            <li>Bronze Team: 40 HBCoin</li>
-            <li>Group 1st Team (Who didn't make it to top 3): 20 HBCoin </li>
-            <li>Group 2st Team (Who didn't make it to top 3): 10 HBCoin </li>
-            <li>Lucky Draw 1: Badminton bag and racquet for all comp participants. <b>No eligibility checks</b></li>
-            <li>Lucky Draw 2: Astrox 88D Pro, 88S Pro, Badminton bag x2. <b>Eligibility check required, please follow below instructions</b></li>
-          </ul>
-
-          <img src="./assets/img/banners/conceptwraps.jpg" class="responsive">
-
-
-          <h2>Competition Format</h2>
-          <ul>
-            <li>Group Stage: Round Robin - Top 2 teams in each group advanced to final stage</li>
-            <li>Final Stage: Single Elimination</li>
-
-          </ul>
-
-          <h2>Scoreboard Apps</h2>
-          <ul>
-            <li>Since all athletes will be umpires, please get our recommended score board app installed on your phone beforehand.</li>
-            <li>
-              <a href="https://apps.apple.com/us/app/super-scoreboard/id1197048725#?platform=iphone">
-                <img src="https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fappstore.jpg?alt=media&token=1fa04b0e-db88-4209-9266-e2f1397f4983" alt="app store">
-              </a>
-              <a href="https://play.google.com/store/apps/details?id=com.kacterlin.iscoreboard&hl=en_AU&gl=US">
-                <img src="https://firebasestorage.googleapis.com/v0/b/hbclub-919aa.appspot.com/o/assets%2Fbanners%2Fgoogleplaystore.jpg?alt=media&token=343af738-68b2-46ad-8bbd-ec2701f0cd50" alt="google play store">
-              </a>
-            </li>
-          </ul>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-3 mr-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">HBC Competition 2021</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a routerLink="/competition/2021" class="btn btn-primary">View</a>
+          </div>
         </div>
-
-        <h2>Rundown</h2>
-        <table class="table">
-          <tr>
-            <td>20:00</td>
-            <td>Warm up</td>
-          </tr>
-          <tr>
-            <td>20:20</td>
-            <td>Group stage matches</td>
-          </tr>
-          <tr>
-            <td>10:00</td>
-            <td>Lucky draws</td>
-          </tr>
-          <tr>
-            <td>10:20</td>
-            <td>Top 8 team matchmaking random draws</td>
-          </tr>
-          <tr>
-            <td>10:30</td>
-            <td>Top 8 Final stage matches</td>
-          </tr>
-          <tr>
-            <td>10:50</td>
-            <td>Winner awards, group photos</td>
-          </tr>
-        </table>
-
-        <h2>Groups</h2>
-
-        <table class="table table-dark">
-          <thead>
-            <tr>
-              <th scope="col">Group A</th>
-              <th scope="col">Group B</th>
-              <th scope="col">Group C</th>
-              <th scope="col">Group D</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Nick, Angus</td>
-              <td>78KG Alex, David Dong</td>
-              <td>Paven, Faraz	</td>
-              <td>Mannie, 贝林	</td>
-            </tr>
-            <tr>
-              <td>Alex, Michael</td>
-              <td>Tom, Robin</td>
-              <td>Thomas, Iris T	</td>
-              <td>Shirley, Ting	</td>
-            </tr>
-            <tr>
-              <td>Luc, Leon</td>
-              <td>Benson, Patrick	</td>
-              <td>Xiao, Poh</td>
-              <td>Maggie, Ada	</td>
-            </tr>
-            <tr>
-              <td>Gary, He Pin</td>
-              <td>Valerie, Winson	</td>
-              <td>Josh, Lenise	</td>
-              <td>Peter, Jensen	</td>
-            </tr>
-            <tr>
-              <td>Frank Z, Herbert</td>
-              <td>Steven, Liu+Manny	</td>
-              <td>Du lin, Christ Zhang	</td>
-              <td>Andy Wu, Xiao Bo	</td>
-            </tr>
-            <tr>
-              <td>Zane, John Lim</td>
-              <td>Henry Su, Prakash	</td>
-              <td>Andrew, Simon S	</td>
-              <td>Elaine, Charissa	</td>
-            </tr>
-
-          </tbody>
-        </table>
-
-
-
-        
-
-
-        
-        <h2>Matches</h2>
-        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
-    
-          <ng-container matColumnDef="group">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">Group</th>
-            <td mat-cell *matCellDef="let element"> &nbsp; {{element.group}} </td>
-          </ng-container>
-        
-          <ng-container matColumnDef="left">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by left">Left</th>
-            <td mat-cell *matCellDef="let element"> {{element.left}} <code>{{element.handicap ? '+':''}}{{element.handicap}}</code></td>
-          </ng-container>
-        
-          <ng-container matColumnDef="right">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by right">Right</th>
-            <td mat-cell *matCellDef="let element"> {{element.right}} </td>
-          </ng-container>
-        
-          <ng-container matColumnDef="court">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by court">Court</th>
-            <td mat-cell *matCellDef="let element"> {{element.court}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="time">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by time">Time</th>
-            <td mat-cell *matCellDef="let element"> {{element.time}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="umpire">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">Umpire</th>
-            <td mat-cell *matCellDef="let element"> {{element.umpire}} </td>
-          </ng-container>
-        
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-
-
-        <div class="pagebottom">
-          <span class="badge badge-primary">Time</span> is only a rough estimate
+      </div>
+      <div class="col-3">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">HBC Open 2022</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a routerLink="/competition/2022" class="btn btn-primary">View</a>
+          </div>
         </div>
       </div>
     </div>

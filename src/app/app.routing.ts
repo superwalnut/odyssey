@@ -21,7 +21,8 @@ import { CompetitionComponent } from "./views/competition/competition.component"
 import { DevComponent } from "./views/dev/dev.component";
 import { OfflineComponent } from "./views/offline/offline.component";
 import { EnvCheckComponent } from "./views/env-check/env-check.component";
-import { HbcOpenCompetitionComponent } from "./views/hbc-open-competition/hbc-open-competition.component";
+import { HbcOpenCompetition2022Component } from "./views/competition/hbc-open-competition2022/hbc-open-competition2022.component";
+import { HbcCompetition2021Component } from "./views/competition/hbc-competition2021/hbc-competition2021.component";
 
 
 export const routes: Routes = [
@@ -67,14 +68,20 @@ export const routes: Routes = [
   {
     path: "competition",
     component: CompetitionComponent,
-    canActivate: [AuthGuard],
     data: {
       title: "Competition",
     },
   },
   {
-    path: "hbc-open-2022/:competition",
-    component: HbcOpenCompetitionComponent,
+    path: "competition/2021",
+    component: HbcCompetition2021Component,
+    data: {
+      title: "HBC Open 2021",
+    },
+  },
+  {
+    path: "competition/2022",
+    component: HbcOpenCompetition2022Component,
     data: {
       title: "HBC Open 2022",
     },
