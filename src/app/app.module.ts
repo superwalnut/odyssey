@@ -76,8 +76,9 @@ import { CompetitionComponent } from './views/competition/competition.component'
 import { FooterComponent } from './views/footer/footer.component';
 import { DevComponent } from './views/dev/dev.component';
 import { OfflineComponent } from './views/offline/offline.component';
-import { HbcOpenCompetitionComponent } from './views/hbc-open-competition/hbc-open-competition.component';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { HbcCompetition2021Component } from './views/competition/hbc-competition2021/hbc-competition2021.component';
+import { HbcOpenCompetition2022Component } from './views/competition/hbc-open-competition2022/hbc-open-competition2022.component';
 
 @NgModule({
   imports: [
@@ -129,7 +130,8 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
     FooterComponent,
     DevComponent,
     OfflineComponent,
-    HbcOpenCompetitionComponent,
+    HbcCompetition2021Component,
+    HbcOpenCompetition2022Component,
   ],
   providers: [
     {

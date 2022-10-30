@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HbcOpenCompetitionComponent } from './hbc-open-competition.component';
+import { HbcCompetition2021Component } from './hbc-competition2021.component';
 
-describe('HbcOpenCompetitionComponent', () => {
-  let component: HbcOpenCompetitionComponent;
-  let fixture: ComponentFixture<HbcOpenCompetitionComponent>;
+describe('HbcCompetition2021Component', () => {
+  let component: HbcCompetition2021Component;
+  let fixture: ComponentFixture<HbcCompetition2021Component>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HbcOpenCompetitionComponent ]
+      declarations: [ HbcCompetition2021Component ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HbcOpenCompetitionComponent);
+    fixture = TestBed.createComponent(HbcCompetition2021Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
