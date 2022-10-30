@@ -23,6 +23,7 @@ import { OfflineComponent } from "./views/offline/offline.component";
 import { EnvCheckComponent } from "./views/env-check/env-check.component";
 import { HbcOpenCompetition2022Component } from "./views/competition/hbc-open-competition2022/hbc-open-competition2022.component";
 import { HbcCompetition2021Component } from "./views/competition/hbc-competition2021/hbc-competition2021.component";
+import { HbcOpenCompetition2022DrawComponent } from "./views/competition/hbc-open-competition2022-draw/hbc-open-competition2022-draw.component";
 
 
 export const routes: Routes = [
@@ -84,6 +85,13 @@ export const routes: Routes = [
     component: HbcOpenCompetition2022Component,
     data: {
       title: "HBC Open 2022",
+    },
+  },
+  {
+    path: "competition/2022/intermediat-novice-draw",
+    component: HbcOpenCompetition2022DrawComponent,
+    data: {
+      title: "HBC Open 2022 Draw",
     },
   },
   {
