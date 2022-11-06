@@ -1,183 +1,202 @@
-
 //Media queries
 @media only screen and (max-width: 768px) {
+  .profile-card {
+    width: 370px;
+  }
 
-    .profile-card {
-        width: 370px;;
-      }
-    
-      .app-header{
-      position: relative !important;
+  .app-header {
+    position: relative !important;
+  }
+  .app-body {
+    margin-top: 0 !important;
+  }
+
+  main .container-fluid {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .container {
+    padding: 5px !important;
+  }
+  .card-body {
+    padding: 15px 8px !important;
+  }
+  h1 {
+    margin: 15px !important;
+  }
+
+  nav {
+    text-align: center;
+    padding: 10px;
+    .logo {
+      float: none;
+      margin: auto;
+      display: inline-block;
+      text-align: center;
     }
-    .app-body {
-      margin-top: 0!important;
-    }
-    
-      main .container-fluid {
-        padding: 0!important;
-        margin: 0!important;
-    
-      }
-      .container{
-        padding: 5px!important;
-      }
-      .card-body{
-        padding: 15px 8px !important;;
-      }
-      h1 {
-        margin: 15px!important;
-      }
-    
-      nav {
-        text-align: center;
-        padding: 10px;
-        .logo {
-          float: none;
-          margin: auto;
-          display: inline-block;
-          text-align: center;
-        }
-        ul {
-          //border: solid 1px black;
-          margin: 2px;
-          width: 100%;
-          padding: 0;
-          li {
-            margin: 0;
-            display: inline-block;
-            padding: 20px;
-            padding-left: 0;
-            padding-right: 20px;
-          }
-        }
-      }
-    
-      .hero-announcement {
-        min-height: 300px;
-      }
-
-      .hero {
-        min-height: 300px;
-        padding: 10px 0 60px 0;
-        background-image: $homepage-hero-bg-img-mobile;
-        h1 {
-          padding-top: 10px;
-          font: 700 46px $font-bebas!important;
-          letter-spacing: 1px!important;
-          line-height: 130%!important;
-        }
-        
-      }
-
-      .homepage-intro {
-        background-position-x: $homepage-hero-bg-offset;
-        .intro-shade {
-          padding: 20px;
-          width: 100%;
-          h2{
-            font: 500 37px $font-title;
-          }
-          p a {
-            color: $homepage-intro-shade-link-color !important;;
-            font-weight: 500;
-          }
-        }
-      }
-    
-      .hero-section {
-        min-height:200px;
-        padding: 10px 20px;
-    
-        .left{
-          display: none;
-        }
-        .right{
-          width:100%;
-        }
-        
-      }
-    
-      
-    
-      .group-card {
-        margin: 15px;
-      }
-    
-      .card-sm {
-        max-width: 100%;
-        
-        &.booking{
-          a {
-            text-decoration: none;
-            color:black;
-          }
-          //float: left;
-          margin: 16px;
-          &:hover{
-            box-shadow: 0 0 11px rgba(33,33,33,.2); 
-      
-          }
-      
-        }
-      }
-    
-      .row {
-        .col section,
-        .col-sm section {
-          padding: 0;
-        }
-      }
-      
-      .col {
+    ul {
+      //border: solid 1px black;
+      margin: 2px;
+      width: 100%;
+      padding: 0;
+      li {
+        margin: 0;
+        display: inline-block;
+        padding: 20px;
         padding-left: 0;
-        padding-right: 0;
+        padding-right: 20px;
       }
-      .card-body.nopadding {
-        padding: 0;
-        h1 {
-          padding: 10px;
-        }
-      }
-    
-      table.mat-table {
-        width: 100%!important;
-        margin:0;
-        th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
-          padding-left:8px;
-        }
-      }
-
-
-/* offline page */
-.offline-bg {
-  .heading {
-    margin: 100px auto 40px auto;
-    h1{
-      font: 700 80px $font-bebas!important;
-      letter-spacing: 1px!important;
-    }
-    h2 {
-      font: 700 80px $font-bebas!important;
-      letter-spacing: 1px!important;
-      margin-top:-40px;
     }
   }
 
-  hr {
-    width: 40%;
+  .hero-announcement {
+    min-height: 300px;
   }
-  .message {
-    margin-top: 40px;
-    font: 100 40px $font-bebas!important;
-    letter-spacing: 1px!important;
-    .sm {
+
+  .hero {
+    min-height: 300px;
+    padding: 10px 0 60px 0;
+    background-image: $homepage-hero-bg-img-mobile;
+    h1 {
+      padding-top: 10px;
+      font: 700 46px $font-bebas !important;
+      letter-spacing: 1px !important;
+      line-height: 130% !important;
+    }
+  }
+
+  .homepage-intro {
+    background-position-x: $homepage-hero-bg-offset;
+    .intro-shade {
       padding: 20px;
-      font: 100 22px $font-bebas;
+      width: 100%;
+      h2 {
+        font: 500 37px $font-title;
+      }
+      p a {
+        color: $homepage-intro-shade-link-color !important;
+        font-weight: 500;
+      }
     }
   }
-}
-/* offline page ended */
 
+  .hero-section {
+    min-height: 200px;
+    padding: 10px 20px;
 
+    .left {
+      display: none;
+    }
+    .right {
+      width: 100%;
+    }
+  }
+
+  .homepage-store {
+    min-height: 450px;
+    position: relative;
+    background-color: black;
+    padding-top: 40px;
+    // background-image: url(https://ik.imagekit.io/hbc666/hbc/banner/Shirt_r6ARBKIN2.png);
+    // background-repeat: no-repeat;
+    // background-attachment: fixed;
+    // background-position: center;
+
+    .shirt-img {
+      position: absolute;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 380px;
+      width: 380px;
+
+      img {
+        position: absolute;
+        bottom: -100px;
+        width: 100%;
+
+        height: auto;
+      }
+    }
+  }
+
+  .group-card {
+    margin: 15px;
+  }
+
+  .card-sm {
+    max-width: 100%;
+
+    &.booking {
+      a {
+        text-decoration: none;
+        color: black;
+      }
+      //float: left;
+      margin: 16px;
+      &:hover {
+        box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+      }
+    }
+  }
+
+  .row {
+    .col section,
+    .col-sm section {
+      padding: 0;
+    }
+  }
+
+  .col {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .card-body.nopadding {
+    padding: 0;
+    h1 {
+      padding: 10px;
+    }
+  }
+
+  table.mat-table {
+    width: 100% !important;
+    margin: 0;
+    th.mat-header-cell:first-of-type,
+    td.mat-cell:first-of-type,
+    td.mat-footer-cell:first-of-type {
+      padding-left: 8px;
+    }
+  }
+
+  /* offline page */
+  .offline-bg {
+    .heading {
+      margin: 100px auto 40px auto;
+      h1 {
+        font: 700 80px $font-bebas !important;
+        letter-spacing: 1px !important;
+      }
+      h2 {
+        font: 700 80px $font-bebas !important;
+        letter-spacing: 1px !important;
+        margin-top: -40px;
+      }
+    }
+
+    hr {
+      width: 40%;
+    }
+    .message {
+      margin-top: 40px;
+      font: 100 40px $font-bebas !important;
+      letter-spacing: 1px !important;
+      .sm {
+        padding: 20px;
+        font: 100 22px $font-bebas;
+      }
+    }
+  }
+  /* offline page ended */
 }
-    

@@ -184,6 +184,16 @@ table.mat-table {
   background-repeat: no-repeat;
 }
 
+.store-card-img {
+  width: 100%;
+  height: 200px;
+  cursor: pointer;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 footer {
   background-color: $footer-real-bg-color;
   color: $footer-real-text-color;
@@ -318,6 +328,52 @@ ul.simple-horizontal-list {
   background-color: $homepage-booking-button-bg-color !important;
   color: $homepage-booking-button-text-color !important;
 }
+
+.homepage-store {
+  min-height: 500px;
+  position: relative;
+  background-color: black;
+  padding-top: 40px;
+  // background-image: url(https://ik.imagekit.io/hbc666/hbc/banner/Shirt_r6ARBKIN2.png);
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
+  // background-position: center;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .store-title {
+    text-align: center;
+    color: white;
+    font: 600 59px "Bebas Neue", cursive;
+    letter-spacing: 4px;
+  }
+  .store-slogan {
+    text-align: center;
+    color: white;
+    font: 400 24px "Bebas Neue", cursive;
+  }
+  .shirt-img {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 380px;
+    width: 380px;
+
+    img {
+      position: absolute;
+      bottom: -60px;
+      width: 100%;
+
+      height: auto;
+    }
+  }
+}
+
 //4b0063
 .homepage-intro {
   min-height: $homepage-intro-minheight;
