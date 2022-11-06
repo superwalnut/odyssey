@@ -24,7 +24,7 @@ import { EnvCheckComponent } from "./views/env-check/env-check.component";
 import { HbcOpenCompetition2022Component } from "./views/competition/hbc-open-competition2022/hbc-open-competition2022.component";
 import { HbcCompetition2021Component } from "./views/competition/hbc-competition2021/hbc-competition2021.component";
 import { HbcOpenCompetition2022DrawComponent } from "./views/competition/hbc-open-competition2022-draw/hbc-open-competition2022-draw.component";
-
+import { StoreComponent } from "./views/store/store.component";
 
 export const routes: Routes = [
   {
@@ -34,7 +34,7 @@ export const routes: Routes = [
       title: "Home",
     },
   },
-  
+
   {
     path: "groups",
     component: GroupsComponent,
@@ -59,6 +59,16 @@ export const routes: Routes = [
       title: "Terms & Conditions",
     },
   },
+
+  {
+    path: "store",
+    component: StoreComponent,
+    //canActivate: [AuthGuard],
+    data: {
+      title: "Store",
+    },
+  },
+
   {
     path: "promo/airtag",
     component: AirtagComponent,
@@ -138,7 +148,6 @@ export const routes: Routes = [
     data: {
       title: "Create a new password",
     },
-    
   },
 
   {
@@ -148,7 +157,7 @@ export const routes: Routes = [
       title: "{dev}",
     },
   },
-  
+
   {
     path: "offline",
     component: OfflineComponent,
@@ -156,13 +165,13 @@ export const routes: Routes = [
       title: "Offline",
     },
   },
-  
+
   {
-    path: 'env',
+    path: "env",
     component: EnvCheckComponent,
-    data:{
+    data: {
       title: "Env check",
-    }
+    },
   },
 
   /// HBC admin
@@ -219,4 +228,4 @@ export const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" })],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

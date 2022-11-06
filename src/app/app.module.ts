@@ -80,6 +80,7 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { HbcCompetition2021Component } from './views/competition/hbc-competition2021/hbc-competition2021.component';
 import { HbcOpenCompetition2022Component } from './views/competition/hbc-open-competition2022/hbc-open-competition2022.component';
 import { HbcOpenCompetition2022DrawComponent } from './views/competition/hbc-open-competition2022-draw/hbc-open-competition2022-draw.component';
+import { StoreComponent } from './views/store/store.component';
 
 @NgModule({
   imports: [
@@ -134,6 +135,7 @@ import { HbcOpenCompetition2022DrawComponent } from './views/competition/hbc-ope
     HbcCompetition2021Component,
     HbcOpenCompetition2022Component,
     HbcOpenCompetition2022DrawComponent,
+    StoreComponent,
   ],
   providers: [
     {
