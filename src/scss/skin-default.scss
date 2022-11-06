@@ -1,10 +1,9 @@
-
 //Default HBC Theme
-$default-color: #39034b;;//easter pink
+$default-color: #39034b; //easter pink
 $global-page-bg-color: white;
 $default-highlight-color: #2b0239;
-$nav-bar-color:$default-color; 
-$nav-bar-text-color:white;
+$nav-bar-color: $default-color;
+$nav-bar-text-color: white;
 $nav-bar-logo: $hbc-logo-white;
 $nav-bar-link-hover-color: white;
 $row-bg-color: white;
@@ -18,22 +17,27 @@ $hero-color4: #23d5ab;
 $homepage-hero-text-color: white;
 $homepage-booking-button-bg-color: #dd358a;
 $homepage-booking-button-text-color: white;
-$homepage-hero-gradient: linear-gradient(180deg, rgba(57,3,75,1) 0%, rgba(68,3,89,1) 35%, rgba(98,3,130,1) 100%);
+$homepage-hero-gradient: linear-gradient(
+    180deg,
+    rgba(57, 3, 75, 1) 0%,
+    rgba(68, 3, 89, 1) 35%,
+    rgba(98, 3, 130, 1) 100%
+);
 $homepage-hero-bg-size-percent: 400% 400%;
-$homepage-hero-bg-img: '';
+$homepage-hero-bg-img: "";
 $homepage-intro-minheight: 430px;
-$homepage-intro-shade-color:rgba(0,0,0,0.1);
+$homepage-intro-shade-color: rgba(0, 0, 0, 0.1);
 $homepage-intro-bg: url(https://ik.imagekit.io/hbc666/hbc/hero/jumpsmashbg_wjCgkTxYy.jpg);
 $homepage-hero-bg-offset: -640px;
-$homepage-intro-color:#fff;
+$homepage-intro-color: #fff;
 $homepage-intro-shade-link-color: white;
-$homepage-hero-bg-img: ''!important;
-$homepage-hero-bg-img-mobile:'';
+$homepage-hero-bg-img: "" !important;
+$homepage-hero-bg-img-mobile: "";
 $offline-quote-bg-color: #000;
 
 //dashboard profile card
 $profile-bg-img-url: url("https://ik.imagekit.io/hbc666/hbc/banner/profilecard-purple-BG_rjp31sQBg.jpg");
-$profile-card-bg-color:#fff;
+$profile-card-bg-color: #fff;
 $profile-card-text-color: #000;
 $profile-button-color: $default-color;
 $profile-button-highlight-color: #250231;
@@ -48,7 +52,7 @@ $card-table-text-color: black;
 $card-mat-label-color: black;
 $card-text-muted: #9d9c9c;
 $card-link-text-color: $default-color;
-$session-card-bg-img:url("https://ik.imagekit.io/hbc666/hbc/banner/session-card-default_68rgsXfcK.jpg");
+$session-card-bg-img: url("https://ik.imagekit.io/hbc666/hbc/banner/session-card-default_68rgsXfcK.jpg");
 
 //Admin
 $admin-table-row-inactive: #ccc;
@@ -56,7 +60,7 @@ $admin-table-row-inactive: #ccc;
 //booking tables
 $table-bg-color: #fff;
 $table-text-color: black;
-$table-hover-text-color:black;
+$table-hover-text-color: black;
 $table-hover-bg-color: #f5f4f4;
 $booking-tbl-hightlight-color: #f9f8f8;
 $table-booking-button-bg-color: $default-color;
@@ -66,6 +70,11 @@ $table-booking-button-text-color: white;
 $modal-content-background-color: #fff;
 $modal-content-h3-color: black;
 $modal-content-text-color: black;
+
+//mat-table
+$mat-table-bg-color: white;
+$mat-cell-color: $default-color;
+
 //footer
 $footer-bg-color: $default-color;
 $footer-text-color: white;
