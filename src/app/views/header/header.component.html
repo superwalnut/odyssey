@@ -11,9 +11,9 @@
             <a routerLink="/store">STORE</a>
           </li>
 
-          <li>
+          <!-- <li>
             <a routerLink="/dashboard">DASHBOARD</a>
-          </li>
+          </li> -->
 
           <li>
             <a routerLink="/termsconditions">FAQ</a>
@@ -24,7 +24,7 @@
           </li>
 
           <li *ngIf="isLoggedIn">
-            <a routerLink="/settings/profile">{{ name }}</a>
+            <a routerLink="/dashboard">{{ name }}</a>
           </li>
           <!-- <li *ngIf="isLoggedIn">
             <a routerLink="/logout">Logout</a>
