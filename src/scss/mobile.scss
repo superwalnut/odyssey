@@ -93,7 +93,6 @@
   }
 
   .homepage-store {
-    min-height: 450px;
     position: relative;
     background-color: #4649ff;
     padding-top: 40px;
@@ -101,7 +100,8 @@
     // background-repeat: no-repeat;
     // background-attachment: fixed;
     // background-position: center;
-
+    text-align: center;
+    margin-bottom: 0;
     .shirt-img {
       position: absolute;
       margin-left: auto;
@@ -109,15 +109,12 @@
       left: 0;
       right: 0;
       bottom: 0;
-      height: 380px;
+      height: 270px;
       width: 380px;
 
       img {
-        position: absolute;
-        bottom: -100px;
-        width: 100%;
-
-        height: auto;
+        width: 80%;
+        height: 100%;
       }
     }
   }
