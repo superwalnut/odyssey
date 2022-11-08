@@ -327,13 +327,17 @@ ul.simple-horizontal-list {
 .homepage-booking-button {
   background-color: $homepage-booking-button-bg-color !important;
   color: $homepage-booking-button-text-color !important;
+  padding: 5px 10px !important;
+  width: 200px;
+  font-size: 16px;
 }
 
 .homepage-store {
-  min-height: 500px;
+  min-height: $homepage-intro-minheight;
   position: relative;
   background-color: #4649ff;
   padding-top: 40px;
+  margin: 20px 0;
   // background-image: url(https://ik.imagekit.io/hbc666/hbc/banner/Shirt_r6ARBKIN2.png);
   // background-repeat: no-repeat;
   // background-attachment: fixed;
@@ -361,15 +365,18 @@ ul.simple-horizontal-list {
     left: 0;
     right: 0;
     bottom: 0;
-    height: 380px;
+    height: 300px;
     width: 380px;
+    text-align: center;
 
     img {
-      position: absolute;
-      bottom: -60px;
-      width: 100%;
+      // position: absolute;
+      // bottom: -60px;
+      // width: 100%;
 
-      height: auto;
+      // height: auto;
+      width: 90%;
+      height: 100%;
     }
   }
 }
@@ -377,9 +384,11 @@ ul.simple-horizontal-list {
 //4b0063
 .homepage-intro {
   position: relative;
-
+  margin: 20px 0;
   min-height: $homepage-intro-minheight;
-  background-color: rgb(35, 12, 167);
+  // background-color: rgb(35, 12, 167);
+  background-color: rgb(26, 25, 25);
+
   //padding:30px 20px;
   // background-image: $homepage-intro-bg;
   // background-size: cover;
