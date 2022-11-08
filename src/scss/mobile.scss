@@ -101,7 +101,7 @@
     // background-attachment: fixed;
     // background-position: center;
     text-align: center;
-    margin-bottom: 0;
+    margin: 0;
     .shirt-img {
       position: absolute;
       margin-left: auto;
@@ -109,7 +109,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      height: 270px;
+      height: 290px;
       width: 380px;
 
       img {
@@ -117,6 +117,10 @@
         height: 100%;
       }
     }
+  }
+
+  .homepage-intro {
+    margin: 0;
   }
 
   .group-card {
