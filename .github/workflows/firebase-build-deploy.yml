@@ -3,6 +3,9 @@ name: HBC build pipeline
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - 'feature/**'
 jobs:
   uat_build_deploy:
     runs-on: ubuntu-latest
