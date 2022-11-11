@@ -336,7 +336,7 @@ ul.simple-horizontal-list {
   min-height: $homepage-intro-minheight;
   position: relative;
   background-color: #4649ff;
-  padding-top: 40px;
+  padding-top: 50px;
   margin: 20px 0;
   // background-image: url(https://ik.imagekit.io/hbc666/hbc/banner/Shirt_r6ARBKIN2.png);
   // background-repeat: no-repeat;
@@ -350,10 +350,11 @@ ul.simple-horizontal-list {
   .store-title {
     text-align: center;
     color: white;
-    font: 600 59px "Bebas Neue", cursive;
-    letter-spacing: 3px;
+    font: 600 39px "Bebas Neue", cursive;
+    letter-spacing: 1px;
   }
   .store-slogan {
+    margin-top: 10px;
     text-align: center;
     color: white;
     font: 400 24px "Bebas Neue", cursive;
