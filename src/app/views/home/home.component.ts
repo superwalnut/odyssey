@@ -120,9 +120,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
 
   getRandomQuote() {
-    var len = GlobalConstants.transformerQuotes.length;
+    var len = GlobalConstants.badmintonLines.length;
     var rand = this.helperService.getRandomIntInclusive(0, len - 1);
-    var quote = GlobalConstants.transformerQuotes[rand];
+    var quote = GlobalConstants.badmintonLines[rand];
     this.getClassBasedOnLanguage(quote.line);
     return quote;
   }
