@@ -460,37 +460,33 @@ export class GlobalConstants {
 
   public static transformerQuotes = [
     {
-      line: "HBC Open 2022 - Double Challenge",
+      line: "We Can't Stand By And Watch The Destruction Of This Beautiful Planet",
       people: "",
     },
-    // {
-    //   line: "We Can't Stand By And Watch The Destruction Of This Beautiful Planet",
-    //   people: "",
-    // },
-    // { line: "Freedom Is The Right Of All Sentient Beings", people: "" },
-    // {
-    //   line: "Fate Rarely Calls Upon Us At A Moment Of Our Choosing",
-    //   people: "",
-    // },
-    // {
-    //   line: "We’ve Witnessed Your Human Capacity For War. You Would Absolutely Bring More Harm Than Good",
-    //   people: "",
-    // },
-    // { line: "I Will Never Stop Fighting For Our Freedom", people: "" },
-    // {
-    //   line: "Remember This: You May Lose Your Faith In Us, But Never In Yourselves",
-    //   people: "",
-    // },
-    // {
-    //   line: "There's A Thin Line Between Being A Hero, And Being A Memory",
-    //   people: "",
-    // },
-    // {
-    //   line: "We Can Be Heroes In Our Own Lives, Every One Of Us. If We Only Have The Courage To Try",
-    //   people: "",
-    // },
-    // { line: "One Shall Stand, One Shall Fall!", people: "" },
-    // { line: "Autobots, Transform And Roll Out!", people: "" },
+    { line: "Freedom Is The Right Of All Sentient Beings", people: "" },
+    {
+      line: "Fate Rarely Calls Upon Us At A Moment Of Our Choosing",
+      people: "",
+    },
+    {
+      line: "We’ve Witnessed Your Human Capacity For War. You Would Absolutely Bring More Harm Than Good",
+      people: "",
+    },
+    { line: "I Will Never Stop Fighting For Our Freedom", people: "" },
+    {
+      line: "Remember This: You May Lose Your Faith In Us, But Never In Yourselves",
+      people: "",
+    },
+    {
+      line: "There's A Thin Line Between Being A Hero, And Being A Memory",
+      people: "",
+    },
+    {
+      line: "We Can Be Heroes In Our Own Lives, Every One Of Us. If We Only Have The Courage To Try",
+      people: "",
+    },
+    { line: "One Shall Stand, One Shall Fall!", people: "" },
+    { line: "Autobots, Transform And Roll Out!", people: "" },
   ];
 
   public static chinesePoemQuotes = [
