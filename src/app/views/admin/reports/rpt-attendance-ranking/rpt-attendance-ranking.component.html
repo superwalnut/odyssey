@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="card">
+          <div class="card-body p-4">
+            <h1>Attendance Ranking (1600 records limit)</h1>
+            <div class="table-scrollable">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Attendance Count</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let k of groupKeys;let i = index">
+                    <td scope="row">{{ k }}</td>
+                    <td scope="row">{{ groupByUser[k]}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

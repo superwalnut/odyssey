@@ -30,6 +30,7 @@ import { RptUserCreditsComponent } from './reports/rpt-user-credits/rpt-user-cre
 import { RptCsvComponent } from './reports/rpt-csv/rpt-csv.component';
 import { BatchpaymentComponent } from './batchpayment/batchpayment.component';
 import { EnvCheckComponent } from '../env-check/env-check.component';
+import { RptAttendanceRankingComponent } from "./reports/rpt-attendance-ranking/rpt-attendance-ranking.component";
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { EnvCheckComponent } from '../env-check/env-check.component';
     LvlPointsDialog,
     RptUnpaidComponent,
     RptAttendanceComponent,
+    RptAttendanceRankingComponent,
     RptEventviewerComponent,
     RptAutobookComponent,
     RptBookingpersonComponent,

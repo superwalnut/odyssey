@@ -26,6 +26,7 @@ import { groupCollapsed } from "console";
 import { RptUserCreditsComponent } from "./reports/rpt-user-credits/rpt-user-credits.component";
 import { RptCsvComponent } from "./reports/rpt-csv/rpt-csv.component";
 import { EnvCheckComponent } from "../env-check/env-check.component";
+import { RptAttendanceRankingComponent } from "./reports/rpt-attendance-ranking/rpt-attendance-ranking.component";
 
 const routes: Routes = [
   {
@@ -162,7 +163,13 @@ const routes: Routes = [
           title: "Attendance report",
         },
       },
-
+      {
+        path: "rptattendranking",
+        component: RptAttendanceRankingComponent,
+        data: {
+          title: "Attendance Ranking Report",
+        },
+      },
 
       {
         path: "rptunpaid",

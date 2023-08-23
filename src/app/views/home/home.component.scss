@@ -1,0 +1,16 @@
+.homepage-intro{
+    margin-top:0px;
+}
+
+.intro-shade h1{
+    font: 600 3em "Bebas Neue", cursive;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 768px) {
+    .intro-shade h1{
+        font: 600 1.5em "Bebas Neue", cursive;
+        letter-spacing: 1px;
+    }
+}
