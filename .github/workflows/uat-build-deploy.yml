@@ -3,6 +3,7 @@ name: HBC build pipeline
   push:
     branches:
       - features/*
+      - feature/*
       
 jobs:
   uat_build_deploy:
