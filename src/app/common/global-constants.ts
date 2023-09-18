@@ -68,10 +68,10 @@ export class GlobalConstants {
   public static autoBookingDiscount = 0;
 
   //Price, Rates
-  public static rateCash: number = 18;
-  public static rateCredit: number = 15;
-  public static rateFamily: number = 15;
-  public static rateHappyHour: number = 15; //Saturday Happy hour rate for all HBCoin users
+  public static rateCash: number = 20;
+  public static rateCredit: number = 17;
+  public static rateFamily: number = 17;
+  public static rateHappyHour: number = 17; //Saturday Happy hour rate for all HBCoin users
 
   //EVENTS for Audit table
   public static eventbookingWithdraw: string = "booking withdraw";
