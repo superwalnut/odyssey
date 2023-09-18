@@ -2,7 +2,7 @@ name: HBC build pipeline
 'on':
   push:
     branches:
-      - features
+      - features/*
       
 jobs:
   uat_build_deploy:
