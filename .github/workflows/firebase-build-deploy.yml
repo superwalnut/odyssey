@@ -76,3 +76,4 @@ jobs:
             PRODUCTION: '${{ secrets.PRODUCTION }}'
             MAIL_URL: '${{ secrets.MAIL_URL }}'
             API_KEY: '${{ secrets.API_KEY }}'
+            
