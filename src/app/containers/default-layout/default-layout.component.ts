@@ -164,6 +164,11 @@ export class DefaultLayoutComponent {
         //   icon: "cil-cog",
         // },
         {
+          name:"Latest Top Ups",
+          url: "/admin/rpttopups",
+          icon: "cil-paperclip"
+        },
+        {
           name: "Reports",
           url: "/base",
           icon: "cil-chart",

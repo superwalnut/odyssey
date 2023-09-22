@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4">
+
+          <h1 class="section-heading">Latest TopUps</h1>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-4">
+          </form>
+          <table class="table table-striped" *ngIf="credits">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">User</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Date</th>
+                <th scope="col">Action By</th>
+                <th scope="col">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let t of credits">
+                <td scope="row" class="col-2">{{ t.userDisplayName }}</td>
+                <td scope="row" class="col-2">{{ t.amount | currency}}</td>
+                <td scope="row" class="col-4">{{ t.created.toDate() | date:'dd/MM/yyyy HH:mm'}} 
+                  <span *ngIf='daysDiff(t.created)=="today"' class="badge badge-pill badge-primary">{{daysDiff(t.created)}}</span>
+                  <span *ngIf='daysDiff(t.created)=="this week"' class="badge badge-pill badge-secondary">{{daysDiff(t.created)}}</span>
+                </td>
+                <td scope="row" class="col-2">{{ t.createdByDisplayName }}</td>
+                <td scope="row" class="col-2">{{ t.note }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

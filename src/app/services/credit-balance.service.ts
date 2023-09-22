@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { UserBalance } from '../models/user-balance';
 import { UserBalanceStatement } from '../models/user-balance-statement';
 import { FirestoreBaseService } from './firestore-base.service';
+import { Credit } from '../models/credit';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,18 @@ export class CreditBalanceService extends FirestoreBaseService<UserBalanceStatem
         return null;
       }
     }));
+  }
+
+  public getLatestTopups(): Observable<Credit[]> {
+    return this.firestore.collection<Credit>('credits', q => q.where('amount', '>=', 0)).snapshotChanges().pipe(
+      map(actions => {
+          return actions.map(x => {
+            var credit = x.payload.doc.data() as Credit;
+            return {
+              ...credit,
+              docId: x.payload.doc.id
+            } as Credit;
+          });
+      }));
   }
 }

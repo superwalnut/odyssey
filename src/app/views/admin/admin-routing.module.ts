@@ -27,6 +27,7 @@ import { RptUserCreditsComponent } from "./reports/rpt-user-credits/rpt-user-cre
 import { RptCsvComponent } from "./reports/rpt-csv/rpt-csv.component";
 import { EnvCheckComponent } from "../env-check/env-check.component";
 import { RptAttendanceRankingComponent } from "./reports/rpt-attendance-ranking/rpt-attendance-ranking.component";
+import { RptTopupsComponent } from "./reports/topups/rpt-topups.component";
 
 const routes: Routes = [
   {
@@ -190,6 +191,13 @@ const routes: Routes = [
         component: RptUserCreditsComponent,
         data: {
           title: "User Credits",
+        }
+      },
+      {
+        path: "rpttopups",
+        component: RptTopupsComponent,
+        data:{
+          title:"Latest Top Ups"
         }
       },
       {

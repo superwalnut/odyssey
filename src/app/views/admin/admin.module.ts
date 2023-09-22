@@ -31,6 +31,7 @@ import { RptCsvComponent } from './reports/rpt-csv/rpt-csv.component';
 import { BatchpaymentComponent } from './batchpayment/batchpayment.component';
 import { EnvCheckComponent } from '../env-check/env-check.component';
 import { RptAttendanceRankingComponent } from "./reports/rpt-attendance-ranking/rpt-attendance-ranking.component";
+import { RptTopupsComponent } from "./reports/topups/rpt-topups.component";
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { RptAttendanceRankingComponent } from "./reports/rpt-attendance-ranking/
     RptUserCreditsComponent,
     RptCsvComponent,
     BatchpaymentComponent,
+    RptTopupsComponent
   ],
 })
 export class AdminModule { }

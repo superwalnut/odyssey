@@ -18,6 +18,11 @@ export class HelperService {
     return new Date();
   }
 
+  calculateDiffFromToday(date:Date){
+    let currentDate = new Date();
+    return Math.floor((Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) - Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) ) /(1000 * 60 * 60 * 24));
+}
+
   compareDates(d1:Timestamp, d2:Timestamp) {
    
     //console.log(d1.toDate().setHours(0,0,0,0) == d2.toDate().setHours(0,0,0,0));
