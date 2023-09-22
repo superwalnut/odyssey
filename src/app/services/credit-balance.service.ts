@@ -38,7 +38,7 @@ export class CreditBalanceService extends FirestoreBaseService<UserBalanceStatem
   }
 
   public getLatestTopups(): Observable<Credit[]> {
-    return this.firestore.collection<Credit>('credits', q => q.where('amount', '>=', 0)).snapshotChanges().pipe(
+    return this.firestore.collection<Credit>('credits', q => q.where('amount', '>', 0)).snapshotChanges().pipe(
       map(actions => {
           return actions.map(x => {
             var credit = x.payload.doc.data() as Credit;
