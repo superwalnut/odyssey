@@ -7,7 +7,7 @@
           <h1 class="section-heading">Latest TopUps</h1>
           <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-4">
           </form>
-          <table class="table table-striped" *ngIf="credits">
+          <table class="table table-striped table-sm" *ngIf="credits">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">User</th>
@@ -19,14 +19,14 @@
             </thead>
             <tbody>
               <tr *ngFor="let t of credits">
-                <td scope="row" >{{ t.userDisplayName }}</td>
-                <td scope="row" >{{ t.amount | currency}}</td>
-                <td scope="row" >{{ t.created.toDate() | date:'dd/MM/yyyy HH:mm'}} 
+                <td scope="row">{{ t.userDisplayName }}</td>
+                <td scope="row" style="color:green">{{ t.amount | currency}}</td>
+                <td scope="row" class="small">{{ t.created.toDate() | date:'dd/MM/yyyy HH:mm'}} 
                   <span *ngIf='daysDiff(t.created)=="today"' class="badge badge-pill badge-primary">{{daysDiff(t.created)}}</span>
                   <span *ngIf='daysDiff(t.created)=="this week"' class="badge badge-pill badge-secondary">{{daysDiff(t.created)}}</span>
                 </td>
                 <td scope="row" >{{ t.createdByDisplayName }}</td>
-                <td scope="row" >{{ t.note }}</td>
+                <td scope="row" class="small">{{ t.note }}</td>
               </tr>
             </tbody>
           </table>
