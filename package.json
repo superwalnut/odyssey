@@ -1,22 +1,15 @@
 {
-  "name": "@coreui/coreui-free-angular-admin-template",
+  "name": "HBC Online Booking System",
   "version": "2.11.1",
-  "description": "CoreUI Free Angular 11 Admin Template",
+  "description": "HBC Online Booking System",
   "type": "commonjs",
-  "author": {
-    "name": "Łukasz Holeczek",
-    "url": "http://holeczek.pl",
-    "github": "https://github.com/mrholek",
-    "twitter": "https://twitter.com/lukaszholeczek"
-  },
   "contributors": [
     {
-      "name": "Andrzej Kopański",
-      "url": "https://github.com/xidedix"
+      "name": "Kevin Wang",
+      "url": "https://github.com/superwalnut"
     }
   ],
-  "homepage": "https://coreui.io/angular",
-  "copyright": "Copyright 2021 creativeLabs Łukasz Holeczek",
+  "copyright": "Copyright 2021 HBC",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
