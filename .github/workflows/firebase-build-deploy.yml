@@ -1,4 +1,4 @@
-name: HBC build pipeline
+name: PROD - HBC deploy
 'on':
   push:
     branches:
