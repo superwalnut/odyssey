@@ -25,8 +25,8 @@ import { GlobalConstants } from "../../common/global-constants";
 })
 export class HomeComponent extends BaseComponent implements OnInit {
 
-  hbcCoinRate:number = GlobalConstants.rateCredit;
-  hbcCashRate:number = GlobalConstants.rateCash;
+  hbcCoinRate:number = 17;
+  hbcCashRate:number = 20;
 
   show: boolean = true;
   loggedInAccount: Account;
