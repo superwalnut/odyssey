@@ -69,8 +69,8 @@ export class GlobalConstants {
 
   //Price, Rates
   public static rateCash: number = 20;
-  public static rateCredit: number = 17;
-  public static rateFamily: number = 17;
+  public static rateCredit: number = 15;
+  public static rateFamily: number = 15;
   public static rateHappyHour: number = 17; //Saturday Happy hour rate for all HBCoin users
 
   //EVENTS for Audit table
