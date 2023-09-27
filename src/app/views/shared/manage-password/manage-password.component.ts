@@ -33,7 +33,7 @@ export class ManagePasswordComponent implements OnInit {
       validator: this.MustMatch('password', 'confirmPassword')
     });
 
-    this.accountService.getLoginUser().subscribe(x=>{
+    this.accountService.getUserByDocId(this.userDocId).subscribe(x=>{
       this.user = x;
     });
   }
