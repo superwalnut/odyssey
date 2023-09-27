@@ -35,6 +35,8 @@ export class ManagePasswordComponent implements OnInit {
 
     this.accountService.getUserByDocId(this.userDocId).subscribe(x=>{
       this.user = x;
+      console.log('selected user', this.user);
+      console.log('this.userDocId', this.userDocId);
     });
   }
 
@@ -57,8 +59,7 @@ export class ManagePasswordComponent implements OnInit {
     } as User;
 
     if(this.user){
-      this.accountService.updateUser(this.user.docId, user).then(x=>{
-
+      this.accountService.updateUser(this.userDocId, user).then(x=>{
         var log = {
           eventCategory: GlobalConstants.eventPasswordChange,
           createdBy: this.user.docId,

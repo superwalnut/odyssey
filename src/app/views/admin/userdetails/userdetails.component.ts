@@ -50,7 +50,7 @@ export class UserdetailsComponent implements OnInit {
 
       this.accountService.getUserByDocId(this.userDocId).subscribe(x => {
         this.user = x;
-
+        console.log(this.user);
         this.profileForm = this.fb.group({
           email: [this.user.email, [Validators.required, Validators.email]],
           name: [this.user.name, Validators.required],
@@ -82,27 +82,6 @@ export class UserdetailsComponent implements OnInit {
 
     this.accountService.updateUser(this.userDocId, user).then(x => {
       this.snackBar.open(`Your account settings have been updated.`, null, {
-        duration: 5000,
-        verticalPosition: 'top'
-      });
-    });
-  }
-
-  onPasswordSubmit() {
-    this.passwordSubmitted = true;
-
-    // stop here if form is invalid
-    if (this.passwordForm.invalid) {
-      console.log('form invalid');
-      return;
-    }
-
-    var user = {
-      password: this.passwordForm.value.password,
-    } as User;
-
-    this.accountService.updateUser(this.userDocId, user).then(x => {
-      this.snackBar.open(`Your account password have been updated.`, null, {
         duration: 5000,
         verticalPosition: 'top'
       });
