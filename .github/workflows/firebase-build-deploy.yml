@@ -32,6 +32,8 @@ jobs:
           echo MEASUREMENT_ID=${{ secrets.MEASUREMENT_ID }} >> .env  
       - run: npm run config
       - run: npm run build
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -40,7 +42,6 @@ jobs:
           projectId: hbc-uat-9f2ad
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
-          NODE_OPTIONS: --openssl-legacy-provider
 
   prod_build_deploy:
       runs-on: ubuntu-latest
@@ -68,6 +69,8 @@ jobs:
             echo MEASUREMENT_ID=${{ secrets.MEASUREMENT_ID }} >> .env  
         - run: npm run config          
         - run: npm run build
+          env:
+            NODE_OPTIONS: --openssl-legacy-provider
         - uses: FirebaseExtended/action-hosting-deploy@v0
           with:
             repoToken: '${{ secrets.GITHUB_TOKEN }}'

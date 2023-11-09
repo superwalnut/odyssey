@@ -31,6 +31,8 @@ jobs:
           echo MEASUREMENT_ID=${{ secrets.MEASUREMENT_ID }} >> .env  
       - run: npm run config
       - run: npm run build
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
