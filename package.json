@@ -8,7 +8,7 @@
     "config": "ts-node src/set-env.ts",
     "start": "ng serve",
     "set-ssl": "SET NODE_OPTIONS=--openssl-legacy-provider",
-    "build": "ng build --prod --progress --output-path=public",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && ng build --prod --progress --output-path=public",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
