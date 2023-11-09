@@ -16,6 +16,7 @@ jobs:
             node-version: '18.13.0'
       - run: sudo apt-get update
       - run: sudo apt-get upgrade openssl      
+      - run: export NODE_OPTIONS=--openssl-legacy-provider
       - run: npm install
       - run: npm install -g @angular/cli
       - name: create env file
