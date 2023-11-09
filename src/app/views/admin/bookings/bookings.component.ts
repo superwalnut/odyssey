@@ -95,7 +95,7 @@ export class BookingsComponent implements OnInit {
     console.log(booking)
     this.bookingService.createBooking(booking).then(bookingDocId => {
       console.log(bookingDocId);
-      var autoBookingPersons = this.mapUsersToBookingPerson(this.autoBookingUsers, this.group.docId, bookingDocId);
+      var autoBookingPersons = this.mapUsersToBookingPerson(this.autoBookingUsers, this.group, bookingDocId);
       console.log('booking persons ready for insert: ', autoBookingPersons);
 
       //return false;
@@ -131,7 +131,7 @@ export class BookingsComponent implements OnInit {
     });
   }
 
-  mapUsersToBookingPerson(users: User[], groupDocId: string, bookingDocId: string) {
+  mapUsersToBookingPerson(users: User[], groupDoc: Group, bookingDocId: string) {
     var bookingpersons: BookingPerson[] = [];
     if (!users || users.length == 0) { return bookingpersons; }
 
@@ -142,10 +142,10 @@ export class BookingsComponent implements OnInit {
     users.forEach(u => {
       console.log("u =>: ", u);
 
-      let rate = this.getUserRate(u.docId, this.committees);
+      let rate = this.getUserRate(u, this.committees, groupDoc);
 
       var bookingPerson = {
-        groupDocId: groupDocId,
+        groupDocId: groupDoc.docId,
         bookingDocId: bookingDocId,
         bookingDesc: this.group.groupName,
         userId: u.docId,
@@ -167,15 +167,13 @@ export class BookingsComponent implements OnInit {
     return bookingpersons;
   }
 
-  getUserRate(userDocId:string, committees:User[]) {
-    let found = committees.find(x=>x.docId == userDocId);
+  getUserRate(user:User, committees:User[], group:Group) {
+    let found = committees.find(x=>x.docId == user.docId);
     if (found) {
       return 0; //committess is free
     } else {
       return GlobalConstants.rateCredit; // only credit user can setup auto booking.
     }
-
   }
-
 }
 

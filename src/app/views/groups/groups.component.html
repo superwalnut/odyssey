@@ -4,18 +4,7 @@
   <div class="container">
     <div class="row light">
       <div class="col">
-        <h1 class="section-heading text-center">{{weekStart.toDate() | date:'MMM dd'}} - {{weekEnd.toDate() | date:'MMM
-          dd, yyyy'}}</h1>
-        <!-- <div class="alert  alert-info">
-            <div class="alert-icon"><span class="material-icons">info</span></div>
-            <div class="alert-body">
-              <ul>
-                <li>Saturday Session Special Rate 13 HBCoin!</li>
-                <li>Cash rate is now adjusted to $18</li> 
-              </ul>
-            </div>
-          </div>  -->
-
+        <h1 class="section-heading text-center">{{weekStart.toDate() | date:'MMM dd'}} - {{weekEnd.toDate() | date:'MMM dd, yyyy'}}</h1>
       </div>
     </div>
 
@@ -25,7 +14,7 @@
           <div class="session-card-img"></div>
           <div class="card-body">
             <h5 class="card-title">{{ b.eventStartDateTime.toDate() | date: 'fullDate'}}</h5>
-            <p class="card-text text-muted">{{ getGroupDesc(b.groupDocId)}} <span class="material-icons">chair</span>
+            <p class="card-text group-title">{{ getGroupDesc(b.groupDocId)}} <span class="material-icons">chair</span>
               {{seatsLimit}}</p>
             <!-- <div class="booknow">
               {{b.isOffline ? 'Offline':''}}

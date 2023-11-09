@@ -72,6 +72,8 @@ export class GlobalConstants {
   public static rateCredit: number = 17;
   public static rateFamily: number = 17;
   public static rateHappyHour: number = 17; //Saturday Happy hour rate for all HBCoin users
+  public static rateTraining: number = 45;
+  public static rateTrainingCommitte: number = 35;
 
   //EVENTS for Audit table
   public static eventbookingWithdraw: string = "booking withdraw";

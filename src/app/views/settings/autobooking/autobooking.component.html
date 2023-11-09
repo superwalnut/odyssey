@@ -43,7 +43,7 @@
             <mat-form-field appearance="fill">
               <mat-label>Social sessions</mat-label>
               <mat-select [(ngModel)]="selectedGroup">
-                <mat-option *ngFor="let g of groups" [value]="g" >{{g.eventStartDay}}</mat-option>
+                <mat-option *ngFor="let g of groups" [value]="g" >{{g.eventStartDay}} - {{g.groupName}}</mat-option>
               </mat-select>
             </mat-form-field>
             <button mat-raised-button color="primary" (click)="onSelectClicked()">Select</button>

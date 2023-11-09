@@ -29,6 +29,17 @@
             }
             
         }
+
+        .group-title {
+            color:#0804e8;
+            font-weight: 500 !important;
+            font-size:1.3em !important;
+            
+            span {
+                display:inline-block;
+                margin-left:15px;
+            }
+        }
     }
 
 }

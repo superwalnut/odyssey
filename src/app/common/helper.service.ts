@@ -186,16 +186,22 @@ export class HelperService {
 
   //only used by saturday happy hour - HBCoin holder family has special price (only apply to more than 1 member)
   findRates(isCreditUser:boolean, isCommittee:boolean, isFriend:boolean, group: Group, familyCount:number) {
+    var amount = 0;
+    var isSaturdayTraining = group.groupName.toLowerCase().includes('training');
+    if(isSaturdayTraining){
+      if (isFriend || !isCreditUser) return GlobalConstants.rateTraining;
+
+      if(isCommittee){
+        return GlobalConstants.rateTrainingCommitte;  
+      }
+      return GlobalConstants.rateTraining;
+    }
+
     if (isFriend || !isCreditUser) return GlobalConstants.rateCash; //friend or cash user, return cash rate straight away
     if (isCommittee) return 0;
 
-    //family count is ignored for now, same price apply to all HBCoin family members
-    var amount = 0;
-    var isSaturday = group.eventStartDay.toLowerCase().includes('sat');
-
     //HBCoin users
-    amount = isSaturday ? GlobalConstants.rateHappyHour : GlobalConstants.rateCredit;
+    amount = GlobalConstants.rateCredit;
     return amount;
-
   }
 }
