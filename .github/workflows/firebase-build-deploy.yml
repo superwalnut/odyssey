@@ -15,6 +15,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '18.13.0'
+      - run: sudo apt-get update
+      - run: sudo apt-get upgrade openssl      
       - run: npm install
       - run: npm install -g @angular/cli
       - name: create env file

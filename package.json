@@ -1,28 +1,12 @@
 {
-  "name": "@coreui/coreui-free-angular-admin-template",
+  "name": "HBC Club",
   "version": "2.11.1",
-  "description": "CoreUI Free Angular 11 Admin Template",
+  "description": "HBC Club",
   "type": "commonjs",
-  "author": {
-    "name": "Łukasz Holeczek",
-    "url": "http://holeczek.pl",
-    "github": "https://github.com/mrholek",
-    "twitter": "https://twitter.com/lukaszholeczek"
-  },
-  "contributors": [
-    {
-      "name": "Andrzej Kopański",
-      "url": "https://github.com/xidedix"
-    }
-  ],
-  "homepage": "https://coreui.io/angular",
-  "copyright": "Copyright 2021 creativeLabs Łukasz Holeczek",
-  "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "postinstall": "npm run build",
     "config": "ts-node src/set-env.ts",
-    "start": "ng serve",
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng serve",
     "build": "ng build --prod --progress --output-path=public",
     "test": "ng test",
     "lint": "ng lint",
@@ -52,6 +36,7 @@
     "classlist.js": "^1.1.20150312",
     "core-js": "^3.8.3",
     "crypto-js": "3.3.0",
+    "dotenv": "^5.0.0",
     "firebase": "^8.2.9",
     "flag-icon-css": "^3.5.0",
     "font-awesome": "^4.7.0",
@@ -59,13 +44,13 @@
     "ng2-charts": "^2.4.2",
     "ngx-bootstrap": "^6.2.0",
     "ngx-perfect-scrollbar": "^10.1.0",
+    "react-scripts": "^5.0.1",
     "rxjs": "^6.6.3",
     "simple-line-icons": "^2.5.5",
     "ts-helpers": "^1.1.2",
     "tslib": "^2.0.0",
     "web-animations-js": "^2.3.2",
-    "zone.js": "~0.10.3",
-    "dotenv": "^5.0.0"
+    "zone.js": "~0.10.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1101.1",
@@ -76,6 +61,7 @@
     "@types/jasminewd2": "^2.0.8",
     "@types/node": "^14.14.22",
     "codelyzer": "^6.0.0",
+    "cross-env": "^7.0.3",
     "protractor": "~7.0.0",
     "ts-node": "^8.10.2",
     "tslint": "~6.1.0",
