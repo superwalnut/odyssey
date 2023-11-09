@@ -17,7 +17,6 @@ jobs:
           node-version: '18.13.0'
       - run: sudo apt-get update
       - run: sudo apt-get upgrade openssl
-      - run: export NODE_OPTIONS=--openssl-legacy-provider
       - run: npm install
       - run: npm install -g @angular/cli
       - name: create env file
@@ -42,6 +41,7 @@ jobs:
           projectId: hbc-uat-9f2ad
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
+          NODE_OPTIONS: --openssl-legacy-provider
 
   prod_build_deploy:
       runs-on: ubuntu-latest
@@ -54,7 +54,6 @@ jobs:
             node-version: '18.13.0'
         - run: sudo apt-get update
         - run: sudo apt-get upgrade openssl
-        - run: export NODE_OPTIONS=--openssl-legacy-provider
         - run: npm install
         - run: npm install -g @angular/cli
         - name: create env file
@@ -82,3 +81,4 @@ jobs:
             PRODUCTION: '${{ secrets.PRODUCTION }}'
             MAIL_URL: '${{ secrets.MAIL_URL }}'
             API_KEY: '${{ secrets.API_KEY }}'
+            NODE_OPTIONS: --openssl-legacy-provider
