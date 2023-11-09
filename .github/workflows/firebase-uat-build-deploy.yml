@@ -17,7 +17,6 @@ jobs:
       - run: sudo apt-get update
       - run: sudo apt-get upgrade openssl      
       - run: npm install
-      - run: npm install -g @angular/cli
       - name: create env file
         run: |
           touch .env
@@ -31,7 +30,7 @@ jobs:
           echo APP_ID=${{ secrets.APP_ID }} >> .env
           echo MEASUREMENT_ID=${{ secrets.MEASUREMENT_ID }} >> .env  
       - run: npm run config
-      - run: ng build --prod --progress --output-path=public
+      - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
