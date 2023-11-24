@@ -41,4 +41,3 @@ jobs:
           projectId: hbc-uat-9f2ad
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
-          NODE_OPTIONS: --openssl-legacy-provider
