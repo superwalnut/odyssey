@@ -81,6 +81,7 @@ import { HbcCompetition2021Component } from './views/competition/hbc-competition
 import { HbcOpenCompetition2022Component } from './views/competition/hbc-open-competition2022/hbc-open-competition2022.component';
 import { HbcOpenCompetition2022DrawComponent } from './views/competition/hbc-open-competition2022-draw/hbc-open-competition2022-draw.component';
 import { StoreComponent } from './views/store/store.component';
+import { HbcOpen2023DrawComponent } from "./views/competition/hbc-open2023-draw/hbc-open2023-draw.component";
 
 @NgModule({
   imports: [
@@ -135,6 +136,7 @@ import { StoreComponent } from './views/store/store.component';
     HbcCompetition2021Component,
     HbcOpenCompetition2022Component,
     HbcOpenCompetition2022DrawComponent,
+    HbcOpen2023DrawComponent,
     StoreComponent,
   ],
   providers: [

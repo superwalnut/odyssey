@@ -25,6 +25,7 @@ import { HbcOpenCompetition2022Component } from "./views/competition/hbc-open-co
 import { HbcCompetition2021Component } from "./views/competition/hbc-competition2021/hbc-competition2021.component";
 import { HbcOpenCompetition2022DrawComponent } from "./views/competition/hbc-open-competition2022-draw/hbc-open-competition2022-draw.component";
 import { StoreComponent } from "./views/store/store.component";
+import { HbcOpen2023DrawComponent } from "./views/competition/hbc-open2023-draw/hbc-open2023-draw.component";
 
 export const routes: Routes = [
   {
@@ -102,6 +103,13 @@ export const routes: Routes = [
     component: HbcOpenCompetition2022DrawComponent,
     data: {
       title: "HBC Open 2022 Draw",
+    },
+  },
+  {
+    path: "competition/2023",
+    component: HbcOpen2023DrawComponent,
+    data: {
+      title: "HBC Open 2023",
     },
   },
   {
