@@ -1,4 +1,4 @@
-name: UAT - HBC deploy
+name: Feature - HBC Pipeline - UAT ONLY
 'on':
   push:
     branches:

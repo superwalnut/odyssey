@@ -1,4 +1,4 @@
-name: HBC build pipeline
+name: Main - HBC pipeline - UAT - PROD
 'on':
   push:
     branches:
