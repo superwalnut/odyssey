@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "config": "ts-node src/set-env.ts",
-    "start": "ng serve",
+    "start": "set-ssl & ng serve",
     "set-ssl": "SET NODE_OPTIONS=--openssl-legacy-provider",
     "build": "ng build --prod --progress --output-path=public",
     "test": "ng test",
