@@ -176,9 +176,9 @@ export class BookingComponent extends BaseComponent implements OnInit {
     this.bookingService.get(bookingDocId).subscribe((booking) => {
       this.booking = booking;
 
-      if (booking.isOffline) {
-        this.router.navigateByUrl("offline");
-      }
+      // if (booking.isOffline) {
+      //   this.router.navigateByUrl("offline");
+      // }
       console.log("is booking offline...", this.booking.isOffline);
     });
   }

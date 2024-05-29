@@ -43,8 +43,8 @@
          -->
         <section>
           <ul class="simple-horizontal-list">
-            <li><span class="material-icons" title="{{ booking?.isLocked ? 'Booking Locked': 'Booking is open'}}">{{
-                booking?.isLocked ? 'lock':'lock_open'}}</span> {{ booking?.isLocked ? 'Locked':'Open'}}</li>
+            <!-- <li><span class="material-icons" title="{{ booking?.isLocked ? 'Booking Locked': 'Booking is open'}}">{{
+                booking?.isLocked ? 'lock':'lock_open'}}</span> {{ booking?.isLocked ? 'Locked':'Open'}}</li> -->
             <li><span class="material-icons">chair</span> {{seatsBooked}}/{{booking?.seatsOverwrite}}</li>
             <li>
               <!-- <span class="badge badge-success"> {{ user?.isCreditUser ? 'HBCoin' : 'Cash'}}</span>  -->
@@ -56,7 +56,7 @@
               <mat-icon>settings</mat-icon><a routerLink="/settings/schedule">AutoBook</a>
             </li>
             <li>
-              <a href="https://buy.stripe.com/eVa4gx2rC3EX7jq145" target="_blank" class="btn btn-link">Top up</a>
+              <mat-icon>paid</mat-icon><a href="https://buy.stripe.com/eVa4gx2rC3EX7jq145" target="_blank" class="btn btn-link">Top up</a>
             </li>
           </ul>
 
@@ -78,12 +78,9 @@
           <div class="alert  alert-danger" *ngIf="!hasEnoughtBalance">
             <div class="alert-icon"><span class="material-icons">dangerous</span></div>
             <div class="alert-body">
-              You don't have enough balance to make bookings. Please <a routerLink="/settings/creditstatement">Top
-                up</a> now!
+              You don't have enough balance to make bookings. Please <a href="https://buy.stripe.com/eVa4gx2rC3EX7jq145" target="_blank" class="btn btn-link">Top up</a> now!
             </div>
           </div>
-
-
 
           <table class="table table-hover table-custom booking table-sm">
             <thead>
