@@ -7,7 +7,7 @@
     "ng": "ng",
     "config": "ts-node src/set-env.ts",
     "start": "set-ssl & ng serve",
-    "set-ssl": "SET NODE_OPTIONS=--openssl-legacy-provider",
+    "set-ssl": "export NODE_OPTIONS=--openssl-legacy-provider",
     "build": "ng build --prod --progress --output-path=public",
     "test": "ng test",
     "lint": "ng lint",
