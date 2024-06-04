@@ -55,17 +55,11 @@
           </div>
           <div class="profile-bio">
             <button routerLink="/groups" class="rgb">BOOK NOW</button>
-            <div class="profile-bank-details">
-              <h3>
-                <a href="https://buy.stripe.com/eVa4gx2rC3EX7jq145" target="_blank" class="btn btn-primary">Top up</a>
-              </h3>
-              <!-- <div class="detail-list" *ngIf="showDetail">
-                <ul>
-                  <li><b>PayID:</b> 82741485323 (Type: ABN)</li>
-                  <li><b>Account Name:</b> HBC</li>
-                  <li><b>BSB:</b> 032111 <b>Account:</b> 335387</li>
-                </ul>
-              </div> -->
+            <div>
+              <a href="{{memberTopup50}}" target="_blank" class="btn btn-primary mt-2 mb-2">Topup $50</a>
+              <a href="{{memberTopup100}}" target="_blank" class="btn btn-primary mt-2 mb-2">Topup $100</a>
+              <a href="{{memberTopup170}}" target="_blank" class="btn btn-primary mt-2 mb-2">Topup $170</a>
+              <a href="{{memberTopup300}}" target="_blank" class="btn btn-primary mt-2 mb-2">Topup $300</a>
             </div>
           </div>
 
@@ -111,7 +105,12 @@
             <li class="list-group-item">LAST DEDUCTED: 10/02/2021</li>
           </ul> -->
         <div class="card-body">
-          <a href="https://buy.stripe.com/eVa4gx2rC3EX7jq145" target="_blank" class="btn btn-primary">Top up</a>
+          <h4>Top up</h4>
+          <a href="{{memberTopup50}}" target="_blank" class="btn btn-primary mt-2 mb-2">$50</a>
+          <a href="{{memberTopup100}}" target="_blank" class="btn btn-primary mt-2 mb-2">$100</a>
+          <a href="{{memberTopup170}}" target="_blank" class="btn btn-primary mt-2 mb-2">$170</a>
+          <a href="{{memberTopup300}}" target="_blank" class="btn btn-primary mt-2 mb-2">$300</a>
+
           <!-- <a routerLink="/settings/creditstatement" class="card-link">STATEMENT</a>
           <a routerLink="/settings/creditstatement" class="card-link" *ngIf="user?.isCreditUser">TOP UP</a>
           <a routerLink="/settings/transfer" class="card-link" *ngIf="user?.isCreditUser">TRANSFER</a> -->

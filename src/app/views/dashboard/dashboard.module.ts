@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
 import { browser } from 'protractor';
+import { environment } from '../../../environments/environment';
 
 @NgModule({
   imports: [
@@ -21,4 +22,11 @@ import { browser } from 'protractor';
   ],
   declarations: [DashboardComponent]
 })
-export class DashboardModule { }
+export class DashboardModule { 
+  memberTopup50 = environment.payments.memberTopup50;
+  memberTopup100 = environment.payments.memberTopup100;
+  memberTopup170 = environment.payments.memberTopup170;
+  memberTopup300 = environment.payments.memberTopup300;
+
+
+}
