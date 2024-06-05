@@ -7,6 +7,7 @@ import { CreditService } from "../../services/credit.service";
 import { AccountService } from "../../services/account.service";
 import { BookingPersonService } from "../../services/booking-person.service";
 import { GlobalConstants } from "../../common/global-constants";
+import { environment } from "../../../environments/environment";
 
 @Component({
   templateUrl: "dashboard.component.html",
@@ -24,6 +25,11 @@ export class DashboardComponent implements OnInit {
   avatarUrl: string;
   isBalanceMasked: boolean = false;
   showDetail: boolean;
+
+  memberTopup50 = environment.payments.memberTopup50;
+  memberTopup100 = environment.payments.memberTopup100;
+  memberTopup170 = environment.payments.memberTopup170;
+  memberTopup300 = environment.payments.memberTopup300;
 
   constructor(
     private accountService: AccountService,

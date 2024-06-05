@@ -23,10 +23,5 @@ import { environment } from '../../../environments/environment';
   declarations: [DashboardComponent]
 })
 export class DashboardModule { 
-  memberTopup50 = environment.payments.memberTopup50;
-  memberTopup100 = environment.payments.memberTopup100;
-  memberTopup170 = environment.payments.memberTopup170;
-  memberTopup300 = environment.payments.memberTopup300;
-
 
 }
