@@ -63,6 +63,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   waitingLists: WaitingList[];
   myWaitingList: WaitingList;
   waitingListButtonText: string;
+  
 
   constructor(
     private groupService: GroupService,
