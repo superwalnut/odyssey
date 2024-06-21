@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 export class TermsComponent implements OnInit {
 
   autoBookngMiniumCreditRequired = GlobalConstants.autoBookingMiniumCreditRequired
-
+  cashPay = environment.payments.cashPay;
   memberTopup50 = environment.payments.memberTopup50;
   memberTopup100 = environment.payments.memberTopup100;
   memberTopup170 = environment.payments.memberTopup170;
