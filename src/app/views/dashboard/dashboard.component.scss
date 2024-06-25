@@ -143,7 +143,13 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
     margin-top: 0px;
-    height:220px;
+    height:190px;
+
+    .my-booking-header {
+        border-radius: 10px 10px 0 0;
+        height:80px;
+        background: url('https://ik.imagekit.io/hbc666/hbc/banner/session-card-default_68rgsXfcK.jpg') no-repeat center center/cover;
+    }
 
     .rounded-start {
         border-radius: 10px 10px 0 0;
