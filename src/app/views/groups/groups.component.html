@@ -11,22 +11,28 @@
     <div class="row light">
       <div class="col-sm-4" *ngFor="let b of bookings">
         <div class="card horverEffects group-card" (click)="sessionClicked(b)" [ngClass]="{'offline':b.isOffline}">
-          <div class="session-card-img"></div>
+          <div class="session-card-img">
+          </div>
           <div class="card-body">
             <h5 class="card-title">{{ b.eventStartDateTime.toDate() | date: 'fullDate'}}</h5>
             <p class="card-text group-title">{{ getGroupDesc(b.groupDocId)}} <span class="material-icons">chair</span>
               {{seatsLimit}}</p>
-            <!-- <div class="booknow">
-              {{b.isOffline ? 'Offline':''}}
-              <a *ngIf="!b.isOffline">Book now <span class="material-icons">east</span></a>
-              <button mat-button>
-                Book now 
-                <mat-icon>east</mat-icon>
-              </button>
-              </div> -->
             <div [ngClass]="b.isOffline ? 'online-indicator offline': 'online-indicator'">
               <span class="blink"></span>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row light" *ngIf="!this.bookings || this.bookings.length <= 0">
+      <div class="col-sm-4">
+        <div class="card horverEffects group-card">
+          <div class="session-closed-card-img"></div>
+          <div class="card-body  text-center">
+            <h5 class="card-title">No sessions available yet!</h5>
+            <p class="card-text">
+              Please come back and check again later.
+            </p>
           </div>
         </div>
       </div>

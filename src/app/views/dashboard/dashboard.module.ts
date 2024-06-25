@@ -8,9 +8,6 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
-import { browser } from 'protractor';
-import { environment } from '../../../environments/environment';
-
 @NgModule({
   imports: [
     CommonModule,

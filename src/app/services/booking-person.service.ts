@@ -3,19 +3,13 @@ import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreBaseService } from "./firestore-base.service";
 import { map, concatMap, finalize, timestamp, take } from "rxjs/operators";
 import { BookingPerson } from "../models/booking-person";
-import { GroupTransaction } from "../models/group-transaction";
 
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { Booking } from '../models/booking';
 import { CreditService } from './credit.service';
 import { HelperService } from '../common/helper.service';
-
-import { Credit } from '../models/credit';
 import { LocalBookingUser } from '../models/custom-models';
-import { User } from '../models/user';
-import { Group } from '../models/group';
-import { cifBg } from '@coreui/icons';
 import { GlobalConstants } from '../common/global-constants';
 
 @Injectable({
@@ -112,6 +106,19 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     await batch.commit();
   }
 
+  // to look up user's booking person
+  public getBookingPersonBybookingDocIdAndUserId(userId:string, bookingDocId:string) {
+    return this.firestore.collection('bookingPersons', q => q.where('userId', '==', userId).where('bookingDocId', '==', bookingDocId)).snapshotChanges().pipe(
+      map(actions => {
+        var items = actions.map(p => {
+          var data = p.payload.doc.data() as BookingPerson;
+          return { ...data, docId: p.payload.doc.id } as BookingPerson;
+        });
+        return items;
+      }), take(1)
+    );
+  }
+
   public getAllBookingPersonsNoLimit() {
     return this.firestore.collection('bookingPersons', q => q.orderBy('createdOn', 'desc')).snapshotChanges().pipe(
       map(actions => {
@@ -123,8 +130,6 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
       }), take(1)
     )
   }
-
-
 
   public getAllBookingPersons() {
     return this.firestore.collection('bookingPersons', q => q.orderBy('createdOn', 'desc').limit(1600)).snapshotChanges().pipe(
@@ -155,7 +160,6 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     return super.getByDocId(bookingPersonDocId);
   }
 
-
   public getByUserDocId(userDocId: string) {
     return this.firestore.collection('bookingPersons', q => q.where('parentUserId', '==', userDocId).orderBy('createdOn', 'desc')).snapshotChanges().pipe(
       map(actions => {
@@ -185,19 +189,34 @@ export class BookingPersonService extends FirestoreBaseService<BookingPerson>{
     console.log('date range', dateRange)
     return this.firestore.collection('bookingPersons', q => q.where('parentUserId', '==', userDocId)).snapshotChanges().pipe(
       map(actions => {
-        var items = actions.map(p => {
+        const filteredData = actions.filter(p=>{
           var data = p.payload.doc.data() as BookingPerson;
-          if (data.createdOn >= this.helperService.convertToTimestamp(dateRange.firstday) &&
-            data.createdOn <= this.helperService.convertToTimestamp(dateRange.lastday)) {
-            return { ...data, docId: p.payload.doc.id } as BookingPerson;
-          }
-          return null;
+          return data.createdOn >= this.helperService.convertToTimestamp(dateRange.firstday) && 
+          data.createdOn <= this.helperService.convertToTimestamp(dateRange.lastday)
+        });
 
+        var items = filteredData.map(p => {
+          var data = p.payload.doc.data() as BookingPerson;
+          return { ...data, docId: p.payload.doc.id } as BookingPerson;
         });
         return items;
       })
     );
+  }
 
+  public getUserLastBooking(userDocId: string) {
+    const thisMonday = this.helperService.findDateRangeOfCurrentWeek(new Date()).firstday;
+    return this.firestore.collection('bookingPersons', q => q.where('parentUserId', '==', userDocId).where('createdOn', '<', thisMonday).orderBy('createdOn', 'desc').limit(1)).snapshotChanges().pipe(
+      map(actions => {
+        if (actions && actions.length > 0) {
+          var booking = actions[0].payload.doc.data() as BookingPerson;
+          console.log('getUserLastBooking() ', booking);
+          return { ...booking, docId: actions[0].payload.doc.id } as BookingPerson;
+        } else {
+          return null;
+        }
+      })
+    );
   }
 
   public getByBookingDocId(bookingDocId: string) {

@@ -43,3 +43,13 @@
     }
 
 }
+
+.session-closed-card-img {
+    width: 100%;
+    height: 200px;
+    cursor: pointer;
+    background-image: url("../../../assets/img/closed.jpg");
+  
+    background-size: cover;
+    background-repeat: no-repeat;
+}

@@ -1,17 +1,22 @@
 .homepage-intro{
     margin-top:0px;
-    height:1300px;
+    height:860px;
+    background: url('../../../assets/img/banner.jpg') no-repeat center center/cover;
 }
 
 .intro-shade h1{
-    font: 600 3em "Bebas Neue", cursive;
+    font: 500 3.5em "Bebas Neue", cursive;
     letter-spacing: 1.2px;
     text-transform: uppercase;
 }
 
+.yellow {
+    color:#f1c40f;
+}
+
 @media only screen and (max-width: 768px) {
     .intro-shade h1{
-        font: 600 1.5em "Bebas Neue", cursive;
+        font: 500 3.5em "Bebas Neue", cursive;
         letter-spacing: 1px;
     }
 }

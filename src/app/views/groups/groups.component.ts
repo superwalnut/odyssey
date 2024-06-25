@@ -8,8 +8,6 @@ import { BookingSchedule } from "../../models/booking-schedule";
 import { AccountService } from "../../services/account.service";
 import { Account } from "../../models/account";
 import { BaseComponent } from '../base-component';
-import { concatMap, shareReplay, switchMap, take } from 'rxjs/operators';
-import { textSpanIntersectsWithTextSpan } from 'typescript';
 import { combineLatest } from 'rxjs';
 import { Booking } from '../../models/booking';
 import firebase from 'firebase/app';
@@ -26,7 +24,6 @@ export class GroupsComponent extends BaseComponent implements OnInit {
   groups: Group[];
   bookings: Booking[];
   seatsLimit: number;
-  groupBookings: GroupBooking[] = [];
   weekStart: Timestamp;
   weekEnd: Timestamp;
   //mySchedules: BookingSchedule[];
@@ -34,7 +31,8 @@ export class GroupsComponent extends BaseComponent implements OnInit {
   isLoggedIn: boolean;
 
 
-  constructor(private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService, private bookingScheduleService: BookingScheduleService, private router: Router, private helperService: HelperService) { super() }
+  constructor(private groupService: GroupService, private bookingService: BookingsService, private accountService: AccountService, private bookingScheduleService: BookingScheduleService, 
+    private router: Router, private helperService: HelperService) { super() }
 
   ngOnInit(): void {
     this.loggedInAccount = this.accountService.getLoginAccount();
@@ -44,7 +42,6 @@ export class GroupsComponent extends BaseComponent implements OnInit {
     this.weekStart = this.helperService.convertToTimestamp(dateRange.firstday);
     this.weekEnd = this.helperService.convertToTimestamp(dateRange.lastday);
     this.getGroupsAndCurrentBookings();
-    console.log('bookings.....', this.bookings[0]);
   }
 
   getGroupName(groupDocId: string) {
@@ -69,17 +66,12 @@ export class GroupsComponent extends BaseComponent implements OnInit {
 
       if (this.bookings.length == 0) {
         console.log('bookings if offline');
-        this.router.navigateByUrl('offline');
       }
-      
     })
   }
 
   sessionClicked(b: Booking) {
-    if (b.isOffline) {
-      this.router.navigateByUrl('/offline');
-    }
-    else {
+    if(!b.isOffline){
       this.router.navigateByUrl('/booking/' + b.docId + '/' + b.groupDocId);
     }
   }

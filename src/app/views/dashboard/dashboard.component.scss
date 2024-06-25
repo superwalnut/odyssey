@@ -1,0 +1,229 @@
+.balance-card{
+    border-radius: 10px;
+
+    .card-header {
+        background: url('../../../assets/img/shuttle.jpg') no-repeat center center/cover;
+        min-height:200px;
+        position: relative;
+
+        .balance-title {
+            text-align: center;
+            position: absolute;
+            left:20px;
+            top:80px;
+            color:#fff;
+            font-size: 3em;
+            font-weight: 900;
+
+            span{
+                display: block;
+                margin-top:10px;
+                font-size:0.3em;
+                font-weight:normal;
+            }
+        }
+
+        .split-line {
+            position: absolute;
+            left:50%;
+            top:70px;
+            width: 5px;
+            height: 50px;
+            background-color: #fff;
+        }
+
+        .topup-button {
+            text-align: center;
+            position: absolute;
+            right:20px;
+            top:75px;
+            border-radius: 15px;
+            font-size: 1.8em;
+            font-weight: 500;
+            cursor: pointer;
+
+            a {
+                width:120px;
+            }
+
+            span{
+                display: block;
+                margin-top:10px;
+                font-size:0.6em;
+                font-weight:normal;
+                color:#fff;
+            }
+        }
+
+        .topup-options {
+            position: absolute;
+            left:20px;
+            bottom:5px;
+        }
+    }
+}
+
+.section-h2 {
+    color:#414141;
+}
+
+.member-status {
+    position: relative;
+    height: 80px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    .profile-bg {
+        position: absolute;
+        left:0;
+        top:0;
+        height:80px;
+
+        img {
+            height:78px;
+            width:78px;
+            border-radius: 10px 0 0 10px;
+        }
+    }
+
+    .status-text{
+        position: absolute;
+        left:85px;
+        top:20px;
+        font-size: 0.9em;
+        text-align: left;
+        margin-right:5px;
+    }
+
+    .badges {
+        position: absolute;
+        width:70px;
+        left:50%;
+        top:-10px;
+        margin-left:-35px;
+
+        img{
+            width:70px;
+        }
+    }
+
+}
+
+.next-session {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+
+    .card-title {
+        font-size:1.5em;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .card-sub-title {
+        font-size:1em;
+        font-weight: 400;
+    }
+
+    .sesstion-counter {
+        line-height:50px;
+        font-size:3em;
+        font-weight: 900;
+        color:#1086db;
+    }
+
+    .book-button {
+        width:200px;
+    }
+}
+
+.my-bookings {
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-top: 0px;
+    height:220px;
+
+    .rounded-start {
+        border-radius: 10px 10px 0 0;
+    }
+    
+    .card-title{
+        font-size: 1.5em;
+        font-weight: 500;
+        margin-bottom: 0;
+    }
+
+    .card-text{
+        font-size: 1.2em;
+        font-weight: 300;
+    }
+
+    .date {
+        position: absolute;
+        color:#1086db;
+        left:20px;
+        bottom: 15px;
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+
+    .view {
+        position: absolute;
+        right:20px;
+        bottom: 10px;
+    }
+}
+
+.my-overviews {
+    position: relative;
+    height:80px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-top: 0px;
+
+    .sub-title {
+        color:#6b6b6b;
+        font-weight: bold;
+        font-size: 0.4em;
+        margin-bottom: 10px;
+    }
+
+    span{
+        font-weight: normal;
+        font-size: 0.5em;
+    }
+
+    .points{
+        width:33%;
+        position: absolute;
+        left:0;
+        top:10px;
+        font-size:2em;
+        font-weight: 900;
+        color:#1086db;
+    }
+
+    .last-play {
+        width:33%;
+        position: absolute;
+        left:33%;
+        top:10px;
+        font-size:2em;
+        font-weight: 900;
+        color:#1086db;
+    }
+
+    .active-hours {
+        width:33%;
+        position: absolute;
+        left:66%;
+        top:10px;
+        font-size:2em;
+        font-weight: 900;
+        color:#1086db;
+    }
+
+}
