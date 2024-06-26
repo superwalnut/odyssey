@@ -32,6 +32,7 @@ import { User } from "../../models/user";
 import { combineLatest } from "rxjs";
 import { group } from "console";
 import { WaitingList } from "../../models/waiiting-list";
+import { environment } from "../../../environments/environment";
 
 @Component({
   selector: "app-booking",
@@ -64,6 +65,7 @@ export class BookingComponent extends BaseComponent implements OnInit {
   myWaitingList: WaitingList;
   waitingListButtonText: string;
   
+  cashPayment = environment.payments.cashPay;
 
   constructor(
     private groupService: GroupService,
@@ -106,6 +108,8 @@ export class BookingComponent extends BaseComponent implements OnInit {
       this.isCreditUser = result[0].isCreditUser;
       this.creditBalance = result[1];
       this.checkBalance();
+
+      this.cashPayment = `${environment.payments.cashPay}?prefilled_email=${this.user.email}`;
     });
 
     this.getGroupDetail(this.groupDocId);

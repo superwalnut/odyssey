@@ -56,7 +56,7 @@
               <mat-icon>settings</mat-icon><a routerLink="/settings/schedule">AutoBook</a>
             </li>
             <li>
-              <mat-icon>paid</mat-icon><a href="https://buy.stripe.com/eVa4gx2rC3EX7jq145" target="_blank">Top up</a>
+              <mat-icon>paid</mat-icon><a routerLink="/dashboard">Top up</a>
             </li>
           </ul>
 
@@ -78,14 +78,14 @@
           <div class="alert  alert-danger" *ngIf="!hasEnoughtBalance">
             <div class="alert-icon"><span class="material-icons">dangerous</span></div>
             <div class="alert-body">
-              You don't have enough balance to make bookings. Please <a href="https://buy.stripe.com/eVa4gx2rC3EX7jq145" target="_blank" class="btn btn-link">Top up</a> now!
+              You don't have enough balance to make bookings. Please <a routerLink="/dashboard" target="_blank" class="btn btn-link">Top up</a> now!
             </div>
           </div>
 
           <div class="alert alert-primary" *ngIf="!isCreditUser">
             <div class="alert-body">
               If you book your session as a Visitor(Cash User), you could make today's payment via stripe now and then notify any committee member. 
-              <a href="https://buy.stripe.com/4gw5kB9U40sLcDK146" target="_blank" class="btn btn-link">Click to make payment</a> now!
+              <a href="{{cashPayment}}" target="_blank" class="btn btn-link">Click to make payment</a> now!
             </div>
           </div>
 
