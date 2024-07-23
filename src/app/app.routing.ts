@@ -26,6 +26,7 @@ import { HbcCompetition2021Component } from "./views/competition/hbc-competition
 import { HbcOpenCompetition2022DrawComponent } from "./views/competition/hbc-open-competition2022-draw/hbc-open-competition2022-draw.component";
 import { StoreComponent } from "./views/store/store.component";
 import { HbcOpen2023DrawComponent } from "./views/competition/hbc-open2023-draw/hbc-open2023-draw.component";
+import { BookingRedirectComponent } from "./views/booking-redirect/booking-redirect.component";
 
 export const routes: Routes = [
   {
@@ -48,6 +49,14 @@ export const routes: Routes = [
   {
     path: "booking/:id/:groupId",
     component: BookingComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: "booking",
+    },
+  },
+  {
+    path: "session/:day",
+    component: BookingRedirectComponent,
     canActivate: [AuthGuard],
     data: {
       title: "booking",
